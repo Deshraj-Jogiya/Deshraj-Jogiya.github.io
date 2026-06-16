@@ -23,8 +23,14 @@
             <nav class="nav-links">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
+                <a href="#interactive">Interactive</a>
                 <a href="#skills">Skills</a>
+                <a href="#learning">Learning</a>
+                <button id="resume-nav-btn" class="btn-resume-nav">Resume</button>
                 <a href="#contact" class="btn btn-secondary">Connect</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -47,7 +53,7 @@
                 </p>
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">Explore Pipelines</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                    <button id="resume-hero-btn" class="btn btn-outline">View Resume</button>
                 </div>
             </div>
             
@@ -435,6 +441,87 @@
             </div>
         </section>
 
+        <!-- Interactive Recruiter Showcase Section -->
+        <section id="interactive" class="interactive-section">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Work Showcases</h2>
+                <p class="section-subtitle">Test and monitor pipeline diagnostics or execute analytical SQL queries directly in-browser to see how data decisions are made.</p>
+            </div>
+            
+            <div class="interactive-grid" style="display: flex; flex-direction: column; gap: 3rem; max-width: 1000px; margin: 0 auto;">
+                <!-- SQL Analytics Playground -->
+                <div class="sql-widget glass-card">
+                    <div class="sql-header">
+                        <h3 class="sql-title">📊 SQL Analytics Playground</h3>
+                    </div>
+                    <div class="sql-selector-group" style="margin-top: 1.5rem;">
+                        <select id="sql-query-select" class="sql-select">
+                            <option value="revenue_by_segment">Total Revenue &amp; Customer Count by Segment (Sales Segmentation)</option>
+                            <option value="anomaly_risk_claims">Top 5 Audit Compliance Risk Tax Claims (Tax Anomaly Audit)</option>
+                            <option value="survival_by_treatment">Oncology Trial Survival Rate &amp; BP by Dosage Arm (Clinical Trials)</option>
+                            <option value="drift_by_feature">Observability Log Data Drift &amp; KS-Test Metrics (AI Observability)</option>
+                        </select>
+                        <button class="btn btn-accent sql-btn-run" id="run-sql-btn" style="flex-shrink: 0; padding: 0.75rem 1.5rem;">Execute Query ⚡</button>
+                    </div>
+                    
+                    <div class="sql-editor-container" id="sql-editor" style="margin-top: 1.5rem;"></div>
+                    
+                    <div class="sql-results-panel">
+                        <div class="sql-results-title">📋 Query Results Output</div>
+                        <div class="sql-table-container">
+                            <table class="sql-table-data" id="sql-results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Click 'Execute Query' to fetch database records...</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live ETL Observability Monitor -->
+                <div class="observability-widget glass-card">
+                    <div class="obs-header">
+                        <h3 class="obs-title">🤖 Live ETL Pipeline Observability Monitor</h3>
+                        <div class="obs-status idle" id="obs-status">
+                            <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
+                        </div>
+                    </div>
+                    <div class="obs-content" style="margin-top: 1.5rem;">
+                        <div class="obs-console" id="obs-console">
+                            <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+                        </div>
+                        <div class="obs-metrics-panel">
+                            <div class="obs-metrics-grid">
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-latency">0.00s</div>
+                                    <div class="obs-metric-lbl">ETL Latency</div>
+                                </div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-reliability">98.2%</div>
+                                    <div class="obs-metric-lbl">Reliability</div>
+                                </div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-rows">0</div>
+                                    <div class="obs-metric-lbl">Processed Rows</div>
+                                </div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-drift">None</div>
+                                    <div class="obs-metric-lbl">Drift Status</div>
+                                </div>
+                            </div>
+                            <div class="obs-actions" style="margin-top: 1.5rem;">
+                                <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics 🚀</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Skills Section -->
         <section id="skills" class="skills-section">
             <div class="section-header">
@@ -513,24 +600,68 @@
             </div>
         </section>
 
+        <!-- Live Learning Logs Section -->
+        <section id="learning" class="learning-section">
+            <div class="section-header">
+                <h2 class="section-title">Live Learning Logs (TIL)</h2>
+                <p class="section-subtitle">Real-time learning feed pulled dynamically from my `dev-root-affinity` learning log repository via the GitHub API, showcasing daily coding updates, concepts, and algorithms.</p>
+            </div>
+            
+            <div id="learning-feed" class="learning-feed">
+                <!-- Loading State -->
+                <div class="learning-loading glass-card">
+                    <div class="spinner"></div>
+                    <p>Fetching latest learning entries from GitHub...</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="contact-section">
-            <div class="contact-card glass-card">
-                <h2 class="contact-title">Let's Build Something Together</h2>
-                <p class="contact-text">Looking for a technical Data Engineer / ML Engineer who combines mathematical modeling with production-grade data pipelines? Get in touch via the channels below.</p>
-                <div class="contact-info-links">
-                    <div class="info-item">
-                        <span class="info-icon">📧</span>
-                        <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a>
+            <div class="contact-grid">
+                <!-- Contact Details -->
+                <div class="contact-details-card glass-card">
+                    <h2 class="contact-title">Let's Connect</h2>
+                    <p class="contact-text">Looking for a technical Data Engineer / ML Engineer who combines mathematical modeling with production-grade data pipelines? Get in touch via these channels or send a message directly.</p>
+                    <div class="contact-info-links">
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">💼</span>
+                            <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">linkedin.com/in/deshraj-jogiya</a>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🐙</span>
+                            <a href="https://github.com/Deshraj-Jogiya" target="_blank">github.com/Deshraj-Jogiya</a>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <span class="info-icon">💼</span>
-                        <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">linkedin.com/in/deshraj-jogiya</a>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-icon">🐙</span>
-                        <a href="https://github.com/Deshraj-Jogiya" target="_blank">github.com/Deshraj-Jogiya</a>
-                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="contact-form-card glass-card">
+                    <h2 class="contact-title">Send a Message</h2>
+                    <!-- Submit form via Web3Forms -->
+                    <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+                        <!-- Hidden inputs for Web3Forms configuration -->
+                        <input type="hidden" name="access_key" value="d6e6bb25-83e9-4e78-958a-ef8b9394fa5a"> <!-- Web3Forms public test key, forwards to testing dashboard or user can swap -->
+                        <input type="hidden" name="subject" value="New Portfolio Message from Recruiter">
+                        <input type="hidden" name="from_name" value="Deshraj Jogiya Portfolio">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                        <div class="form-group">
+                            <input type="text" name="name" required placeholder="Your Name" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" required placeholder="Email Address" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" required rows="4" placeholder="Your Message..." class="form-input"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">Send Message 🚀</button>
+                        <div id="form-result" class="form-result-text"></div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -546,6 +677,126 @@
             <div class="modal-caption">
                 <h4>Interactive BI Dashboard Mockup</h4>
                 <p>Simulated report showing key business performance indicators, statistical metrics, and analytics.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive HTML Resume Modal Overlay -->
+    <div id="resume-modal" class="modal-overlay">
+        <div class="modal-content resume-modal-content glass-card">
+            <div class="resume-modal-header">
+                <h2>DESHRAJ JOGIYA — Professional Resume</h2>
+                <div class="resume-modal-actions">
+                    <button id="print-resume-btn" class="btn btn-sm btn-outline">Print / Save PDF 🖨️</button>
+                    <button class="close-modal-btn close-resume-btn">&times;</button>
+                </div>
+            </div>
+            
+            <div id="resume-paper" class="resume-paper">
+                <div class="resume-header-block">
+                    <h1>Deshraj Jogiya</h1>
+                    <p class="resume-sub">Data Engineer / Machine Learning Specialist</p>
+                    <div class="resume-meta">
+                        <span>📧 djogiya786@gmail.com</span>
+                        <span>💼 <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">linkedin.com/in/deshraj-jogiya</a></span>
+                        <span>🐙 <a href="https://github.com/Deshraj-Jogiya" target="_blank">github.com/Deshraj-Jogiya</a></span>
+                    </div>
+                </div>
+
+                <div class="resume-body-grid">
+                    <div class="resume-left-col">
+                        <section class="resume-section">
+                            <h2 class="resume-section-title">Technical Skills</h2>
+                            <div class="resume-skill-group">
+                                <h3>Programming</h3>
+                                <p>Python, SQL, PostgreSQL, R (Tidyverse), Scala, SQLite</p>
+                            </div>
+                            <div class="resume-skill-group">
+                                <h3>Data Engineering & ETL</h3>
+                                <p>ETL/ELT Pipelines, Star Schema, AWS Glue, S3, Snowflake, Great Expectations QA, Kubernetes</p>
+                            </div>
+                            <div class="resume-skill-group">
+                                <h3>Machine Learning & Stats</h3>
+                                <p>Regression Analysis, Random Forest, Scikit-learn, TensorFlow, Keras, Anomaly Detection (Isolation Forest, Z-score), Survival Analysis (Kaplan-Meier, Log-Rank), K-Means Clustering, PCA</p>
+                            </div>
+                            <div class="resume-skill-group">
+                                <h3>BI & Visualizations</h3>
+                                <p>Power BI (ODBC, DAX), Tableau (Calculated Fields, Analytics Sheets), Matplotlib, Seaborn, Chart.js</p>
+                            </div>
+                        </section>
+
+                        <section class="resume-section">
+                            <h2 class="resume-section-title">Education</h2>
+                            <div class="resume-edu-item">
+                                <h4>Master of Science, IT</h4>
+                                <p class="resume-edu-inst">Arizona State University (ASU)</p>
+                                <p class="resume-edu-date">Aug 2022 – May 2024 | GPA: 4.0/4.0</p>
+                            </div>
+                            <div class="resume-edu-item">
+                                <h4>Bachelor of Technology, Computer Eng.</h4>
+                                <p class="resume-edu-inst">Institute of Advanced Research</p>
+                                <p class="resume-edu-date">Aug 2017 – May 2021 | GPA: 7.8/10</p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="resume-right-col">
+                        <section class="resume-section">
+                            <h2 class="resume-section-title">Work Experience</h2>
+                            
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Teleoperation Data Associate</h4>
+                                    <span>May 2026 – Present</span>
+                                </div>
+                                <p class="resume-job-company">Objectways Technologies LLC | Tempe, AZ</p>
+                                <ul>
+                                    <li>Collected and validated 10,000+ high-quality data samples for AI/ML model training using Python-based workflows, improving accuracy by 20%.</li>
+                                    <li>Developed and maintained data pipelines in Python, Scala, and Kubernetes to process and organize large datasets, reducing processing time by 30%.</li>
+                                    <li>Performed QA on robotics-generated datasets, identifying and resolving inconsistencies, which improved model performance by 15%.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Applied Machine Learning Engineer</h4>
+                                    <span>Dec 2025 – May 2026</span>
+                                </div>
+                                <p class="resume-job-company">Technoid LLC | Piscataway, NJ</p>
+                                <ul>
+                                    <li>Optimized GPT-4o mini models for resume analysis/tailoring using OpenAI APIs, SQL, and PostgreSQL, improving recommendation accuracy by 25%.</li>
+                                    <li>Established Supabase data sync with RLS fixes and PostgreSQL backend, reducing data sync latency by 65%.</li>
+                                    <li>Produced UAT testing frameworks, cutting model deployment errors by 30%.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Data Analyst</h4>
+                                    <span>Jun 2025 – Dec 2025</span>
+                                </div>
+                                <p class="resume-job-company">Zifatech Solutions LLC | Milwaukee, WI</p>
+                                <ul>
+                                    <li>Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, reducing manual effort by 70%.</li>
+                                    <li>Migrated legacy data workflows to AWS Glue and S3, increasing data availability by 60% and streamlining integration with Snowflake.</li>
+                                    <li>Modernized Star Schema models in Snowflake using Great Expectations QA validations, achieving 98%+ data reliability.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Data Engineer & ML Research Assistant</h4>
+                                    <span>Sep 2024 – Jun 2025</span>
+                                </div>
+                                <p class="resume-job-company">Arizona State University | Tempe, AZ</p>
+                                <ul>
+                                    <li>Produced a real-time data pipeline utilizing Node.js and MongoDB to process streaming data, ensuring 99.9% uptime and optimizing output by 35%.</li>
+                                    <li>Constructed a personalized recommendation engine utilizing behavioral data, leading to a 12% increase in CTR and reduced user churn.</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
