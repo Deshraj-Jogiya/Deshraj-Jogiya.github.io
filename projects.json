@@ -1,7 +1,7 @@
 {
   "stats": [
     {
-      "number": "7",
+      "number": "10",
       "label": "Production Pipelines"
     },
     {
@@ -39,7 +39,7 @@
       "name": "Sales Operations & Customer Segmentation",
       "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
       "category": "machine-learning analytics",
-      "tags": ["K-Means", "PCA", "SQLite", "Power BI", "Seaborn"],
+      "tags": ["Python", "K-Means", "PCA", "SQLite", "Power BI", "Seaborn"],
       "dashboard_url": "assets/sales_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline"
     },
@@ -48,7 +48,7 @@
       "name": "Clinical Trials Patient Outcomes Analysis",
       "desc": "Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.",
       "category": "analytics",
-      "tags": ["Kaplan-Meier", "Log-Rank", "lifelines", "Tableau", "scipy"],
+      "tags": ["Python", "Kaplan-Meier", "Log-Rank", "Tableau", "scipy"],
       "dashboard_url": "assets/clinical_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis"
     },
@@ -66,7 +66,7 @@
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
       "category": "data-engineering machine-learning analytics",
-      "tags": ["Drift Audit", "KS-Test", "Disparate Impact", "Tableau", "SQL"],
+      "tags": ["Python", "Drift Audit", "KS-Test", "Tableau", "SQL"],
       "dashboard_url": "assets/ai_observability.png",
       "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing"
     },
@@ -78,6 +78,33 @@
       "tags": ["Z-Score Anomaly", "RUL Model", "Python", "Power BI", "SQL"],
       "dashboard_url": "assets/iot_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance"
+    },
+    {
+      "badge": "Geospatial & Climate",
+      "name": "Multi-State Land Use Emissions Analysis",
+      "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["Python", "SQLite", "Random Forest", "ETL Ingestion", "ArcGIS"],
+      "dashboard_url": "assets/emissions_by_state.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis"
+    },
+    {
+      "badge": "Operations & Demand",
+      "name": "AI-ML Data Science Simulation",
+      "desc": "Retail data pipeline automating daily sales ingestion from 5 U.S. branches. Centralizes operations in SQL and uses Linear Regression/Random Forest forecasting to reduce stockouts by 15%.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["Python", "SQL", "Random Forest", "Sales ETL", "Tableau"],
+      "dashboard_url": "assets/forecast_vs_actual.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation"
+    },
+    {
+      "badge": "Accessibility & Deep Learning",
+      "name": "Extending STEM across ASL",
+      "desc": "Inclusive educational learning platform utilizing a Convolutional Neural Network (CNN) in TensorFlow/Keras to recognize American Sign Language gestures for 7 core STEM concepts.",
+      "category": "machine-learning",
+      "tags": ["Python", "TensorFlow", "Keras", "CNN Model", "Flask", "ASL Recognition"],
+      "dashboard_url": "assets/training_curves.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL"
     }
   ],
   "skills": [
