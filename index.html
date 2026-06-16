@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deshraj Jogiya | Data & AI/ML Engineer Portfolio</title>
+    <!-- Modern Typography: Outfit & Inter from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Background Orbs for Depth -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo-text">DESHRAJ JOGIYA</a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact" class="btn btn-secondary">Connect</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="about" class="hero-section">
+            <div class="hero-left">
+                <span class="badge badge-accent">Portfolio Showcase</span>
+                <h1 class="hero-title">Designing Resilient Pipelines <br><span class="gradient-text">Engineering AI Insights</span></h1>
+                
+                <!-- Typing Terminal Header -->
+                <div class="terminal-text">
+                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
+                </div>
+                
+                <p class="hero-description">
+                    Master of Science in Information Technology graduate from Arizona State University (GPA: 4.0/4.0). Specializing in scalable ETL/ELT pipelines, real-time IoT telematics, machine learning models, and automated data observability frameworks. Experienced in Python, SQL, and advanced business intelligence analytics.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Explore Pipelines</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+            
+            <!-- Quick Link Cards / Stats -->
+            <div class="hero-right">
+                <div class="quick-stats-grid">
+                    <div class="stat-card glass-card">
+                        <h3 class="stat-number" data-target="7">0</h3>
+                        <p class="stat-label">Production Pipelines</p>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <h3 class="stat-number" data-target="2300">0</h3>
+                        <p class="stat-label">Git Commits</p>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <h3 class="stat-number" data-target="98">0</h3>
+                        <p class="stat-label">ETL Reliability %</p>
+                    </div>
+                    <div class="stat-card glass-card">
+                        <h3 class="stat-number" data-target="4">0</h3>
+                        <p class="stat-label">ASU MS IT GPA</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="section-header">
+                <h2 class="section-title">Relentless Execution: Portfolio Repositories</h2>
+                <p class="section-subtitle">Filter through active production-ready implementations built with end-to-end automation, modeling, and custom dashboards.</p>
+                
+                <!-- Project Filters -->
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
+                    <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                    <button class="filter-btn" data-filter="analytics">Analytics & BI</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="projects-grid">
+                
+                <!-- Project 1: FinTech command center -->
+                <div class="project-card glass-card" data-category="data-engineering machine-learning">
+                    <div class="card-badge">FinTech & Risk</div>
+                    <h3 class="card-title">FinTech Credit Risk & Fraud Command Center</h3>
+                    <p class="card-desc">End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.</p>
+                    <div class="tech-tags">
+                        <span>FastAPI</span>
+                        <span>Python</span>
+                        <span>SQL</span>
+                        <span>Scikit-Learn</span>
+                        <span>Chart.js</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Daily Insights -->
+                <div class="project-card glass-card" data-category="data-engineering">
+                    <div class="card-badge">Automation & ETL</div>
+                    <h3 class="card-title">Automated Daily Data Insights</h3>
+                    <p class="card-desc">Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.</p>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>yFinance</span>
+                        <span>Matplotlib</span>
+                        <span>GitHub Actions</span>
+                        <span>SQLite</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://github.com/Deshraj-Jogiya/automated-data-insights" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Sales customer segmentation -->
+                <div class="project-card glass-card" data-category="machine-learning analytics">
+                    <div class="card-badge">Sales & Marketing</div>
+                    <h3 class="card-title">Sales Operations & Customer Segmentation</h3>
+                    <p class="card-desc">Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.</p>
+                    <div class="tech-tags">
+                        <span>K-Means</span>
+                        <span>PCA</span>
+                        <span>SQLite</span>
+                        <span>Power BI</span>
+                        <span>Seaborn</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-sm btn-accent view-dashboard-btn" data-dashboard="assets/sales_dashboard.png">Power BI Dashboard</button>
+                        <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Clinical trials outcomes -->
+                <div class="project-card glass-card" data-category="analytics">
+                    <div class="card-badge">Healthcare & Statistics</div>
+                    <h3 class="card-title">Clinical Trials Patient Outcomes Analysis</h3>
+                    <p class="card-desc">Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.</p>
+                    <div class="tech-tags">
+                        <span>Kaplan-Meier</span>
+                        <span>Log-Rank</span>
+                        <span>lifelines</span>
+                        <span>Tableau</span>
+                        <span>scipy</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-sm btn-accent view-dashboard-btn" data-dashboard="assets/clinical_dashboard.png">Tableau Dashboard</button>
+                        <a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+
+                <!-- Project 5: Tax Anomaly Audit -->
+                <div class="project-card glass-card" data-category="machine-learning analytics">
+                    <div class="card-badge">Finance & Auditing</div>
+                    <h3 class="card-title">Tax Anomaly Audit Compliance Engine</h3>
+                    <p class="card-desc">Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.</p>
+                    <div class="tech-tags">
+                        <span>Benford's Law</span>
+                        <span>Isolation Forest</span>
+                        <span>Python</span>
+                        <span>Power BI</span>
+                        <span>SQL</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-sm btn-accent view-dashboard-btn" data-dashboard="assets/compliance_dashboard.png">Power BI Dashboard</button>
+                        <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+
+                <!-- Project 6: AI Model Observability -->
+                <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
+                    <div class="card-badge">AI Governance</div>
+                    <h3 class="card-title">AI Model Observability & Fairness Audits</h3>
+                    <p class="card-desc">Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.</p>
+                    <div class="tech-tags">
+                        <span>Drift Audit</span>
+                        <span>KS-Test</span>
+                        <span>Disparate Impact</span>
+                        <span>Tableau</span>
+                        <span>SQL</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-sm btn-accent view-dashboard-btn" data-dashboard="assets/ai_observability.png">Tableau Dashboard</button>
+                        <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+
+                <!-- Project 7: IoT Telematics -->
+                <div class="project-card glass-card" data-category="data-engineering analytics">
+                    <div class="card-badge">Streaming & IoT</div>
+                    <h3 class="card-title">Real-Time IoT Telematics & Predictive Maintenance</h3>
+                    <p class="card-desc">Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).</p>
+                    <div class="tech-tags">
+                        <span>Z-Score Anomaly</span>
+                        <span>RUL Model</span>
+                        <span>Python</span>
+                        <span>Power BI</span>
+                        <span>SQL</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-sm btn-accent view-dashboard-btn" data-dashboard="assets/iot_dashboard.png">Power BI Dashboard</button>
+                        <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="section-header">
+                <h2 class="section-title">Core Technical Expertise</h2>
+                <p class="section-subtitle">Proficient across modern data engineering tools, machine learning modeling, database modeling, and visual analytics platforms.</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category glass-card">
+                    <h3>Programming & Systems</h3>
+                    <ul>
+                        <li>Python (Pandas, NumPy, Scipy)</li>
+                        <li>SQL (PostgreSQL, SQLite, Snowflake)</li>
+                        <li>Scala</li>
+                        <li>R (Tidyverse)</li>
+                        <li>Git / GitHub Actions</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3>Data Engineering</h3>
+                    <ul>
+                        <li>ETL / ELT Pipeline Design</li>
+                        <li>Data Warehouse Modeling (Star Schema)</li>
+                        <li>Data Observability & Drift Detection</li>
+                        <li>Great Expectations Data QA</li>
+                        <li>AWS Glue, S3, Kubernetes</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3>Machine Learning & Stats</h3>
+                    <ul>
+                        <li>Regression & Classification Modeling</li>
+                        <li>Random Forest & Ensemble Models</li>
+                        <li>Unsupervised Anomaly (Isolation Forest)</li>
+                        <li>K-Means Clustering & PCA</li>
+                        <li>Survival Analysis (Kaplan-Meier, Log-Rank)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3>Visualization & BI</h3>
+                    <ul>
+                        <li>Power BI (ODBC, DAX, KPI Dashboards)</li>
+                        <li>Tableau (Calculated Fields, Analytics Sheets)</li>
+                        <li>Matplotlib, Seaborn, Chart.js</li>
+                        <li>Product & Marketing Analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-card glass-card">
+                <h2 class="contact-title">Let's Build Something Together</h2>
+                <p class="contact-text">Looking for a technical Data Engineer / ML Engineer who combines mathematical modeling with production-grade data pipelines? Get in touch via the channels below.</p>
+                <div class="contact-info-links">
+                    <div class="info-item">
+                        <span class="info-icon">📧</span>
+                        <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">💼</span>
+                        <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">linkedin.com/in/deshraj-jogiya</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🐙</span>
+                        <a href="https://github.com/Deshraj-Jogiya" target="_blank">github.com/Deshraj-Jogiya</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Dashboard Modal Overlay -->
+    <div id="dashboard-modal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <button class="close-modal-btn">&times;</button>
+            <div class="modal-image-container">
+                <img id="modal-dashboard-img" src="" alt="BI Dashboard Preview">
+            </div>
+            <div class="modal-caption">
+                <h4>Interactive BI Dashboard Mockup</h4>
+                <p>Simulated report showing key business performance indicators, statistical metrics, and analytics.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-bar">
+        <p>&copy; 2026 Deshraj Jogiya. Built with HTML5, CSS3 Glassmorphism, and Vanilla JavaScript. Hosted on GitHub Pages.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
