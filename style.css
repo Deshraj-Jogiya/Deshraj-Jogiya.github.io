@@ -1195,6 +1195,8 @@ body.light-theme .learning-item::before {
     color: #1e293b;
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
+    flex: 1;
+    min-height: 0;
 }
 
 .resume-header-block {
