@@ -1355,39 +1355,49 @@ body.light-theme .learning-item::before {
 
 /* Print Stylesheet Override */
 @media print {
-    body * {
-        visibility: hidden;
+    body > *:not(#resume-modal) {
+        display: none !important;
     }
-    #resume-modal, #resume-modal * {
-        visibility: visible;
+    body {
+        background: #fff !important;
+        color: #000 !important;
+        background-color: #fff !important;
+        overflow: visible !important;
+        height: auto !important;
     }
     #resume-modal {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: auto;
-        background: none;
-        backdrop-filter: none;
-        padding: 0;
-        margin: 0;
+        position: relative !important;
+        display: block !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        background: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
     }
     .resume-modal-content {
-        max-width: 100%;
-        width: 100%;
-        max-height: none;
-        height: auto;
-        border: none;
-        background: none;
-        box-shadow: none;
-        overflow: visible;
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+        padding: 0 !important;
     }
     .resume-modal-header {
-        display: none; /* Hide header controls when printing */
+        display: none !important;
     }
     .resume-paper {
-        padding: 0;
-        overflow: visible;
+        padding: 0 !important;
+        overflow: visible !important;
+        background: #fff !important;
+        color: #000 !important;
     }
 }
 

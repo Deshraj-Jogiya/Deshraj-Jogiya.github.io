@@ -40,8 +40,17 @@ Unlike static HTML sites, this portfolio is built using a **Python-based Static 
 * [templates/index.html](templates/index.html) — Parameterized HTML template containing dynamic Jinja2 loops.
 * [build_site.py](build_site.py) — Compiler script that loads the JSON data, renders the template, and outputs `index.html`.
 * [.github/workflows/deploy.yml](.github/workflows/deploy.yml) — GitHub Actions pipeline running Python compilation and publishing the static directory to GitHub Pages.
-* [style.css](style.css) — Cyber-dark glassmorphism design system styles.
-* [app.js](app.js) — Interactive scripts (terminal typing speed, counter animation, project category filtering, modal lightbox previews).
+* [style.css](style.css) — Cyber-dark glassmorphism design system styles, including dark/light variable sets and media overrides.
+* [app.js](app.js) — Interactive scripts (terminal animation, filter tabs, SQL Playground simulation, Observability Monitor logs, and GitHub timeline API fetches).
+
+---
+
+## 🌟 Interactive Showcase Features
+
+To demonstrate data engineering, database modeling, and frontend integration skills directly to recruiters, the site includes three interactive components:
+1. **In-Browser SQL Playground:** Select analytical queries from a dropdown (e.g., segment revenue shares, Benford's Law audit outliers, clinical survival deltas), inspect highlighted SQL syntax, and click "Execute Query" to see SQLite-simulated database outputs in a clean grid.
+2. **Live ETL Observability Console:** A telemetry widget simulating daily retail sales ETL. Displays scrolling log console checkpoints, calculates feature data drift (Kolmogorov-Smirnov test), tracks vibration/temperature Z-score thresholds, and reports metrics.
+3. **Print-Ready HTML Resume Viewer:** A modal rendering a complete structured resume. Equipped with CSS `@media print` layout overrides to print perfectly as a clean document (without dark background, navigation elements, or modal buttons).
 
 ---
 
