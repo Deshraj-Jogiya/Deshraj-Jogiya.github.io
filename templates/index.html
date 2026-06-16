@@ -53,6 +53,17 @@
             
             <!-- Quick Link Cards / Stats -->
             <div class="hero-right">
+                <!-- Professional Profile Card -->
+                <div class="profile-card glass-card">
+                    <div class="profile-image-container">
+                        <img src="assets/profile.jpg" alt="Deshraj Jogiya" class="profile-image">
+                    </div>
+                    <div class="profile-details">
+                        <h3>Deshraj Jogiya</h3>
+                        <p class="profile-title">Data & AI/ML Engineer</p>
+                    </div>
+                </div>
+
                 <div class="quick-stats-grid">
                     {% for stat in stats %}
                     <div class="stat-card glass-card">
@@ -83,19 +94,26 @@
             <div class="projects-grid">
                 {% for project in projects %}
                 <div class="project-card glass-card" data-category="{{ project.category }}">
-                    <div class="card-badge">{{ project.badge }}</div>
-                    <h3 class="card-title">{{ project.name }}</h3>
-                    <p class="card-desc">{{ project.desc }}</p>
-                    <div class="tech-tags">
-                        {% for tag in project.tags %}
-                        <span>{{ tag }}</span>
-                        {% endfor %}
+                    {% if project.dashboard_url %}
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="{{ project.dashboard_url }}">
+                        <img src="{{ project.dashboard_url }}" alt="{{ project.name }} Dashboard" class="card-image">
+                        <div class="image-overlay">
+                            <span>Zoom Dashboard 🔍</span>
+                        </div>
                     </div>
-                    <div class="card-actions">
-                        {% if project.dashboard_url %}
-                        <button class="btn btn-sm btn-accent view-dashboard-btn" data-dashboard="{{ project.dashboard_url }}">Dashboard Preview</button>
-                        {% endif %}
-                        <a href="{{ project.github_url }}" target="_blank" class="btn-link">View Repository 🔗</a>
+                    {% endif %}
+                    <div class="card-content">
+                        <div class="card-badge">{{ project.badge }}</div>
+                        <h3 class="card-title">{{ project.name }}</h3>
+                        <p class="card-desc">{{ project.desc }}</p>
+                        <div class="tech-tags">
+                            {% for tag in project.tags %}
+                            <span>{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="card-actions">
+                            <a href="{{ project.github_url }}" target="_blank" class="btn btn-sm btn-primary">View Repository 🔗</a>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}

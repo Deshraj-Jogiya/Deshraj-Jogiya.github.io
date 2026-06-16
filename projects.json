@@ -24,6 +24,7 @@
       "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
       "category": "data-engineering machine-learning",
       "tags": ["FastAPI", "Python", "SQL", "Scikit-Learn", "Chart.js"],
+      "dashboard_url": "assets/finrisk_feature_importance.png",
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline"
     },
     {
@@ -32,6 +33,7 @@
       "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
       "category": "data-engineering",
       "tags": ["Python", "yFinance", "Matplotlib", "GitHub Actions", "SQLite"],
+      "dashboard_url": "assets/daily_insights.png",
       "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights"
     },
     {
