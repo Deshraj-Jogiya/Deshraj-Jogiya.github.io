@@ -1,0 +1,124 @@
+{
+  "stats": [
+    {
+      "number": "7",
+      "label": "Production Pipelines"
+    },
+    {
+      "number": "2300",
+      "label": "Git Commits"
+    },
+    {
+      "number": "98",
+      "label": "ETL Reliability %"
+    },
+    {
+      "number": "4",
+      "label": "ASU MS IT GPA"
+    }
+  ],
+  "projects": [
+    {
+      "badge": "FinTech & Risk",
+      "name": "FinTech Credit Risk & Fraud Command Center",
+      "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
+      "category": "data-engineering machine-learning",
+      "tags": ["FastAPI", "Python", "SQL", "Scikit-Learn", "Chart.js"],
+      "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline"
+    },
+    {
+      "badge": "Automation & ETL",
+      "name": "Automated Daily Data Insights",
+      "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
+      "category": "data-engineering",
+      "tags": ["Python", "yFinance", "Matplotlib", "GitHub Actions", "SQLite"],
+      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights"
+    },
+    {
+      "badge": "Sales & Marketing",
+      "name": "Sales Operations & Customer Segmentation",
+      "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
+      "category": "machine-learning analytics",
+      "tags": ["K-Means", "PCA", "SQLite", "Power BI", "Seaborn"],
+      "dashboard_url": "assets/sales_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline"
+    },
+    {
+      "badge": "Healthcare & Statistics",
+      "name": "Clinical Trials Patient Outcomes Analysis",
+      "desc": "Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.",
+      "category": "analytics",
+      "tags": ["Kaplan-Meier", "Log-Rank", "lifelines", "Tableau", "scipy"],
+      "dashboard_url": "assets/clinical_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis"
+    },
+    {
+      "badge": "Finance & Auditing",
+      "name": "Tax Anomaly Audit Compliance Engine",
+      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
+      "category": "machine-learning analytics",
+      "tags": ["Benford's Law", "Isolation Forest", "Python", "Power BI", "SQL"],
+      "dashboard_url": "assets/compliance_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline"
+    },
+    {
+      "badge": "AI Governance",
+      "name": "AI Model Observability & Fairness Audits",
+      "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["Drift Audit", "KS-Test", "Disparate Impact", "Tableau", "SQL"],
+      "dashboard_url": "assets/ai_observability.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing"
+    },
+    {
+      "badge": "Streaming & IoT",
+      "name": "Real-Time IoT Telematics & Predictive Maintenance",
+      "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
+      "category": "data-engineering analytics",
+      "tags": ["Z-Score Anomaly", "RUL Model", "Python", "Power BI", "SQL"],
+      "dashboard_url": "assets/iot_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming & Systems",
+      "items": [
+        "Python (Pandas, NumPy, Scipy)",
+        "SQL (PostgreSQL, SQLite, Snowflake)",
+        "Scala",
+        "R (Tidyverse)",
+        "Git / GitHub Actions"
+      ]
+    },
+    {
+      "category": "Data Engineering",
+      "items": [
+        "ETL / ELT Pipeline Design",
+        "Data Warehouse Modeling (Star Schema)",
+        "Data Observability & Drift Detection",
+        "Great Expectations Data QA",
+        "AWS Glue, S3, Kubernetes"
+      ]
+    },
+    {
+      "category": "Machine Learning & Stats",
+      "items": [
+        "Regression & Classification Modeling",
+        "Random Forest & Ensemble Models",
+        "Unsupervised Anomaly (Isolation Forest)",
+        "K-Means Clustering & PCA",
+        "Survival Analysis (Kaplan-Meier, Log-Rank)"
+      ]
+    },
+    {
+      "category": "Visualization & BI",
+      "items": [
+        "Power BI (ODBC, DAX, KPI Dashboards)",
+        "Tableau (Calculated Fields, Analytics Sheets)",
+        "Matplotlib, Seaborn, Chart.js",
+        "Product & Marketing Analytics"
+      ]
+    }
+  ]
+}

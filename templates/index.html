@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deshraj Jogiya | Data & AI/ML Engineer Portfolio</title>
+    <!-- Modern Typography: Outfit & Inter from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating Background Orbs for Depth -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo-text">DESHRAJ JOGIYA</a>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact" class="btn btn-secondary">Connect</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="about" class="hero-section">
+            <div class="hero-left">
+                <span class="badge badge-accent">Portfolio Showcase</span>
+                <h1 class="hero-title">Designing Resilient Pipelines <br><span class="gradient-text">Engineering AI Insights</span></h1>
+                
+                <!-- Typing Terminal Header -->
+                <div class="terminal-text">
+                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
+                </div>
+                
+                <p class="hero-description">
+                    Master of Science in Information Technology graduate from Arizona State University (GPA: 4.0/4.0). Specializing in scalable ETL/ELT pipelines, real-time IoT telematics, machine learning models, and automated data observability frameworks. Experienced in Python, SQL, and advanced business intelligence analytics.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Explore Pipelines</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+            
+            <!-- Quick Link Cards / Stats -->
+            <div class="hero-right">
+                <div class="quick-stats-grid">
+                    {% for stat in stats %}
+                    <div class="stat-card glass-card">
+                        <h3 class="stat-number" data-target="{{ stat.number }}">0</h3>
+                        <p class="stat-label">{{ stat.label }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="section-header">
+                <h2 class="section-title">Relentless Execution: Portfolio Repositories</h2>
+                <p class="section-subtitle">Filter through active production-ready implementations built with end-to-end automation, modeling, and custom dashboards.</p>
+                
+                <!-- Project Filters -->
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
+                    <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                    <button class="filter-btn" data-filter="analytics">Analytics & BI</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="projects-grid">
+                {% for project in projects %}
+                <div class="project-card glass-card" data-category="{{ project.category }}">
+                    <div class="card-badge">{{ project.badge }}</div>
+                    <h3 class="card-title">{{ project.name }}</h3>
+                    <p class="card-desc">{{ project.desc }}</p>
+                    <div class="tech-tags">
+                        {% for tag in project.tags %}
+                        <span>{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="card-actions">
+                        {% if project.dashboard_url %}
+                        <button class="btn btn-sm btn-accent view-dashboard-btn" data-dashboard="{{ project.dashboard_url }}">Dashboard Preview</button>
+                        {% endif %}
+                        <a href="{{ project.github_url }}" target="_blank" class="btn-link">View Repository 🔗</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="section-header">
+                <h2 class="section-title">Core Technical Expertise</h2>
+                <p class="section-subtitle">Proficient across modern data engineering tools, machine learning modeling, database modeling, and visual analytics platforms.</p>
+            </div>
+            
+            <div class="skills-grid">
+                {% for cat in skills %}
+                <div class="skill-category glass-card">
+                    <h3>{{ cat.category }}</h3>
+                    <ul>
+                        {% for item in cat['items'] %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-card glass-card">
+                <h2 class="contact-title">Let's Build Something Together</h2>
+                <p class="contact-text">Looking for a technical Data Engineer / ML Engineer who combines mathematical modeling with production-grade data pipelines? Get in touch via the channels below.</p>
+                <div class="contact-info-links">
+                    <div class="info-item">
+                        <span class="info-icon">📧</span>
+                        <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">💼</span>
+                        <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">linkedin.com/in/deshraj-jogiya</a>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🐙</span>
+                        <a href="https://github.com/Deshraj-Jogiya" target="_blank">github.com/Deshraj-Jogiya</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Dashboard Modal Overlay -->
+    <div id="dashboard-modal" class="modal-overlay">
+        <div class="modal-content glass-card">
+            <button class="close-modal-btn">&times;</button>
+            <div class="modal-image-container">
+                <img id="modal-dashboard-img" src="" alt="BI Dashboard Preview">
+            </div>
+            <div class="modal-caption">
+                <h4>Interactive BI Dashboard Mockup</h4>
+                <p>Simulated report showing key business performance indicators, statistical metrics, and analytics.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-bar">
+        <p>&copy; 2026 Deshraj Jogiya. Built with Python automation & Jinja2, HTML5, CSS3 Glassmorphism, and Vanilla JavaScript. Hosted on GitHub Pages.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
