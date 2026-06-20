@@ -54,7 +54,7 @@
                 </div>
                 
                 <p class="hero-description">
-                    Master of Science in Information Technology graduate from Arizona State University (GPA: 4.0/4.0). Specializing in scalable ETL/ELT pipelines, real-time IoT telematics, machine learning models, and automated data observability frameworks. Experienced in Python, SQL, and advanced business intelligence analytics.
+                    I am a Master of Science in Information Technology graduate from Arizona State University (GPA: 4.0/4.0), specializing in scalable ETL/ELT pipelines, real-time IoT telematics, machine learning models, and automated data observability frameworks using Python, SQL, and advanced business intelligence analytics.
                 </p>
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">Explore Pipelines</a>
@@ -593,8 +593,25 @@
                     </div>
                     
                     <div class="obs-content" style="margin-top: 1.5rem;">
-                        <div class="obs-console" id="obs-console">
-                            <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+                        <!-- Tab Navigation for Observability Widget -->
+                        <div class="obs-tab-nav" style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <button class="obs-tab-btn active" data-tab="console" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-primary); padding: 0.35rem 0.75rem; border-radius: var(--border-radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth);">🖥️ Console Outputs</button>
+                            <button class="obs-tab-btn" data-tab="qa-report" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary); padding: 0.35rem 0.75rem; border-radius: var(--border-radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth);">🛡️ Data QA Audit Report</button>
+                        </div>
+                        
+                        <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
+                            <div class="obs-panel-content active" id="obs-console-panel">
+                                <div class="obs-console" id="obs-console">
+                                    <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+                                </div>
+                            </div>
+                            <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
+                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; max-height: 180px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+                                    <div class="obs-qa-empty" style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
+                                        🕒 Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="obs-metrics-panel">
                             <div class="obs-metrics-grid">
@@ -617,6 +634,46 @@
                             </div>
                             <div class="obs-actions" style="margin-top: 1.5rem;">
                                 <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics 🚀</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Pipeline Architecture Explorer -->
+                <div class="architecture-widget glass-card" style="margin-top: 1rem;">
+                    <div class="arch-header" style="margin-bottom: 1.5rem;">
+                        <h3 class="arch-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">🗺️ Data Pipeline Architecture Explorer</h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Interact with real-world pipeline system designs to see data flow, tool stacks, and Python execution modules.</p>
+                    </div>
+
+                    <!-- Pipeline Tabs -->
+                    <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <button class="arch-tab-btn active" data-pipeline="batch" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: var(--grad-primary); color: #fff; border: none;">📊 Batch ETL Sales Analytics</button>
+                        <button class="arch-tab-btn" data-pipeline="stream" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">⚡ Streaming IoT Fleet Telematics</button>
+                        <button class="arch-tab-btn" data-pipeline="geospatial" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">🌎 Geospatial Carbon Emissions</button>
+                    </div>
+
+                    <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                        <!-- Interactive System Diagram -->
+                        <div class="arch-diagram-card glass-card" style="background: rgba(10, 15, 30, 0.4); border-color: rgba(255,255,255,0.04); padding: 1.5rem;">
+                            <div class="arch-diagram-flow" id="arch-flow-diagram" style="display: flex; justify-content: space-between; align-items: center; position: relative; padding: 1rem 0; overflow-x: auto; gap: 1.5rem;">
+                                <!-- Nodes will be injected here via Javascript -->
+                            </div>
+                        </div>
+
+                        <!-- Info Pane / Code Snippet -->
+                        <div class="arch-info-pane glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.01); border-color: rgba(255, 255, 255, 0.05);">
+                            <div id="arch-node-details">
+                                <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-blue);" id="arch-node-name">Select a pipeline block above...</h4>
+                                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;" id="arch-node-tags">
+                                    <!-- Tags will go here -->
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;" id="arch-node-desc">
+                                    Click on any stage in the flow diagram above to view its technical specifications, tool stack, and Python code implementation.
+                                </p>
+                                <div class="arch-code-wrapper" style="border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #070b13; padding: 1rem; display: none;" id="arch-code-box">
+                                    <pre style="margin: 0; font-family: monospace; font-size: 0.78rem; overflow-x: auto; color: #94a3b8;"><code id="arch-code-content"></code></pre>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -787,10 +844,18 @@
     <div id="resume-modal" class="modal-overlay">
         <div class="modal-content resume-modal-content glass-card">
             <div class="resume-modal-header">
-                <h2>DESHRAJ JOGIYA — Professional Resume</h2>
-                <div class="resume-modal-actions">
-                    <button id="print-resume-btn" class="btn btn-sm btn-outline">Print / Save PDF 🖨️</button>
-                    <button class="close-modal-btn close-resume-btn">&times;</button>
+                <div class="resume-modal-header-top">
+                    <h2>DESHRAJ JOGIYA — Professional Resume</h2>
+                    <div class="resume-modal-actions">
+                        <button id="print-resume-btn" class="btn btn-sm btn-outline">Print / Save PDF 🖨️</button>
+                        <button class="close-modal-btn close-resume-btn">&times;</button>
+                    </div>
+                </div>
+                <!-- Interactive Resume Role Filters -->
+                <div class="resume-filters">
+                    <button class="resume-filter-btn active" data-role="all">Show All</button>
+                    <button class="resume-filter-btn" data-role="de">Data Engineering 🛠️</button>
+                    <button class="resume-filter-btn" data-role="ds">Data Science &amp; ML 🧠</button>
                 </div>
             </div>
             
@@ -800,6 +865,7 @@
                     <p class="resume-sub">Data &amp; AI/ML Engineer</p>
                     <div class="resume-meta">
                         <span>📍 Tempe, Arizona (open to relocation)</span>
+                        <span>🌐 <a href="https://Deshraj-Jogiya.github.io" target="_blank">Portfolio</a></span>
                         <span>📞 (480) 876-2863</span>
                         <span>📧 <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a></span>
                         <span>💼 <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">LinkedIn</a></span>
@@ -811,30 +877,30 @@
                     <!-- Summary (Spans 2 columns) -->
                     <section class="resume-section" style="grid-column: span 2; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem;">
                         <h2 class="resume-section-title" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0;">Summary</h2>
-                        <p style="font-size: 0.85rem; color: #334155; line-height: 1.6; margin: 0;">Research-focused data/ML engineer with over five years of extensive experience delivering ETL automation 70% efficiency gains, AI model optimization (25% accuracy boosts), and cloud data pipelines across research and industry roles. Expertise in Python/SQL/PostgreSQL, OpenAI APIs, Supabase/AWS/Snowflake, and ML techniques from K-Means clustering to NLP systems. ASU research alum and IBM certified, currently engineering real-time ML solutions at Technoid LLC.</p>
+                        <p style="font-size: 0.85rem; color: #334155; line-height: 1.6; margin: 0;">I am a research-focused data and AI/ML engineer with over five years of experience delivering ETL automation (70% efficiency gains), AI model optimization (25% accuracy boosts), and cloud data pipelines across my research and industry roles. My expertise spans Python, SQL, PostgreSQL, OpenAI APIs, Supabase, AWS, Snowflake, and ML techniques from K-Means clustering to NLP systems. As an ASU research alum and IBM certified professional, I currently engineer real-time ML solutions at Technoid LLC.</p>
                     </section>
 
                     <!-- Left Column -->
                     <div class="resume-left-col">
                         <section class="resume-section">
                             <h2 class="resume-section-title">Technical Skills</h2>
-                            <div class="resume-skill-group">
+                            <div class="resume-skill-group resume-bullet" data-role="general">
                                 <h3>Programming Languages</h3>
                                 <p>Python, SQL, PostgreSQL, R/Tidyverse</p>
                             </div>
-                            <div class="resume-skill-group">
+                            <div class="resume-skill-group resume-bullet" data-role="ds">
                                 <h3>Data Science &amp; ML</h3>
                                 <p>Regression Analysis, Random Forest, Scikit-learn, Pandas, NumPy, A/B Testing, Experiment Design, Statistical Analysis, Forecasting, Deep Learning, Neural Networks, Model Evaluation, Feature Engineering, Time Series Analysis, Anomaly Detection, Recommendation Systems, OpenAI API</p>
                             </div>
-                            <div class="resume-skill-group">
+                            <div class="resume-skill-group resume-bullet" data-role="ds">
                                 <h3>Data Analytics &amp; Viz</h3>
                                 <p>Tableau, Power BI, Data Mining, Product Analytics, ETL Pipeline Design, Seaborn, Matplotlib, Business Intelligence, Customer Segmentation, Cohort Analysis, Predictive Modeling, Descriptive Statistics, Inferential Statistics</p>
                             </div>
-                            <div class="resume-skill-group">
+                            <div class="resume-skill-group resume-bullet" data-role="de">
                                 <h3>Cloud Computing</h3>
                                 <p>Google Workspace, Azure ML, AWS, Data Lakes, Snowflake</p>
                             </div>
-                            <div class="resume-skill-group">
+                            <div class="resume-skill-group resume-bullet" data-role="de">
                                 <h3>ETL &amp; Data Engineering</h3>
                                 <p>Data Integration, Data Transformation, Data Warehousing, Data Modeling, Data Governance, Data Quality, Data Architecture, Git</p>
                             </div>
@@ -883,9 +949,9 @@
                                 </div>
                                 <p class="resume-job-company">Objectways Technologies LLC | Tempe, AZ</p>
                                 <ul>
-                                    <li>Collected and validated 10,000+ high-quality teleoperation data samples for AI/ML model training using Python-based workflows, improving dataset accuracy and consistency by 20%.</li>
-                                    <li>Developed and maintained scalable data pipelines using Python, Scala, and Kubernetes to process and organize large datasets, reducing data processing time by 30% and enhancing system efficiency.</li>
-                                    <li>Performed data analysis and quality assurance on robotics-generated datasets, identifying and resolving data inconsistencies, which improved model training performance and reduced error rates by 15%.</li>
+                                    <li class="resume-bullet" data-role="ds">Collected and validated 10,000+ high-quality teleoperation data samples for AI/ML model training using Python-based workflows, improving dataset accuracy and consistency by 20%.</li>
+                                    <li class="resume-bullet" data-role="de">Developed and maintained scalable data pipelines using Python, Scala, and Kubernetes to process and organize large datasets, reducing data processing time by 30% and enhancing system efficiency.</li>
+                                    <li class="resume-bullet" data-role="ds">Performed data analysis and quality assurance on robotics-generated datasets, identifying and resolving data inconsistencies, which improved model training performance and reduced error rates by 15%.</li>
                                 </ul>
                             </div>
 
@@ -896,9 +962,9 @@
                                 </div>
                                 <p class="resume-job-company">Technoid LLC | Piscataway, NJ</p>
                                 <ul>
-                                    <li>Optimized GPT-4o mini models for resume analysis/tailoring using OpenAI APIs, SQL, and PostgreSQL, improving recommendation accuracy by 25%.</li>
-                                    <li>Established Supabase data sync with RLS fixes and PostgreSQL backend, reducing data sync latency by 65% for real-time operations.</li>
-                                    <li>Produced phased regression and UAT testing frameworks, cutting model deployment errors by 30%.</li>
+                                    <li class="resume-bullet" data-role="ds">Optimized GPT-4o mini models for resume analysis/tailoring using OpenAI APIs, SQL, and PostgreSQL, improving recommendation accuracy by 25%.</li>
+                                    <li class="resume-bullet" data-role="de">Established Supabase data sync with RLS fixes and PostgreSQL backend, reducing data sync latency by 65% for real-time operations.</li>
+                                    <li class="resume-bullet" data-role="ds">Produced phased regression and UAT testing frameworks, cutting model deployment errors by 30%.</li>
                                 </ul>
                             </div>
 
@@ -909,10 +975,10 @@
                                 </div>
                                 <p class="resume-job-company">ElevateMe Bootcamp | Columbus, OH</p>
                                 <ul>
-                                    <li>Analyzed company financial and operational data with Python and Excel, identifying 4 key revenue-impacting trends that guided department-level strategic actions.</li>
-                                    <li>Deployed interactive Power BI dashboards to visualize KPIs and financial trends, improving executive insight and reporting efficiency.</li>
-                                    <li>Led customer segmentation using K-Means clustering and PCA for dimensionality reduction, visualized results in Power BI, and identified six segments that captured 92% of data variance.</li>
-                                    <li>Led marketing intelligence strategy using classification models and Power BI analytics, increasing campaign click-through rates by 12%.</li>
+                                    <li class="resume-bullet" data-role="ds">Analyzed company financial and operational data with Python and Excel, identifying 4 key revenue-impacting trends that guided department-level strategic actions.</li>
+                                    <li class="resume-bullet" data-role="de">Deployed interactive Power BI dashboards to visualize KPIs and financial trends, improving executive insight and reporting efficiency.</li>
+                                    <li class="resume-bullet" data-role="ds">Led customer segmentation using K-Means clustering and PCA for dimensionality reduction, visualized results in Power BI, and identified six segments that captured 92% of data variance.</li>
+                                    <li class="resume-bullet" data-role="ds">Led marketing intelligence strategy using classification models and Power BI analytics, increasing campaign click-through rates by 12%.</li>
                                 </ul>
                             </div>
 
@@ -923,10 +989,10 @@
                                 </div>
                                 <p class="resume-job-company">Zifatech Solutions LLC | Milwaukee, WI</p>
                                 <ul>
-                                    <li>Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, reducing manual effort by 70% and improving data refresh consistency.</li>
-                                    <li>Migrated legacy data workflows to AWS Glue and S3, increasing data availability by 60% and streamlining integration with Snowflake and Power BI.</li>
-                                    <li>Modernized Star Schema models in Snowflake using Great Expectations QA validations, achieving over 98% data reliability.</li>
-                                    <li>Built interactive Power BI dashboards connected to Snowflake datasets, translating analytical outputs into actionable business insights for sales and operations teams.</li>
+                                    <li class="resume-bullet" data-role="de">Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, reducing manual effort by 70% and improving data refresh consistency.</li>
+                                    <li class="resume-bullet" data-role="de">Migrated legacy data workflows to AWS Glue and S3, increasing data availability by 60% and streamlining integration with Snowflake and Power BI.</li>
+                                    <li class="resume-bullet" data-role="de">Modernized Star Schema models in Snowflake using Great Expectations QA validations, achieving over 98% data reliability.</li>
+                                    <li class="resume-bullet" data-role="de">Built interactive Power BI dashboards connected to Snowflake datasets, translating analytical outputs into actionable business insights for sales and operations teams.</li>
                                 </ul>
                             </div>
 
@@ -937,9 +1003,9 @@
                                 </div>
                                 <p class="resume-job-company">Arizona State University | Tempe, AZ</p>
                                 <ul>
-                                    <li>Produced a real-time data pipeline utilizing Node.js and MongoDB to process streaming data, ensuring 99.9% uptime for 5,000 concurrent users, and optimized data output by 35%.</li>
-                                    <li>Constructed a personalized recommendation engine utilizing behavioral data; refined algorithms weekly, leading to a 12% increase in content click-through rates and reduced user churn.</li>
-                                    <li>Led the development of an NLP chatbot that analyzed user input, pinpointing the top three user interface pain points, and driving a 15% increase in positive user satisfaction.</li>
+                                    <li class="resume-bullet" data-role="de">Produced a real-time data pipeline utilizing Node.js and MongoDB to process streaming data, ensuring 99.9% uptime for 5,000 concurrent users, and optimized data output by 35%.</li>
+                                    <li class="resume-bullet" data-role="ds">Constructed a personalized recommendation engine utilizing behavioral data; refined algorithms weekly, leading to a 12% increase in content click-through rates and reduced user churn.</li>
+                                    <li class="resume-bullet" data-role="ds">Led the development of an NLP chatbot that analyzed user input, pinpointing the top three user interface pain points, and driving a 15% increase in positive user satisfaction.</li>
                                 </ul>
                             </div>
 
@@ -950,9 +1016,9 @@
                                 </div>
                                 <p class="resume-job-company">Jetson Infinity | Austin, TX</p>
                                 <ul>
-                                    <li>Implemented a Python-based data processing pipeline leveraging Pandas and NumPy, resulting in a 3% refinement in robotic arm precision and enhanced workflow efficiency by 10%.</li>
-                                    <li>Automated data pipeline for robotic arm motion data employing Python and SQL, enhancing data processing efficiency by 17% and enabling real-time anomaly detection and faster analysis.</li>
-                                    <li>Devised an internal knowledge base with Python tutorials and real-world case studies, accelerating new data analyst onboarding by 25% and improving team proficiency in Python.</li>
+                                    <li class="resume-bullet" data-role="ds">Implemented a Python-based data processing pipeline leveraging Pandas and NumPy, resulting in a 3% refinement in robotic arm precision and enhanced workflow efficiency by 10%.</li>
+                                    <li class="resume-bullet" data-role="de">Automated data pipeline for robotic arm motion data employing Python and SQL, enhancing data processing efficiency by 17% and enabling real-time anomaly detection and faster analysis.</li>
+                                    <li class="resume-bullet" data-role="general">Devised an internal knowledge base with Python tutorials and real-world case studies, accelerating new data analyst onboarding by 25% and improving team proficiency in Python.</li>
                                 </ul>
                             </div>
 
@@ -963,9 +1029,9 @@
                                 </div>
                                 <p class="resume-job-company">Kronic Keys | Junagadh, GJ</p>
                                 <ul>
-                                    <li>Cleaned and prepared large datasets (500k+ rows), leading to more accurate sales and customer behavior insights and reducing reporting time by 30%.</li>
-                                    <li>Built SQL queries and Tableau dashboards that improved sales reporting efficiency by 30%.</li>
-                                    <li>Developed and maintained Tableau dashboards that visualized key sales performance indicators, helping drive a 12% increase in customer acquisition; dashboards were built using data extracted from PostgreSQL.</li>
+                                    <li class="resume-bullet" data-role="de">Cleaned and prepared large datasets (500k+ rows), leading to more accurate sales and customer behavior insights and reducing reporting time by 30%.</li>
+                                    <li class="resume-bullet" data-role="de">Built SQL queries and Tableau dashboards that improved sales reporting efficiency by 30%.</li>
+                                    <li class="resume-bullet" data-role="de">Developed and maintained Tableau dashboards that visualized key sales performance indicators, helping drive a 12% increase in customer acquisition; dashboards were built using data extracted from PostgreSQL.</li>
                                 </ul>
                             </div>
                         </section>
@@ -979,9 +1045,9 @@
                                     <span>Apr 2025 – Nov 2025</span>
                                 </div>
                                 <ul>
-                                    <li>Engineered Python ETL pipeline for daily land cover datasets from 5 U.S. states, automating emissions inventory compilation with geospatial data transformations, saving 10 hours weekly.</li>
-                                    <li>Centralized SQL database tracking land use changes (e.g., urban expansion, forest loss); Improved Linear Regression/Random Forest forecasts achieving 90% accuracy for CO₂ trends.</li>
-                                    <li>Authored an ArcGIS Dashboard for interactive visualization of land cover shifts and emission summaries across regional scales, reducing anomaly detection time by 15%.</li>
+                                    <li class="resume-bullet" data-role="de">Engineered Python ETL pipeline for daily land cover datasets from 5 U.S. states, automating emissions inventory compilation with geospatial data transformations, saving 10 hours weekly.</li>
+                                    <li class="resume-bullet" data-role="ds">Centralized SQL database tracking land use changes (e.g., urban expansion, forest loss); Improved Linear Regression/Random Forest forecasts achieving 90% accuracy for CO₂ trends.</li>
+                                    <li class="resume-bullet" data-role="de">Authored an ArcGIS Dashboard for interactive visualization of land cover shifts and emission summaries across regional scales, reducing anomaly detection time by 15%.</li>
                                 </ul>
                             </div>
 
@@ -991,9 +1057,9 @@
                                     <span>Apr 2024 – Jun 2024</span>
                                 </div>
                                 <ul>
-                                    <li>Created a scalable data automation system imposing Python for daily sales data ingestion from 5 branches across states, simulating a real ETL pipeline.</li>
-                                    <li>Centralized inventory data implementing SQL and visualized trends in Tableau, driving actionable insights across weekly and monthly cycles.</li>
-                                    <li>Operated machine learning models (e.g., Linear Regression, Random Forest) that achieved 90% forecast accuracy and enabled a 15% reduction in stock-outs.</li>
+                                    <li class="resume-bullet" data-role="de">Created a scalable data automation system utilizing Python for daily sales data ingestion from 5 branches across states, simulating a real ETL pipeline.</li>
+                                    <li class="resume-bullet" data-role="de">Centralized inventory data implementing SQL and visualized trends in Tableau, driving actionable insights across weekly and monthly cycles.</li>
+                                    <li class="resume-bullet" data-role="ds">Operated machine learning models (e.g., Linear Regression, Random Forest) that achieved 90% forecast accuracy and enabled a 15% reduction in stock-outs.</li>
                                 </ul>
                             </div>
 
@@ -1003,9 +1069,9 @@
                                     <span>Apr 2023 – Mar 2024</span>
                                 </div>
                                 <ul>
-                                    <li>Pioneered an inclusive Python platform leveraging TensorFlow and Keras, enabling 7 previously inaccessible STEM concepts to users with and without ASL proficiency.</li>
-                                    <li>Implemented a novel search functionality and sign recognition algorithm cannibalizing Python, cutting gesture redundancy, boosting learning efficiency by 30%, and presented to the Department Head.</li>
-                                    <li>Synthesized feedback from 50+ STEM students to identify key areas to improve lesson design, achieving a user satisfaction score of 4.6/5, based on post-lesson surveys.</li>
+                                    <li class="resume-bullet" data-role="ds">Pioneered an inclusive Python platform leveraging TensorFlow and Keras, enabling 7 previously inaccessible STEM concepts to users with and without ASL proficiency.</li>
+                                    <li class="resume-bullet" data-role="ds">Implemented a novel search functionality and sign recognition algorithm leveraging Python, cutting gesture redundancy, boosting learning efficiency by 30%, and presented to the Department Head.</li>
+                                    <li class="resume-bullet" data-role="general">Synthesized feedback from 50+ STEM students to identify key areas to improve lesson design, achieving a user satisfaction score of 4.6/5, based on post-lesson surveys.</li>
                                 </ul>
                             </div>
                         </section>
@@ -1015,16 +1081,41 @@
         </div>
     </div>
 
+    <!-- SVG Gradient Definitions for charts -->
+    <svg style="width:0; height:0; position:absolute;">
+      <defs>
+        <linearGradient id="purpleGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#a855f7" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
     <!-- Visitor ML Models & Charts Modal Overlay -->
     <div id="ml-charts-modal" class="modal-overlay">
         <div class="modal-content ml-charts-modal-content glass-card" style="max-width: 900px; width: 95%;">
-            <div class="resume-modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                <h2 style="font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">📊 Live Visitor AI/ML Insights</h2>
-                <button class="close-modal-btn close-ml-modal-btn" id="close-ml-modal-btn" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
+            <div class="resume-modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <h2 style="font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">📊 Live Visitor AI/ML Insights</h2>
+                    <button class="close-modal-btn close-ml-modal-btn" id="close-ml-modal-btn" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
+                </div>
+                
+                <!-- Tab Buttons for ML Modal -->
+                <div class="ml-modal-tabs" style="display: flex; gap: 0.5rem;">
+                    <button class="ml-tab-btn active" data-ml-tab="forecast" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: var(--grad-primary); color: #fff; border: none;">📈 Traffic Forecast</button>
+                    <button class="ml-tab-btn" data-ml-tab="cohorts" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">👥 Visitor Cohorts</button>
+                    <button class="ml-tab-btn" data-ml-tab="metrics" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">🎯 Classifier Boundaries</button>
+                </div>
             </div>
             
-            <div class="ml-charts-container" style="display: flex; flex-direction: column; gap: 2rem; max-height: 70vh; overflow-y: auto; padding-right: 0.5rem;">
-                <div class="ml-chart-block">
+            <div class="ml-charts-container" style="max-height: 65vh; overflow-y: auto; padding-right: 0.5rem;">
+                
+                <!-- Tab 1: Traffic Forecast -->
+                <div class="ml-panel-content" id="ml-forecast-panel">
                     <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-blue); display: flex; align-items: center; gap: 0.5rem;">
                         📈 7-Day Traffic Forecast Model (Linear Regression)
                     </h4>
@@ -1036,7 +1127,8 @@
                     </div>
                 </div>
                 
-                <div class="ml-chart-block" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                <!-- Tab 2: Visitor Cohorts -->
+                <div class="ml-panel-content" id="ml-cohorts-panel" style="display: none;">
                     <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-purple); display: flex; align-items: center; gap: 0.5rem;">
                         👥 Visitor Cohort Segmentation Model (K-Means)
                     </h4>
@@ -1047,6 +1139,140 @@
                         <img src="assets/visitor_segments.png" alt="Visitor Segmentation Clusters Chart" style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 4px;">
                     </div>
                 </div>
+
+                <!-- Tab 3: Interactive Evaluation Dials -->
+                <div class="ml-panel-content" id="ml-metrics-panel" style="display: none;">
+                    <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-emerald); display: flex; align-items: center; gap: 0.5rem;">
+                        🎯 Classifier Decision Boundary &amp; Performance Metrics
+                    </h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;">
+                        Adjust the classification decision boundary threshold to evaluate the trade-off between false alarms (FP) and missed detections (FN). This simulates live classifier tuning for risk decisioning.
+                    </p>
+
+                    <div class="ml-metrics-interactive-grid" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                        <!-- Selection & Slider controls -->
+                        <div class="ml-controls-card glass-card" style="padding: 1.25rem; background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06);">
+                            <div class="form-group" style="margin-bottom: 1rem;">
+                                <label style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--text-secondary);">Select Target Model</label>
+                                <select id="ml-model-select" class="sql-select" style="width: 100%;">
+                                    <option value="credit">Credit Fraud Predictor (Random Forest - AUC 0.92)</option>
+                                    <option value="tax">Tax Claim Auditing (Isolation Forest - AUC 0.86)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="slider-group">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Classification Threshold</span>
+                                    <span class="threshold-badge" id="threshold-val" style="background: var(--grad-primary); color: #fff; padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">0.50</span>
+                                </div>
+                                <input type="range" id="threshold-slider" min="0.00" max="1.00" step="0.01" value="0.50" style="width: 100%; cursor: pointer;">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;">
+                                    <span>0.00 (High Recall / Flag All)</span>
+                                    <span>1.00 (High Precision / Flag None)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Grid: Metrics, Matrix, and Graphs -->
+                        <div class="ml-metrics-details-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <!-- Column A: Dials & Confusion Matrix -->
+                            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                                <!-- Metrics Dials -->
+                                <div class="obs-metrics-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; width: 100%;">
+                                    <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
+                                        <div class="obs-metric-val" id="metric-precision" style="font-size: 1.3rem;">89.2%</div>
+                                        <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">Precision</div>
+                                    </div>
+                                    <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
+                                        <div class="obs-metric-val" id="metric-recall" style="font-size: 1.3rem;">82.5%</div>
+                                        <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">Recall</div>
+                                    </div>
+                                    <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
+                                        <div class="obs-metric-val" id="metric-f1" style="font-size: 1.3rem;">85.7%</div>
+                                        <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">F1-Score</div>
+                                    </div>
+                                </div>
+
+                                <!-- Confusion Matrix -->
+                                <div class="confusion-matrix-card glass-card" style="padding: 1.25rem; background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.06);">
+                                    <h5 style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem; color: var(--text-secondary); text-align: center;">Confusion Matrix (N = 1,000)</h5>
+                                    <div style="display: grid; grid-template-columns: 80px 1fr 1fr; gap: 4px; text-align: center; font-size: 0.75rem;">
+                                        <div></div>
+                                        <div style="font-weight: 600; padding: 4px; color: var(--text-muted);">Pred Neg</div>
+                                        <div style="font-weight: 600; padding: 4px; color: var(--text-muted);">Pred Pos</div>
+
+                                        <div style="font-weight: 600; text-align: right; align-self: center; padding-right: 8px; color: var(--text-muted);">Actual Neg</div>
+                                        <div class="matrix-cell" id="cell-tn" style="background: rgba(255,255,255,0.02); padding: 8px; border-radius: 4px; font-weight: bold;">760</div>
+                                        <div class="matrix-cell" id="cell-fp" style="background: rgba(239, 68, 68, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: #ef4444;">40</div>
+
+                                        <div style="font-weight: 600; text-align: right; align-self: center; padding-right: 8px; color: var(--text-muted);">Actual Pos</div>
+                                        <div class="matrix-cell" id="cell-fn" style="background: rgba(239, 68, 68, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: #ef4444;">35</div>
+                                        <div class="matrix-cell" id="cell-tp" style="background: rgba(16, 185, 129, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: var(--accent-emerald);">165</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Column B: SVG Curves -->
+                            <div class="curves-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <!-- ROC Curve -->
+                                <div class="curve-block glass-card" style="padding: 0.75rem; text-align: center; background: rgba(0,0,0,0.1); border-color: rgba(255,255,255,0.05);">
+                                    <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">ROC Curve</div>
+                                    <svg viewBox="-10 -10 120 120" style="width: 100%; height: auto; overflow: visible;">
+                                        <!-- Axis helper lines -->
+                                        <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <!-- Axes -->
+                                        <line x1="0" y1="100" x2="100" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                        <line x1="0" y1="0" x2="0" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                        <!-- Baseline diagonal -->
+                                        <line x1="0" y1="100" x2="100" y2="0" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2" stroke-width="0.75" />
+                                        <!-- Curve path -->
+                                        <path id="roc-path" d="M 0 100 Q 15 15, 100 0" fill="none" stroke="url(#purpleGradient)" stroke-width="2.5" />
+                                        <!-- Threshold dot tracker -->
+                                        <circle id="roc-dot" r="4.5" fill="#8b5cf6" stroke="#fff" stroke-width="1.5" cx="0" cy="100"></circle>
+                                        
+                                        <!-- Axis Labels -->
+                                        <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">FPR (1-Spec)</text>
+                                        <text x="-50" y="-8" font-size="7" fill="var(--text-muted)" transform="rotate(-90)" text-anchor="middle">TPR (Sensitivity)</text>
+                                    </svg>
+                                </div>
+
+                                <!-- PR Curve -->
+                                <div class="curve-block glass-card" style="padding: 0.75rem; text-align: center; background: rgba(0,0,0,0.1); border-color: rgba(255,255,255,0.05);">
+                                    <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">Precision-Recall Curve</div>
+                                    <svg viewBox="-10 -10 120 120" style="width: 100%; height: auto; overflow: visible;">
+                                        <!-- Axis helper lines -->
+                                        <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                        <!-- Axes -->
+                                        <line x1="0" y1="100" x2="100" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                        <line x1="0" y1="0" x2="0" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+                                        <!-- Curve path -->
+                                        <path id="pr-path" d="M 0 10 C 65 10, 85 25, 100 100" fill="none" stroke="url(#blueGradient)" stroke-width="2.5" />
+                                        <!-- Threshold dot tracker -->
+                                        <circle id="pr-dot" r="4.5" fill="#3b82f6" stroke="#fff" stroke-width="1.5" cx="0" cy="10"></circle>
+                                        
+                                        <!-- Axis Labels -->
+                                        <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">Recall</text>
+                                        <text x="-50" y="-8" font-size="7" fill="var(--text-muted)" transform="rotate(-90)" text-anchor="middle">Precision</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business explanation card -->
+                        <div class="ml-business-card glass-card" style="background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: var(--border-radius-md); padding: 1rem; font-size: 0.82rem; line-height: 1.5; width: 100%;">
+                            <div style="font-weight: 700; color: var(--accent-emerald); margin-bottom: 0.25rem;" id="ml-business-title">Optimal Balanced Threshold (0.50)</div>
+                            <div style="color: var(--text-secondary);" id="ml-business-desc">
+                                Optimal F1-Score. Balances customer experience and capital protection. Fraud is minimized, while maintaining a smooth experience for 98% of creditworthy customers.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1055,6 +1281,52 @@
     <footer class="footer-bar">
         <p>&copy; 2026 Deshraj Jogiya. Built with Python automation & Jinja2, HTML5, CSS3 Glassmorphism, and Vanilla JavaScript. Hosted on GitHub Pages.</p>
     </footer>
+
+    <!-- Interactive Resume AI Q&A Bot Widget (RAG Simulation) -->
+    <div id="ai-chat-widget" class="ai-chat-widget">
+        <!-- Launcher Button -->
+        <button id="chat-launcher" class="chat-launcher-btn" aria-label="Open AI Resume Assistant">
+            <span class="launcher-icon">🤖</span>
+            <span class="launcher-text">Ask My Resume AI!</span>
+            <span class="launcher-pulse"></span>
+        </button>
+
+        <!-- Chat Window Container -->
+        <div id="chat-container" class="chat-container glass-card">
+            <!-- Header -->
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <span class="chat-avatar">🤖</span>
+                    <div>
+                        <div class="chat-bot-name">Resume AI Assistant</div>
+                        <div class="chat-status"><span class="status-dot"></span> Online (RAG Simulation)</div>
+                    </div>
+                </div>
+                <button id="close-chat-btn" class="close-chat-btn" aria-label="Close Chat">&times;</button>
+            </div>
+
+            <!-- Messages Log -->
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-msg bot-msg">
+                    Hi! I'm Deshraj's AI assistant. Ask me anything about my Master's degree at ASU, my work experience at Technoid, my Python/SQL pipelines, or my GPA!
+                </div>
+            </div>
+
+            <!-- Quick Suggestions Row -->
+            <div class="chat-suggestions">
+                <button class="chat-suggest-btn" data-question="What is your GPA?">What is your GPA? 🎓</button>
+                <button class="chat-suggest-btn" data-question="What is your experience with Python?">Python experience? 🐍</button>
+                <button class="chat-suggest-btn" data-question="Tell me about your ASU degree">ASU Master's degree? 🏫</button>
+                <button class="chat-suggest-btn" data-question="How can I contact you?">How to contact you? 📧</button>
+            </div>
+
+            <!-- Input Form -->
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." required>
+                <button type="submit" class="chat-send-btn">Send ⚡</button>
+            </form>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>

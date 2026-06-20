@@ -598,11 +598,20 @@ document.addEventListener("DOMContentLoaded", () => {
         { type: "info", text: "[INFO] Re-centering PCA coordinates for cluster visualization..." },
         { type: "info", text: "[INFO] Materializing results into SQLite database dim_customers and fact_sales..." },
         { type: "success", text: "[SUCCESS] ETL pipeline executed successfully. Materialized views compiled." },
-        { type: "info", text: "[INFO] Updating Power BI dataset dashboard cache..." },
         { type: "success", text: "[SUCCESS] Observed reliability: 98.4%. Pipeline run complete." }
     ];
-
     let isRunningObs = false;
+    let currentReliability = "98.2%";
+
+    // Great Expectations Mock Rules Data
+    const qaReportData = [
+        { name: "expect_table_column_count_to_equal(8)", status: "pass", desc: "Verifies the general ledger schema contains exactly 8 columns (transaction_id, date, amount, account, entity, location, user, anomaly_flag).", details: { expectation_type: "expect_table_column_count_to_equal", kwargs: { value: 8 }, meta: { dimension: "schema" } } },
+        { name: "expect_column_values_to_not_be_null(\"transaction_id\")", status: "pass", desc: "Ensures primary key transaction_id is non-null for all incoming records.", details: { expectation_type: "expect_column_values_to_not_be_null", kwargs: { column: "transaction_id" }, meta: { dimension: "completeness" } } },
+        { name: "expect_column_values_to_be_between(\"amount\", 0, 10000000)", status: "pass", desc: "Ensures financial transaction amount is positive and under $10M threshold.", details: { expectation_type: "expect_column_values_to_be_between", kwargs: { column: "amount", min_value: 0, max_value: 10000000 }, meta: { dimension: "validity" } } },
+        { name: "expect_column_values_to_be_in_set(\"segment\", [\"VIP\", \"Loyal\", \"Slipping\", \"Lost\"])", status: "pass", desc: "Verifies customer segments map strictly to the database classification taxonomy.", details: { expectation_type: "expect_column_values_to_be_in_set", kwargs: { column: "segment", value_set: ["VIP", "Loyal", "Slipping", "Lost"] }, meta: { dimension: "consistency" } } },
+        { name: "expect_column_values_to_match_regex(\"date\", \"^\\\\d{4}-\\\\d{2}-\\\\d{2}$\")", status: "pass", desc: "Validates date format follows ISO YYYY-MM-DD pattern.", details: { expectation_type: "expect_column_values_to_match_regex", kwargs: { column: "date", regex: "^\\d{4}-\\d{2}-\\d{2}$" }, meta: { dimension: "schema" } } },
+        { name: "expect_column_values_to_follow_benfords_law(\"amount\")", status: "warn", desc: "Checks first-digit distribution against Benford's Law logarithmic curve. Warns on significant distribution drift (KS test p-value < 0.05).", details: { expectation_type: "expect_column_values_to_follow_benfords_law", kwargs: { column: "amount", p_value_threshold: 0.05 }, meta: { dimension: "distribution_drift" } } }
+    ];
 
     // Pipeline Visual Node selectors
     const pipelineProgress = document.getElementById("pipeline-progress-line");
@@ -615,6 +624,93 @@ document.addEventListener("DOMContentLoaded", () => {
         if (pipelineProgress) pipelineProgress.style.width = "0%";
         [nodeIngest, nodeValidate, nodeScore, nodeCommit].forEach(n => {
             if (n) n.className = "pipeline-node-item";
+        });
+    }
+
+    // Observability tab switcher
+    const obsTabBtns = document.querySelectorAll(".obs-tab-btn");
+    const obsConsolePanel = document.getElementById("obs-console-panel");
+    const obsQaPanel = document.getElementById("obs-qa-panel");
+
+    obsTabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            obsTabBtns.forEach(b => {
+                b.classList.remove("active");
+                b.style.color = "var(--text-secondary)";
+            });
+            btn.classList.add("active");
+            btn.style.color = "var(--text-primary)";
+
+            const targetTab = btn.getAttribute("data-tab");
+            if (targetTab === "console") {
+                if (obsConsolePanel) obsConsolePanel.style.display = "block";
+                if (obsQaPanel) obsQaPanel.style.display = "none";
+            } else {
+                if (obsConsolePanel) obsConsolePanel.style.display = "none";
+                if (obsQaPanel) obsQaPanel.style.display = "block";
+            }
+        });
+    });
+
+    // Populate Data QA report in UI
+    function renderQaReport(isRunning) {
+        const qaReport = document.getElementById("obs-qa-report");
+        if (!qaReport) return;
+
+        if (isRunning) {
+            qaReport.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
+                    <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-amber);">VALIDATING... 🔄</span></span>
+                    <span style="font-size: 0.72rem; color: var(--text-muted);">Executing Schema Checks</span>
+                </div>
+                <div style="text-align: center; padding: 2rem 0;">
+                    <div class="spinner" style="margin: 0 auto 0.5rem auto; width: 25px; height: 25px;"></div>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Great Expectations validation context compiling...</p>
+                </div>
+            `;
+            return;
+        }
+
+        let qaHtml = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-emerald);">PASS ✅</span></span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">6/6 Expectations Succeeded</span>
+            </div>
+            <div class="qa-rules-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
+        `;
+        
+        qaReportData.forEach((rule, idx) => {
+            const badgeClass = rule.status === "pass" ? "qa-badge-pass" : "qa-badge-warn";
+            const badgeText = rule.status === "pass" ? "PASS" : "WARN";
+            qaHtml += `
+                <div class="qa-rule-item">
+                    <div class="qa-rule-header">
+                        <span class="qa-rule-name">${rule.name}</span>
+                        <span class="qa-rule-badge ${badgeClass}">${badgeText}</span>
+                    </div>
+                    <div class="qa-rule-details" id="qa-details-${idx}" style="display: none;">
+                        <div style="margin-bottom: 0.4rem; color: var(--text-secondary);">${rule.desc}</div>
+                        <pre style="margin: 0; color: #a7f3d0; font-size: 0.7rem; overflow-x: auto;">${JSON.stringify(rule.details, null, 2)}</pre>
+                    </div>
+                </div>
+            `;
+        });
+        
+        qaHtml += `</div>`;
+        qaReport.innerHTML = qaHtml;
+    }
+
+    const qaReport = document.getElementById("obs-qa-report");
+    if (qaReport) {
+        qaReport.addEventListener("click", (e) => {
+            const header = e.target.closest(".qa-rule-header");
+            if (header) {
+                const item = header.closest(".qa-rule-item");
+                const details = item.querySelector(".qa-rule-details");
+                if (details) {
+                    details.style.display = details.style.display === "none" ? "block" : "none";
+                }
+            }
         });
     }
 
@@ -632,10 +728,23 @@ document.addEventListener("DOMContentLoaded", () => {
             // Reset console, metrics, and nodes
             obsConsole.innerHTML = "";
             metricLatency.textContent = "0.00s";
+            metricReliability.textContent = currentReliability; // Reset fix: keep established metrics
             metricRows.textContent = "0";
             metricDrift.textContent = "Checking";
             metricDrift.style.color = "inherit";
             resetPipelineNodes();
+
+            // Reset top-level header stats card
+            const topReliabilityStat = Array.from(document.querySelectorAll(".stat-card")).find(card => {
+                const label = card.querySelector(".stat-label");
+                return label && label.textContent.includes("ETL Reliability");
+            })?.querySelector(".stat-number");
+            if (topReliabilityStat) {
+                topReliabilityStat.textContent = currentReliability.includes("98.4") ? "98.4%+" : "98%+";
+            }
+
+            // Clear QA report state to trigger validation loader
+            renderQaReport(true);
 
             let currentLogIndex = 0;
             const logInterval = setInterval(() => {
@@ -672,14 +781,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (currentLogIndex === 2) {
                         metricRows.textContent = "5,167";
                     }
+                    if (currentLogIndex === 5) {
+                        // Ingest validation complete, populate QA Validation Report
+                        renderQaReport(false);
+                    }
                     if (currentLogIndex === 8) {
                         metricDrift.textContent = "Warning ⚠️";
                         metricDrift.style.color = "var(--accent-amber)";
                     }
-                    if (currentLogIndex === 11) {
+                    if (currentLogIndex === 13) {
                         metricLatency.textContent = "1.45s";
+                        currentReliability = "98.4%";
+                        metricReliability.textContent = currentReliability;
                         metricDrift.textContent = "Drift Handled";
                         metricDrift.style.color = "var(--accent-emerald)";
+                        
+                        // Also update the global stat counter in the header if it exists
+                        const topReliabilityStat = Array.from(document.querySelectorAll(".stat-card")).find(card => {
+                            const label = card.querySelector(".stat-label");
+                            return label && label.textContent.includes("ETL Reliability");
+                        })?.querySelector(".stat-number");
+                        if (topReliabilityStat) {
+                            topReliabilityStat.textContent = "98.4%+";
+                        }
                     }
 
                     currentLogIndex++;
@@ -727,7 +851,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ]
         },
         anomaly_risk_claims: {
-            raw: `SELECT \n  claim_id,\n  company_name,\n  tax_claimed_usd,\n  isolation_forest_anomaly_score AS anomaly_score,\n  CASE \n    WHEN isolation_forest_anomaly_score < 0 THEN 'HIGH RISK'\n    ELSE 'COMPLIANT'\n  END AS audit_status\nFROM tax_claims\nWHERE audit_status = 'HIGH RISK'\nORDER BY tax_claimed_usd DESC\nLIMIT 5;`,
+            raw: `SELECT \n  claim_id,\n  company_name,\n  tax_claimed_usd,\n  isolation_forest_anomaly_score AS anomaly_score,\n  CASE \n    WHEN isolation_forest_anomaly_score AS anomaly_score < 0 THEN 'HIGH RISK'\n    ELSE 'COMPLIANT'\n  END AS audit_status\nFROM tax_claims\nWHERE audit_status = 'HIGH RISK'\nORDER BY tax_claimed_usd DESC\nLIMIT 5;`,
             html: `<span class="sql-keyword">SELECT</span> 
   claim_id,
   company_name,
@@ -971,5 +1095,416 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }, 600);
         });
+    }
+
+    // ==========================================================================
+    // 11. Resume Role Highlighting Filters Logic
+    // ==========================================================================
+    const resumeFilterBtns = document.querySelectorAll(".resume-filter-btn");
+    const resumeBullets = document.querySelectorAll(".resume-bullet");
+
+    resumeFilterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            resumeFilterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const selectedRole = btn.getAttribute("data-role");
+
+            resumeBullets.forEach(bullet => {
+                const bulletRole = bullet.getAttribute("data-role");
+                bullet.classList.remove("highlighted-de", "highlighted-ds", "dimmed");
+
+                if (selectedRole === "all") {
+                    return;
+                }
+
+                if (bulletRole === selectedRole) {
+                    bullet.classList.add(`highlighted-${selectedRole}`);
+                } else {
+                    bullet.classList.add("dimmed");
+                }
+            });
+        });
+    });
+
+    // ==========================================================================
+    // 12. Floating Resume AI Q&A Bot Widget (RAG Simulation)
+    // ==========================================================================
+    const chatLauncher = document.getElementById("chat-launcher");
+    const chatContainer = document.getElementById("chat-container");
+    const closeChatBtn = document.getElementById("close-chat-btn");
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+    const chatMessages = document.getElementById("chat-messages");
+    const chatSuggestBtns = document.querySelectorAll(".chat-suggest-btn");
+
+    if (chatLauncher && chatContainer) {
+        chatLauncher.addEventListener("click", () => {
+            chatContainer.classList.toggle("active");
+            if (chatContainer.classList.contains("active")) {
+                chatInput.focus();
+            }
+        });
+    }
+
+    if (closeChatBtn) {
+        closeChatBtn.addEventListener("click", () => {
+            chatContainer.classList.remove("active");
+        });
+    }
+
+    const answers = {
+        gpa: "I graduated from Arizona State University (ASU) with a perfect Master of Science in IT GPA of 4.0/4.0! I am dedicated to maintaining high standards of quality in all of my engineering and modeling work.",
+        python: "I use Python daily. I've engineered automated ETL pipelines (like the sales simulations and carbon calculations), trained K-Means/Random Forest models, performed survival statistics, and built gesture CNNs in Keras.",
+        asu: "I hold a Master of Science in Information Technology from Arizona State University (ASU), graduating in May 2024. My studies focused on cloud computing, advanced database schemas, and AI/ML pipeline deployments.",
+        contact: "You can reach me directly via email at djogiya786@gmail.com or call me at (480) 876-2863. I'm open to relocation and excited to discuss new opportunities!",
+        cloud: "I have experience with AWS Glue/S3 (ETL migrations), Snowflake (warehouse modeling), and Supabase (databases, real-time logging, and row-level security setups).",
+        experience: "I have over five years of data & ML experience, currently working at Objectways Technologies (robotic teleoperation pipelines) and previously at Technoid LLC (AI model optimization, Supabase sync) and Zifatech (AWS Glue/Snowflake).",
+        projects: "I have engineered multiple production-ready systems: a credit risk command center, an automated market anomaly detector, a K-Means retail customer segmenter, and a sign language TensorFlow classifier. Check my projects grid!",
+        observability: "I'm highly skilled in model monitoring. I use Kolmogorov-Smirnov (KS) tests to track feature drift in production, configure data quality checks with Great Expectations, and write automated health monitors."
+    };
+
+    const searchKeyword = (msg) => {
+        const query = msg.toLowerCase();
+        if (query.includes("gpa") || query.includes("grade") || query.includes("scale") || query.includes("score")) return answers.gpa;
+        if (query.includes("python") || query.includes("pandas") || query.includes("numpy") || query.includes("programming")) return answers.python;
+        if (query.includes("asu") || query.includes("education") || query.includes("degree") || query.includes("master")) return answers.asu;
+        if (query.includes("contact") || query.includes("email") || query.includes("phone") || query.includes("reach") || query.includes("hire")) return answers.contact;
+        if (query.includes("cloud") || query.includes("aws") || query.includes("snowflake") || query.includes("azure") || query.includes("supabase")) return answers.cloud;
+        if (query.includes("experience") || query.includes("work") || query.includes("history") || query.includes("job") || query.includes("technoid") || query.includes("objectways")) return answers.experience;
+        if (query.includes("project") || query.includes("repo") || query.includes("github")) return answers.projects;
+        if (query.includes("drift") || query.includes("ks") || query.includes("observability") || query.includes("validation")) return answers.observability;
+        
+        return "That's a great question! While my local simulation database is compact, you can find full details about this in my projects section or resume modal. Or you can email me directly at djogiya786@gmail.com!";
+    };
+
+    const addMessage = (text, sender) => {
+        const msgEl = document.createElement("div");
+        msgEl.className = `chat-msg ${sender}-msg`;
+        msgEl.textContent = text;
+        chatMessages.appendChild(msgEl);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return msgEl;
+    };
+
+    const triggerBotResponse = (userQuery) => {
+        // Add typing dots
+        const typingEl = document.createElement("div");
+        typingEl.className = "chat-msg bot-msg typing-msg";
+        typingEl.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
+        chatMessages.appendChild(typingEl);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        setTimeout(() => {
+            chatMessages.removeChild(typingEl);
+            const answer = searchKeyword(userQuery);
+            addMessage(answer, "bot");
+        }, 800);
+    };
+
+    if (chatForm) {
+        chatForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+            addMessage(text, "user");
+            chatInput.value = "";
+            triggerBotResponse(text);
+        });
+    }
+
+    chatSuggestBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const question = btn.getAttribute("data-question");
+            addMessage(question, "user");
+            triggerBotResponse(question);
+        });
+    });
+
+    // ==========================================================================
+    // 13. Data Pipeline Architecture explorer
+    // ==========================================================================
+    const pipelineData = {
+        batch: {
+            nodes: [
+                { id: "ingest", label: "Ingest", icon: "📥", tags: ["Python", "yFinance", "Pandas"], desc: "Fetches daily stock prices and market telemetry via APIs. Standardizes data columns and formats timestamps.", code: "import yfinance as yf\nimport pandas as pd\n\ndef ingest_daily_data(ticker='SPY'):\n    data = yf.download(ticker, period='1d', interval='1m')\n    df = pd.DataFrame(data)\n    df.reset_index(inplace=True)\n    df.rename(columns={'Datetime': 'timestamp'}, inplace=True)\n    return df" },
+                { id: "validate", label: "Validate", icon: "🛡️", tags: ["Great Expectations", "Python"], desc: "Checks schema conformity, verifies data types, and ensures transaction values are within expected ranges.", code: "import great_expectations as ge\n\ndef validate_schema(df):\n    ge_df = ge.from_pandas(df)\n    result = ge_df.expect_column_values_to_not_be_null('timestamp')\n    assert result['success']\n    result = ge_df.expect_column_values_to_be_between('Close', min_value=0)\n    return result['success']" },
+                { id: "model", label: "Model", icon: "🧠", tags: ["Scikit-Learn", "Z-Score"], desc: "Applies statistical outlier threshold checks and trains forecasting models on aggregated metrics.", code: "from sklearn.ensemble import IsolationForest\n\ndef detect_anomalies(df, contamination=0.04):\n    model = IsolationForest(contamination=contamination, random_state=42)\n    df['anomaly_score'] = model.fit_predict(df[['Close', 'Volume']])\n    return df" },
+                { id: "warehouse", label: "Warehouse", icon: "❄️", tags: ["Snowflake", "SQL", "Star Schema"], desc: "Writes processed records to Snowflake dimension and fact tables, maintaining relational integrity.", code: "INSERT INTO fact_market_sales (timestamp, close_price, volume, anomaly_flag)\nSELECT \n  timestamp, \n  close_price, \n  volume, \n  CASE WHEN anomaly_score < 0 THEN 1 ELSE 0 END\nFROM stg_market_data;" },
+                { id: "bi", label: "BI Dashboard", icon: "📊", tags: ["Power BI", "DAX"], desc: "Refreshes Power BI visual indicators and updates KPI dashboard summaries for business stakeholders.", code: "Average Close = AVERAGE(fact_market_sales[close_price])\nAnomaly Count = CALCULATE(COUNTROWS(fact_market_sales), fact_market_sales[anomaly_flag] = 1)" }
+            ]
+        },
+        stream: {
+            nodes: [
+                { id: "ingest", label: "IoT Sensors", icon: "📟", tags: ["MQTT", "HTTP", "FastAPI"], desc: "Receives high-frequency sensor readings (vibration, heat, voltage) in real-time from EV battery systems.", code: "@app.post('/api/telemetry')\nasync def ingest_stream(reading: TelemetryReading):\n    await stream_buffer.append(reading)\n    return {'status': 'buffered'}" },
+                { id: "validate", label: "Validation", icon: "🛡️", tags: ["Python", "Z-Score"], desc: "Performs rolling Z-score checks on micro-batches to detect immediate sensor hardware failures.", code: "def rolling_zscore_check(window, current_val):\n    mean = sum(window) / len(window)\n    std = (sum((x - mean)**2 for x in window) / len(window))**0.5\n    z = (current_val - mean) / (std + 1e-6)\n    return abs(z) < 3.0" },
+                { id: "model", label: "RUL Estimator", icon: "🧠", tags: ["Scikit-Learn", "Regression"], desc: "Applies an exponential health decay model to forecast the fleet component's Remaining Useful Life (RUL).", code: "import numpy as np\n\ndef estimate_rul(vibration_history):\n    decay_fit = np.polyfit(np.arange(len(vibration_history)), np.log(vibration_history), 1)\n    projected_fail_step = (np.log(MAX_LIMIT) - decay_fit[1]) / decay_fit[0]\n    return max(0, projected_fail_step - len(vibration_history))" },
+                { id: "alert", label: "Alert Hook", icon: "🚨", tags: ["Webhooks", "FastAPI"], desc: "Triggers notifications to maintenance teams if RUL drops below threshold levels.", code: "async def trigger_maintenance_alert(device_id, rul_hours):\n    payload = {'device_id': device_id, 'alert': 'CRITICAL', 'rul_remaining': rul_hours}\n    async with httpx.AsyncClient() as client:\n        await client.post('https://pagerduty.com/trigger', json=payload)" }
+            ]
+        },
+        geospatial: {
+            nodes: [
+                { id: "ingest", label: "ArcGIS Ingest", icon: "🌎", tags: ["Python", "Shapefiles", "Geopandas"], desc: "Loads multi-state daily land cover raster files and converts shape attributes to tabular coordinates.", code: "import geopandas as gpd\n\ndef load_geojson(path):\n    gdf = gpd.read_file(path)\n    gdf = gdf.to_crs(epsg=4326)\n    return gdf" },
+                { id: "validate", label: "Carbon Engine", icon: "🍃", tags: ["Python", "Pandas"], desc: "Calculates net carbon emissions based on land cover type changes (forest loss vs. urban expansion).", code: "def calculate_emissions(gdf):\n    # Forest: -3.5 tons/ha, Urban: +2.1 tons/ha\n    gdf['co2_delta'] = gdf['area_ha'] * gdf['land_type'].map({\n        'Forest': -3.5,\n        'Urban': 2.1,\n        'Agriculture': 0.8\n    })\n    return gdf" },
+                { id: "model", label: "ML Forecast", icon: "🧠", tags: ["Random Forest", "Scikit-Learn"], desc: "Fits Linear Regression and Random Forest models to forecast CO2 trend lines.", code: "from sklearn.ensemble import RandomForestRegressor\n\ndef train_emissions_forecaster(X, y):\n    model = RandomForestRegressor(n_estimators=100, random_state=42)\n    model.fit(X, y)\n    return model" },
+                { id: "warehouse", label: "DB Storage", icon: "💾", tags: ["SQLite", "SQL"], desc: "Saves regional emissions inventory records to SQLite index database.", code: "CREATE TABLE land_changes (\n  state TEXT,\n  from_type TEXT,\n  to_type TEXT,\n  area_changed REAL,\n  change_date DATE\n);" },
+                { id: "commit", label: "Git Pages Commit", icon: "🐙", tags: ["GitHub Actions", "Git"], desc: "Commits visitor stats and model prediction plots daily, updating GitHub Pages contributions.", code: "# git command line runner\nimport subprocess\n\ndef push_changes():\n    subprocess.run(['git', 'add', '.'])\n    subprocess.run(['git', 'commit', '-m', 'daily update'])\n    subprocess.run(['git', 'push', 'origin', 'main'])" }
+            ]
+        }
+    };
+
+    const archTabBtns = document.querySelectorAll(".arch-tab-btn");
+    const archFlowDiagram = document.getElementById("arch-flow-diagram");
+    const nodeNameEl = document.getElementById("arch-node-name");
+    const nodeTagsEl = document.getElementById("arch-node-tags");
+    const nodeDescEl = document.getElementById("arch-node-desc");
+    const codeBox = document.getElementById("arch-code-box");
+    const codeContentEl = document.getElementById("arch-code-content");
+
+    function renderPipelineFlow(pipelineType) {
+        if (!archFlowDiagram) return;
+        const pipeline = pipelineData[pipelineType];
+        archFlowDiagram.innerHTML = "";
+
+        pipeline.nodes.forEach((node, idx) => {
+            // Node element
+            const nodeEl = document.createElement("div");
+            nodeEl.className = "arch-node-item" + (idx === 0 ? " active" : "");
+            nodeEl.setAttribute("data-node-id", node.id);
+            nodeEl.innerHTML = `
+                <div class="arch-node-circle">${node.icon}</div>
+                <div class="arch-node-lbl">${node.label}</div>
+            `;
+            archFlowDiagram.appendChild(nodeEl);
+
+            // Connector (except last item)
+            if (idx < pipeline.nodes.length - 1) {
+                const connEl = document.createElement("div");
+                connEl.className = "arch-connector active";
+                archFlowDiagram.appendChild(connEl);
+            }
+        });
+
+        // Set default node data
+        showNodeDetails(pipeline.nodes[0]);
+    }
+
+    function showNodeDetails(node) {
+        if (!nodeNameEl) return;
+        nodeNameEl.textContent = `${node.icon} ${node.label} Stage`;
+        nodeTagsEl.innerHTML = "";
+        node.tags.forEach(t => {
+            const span = document.createElement("span");
+            span.className = "badge";
+            span.style.background = "rgba(99, 102, 241, 0.1)";
+            span.style.border = "1px solid rgba(99, 102, 241, 0.2)";
+            span.style.color = "var(--accent-blue)";
+            span.style.fontSize = "0.7rem";
+            span.style.padding = "0.2rem 0.5rem";
+            span.style.borderRadius = "4px";
+            span.textContent = t;
+            nodeTagsEl.appendChild(span);
+        });
+        nodeDescEl.textContent = node.desc;
+
+        if (codeBox && codeContentEl) {
+            codeContentEl.textContent = node.code;
+            codeBox.style.display = "block";
+        }
+    }
+
+    if (archFlowDiagram) {
+        archFlowDiagram.addEventListener("click", (e) => {
+            const nodeItem = e.target.closest(".arch-node-item");
+            if (nodeItem) {
+                // Remove active class
+                archFlowDiagram.querySelectorAll(".arch-node-item").forEach(n => n.classList.remove("active"));
+                nodeItem.classList.add("active");
+
+                const activePipeline = document.querySelector(".arch-tab-btn.active").getAttribute("data-pipeline");
+                const nodeId = nodeItem.getAttribute("data-node-id");
+                const node = pipelineData[activePipeline].nodes.find(n => n.id === nodeId);
+                if (node) {
+                    showNodeDetails(node);
+                }
+            }
+        });
+    }
+
+    archTabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            archTabBtns.forEach(b => {
+                b.classList.remove("active");
+                b.style.background = "rgba(255,255,255,0.03)";
+                b.style.color = "var(--text-secondary)";
+                b.style.border = "1px solid rgba(255,255,255,0.08)";
+            });
+            btn.classList.add("active");
+            btn.style.background = "var(--grad-primary)";
+            btn.style.color = "#fff";
+            btn.style.border = "none";
+
+            const pipelineType = btn.getAttribute("data-pipeline");
+            renderPipelineFlow(pipelineType);
+        });
+    });
+
+    // Initialize default pipeline flow
+    renderPipelineFlow("batch");
+
+    // ==========================================================================
+    // 14. Interactive ML Evaluation Metrics & SVG Tracker Curves
+    // ==========================================================================
+    const mlTabBtns = document.querySelectorAll(".ml-tab-btn");
+    const mlForecastPanel = document.getElementById("ml-forecast-panel");
+    const mlCohortsPanel = document.getElementById("ml-cohorts-panel");
+    const mlMetricsPanel = document.getElementById("ml-metrics-panel");
+
+    mlTabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            mlTabBtns.forEach(b => {
+                b.classList.remove("active");
+                b.style.background = "rgba(255,255,255,0.04)";
+                b.style.color = "var(--text-secondary)";
+                b.style.border = "1px solid rgba(255,255,255,0.1)";
+            });
+            btn.classList.add("active");
+            btn.style.background = "var(--grad-primary)";
+            btn.style.color = "#fff";
+            btn.style.border = "none";
+
+            const targetTab = btn.getAttribute("data-ml-tab");
+            if (targetTab === "forecast") {
+                if (mlForecastPanel) mlForecastPanel.style.display = "block";
+                if (mlCohortsPanel) mlCohortsPanel.style.display = "none";
+                if (mlMetricsPanel) mlMetricsPanel.style.display = "none";
+            } else if (targetTab === "cohorts") {
+                if (mlForecastPanel) mlForecastPanel.style.display = "none";
+                if (mlCohortsPanel) mlCohortsPanel.style.display = "block";
+                if (mlMetricsPanel) mlMetricsPanel.style.display = "none";
+            } else {
+                if (mlForecastPanel) mlForecastPanel.style.display = "none";
+                if (mlCohortsPanel) mlCohortsPanel.style.display = "none";
+                if (mlMetricsPanel) mlMetricsPanel.style.display = "block";
+                // Trigger curve tracker dot alignment on first display
+                updateClassifierSimulator();
+            }
+        });
+    });
+
+    const modelSelect = document.getElementById("ml-model-select");
+    const thresholdSlider = document.getElementById("threshold-slider");
+    const thresholdVal = document.getElementById("threshold-val");
+    const precisionVal = document.getElementById("metric-precision");
+    const recallVal = document.getElementById("metric-recall");
+    const f1Val = document.getElementById("metric-f1");
+    const cellTP = document.getElementById("cell-tp");
+    const cellFP = document.getElementById("cell-fp");
+    const cellFN = document.getElementById("cell-fn");
+    const cellTN = document.getElementById("cell-tn");
+    const businessTitle = document.getElementById("ml-business-title");
+    const businessDesc = document.getElementById("ml-business-desc");
+    const rocDot = document.getElementById("roc-dot");
+    const prDot = document.getElementById("pr-dot");
+
+    function updateClassifierSimulator() {
+        if (!thresholdSlider) return;
+        const t = parseFloat(thresholdSlider.value);
+        if (thresholdVal) thresholdVal.textContent = t.toFixed(2);
+
+        const model = modelSelect ? modelSelect.value : "credit";
+
+        let tp, fp, fn, tn, totalPos, totalNeg;
+
+        if (model === "credit") {
+            totalPos = 200;
+            totalNeg = 800;
+            // Mathematical approximations modeling typical Classifier curves
+            tp = Math.round(totalPos * Math.pow(1 - t, 0.35));
+            fp = Math.round(totalNeg * Math.pow(1 - t, 2.2));
+            fn = totalPos - tp;
+            tn = totalNeg - fp;
+        } else {
+            totalPos = 150;
+            totalNeg = 850;
+            tp = Math.round(totalPos * Math.pow(1 - t, 0.5));
+            fp = Math.round(totalNeg * Math.pow(1 - t, 1.6));
+            fn = totalPos - tp;
+            tn = totalNeg - fp;
+        }
+
+        // Confusion matrix values
+        if (cellTP) cellTP.textContent = tp;
+        if (cellFP) cellFP.textContent = fp;
+        if (cellFN) cellFN.textContent = fn;
+        if (cellTN) cellTN.textContent = tn;
+
+        // Metrics calculations
+        const precision = tp / (tp + fp + 1e-5);
+        const recall = tp / totalPos;
+        const f1 = 2 * precision * recall / (precision + recall + 1e-5);
+
+        if (precisionVal) precisionVal.textContent = (precision * 100).toFixed(1) + "%";
+        if (recallVal) recallVal.textContent = (recall * 100).toFixed(1) + "%";
+        if (f1Val) f1Val.textContent = (f1 * 100).toFixed(1) + "%";
+
+        // Align dot trackers on SVGs
+        const fpr = fp / totalNeg;
+        const tpr = recall;
+
+        if (rocDot) {
+            // SVG coordinate scaling (viewbox 0 0 100 100)
+            const cx = fpr * 100;
+            const cy = 100 - (tpr * 100);
+            rocDot.setAttribute("cx", cx.toFixed(1));
+            rocDot.setAttribute("cy", cy.toFixed(1));
+        }
+
+        if (prDot) {
+            const cx = recall * 100;
+            const cy = 100 - (precision * 100);
+            prDot.setAttribute("cx", cx.toFixed(1));
+            prDot.setAttribute("cy", cy.toFixed(1));
+        }
+
+        // Contextual business text
+        if (businessTitle && businessDesc) {
+            if (model === "credit") {
+                if (t < 0.30) {
+                    businessTitle.textContent = `⚠️ High Recall / Low Precision Threshold (${t.toFixed(2)})`;
+                    businessTitle.style.color = "var(--accent-amber)";
+                    businessDesc.textContent = "The model flags almost all potential fraud transactions. This prevents default loss, but generates many false alarms (blocking 90% of genuine users) and causes substantial user frustration.";
+                } else if (t > 0.70) {
+                    businessTitle.textContent = `⚠️ High Precision / Low Recall Threshold (${t.toFixed(2)})`;
+                    businessTitle.style.color = "var(--accent-amber)";
+                    businessDesc.textContent = "The model only flags fraud when it is 100% certain. Genuine users experience zero friction, but the bank misses 80% of actual fraud cases, leading to massive default losses.";
+                } else {
+                    businessTitle.textContent = `✅ Optimal Balanced Decisioning Threshold (${t.toFixed(2)})`;
+                    businessTitle.style.color = "var(--accent-emerald)";
+                    businessDesc.textContent = "Optimal F1-Score trade-off. Captures ~85% of fraudulent loan attempts while ensuring a smooth, frictionless approval experience for 98% of creditworthy customers.";
+                }
+            } else {
+                if (t < 0.35) {
+                    businessTitle.textContent = `⚠️ High Recall / Low Precision Threshold (${t.toFixed(2)})`;
+                    businessTitle.style.color = "var(--accent-amber)";
+                    businessDesc.textContent = "Flags almost all tax claims for auditing. Secures compliance safety, but creates massive administrative backlogs for audit analysts who must verify compliant returns manually.";
+                } else if (t > 0.65) {
+                    businessTitle.textContent = `⚠️ High Precision / Low Recall Threshold (${t.toFixed(2)})`;
+                    businessTitle.style.color = "var(--accent-amber)";
+                    businessDesc.textContent = "Flags only extreme outlier tax claims. Keeps audit overhead low, but misses millions of dollars in fraudulent deductions and non-compliant claims.";
+                } else {
+                    businessTitle.textContent = `✅ Optimal Balanced Compliance Threshold (${t.toFixed(2)})`;
+                    businessTitle.style.color = "var(--accent-emerald)";
+                    businessDesc.textContent = "Balanced compliance engine. Captures ~82% of high-risk claims while keeping audit verification backlogs manageable for internal reviewers.";
+                }
+            }
+        }
+    }
+
+    if (thresholdSlider) {
+        thresholdSlider.addEventListener("input", updateClassifierSimulator);
+    }
+    if (modelSelect) {
+        modelSelect.addEventListener("change", updateClassifierSimulator);
     }
 });
