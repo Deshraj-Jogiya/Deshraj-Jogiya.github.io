@@ -2956,9 +2956,9 @@ body.light-theme .btn-tour-nav {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 10000;
-    backdrop-filter: blur(3px);
+    background: rgba(15, 23, 42, 0.35); /* soft dark slate tint */
+    z-index: 100000; /* lower than highlighted items but above standard elements */
+    backdrop-filter: blur(1.5px);
     transition: opacity 0.3s ease;
 }
 
@@ -2966,17 +2966,25 @@ body.light-theme .btn-tour-nav {
 .tour-overlay-card {
     position: fixed;
     bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 450px;
+    left: 2rem; /* placed at bottom-left to avoid blocking center contents */
+    width: 380px;
+    max-width: calc(100vw - 4rem);
     padding: 1.5rem;
-    z-index: 10001;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    z-index: 100005; /* higher than highlighted items */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
     border-radius: var(--border-radius-lg);
     background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(20px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 640px) {
+    .tour-overlay-card {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        bottom: 1rem;
+    }
 }
 
 .tour-header {
@@ -3041,11 +3049,18 @@ body.light-theme .tour-step-title {
 /* Tour Highlight outline and glow */
 .tour-highlight {
     position: relative;
-    z-index: 10002 !important;
-    outline: 3px solid #6366f1 !important;
+    z-index: 100003 !important; /* sits on top of backdrop but behind tour card */
+    outline: 3px solid #8b5cf6 !important;
     outline-offset: 4px;
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.8) !important;
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.8) !important;
     transition: all 0.3s ease-in-out;
+}
+
+/* Special overrides for modal overlay highlighting */
+.modal-overlay.tour-highlight {
+    z-index: 100003 !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 /* D.S. & ML Experiments Widget Styling */

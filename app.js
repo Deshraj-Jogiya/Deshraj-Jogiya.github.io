@@ -1432,11 +1432,11 @@ document.addEventListener("DOMContentLoaded", () => {
         asu: "Deshraj graduated with a Master of Science in Information Technology from Arizona State University in May 2024, graduating with a perfect 4.0 GPA. His academic specialization sat at the intersection of enterprise cloud computing, automated data pipelines, and predictive analytics.",
         contact: "You can reach Deshraj directly via email at djogiya786@gmail.com or by phone at (480) 876-2863. He is open to relocation to major tech hubs across the United States and is actively interviewing for Data Engineering, Machine Learning Engineering, and Data Science positions.",
         cloud: "Deshraj's cloud infrastructure stack revolves around building secure, high-throughput architectures. He uses AWS services (AWS Glue ETL pipelines, S3 data lakes, and Athena queries) alongside Snowflake (leveraging optimized star schema models) and Supabase for serverless functions, database access control (RLS), and secure APIs.",
-        experience: "Deshraj is a Data and AI/ML Engineer with 5 years of extensive experience designing resilient pipelines and deploying predictive models in production. His career highlights include:\n\n1. **Applied ML Engineering (Technoid LLC)**: Fine-tuned OpenAI GPT models for specialized resume matching, building vector search prompts, and reducing synchronization delays by 65%.\n2. **Cloud Data Engineering (Zifatech)**: Migrated legacy SQL databases to AWS Glue and Snowflake, establishing automated data validation suites using Great Expectations.\n3. **Robotic Ingestion Pipelines (Objectways)**: Built and scaled high-volume data collection structures inside Kubernetes to manage teleoperation data streams, improving processing speed by 30%.\n4. **Academic ML Research (ASU)**: Developed deep learning CNN gesture recognition classifiers and real-time recommenders.\n\nHe specializes in building self-monitoring data systems that prevent silent data failures and model performance degradation.",
+        experience: "Deshraj is a Data and AI/ML Engineer with five years of extensive experience designing resilient pipelines and deploying predictive models in production. His career spans engineering high-throughput robotic data collection workflows in Kubernetes at Objectways, to orchestrating legacy database migrations to AWS Glue and Snowflake with Great Expectations validations at Zifatech. Most recently, as an Applied ML Engineer at Technoid LLC, he optimized OpenAI GPT models for profile recommendations, building vector search sync routines that reduced synchronization delays by 65%. In all of his projects, his engineering philosophy centers on proactive drift monitoring and data quality automation.",
         projects: "Deshraj's portfolio showcases production-grade engineering: a Multi-State Land Use Emissions pipeline forecasting carbon trends with 90% accuracy; a Real-Time IoT Fleet Telematics micro-batching engine executing Z-score anomaly checks; and a FinTech Credit Risk & Fraud platform with sub-100ms API latency. You can check out their live code repositories in the 'Projects' section above!",
         observability: "Deshraj believes that silently failing data is the largest risk in modern production systems. He integrates automated Great Expectations suites directly into ingest cycles to trap bad data schema and missing values, and implements statistical checks (like Kolmogorov-Smirnov drift tests) to detect feature decay before it impacts live models.",
-        skills: "Deshraj's tech stack includes: \n- **Programming**: Python (Pandas, NumPy, Scikit-Learn, TensorFlow), SQL (Postgres, Snowflake), and Scala.\n- **Data Engineering**: AWS Glue, S3, Kubernetes, and Great Expectations.\n- **ML & Analytics**: Random Forest, XGBoost, PCA, K-Means clustering, Tableau, and Power BI dashboards.",
-        analytics: "Deshraj views data analytics as a bridge between engineering and executive decision-making. At Zifatech and Kronic Keys, he designed robust star schemas, conducted cohort analysis, and built executive Tableau dashboards that shortened manual reports extraction times by 30% and enabled leaders to monitor acquisition trends in real time.",
+        skills: "Deshraj's technical capabilities center on Python pipeline engineering, SQL data modeling, and machine learning development. He operates fluently across cloud environments using AWS Glue, S3, Kubernetes, and Great Expectations for schema validation, alongside business intelligence analytics using Tableau and Power BI. On the modeling side, he specializes in building predictive systems, clustering algorithms, and deep neural networks in Scikit-Learn and TensorFlow.",
+        analytics: "For Deshraj, data analytics is the vital bridge between complex data pipelines and strategic business decisions. Rather than just designing standalone charts, he builds robust analytical architectures like optimized Snowflake star schemas and automates general ledger anomaly audits. At Zifatech, Kronic Keys, and ASU, he designed cohort retention frameworks and built interactive Power BI and Tableau dashboards that shortened manual reports extraction times by 30%, giving executive teams real-time visibility into operational growth and customer acquisition metrics.",
         objectways: "At Objectways Technologies, Deshraj optimized robotic teleoperation data workflows. He designed custom Python and Scala ingest scripts to organize and catalog over 10,000 robotic teleoperation samples into a Kubernetes-orchestrated environment. This saved the simulation team 30% in processing latency and eliminated raw dataset inconsistencies.",
         technoid: "At Technoid LLC, Deshraj served as an Applied ML Engineer fine-tuning LLM systems (GPT-4o mini) for automated resume analysis and profile matching. He developed optimized vector prompts and Supabase synchronization logic, reducing backend synchronization delays by 65% while improving recommendations accuracy by 25%.",
         zifatech: "As a Data Analyst at Zifatech Solutions, Deshraj drove the migration of legacy SQL datasets to AWS (Glue and S3 data lakes), improving Snowflake warehouse data availability by 60%. He also designed Star Schema architectures and automated checks using Great Expectations to establish a 98% data reliability standard.",
@@ -1543,7 +1543,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     "apikey": SUPABASE_KEY,
                     "Authorization": `Bearer ${SUPABASE_KEY}`
                 },
-                body: JSON.stringify({ message: userQuery })
+                body: JSON.stringify({ message: userQuery + " (Important: Write the response in a flowing paragraph narrative. Do NOT use bullet points, numbered lists, or dashes.)" })
             });
 
             if (!aiRes.ok) {
@@ -2285,15 +2285,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 optimalBadge.style.display = "none";
             }
         };
-        
         abSlider.addEventListener("input", updateThresholdOptimizer);
         updateThresholdOptimizer();
     }
 
     // ==========================================================================
-    // Recruiter Guided 1-Minute Tour Engine
+    // Recruiter Guided Tour Coordinator (Autoplay & Self-Paced)
     // ==========================================================================
     let tourCurrentStep = 0;
+    let tourMode = 'manual'; // 'autoplay' or 'manual'
+    let isAutoplayPaused = false;
+    let progressIntervalId = null;
+    let stepDuration = 0;
+    let stepTimeElapsed = 0;
+    const PROGRESS_TICK = 100;
     
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     
@@ -2306,12 +2311,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const tourNextBtn = document.getElementById("tour-next-btn");
     const tourPrevBtn = document.getElementById("tour-prev-btn");
     const tourSkipBtn = document.getElementById("tour-skip-btn");
+    const tourPausePlayBtn = document.getElementById("tour-pause-play-btn");
     
     const tourSteps = [
         {
             title: "Welcome to Deshraj's Portfolio! 🌟",
-            desc: "This 1-minute guided tour showcases Deshraj's interactive data and ML engineering capabilities in action. Let's get started!",
+            desc: "This interactive guided tour showcases Deshraj's professional experience, pipeline dashboard, SQL charts, and conversational AI chatbot. Choose how you would like to proceed below:",
             target: null,
+            duration: 0,
             action: async () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 await delay(800);
@@ -2321,7 +2328,12 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Interactive Resume Modal 💼",
             desc: "Watch as we open the Resume, filter by 'Data Science' experience, and highlight his perfect 4.0/4.0 GPA from Arizona State University.",
             target: "#resume-hero-btn",
+            duration: 15000,
             action: async () => {
+                const resumeModal = document.getElementById("resume-modal");
+                if (resumeModal) {
+                    resumeModal.classList.add("tour-highlight");
+                }
                 const resumeBtn = document.getElementById("resume-hero-btn") || document.getElementById("resume-nav-btn");
                 if (resumeBtn) {
                     resumeBtn.click();
@@ -2340,9 +2352,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     gpaText.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     gpaText.classList.add("tour-highlight");
                 }
-                await delay(2000);
             },
             cleanup: () => {
+                const resumeModal = document.getElementById("resume-modal");
+                if (resumeModal) resumeModal.classList.remove("tour-highlight");
+                
                 const dsFilter = document.querySelector('.resume-filter-btn[data-filter="ds"]');
                 if (dsFilter) dsFilter.classList.remove("tour-highlight");
                 
@@ -2357,6 +2371,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Real-Time ETL Observability 🤖",
             desc: "Next, we'll scroll down to the Live ETL Monitor. We'll run full diagnostics to show pipeline checks, data validation status, and drift alerts.",
             target: ".observability-widget",
+            duration: 18000,
             action: async () => {
                 const widget = document.querySelector('.observability-widget');
                 if (widget) {
@@ -2369,7 +2384,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (runBtn) {
                     runBtn.click();
                 }
-                await delay(5000);
             },
             cleanup: () => {
                 const widget = document.querySelector('.observability-widget');
@@ -2380,6 +2394,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "SQL Sandbox & Dynamic Visuals 📊",
             desc: "Let's check out the SQL analytical playground. We'll select the 'Carbon Ingestion & Geospatial Emissions' query, execute it, and see a dynamic Chart.js chart rendered instantly.",
             target: ".sql-playground-widget",
+            duration: 16000,
             action: async () => {
                 const widget = document.querySelector('.sql-playground-widget');
                 if (widget) {
@@ -2399,7 +2414,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (runBtn) {
                     runBtn.click();
                 }
-                await delay(2500);
             },
             cleanup: () => {
                 const widget = document.querySelector('.sql-playground-widget');
@@ -2410,6 +2424,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Career Assistant AI Chatbot 💬",
             desc: "Finally, let's open the AI assistant. The tour will type and send: 'summarize his 5 years of experience' so you can see live RAG retrieval in action.",
             target: "#chat-launcher",
+            duration: 22000,
             action: async () => {
                 const launcher = document.getElementById("chat-launcher");
                 if (launcher) {
@@ -2443,8 +2458,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (chatForm) {
                     chatForm.dispatchEvent(new Event('submit'));
                 }
-                
-                await delay(4500);
             },
             cleanup: () => {
                 const chatContainer = document.getElementById("chat-container");
@@ -2455,13 +2468,13 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Tour Completed! 🎉",
             desc: "Thank you for completing the tour! You've seen Deshraj's full pipeline dashboard, SQL charts, statistical experiments, and interactive AI chatbot. Connect with him below!",
             target: "#contact",
+            duration: 12000,
             action: async () => {
                 const contactSec = document.getElementById("contact");
                 if (contactSec) {
                     contactSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     contactSec.classList.add("tour-highlight");
                 }
-                await delay(2000);
             },
             cleanup: () => {
                 const contactSec = document.getElementById("contact");
@@ -2473,14 +2486,96 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
+    function startStepTimer(duration) {
+        clearStepTimer();
+        if (tourMode !== 'autoplay' || isAutoplayPaused) return;
+
+        stepDuration = duration;
+        stepTimeElapsed = 0;
+
+        const progressBar = document.getElementById("tour-progress-bar");
+        const progressContainer = document.getElementById("tour-progress-container");
+        if (progressContainer) progressContainer.style.display = "block";
+        if (progressBar) progressBar.style.width = "0%";
+
+        progressIntervalId = setInterval(() => {
+            stepTimeElapsed += PROGRESS_TICK;
+            const percentage = Math.min((stepTimeElapsed / stepDuration) * 100, 100);
+            if (progressBar) progressBar.style.width = `${percentage}%`;
+
+            if (stepTimeElapsed >= stepDuration) {
+                clearStepTimer();
+                advanceTourAutomatically();
+            }
+        }, PROGRESS_TICK);
+    }
+
+    function pauseStepTimer() {
+        if (tourMode !== 'autoplay' || isAutoplayPaused) return;
+        isAutoplayPaused = true;
+        if (progressIntervalId) {
+            clearInterval(progressIntervalId);
+            progressIntervalId = null;
+        }
+        updatePausePlayButtonUI();
+    }
+
+    function resumeStepTimer() {
+        if (tourMode !== 'autoplay' || !isAutoplayPaused) return;
+        isAutoplayPaused = false;
+        updatePausePlayButtonUI();
+
+        const progressBar = document.getElementById("tour-progress-bar");
+
+        progressIntervalId = setInterval(() => {
+            stepTimeElapsed += PROGRESS_TICK;
+            const percentage = Math.min((stepTimeElapsed / stepDuration) * 100, 100);
+            if (progressBar) progressBar.style.width = `${percentage}%`;
+
+            if (stepTimeElapsed >= stepDuration) {
+                clearStepTimer();
+                advanceTourAutomatically();
+            }
+        }, PROGRESS_TICK);
+    }
+
+    function clearStepTimer() {
+        if (progressIntervalId) {
+            clearInterval(progressIntervalId);
+            progressIntervalId = null;
+        }
+    }
+
+    async function advanceTourAutomatically() {
+        if (tourCurrentStep < tourSteps.length - 1) {
+            await showTourStep(tourCurrentStep + 1);
+        } else {
+            endTour();
+        }
+    }
+
+    function updatePausePlayButtonUI() {
+        const pausePlayIcon = document.getElementById("tour-pause-play-icon");
+        const pausePlayText = document.getElementById("tour-pause-play-text");
+        if (isAutoplayPaused) {
+            if (pausePlayIcon) pausePlayIcon.textContent = "▶️";
+            if (pausePlayText) pausePlayText.textContent = "Resume";
+        } else {
+            if (pausePlayIcon) pausePlayIcon.textContent = "⏸️";
+            if (pausePlayText) pausePlayText.textContent = "Pause";
+        }
+    }
+
     async function startTour() {
         tourCurrentStep = 0;
+        tourMode = 'manual'; // defaults, waits for Step 1 click
         tourOverlay.style.display = "block";
         tourBackdrop.style.display = "block";
         await showTourStep(0);
     }
 
     function endTour() {
+        clearStepTimer();
         if (tourSteps[tourCurrentStep].cleanup) {
             tourSteps[tourCurrentStep].cleanup();
         }
@@ -2492,11 +2587,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         
+        const progressContainer = document.getElementById("tour-progress-container");
+        if (progressContainer) progressContainer.style.display = "none";
+        
         tourOverlay.style.display = "none";
         tourBackdrop.style.display = "none";
     }
 
     async function showTourStep(stepIdx) {
+        clearStepTimer();
+
         if (stepIdx > 0 && tourSteps[stepIdx - 1].cleanup) {
             tourSteps[stepIdx - 1].cleanup();
         }
@@ -2506,8 +2606,34 @@ document.addEventListener("DOMContentLoaded", () => {
         
         tourCurrentStep = stepIdx;
         
-        tourPrevBtn.style.visibility = stepIdx === 0 ? "hidden" : "visible";
-        tourNextBtn.textContent = stepIdx === tourSteps.length - 1 ? "Finish" : "Next Step";
+        const modeSelector = document.getElementById("tour-mode-selector");
+        if (stepIdx === 0) {
+            if (modeSelector) modeSelector.style.display = "flex";
+            tourPrevBtn.style.display = "none";
+            tourNextBtn.style.display = "none";
+            if (tourPausePlayBtn) tourPausePlayBtn.style.display = "none";
+            
+            const progressContainer = document.getElementById("tour-progress-container");
+            if (progressContainer) progressContainer.style.display = "none";
+        } else {
+            if (modeSelector) modeSelector.style.display = "none";
+            tourPrevBtn.style.display = "inline-block";
+            tourNextBtn.style.display = "inline-block";
+            tourPrevBtn.style.visibility = stepIdx === 0 ? "hidden" : "visible";
+            tourNextBtn.textContent = stepIdx === tourSteps.length - 1 ? "Finish" : "Next Step";
+
+            const progressContainer = document.getElementById("tour-progress-container");
+            if (tourMode === 'autoplay') {
+                if (progressContainer) progressContainer.style.display = "block";
+                if (tourPausePlayBtn) {
+                    tourPausePlayBtn.style.display = "flex";
+                    tourPausePlayBtn.style.alignItems = "center";
+                }
+            } else {
+                if (progressContainer) progressContainer.style.display = "none";
+                if (tourPausePlayBtn) tourPausePlayBtn.style.display = "none";
+            }
+        }
         
         tourStepIndicator.textContent = `Step ${stepIdx + 1} of ${tourSteps.length}`;
         tourTitle.textContent = tourSteps[stepIdx].title;
@@ -2522,6 +2648,12 @@ document.addEventListener("DOMContentLoaded", () => {
         
         tourNextBtn.disabled = false;
         tourPrevBtn.disabled = false;
+
+        if (tourMode === 'autoplay' && stepIdx > 0) {
+            isAutoplayPaused = false;
+            updatePausePlayButtonUI();
+            startStepTimer(tourSteps[stepIdx].duration || 5000);
+        }
     }
 
     if (tourNextBtn) {
@@ -2545,6 +2677,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tourSkipBtn) {
         tourSkipBtn.addEventListener("click", () => {
             endTour();
+        });
+    }
+
+    if (tourPausePlayBtn) {
+        tourPausePlayBtn.addEventListener("click", () => {
+            if (isAutoplayPaused) {
+                resumeStepTimer();
+            } else {
+                pauseStepTimer();
+            }
+        });
+    }
+
+    const btnAutoplay = document.getElementById("tour-btn-autoplay");
+    const btnManual = document.getElementById("tour-btn-manual");
+    
+    if (btnAutoplay) {
+        btnAutoplay.addEventListener("click", async () => {
+            tourMode = 'autoplay';
+            isAutoplayPaused = false;
+            await showTourStep(1);
+        });
+    }
+    
+    if (btnManual) {
+        btnManual.addEventListener("click", async () => {
+            tourMode = 'manual';
+            await showTourStep(1);
         });
     }
 

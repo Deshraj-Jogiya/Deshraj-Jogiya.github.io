@@ -1210,14 +1210,30 @@
     <div id="tour-backdrop" class="tour-backdrop" style="display: none;"></div>
     
     <div id="tour-overlay-card" class="tour-overlay-card glass-card" style="display: none;">
+        <div id="tour-progress-container" style="height: 3px; width: 100%; background: rgba(255,255,255,0.05); position: absolute; top: 0; left: 0; display: none; overflow: hidden; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+            <div id="tour-progress-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.1s linear;"></div>
+        </div>
         <div class="tour-header">
             <span class="tour-badge">Recruiter Tour ⚡</span>
             <span id="tour-step-indicator" class="tour-step-indicator">Step 1 of 6</span>
         </div>
         <h4 id="tour-step-title" class="tour-step-title">Welcome to the Tour!</h4>
         <p id="tour-step-desc" class="tour-step-desc">This guided walkthrough highlights Deshraj's interactive data and ML engineering projects.</p>
+        <div id="tour-mode-selector" style="display: none; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+            <button id="tour-btn-autoplay" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; font-weight: 600; padding: 0.6rem;">
+                🤖 Autoplay Guided Tour (~90s)
+            </button>
+            <button id="tour-btn-manual" class="btn btn-outline" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; font-weight: 500; padding: 0.6rem; border-color: rgba(255,255,255,0.15);">
+                👤 Self-Paced Exploration
+            </button>
+        </div>
         <div class="tour-actions">
-            <button id="tour-prev-btn" class="btn btn-sm btn-outline">Back</button>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <button id="tour-prev-btn" class="btn btn-sm btn-outline">Back</button>
+                <button id="tour-pause-play-btn" class="btn btn-sm btn-outline" style="display: none; gap: 0.25rem; align-items: center; padding: 0.25rem 0.5rem;">
+                    <span id="tour-pause-play-icon">⏸️</span> <span id="tour-pause-play-text">Pause</span>
+                </button>
+            </div>
             <div class="tour-right-actions">
                 <button id="tour-skip-btn" class="btn btn-sm btn-link">Skip</button>
                 <button id="tour-next-btn" class="btn btn-sm btn-primary">Next Step</button>

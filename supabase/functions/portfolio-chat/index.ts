@@ -53,7 +53,8 @@ Deshraj's Professional Background Summary:
 
 User Query: "${message}"
 
-Write a concise, professional, and detailed answer in the third person based on this information. Do not mention that you were given a prompt or reference this instructions text directly; answer as a helpful profile agent speaking about Deshraj's technical work.`
+Write a concise, professional, and detailed answer in the third person based on this information. Do not mention that you were given a prompt or reference this instructions text directly; answer as a helpful profile agent speaking about Deshraj's technical work.
+CRITICAL FORMATTING REQUIREMENT: You MUST write your response in warm, flowing, natural paragraph storytelling prose. Do NOT use bullet points, numbered lists (such as 1., 2., 3.), hyphens, dashes, or any list items. Group related experiences and skills into cohesive, well-structured sentences. Maintain a narrative voice that highlights his accomplishments smoothly and fits within 1-2 paragraph blocks.`
 
     const response = await fetch(url, {
       method: "POST",
