@@ -2548,10 +2548,12 @@ body.light-theme .chat-input {
     50% { transform: translateY(-4px); }
 }
 
-/* ==========================================================================
-   Data Pipeline Architecture explorer
-   ========================================================================== */
 .arch-tab-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.08);
     color: var(--text-secondary);
@@ -2566,6 +2568,35 @@ body.light-theme .chat-input {
     color: #fff;
     border: none;
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+#arch-tour-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: var(--accent-emerald);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: auto;
+}
+#arch-tour-btn:hover {
+    background: rgba(16, 185, 129, 0.2);
+    transform: translateY(-2px);
+}
+
+body.light-theme #arch-tour-btn {
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.2);
+    color: #047857;
+}
+body.light-theme #arch-tour-btn:hover {
+    background: rgba(16, 185, 129, 0.1);
 }
 
 .arch-node-item {
@@ -2637,6 +2668,7 @@ body.light-theme .arch-tab-btn:hover {
 body.light-theme .arch-tab-btn.active {
     background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
     color: #fff;
+    border: none;
 }
 body.light-theme .arch-node-circle {
     background: #fff;
@@ -2657,31 +2689,41 @@ body.light-theme .arch-connector.active {
 /* ==========================================================================
    Data QA & Validation Report widgets
    ========================================================================== */
+.obs-tab-nav {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.25rem;
+    border-radius: 30px;
+    gap: 0.25rem;
+}
 .obs-tab-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: none !important;
     color: var(--text-secondary);
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--border-radius-sm);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
     font-size: 0.78rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-smooth);
 }
 .obs-tab-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
 }
 .obs-tab-btn.active {
-    background: rgba(99, 102, 241, 0.1) !important;
-    border-color: var(--accent-purple) !important;
-    color: var(--text-primary) !important;
-    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
+    background: var(--grad-primary) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
 }
 
-body.light-theme .obs-tab-btn {
+body.light-theme .obs-tab-nav {
     background: rgba(0, 0, 0, 0.02);
     border-color: rgba(0, 0, 0, 0.08);
+}
+body.light-theme .obs-tab-btn {
+    background: transparent;
     color: #475569;
 }
 body.light-theme .obs-tab-btn:hover {
@@ -2689,10 +2731,9 @@ body.light-theme .obs-tab-btn:hover {
     color: #0f172a;
 }
 body.light-theme .obs-tab-btn.active {
-    background: rgba(79, 70, 229, 0.05) !important;
-    border-color: #4f46e5 !important;
-    color: #0f172a !important;
-    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
 }
 
 .qa-rule-item {

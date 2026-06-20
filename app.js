@@ -616,7 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { name: "expect_column_values_to_be_between(\"amount\", 0, 10000000)", status: "pass", desc: "Ensures financial transaction amount is positive and under $10M threshold.", details: { expectation_type: "expect_column_values_to_be_between", kwargs: { column: "amount", min_value: 0, max_value: 10000000 }, meta: { dimension: "validity" } } },
         { name: "expect_column_values_to_be_in_set(\"segment\", [\"VIP\", \"Loyal\", \"Slipping\", \"Lost\"])", status: "pass", desc: "Verifies customer segments map strictly to the database classification taxonomy.", details: { expectation_type: "expect_column_values_to_be_in_set", kwargs: { column: "segment", value_set: ["VIP", "Loyal", "Slipping", "Lost"] }, meta: { dimension: "consistency" } } },
         { name: "expect_column_values_to_match_regex(\"date\", \"^\\\\d{4}-\\\\d{2}-\\\\d{2}$\")", status: "pass", desc: "Validates date format follows ISO YYYY-MM-DD pattern.", details: { expectation_type: "expect_column_values_to_match_regex", kwargs: { column: "date", regex: "^\\d{4}-\\d{2}-\\d{2}$" }, meta: { dimension: "schema" } } },
-        { name: "expect_column_values_to_follow_benfords_law(\"amount\")", status: "warn", desc: "Checks first-digit distribution against Benford's Law logarithmic curve. Warns on significant distribution drift (KS test p-value < 0.05).", details: { expectation_type: "expect_column_values_to_follow_benfords_law", kwargs: { column: "amount", p_value_threshold: 0.05 }, meta: { dimension: "distribution_drift" } } }
+        { name: "expect_column_values_to_follow_benfords_law(\"amount\")", status: "warn", desc: "Checks first-digit distribution against Benford's Law. A warning (KS p-value < 0.05) indicates mild statistical anomaly in transaction amounts (feature drift). This is non-blocking and flagged for review, while the schema remains fully valid.", details: { expectation_type: "expect_column_values_to_follow_benfords_law", kwargs: { column: "amount", p_value_threshold: 0.05 }, meta: { dimension: "distribution_drift" } } }
     ];
 
     // Pipeline Visual Node selectors
@@ -678,6 +678,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-emerald);">PASS ✅</span></span>
                 <span style="font-size: 0.72rem; color: var(--text-muted);">6/6 Expectations Succeeded</span>
             </div>
+            <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--border-radius-sm); padding: 0.6rem; font-size: 0.75rem; color: #f59e0b; margin-bottom: 0.75rem; line-height: 1.4;">
+                ⚠️ <strong>Non-blocking Warning on Benford's Law:</strong> This check detects mild transaction distribution drift. The schema is 100% valid and the pipeline passed, but this warning is logged for analytics auditing.
+            </div>
             <div class="qa-rules-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
         `;
         
@@ -736,6 +739,16 @@ document.addEventListener("DOMContentLoaded", () => {
             metricDrift.style.color = "inherit";
             resetPipelineNodes();
 
+            // Reset reliability card indicators
+            const driftDot = document.getElementById("reliability-drift-dot");
+            if (driftDot) {
+                driftDot.style.background = "var(--accent-emerald)";
+            }
+            const reliabilitySub = document.getElementById("metric-reliability-sub");
+            if (reliabilitySub) {
+                reliabilitySub.textContent = "Running live SLA check...";
+            }
+
             // Reset top-level header stats card
             const topReliabilityStat = Array.from(document.querySelectorAll(".stat-card")).find(card => {
                 const label = card.querySelector(".stat-label");
@@ -774,6 +787,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (nodeScore) { nodeScore.classList.remove("active"); nodeScore.classList.add("warning"); }
                         if (nodeCommit) nodeCommit.classList.add("active");
                         if (pipelineProgress) pipelineProgress.style.width = "87.5%";
+                        
+                        const driftDot = document.getElementById("reliability-drift-dot");
+                        if (driftDot) {
+                            driftDot.style.background = "var(--accent-amber)";
+                        }
+                        const reliabilitySub = document.getElementById("metric-reliability-sub");
+                        if (reliabilitySub) {
+                            reliabilitySub.textContent = "Anomaly detected (Non-blocking)";
+                        }
                     } else if (currentLogIndex === 11) {
                         if (nodeCommit) { nodeCommit.classList.remove("active"); nodeCommit.classList.add("success"); }
                         if (pipelineProgress) pipelineProgress.style.width = "100%";
@@ -797,6 +819,21 @@ document.addEventListener("DOMContentLoaded", () => {
                         metricReliability.textContent = currentReliability;
                         metricDrift.textContent = "Stable";
                         metricDrift.style.color = "var(--accent-emerald)";
+                        
+                        const driftDot = document.getElementById("reliability-drift-dot");
+                        if (driftDot) {
+                            driftDot.style.background = "var(--accent-emerald)";
+                        }
+                        const reliabilitySub = document.getElementById("metric-reliability-sub");
+                        if (reliabilitySub) {
+                            reliabilitySub.textContent = "59/60 Daily Runs Successful";
+                        }
+                        
+                        // Set the Model/Score node back to success/green since system is stable
+                        if (nodeScore) {
+                            nodeScore.classList.remove("warning");
+                            nodeScore.classList.add("success");
+                        }
                         
                         // Also update the global stat counter in the header if it exists
                         const topReliabilityStat = Array.from(document.querySelectorAll(".stat-card")).find(card => {
@@ -849,11 +886,20 @@ document.addEventListener("DOMContentLoaded", () => {
         metricDrift.textContent = "Stable";
         metricDrift.style.color = "var(--accent-emerald)";
 
+        const driftDot = document.getElementById("reliability-drift-dot");
+        if (driftDot) {
+            driftDot.style.background = "var(--accent-emerald)";
+        }
+        const reliabilitySub = document.getElementById("metric-reliability-sub");
+        if (reliabilitySub) {
+            reliabilitySub.textContent = "59/60 Daily Runs Successful";
+        }
+
         // Activate nodes in diagram
         if (nodeIngest && nodeValidate && nodeScore && nodeCommit) {
             nodeIngest.className = "pipeline-node-item success";
             nodeValidate.className = "pipeline-node-item success";
-            nodeScore.className = "pipeline-node-item warning"; // Warning on drift
+            nodeScore.className = "pipeline-node-item success"; // Stable green on load
             nodeCommit.className = "pipeline-node-item success";
         }
         if (pipelineProgress) pipelineProgress.style.width = "100%";
@@ -1198,23 +1244,35 @@ document.addEventListener("DOMContentLoaded", () => {
         asu: "He holds a Master of Science in Information Technology from Arizona State University (ASU), graduating in May 2024. His graduate curriculum specialized in cloud computing, data warehousing, and predictive modeling.",
         contact: "You can reach Deshraj directly via email at djogiya786@gmail.com or call him at (480) 876-2863. He is open to relocation and excited to discuss data/ML engineering roles.",
         cloud: "His cloud expertise includes automated ETL orchestrations in AWS Glue/S3, analytics modeling in Snowflake data warehouses, and Supabase client-server integrations.",
-        experience: "He has over five years of data engineering and machine learning experience, spanning real-time data collection at Objectways Technologies, model optimization at Technoid LLC, and Snowflake schema modeling at Zifatech Solutions.",
-        projects: "Deshraj has built several showcase projects: a FinTech risk command center, an automated daily market anomalies pipeline, and a retail customer segmentation pipeline. You can check them in the projects section!",
+        experience: "He has 5 years of extensive data engineering and machine learning experience, spanning real-time data collection at Objectways Technologies, model optimization at Technoid LLC, and Snowflake schema modeling at Zifatech Solutions.",
+        projects: "Deshraj has built several showcase projects, including the Multi-State Land Use Emissions Analysis pipeline, the Streaming IoT battery fleet telematics analytics system, and the retail customer segmentation pipeline. You can check them in the projects section!",
         observability: "He is highly proficient in data governance and observability. He configures Great Expectations validation pipelines to detect schema drift, and applies Kolmogorov-Smirnov (KS) tests to evaluate statistical feature drift.",
-        skills: "Deshraj's technical skill set includes strong programming in Python and SQL; extensive work with tools and databases like PostgreSQL, Snowflake, AWS (Glue, S3), and Supabase; and expertise in data quality validation (Great Expectations) and machine learning (Scikit-Learn, TensorFlow)."
+        skills: "Deshraj's technical skill set includes strong programming in Python and SQL; extensive work with tools and databases like PostgreSQL, Snowflake, AWS (Glue, S3), and Supabase; and expertise in data quality validation (Great Expectations) and machine learning (Scikit-Learn, TensorFlow).",
+        analytics: "Deshraj has strong data analysis experience. As a Data Analyst at Zifatech, he optimized SQL ETL pipelines for sales insights and built Power BI dashboards. At Kronic Keys, he designed PostgreSQL queries and Tableau dashboards, improving reporting efficiency by 30%."
     };
 
     const searchKeyword = (msg) => {
         const query = msg.toLowerCase();
+        
+        // 1. Specific skills & programming
         if (query.includes("gpa") || query.includes("grade") || query.includes("scale") || query.includes("score")) return answers.gpa;
         if (query.includes("python") || query.includes("pandas") || query.includes("numpy") || query.includes("programming")) return answers.python;
         if (query.includes("skills") || query.includes("technical") || query.includes("tech stack") || query.includes("languages")) return answers.skills;
+        
+        // 2. Cloud and Tools
+        if (query.includes("cloud") || query.includes("aws") || query.includes("snowflake") || query.includes("azure") || query.includes("supabase")) return answers.cloud;
+        
+        // 3. Projects and specific roles
+        if (query.includes("project") || query.includes("repo") || query.includes("github") || query.includes("best work") || query.includes("portfolio")) return answers.projects;
+        if (query.includes("analysis") || query.includes("analytics") || query.includes("tableau") || query.includes("power bi") || query.includes("powerbi")) return answers.analytics;
+        if (query.includes("drift") || query.includes("ks") || query.includes("observability") || query.includes("validation")) return answers.observability;
+        
+        // 4. Academic / Background
         if (query.includes("asu") || query.includes("education") || query.includes("degree") || query.includes("master")) return answers.asu;
         if (query.includes("contact") || query.includes("email") || query.includes("phone") || query.includes("reach") || query.includes("hire")) return answers.contact;
-        if (query.includes("cloud") || query.includes("aws") || query.includes("snowflake") || query.includes("azure") || query.includes("supabase")) return answers.cloud;
-        if (query.includes("experience") || query.includes("work") || query.includes("history") || query.includes("job") || query.includes("technoid") || query.includes("objectways")) return answers.experience;
-        if (query.includes("project") || query.includes("repo") || query.includes("github")) return answers.projects;
-        if (query.includes("drift") || query.includes("ks") || query.includes("observability") || query.includes("validation")) return answers.observability;
+        
+        // 5. Generic work experience (last fallback for experience query words)
+        if (query.includes("experience") || query.includes("work") || query.includes("history") || query.includes("job") || query.includes("technoid") || query.includes("objectways") || query.includes("zifatech")) return answers.experience;
         
         return "That's a great question! While this simulation chatbot database is compact, you can find full details in Deshraj's projects grid or resume modal, or email him directly at djogiya786@gmail.com.";
     };
@@ -1425,24 +1483,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     label: "DB Storage", 
                     icon: "💾", 
                     tags: ["SQLite", "SQL"], 
-                    desc: "Saves regional emissions inventory records to SQLite index database.",
-                    impact: "Ensures audited carbon records are permanently saved and indexed for audit verification and search queries.",
+                    desc: "Saves regional emissions inventory records to SQLite database.",
+                    impact: "Ensures carbon offsets and land cover changes are saved for audit verification.",
                     inputs: "Decade Trend Curves",
                     process: "SQLite Schema Mapping",
                     outputs: "Historical Database",
                     code: "CREATE TABLE land_changes (\n  state TEXT,\n  from_type TEXT,\n  to_type TEXT,\n  area_changed REAL,\n  change_date DATE\n);" 
                 },
                 { 
-                    id: "commit", 
-                    label: "Git Pages Commit", 
-                    icon: "🐙", 
-                    tags: ["GitHub Actions", "Git"], 
-                    desc: "Commits updated visitor stats and model prediction plots daily, updating GitHub Pages contributions.",
-                    impact: "Automates public reporting by automatically committing fresh analytics files to public pages every 24 hours.",
+                    id: "dashboard", 
+                    label: "ArcGIS Dashboard", 
+                    icon: "🗺️", 
+                    tags: ["ArcGIS Python API", "GIS"], 
+                    desc: "Visualizes land cover shifts, forest loss, and regional emission summaries dynamically.",
+                    impact: "Enables stakeholders to explore spatial trends interactively, reducing anomaly detection time by 15%.",
                     inputs: "Historical Database",
-                    process: "Automated Git Runner",
-                    outputs: "GitHub Pages Site",
-                    code: "# git command line runner\nimport subprocess\n\ndef push_changes():\n    subprocess.run(['git', 'add', '.'])\n    subprocess.run(['git', 'commit', '-m', 'daily update'])\n    subprocess.run(['git', 'push', 'origin', 'main'])" 
+                    process: "ArcGIS API Integration",
+                    outputs: "Interactive GIS Dashboard",
+                    code: "# ArcGIS Python API dashboard integration\nfrom arcgis.gis import GIS\n\ndef publish_to_dashboard(df_summary):\n    gis = GIS(\"https://arcgis.com\", \"username\", \"password\")\n    map_item = gis.content.search(\"Emissions Map\", \"Web Map\")[0]\n    feature_layer = map_item.layers[0]\n    feature_layer.edit_features(adds=df_summary.to_dict('records'))" 
                 }
             ]
         }
@@ -1526,13 +1584,16 @@ document.addEventListener("DOMContentLoaded", () => {
             flowBox.style.display = "grid";
         }
 
-        if (toggleCodeBtn) {
-            toggleCodeBtn.style.display = "block";
-            toggleCodeBtn.textContent = "View Technical Code Snippet 🛠️";
-        }
         if (codeBox && codeContentEl) {
             codeContentEl.textContent = node.code;
-            codeBox.style.display = "none";
+            const isCurrentlyVisible = codeBox.style.display === "block";
+            if (toggleCodeBtn) {
+                toggleCodeBtn.style.display = "block";
+                toggleCodeBtn.textContent = isCurrentlyVisible ? "Hide Technical Code Snippet 🙈" : "View Technical Code Snippet 🛠️";
+            }
+            if (!isCurrentlyVisible) {
+                codeBox.style.display = "none";
+            }
         }
     }
 

@@ -289,13 +289,23 @@
                         
                         <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
                             <div class="obs-panel-content active" id="obs-console-panel">
-                                <div class="obs-console" id="obs-console">
-                                    <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+                                <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                                    <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <div style="display: flex; gap: 0.35rem;">
+                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                        </div>
+                                        <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
+                                    </div>
+                                    <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
+                                        <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
-                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; max-height: 180px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
-                                    <div class="obs-qa-empty" style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
+                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+                                    <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
                                         🕒 Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
                                     </div>
                                 </div>
@@ -307,9 +317,27 @@
                                     <div class="obs-metric-val" id="metric-latency">0.00s</div>
                                     <div class="obs-metric-lbl">ETL Latency</div>
                                 </div>
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-reliability">98.2%</div>
-                                    <div class="obs-metric-lbl">Reliability (30d)</div>
+                                <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div>
+                                        <div class="obs-metric-val" id="metric-reliability">98.2%</div>
+                                        <div class="obs-metric-lbl">Reliability (30d)</div>
+                                    </div>
+                                    <div class="obs-history-dots" style="display: flex; gap: 3px; justify-content: center; margin-top: 0.4rem;">
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span id="reliability-drift-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                    </div>
+                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">59/60 Daily Runs Successful</div>
                                 </div>
                                 <div class="obs-metric-card">
                                     <div class="obs-metric-val" id="metric-rows">0</div>
@@ -336,10 +364,10 @@
 
                     <!-- Pipeline Tabs -->
                     <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; width: 100%;">
-                        <button class="arch-tab-btn active" data-pipeline="batch" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: var(--grad-primary); color: #fff; border: none;">📊 Batch ETL Sales Analytics</button>
-                        <button class="arch-tab-btn" data-pipeline="stream" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">⚡ Streaming IoT Fleet Telematics</button>
-                        <button class="arch-tab-btn" data-pipeline="geospatial" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">🌎 Geospatial Carbon Emissions</button>
-                        <button id="arch-tour-btn" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); color: var(--accent-emerald); display: flex; align-items: center; gap: 0.4rem; margin-left: auto;">Play Tour ⏯️</button>
+                        <button class="arch-tab-btn active" data-pipeline="batch">📊 Batch ETL Sales Analytics</button>
+                        <button class="arch-tab-btn" data-pipeline="stream">⚡ Streaming IoT Fleet Telematics</button>
+                        <button class="arch-tab-btn" data-pipeline="geospatial">🌎 Geospatial Carbon Emissions</button>
+                        <button id="arch-tour-btn">Play Tour ⏯️</button>
                     </div>
 
                     <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
@@ -534,7 +562,7 @@
                     <!-- Summary (Spans 2 columns) -->
                     <section class="resume-section" style="grid-column: span 2; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem;">
                         <h2 class="resume-section-title" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0;">Summary</h2>
-                        <p style="font-size: 0.85rem; color: #334155; line-height: 1.6; margin: 0;">Research-focused data and AI/ML engineer with over five years of experience delivering ETL automation (70% efficiency gains), AI model optimization (25% accuracy boosts), and cloud data pipelines across research and industry roles. Expertise spans Python, SQL, PostgreSQL, OpenAI APIs, Supabase, AWS, Snowflake, and ML techniques from K-Means clustering to NLP systems. ASU research alum and IBM certified professional, currently engineering real-time ML solutions at Technoid LLC.</p>
+                        <p style="font-size: 0.85rem; color: #334155; line-height: 1.6; margin: 0;">Research-focused data and AI/ML engineer with 5 years of extensive experience delivering ETL automation (70% efficiency gains), AI model optimization (25% accuracy boosts), and cloud data pipelines across research and industry roles. Expertise spans Python, SQL, PostgreSQL, OpenAI APIs, Supabase, AWS, Snowflake, and ML techniques from K-Means clustering to NLP systems. ASU research alum and IBM certified professional, currently engineering real-time ML solutions at Technoid LLC.</p>
                     </section>
 
                     <!-- Left Column -->
