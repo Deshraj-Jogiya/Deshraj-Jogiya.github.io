@@ -878,6 +878,12 @@ body.light-theme .profile-card {
     border-color: rgba(0, 0, 0, 0.08);
 }
 
+body.light-theme .stat-number {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 body.light-theme .tech-tags span {
     background: rgba(0, 0, 0, 0.04);
     color: var(--text-secondary);

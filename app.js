@@ -787,6 +787,80 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["Recency Days", "0.031", "0.582", "STABLE", "2026-06-16 14:00:00"],
                 ["Frequency Units", "0.024", "0.814", "STABLE", "2026-06-16 14:00:00"]
             ]
+        },
+        emissions_by_state: {
+            raw: `SELECT \n  state,\n  SUM(case when land_type = 'Forest' then area_ha else 0 end) AS forest_area_ha,\n  SUM(case when land_type = 'Urban' then area_ha else 0 end) AS urban_area_ha,\n  ROUND(SUM(co2_tons), 1) AS net_co2_emissions_tons\nFROM land_use_records\nGROUP BY state\nORDER BY net_co2_emissions_tons DESC;`,
+            html: `<span class="sql-keyword">SELECT</span> 
+  state,
+  <span class="sql-keyword">SUM</span>(<span class="sql-keyword">CASE</span> <span class="sql-keyword">WHEN</span> land_type = <span class="sql-string">'Forest'</span> <span class="sql-keyword">THEN</span> area_ha <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) <span class="sql-keyword">AS</span> forest_area_ha,
+  <span class="sql-keyword">SUM</span>(<span class="sql-keyword">CASE</span> <span class="sql-keyword">WHEN</span> land_type = <span class="sql-string">'Urban'</span> <span class="sql-keyword">THEN</span> area_ha <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) <span class="sql-keyword">AS</span> urban_area_ha,
+  <span class="sql-keyword">ROUND</span>(<span class="sql-keyword">SUM</span>(co2_tons), <span class="sql-number">1</span>) <span class="sql-keyword">AS</span> net_co2_emissions_tons
+<span class="sql-keyword">FROM</span> <span class="sql-table">land_use_records</span>
+<span class="sql-keyword">GROUP BY</span> state
+<span class="sql-keyword">ORDER BY</span> net_co2_emissions_tons <span class="sql-keyword">DESC</span>;`,
+            headers: ["state", "forest_area_ha", "urban_area_ha", "net_co2_emissions_tons"],
+            data: [
+                ["California (CA)", "142,500", "55,200", "-18,450.0"],
+                ["Washington (WA)", "98,200", "12,400", "-24,320.5"],
+                ["Florida (FL)", "45,300", "38,100", "+8,420.0"],
+                ["Texas (TX)", "65,100", "84,300", "+14,280.2"],
+                ["Alabama (AL)", "87,400", "15,800", "-2,120.4"]
+            ]
+        },
+        credit_fraud_risk: {
+            raw: `SELECT \n  risk_score_tier,\n  COUNT(*) AS application_count,\n  ROUND(AVG(income_usd), 0) AS avg_income,\n  SUM(CASE WHEN transaction_anomaly_flag = 1 THEN 1 ELSE 0 END) AS flagged_anomalies\nFROM credit_applications\nGROUP BY risk_score_tier\nORDER BY application_count DESC;`,
+            html: `<span class="sql-keyword">SELECT</span> 
+  risk_score_tier,
+  <span class="sql-keyword">COUNT</span>(*) <span class="sql-keyword">AS</span> application_count,
+  <span class="sql-keyword">ROUND</span>(<span class="sql-keyword">AVG</span>(income_usd), <span class="sql-number">0</span>) <span class="sql-keyword">AS</span> avg_income,
+  <span class="sql-keyword">SUM</span>(<span class="sql-keyword">CASE</span> <span class="sql-keyword">WHEN</span> transaction_anomaly_flag = <span class="sql-number">1</span> <span class="sql-keyword">THEN</span> <span class="sql-number">1</span> <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) <span class="sql-keyword">AS</span> flagged_anomalies
+<span class="sql-keyword">FROM</span> <span class="sql-table">credit_applications</span>
+<span class="sql-keyword">GROUP BY</span> risk_score_tier
+<span class="sql-keyword">ORDER BY</span> application_count <span class="sql-keyword">DESC</span>;`,
+            headers: ["risk_score_tier", "application_count", "avg_income", "flagged_anomalies"],
+            data: [
+                ["Tier-A (Low Risk)", "120", "$94,500", "1"],
+                ["Tier-B (Moderate)", "42", "$68,200", "3"],
+                ["Tier-C (High Risk)", "12", "$42,300", "5"],
+                ["Tier-D (Critical)", "2", "$31,000", "2"]
+            ]
+        },
+        iot_telematics: {
+            raw: `SELECT \n  device_id,\n  AVG(motor_temp_c) AS avg_temp_c,\n  MAX(vibration_level) AS max_vibe,\n  SUM(CASE WHEN vibration_level > 2.5 THEN 1 ELSE 0 END) AS anomaly_alerts\nFROM telemetry_logs\nGROUP BY device_id\nHAVING anomaly_alerts > 0\nORDER BY anomaly_alerts DESC;`,
+            html: `<span class="sql-keyword">SELECT</span> 
+  device_id,
+  <span class="sql-keyword">AVG</span>(motor_temp_c) <span class="sql-keyword">AS</span> avg_temp_c,
+  <span class="sql-keyword">MAX</span>(vibration_level) <span class="sql-keyword">AS</span> max_vibe,
+  <span class="sql-keyword">SUM</span>(<span class="sql-keyword">CASE</span> <span class="sql-keyword">WHEN</span> vibration_level &gt; <span class="sql-number">2.5</span> <span class="sql-keyword">THEN</span> <span class="sql-number">1</span> <span class="sql-keyword">ELSE</span> <span class="sql-number">0</span> <span class="sql-keyword">END</span>) <span class="sql-keyword">AS</span> anomaly_alerts
+<span class="sql-keyword">FROM</span> <span class="sql-table">telemetry_logs</span>
+<span class="sql-keyword">GROUP BY</span> device_id
+<span class="sql-keyword">HAVING</span> anomaly_alerts &gt; <span class="sql-number">0</span>
+<span class="sql-keyword">ORDER BY</span> anomaly_alerts <span class="sql-keyword">DESC</span>;`,
+            headers: ["device_id", "avg_temp_c", "max_vibe", "anomaly_alerts"],
+            data: [
+                ["DEV-004", "78.4 C", "3.24", "15"],
+                ["DEV-001", "72.1 C", "2.84", "4"],
+                ["DEV-003", "65.8 C", "2.61", "2"]
+            ]
+        },
+        simulated_sales_forecast: {
+            raw: `SELECT \n  branch_city,\n  SUM(units_sold) AS total_units_sold,\n  AVG(stock_remaining) AS avg_stock_level,\n  MIN(stock_remaining) AS min_stock_level\nFROM branch_sales\nGROUP BY branch_city\nORDER BY total_units_sold DESC;`,
+            html: `<span class="sql-keyword">SELECT</span> 
+  branch_city,
+  <span class="sql-keyword">SUM</span>(units_sold) <span class="sql-keyword">AS</span> total_units_sold,
+  <span class="sql-keyword">AVG</span>(stock_remaining) <span class="sql-keyword">AS</span> avg_stock_level,
+  <span class="sql-keyword">MIN</span>(stock_remaining) <span class="sql-keyword">AS</span> min_stock_level
+<span class="sql-keyword">FROM</span> <span class="sql-table">branch_sales</span>
+<span class="sql-keyword">GROUP BY</span> branch_city
+<span class="sql-keyword">ORDER BY</span> total_units_sold <span class="sql-keyword">DESC</span>;`,
+            headers: ["branch_city", "total_units_sold", "avg_stock_level", "min_stock_level"],
+            data: [
+                ["Chicago", "12,450", "425 units", "12 units"],
+                ["Boston", "9,820", "310 units", "4 units"],
+                ["Seattle", "7,140", "515 units", "42 units"],
+                ["Miami", "6,800", "280 units", "18 units"],
+                ["Dallas", "5,230", "640 units", "95 units"]
+            ]
         }
     };
 
@@ -799,23 +873,39 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Recruiter insights texts mapping to options
+    // Business value insights mapping to playground queries
     const recruiterInsights = {
         revenue_by_segment: {
-            text: "Why it matters: Clusters customer purchasing behaviors into actionable cohorts. E.g., identifying 'Champions' to target with loyalty campaigns, and 'Hibernating' groups to win back with tailored offers.",
-            takeaway: "Demonstrates: Customer Segmentation (K-Means, PCA), Star Schema modeling, and translating analytics into visual dashboard KPIs."
+            text: "Business Value: Groups customers by their shopping frequency and spending. This helps a business target loyal customers with rewards and win back inactive customers with custom discounts, raising overall sales.",
+            takeaway: "Key Skills: Customer Segmentation (K-Means, PCA), Database Star Schema design, and Business Intelligence dashboarding."
         },
         anomaly_risk_claims: {
-            text: "Why it matters: Automatically validates journal postings against Benford's Law distribution and maps anomalies via Isolation Forest, isolating ledger fraud risks dynamically without manual auditing.",
-            takeaway: "Demonstrates: Financial risk compliance, anomaly detection models, statistical ledger auditing, and automation."
+            text: "Business Value: Audits financial transactions automatically to flag weird patterns or potential errors. This saves finance teams hundreds of hours of manual verification and stops transaction fraud early.",
+            takeaway: "Key Skills: Automated Auditing, Anomaly Detection modeling, and Compliance reporting."
         },
         survival_by_treatment: {
-            text: "Why it matters: Models drug patient outcomes across clinical trial treatments. Compiling Kaplan-Meier survival curves and calculating Log-Rank test statistics confirms therapeutic efficacy with statistical confidence.",
-            takeaway: "Demonstrates: Biostatistics, survival modeling, clinical trials database design, and calculated metric dashboards."
+            text: "Business Value: Analyzes patient treatment groups in clinical trials to evaluate which medicine dosages are most effective and safe. It proves therapeutic success with high statistical certainty.",
+            takeaway: "Key Skills: Biostatistics, Survival Curve modeling, and Clinical Database architecture."
         },
         drift_by_feature: {
-            text: "Why it matters: Tracks real-time machine learning reliability. Computes Kolmogorov-Smirnov (KS) test statistics on incoming request payloads to trigger retraining loops before predictions degrade.",
-            takeaway: "Demonstrates: MLOps observability, data drift detection (KS-Test), validation auditing, and data quality pipelines."
+            text: "Business Value: Monitors live AI models to make sure their accuracy hasn't dropped since they were deployed. This guarantees the AI keeps outputting reliable predictions as customer behaviors change.",
+            takeaway: "Key Skills: AI/ML Observability, Data Quality Audits, and automated retraining pipelines."
+        },
+        emissions_by_state: {
+            text: "Business Value: Tracks regional land cover changes (like forest loss vs urban growth) to calculate environmental carbon impact. This enables governments and companies to plan sustainability efforts accurately.",
+            takeaway: "Key Skills: Geospatial ETL pipelines, Carbon Accounting logic, and regional scale analysis."
+        },
+        credit_fraud_risk: {
+            text: "Business Value: Automatically evaluates loan applicant risk scores alongside transaction safety metrics. This protects banking capital from defaults while ensuring safe, legitimate applicants get approved quickly.",
+            takeaway: "Key Skills: Financial Risk Auditing, Credit Tier modeling, and security checkpoints."
+        },
+        iot_telematics: {
+            text: "Business Value: Monitors live vehicle telemetry (vibration, heat) to flag when a component is starting to wear down. This lets fleet operators schedule maintenance before a vehicle breaks down on the road, avoiding costly repairs.",
+            takeaway: "Key Skills: Real-time Telemetry processing, IoT anomaly flags, and predictive maintenance algorithms."
+        },
+        simulated_sales_forecast: {
+            text: "Business Value: Forecasts daily inventory demand across multiple retail branches to match stock levels. This prevents out-of-stock scenarios (lost sales) and reduces warehousing overhead costs.",
+            takeaway: "Key Skills: Retail demand forecasting, Multi-branch data synchronization, and Inventory Analytics."
         }
     };
 
@@ -826,7 +916,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const takeawayEl = document.getElementById("recruiter-insight-takeaway");
         if (insight && textEl && takeawayEl) {
             textEl.textContent = insight.text;
-            takeawayEl.innerHTML = `<strong>Demonstrates:</strong> ${insight.takeaway.replace("Demonstrates:", "")}`;
+            takeawayEl.innerHTML = `<strong>Key Takeaway:</strong> ${insight.takeaway}`;
         }
     }
 
