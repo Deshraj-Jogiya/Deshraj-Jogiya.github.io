@@ -1728,4 +1728,343 @@ body.light-theme .btn-resume-nav:hover {
     color: #fff;
 }
 
+/* ==========================================================================
+   Mobile Responsive Navigation & Hamburger Override
+   ========================================================================== */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(7, 10, 19, 0.98);
+        backdrop-filter: blur(20px);
+        border-left: 1px solid var(--card-border);
+        padding: 6rem 2rem 2rem 2rem;
+        gap: 2rem;
+        z-index: 105;
+        transition: var(--transition-smooth);
+    }
+    
+    .nav-links.mobile-active {
+        right: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+/* ==========================================================================
+   SQL Analytics Recruiter Insights Card
+   ========================================================================== */
+.recruiter-insights-card {
+    background: rgba(16, 185, 129, 0.02);
+    border: 1px solid rgba(16, 185, 129, 0.12);
+    border-radius: var(--border-radius-md);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: var(--transition-smooth);
+}
+
+.recruiter-insight-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-emerald);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.recruiter-insight-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.recruiter-insight-takeaway {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+body.light-theme .recruiter-insights-card {
+    background: rgba(16, 185, 129, 0.01);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+/* ==========================================================================
+   Observability Pipeline Node Flow Diagram
+   ========================================================================== */
+.pipeline-flow-container {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-lg);
+}
+
+.pipeline-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pipeline-node-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+    width: 80px;
+}
+
+.pipeline-node-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #111827;
+    border: 2px solid var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: var(--transition-smooth);
+}
+
+.pipeline-node-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    white-space: nowrap;
+    transition: var(--transition-smooth);
+}
+
+.pipeline-line {
+    position: absolute;
+    top: 24px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: var(--text-muted);
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.pipeline-progress-line {
+    position: absolute;
+    top: 24px;
+    left: 40px;
+    width: 0%;
+    height: 2px;
+    background: var(--grad-primary);
+    box-shadow: 0 0 8px var(--accent-indigo);
+    z-index: 1;
+    transition: width 0.3s ease;
+}
+
+.pipeline-node-item.active .pipeline-node-icon {
+    border-color: var(--accent-blue);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+    transform: scale(1.1);
+    animation: nodePulse 1.5s infinite alternate;
+}
+
+.pipeline-node-item.active .pipeline-node-label {
+    color: var(--accent-blue);
+}
+
+.pipeline-node-item.success .pipeline-node-icon {
+    border-color: var(--accent-emerald);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.pipeline-node-item.success .pipeline-node-label {
+    color: var(--accent-emerald);
+}
+
+.pipeline-node-item.warning .pipeline-node-icon {
+    border-color: var(--accent-amber);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+}
+
+.pipeline-node-item.warning .pipeline-node-label {
+    color: var(--accent-amber);
+}
+
+body.light-theme .pipeline-flow-container {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-theme .pipeline-node-icon {
+    background: #f3f4f6;
+}
+
+@keyframes nodePulse {
+    0% { transform: scale(1.1); box-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+    100% { transform: scale(1.15); box-shadow: 0 0 20px rgba(59, 130, 246, 0.7); }
+}
+
+/* ==========================================================================
+   Live Visitor Analytics & ML Forecast Widget
+   ========================================================================== */
+.visitor-widget {
+    margin-bottom: 2rem;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.visitor-stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.visitor-stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.visitor-stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.visitor-location-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.35rem 0.75rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+}
+
+.visitor-forecast-box {
+    background: rgba(99, 102, 241, 0.04);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    margin-top: 1.25rem;
+    text-align: center;
+}
+
+.visitor-forecast-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-purple);
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+    margin: 0.25rem 0;
+}
+
+.visitor-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.visitor-progress-fill {
+    height: 100%;
+    background: var(--grad-primary);
+    width: 0%;
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.light-theme .visitor-stats-row {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .visitor-location-badge {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .visitor-forecast-box {
+    background: rgba(99, 102, 241, 0.02);
+}
+
+/* ==========================================================================
+   Multi-Column Sticky Layout (Desktop Grid & Sidebar)
+   ========================================================================== */
+@media (min-width: 1025px) {
+    .portfolio-layout {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 2.5rem;
+        align-items: start;
+    }
+    
+    .portfolio-sidebar {
+        position: sticky;
+        top: 100px;
+    }
+}
+
+
 

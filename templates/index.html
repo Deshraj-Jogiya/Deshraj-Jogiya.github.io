@@ -20,6 +20,11 @@
     <header class="navbar">
         <div class="nav-container">
             <a href="#" class="logo-text">DESHRAJ JOGIYA</a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav class="nav-links">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
@@ -96,8 +101,10 @@
                 </div>
             </div>
 
-            <!-- Project Cards Grid -->
-            <div class="projects-grid">
+            <!-- Project Cards Grid & Layout Wrapper -->
+            <div class="portfolio-layout">
+                <div class="portfolio-main">
+                    <div class="projects-grid">
                 {% for project in projects %}
                 <div class="project-card glass-card" data-category="{{ project.category }}">
                     {% if project.dashboard_url %}
@@ -123,7 +130,50 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
+                    </div> <!-- End of projects-grid -->
+                </div> <!-- End of portfolio-main -->
+                
+                <!-- Sidebar -->
+                <div class="portfolio-sidebar">
+                    <!-- Live Visitor Stats & ML Forecast Card -->
+                    <div class="visitor-widget glass-card">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                            📡 Live Visitor Analytics
+                        </h3>
+                        
+                        <div class="visitor-stats-row">
+                            <span class="visitor-stat-label">Your Location</span>
+                            <span class="visitor-location-badge" id="visitor-loc">
+                                <span id="visitor-flag">📍</span> <span id="visitor-city">Detecting...</span>
+                            </span>
+                        </div>
+                        <div class="visitor-stats-row">
+                            <span class="visitor-stat-label">Total Unique Visits</span>
+                            <span class="visitor-stat-value" id="visitor-count">...</span>
+                        </div>
+                        <div class="visitor-stats-row">
+                            <span class="visitor-stat-label">Active Users Today</span>
+                            <span class="visitor-stat-value" id="visitor-today">...</span>
+                        </div>
+                        
+                        <div class="visitor-forecast-box">
+                            <div class="visitor-stat-label" style="font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                                7-Day Traffic Forecast
+                            </div>
+                            <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
+                            <div class="visitor-stat-label" style="font-size: 0.75rem;">Expected visits next week</div>
+                            <div class="visitor-progress-bar">
+                                <div class="visitor-progress-fill" id="visitor-progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="visitor-ml-btn-box" style="margin-top: 1.25rem;">
+                            <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
+                                📊 View ML Model Charts
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- End of portfolio-sidebar -->
+            </div> <!-- End of portfolio-layout -->
         </section>
 
         <!-- Interactive Recruiter Showcase Section -->
@@ -151,6 +201,19 @@
                     
                     <div class="sql-editor-container" id="sql-editor" style="margin-top: 1.5rem;"></div>
                     
+                    <!-- Recruiter Quick Insights -->
+                    <div class="recruiter-insights-card" id="recruiter-insights">
+                        <div class="recruiter-insight-title">
+                            💡 Recruiter Quick Insights
+                        </div>
+                        <div class="recruiter-insight-text" id="recruiter-insight-text">
+                            Select a query above to see why this data engineering task matters and the skills it demonstrates.
+                        </div>
+                        <div class="recruiter-insight-takeaway" id="recruiter-insight-takeaway">
+                            Demonstrates: -
+                        </div>
+                    </div>
+                    
                     <div class="sql-results-panel">
                         <div class="sql-results-title">📋 Query Results Output</div>
                         <div class="sql-table-container">
@@ -175,6 +238,32 @@
                             <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
                         </div>
                     </div>
+                    
+                    <!-- Pipeline Flow Diagram -->
+                    <div class="pipeline-flow-container">
+                        <div class="pipeline-flow">
+                            <div class="pipeline-line"></div>
+                            <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
+                            
+                            <div class="pipeline-node-item" id="node-ingest">
+                                <div class="pipeline-node-icon">📥</div>
+                                <div class="pipeline-node-label">Ingest</div>
+                            </div>
+                            <div class="pipeline-node-item" id="node-validate">
+                                <div class="pipeline-node-icon">🛡️</div>
+                                <div class="pipeline-node-label">Validate</div>
+                            </div>
+                            <div class="pipeline-node-item" id="node-score">
+                                <div class="pipeline-node-icon">🧠</div>
+                                <div class="pipeline-node-label">ML Score</div>
+                            </div>
+                            <div class="pipeline-node-item" id="node-commit">
+                                <div class="pipeline-node-icon">💾</div>
+                                <div class="pipeline-node-label">Commit</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="obs-content" style="margin-top: 1.5rem;">
                         <div class="obs-console" id="obs-console">
                             <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
@@ -535,6 +624,42 @@
                                 </ul>
                             </div>
                         </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visitor ML Models & Charts Modal Overlay -->
+    <div id="ml-charts-modal" class="modal-overlay">
+        <div class="modal-content ml-charts-modal-content glass-card" style="max-width: 900px; width: 95%;">
+            <div class="resume-modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">📊 Live Visitor AI/ML Insights</h2>
+                <button class="close-modal-btn close-ml-modal-btn" id="close-ml-modal-btn" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
+            </div>
+            
+            <div class="ml-charts-container" style="display: flex; flex-direction: column; gap: 2rem; max-height: 70vh; overflow-y: auto; padding-right: 0.5rem;">
+                <div class="ml-chart-block">
+                    <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-blue); display: flex; align-items: center; gap: 0.5rem;">
+                        📈 7-Day Traffic Forecast Model (Linear Regression)
+                    </h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+                        This model aggregates visitor logs daily and fits a <strong>Linear Regression</strong> model on the timeline index. It forecasts unique traffic trends for the upcoming 7 days to evaluate profile engagement.
+                    </p>
+                    <div style="border-radius: var(--border-radius-md); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #0f172a; padding: 1rem; display: flex; justify-content: center;">
+                        <img src="assets/traffic_forecast.png" alt="Traffic Forecast Chart" style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 4px;">
+                    </div>
+                </div>
+                
+                <div class="ml-chart-block" style="margin-top: 1rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-purple); display: flex; align-items: center; gap: 0.5rem;">
+                        👥 Visitor Cohort Segmentation Model (K-Means)
+                    </h4>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
+                        This model runs a <strong>K-Means Clustering</strong> algorithm on visitor characteristics (OS, Device, Browser, Hour of Visit). It groups users into distinct behavioral cohorts (e.g. Mobile Explorers, recruiters, or desktop analysts).
+                    </p>
+                    <div style="border-radius: var(--border-radius-md); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #0f172a; padding: 1rem; display: flex; justify-content: center;">
+                        <img src="assets/visitor_segments.png" alt="Visitor Segmentation Clusters Chart" style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 4px;">
                     </div>
                 </div>
             </div>

@@ -3,6 +3,132 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Mobile Hamburger Menu Navigation Toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenuBtn.classList.toggle("active");
+            navLinks.classList.toggle("mobile-active");
+        });
+        
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenuBtn.classList.remove("active");
+                navLinks.classList.remove("mobile-active");
+            });
+        });
+    }
+
+    // Live Visitor Analytics (Supabase REST API Integration)
+    const SUPABASE_URL = "https://mtvcrttbdjwcixzhlkvo.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_ZuB30vNfc-7b7Pr6ebZNqQ_sXjox-wu";
+
+    function getFlagEmoji(countryCode) {
+        if (!countryCode) return "📍";
+        const codePoints = countryCode
+            .toUpperCase()
+            .split("")
+            .map(char => 127397 + char.charCodeAt(0));
+        return String.fromCodePoint(...codePoints);
+    }
+
+    async function logVisit() {
+        let visitorId = localStorage.getItem("portfolio_visitor_id");
+        let isNew = false;
+        if (!visitorId) {
+            visitorId = "vis_" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            localStorage.setItem("portfolio_visitor_id", visitorId);
+            isNew = true;
+        }
+
+        const width = window.innerWidth;
+        const device = width < 768 ? "Mobile" : width < 1024 ? "Tablet" : "Desktop";
+        const ua = navigator.userAgent;
+        let os = "Unknown OS";
+        if (ua.indexOf("Win") != -1) os = "Windows";
+        else if (ua.indexOf("Mac") != -1) os = "macOS";
+        else if (ua.indexOf("Linux") != -1) os = "Linux";
+        else if (ua.indexOf("Android") != -1) os = "Android";
+        else if (ua.indexOf("like Mac") != -1) os = "iOS";
+
+        let browser = "Other";
+        if (ua.indexOf("Chrome") != -1) browser = "Chrome";
+        else if (ua.indexOf("Safari") != -1) browser = "Safari";
+        else if (ua.indexOf("Firefox") != -1) browser = "Firefox";
+        else if (ua.indexOf("Edge") != -1) browser = "Edge";
+
+        let geodata = { city: "Unknown", country_name: "Unknown", country_code: "" };
+        try {
+            const res = await fetch("https://ipapi.co/json/");
+            if (res.ok) {
+                geodata = await res.json();
+            }
+        } catch (e) {
+            console.error("Geoloc fetch failed:", e);
+        }
+
+        const visitData = {
+            visitor_id: visitorId,
+            is_new: isNew,
+            city: geodata.city || "Unknown",
+            country: geodata.country_name || "Unknown",
+            country_code: geodata.country_code || "",
+            device: device,
+            os: os,
+            browser: browser,
+            referrer: document.referrer || "Direct",
+            page_path: window.location.pathname
+        };
+
+        try {
+            await fetch(`${SUPABASE_URL}/rest/v1/portfolio_visits`, {
+                method: "POST",
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`,
+                    "Content-Type": "application/json",
+                    "Prefer": "return=minimal"
+                },
+                body: JSON.stringify(visitData)
+            });
+        } catch (e) {
+            console.error("Supabase log failed:", e);
+        }
+
+        const cityEl = document.getElementById("visitor-city");
+        const flagEl = document.getElementById("visitor-flag");
+        if (cityEl) cityEl.textContent = geodata.city ? `${geodata.city}, ${geodata.country_code}` : "Online visitor";
+        if (flagEl && geodata.country_code) flagEl.textContent = getFlagEmoji(geodata.country_code);
+    }
+
+    async function updateVisitorStatsUI() {
+        try {
+            const res = await fetch("assets/visitor_stats.json");
+            if (res.ok) {
+                const stats = await res.json();
+                const countEl = document.getElementById("visitor-count");
+                const todayEl = document.getElementById("visitor-today");
+                const forecastEl = document.getElementById("visitor-forecast-val");
+                const progressFillEl = document.getElementById("visitor-progress-fill");
+
+                if (countEl) countEl.textContent = stats.total_visits || "...";
+                if (todayEl) todayEl.textContent = stats.active_today || "...";
+                if (forecastEl) forecastEl.textContent = stats.forecasted_next_week || "...";
+
+                if (progressFillEl && stats.total_visits && stats.forecasted_next_week) {
+                    const ratio = Math.min(100, Math.round((stats.total_visits / stats.forecasted_next_week) * 100));
+                    progressFillEl.style.width = `${ratio}%`;
+                }
+            }
+        } catch (e) {
+            console.error("Failed to load visitor stats:", e);
+        }
+    }
+
+    logVisit();
+    updateVisitorStatsUI();
+
     // 1. Typing Terminal Animation
     const words = [
         "Data Pipeline Engineer.",
@@ -161,6 +287,43 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && modal.classList.contains("active")) {
             closeModal();
+        }
+    });
+
+    // Visitor ML Models & Charts Modal
+    const mlModal = document.getElementById("ml-charts-modal");
+    const viewMlBtn = document.getElementById("view-ml-charts-btn");
+    const closeMlBtn = document.getElementById("close-ml-modal-btn");
+
+    if (viewMlBtn && mlModal) {
+        viewMlBtn.addEventListener("click", () => {
+            mlModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+    }
+
+    const closeMlModal = () => {
+        if (mlModal) {
+            mlModal.classList.remove("active");
+            document.body.style.overflow = ""; // Re-enable background scrolling
+        }
+    };
+
+    if (closeMlBtn) {
+        closeMlBtn.addEventListener("click", closeMlModal);
+    }
+
+    if (mlModal) {
+        mlModal.addEventListener("click", (e) => {
+            if (e.target === mlModal) {
+                closeMlModal();
+            }
+        });
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mlModal && mlModal.classList.contains("active")) {
+            closeMlModal();
         }
     });
 
@@ -441,6 +604,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isRunningObs = false;
 
+    // Pipeline Visual Node selectors
+    const pipelineProgress = document.getElementById("pipeline-progress-line");
+    const nodeIngest = document.getElementById("node-ingest");
+    const nodeValidate = document.getElementById("node-validate");
+    const nodeScore = document.getElementById("node-score");
+    const nodeCommit = document.getElementById("node-commit");
+
+    function resetPipelineNodes() {
+        if (pipelineProgress) pipelineProgress.style.width = "0%";
+        [nodeIngest, nodeValidate, nodeScore, nodeCommit].forEach(n => {
+            if (n) n.className = "pipeline-node-item";
+        });
+    }
+
     if (runObsBtn) {
         runObsBtn.addEventListener("click", () => {
             if (isRunningObs) return;
@@ -452,12 +629,13 @@ document.addEventListener("DOMContentLoaded", () => {
             obsStatus.className = "obs-status running";
             obsStatusText.textContent = "Running ETL";
             
-            // Reset console and metrics
+            // Reset console, metrics, and nodes
             obsConsole.innerHTML = "";
             metricLatency.textContent = "0.00s";
             metricRows.textContent = "0";
             metricDrift.textContent = "Checking";
             metricDrift.style.color = "inherit";
+            resetPipelineNodes();
 
             let currentLogIndex = 0;
             const logInterval = setInterval(() => {
@@ -468,6 +646,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     logEl.textContent = log.text;
                     obsConsole.appendChild(logEl);
                     obsConsole.scrollTop = obsConsole.scrollHeight;
+
+                    // Animate Pipeline Node Flow Diagram dynamically based on log progression
+                    if (currentLogIndex === 0) {
+                        if (nodeIngest) nodeIngest.classList.add("active");
+                        if (pipelineProgress) pipelineProgress.style.width = "12.5%";
+                    } else if (currentLogIndex === 3) {
+                        if (nodeIngest) { nodeIngest.classList.remove("active"); nodeIngest.classList.add("success"); }
+                        if (nodeValidate) nodeValidate.classList.add("active");
+                        if (pipelineProgress) pipelineProgress.style.width = "37.5%";
+                    } else if (currentLogIndex === 6) {
+                        if (nodeValidate) { nodeValidate.classList.remove("active"); nodeValidate.classList.add("success"); }
+                        if (nodeScore) nodeScore.classList.add("active");
+                        if (pipelineProgress) pipelineProgress.style.width = "62.5%";
+                    } else if (currentLogIndex === 8) {
+                        if (nodeScore) { nodeScore.classList.remove("active"); nodeScore.classList.add("warning"); }
+                        if (nodeCommit) nodeCommit.classList.add("active");
+                        if (pipelineProgress) pipelineProgress.style.width = "87.5%";
+                    } else if (currentLogIndex === 11) {
+                        if (nodeCommit) { nodeCommit.classList.remove("active"); nodeCommit.classList.add("success"); }
+                        if (pipelineProgress) pipelineProgress.style.width = "100%";
+                    }
 
                     // Update metrics incrementally
                     if (currentLogIndex === 2) {
@@ -600,9 +799,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // Recruiter insights texts mapping to options
+    const recruiterInsights = {
+        revenue_by_segment: {
+            text: "Why it matters: Clusters customer purchasing behaviors into actionable cohorts. E.g., identifying 'Champions' to target with loyalty campaigns, and 'Hibernating' groups to win back with tailored offers.",
+            takeaway: "Demonstrates: Customer Segmentation (K-Means, PCA), Star Schema modeling, and translating analytics into visual dashboard KPIs."
+        },
+        anomaly_risk_claims: {
+            text: "Why it matters: Automatically validates journal postings against Benford's Law distribution and maps anomalies via Isolation Forest, isolating ledger fraud risks dynamically without manual auditing.",
+            takeaway: "Demonstrates: Financial risk compliance, anomaly detection models, statistical ledger auditing, and automation."
+        },
+        survival_by_treatment: {
+            text: "Why it matters: Models drug patient outcomes across clinical trial treatments. Compiling Kaplan-Meier survival curves and calculating Log-Rank test statistics confirms therapeutic efficacy with statistical confidence.",
+            takeaway: "Demonstrates: Biostatistics, survival modeling, clinical trials database design, and calculated metric dashboards."
+        },
+        drift_by_feature: {
+            text: "Why it matters: Tracks real-time machine learning reliability. Computes Kolmogorov-Smirnov (KS) test statistics on incoming request payloads to trigger retraining loops before predictions degrade.",
+            takeaway: "Demonstrates: MLOps observability, data drift detection (KS-Test), validation auditing, and data quality pipelines."
+        }
+    };
+
+    function updateRecruiterInsights() {
+        const selectedValue = sqlSelect.value;
+        const insight = recruiterInsights[selectedValue];
+        const textEl = document.getElementById("recruiter-insight-text");
+        const takeawayEl = document.getElementById("recruiter-insight-takeaway");
+        if (insight && textEl && takeawayEl) {
+            textEl.textContent = insight.text;
+            takeawayEl.innerHTML = `<strong>Demonstrates:</strong> ${insight.takeaway.replace("Demonstrates:", "")}`;
+        }
+    }
+
     if (sqlSelect) {
-        sqlSelect.addEventListener("change", updateSqlPreview);
+        sqlSelect.addEventListener("change", () => {
+            updateSqlPreview();
+            updateRecruiterInsights();
+        });
         updateSqlPreview(); // Initial preview on page load
+        updateRecruiterInsights(); // Initial insights display
     }
 
     if (runSqlBtn && sqlResultsTable) {
