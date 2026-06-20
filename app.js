@@ -1496,7 +1496,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return msgEl;
     };
 
-    const triggerBotResponse = (userQuery) => {
+    const triggerBotResponse = async (userQuery) => {
         // Add typing dots
         const typingEl = document.createElement("div");
         typingEl.className = "chat-msg bot-msg typing-msg";
@@ -1504,11 +1504,84 @@ document.addEventListener("DOMContentLoaded", () => {
         chatMessages.appendChild(typingEl);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        setTimeout(() => {
-            chatMessages.removeChild(typingEl);
+        const respond = (text) => {
+            if (chatMessages.contains(typingEl)) {
+                chatMessages.removeChild(typingEl);
+            }
+            addMessage(text, "bot");
+        };
+
+        const normQuery = userQuery.trim().toLowerCase().replace(/[?.,!]/g, "");
+
+        try {
+            // 1. Look up question in Supabase cache table
+            const cacheUrl = `${SUPABASE_URL}/rest/v1/chatbot_cache?question=eq.${encodeURIComponent(normQuery)}&select=answer`;
+            const cacheRes = await fetch(cacheUrl, {
+                method: "GET",
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                }
+            });
+
+            if (cacheRes.ok) {
+                const cacheData = await cacheRes.json();
+                if (cacheData && cacheData.length > 0 && cacheData[0].answer) {
+                    console.log("Chatbot Cache Hit!");
+                    respond(cacheData[0].answer);
+                    return;
+                }
+            }
+
+            // 2. Cache Miss: call Supabase Edge Function for Gemini API
+            console.log("Chatbot Cache Miss. Querying Live Gemini AI via Supabase Edge Function...");
+            const functionUrl = `${SUPABASE_URL}/functions/v1/portfolio-chat`;
+            const aiRes = await fetch(functionUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                },
+                body: JSON.stringify({ message: userQuery })
+            });
+
+            if (!aiRes.ok) {
+                throw new Error(`Edge Function returned status: ${aiRes.status}`);
+            }
+
+            const aiData = await aiRes.json();
+            const reply = aiData.reply || aiData.response || aiData.text;
+            if (!reply) {
+                throw new Error("Edge Function returned empty reply");
+            }
+
+            respond(reply);
+
+            // 3. Cache the successful result back in the database
+            console.log("Caching new Q&A in Supabase database...");
+            await fetch(`${SUPABASE_URL}/rest/v1/chatbot_cache`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`,
+                    "Prefer": "resolution=ignore-duplicates"
+                },
+                body: JSON.stringify({
+                    question: normQuery,
+                    answer: reply
+                })
+            }).catch(e => console.warn("Failed to write to chatbot cache:", e));
+
+        } catch (error) {
+            console.warn("Live AI chatbot failure, falling back to local searchKeyword:", error);
+            // Fallback: Run local keyword-based answers
             const answer = searchKeyword(userQuery);
-            addMessage(answer, "bot");
-        }, 800);
+            setTimeout(() => {
+                respond(answer);
+            }, 600);
+        }
     };
 
     if (chatForm) {
