@@ -2894,6 +2894,216 @@ body.light-theme input[type=range]::-webkit-slider-thumb {
     }
 }
 
+/* ==========================================================================
+   Recruiter Guided Tour & D.S./ML Experiments Styles
+   ========================================================================== */
+
+/* Navbar Tour Button */
+.btn-tour-nav {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    border: none;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition-smooth);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+.btn-tour-nav:hover {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+    transform: translateY(-1px);
+}
+body.light-theme .btn-tour-nav {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: #fff;
+}
+
+/* Hero Tour Button */
+.btn-tour-hero {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition-smooth);
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+    animation: tour-pulse 2s infinite alternate;
+}
+.btn-tour-hero:hover {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.7);
+    transform: translateY(-2px);
+}
+@keyframes tour-pulse {
+    0% {
+        box-shadow: 0 0 8px rgba(139, 92, 246, 0.4), 0 0 0 0px rgba(139, 92, 246, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 16px rgba(236, 72, 153, 0.6), 0 0 0 6px rgba(236, 72, 153, 0);
+    }
+}
+
+/* Tour Backdrop */
+.tour-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    backdrop-filter: blur(3px);
+    transition: opacity 0.3s ease;
+}
+
+/* Tour Overlay Card */
+.tour-overlay-card {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 450px;
+    padding: 1.5rem;
+    z-index: 10001;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tour-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.tour-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tour-step-indicator {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.tour-step-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.tour-step-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+.tour-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tour-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+body.light-theme .tour-overlay-card {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+body.light-theme .tour-step-title {
+    color: #0f172a;
+}
+
+/* Tour Highlight outline and glow */
+.tour-highlight {
+    position: relative;
+    z-index: 10002 !important;
+    outline: 3px solid #6366f1 !important;
+    outline-offset: 4px;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.8) !important;
+    transition: all 0.3s ease-in-out;
+}
+
+/* D.S. & ML Experiments Widget Styling */
+#ab-testing-widget, #threshold-widget {
+    padding: 1.75rem;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.confusion-table th, .confusion-table td {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.light-theme .confusion-table th, body.light-theme .confusion-table td {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    color: #334155;
+}
+
+body.light-theme #ab-a-cr, body.light-theme #ab-b-cr, body.light-theme #val-precision, body.light-theme #val-recall, body.light-theme #val-net-profit {
+    color: #0f172a !important;
+}
+
+body.light-theme .ab-stats-output, body.light-theme .profit-calculator {
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-theme .ab-result-card {
+    background: rgba(0, 0, 0, 0.01) !important;
+    border-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.badge-status-neutral {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+body.light-theme .badge-status-neutral {
+    background: rgba(0, 0, 0, 0.05);
+    color: #475569;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.badge-status-sig {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-status-not-sig {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+
 
 
 

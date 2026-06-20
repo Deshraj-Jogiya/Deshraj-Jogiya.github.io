@@ -1427,17 +1427,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const answers = {
-        gpa: "Deshraj earned his Master of Science in IT from Arizona State University with a perfect 4.0/4.0 GPA. This academic success reflects his deep understanding of data warehousing, database design, and statistical machine learning.",
-        python: "Python is Deshraj's core tool. He has built production-grade ETL pipelines with Pandas and NumPy, implemented statistical ML models (Random Forest, XGBoost, Isolation Forest) in Scikit-Learn, and developed deep learning systems (CNNs) in TensorFlow/Keras.",
-        asu: "Deshraj graduated with a Master of Science in Information Technology from Arizona State University (ASU) in May 2024, maintaining a 4.0 GPA. His coursework focused heavily on cloud data systems, enterprise data warehousing, and predictive modeling.",
-        contact: "You can contact Deshraj directly via email at djogiya786@gmail.com or call him at (480) 876-2863. He is open to relocation across the US and is actively interviewing for Data Engineer, ML Engineer, and Data Analyst roles.",
-        cloud: "Deshraj's cloud data stack includes AWS (Glue ETL, S3 data lakes), Snowflake data warehouses (star schema optimization), and Supabase (serverless integrations, database RLS, and real-time synchronizations).",
-        experience: "Deshraj is a Data and AI/ML Engineer with a focus on building production-grade, statistically monitored, and automated data systems. His 5-year career spans: \n1) Applied ML Engineering at Technoid LLC optimizing OpenAI GPT-4o mini models for recruiter recommendation workflows;\n2) Cloud Data Analytics at Zifatech migrating legacy databases to AWS Glue, S3, and Snowflake with Great Expectations validations;\n3) Teleoperation Data Collection and Ingestion Pipeline scaling in Kubernetes at Objectways;\n4) Academic Research at ASU developing real-time recommenders and ASL deep learning CNN models.\nRather than just writing script stubs, he focuses on building resilient systems that detect data drift and automate pipeline audits.",
-        projects: "Deshraj has developed multiple robust projects spanning real-time data streaming, ML model monitoring, and credit risk evaluations. You can browse them in the 'Projects' grid of the site, check their live code on his GitHub, or ask me about a specific project like 'Emissions Analysis' or 'IoT Telematics'!",
-        observability: "In production pipelines, Deshraj uses Great Expectations to implement automated data validation checks (null-value, type-checks, and range validations). He also implements Kolmogorov-Smirnov (KS) tests to monitor statistical feature drift, ensuring models don't decay over time.",
-        skills: "Deshraj's core skillset includes: 1) Programming: Python (Scikit-Learn, TensorFlow, Pandas) and SQL (PostgreSQL, Snowflake); 2) Data Engineering: AWS Glue, S3, Kubernetes, Great Expectations; 3) Analytics: Tableau, Power BI, K-Means clustering, PCA, and statistical forecasting.",
-        analytics: "Deshraj's data analysis background is built on optimizing database structures and building interactive executive dashboards. At Zifatech and Kronic Keys, he built Power BI and Tableau dashboards, designed star schema models, and conducted cohort analyses that drove operational improvements.",
-        objectways: "At Objectways Technologies, Deshraj scaled teleoperation data collection workflows. He designed custom Python and Scala scripts to organize and ingest over 10,000 robotic teleoperation samples into a Kubernetes-orchestrated system. This saved the simulation team 30% in processing latency and eliminated raw dataset inconsistencies.",
+        gpa: "Deshraj achieved a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University. Rather than just focusing on theory, he applied his studies directly to complex project architecture, specializing in database structures, distributed systems, and statistical forecasting models.",
+        python: "Python is Deshraj's primary development tool. He leverages the modern scientific stack—developing asynchronous ingestion scrapers, implementing statistical validations using Pandas/NumPy, training machine learning classifiers (Random Forest, XGBoost) in Scikit-Learn, and engineering deep learning computer vision (CNN) architectures in TensorFlow/Keras.",
+        asu: "Deshraj graduated with a Master of Science in Information Technology from Arizona State University in May 2024, graduating with a perfect 4.0 GPA. His academic specialization sat at the intersection of enterprise cloud computing, automated data pipelines, and predictive analytics.",
+        contact: "You can reach Deshraj directly via email at djogiya786@gmail.com or by phone at (480) 876-2863. He is open to relocation to major tech hubs across the United States and is actively interviewing for Data Engineering, Machine Learning Engineering, and Data Science positions.",
+        cloud: "Deshraj's cloud infrastructure stack revolves around building secure, high-throughput architectures. He uses AWS services (AWS Glue ETL pipelines, S3 data lakes, and Athena queries) alongside Snowflake (leveraging optimized star schema models) and Supabase for serverless functions, database access control (RLS), and secure APIs.",
+        experience: "Deshraj is a Data and AI/ML Engineer with 5 years of extensive experience designing resilient pipelines and deploying predictive models in production. His career highlights include:\n\n1. **Applied ML Engineering (Technoid LLC)**: Fine-tuned OpenAI GPT models for specialized resume matching, building vector search prompts, and reducing synchronization delays by 65%.\n2. **Cloud Data Engineering (Zifatech)**: Migrated legacy SQL databases to AWS Glue and Snowflake, establishing automated data validation suites using Great Expectations.\n3. **Robotic Ingestion Pipelines (Objectways)**: Built and scaled high-volume data collection structures inside Kubernetes to manage teleoperation data streams, improving processing speed by 30%.\n4. **Academic ML Research (ASU)**: Developed deep learning CNN gesture recognition classifiers and real-time recommenders.\n\nHe specializes in building self-monitoring data systems that prevent silent data failures and model performance degradation.",
+        projects: "Deshraj's portfolio showcases production-grade engineering: a Multi-State Land Use Emissions pipeline forecasting carbon trends with 90% accuracy; a Real-Time IoT Fleet Telematics micro-batching engine executing Z-score anomaly checks; and a FinTech Credit Risk & Fraud platform with sub-100ms API latency. You can check out their live code repositories in the 'Projects' section above!",
+        observability: "Deshraj believes that silently failing data is the largest risk in modern production systems. He integrates automated Great Expectations suites directly into ingest cycles to trap bad data schema and missing values, and implements statistical checks (like Kolmogorov-Smirnov drift tests) to detect feature decay before it impacts live models.",
+        skills: "Deshraj's tech stack includes: \n- **Programming**: Python (Pandas, NumPy, Scikit-Learn, TensorFlow), SQL (Postgres, Snowflake), and Scala.\n- **Data Engineering**: AWS Glue, S3, Kubernetes, and Great Expectations.\n- **ML & Analytics**: Random Forest, XGBoost, PCA, K-Means clustering, Tableau, and Power BI dashboards.",
+        analytics: "Deshraj views data analytics as a bridge between engineering and executive decision-making. At Zifatech and Kronic Keys, he designed robust star schemas, conducted cohort analysis, and built executive Tableau dashboards that shortened manual reports extraction times by 30% and enabled leaders to monitor acquisition trends in real time.",
+        objectways: "At Objectways Technologies, Deshraj optimized robotic teleoperation data workflows. He designed custom Python and Scala ingest scripts to organize and catalog over 10,000 robotic teleoperation samples into a Kubernetes-orchestrated environment. This saved the simulation team 30% in processing latency and eliminated raw dataset inconsistencies.",
         technoid: "At Technoid LLC, Deshraj served as an Applied ML Engineer fine-tuning LLM systems (GPT-4o mini) for automated resume analysis and profile matching. He developed optimized vector prompts and Supabase synchronization logic, reducing backend synchronization delays by 65% while improving recommendations accuracy by 25%.",
         zifatech: "As a Data Analyst at Zifatech Solutions, Deshraj drove the migration of legacy SQL datasets to AWS (Glue and S3 data lakes), improving Snowflake warehouse data availability by 60%. He also designed Star Schema architectures and automated checks using Great Expectations to establish a 98% data reliability standard.",
         elevateme: "At ElevateMe Bootcamp, Deshraj developed customer segmentation models and business intelligence flows. He combined Principal Component Analysis (PCA) and K-Means clustering in Python to classify transactional customers into 6 high-value profiles capturing 92% of variance. He also built interactive Power BI marketing dashboards that helped lift campaign click-through rates by 12%.",
@@ -2143,5 +2143,424 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (modelSelect) {
         modelSelect.addEventListener("change", updateClassifierSimulator);
+    }
+
+    // ==========================================================================
+    // A/B Testing Simulator & Normal Distribution Helpers
+    // ==========================================================================
+    
+    // Standard normal CDF approximation (Abramowitz & Stegun)
+    function stdNormalCDF(x) {
+        const t = 1 / (1 + 0.2316419 * Math.abs(x));
+        const d = 0.39894228 * Math.exp(-x * x / 2);
+        const p = d * t * (0.31938153 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
+        return x >= 0 ? 1 - p : p;
+    }
+
+    let abInterval = null;
+    const runABBtn = document.getElementById("run-ab-btn");
+    
+    if (runABBtn) {
+        runABBtn.addEventListener("click", () => {
+            if (abInterval) clearInterval(abInterval);
+            runABBtn.disabled = true;
+            runABBtn.textContent = "Simulating Traffic... 🚦";
+            
+            const nA = 1000;
+            const nB = 1000;
+            // Generate actual random conversions based on targets (10% and 13%)
+            const finalA = Math.round(nA * (0.09 + Math.random() * 0.02)); 
+            const finalB = Math.round(nB * (0.12 + Math.random() * 0.025)); 
+            
+            let currentVisitors = 0;
+            abInterval = setInterval(() => {
+                currentVisitors += 50;
+                if (currentVisitors > 1000) {
+                    currentVisitors = 1000;
+                    clearInterval(abInterval);
+                    runABBtn.disabled = false;
+                    runABBtn.textContent = "Run Experiment Simulation 🔄";
+                }
+                
+                const curA = Math.round((currentVisitors / 1000) * finalA);
+                const curB = Math.round((currentVisitors / 1000) * finalB);
+                
+                const crA = currentVisitors > 0 ? (curA / currentVisitors) * 100 : 0;
+                const crB = currentVisitors > 0 ? (curB / currentVisitors) * 100 : 0;
+                
+                document.getElementById("ab-a-cr").textContent = crA.toFixed(2) + "%";
+                document.getElementById("ab-b-cr").textContent = crB.toFixed(2) + "%";
+                document.getElementById("ab-a-conv").textContent = curA;
+                document.getElementById("ab-b-conv").textContent = curB;
+                document.getElementById("ab-a-visitors").textContent = currentVisitors;
+                document.getElementById("ab-b-visitors").textContent = currentVisitors;
+                
+                // Max 20% conversion rate fills 100% width of progress bar
+                document.getElementById("ab-a-bar").style.width = Math.min(100, (crA / 20) * 100) + "%";
+                document.getElementById("ab-b-bar").style.width = Math.min(100, (crB / 20) * 100) + "%";
+                
+                if (currentVisitors === 1000) {
+                    const pA = finalA / nA;
+                    const pB = finalB / nB;
+                    const pooled = (finalA + finalB) / (nA + nB);
+                    const se = Math.sqrt(pooled * (1 - pooled) * (1 / nA + 1 / nB));
+                    const z = (pB - pA) / se;
+                    const pValue = 2 * (1 - stdNormalCDF(Math.abs(z)));
+                    const uplift = ((pB - pA) / pA) * 100;
+                    
+                    document.getElementById("ab-uplift").textContent = (uplift >= 0 ? "+" : "") + uplift.toFixed(2) + "%";
+                    document.getElementById("ab-zscore").textContent = z.toFixed(3);
+                    document.getElementById("ab-pvalue").textContent = pValue.toFixed(4);
+                    
+                    const badge = document.getElementById("ab-status-badge");
+                    badge.className = ""; 
+                    if (pValue < 0.05) {
+                        badge.classList.add("badge-status-sig");
+                        badge.textContent = "SIGNIFICANT (p < 0.05)";
+                    } else {
+                        badge.classList.add("badge-status-not-sig");
+                        badge.textContent = "NOT SIGNIFICANT";
+                    }
+                }
+            }, 30);
+        });
+    }
+
+    // ==========================================================================
+    // ML Decision Threshold Optimizer
+    // ==========================================================================
+    const abSlider = document.getElementById("threshold-slider");
+    if (abSlider) {
+        const updateThresholdOptimizer = () => {
+            const T = parseFloat(abSlider.value);
+            document.getElementById("threshold-val-display").textContent = T.toFixed(2);
+            
+            const P = 200; // Actual fraud cases
+            const N = 800; // Actual compliant cases
+            
+            // Distributions: Fraud Mean=0.65, Std=0.18. Compliant Mean=0.30, Std=0.18
+            const zPos = (T - 0.65) / 0.18;
+            const propPosAbove = 1 - stdNormalCDF(zPos);
+            const TP = Math.round(P * propPosAbove);
+            const FN = P - TP;
+            
+            const zNeg = (T - 0.30) / 0.18;
+            const propNegAbove = 1 - stdNormalCDF(zNeg);
+            const FP = Math.round(N * propNegAbove);
+            const TN = N - FP;
+            
+            const precision = (TP + FP) > 0 ? (TP / (TP + FP)) * 100 : 100.0;
+            const recall = P > 0 ? (TP / P) * 100 : 0.0;
+            
+            // Business ROI: +$100 per TP (prevented fraud), -$20 per FP (false alarm support), -$150 per FN (missed fraud)
+            const tpGain = TP * 100;
+            const fpLoss = FP * 20;
+            const fnLoss = FN * 150;
+            const netProfit = tpGain - fpLoss - fnLoss;
+            
+            document.getElementById("cm-tp").textContent = TP;
+            document.getElementById("cm-fn").textContent = FN;
+            document.getElementById("cm-fp").textContent = FP;
+            document.getElementById("cm-tn").textContent = TN;
+            
+            document.getElementById("val-precision").textContent = precision.toFixed(1) + "%";
+            document.getElementById("val-recall").textContent = recall.toFixed(1) + "%";
+            
+            document.getElementById("profit-tp-gain").textContent = "+$" + tpGain.toLocaleString();
+            document.getElementById("profit-fp-loss").textContent = "-$" + fpLoss.toLocaleString();
+            document.getElementById("profit-fn-loss").textContent = "-$" + fnLoss.toLocaleString();
+            
+            const netProfitEl = document.getElementById("val-net-profit");
+            netProfitEl.textContent = (netProfit >= 0 ? "$" : "-$") + Math.abs(netProfit).toLocaleString();
+            if (netProfit >= 0) {
+                netProfitEl.style.color = "#10b981";
+            } else {
+                netProfitEl.style.color = "#ef4444";
+            }
+            
+            const optimalBadge = document.getElementById("threshold-optimal-badge");
+            if (Math.abs(T - 0.35) < 0.01) {
+                optimalBadge.style.display = "inline-block";
+            } else {
+                optimalBadge.style.display = "none";
+            }
+        };
+        
+        abSlider.addEventListener("input", updateThresholdOptimizer);
+        updateThresholdOptimizer();
+    }
+
+    // ==========================================================================
+    // Recruiter Guided 1-Minute Tour Engine
+    // ==========================================================================
+    let tourCurrentStep = 0;
+    
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    
+    const tourOverlay = document.getElementById("tour-overlay-card");
+    const tourBackdrop = document.getElementById("tour-backdrop");
+    const tourTitle = document.getElementById("tour-step-title");
+    const tourDesc = document.getElementById("tour-step-desc");
+    const tourStepIndicator = document.getElementById("tour-step-indicator");
+    
+    const tourNextBtn = document.getElementById("tour-next-btn");
+    const tourPrevBtn = document.getElementById("tour-prev-btn");
+    const tourSkipBtn = document.getElementById("tour-skip-btn");
+    
+    const tourSteps = [
+        {
+            title: "Welcome to Deshraj's Portfolio! 🌟",
+            desc: "This 1-minute guided tour showcases Deshraj's interactive data and ML engineering capabilities in action. Let's get started!",
+            target: null,
+            action: async () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                await delay(800);
+            }
+        },
+        {
+            title: "Interactive Resume Modal 💼",
+            desc: "Watch as we open the Resume, filter by 'Data Science' experience, and highlight his perfect 4.0/4.0 GPA from Arizona State University.",
+            target: "#resume-hero-btn",
+            action: async () => {
+                const resumeBtn = document.getElementById("resume-hero-btn") || document.getElementById("resume-nav-btn");
+                if (resumeBtn) {
+                    resumeBtn.click();
+                }
+                await delay(1000);
+                
+                const dsFilter = document.querySelector('.resume-filter-btn[data-filter="ds"]');
+                if (dsFilter) {
+                    dsFilter.click();
+                    dsFilter.classList.add("tour-highlight");
+                }
+                await delay(1200);
+                
+                const gpaText = document.getElementById("resume-gpa-highlight");
+                if (gpaText) {
+                    gpaText.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    gpaText.classList.add("tour-highlight");
+                }
+                await delay(2000);
+            },
+            cleanup: () => {
+                const dsFilter = document.querySelector('.resume-filter-btn[data-filter="ds"]');
+                if (dsFilter) dsFilter.classList.remove("tour-highlight");
+                
+                const gpaText = document.getElementById("resume-gpa-highlight");
+                if (gpaText) gpaText.classList.remove("tour-highlight");
+                
+                const closeResumeBtn = document.getElementById("close-resume-btn");
+                if (closeResumeBtn) closeResumeBtn.click();
+            }
+        },
+        {
+            title: "Real-Time ETL Observability 🤖",
+            desc: "Next, we'll scroll down to the Live ETL Monitor. We'll run full diagnostics to show pipeline checks, data validation status, and drift alerts.",
+            target: ".observability-widget",
+            action: async () => {
+                const widget = document.querySelector('.observability-widget');
+                if (widget) {
+                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    widget.classList.add("tour-highlight");
+                }
+                await delay(1000);
+                
+                const runBtn = document.getElementById("run-obs-btn");
+                if (runBtn) {
+                    runBtn.click();
+                }
+                await delay(5000);
+            },
+            cleanup: () => {
+                const widget = document.querySelector('.observability-widget');
+                if (widget) widget.classList.remove("tour-highlight");
+            }
+        },
+        {
+            title: "SQL Sandbox & Dynamic Visuals 📊",
+            desc: "Let's check out the SQL analytical playground. We'll select the 'Carbon Ingestion & Geospatial Emissions' query, execute it, and see a dynamic Chart.js chart rendered instantly.",
+            target: ".sql-playground-widget",
+            action: async () => {
+                const widget = document.querySelector('.sql-playground-widget');
+                if (widget) {
+                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    widget.classList.add("tour-highlight");
+                }
+                await delay(1000);
+                
+                const querySelect = document.getElementById("sql-query-select");
+                if (querySelect) {
+                    querySelect.value = "emissions_analysis";
+                    querySelect.dispatchEvent(new Event('change'));
+                }
+                await delay(1200);
+                
+                const runBtn = document.getElementById("run-sql-btn");
+                if (runBtn) {
+                    runBtn.click();
+                }
+                await delay(2500);
+            },
+            cleanup: () => {
+                const widget = document.querySelector('.sql-playground-widget');
+                if (widget) widget.classList.remove("tour-highlight");
+            }
+        },
+        {
+            title: "Career Assistant AI Chatbot 💬",
+            desc: "Finally, let's open the AI assistant. The tour will type and send: 'summarize his 5 years of experience' so you can see live RAG retrieval in action.",
+            target: "#chat-launcher",
+            action: async () => {
+                const launcher = document.getElementById("chat-launcher");
+                if (launcher) {
+                    launcher.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    launcher.classList.add("tour-highlight");
+                    await delay(1000);
+                    launcher.click();
+                }
+                await delay(1000);
+                if (launcher) launcher.classList.remove("tour-highlight");
+                
+                const chatContainer = document.getElementById("chat-container");
+                if (chatContainer) {
+                    chatContainer.classList.add("tour-highlight");
+                }
+                await delay(800);
+                
+                const inputEl = document.getElementById("chat-input");
+                if (inputEl) {
+                    const text = "summarize his 5 years of experience";
+                    inputEl.value = "";
+                    for (let i = 0; i < text.length; i++) {
+                        inputEl.value += text[i];
+                        inputEl.dispatchEvent(new Event('input'));
+                        await delay(40);
+                    }
+                }
+                await delay(1000);
+                
+                const chatForm = document.getElementById("chat-form");
+                if (chatForm) {
+                    chatForm.dispatchEvent(new Event('submit'));
+                }
+                
+                await delay(4500);
+            },
+            cleanup: () => {
+                const chatContainer = document.getElementById("chat-container");
+                if (chatContainer) chatContainer.classList.remove("tour-highlight");
+            }
+        },
+        {
+            title: "Tour Completed! 🎉",
+            desc: "Thank you for completing the tour! You've seen Deshraj's full pipeline dashboard, SQL charts, statistical experiments, and interactive AI chatbot. Connect with him below!",
+            target: "#contact",
+            action: async () => {
+                const contactSec = document.getElementById("contact");
+                if (contactSec) {
+                    contactSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    contactSec.classList.add("tour-highlight");
+                }
+                await delay(2000);
+            },
+            cleanup: () => {
+                const contactSec = document.getElementById("contact");
+                if (contactSec) contactSec.classList.remove("tour-highlight");
+                
+                const closeChatBtn = document.getElementById("close-chat-btn");
+                if (closeChatBtn) closeChatBtn.click();
+            }
+        }
+    ];
+
+    async function startTour() {
+        tourCurrentStep = 0;
+        tourOverlay.style.display = "block";
+        tourBackdrop.style.display = "block";
+        await showTourStep(0);
+    }
+
+    function endTour() {
+        if (tourSteps[tourCurrentStep].cleanup) {
+            tourSteps[tourCurrentStep].cleanup();
+        }
+        
+        tourSteps.forEach(step => {
+            if (step.target) {
+                const el = document.querySelector(step.target);
+                if (el) el.classList.remove("tour-highlight");
+            }
+        });
+        
+        tourOverlay.style.display = "none";
+        tourBackdrop.style.display = "none";
+    }
+
+    async function showTourStep(stepIdx) {
+        if (stepIdx > 0 && tourSteps[stepIdx - 1].cleanup) {
+            tourSteps[stepIdx - 1].cleanup();
+        }
+        if (stepIdx < tourSteps.length - 1 && tourSteps[stepIdx + 1].cleanup) {
+            tourSteps[stepIdx + 1].cleanup();
+        }
+        
+        tourCurrentStep = stepIdx;
+        
+        tourPrevBtn.style.visibility = stepIdx === 0 ? "hidden" : "visible";
+        tourNextBtn.textContent = stepIdx === tourSteps.length - 1 ? "Finish" : "Next Step";
+        
+        tourStepIndicator.textContent = `Step ${stepIdx + 1} of ${tourSteps.length}`;
+        tourTitle.textContent = tourSteps[stepIdx].title;
+        tourDesc.textContent = tourSteps[stepIdx].desc;
+        
+        tourNextBtn.disabled = true;
+        tourPrevBtn.disabled = true;
+        
+        if (tourSteps[stepIdx].action) {
+            await tourSteps[stepIdx].action();
+        }
+        
+        tourNextBtn.disabled = false;
+        tourPrevBtn.disabled = false;
+    }
+
+    if (tourNextBtn) {
+        tourNextBtn.addEventListener("click", async () => {
+            if (tourCurrentStep < tourSteps.length - 1) {
+                await showTourStep(tourCurrentStep + 1);
+            } else {
+                endTour();
+            }
+        });
+    }
+
+    if (tourPrevBtn) {
+        tourPrevBtn.addEventListener("click", async () => {
+            if (tourCurrentStep > 0) {
+                await showTourStep(tourCurrentStep - 1);
+            }
+        });
+    }
+
+    if (tourSkipBtn) {
+        tourSkipBtn.addEventListener("click", () => {
+            endTour();
+        });
+    }
+
+    const tourNavBtn = document.getElementById("tour-nav-btn");
+    const startTourBtn = document.getElementById("start-tour-btn");
+    
+    if (tourNavBtn) {
+        tourNavBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            startTour();
+        });
+    }
+    if (startTourBtn) {
+        startTourBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            startTour();
+        });
     }
 });
