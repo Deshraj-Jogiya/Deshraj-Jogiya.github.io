@@ -226,16 +226,23 @@
                     
                     <div class="sql-results-panel">
                         <div class="sql-results-title">📋 Query Results Output</div>
-                        <div class="sql-table-container">
-                            <table class="sql-table-data" id="sql-results-table">
-                                <thead>
-                                    <tr>
-                                        <th>Click 'Execute Query' to fetch database records...</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                        <div class="sql-output-flex" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <!-- Table container -->
+                            <div class="sql-table-container" style="flex: 1.2; min-width: 280px; width: 100%;">
+                                <table class="sql-table-data" id="sql-results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Click 'Execute Query' to fetch database records...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Interactive Chart container -->
+                            <div id="sql-chart-container" class="glass-card" style="display: none; flex: 0.8; min-width: 280px; width: 100%; padding: 1.25rem; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: var(--border-radius-md); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);">
+                                <canvas id="sql-results-chart" style="width: 100%; max-height: 250px;"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1037,6 +1044,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

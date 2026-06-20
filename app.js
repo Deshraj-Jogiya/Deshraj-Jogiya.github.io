@@ -1138,6 +1138,186 @@ document.addEventListener("DOMContentLoaded", () => {
         updateRecruiterInsights(); // Initial insights display
     }
 
+    let sqlChart = null;
+
+    function renderSqlChart(selected, query) {
+        const chartContainer = document.getElementById("sql-chart-container");
+        const canvas = document.getElementById("sql-results-chart");
+        if (!chartContainer || !canvas) return;
+
+        if (sqlChart) {
+            sqlChart.destroy();
+            sqlChart = null;
+        }
+
+        chartContainer.style.display = "flex";
+        chartContainer.style.opacity = "0";
+        // Trigger reflow for animation
+        chartContainer.offsetHeight;
+        chartContainer.style.transition = "opacity 0.4s ease";
+        chartContainer.style.opacity = "1";
+
+        const labels = [];
+        const chartData = [];
+        let chartType = "bar";
+        let chartLabel = "Metric";
+        let bgColors = [];
+        let borderColors = [];
+
+        const purpleGrad = "rgba(139, 92, 246, 0.75)";
+        const purpleBorder = "rgba(139, 92, 246, 1)";
+        const emeraldGrad = "rgba(16, 185, 129, 0.75)";
+        const emeraldBorder = "rgba(16, 185, 129, 1)";
+        const amberGrad = "rgba(245, 158, 11, 0.75)";
+        const amberBorder = "rgba(245, 158, 11, 1)";
+        const roseGrad = "rgba(239, 68, 68, 0.75)";
+        const roseBorder = "rgba(239, 68, 68, 1)";
+        const blueGrad = "rgba(59, 130, 246, 0.75)";
+        const blueBorder = "rgba(59, 130, 246, 1)";
+
+        if (selected === "revenue_by_segment") {
+            chartType = "pie";
+            chartLabel = "Revenue ($)";
+            query.data.forEach(row => {
+                labels.push(row[0]);
+                const val = parseFloat(row[3].replace(/[$,]/g, ""));
+                chartData.push(val);
+            });
+            bgColors = ["rgba(139, 92, 246, 0.7)", "rgba(59, 130, 246, 0.7)", "rgba(245, 158, 11, 0.7)", "rgba(100, 116, 139, 0.7)"];
+            borderColors = ["#8b5cf6", "#3b82f6", "#f59e0b", "#64748b"];
+        } else if (selected === "anomaly_risk_claims") {
+            chartType = "bar";
+            chartLabel = "Tax Claimed ($)";
+            query.data.forEach(row => {
+                labels.push(`${row[0]} (${row[1].substring(0, 10)}...)`);
+                const val = parseFloat(row[2].replace(/[$,]/g, ""));
+                chartData.push(val);
+            });
+            bgColors = Array(query.data.length).fill(roseGrad);
+            borderColors = Array(query.data.length).fill(roseBorder);
+        } else if (selected === "survival_by_treatment") {
+            chartType = "bar";
+            chartLabel = "Mean Survival (Days)";
+            query.data.forEach(row => {
+                labels.push(row[0].split(" Arm")[0]);
+                const val = parseFloat(row[2].replace(" days", ""));
+                chartData.push(val);
+            });
+            bgColors = [purpleGrad, blueGrad, "rgba(100, 116, 139, 0.7)"];
+            borderColors = [purpleBorder, blueBorder, "#64748b"];
+        } else if (selected === "drift_by_feature") {
+            chartType = "bar";
+            chartLabel = "KS-Statistic";
+            query.data.forEach(row => {
+                labels.push(row[0].substring(0, 15));
+                const val = parseFloat(row[1]);
+                chartData.push(val);
+                if (row[3] === "DRIFT DETECTED") {
+                    bgColors.push(roseGrad);
+                    borderColors.push(roseBorder);
+                } else {
+                    bgColors.push(emeraldGrad);
+                    borderColors.push(emeraldBorder);
+                }
+            });
+        } else if (selected === "emissions_by_state") {
+            chartType = "bar";
+            chartLabel = "Net CO2 (Tons)";
+            query.data.forEach(row => {
+                labels.push(row[0].split(" (")[0]);
+                const val = parseFloat(row[3].replace(/[+]/g, ""));
+                chartData.push(val);
+                if (val < 0) {
+                    bgColors.push(emeraldGrad);
+                    borderColors.push(emeraldBorder);
+                } else {
+                    bgColors.push(roseGrad);
+                    borderColors.push(roseBorder);
+                }
+            });
+        } else if (selected === "credit_fraud_risk") {
+            chartType = "doughnut";
+            chartLabel = "Applications";
+            query.data.forEach(row => {
+                labels.push(row[0].split(" (")[0]);
+                chartData.push(parseInt(row[1]));
+            });
+            bgColors = ["rgba(16, 185, 129, 0.7)", "rgba(59, 130, 246, 0.7)", "rgba(245, 158, 11, 0.7)", "rgba(239, 68, 68, 0.7)"];
+            borderColors = ["#10b981", "#3b82f6", "#f59e0b", "#ef4444"];
+        } else if (selected === "iot_telematics") {
+            chartType = "bar";
+            chartLabel = "Anomaly Alerts";
+            query.data.forEach(row => {
+                labels.push(row[0]);
+                chartData.push(parseInt(row[3]));
+            });
+            bgColors = [roseGrad, amberGrad, "rgba(100, 116, 139, 0.7)"];
+            borderColors = [roseBorder, amberBorder, "#64748b"];
+        } else if (selected === "simulated_sales_forecast") {
+            chartType = "bar";
+            chartLabel = "Total Units Sold";
+            query.data.forEach(row => {
+                labels.push(row[0]);
+                chartData.push(parseInt(row[1].replace(/,/g, "")));
+            });
+            bgColors = Array(query.data.length).fill(blueGrad);
+            borderColors = Array(query.data.length).fill(blueBorder);
+        }
+
+        const isDark = !document.body.classList.contains("light-theme");
+        const textColor = isDark ? "#cbd5e1" : "#1e293b";
+        const gridColor = isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(0, 0, 0, 0.08)";
+
+        const config = {
+            type: chartType,
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: chartLabel,
+                    data: chartData,
+                    backgroundColor: bgColors,
+                    borderColor: borderColors,
+                    borderWidth: 1.5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: chartType === "pie" || chartType === "doughnut",
+                        position: "bottom",
+                        labels: {
+                            color: textColor,
+                            boxWidth: 10,
+                            font: { size: 10, family: "Inter, sans-serif" }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: isDark ? "#1e293b" : "#ffffff",
+                        titleColor: isDark ? "#ffffff" : "#0f172a",
+                        bodyColor: isDark ? "#cbd5e1" : "#334155",
+                        borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+                        borderWidth: 1,
+                        cornerRadius: 6
+                    }
+                },
+                scales: chartType === "pie" || chartType === "doughnut" ? {} : {
+                    x: {
+                        grid: { color: gridColor },
+                        ticks: { color: textColor, font: { size: 9, family: "Inter, sans-serif" } }
+                    },
+                    y: {
+                        grid: { color: gridColor },
+                        ticks: { color: textColor, font: { size: 9, family: "Inter, sans-serif" } }
+                    }
+                }
+            }
+        };
+
+        sqlChart = new Chart(canvas.getContext("2d"), config);
+    }
+
     if (runSqlBtn && sqlResultsTable) {
         runSqlBtn.addEventListener("click", () => {
             const selected = sqlSelect.value;
@@ -1152,6 +1332,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="spinner" style="margin: 0 auto 1rem auto; width: 30px; height: 30px;"></div>
                 Executing SQL query against local SQLite cache database...
             </td></tr>`;
+
+            const chartContainer = document.getElementById("sql-chart-container");
+            if (chartContainer) {
+                chartContainer.style.display = "none";
+            }
 
             setTimeout(() => {
                 let headerRow = "<tr>";
@@ -1178,6 +1363,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     dataRow += "</tr>";
                     tbody.innerHTML += dataRow;
                 });
+
+                // Render matching chart
+                renderSqlChart(selected, query);
             }, 600);
         });
     }
@@ -1244,14 +1432,14 @@ document.addEventListener("DOMContentLoaded", () => {
         asu: "Deshraj graduated with a Master of Science in Information Technology from Arizona State University (ASU) in May 2024, maintaining a 4.0 GPA. His coursework focused heavily on cloud data systems, enterprise data warehousing, and predictive modeling.",
         contact: "You can contact Deshraj directly via email at djogiya786@gmail.com or call him at (480) 876-2863. He is open to relocation across the US and is actively interviewing for Data Engineer, ML Engineer, and Data Analyst roles.",
         cloud: "Deshraj's cloud data stack includes AWS (Glue ETL, S3 data lakes), Snowflake data warehouses (star schema optimization), and Supabase (serverless integrations, database RLS, and real-time synchronizations).",
-        experience: "Deshraj has 5 years of extensive data engineering and machine learning experience. His career spans real-time data pipeline design, applied machine learning engineering (Technoid LLC), enterprise cloud analytics migration (Zifatech), and academic research (ASU), delivering automated solutions across multiple sectors.",
+        experience: "Deshraj is a Data and AI/ML Engineer with a focus on building production-grade, statistically monitored, and automated data systems. His 5-year career spans: \n1) Applied ML Engineering at Technoid LLC optimizing OpenAI GPT-4o mini models for recruiter recommendation workflows;\n2) Cloud Data Analytics at Zifatech migrating legacy databases to AWS Glue, S3, and Snowflake with Great Expectations validations;\n3) Teleoperation Data Collection and Ingestion Pipeline scaling in Kubernetes at Objectways;\n4) Academic Research at ASU developing real-time recommenders and ASL deep learning CNN models.\nRather than just writing script stubs, he focuses on building resilient systems that detect data drift and automate pipeline audits.",
         projects: "Deshraj has developed multiple robust projects spanning real-time data streaming, ML model monitoring, and credit risk evaluations. You can browse them in the 'Projects' grid of the site, check their live code on his GitHub, or ask me about a specific project like 'Emissions Analysis' or 'IoT Telematics'!",
         observability: "In production pipelines, Deshraj uses Great Expectations to implement automated data validation checks (null-value, type-checks, and range validations). He also implements Kolmogorov-Smirnov (KS) tests to monitor statistical feature drift, ensuring models don't decay over time.",
         skills: "Deshraj's core skillset includes: 1) Programming: Python (Scikit-Learn, TensorFlow, Pandas) and SQL (PostgreSQL, Snowflake); 2) Data Engineering: AWS Glue, S3, Kubernetes, Great Expectations; 3) Analytics: Tableau, Power BI, K-Means clustering, PCA, and statistical forecasting.",
         analytics: "Deshraj's data analysis background is built on optimizing database structures and building interactive executive dashboards. At Zifatech and Kronic Keys, he built Power BI and Tableau dashboards, designed star schema models, and conducted cohort analyses that drove operational improvements.",
-        objectways: "At Objectways Technologies, Deshraj was responsible for scaling the teleoperation data workflows. He engineered ingestion scripts using Python and Scala to organize and store over 10,000 high-resolution robotic datasets. By containerizing these workflows in Kubernetes and automating schema validations, he reduced data processing latency by 30% and resolved critical quality issues for autonomous vehicle simulation models.",
-        technoid: "At Technoid LLC, Deshraj worked as an Applied ML Engineer optimizing large language models (LLMs) for automated profile analysis. Using OpenAI APIs, PostgreSQL, and custom vector search prompts, he increased candidate-to-job recommendation accuracy by 25%. He also redesigned the cloud synchronization layer using Supabase, fixing row-level security (RLS) policies and reducing sync delays by 65%.",
-        zifatech: "As a Data Analyst at Zifatech Solutions, Deshraj led the migration of legacy database operations to AWS (Glue and S3), boosting Snowflake warehouse integration speeds by 60%. To safeguard data quality, he set up automated checks using Great Expectations, ensuring over 98% data reliability across their production Star Schemas, which directly fed Power BI business dashboards.",
+        objectways: "At Objectways Technologies, Deshraj scaled teleoperation data collection workflows. He designed custom Python and Scala scripts to organize and ingest over 10,000 robotic teleoperation samples into a Kubernetes-orchestrated system. This saved the simulation team 30% in processing latency and eliminated raw dataset inconsistencies.",
+        technoid: "At Technoid LLC, Deshraj served as an Applied ML Engineer fine-tuning LLM systems (GPT-4o mini) for automated resume analysis and profile matching. He developed optimized vector prompts and Supabase synchronization logic, reducing backend synchronization delays by 65% while improving recommendations accuracy by 25%.",
+        zifatech: "As a Data Analyst at Zifatech Solutions, Deshraj drove the migration of legacy SQL datasets to AWS (Glue and S3 data lakes), improving Snowflake warehouse data availability by 60%. He also designed Star Schema architectures and automated checks using Great Expectations to establish a 98% data reliability standard.",
         elevateme: "At ElevateMe Bootcamp, Deshraj developed customer segmentation models and business intelligence flows. He combined Principal Component Analysis (PCA) and K-Means clustering in Python to classify transactional customers into 6 high-value profiles capturing 92% of variance. He also built interactive Power BI marketing dashboards that helped lift campaign click-through rates by 12%.",
         kronic: "At Kronic Keys, Deshraj optimized general ledger and transaction reporting database structures in PostgreSQL. He designed and deployed automated reporting pipelines and Tableau visual dashboards, which cut manual extraction times by 30% and enabled executive leadership to track weekly customer acquisition metrics.",
         emissions: "The Multi-State Land Use Emissions Analysis project is a geospatial data pipeline that processes daily land cover changes across 5 U.S. states. Deshraj built the ETL ingestion layer using Python and SQLite, and applied Linear Regression and Random Forest models to forecast CO2 emission trends with 90% accuracy, displaying the interactive map analytics via an ArcGIS dashboard.",
