@@ -905,7 +905,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (pipelineProgress) pipelineProgress.style.width = "100%";
     }
 
-    prePopulateObservabilityMonitor();
+    // prePopulateObservabilityMonitor();
 
     // ==========================================================================
     // 10. SQL Playground logic
@@ -1239,42 +1239,64 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const answers = {
-        gpa: "Deshraj graduated from Arizona State University (ASU) with a perfect Master of Science in IT GPA of 4.0/4.0. He is committed to engineering clean, reliable, and mathematically sound production-grade systems.",
-        python: "He leverages Python daily. His experience includes building end-to-end ETL pipelines, training Random Forest and Isolation Forest classifiers, and developing gesture recognition CNNs in TensorFlow/Keras.",
-        asu: "He holds a Master of Science in Information Technology from Arizona State University (ASU), graduating in May 2024. His graduate curriculum specialized in cloud computing, data warehousing, and predictive modeling.",
-        contact: "You can reach Deshraj directly via email at djogiya786@gmail.com or call him at (480) 876-2863. He is open to relocation and excited to discuss data/ML engineering roles.",
-        cloud: "His cloud expertise includes automated ETL orchestrations in AWS Glue/S3, analytics modeling in Snowflake data warehouses, and Supabase client-server integrations.",
-        experience: "He has 5 years of extensive data engineering and machine learning experience, spanning real-time data collection at Objectways Technologies, model optimization at Technoid LLC, and Snowflake schema modeling at Zifatech Solutions.",
-        projects: "Deshraj has built several showcase projects, including the Multi-State Land Use Emissions Analysis pipeline, the Streaming IoT battery fleet telematics analytics system, and the retail customer segmentation pipeline. You can check them in the projects section!",
-        observability: "He is highly proficient in data governance and observability. He configures Great Expectations validation pipelines to detect schema drift, and applies Kolmogorov-Smirnov (KS) tests to evaluate statistical feature drift.",
-        skills: "Deshraj's technical skill set includes strong programming in Python and SQL; extensive work with tools and databases like PostgreSQL, Snowflake, AWS (Glue, S3), and Supabase; and expertise in data quality validation (Great Expectations) and machine learning (Scikit-Learn, TensorFlow).",
-        analytics: "Deshraj has strong data analysis experience. As a Data Analyst at Zifatech, he optimized SQL ETL pipelines for sales insights and built Power BI dashboards. At Kronic Keys, he designed PostgreSQL queries and Tableau dashboards, improving reporting efficiency by 30%."
+        gpa: "Deshraj earned his Master of Science in IT from Arizona State University with a perfect 4.0/4.0 GPA. This academic success reflects his deep understanding of data warehousing, database design, and statistical machine learning.",
+        python: "Python is Deshraj's core tool. He has built production-grade ETL pipelines with Pandas and NumPy, implemented statistical ML models (Random Forest, XGBoost, Isolation Forest) in Scikit-Learn, and developed deep learning systems (CNNs) in TensorFlow/Keras.",
+        asu: "Deshraj graduated with a Master of Science in Information Technology from Arizona State University (ASU) in May 2024, maintaining a 4.0 GPA. His coursework focused heavily on cloud data systems, enterprise data warehousing, and predictive modeling.",
+        contact: "You can contact Deshraj directly via email at djogiya786@gmail.com or call him at (480) 876-2863. He is open to relocation across the US and is actively interviewing for Data Engineer, ML Engineer, and Data Analyst roles.",
+        cloud: "Deshraj's cloud data stack includes AWS (Glue ETL, S3 data lakes), Snowflake data warehouses (star schema optimization), and Supabase (serverless integrations, database RLS, and real-time synchronizations).",
+        experience: "Deshraj has 5 years of extensive data engineering and machine learning experience. His career spans real-time data pipeline design, applied machine learning engineering (Technoid LLC), enterprise cloud analytics migration (Zifatech), and academic research (ASU), delivering automated solutions across multiple sectors.",
+        projects: "Deshraj has developed multiple robust projects spanning real-time data streaming, ML model monitoring, and credit risk evaluations. You can browse them in the 'Projects' grid of the site, check their live code on his GitHub, or ask me about a specific project like 'Emissions Analysis' or 'IoT Telematics'!",
+        observability: "In production pipelines, Deshraj uses Great Expectations to implement automated data validation checks (null-value, type-checks, and range validations). He also implements Kolmogorov-Smirnov (KS) tests to monitor statistical feature drift, ensuring models don't decay over time.",
+        skills: "Deshraj's core skillset includes: 1) Programming: Python (Scikit-Learn, TensorFlow, Pandas) and SQL (PostgreSQL, Snowflake); 2) Data Engineering: AWS Glue, S3, Kubernetes, Great Expectations; 3) Analytics: Tableau, Power BI, K-Means clustering, PCA, and statistical forecasting.",
+        analytics: "Deshraj's data analysis background is built on optimizing database structures and building interactive executive dashboards. At Zifatech and Kronic Keys, he built Power BI and Tableau dashboards, designed star schema models, and conducted cohort analyses that drove operational improvements.",
+        objectways: "At Objectways Technologies, Deshraj was responsible for scaling the teleoperation data workflows. He engineered ingestion scripts using Python and Scala to organize and store over 10,000 high-resolution robotic datasets. By containerizing these workflows in Kubernetes and automating schema validations, he reduced data processing latency by 30% and resolved critical quality issues for autonomous vehicle simulation models.",
+        technoid: "At Technoid LLC, Deshraj worked as an Applied ML Engineer optimizing large language models (LLMs) for automated profile analysis. Using OpenAI APIs, PostgreSQL, and custom vector search prompts, he increased candidate-to-job recommendation accuracy by 25%. He also redesigned the cloud synchronization layer using Supabase, fixing row-level security (RLS) policies and reducing sync delays by 65%.",
+        zifatech: "As a Data Analyst at Zifatech Solutions, Deshraj led the migration of legacy database operations to AWS (Glue and S3), boosting Snowflake warehouse integration speeds by 60%. To safeguard data quality, he set up automated checks using Great Expectations, ensuring over 98% data reliability across their production Star Schemas, which directly fed Power BI business dashboards.",
+        elevateme: "At ElevateMe Bootcamp, Deshraj developed customer segmentation models and business intelligence flows. He combined Principal Component Analysis (PCA) and K-Means clustering in Python to classify transactional customers into 6 high-value profiles capturing 92% of variance. He also built interactive Power BI marketing dashboards that helped lift campaign click-through rates by 12%.",
+        kronic: "At Kronic Keys, Deshraj optimized general ledger and transaction reporting database structures in PostgreSQL. He designed and deployed automated reporting pipelines and Tableau visual dashboards, which cut manual extraction times by 30% and enabled executive leadership to track weekly customer acquisition metrics.",
+        emissions: "The Multi-State Land Use Emissions Analysis project is a geospatial data pipeline that processes daily land cover changes across 5 U.S. states. Deshraj built the ETL ingestion layer using Python and SQLite, and applied Linear Regression and Random Forest models to forecast CO2 emission trends with 90% accuracy, displaying the interactive map analytics via an ArcGIS dashboard.",
+        fintech: "The FinTech Credit Risk & Fraud Command Center is an end-to-end transaction pipeline. It features a FastAPI backend providing real-time transactional evaluations. It runs a custom Random Forest classifier in Scikit-Learn to evaluate loan eligibility and check fraud anomalies, keeping API response latency under 100ms.",
+        telematics: "The Real-Time Streaming IoT Fleet Telematics system processes high-frequency sensor streams (temperature, voltage, and RPM) from EV batteries. The Python-based micro-batching engine executes statistical Z-score anomaly detection to preempt battery failures and feeds a Remaining Useful Life (RUL) regression model to schedule predictive maintenance alerts.",
+        stem: "Extending STEM across ASL is an accessibility platform that enables sign language users to interact with 7 core STEM concepts. Deshraj trained a deep Convolutional Neural Network (CNN) in TensorFlow and Keras to classify hand gestures from video frames, deploying it via a Flask backend and achieving a 4.6/5 user satisfaction score in testing.",
+        sales: "The Sales Operations & Customer Segmentation pipeline models Pareto sales distributions and segments customers using K-Means and PCA. Deshraj automated the RFM scaling pipeline to group users into 4 target marketing personas, improving campaign planning and visualization in Tableau.",
+        anomaly: "The Tax Anomaly Audit Compliance Engine scans general ledger entries to flag suspicious transactions. It checks ledger distributions against Benford's Law and fits an Isolation Forest model to isolate multivariate transaction outliers, helping auditors spot non-compliant records 15% faster.",
+        simulation: "The AI-ML Data Science Simulation is an automated retail pipeline that ingests daily branch sales from 5 outlets. It runs Linear Regression and Random Forest models to forecast branch inventory demands with 90% accuracy, cutting stock-outs by 15% and visualizing regional sales trends in Tableau.",
+        observability_project: "The AI Model Observability & Fairness Audits project monitors production ML models. It automatically runs Kolmogorov-Smirnov (KS) tests on live feature inputs to detect data drift, and calculates Disparate Impact ratios to ensure the model's decisions are fair and unbiased across different demographic slices."
     };
 
     const searchKeyword = (msg) => {
         const query = msg.toLowerCase();
         
-        // 1. Specific skills & programming
+        // 1. Specific Jobs matching
+        if (query.includes("objectways") || query.includes("teleoperation")) return answers.objectways;
+        if (query.includes("technoid") || query.includes("applied machine")) return answers.technoid;
+        if (query.includes("zifatech") || query.includes("snowflake schema")) return answers.zifatech;
+        if (query.includes("elevateme") || query.includes("bootcamp")) return answers.elevateme;
+        if (query.includes("kronic") || query.includes("keys")) return answers.kronic;
+        
+        // 2. Specific Projects matching
+        if (query.includes("emissions") || query.includes("land use") || query.includes("geospatial") || query.includes("arcgis")) return answers.emissions;
+        if (query.includes("fintech") || query.includes("credit risk") || query.includes("fraud") || query.includes("credit evaluation")) return answers.fintech;
+        if (query.includes("telematics") || query.includes("iot") || query.includes("fleet") || query.includes("battery") || query.includes("predictive")) return answers.telematics;
+        if (query.includes("stem") || query.includes("asl") || query.includes("sign language") || query.includes("tensorflow") || query.includes("keras")) return answers.stem;
+        if (query.includes("sales operations") || query.includes("segmentation pipeline") || query.includes("customer segmentation") || query.includes("segmentation")) return answers.sales;
+        if (query.includes("anomaly") || query.includes("tax") || query.includes("benford") || query.includes("audit") || query.includes("isolation forest")) return answers.anomaly;
+        if (query.includes("simulation project") || (query.includes("simulation") && query.includes("data science"))) return answers.simulation;
+        if (query.includes("observability and fairness") || query.includes("fairness") || (query.includes("model") && query.includes("observability") && query.includes("audit"))) return answers.observability_project;
+        
+        // 3. Broad query categories (with fallback checks)
         if (query.includes("gpa") || query.includes("grade") || query.includes("scale") || query.includes("score")) return answers.gpa;
-        if (query.includes("python") || query.includes("pandas") || query.includes("numpy") || query.includes("programming")) return answers.python;
+        if (query.includes("python") || query.includes("pandas") || query.includes("numpy") || query.includes("scikit") || query.includes("programming")) return answers.python;
+        if (query.includes("asu") || query.includes("education") || query.includes("degree") || query.includes("master") || query.includes("university")) return answers.asu;
+        if (query.includes("contact") || query.includes("email") || query.includes("phone") || query.includes("reach") || query.includes("hire") || query.includes("relocate")) return answers.contact;
+        if (query.includes("cloud") || query.includes("aws") || query.includes("s3") || query.includes("glue") || query.includes("supabase")) return answers.cloud;
+        if (query.includes("drift") || query.includes("observability") || query.includes("validation") || query.includes("great expectations")) return answers.observability;
         if (query.includes("skills") || query.includes("technical") || query.includes("tech stack") || query.includes("languages")) return answers.skills;
-        
-        // 2. Cloud and Tools
-        if (query.includes("cloud") || query.includes("aws") || query.includes("snowflake") || query.includes("azure") || query.includes("supabase")) return answers.cloud;
-        
-        // 3. Projects and specific roles
-        if (query.includes("project") || query.includes("repo") || query.includes("github") || query.includes("best work") || query.includes("portfolio")) return answers.projects;
         if (query.includes("analysis") || query.includes("analytics") || query.includes("tableau") || query.includes("power bi") || query.includes("powerbi")) return answers.analytics;
-        if (query.includes("drift") || query.includes("ks") || query.includes("observability") || query.includes("validation")) return answers.observability;
+        if (query.includes("project") || query.includes("portfolio") || query.includes("best work") || query.includes("github")) return answers.projects;
+        if (query.includes("experience") || query.includes("work") || query.includes("history") || query.includes("job") || query.includes("years") || query.includes("career")) return answers.experience;
         
-        // 4. Academic / Background
-        if (query.includes("asu") || query.includes("education") || query.includes("degree") || query.includes("master")) return answers.asu;
-        if (query.includes("contact") || query.includes("email") || query.includes("phone") || query.includes("reach") || query.includes("hire")) return answers.contact;
-        
-        // 5. Generic work experience (last fallback for experience query words)
-        if (query.includes("experience") || query.includes("work") || query.includes("history") || query.includes("job") || query.includes("technoid") || query.includes("objectways") || query.includes("zifatech")) return answers.experience;
-        
-        return "That's a great question! While this simulation chatbot database is compact, you can find full details in Deshraj's projects grid or resume modal, or email him directly at djogiya786@gmail.com.";
+        return "That's an interesting question! Deshraj's experience covers advanced python scripting, cloud data engineering (AWS, Snowflake), and building robust ML models (from regression to deep learning). For details on a specific project or job, you can ask about 'Technoid', 'Objectways', 'Zifatech', or 'IoT Telematics'. You can also email him directly at djogiya786@gmail.com.";
     };
 
     const addMessage = (text, sender) => {

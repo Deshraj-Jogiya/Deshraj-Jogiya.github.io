@@ -1483,8 +1483,8 @@ body.light-theme .learning-item::before {
 }
 
 .obs-content {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
 }
 
@@ -1534,9 +1534,19 @@ body.light-theme .learning-item::before {
 
 .obs-metrics-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     width: 100%;
+}
+@media (max-width: 992px) {
+    .obs-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .obs-metrics-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .obs-metric-card {
@@ -1574,11 +1584,7 @@ body.light-theme .obs-console {
     background-color: #0f172a;
 }
 
-@media (max-width: 768px) {
-    .obs-content {
-        grid-template-columns: 1fr;
-    }
-}
+/* obs-content is now flex column by default */
 
 /* SQL Playground */
 .sql-widget {
@@ -2696,6 +2702,7 @@ body.light-theme .arch-connector.active {
     padding: 0.25rem;
     border-radius: 30px;
     gap: 0.25rem;
+    margin-bottom: 1rem;
 }
 .obs-tab-btn {
     background: transparent;
