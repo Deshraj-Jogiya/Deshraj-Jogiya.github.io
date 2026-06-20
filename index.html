@@ -12,9 +12,12 @@
 </head>
 <body>
     <!-- Floating Background Orbs for Depth -->
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
+    <div class="bg-orbs-container">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+    </div>
+
 
     <!-- Navigation Header -->
     <header class="navbar">
@@ -595,8 +598,8 @@
                     <div class="obs-content" style="margin-top: 1.5rem;">
                         <!-- Tab Navigation for Observability Widget -->
                         <div class="obs-tab-nav" style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
-                            <button class="obs-tab-btn active" data-tab="console" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-primary); padding: 0.35rem 0.75rem; border-radius: var(--border-radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth);">🖥️ Console Outputs</button>
-                            <button class="obs-tab-btn" data-tab="qa-report" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary); padding: 0.35rem 0.75rem; border-radius: var(--border-radius-sm); font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth);">🛡️ Data QA Audit Report</button>
+                            <button class="obs-tab-btn active" data-tab="console">🖥️ Console Outputs</button>
+                            <button class="obs-tab-btn" data-tab="qa-report">🛡️ Data QA Audit Report</button>
                         </div>
                         
                         <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
@@ -628,7 +631,7 @@
                                     <div class="obs-metric-lbl">Processed Rows</div>
                                 </div>
                                 <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-drift">None</div>
+                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--accent-emerald);">Stable</div>
                                     <div class="obs-metric-lbl">Drift Status</div>
                                 </div>
                             </div>
@@ -647,10 +650,11 @@
                     </div>
 
                     <!-- Pipeline Tabs -->
-                    <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                    <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; width: 100%;">
                         <button class="arch-tab-btn active" data-pipeline="batch" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: var(--grad-primary); color: #fff; border: none;">📊 Batch ETL Sales Analytics</button>
                         <button class="arch-tab-btn" data-pipeline="stream" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">⚡ Streaming IoT Fleet Telematics</button>
                         <button class="arch-tab-btn" data-pipeline="geospatial" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">🌎 Geospatial Carbon Emissions</button>
+                        <button id="arch-tour-btn" style="padding: 0.5rem 1rem; border-radius: var(--border-radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); color: var(--accent-emerald); display: flex; align-items: center; gap: 0.4rem; margin-left: auto;">Play Tour ⏯️</button>
                     </div>
 
                     <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
@@ -664,14 +668,39 @@
                         <!-- Info Pane / Code Snippet -->
                         <div class="arch-info-pane glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.01); border-color: rgba(255, 255, 255, 0.05);">
                             <div id="arch-node-details">
-                                <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-blue);" id="arch-node-name">Select a pipeline block above...</h4>
+                                <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-blue);" id="arch-node-name">Select a pipeline block above...</h4>
                                 <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;" id="arch-node-tags">
                                     <!-- Tags will go here -->
                                 </div>
-                                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;" id="arch-node-desc">
+                                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.75rem;" id="arch-node-desc">
                                     Click on any stage in the flow diagram above to view its technical specifications, tool stack, and Python code implementation.
                                 </p>
-                                <div class="arch-code-wrapper" style="border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #070b13; padding: 1rem; display: none;" id="arch-code-box">
+                                
+                                <!-- Visual Input-Process-Output Flow Diagram -->
+                                <div class="arch-visual-flow" id="arch-node-flow-box" style="display: none; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 0.5rem; margin: 1.25rem 0; text-align: center;">
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Inputs</div>
+                                        <div id="arch-flow-input" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+                                    </div>
+                                    <div style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">➔</div>
+                                    <div style="background: rgba(99, 102, 241, 0.06); border: 1px solid rgba(99, 102, 241, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Process</div>
+                                        <div id="arch-flow-process" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+                                    </div>
+                                    <div style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">➔</div>
+                                    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--accent-emerald); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Outputs</div>
+                                        <div id="arch-flow-output" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+                                    </div>
+                                </div>
+
+                                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; display: none; background: rgba(59, 130, 246, 0.04); border: 1px solid rgba(59, 130, 246, 0.15); padding: 0.75rem; border-radius: var(--border-radius-sm);" id="arch-node-impact">
+                                    <!-- Business value will go here -->
+                                </p>
+                                <button id="arch-toggle-code-btn" class="btn btn-secondary btn-sm" style="display: none; width: 100%; margin-top: 0.5rem; font-size: 0.78rem; padding: 0.45rem 0.75rem; cursor: pointer;">
+                                    View Technical Code Snippet 🛠️
+                                </button>
+                                <div class="arch-code-wrapper" style="border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #070b13; padding: 1rem; display: none; margin-top: 1rem;" id="arch-code-box">
                                     <pre style="margin: 0; font-family: monospace; font-size: 0.78rem; overflow-x: auto; color: #94a3b8;"><code id="arch-code-content"></code></pre>
                                 </div>
                             </div>
@@ -877,7 +906,7 @@
                     <!-- Summary (Spans 2 columns) -->
                     <section class="resume-section" style="grid-column: span 2; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem;">
                         <h2 class="resume-section-title" style="border: none; margin-bottom: 0.5rem; padding-bottom: 0;">Summary</h2>
-                        <p style="font-size: 0.85rem; color: #334155; line-height: 1.6; margin: 0;">I am a research-focused data and AI/ML engineer with over five years of experience delivering ETL automation (70% efficiency gains), AI model optimization (25% accuracy boosts), and cloud data pipelines across my research and industry roles. My expertise spans Python, SQL, PostgreSQL, OpenAI APIs, Supabase, AWS, Snowflake, and ML techniques from K-Means clustering to NLP systems. As an ASU research alum and IBM certified professional, I currently engineer real-time ML solutions at Technoid LLC.</p>
+                        <p style="font-size: 0.85rem; color: #334155; line-height: 1.6; margin: 0;">Research-focused data and AI/ML engineer with over five years of experience delivering ETL automation (70% efficiency gains), AI model optimization (25% accuracy boosts), and cloud data pipelines across research and industry roles. Expertise spans Python, SQL, PostgreSQL, OpenAI APIs, Supabase, AWS, Snowflake, and ML techniques from K-Means clustering to NLP systems. ASU research alum and IBM certified professional, currently engineering real-time ML solutions at Technoid LLC.</p>
                     </section>
 
                     <!-- Left Column -->
@@ -1285,9 +1314,9 @@
     <!-- Interactive Resume AI Q&A Bot Widget (RAG Simulation) -->
     <div id="ai-chat-widget" class="ai-chat-widget">
         <!-- Launcher Button -->
-        <button id="chat-launcher" class="chat-launcher-btn" aria-label="Open AI Resume Assistant">
-            <span class="launcher-icon">🤖</span>
-            <span class="launcher-text">Ask My Resume AI!</span>
+        <button id="chat-launcher" class="chat-launcher-btn" aria-label="Open AI Career Assistant">
+            <span class="launcher-icon">💬</span>
+            <span class="launcher-text">Career Assistant Agent</span>
             <span class="launcher-pulse"></span>
         </button>
 
@@ -1296,9 +1325,9 @@
             <!-- Header -->
             <div class="chat-header">
                 <div class="chat-header-info">
-                    <span class="chat-avatar">🤖</span>
+                    <span class="chat-avatar">💬</span>
                     <div>
-                        <div class="chat-bot-name">Resume AI Assistant</div>
+                        <div class="chat-bot-name">Career Assistant Agent</div>
                         <div class="chat-status"><span class="status-dot"></span> Online (RAG Simulation)</div>
                     </div>
                 </div>
@@ -1308,16 +1337,16 @@
             <!-- Messages Log -->
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-msg bot-msg">
-                    Hi! I'm Deshraj's AI assistant. Ask me anything about my Master's degree at ASU, my work experience at Technoid, my Python/SQL pipelines, or my GPA!
+                    Hello! I am a virtual assistant trained on Deshraj's professional profile. You can ask me questions about his technical experience, engineering projects, or background, or choose a suggestion below.
                 </div>
             </div>
 
             <!-- Quick Suggestions Row -->
             <div class="chat-suggestions">
-                <button class="chat-suggest-btn" data-question="What is your GPA?">What is your GPA? 🎓</button>
-                <button class="chat-suggest-btn" data-question="What is your experience with Python?">Python experience? 🐍</button>
-                <button class="chat-suggest-btn" data-question="Tell me about your ASU degree">ASU Master's degree? 🏫</button>
-                <button class="chat-suggest-btn" data-question="How can I contact you?">How to contact you? 📧</button>
+                <button class="chat-suggest-btn" data-question="Tell me about his work experience">Work Experience 💼</button>
+                <button class="chat-suggest-btn" data-question="What technical skills does he have?">Technical Skills 🛠️</button>
+                <button class="chat-suggest-btn" data-question="Tell me about his projects">Featured Projects 🚀</button>
+                <button class="chat-suggest-btn" data-question="How can you contact Deshraj?">Contact &amp; Connect 📧</button>
             </div>
 
             <!-- Input Form -->

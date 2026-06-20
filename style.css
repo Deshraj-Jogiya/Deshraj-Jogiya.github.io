@@ -39,6 +39,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -47,6 +49,7 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
     position: relative;
     min-height: 100vh;
 }
@@ -58,6 +61,17 @@ h1, h2, h3, h4, .logo-text, .btn {
 }
 
 /* Floating Blurred Background Orbs */
+.bg-orbs-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .bg-orb {
     position: absolute;
     border-radius: 50%;
@@ -1197,8 +1211,8 @@ body.light-theme .learning-item::before {
 .resume-paper {
     padding: 3rem;
     overflow-y: auto;
-    background-color: #fff;
-    color: #1e293b;
+    background-color: #0b0f19;
+    color: #cbd5e1;
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
     flex: 1;
@@ -1207,7 +1221,7 @@ body.light-theme .learning-item::before {
 
 .resume-header-block {
     text-align: center;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid #1e293b;
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
 }
@@ -1216,13 +1230,13 @@ body.light-theme .learning-item::before {
     font-family: 'Outfit', sans-serif;
     font-size: 2.25rem;
     font-weight: 800;
-    color: #0f172a;
+    color: #ffffff;
     margin-bottom: 0.25rem;
 }
 
 .resume-sub {
     font-size: 1.05rem;
-    color: #6366f1;
+    color: #818cf8;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1234,25 +1248,25 @@ body.light-theme .learning-item::before {
     justify-content: center;
     gap: 1.5rem;
     font-size: 0.85rem;
-    color: #64748b;
+    color: #94a3b8;
     flex-wrap: wrap;
 }
 
 .resume-meta a {
-    color: #475569;
+    color: #cbd5e1;
     text-decoration: none;
     font-weight: 500;
 }
 
 .resume-meta a:hover {
     text-decoration: underline;
-    color: #6366f1;
+    color: #818cf8;
 }
 
 .resume-body-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1.9fr;
-    gap: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .resume-section {
@@ -1265,8 +1279,8 @@ body.light-theme .learning-item::before {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #0f172a;
-    border-bottom: 1.5px solid #cbd5e1;
+    color: #ffffff;
+    border-bottom: 1.5px solid #1e293b;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
 }
@@ -1278,13 +1292,13 @@ body.light-theme .learning-item::before {
 .resume-skill-group h3 {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #334155;
+    color: #e2e8f0;
     margin-bottom: 0.25rem;
 }
 
 .resume-skill-group p {
     font-size: 0.85rem;
-    color: #475569;
+    color: #94a3b8;
 }
 
 .resume-edu-item {
@@ -1294,13 +1308,13 @@ body.light-theme .learning-item::before {
 .resume-edu-item h4 {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #ffffff;
 }
 
 .resume-edu-inst {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #4f46e5;
+    color: #818cf8;
 }
 
 .resume-edu-date {
@@ -1322,7 +1336,7 @@ body.light-theme .learning-item::before {
 .resume-job-header h4 {
     font-size: 1rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #ffffff;
 }
 
 .resume-job-header span {
@@ -1334,7 +1348,7 @@ body.light-theme .learning-item::before {
 .resume-job-company {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #4f46e5;
+    color: #818cf8;
     margin-bottom: 0.5rem;
 }
 
@@ -1345,7 +1359,7 @@ body.light-theme .learning-item::before {
 
 .resume-job-item li {
     font-size: 0.85rem;
-    color: #334155;
+    color: #cbd5e1;
     margin-bottom: 0.35rem;
 }
 
@@ -2121,28 +2135,94 @@ body.light-theme .visitor-forecast-box {
 }
 
 .resume-bullet.highlighted-de {
-    background: rgba(59, 130, 246, 0.06) !important;
+    background: rgba(59, 130, 246, 0.15) !important;
     border-left: 3px solid #3b82f6 !important;
     padding-left: 0.5rem !important;
-    color: var(--text-primary) !important;
+    color: #60a5fa !important;
     opacity: 1 !important;
     border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
 }
 
 .resume-bullet.highlighted-ds {
-    background: rgba(139, 92, 246, 0.06) !important;
+    background: rgba(139, 92, 246, 0.15) !important;
     border-left: 3px solid #8b5cf6 !important;
     padding-left: 0.5rem !important;
-    color: var(--text-primary) !important;
+    color: #c084fc !important;
     opacity: 1 !important;
     border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
 }
 
 .resume-bullet.dimmed {
-    opacity: 0.25 !important;
+    opacity: 0.55 !important;
 }
 
-/* Light Theme Overrides for Resume Filters */
+/* Light Theme Overrides for Resume Filters & Paper */
+body.light-theme .resume-paper {
+    background-color: #ffffff;
+    color: #1e293b;
+}
+
+body.light-theme .resume-header-block {
+    border-bottom-color: #e2e8f0;
+}
+
+body.light-theme .resume-header-block h1 {
+    color: #0f172a;
+}
+
+body.light-theme .resume-sub {
+    color: #4f46e5;
+}
+
+body.light-theme .resume-meta {
+    color: #64748b;
+}
+
+body.light-theme .resume-meta a {
+    color: #475569;
+}
+
+body.light-theme .resume-meta a:hover {
+    color: #4f46e5;
+}
+
+body.light-theme .resume-section-title {
+    color: #0f172a;
+    border-bottom-color: #cbd5e1;
+}
+
+body.light-theme .resume-skill-group h3 {
+    color: #334155;
+}
+
+body.light-theme .resume-skill-group p {
+    color: #475569;
+}
+
+body.light-theme .resume-edu-item h4 {
+    color: #0f172a;
+}
+
+body.light-theme .resume-edu-inst {
+    color: #4f46e5;
+}
+
+body.light-theme .resume-edu-date {
+    color: #64748b;
+}
+
+body.light-theme .resume-job-header h4 {
+    color: #0f172a;
+}
+
+body.light-theme .resume-job-company {
+    color: #4f46e5;
+}
+
+body.light-theme .resume-job-item li {
+    color: #334155;
+}
+
 body.light-theme .resume-filters {
     border-bottom-color: rgba(0, 0, 0, 0.06);
 }
@@ -2167,11 +2247,13 @@ body.light-theme .resume-filter-btn.active {
 body.light-theme .resume-bullet.highlighted-de {
     background: rgba(37, 99, 235, 0.05) !important;
     border-left-color: #2563eb !important;
+    color: #1e293b !important;
 }
 
 body.light-theme .resume-bullet.highlighted-ds {
     background: rgba(124, 58, 237, 0.05) !important;
     border-left-color: #7c3aed !important;
+    color: #1e293b !important;
 }
 
 /* ==========================================================================
@@ -2576,28 +2658,41 @@ body.light-theme .arch-connector.active {
    Data QA & Validation Report widgets
    ========================================================================== */
 .obs-tab-btn {
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-secondary);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
 }
 .obs-tab-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
     color: var(--text-primary);
 }
 .obs-tab-btn.active {
-    background: rgba(99, 102, 241, 0.1);
-    border-color: var(--accent-purple);
+    background: rgba(99, 102, 241, 0.1) !important;
+    border-color: var(--accent-purple) !important;
     color: var(--text-primary) !important;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
 }
 
 body.light-theme .obs-tab-btn {
-    background: rgba(0,0,0,0.02);
-    border-color: rgba(0,0,0,0.08);
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
     color: #475569;
 }
+body.light-theme .obs-tab-btn:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #0f172a;
+}
 body.light-theme .obs-tab-btn.active {
-    background: rgba(79, 70, 229, 0.05);
-    border-color: #4f46e5;
+    background: rgba(79, 70, 229, 0.05) !important;
+    border-color: #4f46e5 !important;
     color: #0f172a !important;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
 }
 
 .qa-rule-item {
@@ -2736,6 +2831,18 @@ body.light-theme input[type=range]::-webkit-slider-thumb {
     .curves-wrapper {
         grid-template-columns: 1fr !important;
         gap: 1.5rem !important;
+    }
+}
+
+/* Chatbot responsive design for mobile */
+@media (max-width: 480px) {
+    .ai-chat-widget {
+        right: 15px;
+        bottom: 15px;
+    }
+    .chat-container {
+        width: calc(100vw - 30px);
+        max-width: 360px;
     }
 }
 

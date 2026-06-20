@@ -495,8 +495,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const takeaways = [];
         lines.forEach(line => {
             const trimmed = line.trim();
-            if (trimmed.startsWith("-") || trimmed.startsWith("*")) {
-                const bullet = trimmed.substring(1).trim();
+            const bulletMatch = trimmed.match(/^[-*]\s+(.*)$/);
+            if (bulletMatch) {
+                const bullet = bulletMatch[1].trim();
                 if (bullet && takeaways.length < 3) {
                     takeaways.push(bullet);
                 }
@@ -521,7 +522,12 @@ document.addEventListener("DOMContentLoaded", () => {
         
         let bulletsHtml = "";
         log.takeaways.forEach(pt => {
-            bulletsHtml += `<li>${pt}</li>`;
+            // Convert simple markdown elements like **bold** and `code` to HTML tags
+            let formattedPt = pt
+                .replace(/\*\*(.*?)\*\//g, '<strong>$1</strong>') // Handle nested formats
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\`(.*?)\`/g, '<code>$1</code>');
+            bulletsHtml += `<li>${formattedPt}</li>`;
         });
 
         item.innerHTML = `
@@ -634,12 +640,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     obsTabBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            obsTabBtns.forEach(b => {
-                b.classList.remove("active");
-                b.style.color = "var(--text-secondary)";
-            });
+            obsTabBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            btn.style.color = "var(--text-primary)";
 
             const targetTab = btn.getAttribute("data-tab");
             if (targetTab === "console") {
@@ -730,7 +732,7 @@ document.addEventListener("DOMContentLoaded", () => {
             metricLatency.textContent = "0.00s";
             metricReliability.textContent = currentReliability; // Reset fix: keep established metrics
             metricRows.textContent = "0";
-            metricDrift.textContent = "Checking";
+            metricDrift.textContent = "Checking...";
             metricDrift.style.color = "inherit";
             resetPipelineNodes();
 
@@ -789,11 +791,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         metricDrift.textContent = "Warning ⚠️";
                         metricDrift.style.color = "var(--accent-amber)";
                     }
-                    if (currentLogIndex === 13) {
+                    if (currentLogIndex === 12) {
                         metricLatency.textContent = "1.45s";
                         currentReliability = "98.4%";
                         metricReliability.textContent = currentReliability;
-                        metricDrift.textContent = "Drift Handled";
+                        metricDrift.textContent = "Stable";
                         metricDrift.style.color = "var(--accent-emerald)";
                         
                         // Also update the global stat counter in the header if it exists
@@ -821,6 +823,43 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 600);
         });
     }
+
+    // Pre-populate Observability Monitor with a successful run state on page load
+    function prePopulateObservabilityMonitor() {
+        if (!obsConsole || !metricLatency || !metricReliability || !metricRows || !metricDrift) return;
+        
+        // Populate Console with all logs
+        obsConsole.innerHTML = "";
+        obsSimLogs.forEach(log => {
+            const logEl = document.createElement("div");
+            logEl.className = `obs-log ${log.type}`;
+            logEl.textContent = log.text;
+            obsConsole.appendChild(logEl);
+        });
+        obsConsole.scrollTop = obsConsole.scrollHeight;
+
+        // Populate QA Report
+        renderQaReport(false);
+
+        // Populate Metric Cards
+        metricLatency.textContent = "1.45s";
+        currentReliability = "98.4%";
+        metricReliability.textContent = currentReliability;
+        metricRows.textContent = "5,167";
+        metricDrift.textContent = "Stable";
+        metricDrift.style.color = "var(--accent-emerald)";
+
+        // Activate nodes in diagram
+        if (nodeIngest && nodeValidate && nodeScore && nodeCommit) {
+            nodeIngest.className = "pipeline-node-item success";
+            nodeValidate.className = "pipeline-node-item success";
+            nodeScore.className = "pipeline-node-item warning"; // Warning on drift
+            nodeCommit.className = "pipeline-node-item success";
+        }
+        if (pipelineProgress) pipelineProgress.style.width = "100%";
+    }
+
+    prePopulateObservabilityMonitor();
 
     // ==========================================================================
     // 10. SQL Playground logic
@@ -1154,20 +1193,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const answers = {
-        gpa: "I graduated from Arizona State University (ASU) with a perfect Master of Science in IT GPA of 4.0/4.0! I am dedicated to maintaining high standards of quality in all of my engineering and modeling work.",
-        python: "I use Python daily. I've engineered automated ETL pipelines (like the sales simulations and carbon calculations), trained K-Means/Random Forest models, performed survival statistics, and built gesture CNNs in Keras.",
-        asu: "I hold a Master of Science in Information Technology from Arizona State University (ASU), graduating in May 2024. My studies focused on cloud computing, advanced database schemas, and AI/ML pipeline deployments.",
-        contact: "You can reach me directly via email at djogiya786@gmail.com or call me at (480) 876-2863. I'm open to relocation and excited to discuss new opportunities!",
-        cloud: "I have experience with AWS Glue/S3 (ETL migrations), Snowflake (warehouse modeling), and Supabase (databases, real-time logging, and row-level security setups).",
-        experience: "I have over five years of data & ML experience, currently working at Objectways Technologies (robotic teleoperation pipelines) and previously at Technoid LLC (AI model optimization, Supabase sync) and Zifatech (AWS Glue/Snowflake).",
-        projects: "I have engineered multiple production-ready systems: a credit risk command center, an automated market anomaly detector, a K-Means retail customer segmenter, and a sign language TensorFlow classifier. Check my projects grid!",
-        observability: "I'm highly skilled in model monitoring. I use Kolmogorov-Smirnov (KS) tests to track feature drift in production, configure data quality checks with Great Expectations, and write automated health monitors."
+        gpa: "Deshraj graduated from Arizona State University (ASU) with a perfect Master of Science in IT GPA of 4.0/4.0. He is committed to engineering clean, reliable, and mathematically sound production-grade systems.",
+        python: "He leverages Python daily. His experience includes building end-to-end ETL pipelines, training Random Forest and Isolation Forest classifiers, and developing gesture recognition CNNs in TensorFlow/Keras.",
+        asu: "He holds a Master of Science in Information Technology from Arizona State University (ASU), graduating in May 2024. His graduate curriculum specialized in cloud computing, data warehousing, and predictive modeling.",
+        contact: "You can reach Deshraj directly via email at djogiya786@gmail.com or call him at (480) 876-2863. He is open to relocation and excited to discuss data/ML engineering roles.",
+        cloud: "His cloud expertise includes automated ETL orchestrations in AWS Glue/S3, analytics modeling in Snowflake data warehouses, and Supabase client-server integrations.",
+        experience: "He has over five years of data engineering and machine learning experience, spanning real-time data collection at Objectways Technologies, model optimization at Technoid LLC, and Snowflake schema modeling at Zifatech Solutions.",
+        projects: "Deshraj has built several showcase projects: a FinTech risk command center, an automated daily market anomalies pipeline, and a retail customer segmentation pipeline. You can check them in the projects section!",
+        observability: "He is highly proficient in data governance and observability. He configures Great Expectations validation pipelines to detect schema drift, and applies Kolmogorov-Smirnov (KS) tests to evaluate statistical feature drift.",
+        skills: "Deshraj's technical skill set includes strong programming in Python and SQL; extensive work with tools and databases like PostgreSQL, Snowflake, AWS (Glue, S3), and Supabase; and expertise in data quality validation (Great Expectations) and machine learning (Scikit-Learn, TensorFlow)."
     };
 
     const searchKeyword = (msg) => {
         const query = msg.toLowerCase();
         if (query.includes("gpa") || query.includes("grade") || query.includes("scale") || query.includes("score")) return answers.gpa;
         if (query.includes("python") || query.includes("pandas") || query.includes("numpy") || query.includes("programming")) return answers.python;
+        if (query.includes("skills") || query.includes("technical") || query.includes("tech stack") || query.includes("languages")) return answers.skills;
         if (query.includes("asu") || query.includes("education") || query.includes("degree") || query.includes("master")) return answers.asu;
         if (query.includes("contact") || query.includes("email") || query.includes("phone") || query.includes("reach") || query.includes("hire")) return answers.contact;
         if (query.includes("cloud") || query.includes("aws") || query.includes("snowflake") || query.includes("azure") || query.includes("supabase")) return answers.cloud;
@@ -1175,7 +1216,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (query.includes("project") || query.includes("repo") || query.includes("github")) return answers.projects;
         if (query.includes("drift") || query.includes("ks") || query.includes("observability") || query.includes("validation")) return answers.observability;
         
-        return "That's a great question! While my local simulation database is compact, you can find full details about this in my projects section or resume modal. Or you can email me directly at djogiya786@gmail.com!";
+        return "That's a great question! While this simulation chatbot database is compact, you can find full details in Deshraj's projects grid or resume modal, or email him directly at djogiya786@gmail.com.";
     };
 
     const addMessage = (text, sender) => {
@@ -1227,28 +1268,182 @@ document.addEventListener("DOMContentLoaded", () => {
     const pipelineData = {
         batch: {
             nodes: [
-                { id: "ingest", label: "Ingest", icon: "📥", tags: ["Python", "yFinance", "Pandas"], desc: "Fetches daily stock prices and market telemetry via APIs. Standardizes data columns and formats timestamps.", code: "import yfinance as yf\nimport pandas as pd\n\ndef ingest_daily_data(ticker='SPY'):\n    data = yf.download(ticker, period='1d', interval='1m')\n    df = pd.DataFrame(data)\n    df.reset_index(inplace=True)\n    df.rename(columns={'Datetime': 'timestamp'}, inplace=True)\n    return df" },
-                { id: "validate", label: "Validate", icon: "🛡️", tags: ["Great Expectations", "Python"], desc: "Checks schema conformity, verifies data types, and ensures transaction values are within expected ranges.", code: "import great_expectations as ge\n\ndef validate_schema(df):\n    ge_df = ge.from_pandas(df)\n    result = ge_df.expect_column_values_to_not_be_null('timestamp')\n    assert result['success']\n    result = ge_df.expect_column_values_to_be_between('Close', min_value=0)\n    return result['success']" },
-                { id: "model", label: "Model", icon: "🧠", tags: ["Scikit-Learn", "Z-Score"], desc: "Applies statistical outlier threshold checks and trains forecasting models on aggregated metrics.", code: "from sklearn.ensemble import IsolationForest\n\ndef detect_anomalies(df, contamination=0.04):\n    model = IsolationForest(contamination=contamination, random_state=42)\n    df['anomaly_score'] = model.fit_predict(df[['Close', 'Volume']])\n    return df" },
-                { id: "warehouse", label: "Warehouse", icon: "❄️", tags: ["Snowflake", "SQL", "Star Schema"], desc: "Writes processed records to Snowflake dimension and fact tables, maintaining relational integrity.", code: "INSERT INTO fact_market_sales (timestamp, close_price, volume, anomaly_flag)\nSELECT \n  timestamp, \n  close_price, \n  volume, \n  CASE WHEN anomaly_score < 0 THEN 1 ELSE 0 END\nFROM stg_market_data;" },
-                { id: "bi", label: "BI Dashboard", icon: "📊", tags: ["Power BI", "DAX"], desc: "Refreshes Power BI visual indicators and updates KPI dashboard summaries for business stakeholders.", code: "Average Close = AVERAGE(fact_market_sales[close_price])\nAnomaly Count = CALCULATE(COUNTROWS(fact_market_sales), fact_market_sales[anomaly_flag] = 1)" }
+                { 
+                    id: "ingest", 
+                    label: "Ingest", 
+                    icon: "📥", 
+                    tags: ["Python", "yFinance", "Pandas"], 
+                    desc: "Fetches raw daily market pricing and transactional telemetry from finance APIs. Standardizes data columns and formats ISO timestamps.",
+                    impact: "Replaces manual daily CSV downloading and aggregation workflows, saving 10+ hours of operational overhead weekly.",
+                    inputs: "Yahoo Finance API",
+                    process: "yFinance Ingestion",
+                    outputs: "Raw Market CSV",
+                    code: "import yfinance as yf\nimport pandas as pd\n\ndef ingest_daily_data(ticker='SPY'):\n    data = yf.download(ticker, period='1d', interval='1m')\n    df = pd.DataFrame(data)\n    df.reset_index(inplace=True)\n    df.rename(columns={'Datetime': 'timestamp'}, inplace=True)\n    return df" 
+                },
+                { 
+                    id: "validate", 
+                    label: "Validate", 
+                    icon: "🛡️", 
+                    tags: ["Great Expectations", "Python"], 
+                    desc: "Runs automated schema validations, verifying column types, non-null primary keys, and data boundaries.",
+                    impact: "Acts as a gatekeeper, preventing corrupt or malformed transaction data from breaking downstream metrics and business databases.",
+                    inputs: "Raw Ingested CSV",
+                    process: "Great Expectations",
+                    outputs: "Valid Data Stream",
+                    code: "import great_expectations as ge\n\ndef validate_schema(df):\n    ge_df = ge.from_pandas(df)\n    result = ge_df.expect_column_values_to_not_be_null('timestamp')\n    assert result['success']\n    result = ge_df.expect_column_values_to_be_between('Close', min_value=0)\n    return result['success']" 
+                },
+                { 
+                    id: "model", 
+                    label: "Model", 
+                    icon: "🧠", 
+                    tags: ["Scikit-Learn", "Isolation Forest"], 
+                    desc: "Applies unsupervised Isolation Forest anomaly scoring and statistical checks to evaluate data outliers.",
+                    impact: "Enables proactive threat and anomaly detection, immediately flagging compliance and auditing risks for human review.",
+                    inputs: "Valid Data Stream",
+                    process: "Isolation Forest",
+                    outputs: "Anomaly Flags",
+                    code: "from sklearn.ensemble import IsolationForest\n\ndef detect_anomalies(df, contamination=0.04):\n    model = IsolationForest(contamination=contamination, random_state=42)\n    df['anomaly_score'] = model.fit_predict(df[['Close', 'Volume']])\n    return df" 
+                },
+                { 
+                    id: "warehouse", 
+                    label: "Warehouse", 
+                    icon: "❄️", 
+                    tags: ["Snowflake", "SQL", "Star Schema"], 
+                    desc: "Pipes cleaned data into persistent Snowflake data warehouse dimensions and fact tables.",
+                    impact: "Centralizes organizational records into structured Star Schemas, enabling 15x faster analytic queries for business teams.",
+                    inputs: "Flagged anomalies",
+                    process: "Snowflake Schema",
+                    outputs: "Analytical Tables",
+                    code: "INSERT INTO fact_market_sales (timestamp, close_price, volume, anomaly_flag)\nSELECT \n  timestamp, \n  close_price, \n  volume, \n  CASE WHEN anomaly_score < 0 THEN 1 ELSE 0 END\nFROM stg_market_data;" 
+                },
+                { 
+                    id: "bi", 
+                    label: "BI Dashboard", 
+                    icon: "📊", 
+                    tags: ["Power BI", "DAX"], 
+                    desc: "Materializes metrics into live Power BI dashboards to track performance trends and KPI aggregates.",
+                    impact: "Gives executives real-time visibility into business performance and active alerts, enabling fast data-driven decisions.",
+                    inputs: "Analytical Tables",
+                    process: "DAX KPI Measures",
+                    outputs: "Power BI Report",
+                    code: "Average Close = AVERAGE(fact_market_sales[close_price])\nAnomaly Count = CALCULATE(COUNTROWS(fact_market_sales), fact_market_sales[anomaly_flag] = 1)" 
+                }
             ]
         },
         stream: {
             nodes: [
-                { id: "ingest", label: "IoT Sensors", icon: "📟", tags: ["MQTT", "HTTP", "FastAPI"], desc: "Receives high-frequency sensor readings (vibration, heat, voltage) in real-time from EV battery systems.", code: "@app.post('/api/telemetry')\nasync def ingest_stream(reading: TelemetryReading):\n    await stream_buffer.append(reading)\n    return {'status': 'buffered'}" },
-                { id: "validate", label: "Validation", icon: "🛡️", tags: ["Python", "Z-Score"], desc: "Performs rolling Z-score checks on micro-batches to detect immediate sensor hardware failures.", code: "def rolling_zscore_check(window, current_val):\n    mean = sum(window) / len(window)\n    std = (sum((x - mean)**2 for x in window) / len(window))**0.5\n    z = (current_val - mean) / (std + 1e-6)\n    return abs(z) < 3.0" },
-                { id: "model", label: "RUL Estimator", icon: "🧠", tags: ["Scikit-Learn", "Regression"], desc: "Applies an exponential health decay model to forecast the fleet component's Remaining Useful Life (RUL).", code: "import numpy as np\n\ndef estimate_rul(vibration_history):\n    decay_fit = np.polyfit(np.arange(len(vibration_history)), np.log(vibration_history), 1)\n    projected_fail_step = (np.log(MAX_LIMIT) - decay_fit[1]) / decay_fit[0]\n    return max(0, projected_fail_step - len(vibration_history))" },
-                { id: "alert", label: "Alert Hook", icon: "🚨", tags: ["Webhooks", "FastAPI"], desc: "Triggers notifications to maintenance teams if RUL drops below threshold levels.", code: "async def trigger_maintenance_alert(device_id, rul_hours):\n    payload = {'device_id': device_id, 'alert': 'CRITICAL', 'rul_remaining': rul_hours}\n    async with httpx.AsyncClient() as client:\n        await client.post('https://pagerduty.com/trigger', json=payload)" }
+                { 
+                    id: "ingest", 
+                    label: "IoT Ingest", 
+                    icon: "📟", 
+                    tags: ["MQTT", "HTTP", "FastAPI"], 
+                    desc: "Receives high-frequency sensor readings (vibration, heat, voltage) in real-time from fleet battery systems.",
+                    impact: "Ingests continuous device data from 5,000+ devices concurrently with sub-second ingestion latency.",
+                    inputs: "IoT Telemetry Streams",
+                    process: "MQTT Broker Ingest",
+                    outputs: "Kafka Event Buffer",
+                    code: "@app.post('/api/telemetry')\nasync def ingest_stream(reading: TelemetryReading):\n    await stream_buffer.append(reading)\n    return {'status': 'buffered'}" 
+                },
+                { 
+                    id: "validate", 
+                    label: "Validation", 
+                    icon: "🛡️", 
+                    tags: ["Python", "Z-Score"], 
+                    desc: "Performs rolling Z-score checks on micro-batches to detect immediate sensor hardware failures.",
+                    impact: "Filters out high-frequency sensor noise and hardware errors before they corrupt predictive modeling algorithms.",
+                    inputs: "Kafka Event Buffer",
+                    process: "Rolling Z-Score QA",
+                    outputs: "Validated Signals",
+                    code: "def rolling_zscore_check(window, current_val):\n    mean = sum(window) / len(window)\n    std = (sum((x - mean)**2 for x in window) / len(window))**0.5\n    z = (current_val - mean) / (std + 1e-6)\n    return abs(z) < 3.0" 
+                },
+                { 
+                    id: "model", 
+                    label: "RUL Estimator", 
+                    icon: "🧠", 
+                    tags: ["Scikit-Learn", "Regression"], 
+                    desc: "Applies an exponential health decay model to forecast the fleet component's Remaining Useful Life (RUL).",
+                    impact: "Enables predictive maintenance schedules, reducing fleet breakdown rates by 15% and saving repair costs.",
+                    inputs: "Validated Signals",
+                    process: "RUL Regression Model",
+                    outputs: "Failure Projections",
+                    code: "import numpy as np\n\ndef estimate_rul(vibration_history):\n    decay_fit = np.polyfit(np.arange(len(vibration_history)), np.log(vibration_history), 1)\n    projected_fail_step = (np.log(MAX_LIMIT) - decay_fit[1]) / decay_fit[0]\n    return max(0, projected_fail_step - len(vibration_history))" 
+                },
+                { 
+                    id: "alert", 
+                    label: "Alert Hook", 
+                    icon: "🚨", 
+                    tags: ["Webhooks", "FastAPI"], 
+                    desc: "Triggers notifications to maintenance teams if RUL drops below critical safety threshold levels.",
+                    impact: "Automates incident management by alerting mechanics in real time, preventing active on-road failures.",
+                    inputs: "Failure Projections",
+                    process: "FastAPI Alert Router",
+                    outputs: "PagerDuty Alerts",
+                    code: "async def trigger_maintenance_alert(device_id, rul_hours):\n    payload = {'device_id': device_id, 'alert': 'CRITICAL', 'rul_remaining': rul_hours}\n    async with httpx.AsyncClient() as client:\n        await client.post('https://pagerduty.com/trigger', json=payload)" 
+                }
             ]
         },
         geospatial: {
             nodes: [
-                { id: "ingest", label: "ArcGIS Ingest", icon: "🌎", tags: ["Python", "Shapefiles", "Geopandas"], desc: "Loads multi-state daily land cover raster files and converts shape attributes to tabular coordinates.", code: "import geopandas as gpd\n\ndef load_geojson(path):\n    gdf = gpd.read_file(path)\n    gdf = gdf.to_crs(epsg=4326)\n    return gdf" },
-                { id: "validate", label: "Carbon Engine", icon: "🍃", tags: ["Python", "Pandas"], desc: "Calculates net carbon emissions based on land cover type changes (forest loss vs. urban expansion).", code: "def calculate_emissions(gdf):\n    # Forest: -3.5 tons/ha, Urban: +2.1 tons/ha\n    gdf['co2_delta'] = gdf['area_ha'] * gdf['land_type'].map({\n        'Forest': -3.5,\n        'Urban': 2.1,\n        'Agriculture': 0.8\n    })\n    return gdf" },
-                { id: "model", label: "ML Forecast", icon: "🧠", tags: ["Random Forest", "Scikit-Learn"], desc: "Fits Linear Regression and Random Forest models to forecast CO2 trend lines.", code: "from sklearn.ensemble import RandomForestRegressor\n\ndef train_emissions_forecaster(X, y):\n    model = RandomForestRegressor(n_estimators=100, random_state=42)\n    model.fit(X, y)\n    return model" },
-                { id: "warehouse", label: "DB Storage", icon: "💾", tags: ["SQLite", "SQL"], desc: "Saves regional emissions inventory records to SQLite index database.", code: "CREATE TABLE land_changes (\n  state TEXT,\n  from_type TEXT,\n  to_type TEXT,\n  area_changed REAL,\n  change_date DATE\n);" },
-                { id: "commit", label: "Git Pages Commit", icon: "🐙", tags: ["GitHub Actions", "Git"], desc: "Commits visitor stats and model prediction plots daily, updating GitHub Pages contributions.", code: "# git command line runner\nimport subprocess\n\ndef push_changes():\n    subprocess.run(['git', 'add', '.'])\n    subprocess.run(['git', 'commit', '-m', 'daily update'])\n    subprocess.run(['git', 'push', 'origin', 'main'])" }
+                { 
+                    id: "ingest", 
+                    label: "Spatial Ingest", 
+                    icon: "🌎", 
+                    tags: ["Python", "Geopandas", "Shapefiles"], 
+                    desc: "Loads multi-state daily land cover shapefiles and raster coordinates, aligning coordinate reference systems (CRS).",
+                    impact: "Aggregates complex geographic and environmental shape coordinates from separate state databases into a single system.",
+                    inputs: "Multi-State GeoJSONs",
+                    process: "CRS Realignment",
+                    outputs: "Clean GeoDataFrames",
+                    code: "import geopandas as gpd\n\ndef load_geojson(path):\n    gdf = gpd.read_file(path)\n    gdf = gdf.to_crs(epsg=4326)\n    return gdf" 
+                },
+                { 
+                    id: "validate", 
+                    label: "Carbon Engine", 
+                    icon: "🍃", 
+                    tags: ["Python", "Pandas"], 
+                    desc: "Calculates net carbon emissions based on land cover type changes (forest loss vs. urban expansion).",
+                    impact: "Measures and audits net regional carbon offset changes, ensuring compliance with EPA state standards.",
+                    inputs: "Clean GeoDataFrames",
+                    process: "Carbon Offset Engine",
+                    outputs: "CO2 Delta Matrices",
+                    code: "def calculate_emissions(gdf):\n    # Forest: -3.5 tons/ha, Urban: +2.1 tons/ha\n    gdf['co2_delta'] = gdf['area_ha'] * gdf['land_type'].map({\n        'Forest': -3.5,\n        'Urban': 2.1,\n        'Agriculture': 0.8\n    })\n    return gdf" 
+                },
+                { 
+                    id: "model", 
+                    label: "ML Forecast", 
+                    icon: "🧠", 
+                    tags: ["Random Forest", "Scikit-Learn"], 
+                    desc: "Fits Linear Regression and Random Forest models to forecast CO2 trend lines.",
+                    impact: "Predicts future carbon trends to optimize forestry projects and plan emissions offset targets.",
+                    inputs: "CO2 Delta Matrices",
+                    process: "Random Forest Regressor",
+                    outputs: "Decade Trend Curves",
+                    code: "from sklearn.ensemble import RandomForestRegressor\n\ndef train_emissions_forecaster(X, y):\n    model = RandomForestRegressor(n_estimators=100, random_state=42)\n    model.fit(X, y)\n    return model" 
+                },
+                { 
+                    id: "warehouse", 
+                    label: "DB Storage", 
+                    icon: "💾", 
+                    tags: ["SQLite", "SQL"], 
+                    desc: "Saves regional emissions inventory records to SQLite index database.",
+                    impact: "Ensures audited carbon records are permanently saved and indexed for audit verification and search queries.",
+                    inputs: "Decade Trend Curves",
+                    process: "SQLite Schema Mapping",
+                    outputs: "Historical Database",
+                    code: "CREATE TABLE land_changes (\n  state TEXT,\n  from_type TEXT,\n  to_type TEXT,\n  area_changed REAL,\n  change_date DATE\n);" 
+                },
+                { 
+                    id: "commit", 
+                    label: "Git Pages Commit", 
+                    icon: "🐙", 
+                    tags: ["GitHub Actions", "Git"], 
+                    desc: "Commits updated visitor stats and model prediction plots daily, updating GitHub Pages contributions.",
+                    impact: "Automates public reporting by automatically committing fresh analytics files to public pages every 24 hours.",
+                    inputs: "Historical Database",
+                    process: "Automated Git Runner",
+                    outputs: "GitHub Pages Site",
+                    code: "# git command line runner\nimport subprocess\n\ndef push_changes():\n    subprocess.run(['git', 'add', '.'])\n    subprocess.run(['git', 'commit', '-m', 'daily update'])\n    subprocess.run(['git', 'push', 'origin', 'main'])" 
+                }
             ]
         }
     };
@@ -1258,8 +1453,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const nodeNameEl = document.getElementById("arch-node-name");
     const nodeTagsEl = document.getElementById("arch-node-tags");
     const nodeDescEl = document.getElementById("arch-node-desc");
+    const nodeImpactEl = document.getElementById("arch-node-impact");
+    const toggleCodeBtn = document.getElementById("arch-toggle-code-btn");
     const codeBox = document.getElementById("arch-code-box");
     const codeContentEl = document.getElementById("arch-code-content");
+
+    // Input-Process-Output Flow Box selectors
+    const flowBox = document.getElementById("arch-node-flow-box");
+    const flowInput = document.getElementById("arch-flow-input");
+    const flowProcess = document.getElementById("arch-flow-process");
+    const flowOutput = document.getElementById("arch-flow-output");
+    const tourBtn = document.getElementById("arch-tour-btn");
+
+    let tourInterval = null;
+    let isPlayingTour = false;
 
     function renderPipelineFlow(pipelineType) {
         if (!archFlowDiagram) return;
@@ -1305,18 +1512,99 @@ document.addEventListener("DOMContentLoaded", () => {
             span.textContent = t;
             nodeTagsEl.appendChild(span);
         });
-        nodeDescEl.textContent = node.desc;
+        nodeDescEl.innerHTML = "<strong>Technical Function:</strong> " + node.desc;
+        
+        if (nodeImpactEl) {
+            nodeImpactEl.innerHTML = "<strong>Business Value:</strong> " + node.impact;
+            nodeImpactEl.style.display = "block";
+        }
+        
+        if (flowBox && flowInput && flowProcess && flowOutput) {
+            flowInput.textContent = node.inputs || "-";
+            flowProcess.textContent = node.process || "-";
+            flowOutput.textContent = node.outputs || "-";
+            flowBox.style.display = "grid";
+        }
 
+        if (toggleCodeBtn) {
+            toggleCodeBtn.style.display = "block";
+            toggleCodeBtn.textContent = "View Technical Code Snippet 🛠️";
+        }
         if (codeBox && codeContentEl) {
             codeContentEl.textContent = node.code;
-            codeBox.style.display = "block";
+            codeBox.style.display = "none";
         }
+    }
+
+    function playPipelineTour() {
+        if (isPlayingTour) return;
+        isPlayingTour = true;
+        if (tourBtn) {
+            tourBtn.innerHTML = "Stop Tour ⏹️";
+            tourBtn.style.background = "rgba(239, 68, 68, 0.1)";
+            tourBtn.style.borderColor = "rgba(239, 68, 68, 0.25)";
+            tourBtn.style.color = "var(--accent-red, #ef4444)";
+        }
+
+        const activeTab = document.querySelector(".arch-tab-btn.active");
+        if (!activeTab) return;
+        const pipelineType = activeTab.getAttribute("data-pipeline");
+        const nodes = pipelineData[pipelineType].nodes;
+
+        const activeNodeEl = archFlowDiagram.querySelector(".arch-node-item.active");
+        let currentIndex = 0;
+        if (activeNodeEl) {
+            const nodeId = activeNodeEl.getAttribute("data-node-id");
+            currentIndex = nodes.findIndex(n => n.id === nodeId);
+        }
+
+        tourInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % nodes.length;
+            const nextNode = nodes[currentIndex];
+
+            const nodeEls = archFlowDiagram.querySelectorAll(".arch-node-item");
+            nodeEls.forEach(el => {
+                if (el.getAttribute("data-node-id") === nextNode.id) {
+                    el.classList.add("active");
+                } else {
+                    el.classList.remove("active");
+                }
+            });
+
+            showNodeDetails(nextNode);
+        }, 3000);
+    }
+
+    function stopPipelineTour() {
+        if (!isPlayingTour) return;
+        isPlayingTour = false;
+        if (tourInterval) {
+            clearInterval(tourInterval);
+            tourInterval = null;
+        }
+        if (tourBtn) {
+            tourBtn.innerHTML = "Play Tour ⏯️";
+            tourBtn.style.background = "rgba(16, 185, 129, 0.1)";
+            tourBtn.style.borderColor = "rgba(16, 185, 129, 0.25)";
+            tourBtn.style.color = "var(--accent-emerald)";
+        }
+    }
+
+    if (tourBtn) {
+        tourBtn.addEventListener("click", () => {
+            if (isPlayingTour) {
+                stopPipelineTour();
+            } else {
+                playPipelineTour();
+            }
+        });
     }
 
     if (archFlowDiagram) {
         archFlowDiagram.addEventListener("click", (e) => {
             const nodeItem = e.target.closest(".arch-node-item");
             if (nodeItem) {
+                stopPipelineTour();
                 // Remove active class
                 archFlowDiagram.querySelectorAll(".arch-node-item").forEach(n => n.classList.remove("active"));
                 nodeItem.classList.add("active");
@@ -1331,18 +1619,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    if (toggleCodeBtn) {
+        toggleCodeBtn.addEventListener("click", () => {
+            if (codeBox.style.display === "none") {
+                codeBox.style.display = "block";
+                toggleCodeBtn.textContent = "Hide Technical Code Snippet 🙈";
+            } else {
+                codeBox.style.display = "none";
+                toggleCodeBtn.textContent = "View Technical Code Snippet 🛠️";
+            }
+        });
+    }
+
     archTabBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            archTabBtns.forEach(b => {
-                b.classList.remove("active");
-                b.style.background = "rgba(255,255,255,0.03)";
-                b.style.color = "var(--text-secondary)";
-                b.style.border = "1px solid rgba(255,255,255,0.08)";
-            });
+            stopPipelineTour();
+            archTabBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            btn.style.background = "var(--grad-primary)";
-            btn.style.color = "#fff";
-            btn.style.border = "none";
 
             const pipelineType = btn.getAttribute("data-pipeline");
             renderPipelineFlow(pipelineType);
