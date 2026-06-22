@@ -2392,7 +2392,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tourSteps = [
         {
             title: "Welcome to Deshraj's Portfolio! 🌟",
-            desc: "This interactive guided tour showcases Deshraj's professional experience, pipeline dashboard, SQL charts, and conversational AI chatbot. Choose how you would like to proceed below:",
+            desc: "This interactive guided tour showcases Deshraj's professional experience, pipeline dashboard, SQL charts, and conversational AI chatbot in sequence. Choose how you would like to proceed below:",
             target: null,
             duration: 0,
             action: async () => {
@@ -2402,9 +2402,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Interactive Resume Modal 💼",
-            desc: "Watch as we open the Resume, filter by 'Data Science' experience, and highlight his perfect 4.0/4.0 GPA from Arizona State University.",
+            desc: "Watch as we open the Resume, cycle through his 'Data Engineering' and 'Data Science' highlights, and point out his perfect 4.0/4.0 GPA from Arizona State University.",
             target: "#resume-hero-btn",
-            duration: 15000,
+            duration: 18000,
             action: async () => {
                 const resumeModal = document.getElementById("resume-modal");
                 if (resumeModal) {
@@ -2414,12 +2414,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (resumeBtn) {
                     resumeBtn.click();
                 }
-                await delay(1000);
+                await delay(1200);
                 
-                const dsFilter = document.querySelector('.resume-filter-btn[data-filter="ds"]');
+                // Highlight Data Engineering role bullets
+                const deFilter = document.querySelector('.resume-filter-btn[data-role="de"]');
+                if (deFilter) {
+                    deFilter.click();
+                    deFilter.classList.add("tour-highlight");
+                }
+                await delay(3500);
+                if (deFilter) deFilter.classList.remove("tour-highlight");
+                
+                // Highlight Data Science & ML role bullets
+                const dsFilter = document.querySelector('.resume-filter-btn[data-role="ds"]');
                 if (dsFilter) {
                     dsFilter.click();
                     dsFilter.classList.add("tour-highlight");
+                }
+                await delay(3500);
+                if (dsFilter) dsFilter.classList.remove("tour-highlight");
+                
+                // Return to all roles & highlight GPA
+                const allFilter = document.querySelector('.resume-filter-btn[data-role="all"]');
+                if (allFilter) {
+                    allFilter.click();
                 }
                 await delay(1200);
                 
@@ -2433,7 +2451,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const resumeModal = document.getElementById("resume-modal");
                 if (resumeModal) resumeModal.classList.remove("tour-highlight");
                 
-                const dsFilter = document.querySelector('.resume-filter-btn[data-filter="ds"]');
+                const deFilter = document.querySelector('.resume-filter-btn[data-role="de"]');
+                if (deFilter) deFilter.classList.remove("tour-highlight");
+                
+                const dsFilter = document.querySelector('.resume-filter-btn[data-role="ds"]');
                 if (dsFilter) dsFilter.classList.remove("tour-highlight");
                 
                 const gpaText = document.getElementById("resume-gpa-highlight");
@@ -2441,6 +2462,89 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const closeResumeBtn = document.getElementById("close-resume-btn");
                 if (closeResumeBtn) closeResumeBtn.click();
+            }
+        },
+        {
+            title: "Portfolio Repositories 🚀",
+            desc: "Next, we scroll to his projects. Watch as the search category filters cycle dynamically to show Data Engineering, ML, and Analytics projects.",
+            target: "#projects",
+            duration: 10000,
+            action: async () => {
+                const section = document.getElementById("projects");
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    section.classList.add("tour-highlight");
+                }
+                await delay(1000);
+                
+                const deFilter = document.querySelector('.filter-btn[data-filter="data-engineering"]');
+                if (deFilter) {
+                    deFilter.click();
+                    deFilter.classList.add("tour-highlight");
+                }
+                await delay(1500);
+                if (deFilter) deFilter.classList.remove("tour-highlight");
+                
+                const mlFilter = document.querySelector('.filter-btn[data-filter="machine-learning"]');
+                if (mlFilter) {
+                    mlFilter.click();
+                    mlFilter.classList.add("tour-highlight");
+                }
+                await delay(1500);
+                if (mlFilter) mlFilter.classList.remove("tour-highlight");
+                
+                const biFilter = document.querySelector('.filter-btn[data-filter="analytics"]');
+                if (biFilter) {
+                    biFilter.click();
+                    biFilter.classList.add("tour-highlight");
+                }
+                await delay(1500);
+                if (biFilter) biFilter.classList.remove("tour-highlight");
+                
+                const allFilter = document.querySelector('.filter-btn[data-filter="all"]');
+                if (allFilter) {
+                    allFilter.click();
+                }
+            },
+            cleanup: () => {
+                const section = document.getElementById("projects");
+                if (section) section.classList.remove("tour-highlight");
+                const deFilter = document.querySelector('.filter-btn[data-filter="data-engineering"]');
+                if (deFilter) deFilter.classList.remove("tour-highlight");
+                const mlFilter = document.querySelector('.filter-btn[data-filter="machine-learning"]');
+                if (mlFilter) mlFilter.classList.remove("tour-highlight");
+                const biFilter = document.querySelector('.filter-btn[data-filter="analytics"]');
+                if (biFilter) biFilter.classList.remove("tour-highlight");
+            }
+        },
+        {
+            title: "SQL Sandbox & Dynamic Visuals 📊",
+            desc: "Let's check out the SQL analytical playground. We'll select the 'Carbon Ingestion & Geospatial Emissions' query, execute it, and see a dynamic Chart.js chart rendered instantly.",
+            target: ".sql-widget",
+            duration: 15000,
+            action: async () => {
+                const widget = document.querySelector('.sql-widget');
+                if (widget) {
+                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    widget.classList.add("tour-highlight");
+                }
+                await delay(1000);
+                
+                const querySelect = document.getElementById("sql-query-select");
+                if (querySelect) {
+                    querySelect.value = "emissions_analysis";
+                    querySelect.dispatchEvent(new Event('change'));
+                }
+                await delay(1200);
+                
+                const runBtn = document.getElementById("run-sql-btn");
+                if (runBtn) {
+                    runBtn.click();
+                }
+            },
+            cleanup: () => {
+                const widget = document.querySelector('.sql-widget');
+                if (widget) widget.classList.remove("tour-highlight");
             }
         },
         {
@@ -2467,33 +2571,97 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "SQL Sandbox & Dynamic Visuals 📊",
-            desc: "Let's check out the SQL analytical playground. We'll select the 'Carbon Ingestion & Geospatial Emissions' query, execute it, and see a dynamic Chart.js chart rendered instantly.",
-            target: ".sql-widget",
-            duration: 16000,
+            title: "D.S. & ML Experiments Simulator 🧪",
+            desc: "Watch as we run a live Z-test in the A/B Testing Simulator, and adjust the classification decision boundary threshold on the ML Optimizer.",
+            target: ".experiments-grid",
+            duration: 12000,
             action: async () => {
-                const widget = document.querySelector('.sql-widget');
-                if (widget) {
-                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    widget.classList.add("tour-highlight");
+                const grid = document.querySelector('.experiments-grid');
+                if (grid) {
+                    grid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    grid.classList.add("tour-highlight");
                 }
                 await delay(1000);
                 
-                const querySelect = document.getElementById("sql-query-select");
-                if (querySelect) {
-                    querySelect.value = "emissions_analysis";
-                    querySelect.dispatchEvent(new Event('change'));
-                }
+                const runBtn = document.getElementById("run-ab-btn");
+                if (runBtn) runBtn.click();
+                
                 await delay(1200);
                 
-                const runBtn = document.getElementById("run-sql-btn");
-                if (runBtn) {
-                    runBtn.click();
+                const slider = document.getElementById("threshold-slider");
+                if (slider) {
+                    slider.value = "0.35";
+                    slider.dispatchEvent(new Event('input'));
                 }
             },
             cleanup: () => {
-                const widget = document.querySelector('.sql-widget');
-                if (widget) widget.classList.remove("tour-highlight");
+                const grid = document.querySelector('.experiments-grid');
+                if (grid) grid.classList.remove("tour-highlight");
+            }
+        },
+        {
+            title: "Live Visitor Analytics & Traffic Forecast 📡",
+            desc: "Now, let's explore the persistent visitor analytics telemetry. Watch as we expand the panel and trigger the K-Means clustering visualization.",
+            target: "#visitor-analytics-widget",
+            duration: 15000,
+            action: async () => {
+                const widget = document.getElementById("visitor-analytics-widget");
+                if (widget) {
+                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                const launcher = document.getElementById("visitor-launcher");
+                const container = document.getElementById("visitor-container");
+                
+                // If collapsed, open it
+                if (launcher && window.getComputedStyle(launcher).display !== "none") {
+                    launcher.click();
+                }
+                
+                if (container) {
+                    container.classList.add("tour-highlight");
+                }
+                await delay(2500);
+                
+                const mlBtn = document.getElementById("view-ml-charts-btn");
+                if (mlBtn) mlBtn.click();
+            },
+            cleanup: () => {
+                const closeMlBtn = document.getElementById("close-ml-modal-btn");
+                if (closeMlBtn) closeMlBtn.click();
+                
+                const container = document.getElementById("visitor-container");
+                if (container) {
+                    container.classList.remove("tour-highlight");
+                    container.classList.remove("active");
+                }
+            }
+        },
+        {
+            title: "Technical Skills & Learning Log 🛠️",
+            desc: "Take a look at Deshraj's skills category cards, followed by the 'Today I Learned' (TIL) logging repository showcasing his ongoing study topics.",
+            target: "#skills",
+            duration: 8000,
+            action: async () => {
+                const skills = document.getElementById("skills");
+                if (skills) {
+                    skills.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    skills.classList.add("tour-highlight");
+                }
+                await delay(3000);
+                if (skills) skills.classList.remove("tour-highlight");
+                
+                const learning = document.getElementById("learning");
+                if (learning) {
+                    learning.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    learning.classList.add("tour-highlight");
+                }
+            },
+            cleanup: () => {
+                const skills = document.getElementById("skills");
+                if (skills) skills.classList.remove("tour-highlight");
+                const learning = document.getElementById("learning");
+                if (learning) learning.classList.remove("tour-highlight");
             }
         },
         {
@@ -2548,9 +2716,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Tour Completed! 🎉",
-            desc: "Thank you for completing the tour! You've seen Deshraj's full pipeline dashboard, SQL charts, statistical experiments, and interactive AI chatbot. Connect with him below!",
+            desc: "Thank you for completing the tour! You've seen Deshraj's full pipeline dashboard, SQL queries, statistical models, and RAG AI chatbot. Connect with him below!",
             target: "#contact",
-            duration: 12000,
+            duration: 10000,
             action: async () => {
                 const contactSec = document.getElementById("contact");
                 if (contactSec) {
