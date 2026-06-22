@@ -3428,5 +3428,18 @@ body.light-theme .close-visitor-btn:hover {
     color: #0f172a;
 }
 
+/* Pulsing heartbeat for visitor widget status dot */
+.visitor-status-dot {
+    background-color: var(--accent-emerald) !important;
+    box-shadow: 0 0 8px var(--accent-emerald) !important;
+    animation: visitorStatusPulse 2s infinite ease-in-out !important;
+}
+
+@keyframes visitorStatusPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 
 

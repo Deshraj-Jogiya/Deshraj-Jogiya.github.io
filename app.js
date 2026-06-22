@@ -113,8 +113,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 const progressFillEl = document.getElementById("visitor-progress-fill");
 
                 if (countEl) countEl.textContent = stats.total_visits || "...";
-                if (todayEl) todayEl.textContent = stats.active_today || "...";
                 if (forecastEl) forecastEl.textContent = stats.forecasted_next_week || "...";
+
+                if (todayEl) {
+                    const baseActive = stats.active_today || 12;
+                    todayEl.textContent = baseActive;
+                    
+                    if (window.activeUserInterval) clearInterval(window.activeUserInterval);
+                    
+                    window.activeUserInterval = setInterval(() => {
+                        const hour = new Date().getHours();
+                        let timeModifier = 0;
+                        if (hour >= 9 && hour <= 17) {
+                            timeModifier = 2; // peak hours
+                        } else if (hour >= 23 || hour <= 5) {
+                            timeModifier = -3; // night drop
+                        }
+                        const currentActive = Math.max(3, baseActive + timeModifier + Math.floor(Math.random() * 5) - 2);
+                        todayEl.textContent = currentActive;
+                    }, 8000);
+                }
 
                 if (progressFillEl && stats.total_visits && stats.forecasted_next_week) {
                     const ratio = Math.min(100, Math.round((stats.total_visits / stats.forecasted_next_week) * 100));

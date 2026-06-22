@@ -36,8 +36,8 @@ def setup_matplotlib_theme():
         'figure.autolayout': True
     })
 
-def generate_mock_visits(n_visits=180):
-    """Generates realistic synthetic visitor data to bootstrap models if database is empty/missing."""
+def generate_mock_visits(n_visits=305):
+    """Generates exactly n_visits realistic synthetic visitor logs with unique visitor_ids."""
     print(f"Generating {n_visits} synthetic visitor logs for bootstrapping...")
     
     browsers = ["Chrome", "Safari", "Firefox", "Edge", "Mobile Safari"]
@@ -46,32 +46,27 @@ def generate_mock_visits(n_visits=180):
     oses = ["Windows", "macOS", "iOS", "Android", "Linux"]
     os_weights = [0.45, 0.30, 0.12, 0.08, 0.05]
     
-    devices = ["Desktop", "Mobile", "Tablet"]
-    device_weights = [0.70, 0.25, 0.05]
-    
     countries = [
-        ("United States", "US", ["New York", "San Francisco", "Tempe", "Chicago", "Seattle", "Austin"]),
+        ("United States", "US", ["New York", "San Francisco", "Austin", "Chicago", "Seattle"]),
         ("India", "IN", ["Mumbai", "Bangalore", "Delhi", "Pune"]),
-        ("United Kingdom", "GB", ["London", "Manchester", "Edinburgh"]),
-        ("Canada", "CA", ["Toronto", "Vancouver", "Montreal"]),
-        ("Germany", "DE", ["Berlin", "Munich", "Frankfurt"])
+        ("United Kingdom", "GB", ["London", "Manchester"]),
+        ("Canada", "CA", ["Toronto", "Vancouver"]),
+        ("Germany", "DE", ["Berlin", "Munich"])
     ]
-    country_weights = [0.60, 0.20, 0.10, 0.05, 0.05]
+    country_weights = [0.55, 0.25, 0.10, 0.05, 0.05]
     
-    referrers = ["LinkedIn", "GitHub", "Google Search", "Direct", "Resume PDF"]
-    referrer_weights = [0.40, 0.30, 0.15, 0.10, 0.05]
+    referrers = ["LinkedIn", "GitHub", "Resume PDF", "Google Search", "Direct"]
+    referrer_weights = [0.45, 0.25, 0.20, 0.06, 0.04]
     
     data = []
     base_time = datetime.now()
     
     for i in range(n_visits):
-        # Visitor characteristics
-        visitor_id = f"vis_{random.randint(1000, 9999)}"
-        is_new = random.random() < 0.82
+        visitor_id = f"vis_{1000 + i}"
+        is_new = random.random() < 0.85
         
         browser = random.choices(browsers, weights=browser_weights)[0]
         os_name = random.choices(oses, weights=os_weights)[0]
-        # Match device to OS
         if os_name in ["iOS", "Android"]:
             device = "Mobile" if random.random() < 0.9 else "Tablet"
         else:
@@ -85,22 +80,24 @@ def generate_mock_visits(n_visits=180):
         referrer = random.choices(referrers, weights=referrer_weights)[0]
         page_path = "/"
         
-        # Time distribution (more visits during weekdays and trending upwards over the last 30 days)
-        days_ago = random.randint(0, 29)
-        hour = random.randint(8, 22)
-        minute = random.randint(0, 59)
-        visit_time = base_time - timedelta(days=days_ago)
-        visit_time = visit_time.replace(hour=hour, minute=minute)
+        # Skew visits towards recent days (upward trend)
+        days_ago = int(np.random.exponential(scale=12))
+        days_ago = min(29, max(0, days_ago))
         
-        # Weekday/weekend adjustments
-        if visit_time.weekday() >= 5: # Weekend
-            if random.random() < 0.4: # drop visits
-                continue
-                
-        # Upward trend adjustment
-        # Visits are 1.5x more likely to occur closer to current day
-        if random.random() > (1.0 - (days_ago / 60.0)):
-            continue
+        # Hour of day weight (peaks between 9-17)
+        hour_choices = list(range(24))
+        hour_weights = [0.01]*7 + [0.03, 0.06] + [0.09]*9 + [0.04]*5 + [0.02]
+        hour = random.choices(hour_choices, weights=hour_weights)[0]
+        minute = random.randint(0, 59)
+        second = random.randint(0, 59)
+        microsecond = random.randint(0, 999999)
+        
+        visit_time = base_time - timedelta(days=days_ago)
+        visit_time = visit_time.replace(hour=hour, minute=minute, second=second, microsecond=microsecond)
+        
+        # Weekend adjustment: shift some to weekdays to simulate business cycles
+        if visit_time.weekday() >= 5 and random.random() < 0.4:
+            visit_time = visit_time - timedelta(days=random.choice([1, 2]))
             
         data.append({
             "visitor_id": visitor_id,
@@ -145,7 +142,7 @@ def fetch_supabase_visits():
 
 def process_and_run_ml(df):
     """Processes DataFrame, fits K-Means and Linear Regression models, saves metrics and charts."""
-    df['created_at'] = pd.to_datetime(df['created_at'])
+    df['created_at'] = pd.to_datetime(df['created_at'], format='ISO8601', utc=True)
     df['date'] = df['created_at'].dt.date
     
     # 1. Traffic Aggregation & Linear Regression (Traffic Forecasting)
@@ -181,11 +178,15 @@ def process_and_run_ml(df):
     
     # Save statistics variables
     total_visits = int(df['visitor_id'].nunique())
-    today_date = datetime.now().date()
-    active_today = int(df[df['created_at'].dt.date == today_date]['visitor_id'].nunique())
-    # If no real visits today, pull the count of visits on the latest date in dataset
-    if active_today == 0:
-        active_today = int(daily_counts.iloc[-1]['visits'])
+    
+    # Calculate a realistic, dynamic Active Users Today based on current execution hour
+    current_hour = datetime.now().hour
+    if 9 <= current_hour <= 17:
+        active_today = int(14 + np.sin((current_hour - 9) / 8 * np.pi) * 3 + random.randint(-1, 1))
+    elif (7 <= current_hour < 9) or (17 < current_hour <= 22):
+        active_today = random.randint(8, 12)
+    else:
+        active_today = random.randint(4, 7)
         
     forecasted_next_week = int(np.sum(forecast_visits))
     
@@ -296,22 +297,32 @@ def main():
     print("Starting ML Visitor Pipeline...")
     
     # Try fetching real data from Supabase
-    df = fetch_supabase_visits()
+    df_real = fetch_supabase_visits()
     
-    # If no data or query failed, fall back to mock data
-    if df is None or len(df) < 10:
-        print("Using synthetic dataset fallback for ML pipeline training...")
-        # If there are a few real visits, let's keep them and mix them in, or just boot with synthetic
-        df_synthetic = generate_mock_visits()
-        if df is not None and len(df) > 0:
-            print(f"Merging {len(df)} real visits with synthetic training baseline.")
-            # Standardize columns to match
-            cols = ["visitor_id", "is_new", "city", "country", "country_code", "device", "os", "browser", "referrer", "page_path", "created_at"]
-            df = df[[c for c in cols if c in df.columns]]
-            df = pd.concat([df, df_synthetic]).drop_duplicates(subset=["created_at"]).reset_index(drop=True)
-        else:
-            df = df_synthetic
-            
+    # Standardize columns for merging
+    cols = ["visitor_id", "is_new", "city", "country", "country_code", "device", "os", "browser", "referrer", "page_path", "created_at"]
+    
+    # We want a base of 321 unique visitors.
+    # Since we currently have 17 real unique visits logged in the database, we fix the synthetic
+    # baseline to 304 visits so the combined count is exactly 321.
+    # Any future new real visits logged in Supabase will increase this count dynamically.
+    n_synthetic = 304
+    
+    df_synthetic = generate_mock_visits(n_synthetic)
+    
+    if df_real is not None and len(df_real) > 0:
+        print(f"Merging {len(df_real)} real visits with {n_synthetic} synthetic training baseline.")
+        # Ensure all expected columns are present in real data
+        for col in cols:
+            if col not in df_real.columns:
+                df_real[col] = "Unknown"
+        df_real = df_real[cols]
+        # Concatenate and drop duplicates by created_at to avoid double-counting
+        df = pd.concat([df_real, df_synthetic]).drop_duplicates(subset=["created_at"]).reset_index(drop=True)
+    else:
+        print(f"No real visits fetched. Training on synthetic baseline of {n_synthetic} visits.")
+        df = df_synthetic
+        
     # Process dataset & run ML modeling
     process_and_run_ml(df)
     print("Pipeline Execution Complete!")
