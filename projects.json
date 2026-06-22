@@ -111,42 +111,58 @@
   ],
   "skills": [
     {
-      "category": "Programming & Systems",
+      "category": "Generative AI, LLMs & Agents",
       "items": [
-        "Python (Pandas, NumPy, Scipy)",
-        "SQL (PostgreSQL, SQLite, Snowflake)",
-        "Scala",
-        "R (Tidyverse)",
-        "Git / GitHub Actions"
+        "LLM Fine-Tuning & Quantization",
+        "Retrieval-Augmented Generation (RAG)",
+        "Agentic Orchestration (LangChain, LangGraph)",
+        "Vector Databases (Pinecone, pgvector)",
+        "LLM Observability & Evaluation (LangSmith)",
+        "OpenAI API Integration & Custom Agents"
       ]
     },
     {
-      "category": "Data Engineering",
+      "category": "Machine Learning & Deep Learning",
       "items": [
-        "ETL / ELT Pipeline Design",
-        "Data Warehouse Modeling (Star Schema)",
-        "Data Observability & Drift Detection",
-        "Great Expectations Data QA",
-        "AWS Glue, S3, Kubernetes"
-      ]
-    },
-    {
-      "category": "Machine Learning & Stats",
-      "items": [
-        "Regression & Classification Modeling",
-        "Random Forest & Ensemble Models",
+        "Supervised & Unsupervised Modeling",
+        "Ensemble Methods (XGBoost, Random Forest)",
         "Unsupervised Anomaly (Isolation Forest)",
-        "K-Means Clustering & PCA",
-        "Survival Analysis (Kaplan-Meier, Log-Rank)"
+        "Deep Learning CNNs (TensorFlow, Keras)",
+        "Model Observability & Drift (KS-Test)",
+        "A/B Testing & Z-Test Statistics"
       ]
     },
     {
-      "category": "Visualization & BI",
+      "category": "Data Engineering & Cloud",
       "items": [
-        "Power BI (ODBC, DAX, KPI Dashboards)",
-        "Tableau (Calculated Fields, Analytics Sheets)",
-        "Matplotlib, Seaborn, Chart.js",
-        "Product & Marketing Analytics"
+        "ETL/ELT Pipeline Ingestion & Design",
+        "AWS Glue, S3 Data Lakes, Athena, EC2",
+        "Snowflake Warehousing & Star Schemas",
+        "Kubernetes & Docker Containerization",
+        "GitHub Actions CI/CD & Automation",
+        "Supabase & Serverless Architectures"
+      ]
+    },
+    {
+      "category": "Analytics, BI & Visuals",
+      "items": [
+        "Power BI (DAX, Star Schema Modeling)",
+        "Tableau (LOD Fields, Executive Dashboards)",
+        "Geospatial Mapping & Analytics (ArcGIS)",
+        "Interactive Dashboards (Chart.js, Plotly)",
+        "Cohort Analytics & Data Storytelling",
+        "Benford's Law Financial Auditing"
+      ]
+    },
+    {
+      "category": "Languages & Core Systems",
+      "items": [
+        "Python (Asyncio, FastAPI, Pandas, NumPy)",
+        "SQL (PostgreSQL, SQLite, SQL Server)",
+        "Scala & Java Programming Basics",
+        "Great Expectations Data Quality QA",
+        "Git Version Control & Code Collaboration",
+        "Distributed Systems & Data Structures"
       ]
     }
   ]

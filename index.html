@@ -689,18 +689,20 @@
                         </div>
                         
                         <div class="widget-body">
-                            <div class="ab-inputs-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                            <div class="ab-inputs-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
                                 <div class="input-group">
-                                    <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">Control (A) Target CR</label>
-                                    <div style="font-size: 0.9rem; font-weight: 600; padding: 0.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-sm);">
-                                        10.0% CR
-                                    </div>
+                                    <label for="ab-a-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                                        <span>Control (A) Target:</span>
+                                        <span id="ab-a-target-val" style="color: var(--accent-indigo, #6366f1); font-weight: 700;">10%</span>
+                                    </label>
+                                    <input type="range" id="ab-a-target-input" min="1" max="30" value="10" step="1" style="width: 100%; accent-color: var(--accent-indigo, #6366f1); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
                                 </div>
                                 <div class="input-group">
-                                    <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">Challenger (B) Target CR</label>
-                                    <div style="font-size: 0.9rem; font-weight: 600; padding: 0.5rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-sm);">
-                                        13.0% CR
-                                    </div>
+                                    <label for="ab-b-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                                        <span>Challenger (B) Target:</span>
+                                        <span id="ab-b-target-val" style="color: var(--accent-pink, #ec4899); font-weight: 700;">13%</span>
+                                    </label>
+                                    <input type="range" id="ab-b-target-input" min="1" max="30" value="13" step="1" style="width: 100%; accent-color: var(--accent-pink, #ec4899); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
                                 </div>
                             </div>
 
@@ -739,7 +741,7 @@
                                 </div>
                             </div>
 
-                            <div class="ab-stats-output" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; font-size: 0.75rem;">
+                            <div class="ab-stats-output" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; font-size: 0.75rem; margin-bottom: 1rem;">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
                                     <span style="color: var(--text-secondary);">Uplift (Relative):</span>
                                     <span id="ab-uplift" style="font-weight: 600; color: #fff;">0.00%</span>
@@ -757,14 +759,21 @@
                                     <span id="ab-status-badge" class="badge-status-neutral" style="padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase;">Not Simulated</span>
                                 </div>
                             </div>
+
+                            <div class="widget-context" style="padding: 1rem; background: rgba(99, 102, 241, 0.03); border: 1px solid rgba(99, 102, 241, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
+                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">🎯 Why Interact &amp; How It Works</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong> to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong> on the proportions.</p>
+                                <p style="margin: 0;"><strong>Recruiting Value:</strong> This simulates how a Data Engineer or Scientist conducts hypothesis testing to validate feature rolls. A result is statistically significant if the P-value is less than 0.05 (95% confidence).</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Model Decision Threshold Optimizer widget -->
                     <div id="threshold-widget" class="glass-card">
                         <div class="widget-header">
-                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">🎛️ ML Model Threshold &amp; Business Profit Optimizer</h3>
-                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Adjust classification boundary to balance false alarms and maximize ROI.</p>
+                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">🎛️ ML Model Threshold &amp; User Conversion Optimizer</h3>
+                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Adjust decision boundary to balance user friction and maximize conversion ROI.</p>
                         </div>
                         
                         <div class="widget-body">
@@ -784,18 +793,18 @@
                                         <thead>
                                             <tr>
                                                 <th style="border: none; padding: 2px;"></th>
-                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Positive</th>
-                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Negative</th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Conversion</th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Passive</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Fraud</td>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Conversion</td>
                                                 <td id="cm-tp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #10b981;">0</td>
                                                 <td id="cm-fn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #ef4444;">0</td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Legitimate</td>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Passive</td>
                                                 <td id="cm-fp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #f59e0b;">0</td>
                                                 <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #3b82f6;">0</td>
                                             </tr>
@@ -817,24 +826,33 @@
                             </div>
 
                             <!-- Profit Calculator Details -->
-                            <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem;">
+                            <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; margin-bottom: 1rem;">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Prevented Fraud (+$100/TP):</span>
+                                    <span style="color: var(--text-secondary);">Engaged Converter (+$100/TP):</span>
                                     <span id="profit-tp-gain" style="font-weight: 600; color: #10b981;">+$0</span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">False Alarm Cost (-$20/FP):</span>
+                                    <span style="color: var(--text-secondary);">User Friction Cost (-$20/FP):</span>
                                     <span id="profit-fp-loss" style="font-weight: 600; color: #f59e0b;">-$0</span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Missed Fraud Cost (-$150/FN):</span>
+                                    <span style="color: var(--text-secondary);">Missed Conversions (-$150/FN):</span>
                                     <span id="profit-fn-loss" style="font-weight: 600; color: #ef4444;">-$0</span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
-                                    <span style="color: #fff; font-weight: 600;">Net Financial Business Impact:</span>
+                                    <span style="color: #fff; font-weight: 600;">Net Conversion ROI Impact:</span>
                                     <span id="val-net-profit" style="font-weight: 700; font-size: 1rem; color: #10b981;">$0</span>
                                 </div>
                             </div>
+
+                            <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
+                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">🎯 Why Interact &amp; How It Works</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
+                                <p style="margin: 0;"><strong>ROI Business Value:</strong> By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -917,67 +935,96 @@
             <div class="skills-grid">
                 
                 <div class="skill-category glass-card">
-                    <h3>Programming & Systems</h3>
+                    <h3>Generative AI, LLMs & Agents</h3>
                     <ul>
                         
-                        <li>Python (Pandas, NumPy, Scipy)</li>
+                        <li>LLM Fine-Tuning & Quantization</li>
                         
-                        <li>SQL (PostgreSQL, SQLite, Snowflake)</li>
+                        <li>Retrieval-Augmented Generation (RAG)</li>
                         
-                        <li>Scala</li>
+                        <li>Agentic Orchestration (LangChain, LangGraph)</li>
                         
-                        <li>R (Tidyverse)</li>
+                        <li>Vector Databases (Pinecone, pgvector)</li>
                         
-                        <li>Git / GitHub Actions</li>
+                        <li>LLM Observability & Evaluation (LangSmith)</li>
+                        
+                        <li>OpenAI API Integration & Custom Agents</li>
                         
                     </ul>
                 </div>
                 
                 <div class="skill-category glass-card">
-                    <h3>Data Engineering</h3>
+                    <h3>Machine Learning & Deep Learning</h3>
                     <ul>
                         
-                        <li>ETL / ELT Pipeline Design</li>
+                        <li>Supervised & Unsupervised Modeling</li>
                         
-                        <li>Data Warehouse Modeling (Star Schema)</li>
-                        
-                        <li>Data Observability & Drift Detection</li>
-                        
-                        <li>Great Expectations Data QA</li>
-                        
-                        <li>AWS Glue, S3, Kubernetes</li>
-                        
-                    </ul>
-                </div>
-                
-                <div class="skill-category glass-card">
-                    <h3>Machine Learning & Stats</h3>
-                    <ul>
-                        
-                        <li>Regression & Classification Modeling</li>
-                        
-                        <li>Random Forest & Ensemble Models</li>
+                        <li>Ensemble Methods (XGBoost, Random Forest)</li>
                         
                         <li>Unsupervised Anomaly (Isolation Forest)</li>
                         
-                        <li>K-Means Clustering & PCA</li>
+                        <li>Deep Learning CNNs (TensorFlow, Keras)</li>
                         
-                        <li>Survival Analysis (Kaplan-Meier, Log-Rank)</li>
+                        <li>Model Observability & Drift (KS-Test)</li>
+                        
+                        <li>A/B Testing & Z-Test Statistics</li>
                         
                     </ul>
                 </div>
                 
                 <div class="skill-category glass-card">
-                    <h3>Visualization & BI</h3>
+                    <h3>Data Engineering & Cloud</h3>
                     <ul>
                         
-                        <li>Power BI (ODBC, DAX, KPI Dashboards)</li>
+                        <li>ETL/ELT Pipeline Ingestion & Design</li>
                         
-                        <li>Tableau (Calculated Fields, Analytics Sheets)</li>
+                        <li>AWS Glue, S3 Data Lakes, Athena, EC2</li>
                         
-                        <li>Matplotlib, Seaborn, Chart.js</li>
+                        <li>Snowflake Warehousing & Star Schemas</li>
                         
-                        <li>Product & Marketing Analytics</li>
+                        <li>Kubernetes & Docker Containerization</li>
+                        
+                        <li>GitHub Actions CI/CD & Automation</li>
+                        
+                        <li>Supabase & Serverless Architectures</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3>Analytics, BI & Visuals</h3>
+                    <ul>
+                        
+                        <li>Power BI (DAX, Star Schema Modeling)</li>
+                        
+                        <li>Tableau (LOD Fields, Executive Dashboards)</li>
+                        
+                        <li>Geospatial Mapping & Analytics (ArcGIS)</li>
+                        
+                        <li>Interactive Dashboards (Chart.js, Plotly)</li>
+                        
+                        <li>Cohort Analytics & Data Storytelling</li>
+                        
+                        <li>Benford's Law Financial Auditing</li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="skill-category glass-card">
+                    <h3>Languages & Core Systems</h3>
+                    <ul>
+                        
+                        <li>Python (Asyncio, FastAPI, Pandas, NumPy)</li>
+                        
+                        <li>SQL (PostgreSQL, SQLite, SQL Server)</li>
+                        
+                        <li>Scala & Java Programming Basics</li>
+                        
+                        <li>Great Expectations Data Quality QA</li>
+                        
+                        <li>Git Version Control & Code Collaboration</li>
+                        
+                        <li>Distributed Systems & Data Structures</li>
                         
                     </ul>
                 </div>
@@ -1110,25 +1157,25 @@
                     <div class="resume-left-col">
                         <section class="resume-section">
                             <h2 class="resume-section-title">Technical Skills</h2>
+                            <div class="resume-skill-group resume-bullet" data-role="ds">
+                                <h3>Generative AI, LLMs &amp; Agents</h3>
+                                <p>LLM Fine-Tuning &amp; Quantization, Retrieval-Augmented Generation (RAG), Agentic Orchestration (LangChain, LangGraph), Vector Databases (Pinecone, pgvector), LLM Observability &amp; Evaluation (LangSmith), Custom OpenAI Agents</p>
+                            </div>
+                            <div class="resume-skill-group resume-bullet" data-role="ds">
+                                <h3>Machine Learning &amp; Deep Learning</h3>
+                                <p>Supervised &amp; Unsupervised Modeling, Ensemble Methods (XGBoost, Random Forest), Unsupervised Anomaly (Isolation Forest), Deep Learning CNNs (TensorFlow, Keras), Model Observability &amp; Drift (KS-Test), A/B Testing &amp; Z-Test Statistics</p>
+                            </div>
+                            <div class="resume-skill-group resume-bullet" data-role="de">
+                                <h3>Data Engineering &amp; Cloud</h3>
+                                <p>ETL/ELT Ingestion &amp; Orchestration, AWS Glue, S3 Data Lakes, Athena, EC2, Snowflake Warehousing &amp; Star Schemas, Kubernetes &amp; Docker Containerization, GitHub Actions CI/CD &amp; Automation, Supabase &amp; Serverless Architectures</p>
+                            </div>
+                            <div class="resume-skill-group resume-bullet" data-role="ds">
+                                <h3>Analytics, BI &amp; Visuals</h3>
+                                <p>Power BI (DAX, Star Schema Modeling), Tableau (LOD Fields, Executive Dashboards), Geospatial Mapping &amp; Analytics (ArcGIS), Interactive Dashboards (Chart.js, Plotly), Cohort Analytics &amp; Data Storytelling, Benford's Law Financial Auditing</p>
+                            </div>
                             <div class="resume-skill-group resume-bullet" data-role="general">
-                                <h3>Programming Languages</h3>
-                                <p>Python, SQL, PostgreSQL, R/Tidyverse</p>
-                            </div>
-                            <div class="resume-skill-group resume-bullet" data-role="ds">
-                                <h3>Data Science &amp; ML</h3>
-                                <p>Regression Analysis, Random Forest, Scikit-learn, Pandas, NumPy, A/B Testing, Experiment Design, Statistical Analysis, Forecasting, Deep Learning, Neural Networks, Model Evaluation, Feature Engineering, Time Series Analysis, Anomaly Detection, Recommendation Systems, OpenAI API</p>
-                            </div>
-                            <div class="resume-skill-group resume-bullet" data-role="ds">
-                                <h3>Data Analytics &amp; Viz</h3>
-                                <p>Tableau, Power BI, Data Mining, Product Analytics, ETL Pipeline Design, Seaborn, Matplotlib, Business Intelligence, Customer Segmentation, Cohort Analysis, Predictive Modeling, Descriptive Statistics, Inferential Statistics</p>
-                            </div>
-                            <div class="resume-skill-group resume-bullet" data-role="de">
-                                <h3>Cloud Computing</h3>
-                                <p>Google Workspace, Azure ML, AWS, Data Lakes, Snowflake</p>
-                            </div>
-                            <div class="resume-skill-group resume-bullet" data-role="de">
-                                <h3>ETL &amp; Data Engineering</h3>
-                                <p>Data Integration, Data Transformation, Data Warehousing, Data Modeling, Data Governance, Data Quality, Data Architecture, Git</p>
+                                <h3>Languages &amp; Core Systems</h3>
+                                <p>Python (Asyncio, FastAPI, Pandas, NumPy), SQL (PostgreSQL, SQLite, SQL Server), Scala &amp; Java Programming Basics, Great Expectations Data Quality QA, Git Version Control, Distributed Systems &amp; Data Structures</p>
                             </div>
                         </section>
 
@@ -1405,8 +1452,8 @@
                             <div class="form-group" style="margin-bottom: 1rem;">
                                 <label style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--text-secondary);">Select Target Model</label>
                                 <select id="ml-model-select" class="sql-select" style="width: 100%;">
-                                    <option value="credit">Credit Fraud Predictor (Random Forest - AUC 0.92)</option>
-                                    <option value="tax">Tax Claim Auditing (Isolation Forest - AUC 0.86)</option>
+                                    <option value="conversion">Visitor Conversion Predictor (XGBoost - AUC 0.91)</option>
+                                    <option value="bot">Bot/Spam Session Detector (Isolation Forest - AUC 0.88)</option>
                                 </select>
                             </div>
                             

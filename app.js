@@ -1427,29 +1427,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const answers = {
-        gpa: "Deshraj achieved a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University. Rather than just focusing on theory, he applied his studies directly to complex project architecture, specializing in database structures, distributed systems, and statistical forecasting models.",
-        python: "Python is Deshraj's primary development tool. He leverages the modern scientific stack—developing asynchronous ingestion scrapers, implementing statistical validations using Pandas/NumPy, training machine learning classifiers (Random Forest, XGBoost) in Scikit-Learn, and engineering deep learning computer vision (CNN) architectures in TensorFlow/Keras.",
-        asu: "Deshraj graduated with a Master of Science in Information Technology from Arizona State University in May 2024, graduating with a perfect 4.0 GPA. His academic specialization sat at the intersection of enterprise cloud computing, automated data pipelines, and predictive analytics.",
-        contact: "You can reach Deshraj directly via email at djogiya786@gmail.com or by phone at (480) 876-2863. He is open to relocation to major tech hubs across the United States and is actively interviewing for Data Engineering, Machine Learning Engineering, and Data Science positions.",
-        cloud: "Deshraj's cloud infrastructure stack revolves around building secure, high-throughput architectures. He uses AWS services (AWS Glue ETL pipelines, S3 data lakes, and Athena queries) alongside Snowflake (leveraging optimized star schema models) and Supabase for serverless functions, database access control (RLS), and secure APIs.",
-        experience: "Deshraj is a Data and AI/ML Engineer with five years of extensive experience designing resilient pipelines and deploying predictive models in production. His career spans engineering high-throughput robotic data collection workflows in Kubernetes at Objectways, to orchestrating legacy database migrations to AWS Glue and Snowflake with Great Expectations validations at Zifatech. Most recently, as an Applied ML Engineer at Technoid LLC, he optimized OpenAI GPT models for profile recommendations, building vector search sync routines that reduced synchronization delays by 65%. In all of his projects, his engineering philosophy centers on proactive drift monitoring and data quality automation.",
-        projects: "Deshraj's portfolio showcases production-grade engineering: a Multi-State Land Use Emissions pipeline forecasting carbon trends with 90% accuracy; a Real-Time IoT Fleet Telematics micro-batching engine executing Z-score anomaly checks; and a FinTech Credit Risk & Fraud platform with sub-100ms API latency. You can check out their live code repositories in the 'Projects' section above!",
-        observability: "Deshraj believes that silently failing data is the largest risk in modern production systems. He integrates automated Great Expectations suites directly into ingest cycles to trap bad data schema and missing values, and implements statistical checks (like Kolmogorov-Smirnov drift tests) to detect feature decay before it impacts live models.",
-        skills: "Deshraj's technical capabilities center on Python pipeline engineering, SQL data modeling, and machine learning development. He operates fluently across cloud environments using AWS Glue, S3, Kubernetes, and Great Expectations for schema validation, alongside business intelligence analytics using Tableau and Power BI. On the modeling side, he specializes in building predictive systems, clustering algorithms, and deep neural networks in Scikit-Learn and TensorFlow.",
-        analytics: "For Deshraj, data analytics is the vital bridge between complex data pipelines and strategic business decisions. Rather than just designing standalone charts, he builds robust analytical architectures like optimized Snowflake star schemas and automates general ledger anomaly audits. At Zifatech, Kronic Keys, and ASU, he designed cohort retention frameworks and built interactive Power BI and Tableau dashboards that shortened manual reports extraction times by 30%, giving executive teams real-time visibility into operational growth and customer acquisition metrics.",
-        objectways: "At Objectways Technologies, Deshraj optimized robotic teleoperation data workflows. He designed custom Python and Scala ingest scripts to organize and catalog over 10,000 robotic teleoperation samples into a Kubernetes-orchestrated environment. This saved the simulation team 30% in processing latency and eliminated raw dataset inconsistencies.",
-        technoid: "At Technoid LLC, Deshraj served as an Applied ML Engineer fine-tuning LLM systems (GPT-4o mini) for automated resume analysis and profile matching. He developed optimized vector prompts and Supabase synchronization logic, reducing backend synchronization delays by 65% while improving recommendations accuracy by 25%.",
-        zifatech: "As a Data Analyst at Zifatech Solutions, Deshraj drove the migration of legacy SQL datasets to AWS (Glue and S3 data lakes), improving Snowflake warehouse data availability by 60%. He also designed Star Schema architectures and automated checks using Great Expectations to establish a 98% data reliability standard.",
-        elevateme: "At ElevateMe Bootcamp, Deshraj developed customer segmentation models and business intelligence flows. He combined Principal Component Analysis (PCA) and K-Means clustering in Python to classify transactional customers into 6 high-value profiles capturing 92% of variance. He also built interactive Power BI marketing dashboards that helped lift campaign click-through rates by 12%.",
-        kronic: "At Kronic Keys, Deshraj optimized general ledger and transaction reporting database structures in PostgreSQL. He designed and deployed automated reporting pipelines and Tableau visual dashboards, which cut manual extraction times by 30% and enabled executive leadership to track weekly customer acquisition metrics.",
-        emissions: "The Multi-State Land Use Emissions Analysis project is a geospatial data pipeline that processes daily land cover changes across 5 U.S. states. Deshraj built the ETL ingestion layer using Python and SQLite, and applied Linear Regression and Random Forest models to forecast CO2 emission trends with 90% accuracy, displaying the interactive map analytics via an ArcGIS dashboard.",
-        fintech: "The FinTech Credit Risk & Fraud Command Center is an end-to-end transaction pipeline. It features a FastAPI backend providing real-time transactional evaluations. It runs a custom Random Forest classifier in Scikit-Learn to evaluate loan eligibility and check fraud anomalies, keeping API response latency under 100ms.",
-        telematics: "The Real-Time Streaming IoT Fleet Telematics system processes high-frequency sensor streams (temperature, voltage, and RPM) from EV batteries. The Python-based micro-batching engine executes statistical Z-score anomaly detection to preempt battery failures and feeds a Remaining Useful Life (RUL) regression model to schedule predictive maintenance alerts.",
-        stem: "Extending STEM across ASL is an accessibility platform that enables sign language users to interact with 7 core STEM concepts. Deshraj trained a deep Convolutional Neural Network (CNN) in TensorFlow and Keras to classify hand gestures from video frames, deploying it via a Flask backend and achieving a 4.6/5 user satisfaction score in testing.",
-        sales: "The Sales Operations & Customer Segmentation pipeline models Pareto sales distributions and segments customers using K-Means and PCA. Deshraj automated the RFM scaling pipeline to group users into 4 target marketing personas, improving campaign planning and visualization in Tableau.",
-        anomaly: "The Tax Anomaly Audit Compliance Engine scans general ledger entries to flag suspicious transactions. It checks ledger distributions against Benford's Law and fits an Isolation Forest model to isolate multivariate transaction outliers, helping auditors spot non-compliant records 15% faster.",
-        simulation: "The AI-ML Data Science Simulation is an automated retail pipeline that ingests daily branch sales from 5 outlets. It runs Linear Regression and Random Forest models to forecast branch inventory demands with 90% accuracy, cutting stock-outs by 15% and visualizing regional sales trends in Tableau.",
-        observability_project: "The AI Model Observability & Fairness Audits project monitors production ML models. It automatically runs Kolmogorov-Smirnov (KS) tests on live feature inputs to detect data drift, and calculates Disparate Impact ratios to ensure the model's decisions are fair and unbiased across different demographic slices."
+        gpa: "I would be glad to share that! Deshraj earned a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University. Beyond academic excellence, he focused his studies on practical enterprise solutions like distributed systems, database design, and predictive modeling, putting his knowledge directly into code.",
+        python: "I would be happy to explain how he uses Python! Python is Deshraj's primary development tool. He leverages it to build asynchronous data ingestion pipelines, run validations with Great Expectations/Pandas, train machine learning models like XGBoost and Random Forests in Scikit-Learn, and develop deep Convolutional Neural Networks (CNNs) for computer vision using TensorFlow and Keras.",
+        asu: "Certainly! Deshraj completed his Master of Science in Information Technology at Arizona State University, graduating in May 2024 with a perfect 4.0/4.0 GPA. His coursework and research specialized in cloud systems, automated ETL pipeline design, and predictive model governance.",
+        contact: "I'd be happy to help you connect with him! You can reach Deshraj directly by email at djogiya786@gmail.com or by calling him at (480) 876-2863. He is open to relocation to major technology hubs across the United States and is actively interviewing for Data Engineering, Machine Learning Engineering, and Data Science opportunities.",
+        cloud: "I would be happy to discuss his cloud experience! Deshraj has robust experience building secure, high-throughput cloud architectures. He designs serverless APIs on Supabase, orchestrates scalable ETL flows using AWS Glue and S3, and builds optimized star schema data warehouses on Snowflake to handle complex enterprise analytical queries.",
+        experience: "I would be glad to summarize Deshraj's five years of professional experience! As a Data and AI/ML Engineer, Deshraj focuses on building production-grade, statistically monitored pipelines and deploying robust models. Most recently at Technoid LLC, he optimized LLM profile recommenders (using GPT models) and built vector sync processes that reduced synchronization delays by 65%. Previously, he migrated legacy database architectures to AWS Glue and Snowflake with automated Great Expectations validation at Zifatech, and designed scalable teleoperation data collectors inside Kubernetes at Objectways. He combines strong software design with a commitment to data quality and proactive drift monitoring.",
+        projects: "I would love to walk you through Deshraj's projects! He has built several production-ready showcases that you can test live on this site. These include a Geospatial Carbon Ingestion pipeline that models and forecasts emissions with 90% accuracy, a Real-Time Battery Telematics streaming engine utilizing statistical Z-score anomaly checks, and a FinTech Credit Evaluation pipeline with sub-100ms API latency. You can check out all of his repositories, code, and architectures in the Projects and Showcases sections above!",
+        observability: "I would be happy to share his thoughts on observability! Deshraj strongly believes that silently failing data is one of the biggest risks in production pipelines. To combat this, he integrates automated Great Expectations validation suites directly into ingestion cycles, and runs statistical checks (like Kolmogorov-Smirnov tests) to flag feature drift before it can degrade model performance.",
+        skills: "I'd be happy to outline Deshraj's technical expertise! His core capabilities center on Python data engineering, database modeling, and machine learning systems. He works extensively with AWS Glue, S3, Snowflake, and Supabase for cloud architectures. For ML/AI, he specializes in training supervised and unsupervised models (like XGBoost, Random Forests, and Isolation Forests), building custom neural networks in TensorFlow/Keras, and deploying Generative AI workflows with LLM integration. In addition, he integrates data quality automation with Great Expectations and designs executive dashboards in Tableau and Power BI.",
+        analytics: "I would be glad to detail Deshraj's analytics background! Deshraj bridges raw data engineering and executive decision-making. At Zifatech, Kronic Keys, and ASU, he designed optimized Snowflake star schemas and built cohort retention frameworks. By developing interactive dashboards in Tableau and Power BI, he cut manual extraction times by 30%, giving executive leadership immediate, real-time visibility into business performance and customer acquisition metrics.",
+        objectways: "I'd be happy to explain his role at Objectways! While there, Deshraj optimized robotic teleoperation data workflows. He designed custom Python and Scala scripts that organized and ingested over 10,000 telemetry samples into a Kubernetes-orchestrated platform, saving the simulation team 30% in processing latency and eliminating raw dataset inconsistencies.",
+        technoid: "I'd be happy to share what he does at Technoid LLC! As an Applied ML Engineer, Deshraj focuses on optimizing LLM recommender systems (using GPT models) for automated resume matching. He designed optimized vector prompts and Supabase sync logic, which cut synchronization delays by 65% while improving recommendation accuracy by 25%.",
+        zifatech: "I'd be happy to talk about his work at Zifatech Solutions! During his time as a Data Analyst, Deshraj led the migration of legacy SQL datasets to AWS Glue and S3 data lakes, improving Snowflake warehouse data availability by 60%. He also designed Star Schemas and automated validation checks using Great Expectations to establish a 98% data reliability standard.",
+        elevateme: "I'd be happy to share his experience at ElevateMe Bootcamp! Deshraj developed customer segmentation models and business intelligence flows. He combined Principal Component Analysis (PCA) and K-Means clustering in Python to classify transactional customers into 6 high-value profiles capturing 92% of variance. He also built interactive Power BI marketing dashboards that helped lift campaign click-through rates by 12%.",
+        kronic: "I'd be happy to explain his work at Kronic Keys! Deshraj optimized general ledger and transaction reporting database structures in PostgreSQL. He designed and deployed automated reporting pipelines and Tableau visual dashboards, which cut manual extraction times by 30% and enabled executive leadership to track weekly customer acquisition metrics.",
+        emissions: "I'd be happy to walk you through the Land Use Emissions project! It's a geospatial data pipeline that processes daily land cover changes across 5 U.S. states. Deshraj built the ETL ingestion layer using Python and SQLite, and applied Linear Regression and Random Forest models to forecast CO2 emission trends with 90% accuracy, displaying the interactive map analytics via an ArcGIS dashboard.",
+        fintech: "I'd be happy to highlight the FinTech project! The FinTech Credit Risk & Fraud Command Center is an end-to-end transaction pipeline. It features a FastAPI backend providing real-time transactional evaluations. It runs a custom Random Forest classifier in Scikit-Learn to evaluate loan eligibility and check fraud anomalies, keeping API response latency under 100ms.",
+        telematics: "I'd be happy to explain the IoT Telematics project! The Real-Time Streaming IoT Fleet Telematics system processes high-frequency sensor streams (temperature, voltage, and RPM) from EV batteries. The Python-based micro-batching engine executes statistical Z-score anomaly detection to preempt battery failures and feeds a Remaining Useful Life (RUL) regression model to schedule predictive maintenance alerts.",
+        stem: "I'd be happy to walk you through the STEM platform! Extending STEM across ASL is an accessibility platform that enables sign language users to interact with 7 core STEM concepts. Deshraj trained a deep Convolutional Neural Network (CNN) in TensorFlow and Keras to classify hand gestures from video frames, deploying it via a Flask backend and achieving a 4.6/5 user satisfaction score in testing.",
+        sales: "I'd be happy to explain the Sales pipeline! The Sales Operations & Customer Segmentation pipeline models Pareto sales distributions and segments customers using K-Means and PCA. Deshraj automated the RFM scaling pipeline to group users into 4 target marketing personas, improving campaign planning and visualization in Tableau.",
+        anomaly: "I'd be happy to share details about the Anomaly Engine! The Tax Anomaly Audit Compliance Engine scans general ledger entries to flag suspicious transactions. It checks ledger distributions against Benford's Law and fits an Isolation Forest model to isolate multivariate transaction outliers, helping auditors spot non-compliant records 15% faster.",
+        simulation: "I'd be happy to explain the AI-ML Simulation project! The AI-ML Data Science Simulation is an automated retail pipeline that ingests daily branch sales from 5 outlets. It runs Linear Regression and Random Forest models to forecast branch inventory demands with 90% accuracy, cutting stock-outs by 15% and visualizing regional sales trends in Tableau.",
+        observability_project: "I'd be happy to share details about the Model Observability project! The AI Model Observability & Fairness Audits project monitors production ML models. It automatically runs Kolmogorov-Smirnov (KS) tests on live feature inputs to detect data drift, and calculates Disparate Impact ratios to ensure the model's decisions are fair and unbiased across different demographic slices."
     };
 
     const searchKeyword = (msg) => {
@@ -2049,11 +2049,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const t = parseFloat(thresholdSlider.value);
         if (thresholdVal) thresholdVal.textContent = t.toFixed(2);
 
-        const model = modelSelect ? modelSelect.value : "credit";
+        const model = modelSelect ? modelSelect.value : "conversion";
 
         let tp, fp, fn, tn, totalPos, totalNeg;
 
-        if (model === "credit") {
+        if (model === "conversion") {
             totalPos = 200;
             totalNeg = 800;
             // Mathematical approximations modeling typical Classifier curves
@@ -2106,33 +2106,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Contextual business text
         if (businessTitle && businessDesc) {
-            if (model === "credit") {
+            if (model === "conversion") {
                 if (t < 0.30) {
-                    businessTitle.textContent = `⚠️ High Recall / Low Precision Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = `⚠️ High Recall / Low Precision Conversion Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "The model flags almost all potential fraud transactions. This prevents default loss, but generates many false alarms (blocking 90% of genuine users) and causes substantial user frustration.";
+                    businessDesc.textContent = "Flags almost all visitors as likely to convert. This triggers aggressive modal popups, newsletter signups, and sales outreach, causing high user bounce rates and user frustration.";
                 } else if (t > 0.70) {
-                    businessTitle.textContent = `⚠️ High Precision / Low Recall Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = `⚠️ High Precision / Low Recall Conversion Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "The model only flags fraud when it is 100% certain. Genuine users experience zero friction, but the bank misses 80% of actual fraud cases, leading to massive default losses.";
+                    businessDesc.textContent = "Only triggers conversion outreach when 100% certain. Genuine recruiters browse in peace, but you miss proactive opportunities to trigger the recruiter tour or AI chatbot, losing warm leads.";
                 } else {
-                    businessTitle.textContent = `✅ Optimal Balanced Decisioning Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = `✅ Optimal Balanced Conversion Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-emerald)";
-                    businessDesc.textContent = "Optimal F1-Score trade-off. Captures ~85% of fraudulent loan attempts while ensuring a smooth, frictionless approval experience for 98% of creditworthy customers.";
+                    businessDesc.textContent = "Optimal F1-Score trade-off. Automatically triggers the guided tour and AI assistant launcher for high-interest users while keeping background tracking passive and non-intrusive.";
                 }
             } else {
                 if (t < 0.35) {
-                    businessTitle.textContent = `⚠️ High Recall / Low Precision Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = `⚠️ High Recall / Low Precision Bot Filtering Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "Flags almost all tax claims for auditing. Secures compliance safety, but creates massive administrative backlogs for audit analysts who must verify compliant returns manually.";
+                    businessDesc.textContent = "Flags almost all sessions as potential bot traffic. Enforces strict CAPTCHA verification challenges for every visitor, causing high friction and driving away real recruiters.";
                 } else if (t > 0.65) {
-                    businessTitle.textContent = `⚠️ High Precision / Low Recall Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = `⚠️ High Precision / Low Recall Bot Filtering Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "Flags only extreme outlier tax claims. Keeps audit overhead low, but misses millions of dollars in fraudulent deductions and non-compliant claims.";
+                    businessDesc.textContent = "Only blocks sessions that are undeniably bots. Real users experience zero friction, but the backend is flooded with automated scrapers, spam database inserts, and fake analytics logs.";
                 } else {
-                    businessTitle.textContent = `✅ Optimal Balanced Compliance Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = `✅ Optimal Balanced Bot Security Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-emerald)";
-                    businessDesc.textContent = "Balanced compliance engine. Captures ~82% of high-risk claims while keeping audit verification backlogs manageable for internal reviewers.";
+                    businessDesc.textContent = "Balanced security threshold. Filters out 98% of aggressive headless scrapers and automated spam bots while ensuring a completely friction-free experience for 99.9% of human recruiters.";
                 }
             }
         }
@@ -2159,6 +2159,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let abInterval = null;
     const runABBtn = document.getElementById("run-ab-btn");
+    const abATargetInput = document.getElementById("ab-a-target-input");
+    const abBTargetInput = document.getElementById("ab-b-target-input");
+    const abATargetVal = document.getElementById("ab-a-target-val");
+    const abBTargetVal = document.getElementById("ab-b-target-val");
+
+    function updateABStaticValues() {
+        if (!abATargetInput || !abBTargetInput) return;
+        const valA = parseFloat(abATargetInput.value);
+        const valB = parseFloat(abBTargetInput.value);
+        
+        const crAEl = document.getElementById("ab-a-cr");
+        const crBEl = document.getElementById("ab-b-cr");
+        const convAEl = document.getElementById("ab-a-conv");
+        const convBEl = document.getElementById("ab-b-conv");
+        const visAEl = document.getElementById("ab-a-visitors");
+        const visBEl = document.getElementById("ab-b-visitors");
+        const barAEl = document.getElementById("ab-a-bar");
+        const barBEl = document.getElementById("ab-b-bar");
+        
+        if (crAEl) crAEl.textContent = valA.toFixed(2) + "%";
+        if (crBEl) crBEl.textContent = valB.toFixed(2) + "%";
+        
+        if (convAEl) convAEl.textContent = Math.round(valA * 10);
+        if (convBEl) convBEl.textContent = Math.round(valB * 10);
+        
+        if (visAEl) visAEl.textContent = "1000";
+        if (visBEl) visBEl.textContent = "1000";
+        
+        if (barAEl) barAEl.style.width = Math.min(100, (valA / 30) * 100) + "%";
+        if (barBEl) barBEl.style.width = Math.min(100, (valB / 30) * 100) + "%";
+    }
+
+    if (abATargetInput && abATargetVal) {
+        abATargetInput.addEventListener("input", () => {
+            abATargetVal.textContent = abATargetInput.value + "%";
+            // Update results in real-time as user moves the slider
+            if (!abInterval || runABBtn.disabled === false) {
+                updateABStaticValues();
+            }
+        });
+    }
+    if (abBTargetInput && abBTargetVal) {
+        abBTargetInput.addEventListener("input", () => {
+            abBTargetVal.textContent = abBTargetInput.value + "%";
+            // Update results in real-time as user moves the slider
+            if (!abInterval || runABBtn.disabled === false) {
+                updateABStaticValues();
+            }
+        });
+    }
+    
+    // Call initially to render default targets (10% and 13%)
+    updateABStaticValues();
     
     if (runABBtn) {
         runABBtn.addEventListener("click", () => {
@@ -2168,9 +2221,13 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const nA = 1000;
             const nB = 1000;
-            // Generate actual random conversions based on targets (10% and 13%)
-            const finalA = Math.round(nA * (0.09 + Math.random() * 0.02)); 
-            const finalB = Math.round(nB * (0.12 + Math.random() * 0.025)); 
+            
+            const targetValA = abATargetInput ? parseFloat(abATargetInput.value) / 100 : 0.10;
+            const targetValB = abBTargetInput ? parseFloat(abBTargetInput.value) / 100 : 0.13;
+
+            // Generate actual random conversions based on target sliders
+            const finalA = Math.round(nA * (targetValA - 0.01 + Math.random() * 0.02)); 
+            const finalB = Math.round(nB * (targetValB - 0.01 + Math.random() * 0.02)); 
             
             let currentVisitors = 0;
             abInterval = setInterval(() => {
@@ -2195,9 +2252,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("ab-a-visitors").textContent = currentVisitors;
                 document.getElementById("ab-b-visitors").textContent = currentVisitors;
                 
-                // Max 20% conversion rate fills 100% width of progress bar
-                document.getElementById("ab-a-bar").style.width = Math.min(100, (crA / 20) * 100) + "%";
-                document.getElementById("ab-b-bar").style.width = Math.min(100, (crB / 20) * 100) + "%";
+                // Max 30% conversion rate fills 100% width of progress bar (scaled to 30)
+                document.getElementById("ab-a-bar").style.width = Math.min(100, (crA / 30) * 100) + "%";
+                document.getElementById("ab-b-bar").style.width = Math.min(100, (crB / 30) * 100) + "%";
                 
                 if (currentVisitors === 1000) {
                     const pA = finalA / nA;
@@ -2206,7 +2263,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const se = Math.sqrt(pooled * (1 - pooled) * (1 / nA + 1 / nB));
                     const z = (pB - pA) / se;
                     const pValue = 2 * (1 - stdNormalCDF(Math.abs(z)));
-                    const uplift = ((pB - pA) / pA) * 100;
+                    const uplift = pA > 0 ? ((pB - pA) / pA) * 100 : 0;
                     
                     document.getElementById("ab-uplift").textContent = (uplift >= 0 ? "+" : "") + uplift.toFixed(2) + "%";
                     document.getElementById("ab-zscore").textContent = z.toFixed(3);
@@ -2393,10 +2450,10 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             title: "SQL Sandbox & Dynamic Visuals 📊",
             desc: "Let's check out the SQL analytical playground. We'll select the 'Carbon Ingestion & Geospatial Emissions' query, execute it, and see a dynamic Chart.js chart rendered instantly.",
-            target: ".sql-playground-widget",
+            target: ".sql-widget",
             duration: 16000,
             action: async () => {
-                const widget = document.querySelector('.sql-playground-widget');
+                const widget = document.querySelector('.sql-widget');
                 if (widget) {
                     widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     widget.classList.add("tour-highlight");
@@ -2416,7 +2473,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             },
             cleanup: () => {
-                const widget = document.querySelector('.sql-playground-widget');
+                const widget = document.querySelector('.sql-widget');
                 if (widget) widget.classList.remove("tour-highlight");
             }
         },
@@ -2426,6 +2483,9 @@ document.addEventListener("DOMContentLoaded", () => {
             target: "#chat-launcher",
             duration: 22000,
             action: async () => {
+                const widget = document.getElementById("ai-chat-widget");
+                if (widget) widget.style.zIndex = "100003";
+
                 const launcher = document.getElementById("chat-launcher");
                 if (launcher) {
                     launcher.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2460,6 +2520,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             },
             cleanup: () => {
+                const widget = document.getElementById("ai-chat-widget");
+                if (widget) widget.style.zIndex = "";
+
                 const chatContainer = document.getElementById("chat-container");
                 if (chatContainer) chatContainer.classList.remove("tour-highlight");
             }
@@ -2586,6 +2649,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (el) el.classList.remove("tour-highlight");
             }
         });
+        
+        const chatWidget = document.getElementById("ai-chat-widget");
+        if (chatWidget) chatWidget.style.zIndex = "";
         
         const progressContainer = document.getElementById("tour-progress-container");
         if (progressContainer) progressContainer.style.display = "none";
