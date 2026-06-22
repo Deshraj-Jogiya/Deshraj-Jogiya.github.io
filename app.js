@@ -2416,7 +2416,31 @@ document.addEventListener("DOMContentLoaded", () => {
     let stepTimeElapsed = 0;
     const PROGRESS_TICK = 100;
     
-    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    let pendingTourDelays = [];
+    
+    const delay = (ms) => new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+            pendingTourDelays = pendingTourDelays.filter(item => item.reject !== reject);
+            resolve();
+        }, ms);
+        
+        pendingTourDelays.push({
+            timeoutId,
+            reject: () => {
+                clearTimeout(timeoutId);
+                reject(new Error("TourStepAborted"));
+            }
+        });
+    });
+
+    function cancelPendingTourDelays() {
+        pendingTourDelays.forEach(item => {
+            try {
+                item.reject();
+            } catch (e) {}
+        });
+        pendingTourDelays = [];
+    }
     
     const tourOverlay = document.getElementById("tour-overlay-card");
     const tourBackdrop = document.getElementById("tour-backdrop");
@@ -2923,6 +2947,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function endTour() {
         clearStepTimer();
+        cancelPendingTourDelays();
         if (tourSteps[tourCurrentStep].cleanup) {
             tourSteps[tourCurrentStep].cleanup();
         }
@@ -2946,6 +2971,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function showTourStep(stepIdx) {
         clearStepTimer();
+        cancelPendingTourDelays();
 
         if (stepIdx > 0 && tourSteps[stepIdx - 1].cleanup) {
             tourSteps[stepIdx - 1].cleanup();
@@ -2989,15 +3015,17 @@ document.addEventListener("DOMContentLoaded", () => {
         tourTitle.textContent = tourSteps[stepIdx].title;
         tourDesc.textContent = tourSteps[stepIdx].desc;
         
-        tourNextBtn.disabled = true;
-        tourPrevBtn.disabled = true;
-        
         if (tourSteps[stepIdx].action) {
-            await tourSteps[stepIdx].action();
+            try {
+                await tourSteps[stepIdx].action();
+            } catch (err) {
+                if (err.message === "TourStepAborted") {
+                    console.log("Tour step action aborted successfully");
+                    return;
+                }
+                console.error("Error in tour step action:", err);
+            }
         }
-        
-        tourNextBtn.disabled = false;
-        tourPrevBtn.disabled = false;
 
         if (tourMode === 'autoplay' && stepIdx > 0) {
             isAutoplayPaused = false;
