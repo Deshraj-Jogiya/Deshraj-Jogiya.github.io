@@ -2280,7 +2280,7 @@ body.light-theme .resume-bullet.highlighted-ds {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    z-index: 9999;
+    z-index: 10100;
     font-family: 'Inter', sans-serif;
 }
 
@@ -3415,6 +3415,10 @@ div:has(.tour-highlight):not(.ai-chat-widget):not(.modal-overlay):not(.visitor-a
         /* Positioned inside the outer viewport right margin, completely clear of content */
         right: 40px;
         width: 320px;
+    }
+    
+    .ai-chat-widget {
+        right: 390px !important;
     }
     
     .visitor-launcher-btn {
