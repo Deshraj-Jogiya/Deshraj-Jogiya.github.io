@@ -3135,7 +3135,7 @@ body.light-theme .badge-status-neutral {
 
 /* Elevate any containers containing a tour-highlight to make sure they render above the backdrop */
 section:has(.tour-highlight),
-div:has(.tour-highlight):not(.ai-chat-widget):not(.modal-overlay) {
+div:has(.tour-highlight):not(.ai-chat-widget):not(.modal-overlay):not(.visitor-analytics-widget) {
     z-index: 100002 !important;
     position: relative !important;
 }

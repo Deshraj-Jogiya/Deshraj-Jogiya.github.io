@@ -2404,7 +2404,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Interactive Resume Modal 💼",
             desc: "Watch as we open the Resume, cycle through his 'Data Engineering' and 'Data Science' highlights, and point out his perfect 4.0/4.0 GPA from Arizona State University.",
             target: "#resume-hero-btn",
-            duration: 18000,
+            duration: 24000,
             action: async () => {
                 const resumeModal = document.getElementById("resume-modal");
                 if (resumeModal) {
@@ -2416,23 +2416,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 await delay(1200);
                 
-                // Highlight Data Engineering role bullets
+                // Highlight Data Engineering role bullets & scroll to one
                 const deFilter = document.querySelector('.resume-filter-btn[data-role="de"]');
                 if (deFilter) {
                     deFilter.click();
                     deFilter.classList.add("tour-highlight");
                 }
-                await delay(3500);
+                const deBullet = document.querySelector('.resume-bullet[data-role="de"]');
+                if (deBullet) {
+                    deBullet.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    deBullet.classList.add("tour-highlight");
+                }
+                await delay(5000);
                 if (deFilter) deFilter.classList.remove("tour-highlight");
+                if (deBullet) deBullet.classList.remove("tour-highlight");
                 
-                // Highlight Data Science & ML role bullets
+                // Highlight Data Science & ML role bullets & scroll to one
                 const dsFilter = document.querySelector('.resume-filter-btn[data-role="ds"]');
                 if (dsFilter) {
                     dsFilter.click();
                     dsFilter.classList.add("tour-highlight");
                 }
-                await delay(3500);
+                const dsBullet = document.querySelector('.resume-bullet[data-role="ds"]');
+                if (dsBullet) {
+                    dsBullet.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    dsBullet.classList.add("tour-highlight");
+                }
+                await delay(5000);
                 if (dsFilter) dsFilter.classList.remove("tour-highlight");
+                if (dsBullet) dsBullet.classList.remove("tour-highlight");
                 
                 // Return to all roles & highlight GPA
                 const allFilter = document.querySelector('.resume-filter-btn[data-role="all"]');
@@ -2457,6 +2469,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const dsFilter = document.querySelector('.resume-filter-btn[data-role="ds"]');
                 if (dsFilter) dsFilter.classList.remove("tour-highlight");
                 
+                const deBullet = document.querySelector('.resume-bullet[data-role="de"]');
+                if (deBullet) deBullet.classList.remove("tour-highlight");
+                
+                const dsBullet = document.querySelector('.resume-bullet[data-role="ds"]');
+                if (dsBullet) dsBullet.classList.remove("tour-highlight");
+                
                 const gpaText = document.getElementById("resume-gpa-highlight");
                 if (gpaText) gpaText.classList.remove("tour-highlight");
                 
@@ -2468,7 +2486,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Portfolio Repositories 🚀",
             desc: "Next, we scroll to his projects. Watch as the search category filters cycle dynamically to show Data Engineering, ML, and Analytics projects.",
             target: "#projects",
-            duration: 10000,
+            duration: 18000,
             action: async () => {
                 const section = document.getElementById("projects");
                 if (section) {
@@ -2482,7 +2500,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     deFilter.click();
                     deFilter.classList.add("tour-highlight");
                 }
-                await delay(1500);
+                await delay(3500);
                 if (deFilter) deFilter.classList.remove("tour-highlight");
                 
                 const mlFilter = document.querySelector('.filter-btn[data-filter="machine-learning"]');
@@ -2490,7 +2508,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     mlFilter.click();
                     mlFilter.classList.add("tour-highlight");
                 }
-                await delay(1500);
+                await delay(3500);
                 if (mlFilter) mlFilter.classList.remove("tour-highlight");
                 
                 const biFilter = document.querySelector('.filter-btn[data-filter="analytics"]');
@@ -2498,7 +2516,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     biFilter.click();
                     biFilter.classList.add("tour-highlight");
                 }
-                await delay(1500);
+                await delay(3500);
                 if (biFilter) biFilter.classList.remove("tour-highlight");
                 
                 const allFilter = document.querySelector('.filter-btn[data-filter="all"]');
@@ -2519,9 +2537,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "SQL Sandbox & Dynamic Visuals 📊",
-            desc: "Let's check out the SQL analytical playground. We'll select the 'Carbon Ingestion & Geospatial Emissions' query, execute it, and see a dynamic Chart.js chart rendered instantly.",
+            desc: "Watch as we select and execute multiple analytical queries inside the playground to automatically render live metrics, data tables, and custom charts.",
             target: ".sql-widget",
-            duration: 15000,
+            duration: 32000,
             action: async () => {
                 const widget = document.querySelector('.sql-widget');
                 if (widget) {
@@ -2531,16 +2549,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 await delay(1000);
                 
                 const querySelect = document.getElementById("sql-query-select");
+                const runBtn = document.getElementById("run-sql-btn");
+                
+                // 1. Cycle to Tax Anomaly Audit Query
                 if (querySelect) {
-                    querySelect.value = "emissions_analysis";
+                    querySelect.value = "anomaly_risk_claims";
                     querySelect.dispatchEvent(new Event('change'));
                 }
-                await delay(1200);
+                await delay(1500);
+                if (runBtn) runBtn.click();
+                await delay(8000);
                 
-                const runBtn = document.getElementById("run-sql-btn");
-                if (runBtn) {
-                    runBtn.click();
+                // 2. Cycle to Clinical Trial Outcomes Query
+                if (querySelect) {
+                    querySelect.value = "survival_by_treatment";
+                    querySelect.dispatchEvent(new Event('change'));
                 }
+                await delay(1500);
+                if (runBtn) runBtn.click();
+                await delay(8000);
+                
+                // 3. Cycle to Land Use Emissions Query
+                if (querySelect) {
+                    querySelect.value = "emissions_by_state";
+                    querySelect.dispatchEvent(new Event('change'));
+                }
+                await delay(1500);
+                if (runBtn) runBtn.click();
+                await delay(8000);
             },
             cleanup: () => {
                 const widget = document.querySelector('.sql-widget');
@@ -2574,7 +2610,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "D.S. & ML Experiments Simulator 🧪",
             desc: "Watch as we run a live Z-test in the A/B Testing Simulator, and adjust the classification decision boundary threshold on the ML Optimizer.",
             target: ".experiments-grid",
-            duration: 12000,
+            duration: 16000,
             action: async () => {
                 const grid = document.querySelector('.experiments-grid');
                 if (grid) {
@@ -2584,9 +2620,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 await delay(1000);
                 
                 const runBtn = document.getElementById("run-ab-btn");
-                if (runBtn) runBtn.click();
-                
-                await delay(1200);
+                if (runBtn) {
+                    runBtn.click();
+                }
+                await delay(5000);
                 
                 const slider = document.getElementById("threshold-slider");
                 if (slider) {
