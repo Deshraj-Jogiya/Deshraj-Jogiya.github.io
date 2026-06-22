@@ -2049,8 +2049,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const modelSelect = document.getElementById("ml-model-select");
-    const thresholdSlider = document.getElementById("threshold-slider");
-    const thresholdVal = document.getElementById("threshold-val");
+    const thresholdSlider = document.getElementById("modal-threshold-slider");
+    const thresholdVal = document.getElementById("modal-threshold-val");
     const precisionVal = document.getElementById("metric-precision");
     const recallVal = document.getElementById("metric-recall");
     const f1Val = document.getElementById("metric-f1");

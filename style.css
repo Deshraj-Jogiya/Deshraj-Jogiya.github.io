@@ -3216,77 +3216,155 @@ div:has(.tour-highlight):not(.ai-chat-widget):not(.modal-overlay) {
 }
 
 /* ==========================================================================
-   Live Visitor Analytics Floating Widget Styling
+   Live Visitor Analytics Floating Widget Styling (Adaptive Panel)
    ========================================================================== */
 .visitor-analytics-widget {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
     z-index: 9999;
     font-family: 'Inter', sans-serif;
 }
 
-.visitor-launcher-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--grad-accent); /* Emerald-green to Blue gradient */
-    border: none;
-    padding: 0.75rem 1.25rem;
-    border-radius: 50px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
-    transition: var(--transition-smooth);
-    position: relative;
+/* 1. Gutter Mode (Wide screens: >= 1200px) */
+@media (min-width: 1200px) {
+    .main-content {
+        padding-right: 380px !important; /* Make space for the gutter on the right */
+        transition: padding-right 0.3s ease;
+    }
+    
+    .visitor-analytics-widget {
+        position: fixed;
+        top: 120px;
+        /* Positioned inside the max-width 1200px container right gutter */
+        right: calc((100vw - 1200px) / 2 + 25px);
+        width: 320px;
+    }
+    
+    .visitor-launcher-btn {
+        display: none !important; /* No toggle button needed */
+    }
+    
+    .visitor-container {
+        position: static !important;
+        width: 100% !important;
+        max-height: 520px;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: column;
+        border-radius: var(--border-radius-lg);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    
+    /* Hide the close button in gutter mode since it stays open */
+    .close-visitor-btn {
+        display: none !important;
+    }
 }
 
-.visitor-launcher-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+/* 2. Collapsed Tab Mode (Laptop/Tablet screens: 768px to 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .visitor-analytics-widget {
+        position: fixed;
+        top: 180px; /* Positioned below top scroll */
+        right: 0;
+    }
+    
+    .visitor-launcher-btn {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background: var(--grad-accent);
+        border: none;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 1.1rem 0.6rem;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: -4px 0 15px rgba(16, 185, 129, 0.3);
+        transition: var(--transition-smooth);
+        width: 45px;
+        position: relative;
+    }
+    
+    .visitor-launcher-btn:hover {
+        transform: translateX(-3px);
+        box-shadow: -6px 0 20px rgba(16, 185, 129, 0.4);
+    }
+    
+    .launcher-text-vertical {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.12em;
+        margin-top: 0.25rem;
+        text-transform: uppercase;
+    }
+    
+    .visitor-launcher-btn .launcher-pulse {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border: 2px solid rgba(16, 185, 129, 0.5);
+        animation: visitorLauncherPulse 2s infinite;
+        pointer-events: none;
+    }
+    
+    @keyframes visitorLauncherPulse {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(1.15, 1.05); opacity: 0; }
+    }
+    
+    .visitor-container {
+        position: absolute;
+        top: 0;
+        right: 55px; /* opens to the left of the tab button */
+        width: 340px;
+        max-height: 520px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform: translateX(30px) scale(0.95);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--border-radius-lg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    
+    .visitor-container.active {
+        transform: translateX(0) scale(1) !important;
+        opacity: 1 !important;
+        pointer-events: all !important;
+    }
 }
 
-.visitor-launcher-btn .launcher-pulse {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 50px;
-    border: 2px solid rgba(16, 185, 129, 0.5);
-    animation: visitorLauncherPulse 2s infinite;
+/* 3. Mobile Mode (Screens < 768px) */
+@media (max-width: 767px) {
+    .visitor-analytics-widget {
+        display: none !important; /* Hide to avoid mobile clutter */
+    }
 }
 
-@keyframes visitorLauncherPulse {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.15); opacity: 0; }
-}
-
-.visitor-container {
-    position: absolute;
-    bottom: 75px;
-    left: 0;
-    width: 350px;
-    max-height: 520px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: translateY(20px) scale(0.95);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    z-index: 10000;
-}
-
-.visitor-container.active {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    pointer-events: all;
-}
-
+/* Common Widget Internal Elements */
 .visitor-header {
     background: rgba(255, 255, 255, 0.03);
     padding: 1rem;
@@ -3352,13 +3430,6 @@ body.light-theme .close-visitor-btn {
 }
 body.light-theme .close-visitor-btn:hover {
     color: #0f172a;
-}
-
-/* Mobile responsive styling - Hide visitor widget launcher on small devices to avoid viewport crowding */
-@media (max-width: 768px) {
-    .visitor-analytics-widget {
-        display: none !important;
-    }
 }
 
 
