@@ -28,8 +28,8 @@ serve(async (req) => {
       })
     }
 
-    // Call Google Gemini API (model: gemini-1.5-flash for speed and high free quota)
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`
+    // Call Google Gemini API (model: gemini-2.5-flash for speed and high free quota)
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`
     
     const prompt = `You are a virtual career assistant agent trained on Deshraj Jogiya's professional profile. 
 Your goal is to answer questions about his technical experience, engineering projects, background, or availability. 
