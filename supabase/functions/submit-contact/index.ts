@@ -34,43 +34,33 @@ serve(async (req) => {
       throw new Error(`Database save failed: ${dbError.message}`)
     }
 
-    // 2. Send email via Resend
-    const resendApiKey = Deno.env.get("RESEND_API_KEY")
-    if (!resendApiKey) {
-      throw new Error("Missing RESEND_API_KEY in Supabase secrets")
+    // 2. Trigger GitHub Action via Repository Dispatch
+    const githubPat = Deno.env.get("GITHUB_PAT")
+    if (!githubPat) {
+      throw new Error("Missing GITHUB_PAT secret in Supabase")
     }
 
-    const emailResponse = await fetch("https://api.resend.com/emails", {
+    const githubResponse = await fetch("https://api.github.com/repos/Deshraj-Jogiya/Deshraj-Jogiya.github.io/dispatches", {
       method: "POST",
       headers: {
+        "Accept": "application/vnd.github+json",
+        "Authorization": `Bearer ${githubPat}`,
+        "X-GitHub-Api-Version": "2022-11-28",
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${resendApiKey}`
+        "User-Agent": "Supabase-Edge-Function"
       },
       body: JSON.stringify({
-        from: "Portfolio Contact Form <onboarding@resend.dev>",
-        to: ["djogiya786@gmail.com"],
-        subject: `New Portfolio Message from ${name}`,
-        html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
-            <h2 style="color: #4f46e5; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">New Message from Portfolio</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; margin-top: 15px; border: 1px solid #f1f5f9;">
-              <p style="margin: 0; white-space: pre-wrap;">${message}</p>
-            </div>
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin-top: 25px; margin-bottom: 15px;" />
-            <p style="font-size: 12px; color: #64748b; margin: 0;">Submitted at: ${new Date().toLocaleString()}</p>
-          </div>
-        `
+        event_type: "contact_submission",
+        client_payload: { name, email, message }
       })
     })
 
-    if (!emailResponse.ok) {
-      const emailErr = await emailResponse.text()
-      throw new Error(`Resend API failed: ${emailErr}`)
+    if (!githubResponse.ok) {
+      const githubErr = await githubResponse.text()
+      throw new Error(`GitHub API dispatch failed: ${githubErr}`)
     }
 
-    return new Response(JSON.stringify({ success: true, message: "Contact form submitted and email sent successfully!" }), {
+    return new Response(JSON.stringify({ success: true, message: "Contact form submitted and notification triggered!" }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
 
