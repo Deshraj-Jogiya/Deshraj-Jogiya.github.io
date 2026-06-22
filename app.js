@@ -1426,6 +1426,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ==========================================================================
+    // 12b. Floating Live Visitor Analytics Widget Toggle
+    // ==========================================================================
+    const visitorLauncher = document.getElementById("visitor-launcher");
+    const visitorContainer = document.getElementById("visitor-container");
+    const closeVisitorBtn = document.getElementById("close-visitor-btn");
+
+    if (visitorLauncher && visitorContainer) {
+        visitorLauncher.addEventListener("click", () => {
+            visitorContainer.classList.toggle("active");
+        });
+    }
+
+    if (closeVisitorBtn && visitorContainer) {
+        closeVisitorBtn.addEventListener("click", () => {
+            visitorContainer.classList.remove("active");
+        });
+    }
+
     const answers = {
         gpa: "I would be glad to share that! Deshraj earned a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University. Beyond academic excellence, he focused his studies on practical enterprise solutions like distributed systems, database design, and predictive modeling, putting his knowledge directly into code.",
         python: "I would be happy to explain how he uses Python! Python is Deshraj's primary development tool. He leverages it to build asynchronous data ingestion pipelines, run validations with Great Expectations/Pandas, train machine learning models like XGBoost and Random Forests in Scikit-Learn, and develop deep Convolutional Neural Networks (CNNs) for computer vision using TensorFlow and Keras.",

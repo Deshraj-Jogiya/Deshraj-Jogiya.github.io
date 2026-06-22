@@ -3215,4 +3215,151 @@ div:has(.tour-highlight):not(.ai-chat-widget):not(.modal-overlay) {
     }
 }
 
+/* ==========================================================================
+   Live Visitor Analytics Floating Widget Styling
+   ========================================================================== */
+.visitor-analytics-widget {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 9999;
+    font-family: 'Inter', sans-serif;
+}
+
+.visitor-launcher-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--grad-accent); /* Emerald-green to Blue gradient */
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.visitor-launcher-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+}
+
+.visitor-launcher-btn .launcher-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    border: 2px solid rgba(16, 185, 129, 0.5);
+    animation: visitorLauncherPulse 2s infinite;
+}
+
+@keyframes visitorLauncherPulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.15); opacity: 0; }
+}
+
+.visitor-container {
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+    width: 350px;
+    max-height: 520px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+}
+
+.visitor-container.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.visitor-header {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.visitor-header-info {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.visitor-avatar {
+    font-size: 1.5rem;
+}
+
+.visitor-widget-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.visitor-widget-status {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.close-visitor-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-visitor-btn:hover {
+    color: var(--text-primary);
+}
+
+.visitor-widget-content {
+    flex: 1;
+    padding: 1.25rem;
+    overflow-y: auto;
+    background: rgba(7, 10, 19, 0.4);
+}
+
+/* Light Theme Overrides for Floating Visitor Widget */
+body.light-theme .visitor-container {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+body.light-theme .visitor-widget-content {
+    background: rgba(248, 250, 252, 0.95);
+}
+body.light-theme .close-visitor-btn {
+    color: #64748b;
+}
+body.light-theme .close-visitor-btn:hover {
+    color: #0f172a;
+}
+
+/* Mobile responsive styling - Hide visitor widget launcher on small devices to avoid viewport crowding */
+@media (max-width: 768px) {
+    .visitor-analytics-widget {
+        display: none !important;
+    }
+}
+
+
 

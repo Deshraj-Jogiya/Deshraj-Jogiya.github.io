@@ -630,58 +630,7 @@
                     </div>
                 </div>
 
-                <!-- Live Visitor Stats & ML Forecast Card -->
-                <div class="visitor-widget glass-card" style="margin-top: 1.5rem;">
-                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
-                        📡 Live Visitor Analytics &amp; Traffic Forecast
-                    </h3>
-                    
-                    <div class="visitor-widget-layout">
-                        <!-- Stats Panel -->
-                        <div class="visitor-stats-panel">
-                            <div class="visitor-stats-row">
-                                <span class="visitor-stat-label">Your Location</span>
-                                <span class="visitor-location-badge" id="visitor-loc">
-                                    <span id="visitor-flag">📍</span> <span id="visitor-city">Detecting...</span>
-                                </span>
-                            </div>
-                            <div class="visitor-stats-row">
-                                <span class="visitor-stat-label">Total Unique Visits</span>
-                                <span class="visitor-stat-value" id="visitor-count">...</span>
-                            </div>
-                            <div class="visitor-stats-row">
-                                <span class="visitor-stat-label">Active Users Today</span>
-                                <span class="visitor-stat-value" id="visitor-today">...</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Forecast Panel -->
-                        <div class="visitor-forecast-panel">
-                            <div class="visitor-forecast-box" style="margin: 0; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                                <div class="visitor-stat-label" style="font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-secondary);">
-                                    7-Day Traffic Forecast
-                                </div>
-                                <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
-                                <div class="visitor-stat-label" style="font-size: 0.75rem; margin-bottom: 0.5rem;">Expected visits next week</div>
-                                <div class="visitor-progress-bar">
-                                    <div class="visitor-progress-fill" id="visitor-progress-fill"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- ML Panel -->
-                        <div class="visitor-ml-panel" style="display: flex; flex-direction: column; justify-content: space-between;">
-                            <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; margin: 0; font-style: italic;">
-                                🕵️‍♂️ Statistically speaking, you are now a row in my database! (Don't worry, I only track city &amp; browser—no search history!). Click below to see how my K-Means model clusters you and experience the ML magic yourself!
-                            </p>
-                            <div class="visitor-ml-btn-box" style="margin-top: 0.75rem;">
-                                <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
-                                    📊 View ML Model Charts
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Data Science & Machine Learning Experiments -->
                 <div class="experiments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
@@ -1626,6 +1575,76 @@
                 <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." required>
                 <button type="submit" class="chat-send-btn">Send ⚡</button>
             </form>
+        </div>
+    </div>
+
+    <!-- Live Visitor Analytics Floating Widget -->
+    <div id="visitor-analytics-widget" class="visitor-analytics-widget">
+        <!-- Launcher Button -->
+        <button id="visitor-launcher" class="visitor-launcher-btn" aria-label="Open Visitor Analytics">
+            <span class="launcher-icon">📡</span>
+            <span class="launcher-text">Live Visitor Analytics</span>
+            <span class="launcher-pulse"></span>
+        </button>
+
+        <!-- Panel Container -->
+        <div id="visitor-container" class="visitor-container glass-card">
+            <!-- Header -->
+            <div class="visitor-header">
+                <div class="visitor-header-info">
+                    <span class="visitor-avatar">📡</span>
+                    <div>
+                        <div class="visitor-widget-name">Visitor Analytics</div>
+                        <div class="visitor-widget-status"><span class="status-dot"></span> Active (K-Means Clustering)</div>
+                    </div>
+                </div>
+                <button id="close-visitor-btn" class="close-visitor-btn" aria-label="Close Visitor Stats">&times;</button>
+            </div>
+
+            <!-- Scrollable Stats Content -->
+            <div class="visitor-widget-content">
+                <!-- Telemetry Stats -->
+                <div class="visitor-stats-panel">
+                    <div class="visitor-stats-row">
+                        <span class="visitor-stat-label">Your Location</span>
+                        <span class="visitor-location-badge" id="visitor-loc">
+                            <span id="visitor-flag">📍</span> <span id="visitor-city">Detecting...</span>
+                        </span>
+                    </div>
+                    <div class="visitor-stats-row">
+                        <span class="visitor-stat-label">Total Unique Visits</span>
+                        <span class="visitor-stat-value" id="visitor-count">...</span>
+                    </div>
+                    <div class="visitor-stats-row">
+                        <span class="visitor-stat-label">Active Users Today</span>
+                        <span class="visitor-stat-value" id="visitor-today">...</span>
+                    </div>
+                </div>
+
+                <!-- Forecast -->
+                <div class="visitor-forecast-box">
+                    <div class="visitor-stat-label" style="font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                        7-Day Traffic Forecast
+                    </div>
+                    <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
+                    <div class="visitor-stat-label" style="font-size: 0.75rem; margin-bottom: 0.5rem;">Expected visits next week</div>
+                    <div class="visitor-progress-bar">
+                        <div class="visitor-progress-fill" id="visitor-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- ML Action -->
+                <div class="visitor-ml-panel" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.85rem;">
+                    <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; margin: 0; font-style: italic;">
+                        🕵️‍♂️ Statistically speaking, you are now a row in my database! (I only track city &amp; browser). Click below to see how my K-Means model clusters you!
+                    </p>
+                    <div class="visitor-ml-btn-box" style="margin-top: 0.75rem;">
+                        <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
+                            📊 View ML Model Charts
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
