@@ -2564,6 +2564,26 @@ body.light-theme .chat-input {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-4px); }
 }
+.architecture-widget {
+    margin-top: 3rem;
+    padding: 2.25rem 2rem;
+    width: 100%;
+    min-width: 0;
+}
+
+.arch-content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.arch-diagram-card, .arch-info-pane {
+    min-width: 0;
+    width: 100%;
+}
 
 .arch-tab-btn {
     padding: 0.5rem 1rem;
@@ -3282,9 +3302,15 @@ div:has(.tour-highlight):not(.ai-chat-widget):not(.modal-overlay):not(.visitor-a
         justify-content: center !important;
     }
 
-    /* Reduce Explorer card paddings on mobile/tablet */
+    .architecture-widget {
+        padding: 1.25rem 1rem !important;
+        margin-top: 1.5rem !important;
+    }
+
+    /* Reduce Explorer card paddings on mobile/tablet and prevent overflow */
     .arch-diagram-card, .arch-info-pane {
         padding: 1rem !important;
+        min-width: 0 !important;
     }
 }
 
