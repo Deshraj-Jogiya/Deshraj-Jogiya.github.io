@@ -47,10 +47,13 @@ Unlike static HTML sites, this portfolio is built using a **Python-based Static 
 
 ## 🌟 Interactive Showcase Features
 
-To demonstrate data engineering, database modeling, and frontend integration skills directly to recruiters, the site includes three interactive components:
+To demonstrate data engineering, database modeling, and frontend integration skills directly to recruiters, the site includes six interactive components:
 1. **In-Browser SQL Playground:** Select analytical queries from a dropdown (e.g., segment revenue shares, Benford's Law audit outliers, clinical survival deltas), inspect highlighted SQL syntax, and click "Execute Query" to see SQLite-simulated database outputs in a clean grid.
-2. **Live ETL Observability Console:** A telemetry widget simulating daily retail sales ETL. Displays scrolling log console checkpoints, calculates feature data drift (Kolmogorov-Smirnov test), tracks vibration/temperature Z-score thresholds, and reports metrics.
-3. **Print-Ready HTML Resume Viewer:** A modal rendering a complete structured resume. Equipped with CSS `@media print` layout overrides to print perfectly as a clean document (without dark background, navigation elements, or modal buttons).
+2. **Live ETL Observability Console & Traffic Monitor:** A telemetry widget simulating daily retail sales ETL. Displays scrolling log console checkpoints, calculates feature data drift (Kolmogorov-Smirnov test), tracks vibration/temperature Z-score thresholds, and visualizes live visitor geolocation analytics.
+3. **A/B Hypothesis Testing Simulator:** Drag conversion rate sliders and simulate live hypothesis testing. Runs a two-tailed Z-test on proportions, outputs Uplift, Z-Score, and P-value, and evaluates statistical significance ($p < 0.05$).
+4. **Model Decision Threshold Optimizer:** Adjust decision thresholds to optimize user conversion and model performance. Simulates confusion matrices, Precision/Recall, and models Net ROI impact to identify the most profitable classification boundary.
+5. **Print-Ready HTML Resume Viewer:** A modal rendering a complete structured resume. Equipped with CSS `@media print` layout overrides to print perfectly as a clean document (without dark background, navigation elements, or modal buttons).
+6. **AI Resume Q&A Chatbot:** A conversational chatbot answering questions about Deshraj's technical projects and experience, backed by cached and serverless AI responses.
 
 ---
 

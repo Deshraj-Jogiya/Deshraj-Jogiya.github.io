@@ -603,11 +603,14 @@ h1, h2, h3, h4, .logo-text, .btn {
     font-size: 0.85rem;
     font-weight: 600;
     transition: var(--transition-smooth);
+    background: transparent;
+    border: none;
 }
 
 .btn-link:hover {
     color: var(--accent-indigo);
     text-decoration: underline;
+    background: transparent;
 }
 
 /* Skills Section Styles */
@@ -3132,7 +3135,79 @@ body.light-theme .badge-status-neutral {
 
 /* Elevate any containers containing a tour-highlight to make sure they render above the backdrop */
 section:has(.tour-highlight),
-div:has(.tour-highlight):not(.ai-chat-widget) {
+div:has(.tour-highlight):not(.ai-chat-widget):not(.modal-overlay) {
     z-index: 100002 !important;
     position: relative !important;
 }
+
+/* Tour Skip button styles to prevent white box on hover in dark mode */
+#tour-skip-btn {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--text-secondary) !important;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+#tour-skip-btn:hover {
+    color: var(--accent-indigo, #6366f1) !important;
+    background: transparent !important;
+    text-decoration: underline !important;
+    box-shadow: none !important;
+}
+
+/* Responsive side-by-side grid for observability and visitor widgets */
+.monitoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .monitoring-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive grid layouts for simulator inputs and results to prevent mobile clipping */
+.ab-inputs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.ab-results-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.threshold-metrics-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 480px) {
+    .ab-inputs-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .ab-results-container {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .threshold-metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+

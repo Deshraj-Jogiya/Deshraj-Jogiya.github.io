@@ -106,10 +106,7 @@
                 </div>
             </div>
 
-            <!-- Project Cards Grid & Layout Wrapper -->
-            <div class="portfolio-layout">
-                <div class="portfolio-main">
-                    <div class="projects-grid">
+            <div class="projects-grid">
                 {% for project in projects %}
                 <div class="project-card glass-card" data-category="{{ project.category }}">
                     {% if project.dashboard_url %}
@@ -135,53 +132,7 @@
                     </div>
                 </div>
                 {% endfor %}
-                    </div> <!-- End of projects-grid -->
-                </div> <!-- End of portfolio-main -->
-                
-                <!-- Sidebar -->
-                <div class="portfolio-sidebar">
-                    <!-- Live Visitor Stats & ML Forecast Card -->
-                    <div class="visitor-widget glass-card">
-                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
-                            📡 Live Visitor Analytics
-                        </h3>
-                        
-                        <div class="visitor-stats-row">
-                            <span class="visitor-stat-label">Your Location</span>
-                            <span class="visitor-location-badge" id="visitor-loc">
-                                <span id="visitor-flag">📍</span> <span id="visitor-city">Detecting...</span>
-                            </span>
-                        </div>
-                        <div class="visitor-stats-row">
-                            <span class="visitor-stat-label">Total Unique Visits</span>
-                            <span class="visitor-stat-value" id="visitor-count">...</span>
-                        </div>
-                        <div class="visitor-stats-row">
-                            <span class="visitor-stat-label">Active Users Today</span>
-                            <span class="visitor-stat-value" id="visitor-today">...</span>
-                        </div>
-                        
-                        <div class="visitor-forecast-box">
-                            <div class="visitor-stat-label" style="font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-secondary);">
-                                7-Day Traffic Forecast
-                            </div>
-                            <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
-                            <div class="visitor-stat-label" style="font-size: 0.75rem;">Expected visits next week</div>
-                            <div class="visitor-progress-bar">
-                                <div class="visitor-progress-fill" id="visitor-progress-fill"></div>
-                            </div>
-                        </div>
-                        <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; margin-top: 1rem; margin-bottom: 0.25rem; text-align: center; font-style: italic;">
-                            🕵️‍♂️ Statistically speaking, you are now a row in my database! (Don't worry, I only track city &amp; browser—no search history!). Click below to see how my K-Means model clusters you and experience the ML magic yourself!
-                        </p>
-                        <div class="visitor-ml-btn-box" style="margin-top: 0.75rem;">
-                            <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
-                                📊 View ML Model Charts
-                            </button>
-                        </div>
-                    </div>
-                </div> <!-- End of portfolio-sidebar -->
-            </div> <!-- End of portfolio-layout -->
+            </div> <!-- End of projects-grid -->
         </section>
 
         <!-- Interactive Recruiter Showcase Section -->
@@ -249,123 +200,171 @@
                     </div>
                 </div>
 
-                <!-- Live ETL Observability Monitor -->
-                <div class="observability-widget glass-card">
-                    <div class="obs-header">
-                        <h3 class="obs-title">🤖 Live ETL Pipeline Observability Monitor</h3>
-                        <div class="obs-status idle" id="obs-status">
-                            <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Observability Explanatory Box -->
-                    <div class="obs-info-box" style="background: rgba(59, 130, 246, 0.04); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
-                        <strong>💡 What is this?</strong> This widget simulates a real-time data engineering pipeline monitoring system. In production, data pipelines process millions of rows daily and can fail silently due to bad data. 
-                        Click <strong>"Run Pipeline Diagnostics"</strong> to run a live validation check. You'll see how data ingestion, quality checks, machine learning scoring, and database commits flow sequentially, demonstrating automated pipeline monitoring and observability skills.
-                    </div>
-                    
-                    <!-- Pipeline Flow Diagram -->
-                    <div class="pipeline-flow-container">
-                        <div class="pipeline-flow">
-                            <div class="pipeline-line"></div>
-                            <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
-                            
-                            <div class="pipeline-node-item" id="node-ingest">
-                                <div class="pipeline-node-icon">📥</div>
-                                <div class="pipeline-node-label">Ingest</div>
+                <!-- Side-by-Side Monitoring & Visitor Analytics Grid -->
+                <div class="monitoring-grid">
+                    <!-- Live ETL Observability Monitor -->
+                    <div class="observability-widget glass-card" style="margin-top: 0; margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="obs-header">
+                            <h3 class="obs-title">🤖 Live ETL Pipeline Observability Monitor</h3>
+                            <div class="obs-status idle" id="obs-status">
+                                <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
                             </div>
-                            <div class="pipeline-node-item" id="node-validate">
-                                <div class="pipeline-node-icon">🛡️</div>
-                                <div class="pipeline-node-label">Validate</div>
-                            </div>
-                            <div class="pipeline-node-item" id="node-score">
-                                <div class="pipeline-node-icon">🧠</div>
-                                <div class="pipeline-node-label">ML Score</div>
-                            </div>
-                            <div class="pipeline-node-item" id="node-commit">
-                                <div class="pipeline-node-icon">💾</div>
-                                <div class="pipeline-node-label">Commit</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="obs-content" style="margin-top: 1.5rem;">
-                        <!-- Tab Navigation for Observability Widget -->
-                        <div class="obs-tab-nav">
-                            <button class="obs-tab-btn active" data-tab="console">🖥️ Console Outputs</button>
-                            <button class="obs-tab-btn" data-tab="qa-report">🛡️ Data QA Audit Report</button>
                         </div>
                         
-                        <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
-                            <div class="obs-panel-content active" id="obs-console-panel">
-                                <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-                                    <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-                                        <div style="display: flex; gap: 0.35rem;">
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
-                                        </div>
-                                        <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
-                                    </div>
-                                    <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
-                                        <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
-                                    </div>
+                        <!-- Observability Explanatory Box -->
+                        <div class="obs-info-box" style="background: rgba(59, 130, 246, 0.04); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
+                            <strong>💡 What is this?</strong> This widget simulates a real-time data engineering pipeline monitoring system. In production, data pipelines process millions of rows daily and can fail silently due to bad data. 
+                            Click <strong>"Run Pipeline Diagnostics"</strong> to run a live validation check. You'll see how data ingestion, quality checks, machine learning scoring, and database commits flow sequentially, demonstrating automated pipeline monitoring and observability skills.
+                        </div>
+                        
+                        <!-- Pipeline Flow Diagram -->
+                        <div class="pipeline-flow-container">
+                            <div class="pipeline-flow">
+                                <div class="pipeline-line"></div>
+                                <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
+                                
+                                <div class="pipeline-node-item" id="node-ingest">
+                                    <div class="pipeline-node-icon">📥</div>
+                                    <div class="pipeline-node-label">Ingest</div>
                                 </div>
-                            </div>
-                            <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
-                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
-                                    <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
-                                        🕒 Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
-                                    </div>
+                                <div class="pipeline-node-item" id="node-validate">
+                                    <div class="pipeline-node-icon">🛡️</div>
+                                    <div class="pipeline-node-label">Validate</div>
+                                </div>
+                                <div class="pipeline-node-item" id="node-score">
+                                    <div class="pipeline-node-icon">🧠</div>
+                                    <div class="pipeline-node-label">ML Score</div>
+                                </div>
+                                <div class="pipeline-node-item" id="node-commit">
+                                    <div class="pipeline-node-icon">💾</div>
+                                    <div class="pipeline-node-label">Commit</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="obs-metrics-panel">
-                            <div class="obs-metrics-grid">
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-latency">0.00s</div>
-                                    <div class="obs-metric-lbl">ETL Latency</div>
-                                </div>
-                                <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-                                    <div>
-                                        <div class="obs-metric-val" id="metric-reliability">98.2%</div>
-                                        <div class="obs-metric-lbl">Reliability (30d)</div>
+                        
+                        <div class="obs-content" style="margin-top: 1.5rem;">
+                            <!-- Tab Navigation for Observability Widget -->
+                            <div class="obs-tab-nav">
+                                <button class="obs-tab-btn active" data-tab="console">🖥️ Console Outputs</button>
+                                <button class="obs-tab-btn" data-tab="qa-report">🛡️ Data QA Audit Report</button>
+                            </div>
+                            
+                            <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
+                                <div class="obs-panel-content active" id="obs-console-panel">
+                                    <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                                        <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                                            <div style="display: flex; gap: 0.35rem;">
+                                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+                                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+                                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                            </div>
+                                            <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
+                                        </div>
+                                        <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
+                                            <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+                                        </div>
                                     </div>
-                                    <div class="obs-history-dots" style="display: flex; gap: 3px; justify-content: center; margin-top: 0.4rem;">
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span id="reliability-drift-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                </div>
+                                <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
+                                    <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+                                        <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
+                                            🕒 Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
+                                        </div>
                                     </div>
-                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">59/60 Daily Runs Successful</div>
-                                </div>
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-rows">0</div>
-                                    <div class="obs-metric-lbl">Processed Rows</div>
-                                </div>
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--accent-emerald);">Stable</div>
-                                    <div class="obs-metric-lbl">Drift Status</div>
                                 </div>
                             </div>
-                            <div class="obs-actions" style="margin-top: 1.5rem;">
-                                <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics 🚀</button>
+                            <div class="obs-metrics-panel">
+                                <div class="obs-metrics-grid">
+                                    <div class="obs-metric-card">
+                                        <div class="obs-metric-val" id="metric-latency">0.00s</div>
+                                        <div class="obs-metric-lbl">ETL Latency</div>
+                                    </div>
+                                    <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                        <div>
+                                            <div class="obs-metric-val" id="metric-reliability">98.2%</div>
+                                            <div class="obs-metric-lbl">Reliability (30d)</div>
+                                        </div>
+                                        <div class="obs-history-dots" style="display: flex; gap: 3px; justify-content: center; margin-top: 0.4rem;">
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span id="reliability-drift-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        </div>
+                                        <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">59/60 Daily Runs Successful</div>
+                                    </div>
+                                    <div class="obs-metric-card">
+                                        <div class="obs-metric-val" id="metric-rows">0</div>
+                                        <div class="obs-metric-lbl">Processed Rows</div>
+                                    </div>
+                                    <div class="obs-metric-card">
+                                        <div class="obs-metric-val" id="metric-drift" style="color: var(--accent-emerald);">Stable</div>
+                                        <div class="obs-metric-lbl">Drift Status</div>
+                                    </div>
+                                </div>
+                                <div class="obs-actions" style="margin-top: 1.5rem;">
+                                    <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics 🚀</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Visitor Stats & ML Forecast Card -->
+                    <div class="visitor-widget glass-card" style="margin-top: 0; margin-bottom: 0; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                📡 Live Visitor Analytics
+                            </h3>
+                            
+                            <div class="visitor-stats-row">
+                                <span class="visitor-stat-label">Your Location</span>
+                                <span class="visitor-location-badge" id="visitor-loc">
+                                    <span id="visitor-flag">📍</span> <span id="visitor-city">Detecting...</span>
+                                </span>
+                            </div>
+                            <div class="visitor-stats-row">
+                                <span class="visitor-stat-label">Total Unique Visits</span>
+                                <span class="visitor-stat-value" id="visitor-count">...</span>
+                            </div>
+                            <div class="visitor-stats-row">
+                                <span class="visitor-stat-label">Active Users Today</span>
+                                <span class="visitor-stat-value" id="visitor-today">...</span>
+                            </div>
+                            
+                            <div class="visitor-forecast-box">
+                                <div class="visitor-stat-label" style="font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-secondary);">
+                                    7-Day Traffic Forecast
+                                </div>
+                                <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
+                                <div class="visitor-stat-label" style="font-size: 0.75rem;">Expected visits next week</div>
+                                <div class="visitor-progress-bar">
+                                    <div class="visitor-progress-fill" id="visitor-progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; margin-top: 1rem; margin-bottom: 0.25rem; text-align: center; font-style: italic;">
+                                🕵️‍♂️ Statistically speaking, you are now a row in my database! (Don't worry, I only track city &amp; browser—no search history!). Click below to see how my K-Means model clusters you and experience the ML magic yourself!
+                            </p>
+                            <div class="visitor-ml-btn-box" style="margin-top: 0.75rem;">
+                                <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
+                                    📊 View ML Model Charts
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Data Science & Machine Learning Experiments -->
-                <div class="experiments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="experiments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
                     <!-- A/B Testing Simulator Widget -->
                     <div id="ab-testing-widget" class="glass-card">
                         <div class="widget-header">
@@ -374,7 +373,7 @@
                         </div>
                         
                         <div class="widget-body">
-                            <div class="ab-inputs-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+                            <div class="ab-inputs-row ab-inputs-grid">
                                 <div class="input-group">
                                     <label for="ab-a-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
                                         <span>Control (A) Target:</span>
@@ -395,7 +394,7 @@
                                 <button id="run-ab-btn" class="btn btn-outline" style="width: 100%;">Run Experiment Simulation 🔄</button>
                             </div>
 
-                            <div class="ab-results-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+                            <div class="ab-results-grid ab-results-container">
                                 <!-- Control Card -->
                                 <div class="ab-result-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); padding: 0.75rem;">
                                     <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Control (A)</div>
@@ -446,7 +445,7 @@
                             </div>
 
                             <div class="widget-context" style="padding: 1rem; background: rgba(99, 102, 241, 0.03); border: 1px solid rgba(99, 102, 241, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">🎯 Why Interact &amp; How It Works</div>
+                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong> to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong> on the proportions.</p>
                                 <p style="margin: 0;"><strong>Recruiting Value:</strong> This simulates how a Data Engineer or Scientist conducts hypothesis testing to validate feature rolls. A result is statistically significant if the P-value is less than 0.05 (95% confidence).</p>
@@ -470,7 +469,7 @@
                                 <input type="range" id="threshold-slider" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent-1, #6366f1); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
                             </div>
 
-                            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="threshold-metrics-grid" style="margin-bottom: 1rem;">
                                 <!-- Confusion Matrix Table -->
                                 <div>
                                     <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.35rem; text-transform: uppercase;">Confusion Matrix</div>
@@ -531,7 +530,7 @@
                             </div>
 
                             <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">🎯 Why Interact &amp; How It Works</div>
+                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
                                 <p style="margin: 0;"><strong>ROI Business Value:</strong> By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
