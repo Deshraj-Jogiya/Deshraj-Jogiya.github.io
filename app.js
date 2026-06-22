@@ -1463,6 +1463,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Responsive DOM Portal for Visitor Analytics Widget (Mobile Flow Insertion)
+    const handleVisitorResponsiveLayout = () => {
+        const container = document.getElementById("visitor-container");
+        const desktopParent = document.getElementById("visitor-analytics-widget");
+        const mobileParent = document.getElementById("mobile-visitor-section");
+        
+        if (!container || !desktopParent || !mobileParent) return;
+        
+        if (window.innerWidth < 992) {
+            if (container.parentElement !== mobileParent) {
+                mobileParent.appendChild(container);
+            }
+        } else {
+            if (container.parentElement !== desktopParent) {
+                desktopParent.appendChild(container);
+            }
+        }
+    };
+    
+    handleVisitorResponsiveLayout();
+    window.addEventListener("resize", handleVisitorResponsiveLayout);
+
     const answers = {
         gpa: "I would be glad to share that! Deshraj earned a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University. Beyond academic excellence, he focused his studies on practical enterprise solutions like distributed systems, database design, and predictive modeling, putting his knowledge directly into code.",
         python: "I would be happy to explain how he uses Python! Python is Deshraj's primary development tool. He leverages it to build asynchronous data ingestion pipelines, run validations with Great Expectations/Pandas, train machine learning models like XGBoost and Random Forests in Scikit-Learn, and develop deep Convolutional Neural Networks (CNNs) for computer vision using TensorFlow and Keras.",
@@ -2657,17 +2679,20 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             title: "Live Visitor Analytics & Traffic Forecast 📡",
             desc: "Now, let's explore the persistent visitor analytics telemetry. Watch as we expand the panel and trigger the K-Means clustering visualization.",
-            target: "#visitor-analytics-widget",
+            target: "#visitor-container",
             duration: 15000,
             action: async () => {
+                const container = document.getElementById("visitor-container");
+                if (container) {
+                    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
                 const widget = document.getElementById("visitor-analytics-widget");
-                if (widget) {
-                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    widget.style.zIndex = "100002"; // Elevate stacking context above backdrop
+                if (widget && window.innerWidth >= 992) {
+                    widget.style.zIndex = "100002"; // Elevate stacking context above backdrop on desktop
                 }
                 
                 const launcher = document.getElementById("visitor-launcher");
-                const container = document.getElementById("visitor-container");
                 
                 // If collapsed, open it
                 if (launcher && window.getComputedStyle(launcher).display !== "none") {

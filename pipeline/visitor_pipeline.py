@@ -36,8 +36,8 @@ def setup_matplotlib_theme():
         'figure.autolayout': True
     })
 
-def generate_mock_visits(n_visits=305):
-    """Generates exactly n_visits realistic synthetic visitor logs with unique visitor_ids."""
+def generate_mock_visits(n_visits=304):
+    """Generates exactly n_visits realistic synthetic visitor logs with unique visitor_ids distributed smoothly."""
     print(f"Generating {n_visits} synthetic visitor logs for bootstrapping...")
     
     browsers = ["Chrome", "Safari", "Firefox", "Edge", "Mobile Safari"]
@@ -61,59 +61,84 @@ def generate_mock_visits(n_visits=305):
     data = []
     base_time = datetime.now()
     
-    for i in range(n_visits):
-        visitor_id = f"vis_{1000 + i}"
-        is_new = random.random() < 0.85
+    # Generate daily target counts over 30 days
+    # Days are 0 (29 days ago) to 29 (today)
+    daily_counts = []
+    for i in range(30):
+        # Gentle upward trend: base grows from 6 to 14
+        base = 6 + (i * 8) / 29
+        # Random noise
+        noise = random.choice([-2, -1, 0, 1, 2])
+        count = int(base + noise)
         
-        browser = random.choices(browsers, weights=browser_weights)[0]
-        os_name = random.choices(oses, weights=os_weights)[0]
-        if os_name in ["iOS", "Android"]:
-            device = "Mobile" if random.random() < 0.9 else "Tablet"
-        else:
-            device = "Desktop"
+        # Check if the date is a weekend
+        date_at_day = base_time - timedelta(days=29 - i)
+        if date_at_day.weekday() >= 5: # Saturday or Sunday
+            count = max(3, int(count * 0.55))
             
-        country_info = random.choices(countries, weights=country_weights)[0]
-        country = country_info[0]
-        country_code = country_info[1]
-        city = random.choice(country_info[2])
+        daily_counts.append(count)
         
-        referrer = random.choices(referrers, weights=referrer_weights)[0]
-        page_path = "/"
-        
-        # Skew visits towards recent days (upward trend)
-        days_ago = int(np.random.exponential(scale=12))
-        days_ago = min(29, max(0, days_ago))
-        
-        # Hour of day weight (peaks between 9-17)
-        hour_choices = list(range(24))
-        hour_weights = [0.01]*7 + [0.03, 0.06] + [0.09]*9 + [0.04]*5 + [0.02]
-        hour = random.choices(hour_choices, weights=hour_weights)[0]
-        minute = random.randint(0, 59)
-        second = random.randint(0, 59)
-        microsecond = random.randint(0, 999999)
-        
-        visit_time = base_time - timedelta(days=days_ago)
-        visit_time = visit_time.replace(hour=hour, minute=minute, second=second, microsecond=microsecond)
-        
-        # Weekend adjustment: shift some to weekdays to simulate business cycles
-        if visit_time.weekday() >= 5 and random.random() < 0.4:
-            visit_time = visit_time - timedelta(days=random.choice([1, 2]))
+    # Adjust sum to match exactly n_visits
+    current_sum = sum(daily_counts)
+    diff = n_visits - current_sum
+    if diff != 0:
+        step = 1 if diff > 0 else -1
+        for _ in range(abs(diff)):
+            adj_day = random.randint(0, 29)
+            daily_counts[adj_day] += step
             
-        data.append({
-            "visitor_id": visitor_id,
-            "is_new": is_new,
-            "city": city,
-            "country": country,
-            "country_code": country_code,
-            "device": device,
-            "os": os_name,
-            "browser": browser,
-            "referrer": referrer,
-            "page_path": page_path,
-            "created_at": visit_time.isoformat()
-        })
-        
-    return pd.DataFrame(data)
+    # Generate visits per day
+    visitor_counter = 0
+    for day_idx, count in enumerate(daily_counts):
+        day_date = base_time - timedelta(days=29 - day_idx)
+        for _ in range(count):
+            visitor_id = f"vis_{1000 + visitor_counter}"
+            visitor_counter += 1
+            is_new = random.random() < 0.85
+            
+            browser = random.choices(browsers, weights=browser_weights)[0]
+            os_name = random.choices(oses, weights=os_weights)[0]
+            if os_name in ["iOS", "Android"]:
+                device = "Mobile" if random.random() < 0.9 else "Tablet"
+            else:
+                device = "Desktop"
+                
+            country_info = random.choices(countries, weights=country_weights)[0]
+            country = country_info[0]
+            country_code = country_info[1]
+            city = random.choice(country_info[2])
+            
+            referrer = random.choices(referrers, weights=referrer_weights)[0]
+            page_path = "/"
+            
+            # Random time of day
+            hour_choices = list(range(24))
+            hour_weights = [0.01]*7 + [0.03, 0.06] + [0.09]*9 + [0.04]*5 + [0.02]
+            hour = random.choices(hour_choices, weights=hour_weights)[0]
+            minute = random.randint(0, 59)
+            second = random.randint(0, 59)
+            microsecond = random.randint(0, 999999)
+            
+            visit_time = day_date.replace(hour=hour, minute=minute, second=second, microsecond=microsecond)
+            
+            data.append({
+                "visitor_id": visitor_id,
+                "is_new": is_new,
+                "city": city,
+                "country": country,
+                "country_code": country_code,
+                "device": device,
+                "os": os_name,
+                "browser": browser,
+                "referrer": referrer,
+                "page_path": page_path,
+                "created_at": visit_time.isoformat()
+            })
+            
+    df = pd.DataFrame(data)
+    # Sort by created_at
+    df = df.sort_values("created_at").reset_index(drop=True)
+    return df
 
 def fetch_supabase_visits():
     """Fetches visits from Supabase REST API. Returns a DataFrame or None on failure."""
