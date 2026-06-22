@@ -42,5 +42,6 @@ jobs:
             echo "No changes in ML outputs to commit."
           else
             git commit -m "Auto-update: Live visitor analytics & ML forecast models"
+            git pull --rebase origin main
             git push origin main
           fi
