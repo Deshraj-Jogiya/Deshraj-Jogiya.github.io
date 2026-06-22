@@ -2663,6 +2663,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const widget = document.getElementById("visitor-analytics-widget");
                 if (widget) {
                     widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    widget.style.zIndex = "100002"; // Elevate stacking context above backdrop
                 }
                 
                 const launcher = document.getElementById("visitor-launcher");
@@ -2680,15 +2681,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const mlBtn = document.getElementById("view-ml-charts-btn");
                 if (mlBtn) mlBtn.click();
+                
+                // Elevate the ML charts modal so it is not blurred by the tour backdrop
+                const mlModal = document.getElementById("ml-charts-modal");
+                if (mlModal) {
+                    mlModal.classList.add("tour-highlight");
+                }
             },
             cleanup: () => {
                 const closeMlBtn = document.getElementById("close-ml-modal-btn");
                 if (closeMlBtn) closeMlBtn.click();
                 
+                const mlModal = document.getElementById("ml-charts-modal");
+                if (mlModal) {
+                    mlModal.classList.remove("tour-highlight");
+                }
+                
                 const container = document.getElementById("visitor-container");
                 if (container) {
                     container.classList.remove("tour-highlight");
                     container.classList.remove("active");
+                }
+                
+                const widget = document.getElementById("visitor-analytics-widget");
+                if (widget) {
+                    widget.style.zIndex = ""; // Restore original z-index
                 }
             }
         },
