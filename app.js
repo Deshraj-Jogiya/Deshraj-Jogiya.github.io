@@ -428,28 +428,41 @@ document.addEventListener("DOMContentLoaded", () => {
             formResult.className = "form-result-text";
 
             const formData = new FormData(contactForm);
+            const payload = {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                message: formData.get("message")
+            };
             
-            fetch("https://api.web3forms.com/submit", {
+            const submitUrl = `${SUPABASE_URL}/functions/v1/submit-contact`;
+
+            fetch(submitUrl, {
                 method: "POST",
-                body: formData
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_KEY
+                },
+                body: JSON.stringify(payload)
             })
             .then(async (response) => {
                 let json = await response.json();
-                if (response.status == 200) {
+                if (response.ok) {
                     formResult.textContent = "Message sent successfully! 🚀";
                     formResult.className = "form-result-text success";
                     contactForm.reset();
                 } else {
-                    formResult.textContent = json.message || "Something went wrong.";
+                    formResult.textContent = json.error || "Something went wrong.";
                     formResult.className = "form-result-text error";
                 }
             })
             .catch(error => {
+                console.error("Submission error:", error);
                 formResult.textContent = "Failed to send message. Please check connection.";
                 formResult.className = "form-result-text error";
             });
         });
     }
+
 
     // ==========================================================================
     // 8. Dynamic Learning Logs Timeline Ingestion (GitHub API)
