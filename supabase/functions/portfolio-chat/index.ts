@@ -50,6 +50,12 @@ Deshraj's Professional Background Summary:
   3. Real-Time IoT Fleet Telematics & Predictive Maintenance: EV battery sensor micro-batching, Z-score anomalies, and Remaining Useful Life (RUL) modeling.
   4. Extending ASL across STEM: CNN sign-language gesture recognition in TensorFlow/Keras (4.6/5 user score).
   5. Tax Anomaly Audit Engine: transaction scan using Benford's Law and Isolation Forest outlier flags.
+- Contact and Connection Information:
+  1. Email: djogiya786@gmail.com
+  2. LinkedIn Profile: https://linkedin.com/in/deshraj-jogiya
+  3. GitHub Profile: https://github.com/Deshraj-Jogiya
+  4. Portfolio URL: https://Deshraj-Jogiya.github.io
+  5. Contact Form: Visitors can message him directly using the contact form at the bottom of the page (under the "Send a Message" section), which submits queries to his database and triggers email notifications.
 
 User Query: "${message}"
 
