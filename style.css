@@ -1430,6 +1430,43 @@ body.light-theme .learning-item::before {
         background: #fff !important;
         color: #000 !important;
     }
+
+    /* Force high-contrast dark text and reset highlights/dimming for all elements on print */
+    .resume-header-block h1,
+    .resume-section-title,
+    .resume-skill-group h3,
+    .resume-edu-item h4,
+    .resume-job-header h4 {
+        color: #000000 !important;
+    }
+    
+    .resume-sub {
+        color: #4f46e5 !important; /* Professional dark blue/indigo color for subheadings */
+    }
+    
+    .resume-meta,
+    .resume-meta a,
+    .resume-skill-group p,
+    .resume-edu-inst,
+    .resume-edu-date,
+    .resume-job-company,
+    .resume-job-item li,
+    .resume-bullet {
+        color: #222222 !important;
+        opacity: 1 !important;
+        background: none !important;
+        border: none !important;
+        padding-left: 0 !important;
+    }
+
+    .resume-job-header span {
+        color: #475569 !important; /* Clear dark grey for dates */
+    }
+    
+    .resume-job-item ul {
+        list-style: square !important;
+        padding-left: 1.25rem !important;
+    }
 }
 
 /* ==========================================================================
