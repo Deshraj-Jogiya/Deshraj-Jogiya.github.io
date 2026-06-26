@@ -107,6 +107,14 @@
       "tags": ["Python", "TensorFlow", "Keras", "CNN Model", "Flask", "ASL Recognition"],
       "dashboard_url": "assets/training_curves.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL"
+    },
+    {
+      "badge": "Cloud & Generative AI",
+      "name": "CurioSync: Serverless Tech News & LinkedIn Publisher",
+      "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["FastAPI", "Python", "GitHub Actions", "Gemini LLM", "HTMX", "Cryptography"],
+      "github_url": "https://github.com/Deshraj-Jogiya/curiosync"
     }
   ],
   "skills": [
