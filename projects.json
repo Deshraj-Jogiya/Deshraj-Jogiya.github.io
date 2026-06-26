@@ -19,6 +19,14 @@
   ],
   "projects": [
     {
+      "badge": "AI & Process Automation",
+      "name": "Job Search CRM & AI Application Tailoring Center",
+      "desc": "Local job placement command center with FastAPI and SQLite. Features AI-powered profile matching, resume and cover letter tailoring, LinkedIn recruiter outreach generation, and Kanban application tracking.",
+      "category": "data-engineering machine-learning",
+      "tags": ["FastAPI", "Python", "SQLite", "OpenAI API", "Jinja2", "TailwindCSS"],
+      "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation"
+    },
+    {
       "badge": "FinTech & Risk",
       "name": "FinTech Credit Risk & Fraud Command Center",
       "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",

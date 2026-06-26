@@ -1353,7 +1353,7 @@ body.light-theme .learning-item::before {
 .resume-job-header span {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #64748b;
+    color: #94a3b8;
 }
 
 .resume-job-company {
@@ -2230,6 +2230,10 @@ body.light-theme .resume-edu-date {
 
 body.light-theme .resume-job-header h4 {
     color: #0f172a;
+}
+
+body.light-theme .resume-job-header span {
+    color: #475569;
 }
 
 body.light-theme .resume-job-company {
