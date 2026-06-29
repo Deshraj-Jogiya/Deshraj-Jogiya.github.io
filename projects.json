@@ -27,6 +27,23 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation"
     },
     {
+      "badge": "Cloud & Generative AI",
+      "name": "CurioSync: Serverless Tech News & LinkedIn Publisher",
+      "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["FastAPI", "Python", "GitHub Actions", "Gemini LLM", "HTMX", "Cryptography"],
+      "github_url": "https://github.com/Deshraj-Jogiya/curiosync"
+    },
+    {
+      "badge": "AI Governance",
+      "name": "AI Model Observability & Fairness Audits",
+      "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["Python", "Drift Audit", "KS-Test", "Tableau", "SQL"],
+      "dashboard_url": "assets/ai_observability.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing"
+    },
+    {
       "badge": "FinTech & Risk",
       "name": "FinTech Credit Risk & Fraud Command Center",
       "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
@@ -34,6 +51,24 @@
       "tags": ["FastAPI", "Python", "SQL", "Scikit-Learn", "Chart.js"],
       "dashboard_url": "assets/finrisk_feature_importance.png",
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline"
+    },
+    {
+      "badge": "Finance & Auditing",
+      "name": "Tax Anomaly Audit Compliance Engine",
+      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
+      "category": "machine-learning analytics",
+      "tags": ["Benford's Law", "Isolation Forest", "Python", "Power BI", "SQL"],
+      "dashboard_url": "assets/compliance_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline"
+    },
+    {
+      "badge": "Geospatial & Climate",
+      "name": "Multi-State Land Use Emissions Analysis",
+      "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["Python", "SQLite", "Random Forest", "ETL Ingestion", "ArcGIS"],
+      "dashboard_url": "assets/emissions_by_state.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis"
     },
     {
       "badge": "Automation & ETL",
@@ -63,24 +98,6 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis"
     },
     {
-      "badge": "Finance & Auditing",
-      "name": "Tax Anomaly Audit Compliance Engine",
-      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
-      "category": "machine-learning analytics",
-      "tags": ["Benford's Law", "Isolation Forest", "Python", "Power BI", "SQL"],
-      "dashboard_url": "assets/compliance_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline"
-    },
-    {
-      "badge": "AI Governance",
-      "name": "AI Model Observability & Fairness Audits",
-      "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": ["Python", "Drift Audit", "KS-Test", "Tableau", "SQL"],
-      "dashboard_url": "assets/ai_observability.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing"
-    },
-    {
       "badge": "Streaming & IoT",
       "name": "Real-Time IoT Telematics & Predictive Maintenance",
       "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
@@ -88,15 +105,6 @@
       "tags": ["Z-Score Anomaly", "RUL Model", "Python", "Power BI", "SQL"],
       "dashboard_url": "assets/iot_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance"
-    },
-    {
-      "badge": "Geospatial & Climate",
-      "name": "Multi-State Land Use Emissions Analysis",
-      "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": ["Python", "SQLite", "Random Forest", "ETL Ingestion", "ArcGIS"],
-      "dashboard_url": "assets/emissions_by_state.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis"
     },
     {
       "badge": "Operations & Demand",
@@ -115,14 +123,6 @@
       "tags": ["Python", "TensorFlow", "Keras", "CNN Model", "Flask", "ASL Recognition"],
       "dashboard_url": "assets/training_curves.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL"
-    },
-    {
-      "badge": "Cloud & Generative AI",
-      "name": "CurioSync: Serverless Tech News & LinkedIn Publisher",
-      "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": ["FastAPI", "Python", "GitHub Actions", "Gemini LLM", "HTMX", "Cryptography"],
-      "github_url": "https://github.com/Deshraj-Jogiya/curiosync"
     }
   ],
   "skills": [
