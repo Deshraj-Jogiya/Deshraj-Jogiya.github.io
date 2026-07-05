@@ -19,14 +19,6 @@
   ],
   "projects": [
     {
-      "badge": "Cloud & Enterprise ML",
-      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise BI and predictive ML platform for talent contract management and cancellation risk mitigation. Conformed Azure ADLS Gen2 + Snowflake OLAP star schema architecture with PyArrow, SHA-256 PII tokenization, and Random Forest cancellation risk modeling.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": ["Python", "Snowflake", "Azure ADLS", "Streamlit", "Scikit-Learn", "SQL Server"],
-      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
-    },
-    {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
       "desc": "Local job placement command center with FastAPI and SQLite. Features AI-powered profile matching, resume and cover letter tailoring, LinkedIn recruiter outreach generation, and Kanban application tracking.",
@@ -41,6 +33,14 @@
       "category": "data-engineering machine-learning analytics",
       "tags": ["FastAPI", "Python", "GitHub Actions", "Gemini LLM", "HTMX", "Cryptography"],
       "github_url": "https://github.com/Deshraj-Jogiya/curiosync"
+    },
+    {
+      "badge": "Cloud & Enterprise ML",
+      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+      "desc": "Enterprise BI and predictive ML platform for talent contract management and cancellation risk mitigation. Conformed Azure ADLS Gen2 + Snowflake OLAP star schema architecture with PyArrow, SHA-256 PII tokenization, and Random Forest cancellation risk modeling.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["Python", "Snowflake", "Azure ADLS", "Streamlit", "Scikit-Learn", "SQL Server"],
+      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
     },
     {
       "badge": "AI Governance",
