@@ -62,7 +62,7 @@ Deshraj's Professional Background Summary:
   6. AI-ML Analyst Apprentice at Jetson Infinity (Jul 2024 - Aug 2024): Robotic arm motion Python/SQL ETL (+17% speed, +3% precision).
   7. Data Analyst at Kronic Keys (Aug 2021 - Mar 2022): PostgreSQL financial subledger ETL (-30% reporting cycle time), Tableau executive dashboards (+12% acquisition).
 - Key Projects:
-  1. TalentVenue EventIntel: Conformed Azure ADLS Gen2 + Snowflake OLAP Star Schema platform, SHA-256 PII tokenization, IQR outlier trimming, and Random Forest contract cancellation risk modeling in Streamlit. (github.com/Deshraj-Jogiya/TalentVenue_EventIntel)
+  1. TalentVenue EventIntel (Oct 2025 - Mar 2026): Conformed Azure ADLS Gen2 + Snowflake OLAP Star Schema platform, SHA-256 PII tokenization, IQR outlier trimming, and Random Forest contract cancellation risk modeling in Streamlit. (github.com/Deshraj-Jogiya/TalentVenue_EventIntel)
   2. Job Search CRM & AI Application Tailoring Center: FastAPI & SQLite job placement command center with LLM resume tailoring and LinkedIn outreach generation.
   3. CurioSync: Scheduled serverless news curation & LinkedIn publisher pipeline running on GitHub Actions cron workflows with Gemini LLM & Fernet cryptography.
 - Contact Information:
