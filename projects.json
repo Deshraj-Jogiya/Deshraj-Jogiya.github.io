@@ -37,7 +37,7 @@
     {
       "badge": "Cloud & Enterprise ML",
       "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise cloud data platform and predictive ML system built on Azure ADLS Gen2, Snowflake, and Streamlit. Features SHA-256 data security, automated ledger audit checks, and Random Forest cancellation risk modeling.",
+      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Accelerated financial queries by 45%, achieved 100% payment reconciliation accuracy, and deployed a Random Forest model predicting contract cancellation risk with 88% precision.",
       "category": "data-engineering machine-learning analytics",
       "tags": ["Python", "Snowflake", "Azure ADLS", "Streamlit", "Scikit-Learn", "SQL Server"],
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
