@@ -2576,7 +2576,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Work Experience Showcase 💼",
+            title: "Professional Experience 💼",
             desc: "Explore Deshraj's 5+ years of hands-on work history, featuring quantified metrics from Technoid LLC, Objectways, Zifatech Solutions, and Arizona State University.",
             target: "#experience",
             duration: 10000,
