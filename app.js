@@ -1518,6 +1518,9 @@ document.addEventListener("DOMContentLoaded", () => {
         deployment_errors: "Deshraj cut model deployment errors by 30% at Technoid LLC by building automated phased regression test suites, implementing strict contract payload validation in PyTest/FastAPI, and establishing mandatory UAT staging gates before production rollouts.",
         sync_latency: "Deshraj reduced real-time vector sync latency by 65% at Technoid LLC by restructuring Supabase Row-Level Security (RLS) policies, indexing composite lookup keys in PostgreSQL, and converting synchronous updates into async batch operations.",
         recommendation_accuracy: "Deshraj raised candidate recommendation accuracy by 25% at Technoid LLC by designing structured JSON schema prompts for GPT-4o mini, implementing semantic keyword extraction, and tuning LLM temperature bounds.",
+        location: "Deshraj is located in Tempe, Arizona (Phoenix Metropolitan Area), United States. He is open to relocation to major technology hubs nationwide for Data Engineering and ML Engineering roles.",
+        current_doing: "Deshraj is currently working as a Teleoperation Data Collection Associate at Objectways Technologies LLC in Tempe, AZ, scaling robotics telemetry pipelines in Python, Scala, and Kubernetes. Simultaneously, he is engineering TalentVenue EventIntel—an enterprise BI and predictive ML platform on Azure ADLS Gen2 and Snowflake OLAP Star Schemas.",
+        best_work: "Deshraj's best work is defined by bridging resilient cloud data engineering with low-latency ML model optimization. Commercially, his top achievement was at Technoid LLC (cutting vector sync latency by 65% and model deployment errors by 30%), while architecturally, his flagship platform is TalentVenue EventIntel (a Snowflake Star Schema & ML risk engine). Depending on your team's focus, I can dive into his Cloud Data Engineering (AWS/Snowflake), LLM Agent Optimization (GPT-4o), or Streaming Telemetry.",
         emissions: "Multi-State Land Use Emissions Analysis is a geospatial pipeline processing daily land cover changes across 5 U.S. states. Deshraj built Python/SQLite ETL ingestion and Random Forest models forecasting CO2 trends with 90% accuracy.",
         fintech: "FinTech Credit Risk Command Center is an end-to-end transaction pipeline featuring a FastAPI backend, Scikit-Learn Random Forest default prediction (92% precision), and real-time sub-100ms fraud evaluation.",
         telematics: "IoT Telematics & Predictive Maintenance processes streaming EV battery telemetry micro-batches, running Z-score anomaly detection and Remaining Useful Life (RUL) regression models for maintenance alerts.",
@@ -1531,7 +1534,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchKeyword = (msg) => {
         const query = msg.toLowerCase();
         
-        // 0. Achievement metrics matching
+        // 0. Location, Current Role, Best Work & Achievement metrics matching
+        if (query.includes("location") || query.includes("located") || query.includes("where is") || query.includes("where does") || query.includes("live")) return answers.location;
+        if (query.includes("currently doing") || query.includes("doing now") || query.includes("current role") || query.includes("latest work") || query.includes("current work")) return answers.current_doing;
+        if (query.includes("best work") || query.includes("top work") || query.includes("best project") || query.includes("flagship")) return answers.best_work;
         if (query.includes("talentvenue") || query.includes("eventintel")) return answers.talentvenue;
         if (query.includes("30%") || (query.includes("deploy") && query.includes("error"))) return answers.deployment_errors;
         if (query.includes("65%") || (query.includes("sync") && query.includes("latency"))) return answers.sync_latency;
@@ -2742,9 +2748,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Live Visitor Analytics & Traffic Forecast 📡",
-            desc: "Now, let's explore the persistent visitor analytics telemetry. Watch as we expand the panel and trigger the K-Means clustering visualization.",
+            desc: "Explore persistent visitor telemetry! Watch as we open the panel, cycle through 7-Day Traffic Forecasts, visualize K-Means Visitor Cohort Clusters, and test live ML model inference.",
             target: "#visitor-container",
-            duration: 15000,
+            duration: 18000,
             action: async () => {
                 const container = document.getElementById("visitor-container");
                 if (container) {
@@ -2766,7 +2772,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (container) {
                     container.classList.add("tour-highlight");
                 }
-                await delay(2500);
+                await delay(1500);
                 
                 const mlBtn = document.getElementById("view-ml-charts-btn");
                 if (mlBtn) mlBtn.click();
@@ -2776,6 +2782,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (mlModal) {
                     mlModal.classList.add("tour-highlight");
                 }
+                await delay(3000);
+                
+                // Switch to Tab 2: Visitor Cohorts (K-Means)
+                const cohortTab = document.querySelector('.ml-tab-btn[data-ml-tab="cohorts"]');
+                if (cohortTab) {
+                    cohortTab.click();
+                }
+                await delay(4000);
+                
+                // Switch to Tab 3: Model Playground
+                const playgroundTab = document.querySelector('.ml-tab-btn[data-ml-tab="playground"]');
+                if (playgroundTab) {
+                    playgroundTab.click();
+                }
+                await delay(2000);
+                
+                const runMlBtn = document.getElementById("run-ml-model-btn");
+                if (runMlBtn) {
+                    runMlBtn.click();
+                }
+                await delay(4000);
             },
             cleanup: () => {
                 const closeMlBtn = document.getElementById("close-ml-modal-btn");
