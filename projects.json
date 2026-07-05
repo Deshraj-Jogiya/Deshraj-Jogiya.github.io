@@ -1,7 +1,7 @@
 {
   "stats": [
     {
-      "number": "10",
+      "number": "11",
       "label": "Production Pipelines"
     },
     {
@@ -18,6 +18,14 @@
     }
   ],
   "projects": [
+    {
+      "badge": "Cloud & Enterprise ML",
+      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+      "desc": "Enterprise BI and predictive ML platform for talent contract management and cancellation risk mitigation. Conformed Azure ADLS Gen2 + Snowflake OLAP star schema architecture with PyArrow, SHA-256 PII tokenization, and Random Forest cancellation risk modeling.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": ["Python", "Snowflake", "Azure ADLS", "Streamlit", "Scikit-Learn", "SQL Server"],
+      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
+    },
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
