@@ -61,15 +61,6 @@
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline"
     },
     {
-      "badge": "Finance & Auditing",
-      "name": "Tax Anomaly Audit Compliance Engine",
-      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
-      "category": "machine-learning analytics",
-      "tags": ["Benford's Law", "Isolation Forest", "Python", "Power BI", "SQL"],
-      "dashboard_url": "assets/compliance_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline"
-    },
-    {
       "badge": "Geospatial & Climate",
       "name": "Multi-State Land Use Emissions Analysis",
       "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
@@ -77,6 +68,15 @@
       "tags": ["Python", "SQLite", "Random Forest", "ETL Ingestion", "ArcGIS"],
       "dashboard_url": "assets/emissions_by_state.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis"
+    },
+    {
+      "badge": "Finance & Auditing",
+      "name": "Tax Anomaly Audit Compliance Engine",
+      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
+      "category": "machine-learning analytics",
+      "tags": ["Benford's Law", "Isolation Forest", "Python", "Power BI", "SQL"],
+      "dashboard_url": "assets/compliance_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline"
     },
     {
       "badge": "Automation & ETL",
