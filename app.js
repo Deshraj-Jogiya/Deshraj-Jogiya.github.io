@@ -2292,39 +2292,20 @@ document.addEventListener("DOMContentLoaded", () => {
         if (barAEl) barAEl.style.width = Math.min(100, (valA / 30) * 100) + "%";
         if (barBEl) barBEl.style.width = Math.min(100, (valB / 30) * 100) + "%";
 
-        // Calculate analytical statistics for N=1000
-        const nA = 1000;
-        const nB = 1000;
-        const pA = valA / 100;
-        const pB = valB / 100;
-        const pooled = (convA + convB) / (nA + nB);
-        let z = 0;
-        let pValue = 1.0;
-        if (pooled > 0 && pooled < 1) {
-            const se = Math.sqrt(pooled * (1 - pooled) * (1 / nA + 1 / nB));
-            z = se > 0 ? (pB - pA) / se : 0;
-            pValue = 2 * (1 - stdNormalCDF(Math.abs(z)));
-        }
-        const uplift = pA > 0 ? ((pB - pA) / pA) * 100 : 0;
-
+        // Reset analytical stats and badge since the sliders were dragged
         const upliftEl = document.getElementById("ab-uplift");
         const zscoreEl = document.getElementById("ab-zscore");
         const pvalueEl = document.getElementById("ab-pvalue");
         const badge = document.getElementById("ab-status-badge");
 
-        if (upliftEl) upliftEl.textContent = (uplift >= 0 ? "+" : "") + uplift.toFixed(2) + "%";
-        if (zscoreEl) zscoreEl.textContent = z.toFixed(3);
-        if (pvalueEl) pvalueEl.textContent = pValue.toFixed(4);
+        if (upliftEl) upliftEl.textContent = "0.00%";
+        if (zscoreEl) zscoreEl.textContent = "0.00";
+        if (pvalueEl) pvalueEl.textContent = "0.0000";
 
         if (badge) {
             badge.className = "";
-            if (pValue < 0.05) {
-                badge.classList.add("badge-status-sig");
-                badge.textContent = "SIGNIFICANT (p < 0.05)";
-            } else {
-                badge.classList.add("badge-status-not-sig");
-                badge.textContent = "NOT SIGNIFICANT";
-            }
+            badge.classList.add("badge-status-neutral");
+            badge.textContent = "Not Simulated";
         }
     }
 
@@ -2408,7 +2389,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 document.getElementById("ab-uplift").textContent = (uplift >= 0 ? "+" : "") + uplift.toFixed(2) + "%";
                 document.getElementById("ab-zscore").textContent = z.toFixed(3);
-                document.getElementById("ab-pvalue").textContent = pValue.toFixed(4);
+                const pvalueEl = document.getElementById("ab-pvalue");
+                if (pvalueEl) {
+                    if (pValue < 0.0001) {
+                        pvalueEl.textContent = "< 0.0001";
+                    } else {
+                        pvalueEl.textContent = pValue.toFixed(4);
+                    }
+                }
                 
                 const badge = document.getElementById("ab-status-badge");
                 if (badge) {
