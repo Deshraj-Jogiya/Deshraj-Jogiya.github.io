@@ -2237,12 +2237,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // A/B Testing Simulator & Normal Distribution Helpers
     // ==========================================================================
     
-    // Standard normal CDF approximation (Abramowitz & Stegun)
+    // Standard normal CDF approximation (erf-based, highly accurate)
     function stdNormalCDF(x) {
-        const t = 1 / (1 + 0.2316419 * Math.abs(x));
-        const d = 0.39894228 * Math.exp(-x * x / 2);
-        const p = d * t * (0.31938153 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + t * 1.330274429))));
-        return x >= 0 ? 1 - p : p;
+        const erf = (z) => {
+            const sign = z < 0 ? -1 : 1;
+            const absZ = Math.abs(z);
+            const a1 = 0.254829592;
+            const a2 = -0.284496736;
+            const a3 = 1.421413741;
+            const a4 = -1.453152027;
+            const a5 = 1.061405429;
+            const p = 0.3275911;
+            
+            const t = 1 / (1 + p * absZ);
+            const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-absZ * absZ);
+            return sign * y;
+        };
+        return 0.5 * (1 + erf(x / Math.sqrt(2)));
     }
 
     let abInterval = null;
@@ -2266,17 +2277,55 @@ document.addEventListener("DOMContentLoaded", () => {
         const barAEl = document.getElementById("ab-a-bar");
         const barBEl = document.getElementById("ab-b-bar");
         
+        const convA = Math.round(valA * 10);
+        const convB = Math.round(valB * 10);
+        
         if (crAEl) crAEl.textContent = valA.toFixed(2) + "%";
         if (crBEl) crBEl.textContent = valB.toFixed(2) + "%";
         
-        if (convAEl) convAEl.textContent = Math.round(valA * 10);
-        if (convBEl) convBEl.textContent = Math.round(valB * 10);
+        if (convAEl) convAEl.textContent = convA;
+        if (convBEl) convBEl.textContent = convB;
         
         if (visAEl) visAEl.textContent = "1000";
         if (visBEl) visBEl.textContent = "1000";
         
         if (barAEl) barAEl.style.width = Math.min(100, (valA / 30) * 100) + "%";
         if (barBEl) barBEl.style.width = Math.min(100, (valB / 30) * 100) + "%";
+
+        // Calculate analytical statistics for N=1000
+        const nA = 1000;
+        const nB = 1000;
+        const pA = valA / 100;
+        const pB = valB / 100;
+        const pooled = (convA + convB) / (nA + nB);
+        let z = 0;
+        let pValue = 1.0;
+        if (pooled > 0 && pooled < 1) {
+            const se = Math.sqrt(pooled * (1 - pooled) * (1 / nA + 1 / nB));
+            z = se > 0 ? (pB - pA) / se : 0;
+            pValue = 2 * (1 - stdNormalCDF(Math.abs(z)));
+        }
+        const uplift = pA > 0 ? ((pB - pA) / pA) * 100 : 0;
+
+        const upliftEl = document.getElementById("ab-uplift");
+        const zscoreEl = document.getElementById("ab-zscore");
+        const pvalueEl = document.getElementById("ab-pvalue");
+        const badge = document.getElementById("ab-status-badge");
+
+        if (upliftEl) upliftEl.textContent = (uplift >= 0 ? "+" : "") + uplift.toFixed(2) + "%";
+        if (zscoreEl) zscoreEl.textContent = z.toFixed(3);
+        if (pvalueEl) pvalueEl.textContent = pValue.toFixed(4);
+
+        if (badge) {
+            badge.className = "";
+            if (pValue < 0.05) {
+                badge.classList.add("badge-status-sig");
+                badge.textContent = "SIGNIFICANT (p < 0.05)";
+            } else {
+                badge.classList.add("badge-status-not-sig");
+                badge.textContent = "NOT SIGNIFICANT";
+            }
+        }
     }
 
     if (abATargetInput && abATargetVal) {
@@ -2344,27 +2393,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("ab-a-bar").style.width = Math.min(100, (crA / 30) * 100) + "%";
                 document.getElementById("ab-b-bar").style.width = Math.min(100, (crB / 30) * 100) + "%";
                 
-                if (currentVisitors === 1000) {
-                    const pA = finalA / nA;
-                    const pB = finalB / nB;
-                    const pooled = (finalA + finalB) / (nA + nB);
-                    const se = Math.sqrt(pooled * (1 - pooled) * (1 / nA + 1 / nB));
-                    const z = (pB - pA) / se;
-                    const pValue = 2 * (1 - stdNormalCDF(Math.abs(z)));
-                    const uplift = pA > 0 ? ((pB - pA) / pA) * 100 : 0;
-                    
-                    document.getElementById("ab-uplift").textContent = (uplift >= 0 ? "+" : "") + uplift.toFixed(2) + "%";
-                    document.getElementById("ab-zscore").textContent = z.toFixed(3);
-                    document.getElementById("ab-pvalue").textContent = pValue.toFixed(4);
-                    
-                    const badge = document.getElementById("ab-status-badge");
+                // Calculate and update stats live at each tick
+                const pA = curA / currentVisitors;
+                const pB = curB / currentVisitors;
+                const pooled = (curA + curB) / (currentVisitors * 2);
+                let z = 0;
+                let pValue = 1.0;
+                if (pooled > 0 && pooled < 1) {
+                    const se = Math.sqrt(pooled * (1 - pooled) * (2 / currentVisitors));
+                    z = se > 0 ? (pB - pA) / se : 0;
+                    pValue = 2 * (1 - stdNormalCDF(Math.abs(z)));
+                }
+                const uplift = pA > 0 ? ((pB - pA) / pA) * 100 : 0;
+                
+                document.getElementById("ab-uplift").textContent = (uplift >= 0 ? "+" : "") + uplift.toFixed(2) + "%";
+                document.getElementById("ab-zscore").textContent = z.toFixed(3);
+                document.getElementById("ab-pvalue").textContent = pValue.toFixed(4);
+                
+                const badge = document.getElementById("ab-status-badge");
+                if (badge) {
                     badge.className = ""; 
-                    if (pValue < 0.05) {
-                        badge.classList.add("badge-status-sig");
-                        badge.textContent = "SIGNIFICANT (p < 0.05)";
+                    if (currentVisitors < 1000) {
+                        badge.classList.add("badge-status-neutral");
+                        badge.textContent = "Simulating...";
                     } else {
-                        badge.classList.add("badge-status-not-sig");
-                        badge.textContent = "NOT SIGNIFICANT";
+                        if (pValue < 0.05) {
+                            badge.classList.add("badge-status-sig");
+                            badge.textContent = "SIGNIFICANT (p < 0.05)";
+                        } else {
+                            badge.classList.add("badge-status-not-sig");
+                            badge.textContent = "NOT SIGNIFICANT";
+                        }
                     }
                 }
             }, 30);
