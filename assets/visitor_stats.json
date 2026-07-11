@@ -1,10 +1,10 @@
 {
-    "total_visits": 387,
-    "active_today": 16,
-    "forecasted_next_week": 239,
-    "updated_at": "2026-07-10T14:28:21.377557",
+    "total_visits": 389,
+    "active_today": 5,
+    "forecasted_next_week": 218,
+    "updated_at": "2026-07-11T02:42:21.489796",
     "segments": {
-        "Desktop Analysts (Windows)": 529,
-        "Recruiters / Peers (LinkedIn)": 205
+        "Desktop Analysts (Windows)": 512,
+        "Recruiters / Peers (LinkedIn)": 224
     }
 }
