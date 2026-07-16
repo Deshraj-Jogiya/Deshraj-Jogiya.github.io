@@ -2531,7 +2531,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const tourSteps = [
         {
-            title: "Welcome to Deshraj's Portfolio! 🌟",
+            title: "Welcome to Deshraj's Portfolio!",
             desc: "This interactive guided tour showcases Deshraj's professional experience, pipeline dashboard, SQL charts, and conversational AI chatbot in sequence. Choose how you would like to proceed below:",
             target: null,
             duration: 0,
@@ -2541,7 +2541,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Interactive Resume Modal 💼",
+            title: "Interactive Resume Modal",
             desc: "Watch as we open the Resume, cycle through his 'Data Engineering' and 'Data Science' highlights, and point out his perfect 4.0/4.0 GPA from Arizona State University.",
             target: "#resume-hero-btn",
             duration: 30000,
@@ -2644,7 +2644,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Professional Experience 💼",
+            title: "Professional Experience",
             desc: "Explore Deshraj's 5+ years of hands-on work history, featuring quantified metrics from Technoid LLC, Objectways, Zifatech Solutions, and Arizona State University.",
             target: "#experience",
             duration: 10000,
@@ -2661,7 +2661,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Portfolio Repositories 🚀",
+            title: "Portfolio Repositories",
             desc: "Next, we scroll to his projects. Watch as the search category filters cycle dynamically to show Data Engineering, ML, and Analytics projects.",
             target: "#projects",
             duration: 18000,
@@ -2714,7 +2714,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "SQL Sandbox & Dynamic Visuals 📊",
+            title: "SQL Sandbox & Dynamic Visuals",
             desc: "Watch as we select and execute multiple analytical queries inside the playground to automatically render live metrics, data tables, and custom charts.",
             target: ".sql-widget",
             duration: 32000,
@@ -2762,7 +2762,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Real-Time ETL Observability 🤖",
+            title: "Real-Time ETL Observability",
             desc: "Next, we'll scroll down to the Live ETL Monitor. We'll run full diagnostics to show pipeline checks, data validation status, and drift alerts.",
             target: ".observability-widget",
             duration: 18000,
@@ -2785,7 +2785,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "D.S. & ML Experiments Simulator 🧪",
+            title: "D.S. & ML Experiments Simulator",
             desc: "Watch as we run a live Z-test in the A/B Testing Simulator, and adjust the classification decision boundary threshold on the ML Optimizer.",
             target: ".experiments-grid",
             duration: 16000,
@@ -2815,7 +2815,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Live Visitor Analytics & Traffic Forecast 📡",
+            title: "Live Visitor Analytics & Traffic Forecast",
             desc: "Explore persistent visitor telemetry! Watch as we open the panel, cycle through 7-Day Traffic Forecasts, visualize K-Means Visitor Cohort Clusters, and test live ML model inference.",
             target: "#visitor-container",
             duration: 18000,
@@ -2894,7 +2894,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Technical Skills & Learning Log 🛠️",
+            title: "Technical Skills & Learning Log",
             desc: "Take a look at Deshraj's skills category cards, followed by the 'Today I Learned' (TIL) logging repository showcasing his ongoing study topics.",
             target: "#skills",
             duration: 8000,
@@ -2921,7 +2921,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Career Assistant AI Chatbot 💬",
+            title: "Career Assistant Chatbot",
             desc: "Finally, let's open the AI assistant. The tour will type and send: 'summarize his 5 years of experience' so you can see live RAG retrieval in action.",
             target: "#chat-launcher",
             duration: 22000,
@@ -2971,7 +2971,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Tour Completed! 🎉",
+            title: "Tour Completed!",
             desc: "Thank you for completing the tour! You've seen Deshraj's full pipeline dashboard, SQL queries, statistical models, and RAG AI chatbot. Connect with him below!",
             target: "#contact",
             duration: 10000,
