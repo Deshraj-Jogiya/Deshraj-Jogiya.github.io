@@ -178,7 +178,7 @@
       "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV. Achieved 99.20% classification accuracy on a 10,000+ image dataset, combining a custom CNN with traditional contour geometry approximations to increase visualization capabilities by 33%.",
       "category": "machine-learning analytics",
       "tags": ["Python", "PyTorch", "OpenCV", "CNN Model", "Image Processing", "Git"],
-      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
+      "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing"
     }
   ],
   "skills": [
