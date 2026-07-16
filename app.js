@@ -1645,7 +1645,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     "apikey": SUPABASE_KEY,
                     "Authorization": `Bearer ${SUPABASE_KEY}`
                 },
-                body: JSON.stringify({ message: userQuery + " (Important: Keep the response concise, professional, and recruiter-friendly. Format the response with clean bullet points (starting with '-' or '*') for lists, bold key terms/achievements, and keep paragraphs short. Avoid long storytelling narratives unless specifically asked for details.)" })
+                body: JSON.stringify({ message: userQuery + " (Important: Keep the response concise, professional, and recruiter-friendly. Format the response to align with Professional Competency Profile (PCP), Core Capability Statement (CCS), and Career Performance Portfolio (CPP) standards using the structured STAR format (Situation, Task, Action, Result) for experience descriptions. Use clean bullet points (starting with '-' or '*') for lists, bold key terms/achievements, and keep paragraphs short. Avoid long storytelling narratives.)" })
             });
 
             if (!aiRes.ok) {
