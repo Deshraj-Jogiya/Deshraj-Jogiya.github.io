@@ -2303,6 +2303,15 @@ body.light-theme .visitor-forecast-box {
     border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
 }
 
+.resume-bullet.highlighted-sde {
+    background: rgba(16, 185, 129, 0.15) !important;
+    border-left: 3px solid #10b981 !important;
+    padding-left: 0.5rem !important;
+    color: #34d399 !important;
+    opacity: 1 !important;
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+}
+
 .resume-bullet.dimmed {
     opacity: 0.55 !important;
 }
@@ -2408,6 +2417,12 @@ body.light-theme .resume-bullet.highlighted-de {
 body.light-theme .resume-bullet.highlighted-ds {
     background: rgba(124, 58, 237, 0.05) !important;
     border-left-color: #7c3aed !important;
+    color: #1e293b !important;
+}
+
+body.light-theme .resume-bullet.highlighted-sde {
+    background: rgba(5, 150, 105, 0.05) !important;
+    border-left-color: #059669 !important;
     color: #1e293b !important;
 }
 

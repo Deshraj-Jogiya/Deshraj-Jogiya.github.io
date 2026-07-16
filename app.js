@@ -1416,7 +1416,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             resumeBullets.forEach(bullet => {
                 const bulletRole = bullet.getAttribute("data-role");
-                bullet.classList.remove("highlighted-de", "highlighted-ds", "dimmed");
+                bullet.classList.remove("highlighted-de", "highlighted-ds", "highlighted-sde", "dimmed");
 
                 if (selectedRole === "all") {
                     return;
@@ -2544,7 +2544,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Interactive Resume Modal 💼",
             desc: "Watch as we open the Resume, cycle through his 'Data Engineering' and 'Data Science' highlights, and point out his perfect 4.0/4.0 GPA from Arizona State University.",
             target: "#resume-hero-btn",
-            duration: 24000,
+            duration: 30000,
             action: async () => {
                 const resumeModal = document.getElementById("resume-modal");
                 if (resumeModal) {
@@ -2585,6 +2585,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 await delay(5000);
                 if (dsFilter) dsFilter.classList.remove("tour-highlight");
                 if (dsBullet) dsBullet.classList.remove("tour-highlight");
+
+                // Highlight SDE & Web Dev role bullets & scroll to one
+                const sdeFilter = document.querySelector('.resume-filter-btn[data-role="sde"]');
+                if (sdeFilter) {
+                    sdeFilter.click();
+                    sdeFilter.classList.add("tour-highlight");
+                }
+                const sdeBullet = document.querySelector('.resume-bullet[data-role="sde"]');
+                if (sdeBullet) {
+                    sdeBullet.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    sdeBullet.classList.add("tour-highlight");
+                }
+                await delay(5000);
+                if (sdeFilter) sdeFilter.classList.remove("tour-highlight");
+                if (sdeBullet) sdeBullet.classList.remove("tour-highlight");
                 
                 // Return to all roles & highlight GPA
                 const allFilter = document.querySelector('.resume-filter-btn[data-role="all"]');
@@ -2608,12 +2623,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const dsFilter = document.querySelector('.resume-filter-btn[data-role="ds"]');
                 if (dsFilter) dsFilter.classList.remove("tour-highlight");
+
+                const sdeFilter = document.querySelector('.resume-filter-btn[data-role="sde"]');
+                if (sdeFilter) sdeFilter.classList.remove("tour-highlight");
                 
                 const deBullet = document.querySelector('.resume-bullet[data-role="de"]');
                 if (deBullet) deBullet.classList.remove("tour-highlight");
                 
                 const dsBullet = document.querySelector('.resume-bullet[data-role="ds"]');
                 if (dsBullet) dsBullet.classList.remove("tour-highlight");
+
+                const sdeBullet = document.querySelector('.resume-bullet[data-role="sde"]');
+                if (sdeBullet) sdeBullet.classList.remove("tour-highlight");
                 
                 const gpaText = document.getElementById("resume-gpa-highlight");
                 if (gpaText) gpaText.classList.remove("tour-highlight");

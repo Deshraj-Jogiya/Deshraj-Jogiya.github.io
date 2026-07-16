@@ -136,40 +136,45 @@
       "badge": "Mobile & Education",
       "name": "Stay Aware of Branch",
       "desc": "Developed a parent-school engagement application using React Native and Android frameworks, implementing progress reports and attendance tracking that boosted parent involvement by 40% and cut administrative workloads by 25%.",
-      "category": "data-engineering",
+      "category": "software-dev",
       "tags": ["React Native", "Android", "JavaScript", "Mobile", "Git"],
+      "dashboard_url": "assets/stay_aware_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/stay-aware-of-branch"
     },
     {
       "badge": "Web Development & Catering",
       "name": "Chef at Gathering",
       "desc": "Built an event coordination and professional catering booking React application, streamlining management processes to reduce coordination time by 50% and boost chef bookings by 20%.",
-      "category": "data-engineering",
+      "category": "software-dev",
       "tags": ["React", "JavaScript", "HTML5", "CSS3", "Git"],
+      "dashboard_url": "assets/chef_gathering_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/chef-at-gathering"
     },
     {
       "badge": "Web Development & Community",
       "name": "City Forums",
       "desc": "Created an online community engagement and marketplace platform using CodeIgniter 3 and MySQL, scaling the user base by 50% in three months and generating $10,000 in classified ad revenue.",
-      "category": "data-engineering",
+      "category": "software-dev",
       "tags": ["PHP", "CodeIgniter 3", "MySQL", "Bootstrap", "Git"],
+      "dashboard_url": "assets/city_forums_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/city-forums"
     },
     {
       "badge": "Web Services & Gamification",
       "name": "Make It Short",
       "desc": "Integrated a link shortening engine and analytics tracking into a CodeIgniter 4 app, generating 10,000+ shortened URLs, driving a 15% increase in user engagement via gamified redeemable points, and generating $500 in revenue.",
-      "category": "data-engineering",
+      "category": "software-dev",
       "tags": ["PHP", "CodeIgniter 4", "MySQL", "HTML5", "CSS3", "Git"],
+      "dashboard_url": "assets/make_it_short_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/make-it-short"
     },
     {
       "badge": "FinTech & Blockchain",
       "name": "Get your Token",
       "desc": "Published a Web3 crypto marketplace frontend and administrative dashboard using Express.js and Angular for NFT and Penky token transactions, handling 1,000+ transactions in the first month and achieving a 90% user satisfaction rate.",
-      "category": "data-engineering",
+      "category": "software-dev",
       "tags": ["Node.js", "Express", "Angular", "Cryptocurrency API", "Git"],
+      "dashboard_url": "assets/get_your_token_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/get-your-token"
     },
     {
@@ -178,6 +183,7 @@
       "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV. Achieved 99.20% classification accuracy on a 10,000+ image dataset, combining a custom CNN with traditional contour geometry approximations to increase visualization capabilities by 33%.",
       "category": "machine-learning analytics",
       "tags": ["Python", "PyTorch", "OpenCV", "CNN Model", "Image Processing", "Git"],
+      "dashboard_url": "assets/solid_object_curves.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing"
     }
   ],
