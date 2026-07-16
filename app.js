@@ -1578,7 +1578,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const addMessage = (text, sender) => {
         const msgEl = document.createElement("div");
         msgEl.className = `chat-msg ${sender}-msg`;
-        msgEl.textContent = text;
+        
+        if (sender === "bot") {
+            // Securely escape HTML tags and render simple markdown (bold text, list bullets, newlines)
+            let html = text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                .replace(/^\s*[-*]\s+(.*)$/gm, "• $1")
+                .replace(/\n/g, "<br>");
+            msgEl.innerHTML = html;
+        } else {
+            msgEl.textContent = text;
+        }
+        
         chatMessages.appendChild(msgEl);
         chatMessages.scrollTop = chatMessages.scrollHeight;
         return msgEl;
@@ -1631,7 +1645,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     "apikey": SUPABASE_KEY,
                     "Authorization": `Bearer ${SUPABASE_KEY}`
                 },
-                body: JSON.stringify({ message: userQuery + " (Important: Write the response in a flowing paragraph narrative. Do NOT use bullet points, numbered lists, or dashes.)" })
+                body: JSON.stringify({ message: userQuery + " (Important: Keep the response concise, professional, and recruiter-friendly. Format the response with clean bullet points (starting with '-' or '*') for lists, bold key terms/achievements, and keep paragraphs short. Avoid long storytelling narratives unless specifically asked for details.)" })
             });
 
             if (!aiRes.ok) {
