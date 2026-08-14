@@ -84,7 +84,7 @@
                 <div class="quick-stats-grid">
                     {% for stat in stats %}
                     <div class="stat-card glass-card">
-                        <h3 class="stat-number" data-target="{{ stat.number }}">0</h3>
+                        <h3 class="stat-number" data-target="{{ stat.number }}">{{ stat.number }}</h3>
                         <p class="stat-label">{{ stat.label }}</p>
                     </div>
                     {% endfor %}
@@ -100,179 +100,29 @@
             </div>
 
             <div class="experience-container">
-                <!-- Objectways -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Robotics & Parallel Pipelines</span>
-                            <h3 class="experience-role">Teleoperation Data Collection Associate</h3>
-                            <p class="experience-company">Objectways Technologies LLC | Tempe, AZ</p>
-                        </div>
-                        <div class="experience-date">May 2026 – Present</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Collected and validated <strong>10,000+</strong> teleoperation data samples for AI/ML model training using Python-based workflows, improving dataset accuracy and consistency by <strong>20%</strong>.</li>
-                        <li>Engineered scalable data pipelines using <strong>Python, Scala, and Kubernetes</strong> to process massive robotics datasets, cutting data processing time by <strong>30%</strong>.</li>
-                        <li>Executed robotics dataset QA and anomaly detection, lowering downstream model training error rates by <strong>15%</strong>.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>Scala</span>
-                        <span>Kubernetes</span>
-                        <span>Docker</span>
-                        <span>Robotics Data QA</span>
-                        <span>Linux</span>
-                    </div>
-                </div>
-
-                <!-- Technoid -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">LLMs, Supabase & Vector Sync</span>
-                            <h3 class="experience-role">Applied Machine Learning Engineer</h3>
-                            <p class="experience-company">Technoid LLC | Piscataway, NJ</p>
-                        </div>
-                        <div class="experience-date">Dec 2025 – May 2026</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Optimized <strong>GPT-4o mini</strong> models for candidate resume matching using OpenAI APIs, SQL, and PostgreSQL, raising recommendation accuracy by <strong>25%</strong>.</li>
-                        <li>Restructured <strong>Supabase</strong> data sync layers with PostgreSQL backend RLS fixes, cutting real-time vector synchronization latency by <strong>65%</strong>.</li>
-                        <li>Established automated phased regression and UAT testing frameworks, cutting model deployment errors by <strong>30%</strong>.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>GPT-4o mini</span>
-                        <span>OpenAI API</span>
-                        <span>PostgreSQL</span>
-                        <span>Supabase</span>
-                        <span>SQL</span>
-                        <span>PyTest</span>
-                    </div>
-                </div>
-
-                <!-- Zifatech -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Cloud Migration & Data Quality</span>
-                            <h3 class="experience-role">Data Analyst</h3>
-                            <p class="experience-company">Zifatech Solutions LLC | Milwaukee, WI</p>
-                        </div>
-                        <div class="experience-date">Jun 2025 – Dec 2025</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, cutting manual reporting effort by <strong>70%</strong>.</li>
-                        <li>Migrated legacy database workflows to <strong>AWS Glue & S3</strong>, increasing data availability by <strong>60%</strong> and streamlining integration with Snowflake and Power BI.</li>
-                        <li>Modernized Star Schema dimensional models in Snowflake using <strong>Great Expectations</strong> QA validations, securing a <strong>98%+ data reliability standard</strong>.</li>
-                        <li>Built executive Power BI dashboards connected to Snowflake data warehouses, converting complex data streams into strategic business insights.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>AWS Glue</span>
-                        <span>AWS S3</span>
-                        <span>Snowflake</span>
-                        <span>Python</span>
-                        <span>SQL</span>
-                        <span>Great Expectations</span>
-                        <span>Power BI</span>
-                    </div>
-                </div>
-
-                <!-- ElevateMe -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Customer Segmentation & BI</span>
-                            <h3 class="experience-role">Data Analytics & ML Fellow Trainee</h3>
-                            <p class="experience-company">ElevateMe Bootcamp | Columbus, OH (Part-time, concurrent)</p>
-                        </div>
-                        <div class="experience-date">Jan 2025 – Mar 2026</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Executed customer segmentation using <strong>K-Means clustering & PCA</strong> dimensionality reduction in Python, mapping 6 target personas capturing <strong>92% of data variance</strong>.</li>
-                        <li>Spearheaded marketing intelligence strategies using classification models, driving a <strong>12% increase in campaign click-through rates</strong>.</li>
-                        <li>Deployed interactive Power BI KPI dashboards for real-time executive visibility into operational revenue trends.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>Scikit-Learn</span>
-                        <span>K-Means</span>
-                        <span>PCA</span>
-                        <span>Power BI</span>
-                        <span>SQL</span>
-                    </div>
-                </div>
-
-                <!-- Arizona State University -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Streaming & Recommendation Systems</span>
-                            <h3 class="experience-role">Data Engineer & ML Research Assistant</h3>
-                            <p class="experience-company">Arizona State University | Tempe, AZ</p>
-                        </div>
-                        <div class="experience-date">Sep 2024 – Jun 2025</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Architected a real-time streaming pipeline utilizing <strong>Node.js & MongoDB</strong>, sustaining <strong>99.9% uptime</strong> for 5,000 concurrent users and optimizing data throughput by <strong>35%</strong>.</li>
-                        <li>Constructed a behavioral content recommendation engine, refining algorithms weekly to drive a <strong>12% increase in click-through rates</strong> and lower user churn.</li>
-                        <li>Developed an NLP chatbot analyzing user input trends, identifying top UI friction points and boosting positive user satisfaction by <strong>15%</strong>.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Node.js</span>
-                        <span>MongoDB</span>
-                        <span>Python</span>
-                        <span>NLP</span>
-                        <span>Recommendation Engine</span>
-                        <span>Streaming ETL</span>
-                    </div>
-                </div>
-
-                <!-- Jetson Infinity -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Robotics Pipeline Automation</span>
-                            <h3 class="experience-role">AI-ML Analyst Apprentice</h3>
-                            <p class="experience-company">Jetson Infinity | Austin, TX</p>
-                        </div>
-                        <div class="experience-date">Jul 2024 – Aug 2024</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Implemented Python-based data processing pipelines leveraging Pandas & NumPy (+3% robotic arm precision, +10% workflow efficiency).</li>
-                        <li>Automated robotic arm motion ETL pipeline with Python & SQL, improving data processing speed by 17% and enabling real-time anomaly detection.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>Pandas</span>
-                        <span>NumPy</span>
-                        <span>SQL</span>
-                        <span>Robotics Data</span>
-                    </div>
-                </div>
-
-                <!-- Kronic Keys -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Subledger Accounting & BI</span>
-                            <h3 class="experience-role">Data Analyst</h3>
-                            <p class="experience-company">Kronic Keys | Junagadh, GJ</p>
-                        </div>
-                        <div class="experience-date">Aug 2021 – Mar 2022</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Cleaned and prepared large financial datasets (500k+ rows) in PostgreSQL, reducing monthly reporting cycle times by <strong>30%</strong>.</li>
-                        <li>Engineered SQL queries and Tableau executive dashboards, contributing to a <strong>12% increase in customer acquisition</strong>.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>PostgreSQL</span>
-                        <span>SQL</span>
-                        <span>Tableau</span>
-                        <span>ETL Ingestion</span>
-                    </div>
-                </div>
-            </div>
+{% for exp in experience %}
+<div class="experience-card glass-card">
+<div class="experience-card-header">
+<div class="experience-title-area">
+<span class="badge badge-accent">{{ exp.badge }}</span>
+<h3 class="experience-role">{{ exp.role }}</h3>
+<p class="experience-company">{{ exp.company }}</p>
+</div>
+<div class="experience-date">{{ exp.dates }}</div>
+</div>
+<ul class="experience-bullets">
+{% for b in exp.bullets %}
+<li>{{ b.html | safe }}</li>
+{% endfor %}
+</ul>
+<div class="tech-tags">
+{% for tag in exp.tags %}
+<span>{{ tag }}</span>
+{% endfor %}
+</div>
+</div>
+{% endfor %}
+</div>
         </section>
 
         <!-- Projects Section -->
@@ -948,100 +798,21 @@
                     <div class="resume-right-col">
                         <section class="resume-section">
                             <h2 class="resume-section-title">Work Experience</h2>
-                            
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Teleoperation Data Collection Associate</h4>
-                                    <span>May 2026 – Present</span>
-                                </div>
-                                <p class="resume-job-company">Objectways Technologies LLC | Tempe, AZ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Collected and validated 10,000+ high-quality teleoperation data samples for AI/ML model training using Python-based workflows, improving dataset accuracy and consistency by 20%.</li>
-                                    <li class="resume-bullet" data-role="de">Developed and maintained scalable data pipelines using Python, Scala, and Kubernetes to process and organize large datasets, reducing data processing time by 30% and enhancing system efficiency.</li>
-                                    <li class="resume-bullet" data-role="ds">Performed data analysis and quality assurance on robotics-generated datasets, identifying and resolving data inconsistencies, which improved model training performance and reduced error rates by 15%.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Applied Machine Learning Engineer</h4>
-                                    <span>Dec 2025 – May 2026</span>
-                                </div>
-                                <p class="resume-job-company">Technoid LLC | Piscataway, NJ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Optimized GPT-4o mini models for resume analysis/tailoring using OpenAI APIs, SQL, and PostgreSQL, improving recommendation accuracy by 25%.</li>
-                                    <li class="resume-bullet" data-role="de">Established Supabase data sync with RLS fixes and PostgreSQL backend, reducing data sync latency by 65% for real-time operations.</li>
-                                    <li class="resume-bullet" data-role="ds">Produced phased regression and UAT testing frameworks, cutting model deployment errors by 30%.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Analytics &amp; ML Fellow Trainee</h4>
-                                    <span>Jan 2025 – Mar 2026</span>
-                                </div>
-                                <p class="resume-job-company">ElevateMe Bootcamp | Columbus, OH (Part-time, concurrent)</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Analyzed company financial and operational data with Python and Excel, identifying 4 key revenue-impacting trends that guided department-level strategic actions.</li>
-                                    <li class="resume-bullet" data-role="de">Deployed interactive Power BI dashboards to visualize KPIs and financial trends, improving executive insight and reporting efficiency.</li>
-                                    <li class="resume-bullet" data-role="ds">Led customer segmentation using K-Means clustering and PCA for dimensionality reduction, visualized results in Power BI, and identified six segments that captured 92% of data variance.</li>
-                                    <li class="resume-bullet" data-role="ds">Led marketing intelligence strategy using classification models and Power BI analytics, increasing campaign click-through rates by 12%.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Analyst</h4>
-                                    <span>Jun 2025 – Dec 2025</span>
-                                </div>
-                                <p class="resume-job-company">Zifatech Solutions LLC | Milwaukee, WI</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="de">Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, reducing manual effort by 70% and improving data refresh consistency.</li>
-                                    <li class="resume-bullet" data-role="de">Migrated legacy data workflows to AWS Glue and S3, increasing data availability by 60% and streamlining integration with Snowflake and Power BI.</li>
-                                    <li class="resume-bullet" data-role="de">Modernized Star Schema models in Snowflake using Great Expectations QA validations, achieving over 98% data reliability.</li>
-                                    <li class="resume-bullet" data-role="de">Built interactive Power BI dashboards connected to Snowflake datasets, translating analytical outputs into actionable business insights for sales and operations teams.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Engineer &amp; ML Research Assistant</h4>
-                                    <span>Sep 2024 – Jun 2025</span>
-                                </div>
-                                <p class="resume-job-company">Arizona State University | Tempe, AZ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="de">Produced a real-time data pipeline utilizing Node.js and MongoDB to process streaming data, ensuring 99.9% uptime for 5,000 concurrent users, and optimized data output by 35%.</li>
-                                    <li class="resume-bullet" data-role="ds">Constructed a personalized recommendation engine utilizing behavioral data; refined algorithms weekly, leading to a 12% increase in content click-through rates and reduced user churn.</li>
-                                    <li class="resume-bullet" data-role="ds">Led the development of an NLP chatbot that analyzed user input, pinpointing the top three user interface pain points, and driving a 15% increase in positive user satisfaction.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>AI-ML Analyst Apprentice</h4>
-                                    <span>Jul 2024 – Aug 2024</span>
-                                </div>
-                                <p class="resume-job-company">Jetson Infinity | Austin, TX</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Implemented a Python-based data processing pipeline leveraging Pandas and NumPy, resulting in a 3% refinement in robotic arm precision and enhanced workflow efficiency by 10%.</li>
-                                    <li class="resume-bullet" data-role="de">Automated data pipeline for robotic arm motion data employing Python and SQL, enhancing data processing efficiency by 17% and enabling real-time anomaly detection and faster analysis.</li>
-                                    <li class="resume-bullet" data-role="general">Devised an internal knowledge base with Python tutorials and real-world case studies, accelerating new data analyst onboarding by 25% and improving team proficiency in Python.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Analyst</h4>
-                                    <span>Aug 2021 – Mar 2022</span>
-                                </div>
-                                <p class="resume-job-company">Kronic Keys | Junagadh, GJ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="de">Cleaned and prepared large datasets (500k+ rows), leading to more accurate sales and customer behavior insights and reducing reporting time by 30%.</li>
-                                    <li class="resume-bullet" data-role="de">Built SQL queries and Tableau dashboards that improved sales reporting efficiency by 30%.</li>
-                                    <li class="resume-bullet" data-role="de">Developed and maintained Tableau dashboards that visualized key sales performance indicators, helping drive a 12% increase in customer acquisition; dashboards were built using data extracted from PostgreSQL.</li>
-                                </ul>
-                            </div>
-                        </section>
+{% for exp in experience %}
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>{{ exp.role }}</h4>
+<span>{{ exp.dates }}</span>
+</div>
+<p class="resume-job-company">{{ exp.company }}</p>
+<ul>
+{% for b in exp.bullets %}
+<li class="resume-bullet" data-role="{{ b.resume_role }}">{{ b.html | safe }}</li>
+{% endfor %}
+</ul>
+</div>
+{% endfor %}
+</section>
 
                         <section class="resume-section">
                             <h2 class="resume-section-title">Projects</h2>
