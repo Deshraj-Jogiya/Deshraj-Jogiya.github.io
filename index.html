@@ -313,21 +313,21 @@
                     <div class="card-content">
                         <div class="card-badge">AI & Process Automation</div>
                         <h3 class="card-title">Job Search CRM & AI Application Tailoring Center</h3>
-                        <p class="card-desc">Local job placement command center with FastAPI and SQLite. Features AI-powered profile matching, resume and cover letter tailoring, LinkedIn recruiter outreach generation, and Kanban application tracking.</p>
+                        <p class="card-desc">Personal job-search command center with FastAPI and SQLite -- multi-source intake (LinkedIn, Adzuna, and direct Greenhouse/Lever/Ashby ATS board polling with auto-detected company slugs), AI resume/cover-letter tailoring with a mechanical anti-fabrication safeguard, a human-confirmation-gated application queue, recruiter outreach with contact discovery, AI interview prep, and outcome analytics.</p>
                         <div class="tech-tags">
-                            
+
                             <span>FastAPI</span>
-                            
+
                             <span>Python</span>
-                            
+
                             <span>SQLite</span>
-                            
-                            <span>OpenAI API</span>
-                            
+
+                            <span>Claude API</span>
+
                             <span>Jinja2</span>
-                            
-                            <span>TailwindCSS</span>
-                            
+
+                            <span>APScheduler</span>
+
                         </div>
                         <div class="card-actions">
                             <a href="https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation" target="_blank" class="btn btn-sm btn-primary">View Repository 🔗</a>
@@ -1661,11 +1661,11 @@
                                     <h4>Job Search CRM &amp; AI Application Tailoring Center <a href="https://github.com/Deshraj-Jogiya" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
                                     <span>Feb 2026 – Present</span>
                                 </div>
-                                <p class="resume-job-company">Technologies: Python, FastAPI, SQLite, Jinja2, OpenAI API, TailwindCSS</p>
+                                <p class="resume-job-company">Technologies: Python, FastAPI, SQLite, Claude API, Jinja2, APScheduler</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Engineered a personal job placement command center using FastAPI and SQLite, designing a relational database schema to track application pipelines on a Kanban board, reducing manual tracking overhead by 40%.</li>
-                                    <li class="resume-bullet" data-role="ds">Built a semantic compatibility matching engine using OpenAI/Gemini APIs to calculate profile-to-job match scores (0-100), highlight keyword gaps, and automate tailoring of experience bullets and cover letters.</li>
-                                    <li class="resume-bullet" data-role="de">Designed an automated recruiter outreach note builder to generate character-constrained LinkedIn connection messages and InMail templates, increasing networking efficiency.</li>
+                                    <li class="resume-bullet" data-role="de">Architected a multi-source job intake pipeline (LinkedIn, Adzuna, and direct Greenhouse/Lever/Ashby ATS board polling with auto-detected company slugs) with fuzzy deduplication, repost/scam-pattern/staleness detection, and a human-confirmation-gated application queue with quiet-hours-aware deadlines.</li>
+                                    <li class="resume-bullet" data-role="ds">Built a provider-agnostic LLM abstraction (Claude, OpenAI, Gemini, or local Ollama) powering a multi-pass resume/cover-letter tailoring loop with a mechanical anti-fabrication safeguard, AI-generated interview prep, and outcome analytics across the full application funnel.</li>
+                                    <li class="resume-bullet" data-role="de">Designed a recruiter outreach pipeline with AI-drafted messages, web-search-based contact discovery, and email verification -- gated by explicit human approval before every send, with zero automated submission to limit ToS exposure on target platforms.</li>
                                 </ul>
                             </div>
 
