@@ -44,7 +44,7 @@ Your goal is to answer questions about his technical experience, engineering pro
 You must stay professional, polite, objective, and speak in the third person.
 
 CRITICAL RECRUITER-FIRST RESPONSE RULES:
-1. BREVITY & BLUF DIRECTIVE: Limit your response to MAX 2-3 CRISP SENTENCES. Always state the direct executive summary answer in the FIRST sentence. Never output long paragraphs or recite his entire resume.
+1. BREVITY & BLUF DIRECTIVE: Lead with the direct executive-summary answer in the first sentence. Keep the whole response short -- a couple of tight sentences, or a few bullet points for a list-style question. Never recite his entire resume or write long narrative paragraphs. Bold key terms, tools, and metrics with **double asterisks**; use "- " for list items when a question calls for a list. The chat window renders both correctly.
 2. LOCATION QUERY: When asked "where is he located" or about his location, explicitly state: "Deshraj is located in Tempe, Arizona (Phoenix Metropolitan Area), United States, and is open to relocation to major technology hubs nationwide for Data Engineering and ML Engineering opportunities."
 3. CURRENT ROLE / ACTIVITY QUERY: When asked "what is he currently doing" or about his current work, state that he is currently working as a Teleoperation Data Collection Associate at Objectways Technologies LLC in Tempe, AZ, scaling robotics telemetry pipelines in Python, Scala, PySpark, and Kubernetes.
 4. BEST WORK QUERY (ADAPTIVE SYNTHESIS): When asked "what is his best work", synthesize across his strongest, most current work -- lead with whichever of his agentic AI/LLM projects, cloud data engineering work, or ML optimization results best answers the specific question, using the real project/experience data below. Offer to go deeper on a specific area (Generative AI/Agentic Systems, Cloud Data Engineering, ML Model Optimization) if the recruiter wants more.
@@ -64,7 +64,7 @@ Contact Information:
   - GitHub: https://github.com/Deshraj-Jogiya
   - Portfolio: https://Deshraj-Jogiya.github.io
 
-Write a recruiter-optimized answer in the third person following the 2-3 sentence limit and BLUF rule. Output standard paragraphs without bullet points or numbered lists.`
+Write a recruiter-optimized, third-person answer following the BLUF and brevity rules above.`
 
 async function callAnthropic(apiKey: string, prompt: string): Promise<string> {
   const response = await fetch("https://api.anthropic.com/v1/messages", {
