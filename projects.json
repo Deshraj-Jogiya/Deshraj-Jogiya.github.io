@@ -242,7 +242,8 @@
           "html": "Automated Document Compiler: Built automated Python PDF compilation scripts to generate formatted resumes and cover letters.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "dashboard_url": "assets/career_pilot_dashboard.png"
     },
     {
       "badge": "Cloud & Generative AI",
@@ -275,7 +276,8 @@
           "html": "Vector RAG Embeddings: Implemented semantic search and RAG retrieval pipelines to contextualize daily technical news articles automatically.",
           "resume_role": "ds"
         }
-      ]
+      ],
+      "dashboard_url": "assets/curiosync_publishing_trend.png"
     },
     {
       "badge": "Cloud & Enterprise ML",
@@ -308,7 +310,8 @@
           "html": "Databricks & dbt Transformations: Implemented dbt data transformation models on <strong>Databricks</strong> to standardize schema definitions.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "dashboard_url": "assets/talentvenue_feature_importance.png"
     },
     {
       "badge": "NLP & Semantic Search",
@@ -340,7 +343,8 @@
           "html": "Architecture Tradeoff Analysis: Evaluated five candidate approaches (rule-based, knowledge graph, fine-tuned LLM, hybrid) before selecting embeddings-based semantic search.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "dashboard_url": "assets/qa_system_retrieval_accuracy.png"
     },
     {
       "badge": "NLP & Transfer Learning",
@@ -372,7 +376,8 @@
           "html": "Training Loop Simulation: Simulated multi-task training with synthetic data via model.fit(), logging per-task loss and accuracy.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "dashboard_url": "assets/ml_apprentice_training_curves.png"
     },
     {
       "badge": "AI Governance",
