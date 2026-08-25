@@ -17,13 +17,213 @@
       "label": "ASU MS IT GPA"
     }
   ],
+  "experience": [
+    {
+      "badge": "Robotics & Parallel Pipelines",
+      "role": "Teleoperation Data Collection Associate",
+      "company": "Objectways Technologies LLC | Tempe, AZ",
+      "dates": "May 2026 – Present",
+      "tags": [
+        "Python",
+        "Scala",
+        "Kubernetes",
+        "Docker",
+        "Robotics Data QA",
+        "Linux"
+      ],
+      "bullets": [
+        {
+          "html": "Collected and validated <strong>10,000+</strong> teleoperation data samples for AI/ML model training, improving dataset accuracy and consistency.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Engineered scalable data pipelines using <strong>Python, Scala, and Kubernetes</strong> to process massive robotics datasets, cutting data processing time by <strong>30%</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Executed robotics dataset QA and anomaly detection, lowering downstream model training error rates by <strong>15%</strong>.",
+          "resume_role": "ds"
+        }
+      ]
+    },
+    {
+      "badge": "LLMs, Supabase & Vector Sync",
+      "role": "Applied Machine Learning Engineer",
+      "company": "Technoid LLC | Piscataway, NJ",
+      "dates": "Dec 2025 – May 2026",
+      "tags": [
+        "Python",
+        "GPT-4o mini",
+        "OpenAI API",
+        "PostgreSQL",
+        "Supabase",
+        "SQL",
+        "PyTest"
+      ],
+      "bullets": [
+        {
+          "html": "Optimized <strong>GPT-4o mini</strong> models for candidate resume matching using OpenAI APIs, SQL, and PostgreSQL, raising recommendation accuracy by <strong>25%</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Restructured <strong>Supabase</strong> data sync layers with PostgreSQL backend RLS fixes, cutting real-time vector synchronization latency by <strong>65%</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Established automated phased regression and UAT testing frameworks, cutting model deployment errors by <strong>30%</strong>.",
+          "resume_role": "ds"
+        }
+      ]
+    },
+    {
+      "badge": "Cloud Migration & Data Quality",
+      "role": "Data Analyst",
+      "company": "Zifatech Solutions LLC | Milwaukee, WI",
+      "dates": "Jun 2025 – Dec 2025",
+      "tags": [
+        "AWS Glue",
+        "AWS S3",
+        "Snowflake",
+        "Python",
+        "SQL",
+        "Great Expectations",
+        "Power BI"
+      ],
+      "bullets": [
+        {
+          "html": "Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, cutting manual reporting effort by <strong>70%</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Migrated legacy database workflows to <strong>AWS Glue &amp; S3</strong>, increasing data availability by <strong>60%</strong> and streamlining integration with Snowflake and Power BI.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Modernized Star Schema dimensional models in Snowflake using <strong>Great Expectations</strong> QA validations, securing a <strong>98%+ data reliability standard</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Built executive Power BI dashboards connected to Snowflake data warehouses, converting complex data streams into strategic business insights.",
+          "resume_role": "de"
+        }
+      ]
+    },
+    {
+      "badge": "Customer Segmentation & BI",
+      "role": "Data Analytics & ML Fellow Trainee",
+      "company": "ElevateMe Bootcamp | Columbus, OH (Part-time, concurrent)",
+      "dates": "Jan 2025 – Mar 2026",
+      "tags": [
+        "Python",
+        "Scikit-Learn",
+        "K-Means",
+        "PCA",
+        "Power BI",
+        "SQL"
+      ],
+      "bullets": [
+        {
+          "html": "Executed customer segmentation using <strong>K-Means clustering &amp; PCA</strong> dimensionality reduction in Python, capturing <strong>92% of data variance</strong> across target personas.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Spearheaded marketing intelligence strategies using classification models, driving a <strong>12% increase in campaign click-through rates</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Deployed interactive Power BI KPI dashboards for real-time executive visibility into operational revenue trends.",
+          "resume_role": "ds"
+        }
+      ]
+    },
+    {
+      "badge": "Streaming & Recommendation Systems",
+      "role": "Data Engineer & ML Research Assistant",
+      "company": "Arizona State University | Tempe, AZ",
+      "dates": "Sep 2024 – Jun 2025",
+      "tags": [
+        "Node.js",
+        "MongoDB",
+        "Python",
+        "NLP",
+        "Recommendation Engine",
+        "Streaming ETL"
+      ],
+      "bullets": [
+        {
+          "html": "Architected a real-time streaming pipeline utilizing <strong>Node.js &amp; MongoDB</strong>, sustaining <strong>99.9% uptime</strong> for 5,000 concurrent users.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Constructed a behavioral content recommendation engine, refining algorithms weekly to drive a <strong>12% increase in click-through rates</strong> and lower user churn.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Developed an NLP chatbot analyzing user input trends, identifying top UI friction points and boosting positive user satisfaction by <strong>15%</strong>.",
+          "resume_role": "ds"
+        }
+      ]
+    },
+    {
+      "badge": "Robotics Pipeline Automation",
+      "role": "AI-ML Analyst Apprentice",
+      "company": "Jetson Infinity | Austin, TX",
+      "dates": "Jul 2024 – Aug 2024",
+      "tags": [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "SQL",
+        "Robotics Data"
+      ],
+      "bullets": [
+        {
+          "html": "Implemented Python-based data processing pipelines leveraging Pandas &amp; NumPy, improving workflow efficiency by <strong>10%</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Automated robotic arm motion ETL pipeline with Python &amp; SQL, improving data processing speed by 17% and enabling real-time anomaly detection.",
+          "resume_role": "de"
+        }
+      ]
+    },
+    {
+      "badge": "Subledger Accounting & BI",
+      "role": "Data Analyst",
+      "company": "Kronic Keys | Junagadh, GJ",
+      "dates": "Aug 2021 – Mar 2022",
+      "tags": [
+        "PostgreSQL",
+        "SQL",
+        "Tableau",
+        "ETL Ingestion"
+      ],
+      "bullets": [
+        {
+          "html": "Cleaned and prepared large financial datasets in PostgreSQL, reducing monthly reporting cycle times by <strong>30%</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Engineered SQL queries and Tableau executive dashboards, contributing to a <strong>12% increase in customer acquisition</strong>.",
+          "resume_role": "de"
+        }
+      ]
+    }
+  ],
   "projects": [
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
       "desc": "Local job placement command center with FastAPI and SQLite. Features AI-powered profile matching, resume and cover letter tailoring, LinkedIn recruiter outreach generation, and Kanban application tracking.",
       "category": "data-engineering machine-learning",
-      "tags": ["FastAPI", "Python", "SQLite", "OpenAI API", "Jinja2", "TailwindCSS"],
+      "tags": [
+        "FastAPI",
+        "Python",
+        "SQLite",
+        "OpenAI API",
+        "Jinja2",
+        "TailwindCSS"
+      ],
       "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation"
     },
     {
@@ -31,15 +231,29 @@
       "name": "CurioSync: Serverless Tech News & LinkedIn Publisher",
       "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
       "category": "data-engineering machine-learning analytics",
-      "tags": ["FastAPI", "Python", "GitHub Actions", "Gemini LLM", "HTMX", "Cryptography"],
+      "tags": [
+        "FastAPI",
+        "Python",
+        "GitHub Actions",
+        "Gemini LLM",
+        "HTMX",
+        "Cryptography"
+      ],
       "github_url": "https://github.com/Deshraj-Jogiya/curiosync"
     },
     {
       "badge": "Cloud & Enterprise ML",
       "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Accelerated financial queries by 45%, achieved 100% payment reconciliation accuracy, and deployed a Random Forest model predicting contract cancellation risk with 88% precision.",
+      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 88% precision, alongside automated financial reporting and reconciliation workflows.",
       "category": "data-engineering machine-learning analytics",
-      "tags": ["Python", "Snowflake", "Azure ADLS", "Streamlit", "Scikit-Learn", "SQL Server"],
+      "tags": [
+        "Python",
+        "Snowflake",
+        "Azure ADLS",
+        "Streamlit",
+        "Scikit-Learn",
+        "SQL Server"
+      ],
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
     },
     {
@@ -47,7 +261,13 @@
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
       "category": "data-engineering machine-learning analytics",
-      "tags": ["Python", "Drift Audit", "KS-Test", "Tableau", "SQL"],
+      "tags": [
+        "Python",
+        "Drift Audit",
+        "KS-Test",
+        "Tableau",
+        "SQL"
+      ],
       "dashboard_url": "assets/ai_observability.png",
       "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing"
     },
@@ -56,7 +276,13 @@
       "name": "FinTech Credit Risk & Fraud Command Center",
       "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
       "category": "data-engineering machine-learning",
-      "tags": ["FastAPI", "Python", "SQL", "Scikit-Learn", "Chart.js"],
+      "tags": [
+        "FastAPI",
+        "Python",
+        "SQL",
+        "Scikit-Learn",
+        "Chart.js"
+      ],
       "dashboard_url": "assets/finrisk_feature_importance.png",
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline"
     },
@@ -65,7 +291,13 @@
       "name": "Multi-State Land Use Emissions Analysis",
       "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
       "category": "data-engineering machine-learning analytics",
-      "tags": ["Python", "SQLite", "Random Forest", "ETL Ingestion", "ArcGIS"],
+      "tags": [
+        "Python",
+        "SQLite",
+        "Random Forest",
+        "ETL Ingestion",
+        "ArcGIS"
+      ],
       "dashboard_url": "assets/emissions_by_state.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis"
     },
@@ -74,7 +306,13 @@
       "name": "Tax Anomaly Audit Compliance Engine",
       "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
       "category": "machine-learning analytics",
-      "tags": ["Benford's Law", "Isolation Forest", "Python", "Power BI", "SQL"],
+      "tags": [
+        "Benford's Law",
+        "Isolation Forest",
+        "Python",
+        "Power BI",
+        "SQL"
+      ],
       "dashboard_url": "assets/compliance_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline"
     },
@@ -83,7 +321,13 @@
       "name": "Automated Daily Data Insights",
       "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
       "category": "data-engineering",
-      "tags": ["Python", "yFinance", "Matplotlib", "GitHub Actions", "SQLite"],
+      "tags": [
+        "Python",
+        "yFinance",
+        "Matplotlib",
+        "GitHub Actions",
+        "SQLite"
+      ],
       "dashboard_url": "assets/daily_insights.png",
       "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights"
     },
@@ -92,7 +336,14 @@
       "name": "Sales Operations & Customer Segmentation",
       "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
       "category": "machine-learning analytics",
-      "tags": ["Python", "K-Means", "PCA", "SQLite", "Power BI", "Seaborn"],
+      "tags": [
+        "Python",
+        "K-Means",
+        "PCA",
+        "SQLite",
+        "Power BI",
+        "Seaborn"
+      ],
       "dashboard_url": "assets/sales_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline"
     },
@@ -101,7 +352,13 @@
       "name": "Clinical Trials Patient Outcomes Analysis",
       "desc": "Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.",
       "category": "analytics",
-      "tags": ["Python", "Kaplan-Meier", "Log-Rank", "Tableau", "scipy"],
+      "tags": [
+        "Python",
+        "Kaplan-Meier",
+        "Log-Rank",
+        "Tableau",
+        "scipy"
+      ],
       "dashboard_url": "assets/clinical_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis"
     },
@@ -110,7 +367,13 @@
       "name": "Real-Time IoT Telematics & Predictive Maintenance",
       "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
       "category": "data-engineering analytics",
-      "tags": ["Z-Score Anomaly", "RUL Model", "Python", "Power BI", "SQL"],
+      "tags": [
+        "Z-Score Anomaly",
+        "RUL Model",
+        "Python",
+        "Power BI",
+        "SQL"
+      ],
       "dashboard_url": "assets/iot_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance"
     },
@@ -119,7 +382,13 @@
       "name": "AI-ML Data Science Simulation",
       "desc": "Retail data pipeline automating daily sales ingestion from 5 U.S. branches. Centralizes operations in SQL and uses Linear Regression/Random Forest forecasting to reduce stockouts by 15%.",
       "category": "data-engineering machine-learning analytics",
-      "tags": ["Python", "SQL", "Random Forest", "Sales ETL", "Tableau"],
+      "tags": [
+        "Python",
+        "SQL",
+        "Random Forest",
+        "Sales ETL",
+        "Tableau"
+      ],
       "dashboard_url": "assets/forecast_vs_actual.png",
       "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation"
     },
@@ -128,61 +397,106 @@
       "name": "Extending STEM across ASL",
       "desc": "Inclusive educational learning platform utilizing a Convolutional Neural Network (CNN) in TensorFlow/Keras to recognize American Sign Language gestures for 7 core STEM concepts.",
       "category": "machine-learning",
-      "tags": ["Python", "TensorFlow", "Keras", "CNN Model", "Flask", "ASL Recognition"],
+      "tags": [
+        "Python",
+        "TensorFlow",
+        "Keras",
+        "CNN Model",
+        "Flask",
+        "ASL Recognition"
+      ],
       "dashboard_url": "assets/training_curves.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL"
     },
     {
       "badge": "Mobile & Education",
       "name": "Stay Aware of Branch",
-      "desc": "Developed a parent-school engagement application using React Native and Android frameworks, implementing progress reports and attendance tracking that boosted parent involvement by 40% and cut administrative workloads by 25%.",
+      "desc": "Developed a parent-school engagement application using React Native and Android frameworks, implementing progress reports and attendance tracking that boosted parent involvement by 40%.",
       "category": "software-dev",
-      "tags": ["React Native", "Android", "JavaScript", "Mobile", "Git"],
+      "tags": [
+        "React Native",
+        "Android",
+        "JavaScript",
+        "Mobile",
+        "Git"
+      ],
       "dashboard_url": "assets/stay_aware_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/stay-aware-of-branch"
     },
     {
       "badge": "Web Development & Catering",
       "name": "Chef at Gathering",
-      "desc": "Built an event coordination and professional catering booking React application, streamlining management processes to reduce coordination time by 50% and boost chef bookings by 20%.",
+      "desc": "Built an event coordination and professional catering booking React application, streamlining management processes to reduce coordination time by 50%.",
       "category": "software-dev",
-      "tags": ["React", "JavaScript", "HTML5", "CSS3", "Git"],
+      "tags": [
+        "React",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Git"
+      ],
       "dashboard_url": "assets/chef_gathering_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/chef-at-gathering"
     },
     {
       "badge": "Web Development & Community",
       "name": "City Forums",
-      "desc": "Created an online community engagement and marketplace platform using CodeIgniter 3 and MySQL, scaling the user base by 50% in three months and generating $10,000 in classified ad revenue.",
+      "desc": "Created an online community engagement and marketplace platform using CodeIgniter 3 and MySQL, generating $10,000 in classified ad revenue through targeted marketing strategies.",
       "category": "software-dev",
-      "tags": ["PHP", "CodeIgniter 3", "MySQL", "Bootstrap", "Git"],
+      "tags": [
+        "PHP",
+        "CodeIgniter 3",
+        "MySQL",
+        "Bootstrap",
+        "Git"
+      ],
       "dashboard_url": "assets/city_forums_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/city-forums"
     },
     {
       "badge": "Web Services & Gamification",
       "name": "Make It Short",
-      "desc": "Integrated a link shortening engine and analytics tracking into a CodeIgniter 4 app, generating 10,000+ shortened URLs, driving a 15% increase in user engagement via gamified redeemable points, and generating $500 in revenue.",
+      "desc": "Integrated a link shortening engine and analytics tracking into a CodeIgniter 4 app, generating 10,000+ shortened URLs through gamified, redeemable points.",
       "category": "software-dev",
-      "tags": ["PHP", "CodeIgniter 4", "MySQL", "HTML5", "CSS3", "Git"],
+      "tags": [
+        "PHP",
+        "CodeIgniter 4",
+        "MySQL",
+        "HTML5",
+        "CSS3",
+        "Git"
+      ],
       "dashboard_url": "assets/make_it_short_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/make-it-short"
     },
     {
       "badge": "FinTech & Blockchain",
       "name": "Get your Token",
-      "desc": "Published a Web3 crypto marketplace frontend and administrative dashboard using Express.js and Angular for NFT and Penky token transactions, handling 1,000+ transactions in the first month and achieving a 90% user satisfaction rate.",
+      "desc": "Published a Web3 crypto marketplace frontend and administrative dashboard using Express.js and Angular for NFT and Penky token transactions, handling 1,000+ transactions in the first month.",
       "category": "software-dev",
-      "tags": ["Node.js", "Express", "Angular", "Cryptocurrency API", "Git"],
+      "tags": [
+        "Node.js",
+        "Express",
+        "Angular",
+        "Cryptocurrency API",
+        "Git"
+      ],
       "dashboard_url": "assets/get_your_token_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/get-your-token"
     },
     {
       "badge": "Computer Vision & Deep Learning",
       "name": "Solid Object Detection & Identification using Image Processing",
-      "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV. Achieved 99.20% classification accuracy on a 10,000+ image dataset, combining a custom CNN with traditional contour geometry approximations to increase visualization capabilities by 33%.",
+      "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV, achieving 99.20% classification accuracy by combining a custom CNN with traditional contour geometry approximations.",
       "category": "machine-learning analytics",
-      "tags": ["Python", "PyTorch", "OpenCV", "CNN Model", "Image Processing", "Git"],
+      "tags": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "CNN Model",
+        "Image Processing",
+        "Git"
+      ],
       "dashboard_url": "assets/solid_object_curves.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing"
     }
