@@ -282,107 +282,106 @@
       "date": "Jun 2026 – Present"
     },
     {
-      "badge": "Cloud & Enterprise ML",
-      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 88% precision, alongside automated financial reporting and reconciliation workflows.",
-      "category": "data-engineering machine-learning analytics",
+      "badge": "Automation & ETL",
+      "name": "Automated Daily Data Insights",
+      "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
+      "category": "data-engineering",
       "tags": [
         "Python",
-        "Snowflake",
-        "Azure ADLS",
-        "Streamlit",
-        "Scikit-Learn",
-        "SQL Server"
+        "yFinance",
+        "Matplotlib",
+        "GitHub Actions",
+        "SQLite"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
+      "dashboard_url": "assets/daily_insights.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
       "bullets": [
         {
-          "html": "Enterprise Cloud Platform: Connected <strong>SQL Server, Azure ADLS Gen2, Snowflake</strong>, and Streamlit, accelerating financial queries by <strong>45%</strong>.",
+          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market data from <strong>yFinance APIs</strong> with automated error handling.",
           "resume_role": "de"
         },
         {
-          "html": "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit for event data visualization.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>88% precision</strong>.",
+          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies.",
           "resume_role": "ds"
         },
         {
-          "html": "Databricks & dbt Transformations: Implemented dbt data transformation models on <strong>Databricks</strong> to standardize schema definitions.",
-          "resume_role": "de"
-        }
-      ],
-      "dashboard_url": "assets/talentvenue_feature_importance.png",
-      "date": "Jun 2020 – Dec 2020"
-    },
-    {
-      "badge": "NLP & Semantic Search",
-      "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
-      "desc": "Interactive QA API answering natural-language questions about member data, ranking unstructured messages via SentenceTransformer embeddings and identifying subjects with spaCy NER.",
-      "category": "machine-learning analytics",
-      "tags": [
-        "Python",
-        "Sentence-Transformers",
-        "spaCy",
-        "Scikit-Learn",
-        "Pandas"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
-      "bullets": [
-        {
-          "html": "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions, ranking messages via <strong>SentenceTransformer</strong> embeddings.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Named Entity Recognition: Integrated <strong>spaCy NER</strong> with fuzzy first-name matching to identify a question's subject.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Dynamic Information Extraction: Implemented regex-based extraction for contact info and numeric quantities, with fallback logic when no structured answer applies.",
+          "html": "Cron Schedule Uptime: Configured <strong>GitHub Actions</strong> to run the pipeline daily, achieving 99.9% uptime at $0 operational cost.",
           "resume_role": "de"
         },
         {
-          "html": "Architecture Tradeoff Analysis: Evaluated five candidate approaches (rule-based, knowledge graph, fine-tuned LLM, hybrid) before selecting embeddings-based semantic search.",
+          "html": "Automated Data Quality Validation: Embedded input validation checks to prevent missing records from corrupting downstream reports.",
           "resume_role": "general"
         }
       ],
-      "dashboard_url": "assets/qa_system_retrieval_accuracy.png",
-      "date": "Oct 2025 – Nov 2025"
+      "date": "Jun 2026 – Present"
     },
     {
-      "badge": "NLP & Transfer Learning",
-      "name": "ML Apprentice Take-Home Exercise: Sentence Transformer & Multi-Task Learning",
-      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, then extended it into a multi-task architecture with classification and sentiment heads, evaluating transfer-learning freeze strategies.",
-      "category": "machine-learning",
+      "badge": "FinTech & Risk",
+      "name": "FinTech Credit Risk & Fraud Command Center",
+      "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
+      "category": "data-engineering machine-learning",
       "tags": [
-        "TensorFlow",
-        "TensorFlow Hub",
-        "BERT",
-        "Multi-Task Learning",
-        "NumPy"
+        "FastAPI",
+        "Python",
+        "SQL",
+        "Scikit-Learn",
+        "Chart.js"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise",
+      "dashboard_url": "assets/finrisk_feature_importance.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
       "bullets": [
         {
-          "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from <strong>TensorFlow Hub</strong>, encoding sentences into 128-dimensional embeddings.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Multi-Task Learning Expansion: Extended the shared backbone with two task-specific heads (3-class classification, 2-class sentiment).",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Transfer Learning Strategy: Evaluated freezing strategies and proposed a staged fine-tuning approach for the pretrained backbone.",
-          "resume_role": "general"
-        },
-        {
-          "html": "Training Loop Simulation: Simulated multi-task training with synthetic data via model.fit(), logging per-task loss and accuracy.",
+          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using <strong>FastAPI</strong>, achieving sub-100ms API response latency.",
           "resume_role": "de"
+        },
+        {
+          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.",
+          "resume_role": "general"
         }
       ],
-      "dashboard_url": "assets/ml_apprentice_training_curves.png",
-      "date": "Apr 2025"
+      "date": "Jun 2026"
+    },
+    {
+      "badge": "Streaming & IoT",
+      "name": "Real-Time IoT Telematics & Predictive Maintenance",
+      "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
+      "category": "data-engineering analytics",
+      "tags": [
+        "Z-Score Anomaly",
+        "RUL Model",
+        "Python",
+        "Power BI",
+        "SQL"
+      ],
+      "dashboard_url": "assets/iot_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
+      "bullets": [
+        {
+          "html": "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline to ingest EV battery and motor telemetry logs in micro-batches.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Anomaly Detection & Device Health: Applied rolling statistical Z-score algorithms to flag real-time anomalies.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Degradation & RUL Modeling: Implemented degradation modeling to estimate battery <strong>Remaining Useful Life (RUL)</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Mar 2026 – Apr 2026"
     },
     {
       "badge": "AI Governance",
@@ -419,38 +418,73 @@
       "date": "Jan 2026 – Feb 2026"
     },
     {
-      "badge": "FinTech & Risk",
-      "name": "FinTech Credit Risk & Fraud Command Center",
-      "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
-      "category": "data-engineering machine-learning",
+      "badge": "Sales & Marketing",
+      "name": "Sales Operations & Customer Segmentation",
+      "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
+      "category": "machine-learning analytics",
       "tags": [
-        "FastAPI",
         "Python",
-        "SQL",
-        "Scikit-Learn",
-        "Chart.js"
+        "K-Means",
+        "PCA",
+        "SQLite",
+        "Power BI",
+        "Seaborn"
       ],
-      "dashboard_url": "assets/finrisk_feature_importance.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
+      "dashboard_url": "assets/sales_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
       "bullets": [
         {
-          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using <strong>FastAPI</strong>, achieving sub-100ms API response latency.",
+          "html": "Star Schema Database: Designed a SQL database with an optimized Star Schema modeling <strong>100k+ customer transactions</strong>.",
           "resume_role": "de"
         },
         {
-          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>.",
+          "html": "RFM & K-Means Clustering: Automated RFM scaling and <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
           "resume_role": "ds"
         },
         {
-          "html": "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration.",
+          "html": "Executive Power BI Dashboard: Developed a Power BI dashboard to track RFM metrics for marketing teams.",
           "resume_role": "de"
         },
         {
-          "html": "Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.",
+          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue-generating customer segments.",
           "resume_role": "general"
         }
       ],
-      "date": "Jun 2026"
+      "date": "Nov 2025 – Dec 2025"
+    },
+    {
+      "badge": "NLP & Semantic Search",
+      "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
+      "desc": "Interactive QA API answering natural-language questions about member data, ranking unstructured messages via SentenceTransformer embeddings and identifying subjects with spaCy NER.",
+      "category": "machine-learning analytics",
+      "tags": [
+        "Python",
+        "Sentence-Transformers",
+        "spaCy",
+        "Scikit-Learn",
+        "Pandas"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
+      "bullets": [
+        {
+          "html": "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions, ranking messages via <strong>SentenceTransformer</strong> embeddings.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Named Entity Recognition: Integrated <strong>spaCy NER</strong> with fuzzy first-name matching to identify a question's subject.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Dynamic Information Extraction: Implemented regex-based extraction for contact info and numeric quantities, with fallback logic when no structured answer applies.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Architecture Tradeoff Analysis: Evaluated five candidate approaches (rule-based, knowledge graph, fine-tuned LLM, hybrid) before selecting embeddings-based semantic search.",
+          "resume_role": "general"
+        }
+      ],
+      "dashboard_url": "assets/qa_system_retrieval_accuracy.png",
+      "date": "Oct 2025 – Nov 2025"
     },
     {
       "badge": "Geospatial & Climate",
@@ -521,75 +555,6 @@
       "date": "Oct 2025 – Nov 2025"
     },
     {
-      "badge": "Automation & ETL",
-      "name": "Automated Daily Data Insights",
-      "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
-      "category": "data-engineering",
-      "tags": [
-        "Python",
-        "yFinance",
-        "Matplotlib",
-        "GitHub Actions",
-        "SQLite"
-      ],
-      "dashboard_url": "assets/daily_insights.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
-      "bullets": [
-        {
-          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market data from <strong>yFinance APIs</strong> with automated error handling.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Cron Schedule Uptime: Configured <strong>GitHub Actions</strong> to run the pipeline daily, achieving 99.9% uptime at $0 operational cost.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Automated Data Quality Validation: Embedded input validation checks to prevent missing records from corrupting downstream reports.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Jun 2026 – Present"
-    },
-    {
-      "badge": "Sales & Marketing",
-      "name": "Sales Operations & Customer Segmentation",
-      "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
-      "category": "machine-learning analytics",
-      "tags": [
-        "Python",
-        "K-Means",
-        "PCA",
-        "SQLite",
-        "Power BI",
-        "Seaborn"
-      ],
-      "dashboard_url": "assets/sales_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
-      "bullets": [
-        {
-          "html": "Star Schema Database: Designed a SQL database with an optimized Star Schema modeling <strong>100k+ customer transactions</strong>.",
-          "resume_role": "de"
-        },
-        {
-          "html": "RFM & K-Means Clustering: Automated RFM scaling and <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Executive Power BI Dashboard: Developed a Power BI dashboard to track RFM metrics for marketing teams.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue-generating customer segments.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Nov 2025 – Dec 2025"
-    },
-    {
       "badge": "Healthcare & Statistics",
       "name": "Clinical Trials Patient Outcomes Analysis",
       "desc": "Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.",
@@ -624,38 +589,38 @@
       "date": "Aug 2025"
     },
     {
-      "badge": "Streaming & IoT",
-      "name": "Real-Time IoT Telematics & Predictive Maintenance",
-      "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
-      "category": "data-engineering analytics",
+      "badge": "NLP & Transfer Learning",
+      "name": "ML Apprentice Take-Home Exercise: Sentence Transformer & Multi-Task Learning",
+      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, then extended it into a multi-task architecture with classification and sentiment heads, evaluating transfer-learning freeze strategies.",
+      "category": "machine-learning",
       "tags": [
-        "Z-Score Anomaly",
-        "RUL Model",
-        "Python",
-        "Power BI",
-        "SQL"
+        "TensorFlow",
+        "TensorFlow Hub",
+        "BERT",
+        "Multi-Task Learning",
+        "NumPy"
       ],
-      "dashboard_url": "assets/iot_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
+      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise",
       "bullets": [
         {
-          "html": "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline to ingest EV battery and motor telemetry logs in micro-batches.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Anomaly Detection & Device Health: Applied rolling statistical Z-score algorithms to flag real-time anomalies.",
+          "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from <strong>TensorFlow Hub</strong>, encoding sentences into 128-dimensional embeddings.",
           "resume_role": "ds"
         },
         {
-          "html": "Degradation & RUL Modeling: Implemented degradation modeling to estimate battery <strong>Remaining Useful Life (RUL)</strong>.",
+          "html": "Multi-Task Learning Expansion: Extended the shared backbone with two task-specific heads (3-class classification, 2-class sentiment).",
           "resume_role": "ds"
         },
         {
-          "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
+          "html": "Transfer Learning Strategy: Evaluated freezing strategies and proposed a staged fine-tuning approach for the pretrained backbone.",
           "resume_role": "general"
+        },
+        {
+          "html": "Training Loop Simulation: Simulated multi-task training with synthetic data via model.fit(), logging per-task loss and accuracy.",
+          "resume_role": "de"
         }
       ],
-      "date": "Mar 2026 – Apr 2026"
+      "dashboard_url": "assets/ml_apprentice_training_curves.png",
+      "date": "Apr 2025"
     },
     {
       "badge": "Operations & Demand",
@@ -727,40 +692,6 @@
       "date": "Nov 2023 – Mar 2024"
     },
     {
-      "badge": "Mobile & Education",
-      "name": "Stay Aware of Branch",
-      "desc": "Developed a parent-school engagement application using React Native and Android frameworks, implementing progress reports and attendance tracking that boosted parent involvement by 40%.",
-      "category": "software-dev",
-      "tags": [
-        "React Native",
-        "Android",
-        "JavaScript",
-        "Mobile",
-        "Git"
-      ],
-      "dashboard_url": "assets/stay_aware_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Stay-Aware-of-Branch",
-      "bullets": [
-        {
-          "html": "Parent-School Mobile Application: Developed a parent-school engagement application using <strong>React Native</strong> and Android frameworks.",
-          "resume_role": "general"
-        },
-        {
-          "html": "Progress & Attendance Tracking: Implemented tracking modules that boosted parent involvement by <strong>40%</strong>.",
-          "resume_role": "general"
-        },
-        {
-          "html": "Cross-Platform Mobile Integration: Delivered seamless mobile UI optimized for Android devices.",
-          "resume_role": "general"
-        },
-        {
-          "html": "Push Notification Services: Integrated native Android notification services for critical school announcements.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Jul 2023 – Dec 2023"
-    },
-    {
       "badge": "Web Development & Catering",
       "name": "Chef at Gathering",
       "desc": "Built an event coordination and professional catering booking React application, streamlining management processes to reduce coordination time by 50%.",
@@ -793,6 +724,40 @@
         }
       ],
       "date": "Jan 2024 – Feb 2024"
+    },
+    {
+      "badge": "Mobile & Education",
+      "name": "Stay Aware of Branch",
+      "desc": "Developed a parent-school engagement application using React Native and Android frameworks, implementing progress reports and attendance tracking that boosted parent involvement by 40%.",
+      "category": "software-dev",
+      "tags": [
+        "React Native",
+        "Android",
+        "JavaScript",
+        "Mobile",
+        "Git"
+      ],
+      "dashboard_url": "assets/stay_aware_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Stay-Aware-of-Branch",
+      "bullets": [
+        {
+          "html": "Parent-School Mobile Application: Developed a parent-school engagement application using <strong>React Native</strong> and Android frameworks.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Progress & Attendance Tracking: Implemented tracking modules that boosted parent involvement by <strong>40%</strong>.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Cross-Platform Mobile Integration: Delivered seamless mobile UI optimized for Android devices.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Push Notification Services: Integrated native Android notification services for critical school announcements.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Jul 2023 – Dec 2023"
     },
     {
       "badge": "Web Development & Community",
@@ -896,6 +861,41 @@
         }
       ],
       "date": "Jul 2021 – Nov 2021"
+    },
+    {
+      "badge": "Cloud & Enterprise ML",
+      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 88% precision, alongside automated financial reporting and reconciliation workflows.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": [
+        "Python",
+        "Snowflake",
+        "Azure ADLS",
+        "Streamlit",
+        "Scikit-Learn",
+        "SQL Server"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
+      "bullets": [
+        {
+          "html": "Enterprise Cloud Platform: Connected <strong>SQL Server, Azure ADLS Gen2, Snowflake</strong>, and Streamlit, accelerating financial queries by <strong>45%</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit for event data visualization.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>88% precision</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Databricks & dbt Transformations: Implemented dbt data transformation models on <strong>Databricks</strong> to standardize schema definitions.",
+          "resume_role": "de"
+        }
+      ],
+      "dashboard_url": "assets/talentvenue_feature_importance.png",
+      "date": "Jun 2020 – Dec 2020"
     },
     {
       "badge": "Computer Vision & Deep Learning",
