@@ -279,178 +279,7 @@
         }
       ],
       "dashboard_url": "assets/curiosync_publishing_trend.png",
-      "date": "Jun 2026 – Present"
-    },
-    {
-      "badge": "Automation & ETL",
-      "name": "Automated Daily Data Insights",
-      "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
-      "category": "data-engineering",
-      "tags": [
-        "Python",
-        "yFinance",
-        "Matplotlib",
-        "GitHub Actions",
-        "SQLite"
-      ],
-      "dashboard_url": "assets/daily_insights.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
-      "bullets": [
-        {
-          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market data from <strong>yFinance APIs</strong> with automated error handling.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Cron Schedule Uptime: Configured <strong>GitHub Actions</strong> to run the pipeline daily, achieving 99.9% uptime at $0 operational cost.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Automated Data Quality Validation: Embedded input validation checks to prevent missing records from corrupting downstream reports.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Jun 2026 – Present"
-    },
-    {
-      "badge": "FinTech & Risk",
-      "name": "FinTech Credit Risk & Fraud Command Center",
-      "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
-      "category": "data-engineering machine-learning",
-      "tags": [
-        "FastAPI",
-        "Python",
-        "SQL",
-        "Scikit-Learn",
-        "Chart.js"
-      ],
-      "dashboard_url": "assets/finrisk_feature_importance.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
-      "bullets": [
-        {
-          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using <strong>FastAPI</strong>, achieving sub-100ms API response latency.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Jun 2026"
-    },
-    {
-      "badge": "Streaming & IoT",
-      "name": "Real-Time IoT Telematics & Predictive Maintenance",
-      "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
-      "category": "data-engineering analytics",
-      "tags": [
-        "Z-Score Anomaly",
-        "RUL Model",
-        "Python",
-        "Power BI",
-        "SQL"
-      ],
-      "dashboard_url": "assets/iot_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
-      "bullets": [
-        {
-          "html": "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline to ingest EV battery and motor telemetry logs in micro-batches.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Anomaly Detection & Device Health: Applied rolling statistical Z-score algorithms to flag real-time anomalies.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Degradation & RUL Modeling: Implemented degradation modeling to estimate battery <strong>Remaining Useful Life (RUL)</strong>.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Mar 2026 – Apr 2026"
-    },
-    {
-      "badge": "AI Governance",
-      "name": "AI Model Observability & Fairness Audits",
-      "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": [
-        "Python",
-        "Drift Audit",
-        "KS-Test",
-        "Tableau",
-        "SQL"
-      ],
-      "dashboard_url": "assets/ai_observability.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
-      "bullets": [
-        {
-          "html": "MLOps Drift Monitoring: Audits ML models in production by running <strong>Kolmogorov-Smirnov (KS) tests</strong> and Population Stability Index (PSI) to monitor feature drift.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Bias & Fairness Auditing: Evaluates demographic parity and Equal Opportunity bias metrics for regulatory frameworks (EU AI Act, US FTC).",
-          "resume_role": "general"
-        },
-        {
-          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in <strong>Tableau</strong>.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
-          "resume_role": "de"
-        }
-      ],
-      "date": "Jan 2026 – Feb 2026"
-    },
-    {
-      "badge": "Sales & Marketing",
-      "name": "Sales Operations & Customer Segmentation",
-      "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
-      "category": "machine-learning analytics",
-      "tags": [
-        "Python",
-        "K-Means",
-        "PCA",
-        "SQLite",
-        "Power BI",
-        "Seaborn"
-      ],
-      "dashboard_url": "assets/sales_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
-      "bullets": [
-        {
-          "html": "Star Schema Database: Designed a SQL database with an optimized Star Schema modeling <strong>100k+ customer transactions</strong>.",
-          "resume_role": "de"
-        },
-        {
-          "html": "RFM & K-Means Clustering: Automated RFM scaling and <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Executive Power BI Dashboard: Developed a Power BI dashboard to track RFM metrics for marketing teams.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue-generating customer segments.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Nov 2025 – Dec 2025"
+      "date": "Jan 2026 – Jun 2026"
     },
     {
       "badge": "NLP & Semantic Search",
@@ -487,106 +316,107 @@
       "date": "Oct 2025 – Nov 2025"
     },
     {
-      "badge": "Geospatial & Climate",
-      "name": "Multi-State Land Use Emissions Analysis",
-      "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
+      "badge": "Cloud & Enterprise ML",
+      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 88% precision, alongside automated financial reporting and reconciliation workflows.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
-        "SQLite",
-        "Random Forest",
-        "ETL Ingestion",
-        "ArcGIS"
+        "Snowflake",
+        "Azure ADLS",
+        "Streamlit",
+        "Scikit-Learn",
+        "SQL Server"
       ],
-      "dashboard_url": "assets/emissions_by_state.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
+      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
       "bullets": [
         {
-          "html": "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across <strong>5 U.S. states</strong>.",
+          "html": "Enterprise Cloud Platform: Connected <strong>SQL Server, Azure ADLS Gen2, Snowflake</strong>, and Streamlit, accelerating financial queries by <strong>45%</strong>.",
           "resume_role": "de"
         },
         {
-          "html": "Emissions Predictive Forecasting: Built regression forecasts (Random Forest/Linear Regression) achieving <strong>90% accuracy</strong>.",
+          "html": "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit for event data visualization.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>88% precision</strong>.",
           "resume_role": "ds"
         },
         {
-          "html": "ArcGIS Stakeholder Dashboards: Developed interactive <strong>ArcGIS</strong> Dashboards for regional stakeholder reporting.",
+          "html": "Databricks & dbt Transformations: Implemented dbt data transformation models on <strong>Databricks</strong> to standardize schema definitions.",
           "resume_role": "de"
-        },
-        {
-          "html": "Geospatial Aggregations: Applied spatial join transformations to correlate land cover changes with regional emissions inventories.",
-          "resume_role": "general"
         }
       ],
-      "date": "Oct 2025 – Nov 2025"
+      "dashboard_url": "assets/talentvenue_feature_importance.png",
+      "date": "Aug 2025 – Nov 2025"
     },
     {
-      "badge": "Finance & Auditing",
-      "name": "Tax Anomaly Audit Compliance Engine",
-      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
-      "category": "machine-learning analytics",
+      "badge": "AI Governance",
+      "name": "AI Model Observability & Fairness Audits",
+      "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
+      "category": "data-engineering machine-learning analytics",
       "tags": [
-        "Benford's Law",
-        "Isolation Forest",
         "Python",
-        "Power BI",
+        "Drift Audit",
+        "KS-Test",
+        "Tableau",
         "SQL"
       ],
-      "dashboard_url": "assets/compliance_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
+      "dashboard_url": "assets/ai_observability.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
       "bullets": [
         {
-          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>PySpark</strong> and SQL to validate transaction logs.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Statistical & ML Anomaly Detection: Implemented Benford's Law modeling and <strong>Isolation Forest</strong> anomaly detection, achieving <strong>94% precision</strong>.",
+          "html": "MLOps Drift Monitoring: Audits ML models in production by running <strong>Kolmogorov-Smirnov (KS) tests</strong> and Population Stability Index (PSI) to monitor feature drift.",
           "resume_role": "ds"
         },
         {
-          "html": "Power BI Compliance Dashboard: Deployed interactive <strong>Power BI</strong> dashboards visualizing risk scores and transaction anomalies.",
+          "html": "Bias & Fairness Auditing: Evaluates demographic parity and Equal Opportunity bias metrics for regulatory frameworks (EU AI Act, US FTC).",
+          "resume_role": "general"
+        },
+        {
+          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in <strong>Tableau</strong>.",
           "resume_role": "de"
         },
         {
-          "html": "Lineage & Audit Control: Enforced strict data lineage logging and schema validation rules across financial audit records.",
-          "resume_role": "general"
+          "html": "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
+          "resume_role": "de"
         }
       ],
-      "date": "Oct 2025 – Nov 2025"
+      "date": "Jun 2025 – Aug 2025"
     },
     {
-      "badge": "Healthcare & Statistics",
-      "name": "Clinical Trials Patient Outcomes Analysis",
-      "desc": "Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.",
-      "category": "analytics",
+      "badge": "FinTech & Risk",
+      "name": "FinTech Credit Risk & Fraud Command Center",
+      "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
+      "category": "data-engineering machine-learning",
       "tags": [
+        "FastAPI",
         "Python",
-        "Kaplan-Meier",
-        "Log-Rank",
-        "Tableau",
-        "scipy"
+        "SQL",
+        "Scikit-Learn",
+        "Chart.js"
       ],
-      "dashboard_url": "assets/clinical_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
+      "dashboard_url": "assets/finrisk_feature_importance.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
       "bullets": [
         {
-          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline to clean and track patient survival and dosage levels.",
+          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using <strong>FastAPI</strong>, achieving sub-100ms API response latency.",
           "resume_role": "de"
         },
         {
-          "html": "Biostatistical Survival Modeling: Conducted survival analysis using <strong>Kaplan-Meier curves</strong> and Log-Rank test statistics across 3 cohorts.",
+          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>.",
           "resume_role": "ds"
         },
         {
-          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance.",
-          "resume_role": "general"
+          "html": "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration.",
+          "resume_role": "de"
         },
         {
-          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII).",
+          "html": "Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.",
           "resume_role": "general"
         }
       ],
-      "date": "Aug 2025"
+      "date": "Mar 2025 – May 2025"
     },
     {
       "badge": "NLP & Transfer Learning",
@@ -623,6 +453,211 @@
       "date": "Apr 2025"
     },
     {
+      "badge": "Geospatial & Climate",
+      "name": "Multi-State Land Use Emissions Analysis",
+      "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": [
+        "Python",
+        "SQLite",
+        "Random Forest",
+        "ETL Ingestion",
+        "ArcGIS"
+      ],
+      "dashboard_url": "assets/emissions_by_state.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
+      "bullets": [
+        {
+          "html": "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across <strong>5 U.S. states</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Emissions Predictive Forecasting: Built regression forecasts (Random Forest/Linear Regression) achieving <strong>90% accuracy</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "ArcGIS Stakeholder Dashboards: Developed interactive <strong>ArcGIS</strong> Dashboards for regional stakeholder reporting.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Geospatial Aggregations: Applied spatial join transformations to correlate land cover changes with regional emissions inventories.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Jan 2025 – Mar 2025"
+    },
+    {
+      "badge": "Finance & Auditing",
+      "name": "Tax Anomaly Audit Compliance Engine",
+      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
+      "category": "machine-learning analytics",
+      "tags": [
+        "Benford's Law",
+        "Isolation Forest",
+        "Python",
+        "Power BI",
+        "SQL"
+      ],
+      "dashboard_url": "assets/compliance_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
+      "bullets": [
+        {
+          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>PySpark</strong> and SQL to validate transaction logs.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Statistical & ML Anomaly Detection: Implemented Benford's Law modeling and <strong>Isolation Forest</strong> anomaly detection, achieving <strong>94% precision</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Power BI Compliance Dashboard: Deployed interactive <strong>Power BI</strong> dashboards visualizing risk scores and transaction anomalies.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Lineage & Audit Control: Enforced strict data lineage logging and schema validation rules across financial audit records.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Nov 2024 – Jan 2025"
+    },
+    {
+      "badge": "Automation & ETL",
+      "name": "Automated Daily Data Insights",
+      "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
+      "category": "data-engineering",
+      "tags": [
+        "Python",
+        "yFinance",
+        "Matplotlib",
+        "GitHub Actions",
+        "SQLite"
+      ],
+      "dashboard_url": "assets/daily_insights.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
+      "bullets": [
+        {
+          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market data from <strong>yFinance APIs</strong> with automated error handling.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Cron Schedule Uptime: Configured <strong>GitHub Actions</strong> to run the pipeline daily, achieving 99.9% uptime at $0 operational cost.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Automated Data Quality Validation: Embedded input validation checks to prevent missing records from corrupting downstream reports.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Sep 2024 – Nov 2024"
+    },
+    {
+      "badge": "Sales & Marketing",
+      "name": "Sales Operations & Customer Segmentation",
+      "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
+      "category": "machine-learning analytics",
+      "tags": [
+        "Python",
+        "K-Means",
+        "PCA",
+        "SQLite",
+        "Power BI",
+        "Seaborn"
+      ],
+      "dashboard_url": "assets/sales_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
+      "bullets": [
+        {
+          "html": "Star Schema Database: Designed a SQL database with an optimized Star Schema modeling <strong>100k+ customer transactions</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "RFM & K-Means Clustering: Automated RFM scaling and <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Executive Power BI Dashboard: Developed a Power BI dashboard to track RFM metrics for marketing teams.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue-generating customer segments.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "May 2024 – Aug 2024"
+    },
+    {
+      "badge": "Healthcare & Statistics",
+      "name": "Clinical Trials Patient Outcomes Analysis",
+      "desc": "Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.",
+      "category": "analytics",
+      "tags": [
+        "Python",
+        "Kaplan-Meier",
+        "Log-Rank",
+        "Tableau",
+        "scipy"
+      ],
+      "dashboard_url": "assets/clinical_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
+      "bullets": [
+        {
+          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline to clean and track patient survival and dosage levels.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Biostatistical Survival Modeling: Conducted survival analysis using <strong>Kaplan-Meier curves</strong> and Log-Rank test statistics across 3 cohorts.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance.",
+          "resume_role": "general"
+        },
+        {
+          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII).",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Jan 2024 – Apr 2024"
+    },
+    {
+      "badge": "Streaming & IoT",
+      "name": "Real-Time IoT Telematics & Predictive Maintenance",
+      "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
+      "category": "data-engineering analytics",
+      "tags": [
+        "Z-Score Anomaly",
+        "RUL Model",
+        "Python",
+        "Power BI",
+        "SQL"
+      ],
+      "dashboard_url": "assets/iot_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
+      "bullets": [
+        {
+          "html": "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline to ingest EV battery and motor telemetry logs in micro-batches.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Anomaly Detection & Device Health: Applied rolling statistical Z-score algorithms to flag real-time anomalies.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Degradation & RUL Modeling: Implemented degradation modeling to estimate battery <strong>Remaining Useful Life (RUL)</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Sep 2023 – Dec 2023"
+    },
+    {
       "badge": "Operations & Demand",
       "name": "AI-ML Data Science Simulation",
       "desc": "Retail data pipeline automating daily sales ingestion from 5 U.S. branches. Centralizes operations in SQL and uses Linear Regression/Random Forest forecasting to reduce stockouts by 15%.",
@@ -654,7 +689,7 @@
           "resume_role": "general"
         }
       ],
-      "date": "May 2024 – Jun 2024"
+      "date": "May 2023 – Aug 2023"
     },
     {
       "badge": "Accessibility & Deep Learning",
@@ -689,7 +724,7 @@
           "resume_role": "de"
         }
       ],
-      "date": "Nov 2023 – Mar 2024"
+      "date": "Jan 2023 – May 2023"
     },
     {
       "badge": "Web Development & Catering",
@@ -723,7 +758,7 @@
           "resume_role": "general"
         }
       ],
-      "date": "Jan 2024 – Feb 2024"
+      "date": "Oct 2022 – Dec 2022"
     },
     {
       "badge": "Mobile & Education",
@@ -757,7 +792,41 @@
           "resume_role": "general"
         }
       ],
-      "date": "Jul 2023 – Dec 2023"
+      "date": "May 2022 – Aug 2022"
+    },
+    {
+      "badge": "FinTech & Blockchain",
+      "name": "Get your Token",
+      "desc": "Published a Web3 crypto marketplace frontend and administrative dashboard using Express.js and Angular for NFT and Penky token transactions, handling 1,000+ transactions in the first month.",
+      "category": "software-dev",
+      "tags": [
+        "Node.js",
+        "Express",
+        "Angular",
+        "Cryptocurrency API",
+        "Git"
+      ],
+      "dashboard_url": "assets/get_your_token_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Get-Your-Token",
+      "bullets": [
+        {
+          "html": "Web3 Crypto Marketplace: Published a marketplace frontend and admin dashboard using <strong>Express.js and Angular</strong> for NFT transactions.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Transaction Ingestion Microservices: Handled 1,000+ transactions in the first month with sub-100ms response latency.",
+          "resume_role": "general"
+        },
+        {
+          "html": "High User Satisfaction: Delivered clean UI design and crypto API integration, achieving a 90% satisfaction rate.",
+          "resume_role": "general"
+        },
+        {
+          "html": "RESTful Microservice Endpoints: Modeled modular Node.js controller routes handling payment processing.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Jan 2022 – Apr 2022"
     },
     {
       "badge": "Web Development & Community",
@@ -791,7 +860,7 @@
           "resume_role": "general"
         }
       ],
-      "date": "Jun 2022 – Oct 2022"
+      "date": "Sep 2021 – Dec 2021"
     },
     {
       "badge": "Web Services & Gamification",
@@ -826,76 +895,7 @@
           "resume_role": "general"
         }
       ],
-      "date": "Jan 2022 – Apr 2022"
-    },
-    {
-      "badge": "FinTech & Blockchain",
-      "name": "Get your Token",
-      "desc": "Published a Web3 crypto marketplace frontend and administrative dashboard using Express.js and Angular for NFT and Penky token transactions, handling 1,000+ transactions in the first month.",
-      "category": "software-dev",
-      "tags": [
-        "Node.js",
-        "Express",
-        "Angular",
-        "Cryptocurrency API",
-        "Git"
-      ],
-      "dashboard_url": "assets/get_your_token_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Get-Your-Token",
-      "bullets": [
-        {
-          "html": "Web3 Crypto Marketplace: Published a marketplace frontend and admin dashboard using <strong>Express.js and Angular</strong> for NFT transactions.",
-          "resume_role": "general"
-        },
-        {
-          "html": "Transaction Ingestion Microservices: Handled 1,000+ transactions in the first month with sub-100ms response latency.",
-          "resume_role": "general"
-        },
-        {
-          "html": "High User Satisfaction: Delivered clean UI design and crypto API integration, achieving a 90% satisfaction rate.",
-          "resume_role": "general"
-        },
-        {
-          "html": "RESTful Microservice Endpoints: Modeled modular Node.js controller routes handling payment processing.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Jul 2021 – Nov 2021"
-    },
-    {
-      "badge": "Cloud & Enterprise ML",
-      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 88% precision, alongside automated financial reporting and reconciliation workflows.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": [
-        "Python",
-        "Snowflake",
-        "Azure ADLS",
-        "Streamlit",
-        "Scikit-Learn",
-        "SQL Server"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
-      "bullets": [
-        {
-          "html": "Enterprise Cloud Platform: Connected <strong>SQL Server, Azure ADLS Gen2, Snowflake</strong>, and Streamlit, accelerating financial queries by <strong>45%</strong>.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit for event data visualization.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>88% precision</strong>.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Databricks & dbt Transformations: Implemented dbt data transformation models on <strong>Databricks</strong> to standardize schema definitions.",
-          "resume_role": "de"
-        }
-      ],
-      "dashboard_url": "assets/talentvenue_feature_importance.png",
-      "date": "Jun 2020 – Dec 2020"
+      "date": "May 2021 – Aug 2021"
     },
     {
       "badge": "Computer Vision & Deep Learning",
@@ -930,7 +930,7 @@
           "resume_role": "de"
         }
       ],
-      "date": "Jun 2020 – Dec 2020"
+      "date": "Aug 2020 – May 2021"
     }
   ],
   "skills": [
