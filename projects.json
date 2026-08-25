@@ -257,6 +257,34 @@
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
     },
     {
+      "badge": "NLP & Semantic Search",
+      "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
+      "desc": "Interactive QA API answering natural-language questions about member data, ranking unstructured messages via SentenceTransformer embeddings and identifying subjects with spaCy NER.",
+      "category": "machine-learning analytics",
+      "tags": [
+        "Python",
+        "Sentence-Transformers",
+        "spaCy",
+        "Scikit-Learn",
+        "Pandas"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system"
+    },
+    {
+      "badge": "NLP & Transfer Learning",
+      "name": "ML Apprentice Take-Home Exercise: Sentence Transformer & Multi-Task Learning",
+      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, then extended it into a multi-task architecture with classification and sentiment heads, evaluating transfer-learning freeze strategies.",
+      "category": "machine-learning",
+      "tags": [
+        "TensorFlow",
+        "TensorFlow Hub",
+        "BERT",
+        "Multi-Task Learning",
+        "NumPy"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise"
+    },
+    {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
