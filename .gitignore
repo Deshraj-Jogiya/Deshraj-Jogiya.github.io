@@ -27,3 +27,7 @@ node_modules/
 dist/
 build/
 .npm
+
+# Supabase CLI local metadata (project ref, service version fingerprints) --
+# machine-local cache from `supabase link`, not project source
+supabase/.temp/

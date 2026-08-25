@@ -1442,6 +1442,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatMessages = document.getElementById("chat-messages");
     const chatSuggestBtns = document.querySelectorAll(".chat-suggest-btn");
 
+    // In-memory only (cleared on page reload) -- lets the bot handle a
+    // natural follow-up like "tell me more about that" instead of treating
+    // every message as a fresh, context-free question. Capped so a long
+    // session doesn't balloon the request size sent to the LLM.
+    let conversationHistory = [];
+    const MAX_HISTORY_TURNS = 6;
+    const pushHistory = (role, text) => {
+        conversationHistory.push({ role, text });
+        if (conversationHistory.length > MAX_HISTORY_TURNS * 2) {
+            conversationHistory = conversationHistory.slice(-MAX_HISTORY_TURNS * 2);
+        }
+    };
+
     if (chatLauncher && chatContainer) {
         chatLauncher.addEventListener("click", () => {
             chatContainer.classList.toggle("active");
@@ -1449,6 +1462,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 chatInput.focus();
             }
         });
+    }
+
+    // Hero CTA is a second entry point into the same widget -- the
+    // launcher button alone was easy to miss on first load, and the chat
+    // feature is worth surfacing earlier than scroll-to-discover.
+    const askAiHeroBtn = document.getElementById("ask-ai-hero-btn");
+    if (askAiHeroBtn && chatLauncher) {
+        askAiHeroBtn.addEventListener("click", () => chatLauncher.click());
     }
 
     if (closeChatBtn) {
@@ -1631,6 +1652,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (cacheData && cacheData.length > 0 && cacheData[0].answer) {
                     console.log("Chatbot Cache Hit!");
                     respond(cacheData[0].answer);
+                    pushHistory("user", userQuery);
+                    pushHistory("assistant", cacheData[0].answer);
                     return;
                 }
             }
@@ -1645,7 +1668,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     "apikey": SUPABASE_KEY,
                     "Authorization": `Bearer ${SUPABASE_KEY}`
                 },
-                body: JSON.stringify({ message: userQuery + " (Important: Keep the response concise, professional, and recruiter-friendly. Format the response to align with Professional Competency Profile (PCP), Core Capability Statement (CCS), and Career Performance Portfolio (CPP) standards using the structured STAR format (Situation, Task, Action, Result) for experience descriptions. Use clean bullet points (starting with '-' or '*') for lists, bold key terms/achievements, and keep paragraphs short. Avoid long storytelling narratives.)" })
+                body: JSON.stringify({
+                    message: userQuery + " (Important: Keep the response concise, professional, and recruiter-friendly. Format the response to align with Professional Competency Profile (PCP), Core Capability Statement (CCS), and Career Performance Portfolio (CPP) standards using the structured STAR format (Situation, Task, Action, Result) for experience descriptions. Use clean bullet points (starting with '-' or '*') for lists, bold key terms/achievements, and keep paragraphs short. Avoid long storytelling narratives.)",
+                    history: conversationHistory
+                })
             });
 
             if (!aiRes.ok) {
@@ -1659,6 +1685,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             respond(reply);
+            pushHistory("user", userQuery);
+            pushHistory("assistant", reply);
 
             // 3. Cache the successful result back in the database
             console.log("Caching new Q&A in Supabase database...");
