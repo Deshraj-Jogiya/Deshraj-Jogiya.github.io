@@ -243,7 +243,8 @@
           "resume_role": "de"
         }
       ],
-      "dashboard_url": "assets/career_pilot_dashboard.png"
+      "dashboard_url": "assets/career_pilot_dashboard.png",
+      "date": "Jun 2026 – Present"
     },
     {
       "badge": "Cloud & Generative AI",
@@ -277,7 +278,8 @@
           "resume_role": "ds"
         }
       ],
-      "dashboard_url": "assets/curiosync_publishing_trend.png"
+      "dashboard_url": "assets/curiosync_publishing_trend.png",
+      "date": "Jun 2026 – Present"
     },
     {
       "badge": "Cloud & Enterprise ML",
@@ -311,7 +313,8 @@
           "resume_role": "de"
         }
       ],
-      "dashboard_url": "assets/talentvenue_feature_importance.png"
+      "dashboard_url": "assets/talentvenue_feature_importance.png",
+      "date": "Jun 2020 – Dec 2020"
     },
     {
       "badge": "NLP & Semantic Search",
@@ -344,7 +347,8 @@
           "resume_role": "general"
         }
       ],
-      "dashboard_url": "assets/qa_system_retrieval_accuracy.png"
+      "dashboard_url": "assets/qa_system_retrieval_accuracy.png",
+      "date": "Oct 2025 – Nov 2025"
     },
     {
       "badge": "NLP & Transfer Learning",
@@ -377,7 +381,8 @@
           "resume_role": "de"
         }
       ],
-      "dashboard_url": "assets/ml_apprentice_training_curves.png"
+      "dashboard_url": "assets/ml_apprentice_training_curves.png",
+      "date": "Apr 2025"
     },
     {
       "badge": "AI Governance",
@@ -410,7 +415,8 @@
           "html": "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "date": "Jan 2026 – Feb 2026"
     },
     {
       "badge": "FinTech & Risk",
@@ -443,7 +449,8 @@
           "html": "Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Jun 2026"
     },
     {
       "badge": "Geospatial & Climate",
@@ -476,7 +483,8 @@
           "html": "Geospatial Aggregations: Applied spatial join transformations to correlate land cover changes with regional emissions inventories.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Oct 2025 – Nov 2025"
     },
     {
       "badge": "Finance & Auditing",
@@ -509,7 +517,8 @@
           "html": "Lineage & Audit Control: Enforced strict data lineage logging and schema validation rules across financial audit records.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Oct 2025 – Nov 2025"
     },
     {
       "badge": "Automation & ETL",
@@ -542,7 +551,8 @@
           "html": "Automated Data Quality Validation: Embedded input validation checks to prevent missing records from corrupting downstream reports.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Jun 2026 – Present"
     },
     {
       "badge": "Sales & Marketing",
@@ -576,7 +586,8 @@
           "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue-generating customer segments.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Nov 2025 – Dec 2025"
     },
     {
       "badge": "Healthcare & Statistics",
@@ -609,7 +620,8 @@
           "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII).",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Aug 2025"
     },
     {
       "badge": "Streaming & IoT",
@@ -642,7 +654,8 @@
           "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Mar 2026 – Apr 2026"
     },
     {
       "badge": "Operations & Demand",
@@ -675,7 +688,8 @@
           "html": "Automated Data Reconciliation: Built daily automated cross-branch reconciliation checks to ensure dataset consistency.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "May 2024 – Jun 2024"
     },
     {
       "badge": "Accessibility & Deep Learning",
@@ -709,7 +723,8 @@
           "html": "Real-Time Video Frame Processing: Optimized OpenCV frame capture for low-latency sign gesture classification.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "date": "Nov 2023 – Mar 2024"
     },
     {
       "badge": "Mobile & Education",
@@ -742,7 +757,8 @@
           "html": "Push Notification Services: Integrated native Android notification services for critical school announcements.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Jul 2023 – Dec 2023"
     },
     {
       "badge": "Web Development & Catering",
@@ -775,7 +791,8 @@
           "html": "REST API State Integration: Integrated React state management with backend RESTful endpoints.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Jan 2024 – Feb 2024"
     },
     {
       "badge": "Web Development & Community",
@@ -808,7 +825,8 @@
           "html": "Bootstrap Responsive UI: Built clean, responsive community forum layouts.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Jun 2022 – Oct 2022"
     },
     {
       "badge": "Web Services & Gamification",
@@ -842,7 +860,8 @@
           "html": "URL Redirection & Hash Indexing: Designed fast MySQL key-value lookup indices for high-frequency redirections.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Jan 2022 – Apr 2022"
     },
     {
       "badge": "FinTech & Blockchain",
@@ -875,7 +894,8 @@
           "html": "RESTful Microservice Endpoints: Modeled modular Node.js controller routes handling payment processing.",
           "resume_role": "general"
         }
-      ]
+      ],
+      "date": "Jul 2021 – Nov 2021"
     },
     {
       "badge": "Computer Vision & Deep Learning",
@@ -909,7 +929,8 @@
           "html": "Contour Analysis & Preprocessing: Applied Gaussian blurring and Canny edge detection prior to neural network classification.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "date": "Jun 2020 – Dec 2020"
     }
   ],
   "skills": [
@@ -1004,11 +1025,11 @@
     },
     {
       "name": "Generative AI Mastermind – Outskill",
-      "date": ""
+      "date": "Oct 2025"
     },
     {
       "name": "Guinness World Record – AI Training Hackathon (Kanz)",
-      "date": ""
+      "date": "Jul 2026"
     }
   ],
   "summary": "Data Engineer and AI/ML Engineer with 5+ years of experience building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. Hands-on experience with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, Model Context Protocol), and LLMOps evaluation (LangSmith), alongside production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Track record of optimizing LLM fine-tuning, containerizing microservices, orchestrating CI/CD pipelines, and executing robust data quality governance frameworks."
