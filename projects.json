@@ -224,7 +224,25 @@
         "Jinja2",
         "TailwindCSS"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation"
+      "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation",
+      "bullets": [
+        {
+          "html": "Full Stack Command Center: Local job placement command center with <strong>FastAPI, Python, Jinja2</strong>, tracking applications, recruiter outreach, and resume versions.",
+          "resume_role": "de"
+        },
+        {
+          "html": "AI Prompt Tailoring Engine: Integrated <strong>OpenAI API</strong> prompt tailoring chains to automatically align candidate resumes with specific job description keywords.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Relational Database & ORM: Deployed a local <strong>SQLite</strong> database using SQLAlchemy ORM to manage application logs, recruiter follow-ups, and interview stages.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Automated Document Compiler: Built automated Python PDF compilation scripts to generate formatted resumes and cover letters.",
+          "resume_role": "de"
+        }
+      ]
     },
     {
       "badge": "Cloud & Generative AI",
@@ -239,7 +257,25 @@
         "HTMX",
         "Cryptography"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/curiosync"
+      "github_url": "https://github.com/Deshraj-Jogiya/curiosync",
+      "bullets": [
+        {
+          "html": "Serverless Automation Pipeline: Scheduled serverless news curation and publisher pipeline running on <strong>GitHub Actions</strong> cron workflows (100% hosting cost reduction).",
+          "resume_role": "de"
+        },
+        {
+          "html": "Glassmorphic Administrative Panel: Designed a Jinja2/HTMX control panel secured by <strong>Fernet symmetric encryption</strong> to protect user credentials.",
+          "resume_role": "de"
+        },
+        {
+          "html": "LLM & Image Generation: Integrated <strong>Gemini LLM</strong> chains and developed custom Pillow image-processing engines to automatically render branding graphics.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Vector RAG Embeddings: Implemented semantic search and RAG retrieval pipelines to contextualize daily technical news articles automatically.",
+          "resume_role": "ds"
+        }
+      ]
     },
     {
       "badge": "Cloud & Enterprise ML",
@@ -254,7 +290,25 @@
         "Scikit-Learn",
         "SQL Server"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel"
+      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
+      "bullets": [
+        {
+          "html": "Enterprise Cloud Platform: Connected <strong>SQL Server, Azure ADLS Gen2, Snowflake</strong>, and Streamlit, accelerating financial queries by <strong>45%</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit for event data visualization.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>88% precision</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Databricks & dbt Transformations: Implemented dbt data transformation models on <strong>Databricks</strong> to standardize schema definitions.",
+          "resume_role": "de"
+        }
+      ]
     },
     {
       "badge": "NLP & Semantic Search",
@@ -268,7 +322,25 @@
         "Scikit-Learn",
         "Pandas"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system"
+      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
+      "bullets": [
+        {
+          "html": "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions, ranking messages via <strong>SentenceTransformer</strong> embeddings.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Named Entity Recognition: Integrated <strong>spaCy NER</strong> with fuzzy first-name matching to identify a question's subject.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Dynamic Information Extraction: Implemented regex-based extraction for contact info and numeric quantities, with fallback logic when no structured answer applies.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Architecture Tradeoff Analysis: Evaluated five candidate approaches (rule-based, knowledge graph, fine-tuned LLM, hybrid) before selecting embeddings-based semantic search.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "NLP & Transfer Learning",
@@ -282,7 +354,25 @@
         "Multi-Task Learning",
         "NumPy"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise"
+      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise",
+      "bullets": [
+        {
+          "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from <strong>TensorFlow Hub</strong>, encoding sentences into 128-dimensional embeddings.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Multi-Task Learning Expansion: Extended the shared backbone with two task-specific heads (3-class classification, 2-class sentiment).",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Transfer Learning Strategy: Evaluated freezing strategies and proposed a staged fine-tuning approach for the pretrained backbone.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Training Loop Simulation: Simulated multi-task training with synthetic data via model.fit(), logging per-task loss and accuracy.",
+          "resume_role": "de"
+        }
+      ]
     },
     {
       "badge": "AI Governance",
@@ -297,7 +387,25 @@
         "SQL"
       ],
       "dashboard_url": "assets/ai_observability.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing"
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
+      "bullets": [
+        {
+          "html": "MLOps Drift Monitoring: Audits ML models in production by running <strong>Kolmogorov-Smirnov (KS) tests</strong> and Population Stability Index (PSI) to monitor feature drift.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Bias & Fairness Auditing: Evaluates demographic parity and Equal Opportunity bias metrics for regulatory frameworks (EU AI Act, US FTC).",
+          "resume_role": "general"
+        },
+        {
+          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in <strong>Tableau</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
+          "resume_role": "de"
+        }
+      ]
     },
     {
       "badge": "FinTech & Risk",
@@ -312,7 +420,25 @@
         "Chart.js"
       ],
       "dashboard_url": "assets/finrisk_feature_importance.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline"
+      "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
+      "bullets": [
+        {
+          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using <strong>FastAPI</strong>, achieving sub-100ms API response latency.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Geospatial & Climate",
@@ -327,7 +453,25 @@
         "ArcGIS"
       ],
       "dashboard_url": "assets/emissions_by_state.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis"
+      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
+      "bullets": [
+        {
+          "html": "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across <strong>5 U.S. states</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Emissions Predictive Forecasting: Built regression forecasts (Random Forest/Linear Regression) achieving <strong>90% accuracy</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "ArcGIS Stakeholder Dashboards: Developed interactive <strong>ArcGIS</strong> Dashboards for regional stakeholder reporting.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Geospatial Aggregations: Applied spatial join transformations to correlate land cover changes with regional emissions inventories.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Finance & Auditing",
@@ -342,7 +486,25 @@
         "SQL"
       ],
       "dashboard_url": "assets/compliance_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline"
+      "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
+      "bullets": [
+        {
+          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>PySpark</strong> and SQL to validate transaction logs.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Statistical & ML Anomaly Detection: Implemented Benford's Law modeling and <strong>Isolation Forest</strong> anomaly detection, achieving <strong>94% precision</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Power BI Compliance Dashboard: Deployed interactive <strong>Power BI</strong> dashboards visualizing risk scores and transaction anomalies.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Lineage & Audit Control: Enforced strict data lineage logging and schema validation rules across financial audit records.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Automation & ETL",
@@ -357,7 +519,25 @@
         "SQLite"
       ],
       "dashboard_url": "assets/daily_insights.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights"
+      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
+      "bullets": [
+        {
+          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market data from <strong>yFinance APIs</strong> with automated error handling.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Cron Schedule Uptime: Configured <strong>GitHub Actions</strong> to run the pipeline daily, achieving 99.9% uptime at $0 operational cost.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Automated Data Quality Validation: Embedded input validation checks to prevent missing records from corrupting downstream reports.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Sales & Marketing",
@@ -373,7 +553,25 @@
         "Seaborn"
       ],
       "dashboard_url": "assets/sales_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline"
+      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
+      "bullets": [
+        {
+          "html": "Star Schema Database: Designed a SQL database with an optimized Star Schema modeling <strong>100k+ customer transactions</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "RFM & K-Means Clustering: Automated RFM scaling and <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Executive Power BI Dashboard: Developed a Power BI dashboard to track RFM metrics for marketing teams.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue-generating customer segments.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Healthcare & Statistics",
@@ -388,7 +586,25 @@
         "scipy"
       ],
       "dashboard_url": "assets/clinical_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis"
+      "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
+      "bullets": [
+        {
+          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline to clean and track patient survival and dosage levels.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Biostatistical Survival Modeling: Conducted survival analysis using <strong>Kaplan-Meier curves</strong> and Log-Rank test statistics across 3 cohorts.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance.",
+          "resume_role": "general"
+        },
+        {
+          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII).",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Streaming & IoT",
@@ -403,7 +619,25 @@
         "SQL"
       ],
       "dashboard_url": "assets/iot_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance"
+      "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
+      "bullets": [
+        {
+          "html": "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline to ingest EV battery and motor telemetry logs in micro-batches.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Anomaly Detection & Device Health: Applied rolling statistical Z-score algorithms to flag real-time anomalies.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Degradation & RUL Modeling: Implemented degradation modeling to estimate battery <strong>Remaining Useful Life (RUL)</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Operations & Demand",
@@ -418,7 +652,25 @@
         "Tableau"
       ],
       "dashboard_url": "assets/forecast_vs_actual.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation"
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation",
+      "bullets": [
+        {
+          "html": "Multi-Branch ETL Automation: Created a scalable data automation system for daily sales ingestion from 5 branches across states.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Inventory Centralization & Tableau: Centralized inventory datasets and visualized trend cycles in Tableau.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Predictive Inventory Forecasting: Deployed ML models (Linear Regression, Random Forest) achieving <strong>90% forecast accuracy</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Automated Data Reconciliation: Built daily automated cross-branch reconciliation checks to ensure dataset consistency.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Accessibility & Deep Learning",
@@ -434,7 +686,25 @@
         "ASL Recognition"
       ],
       "dashboard_url": "assets/training_curves.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL"
+      "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL",
+      "bullets": [
+        {
+          "html": "Deep Learning Web Application: Pioneered an inclusive Python platform using <strong>TensorFlow/Keras</strong>, making 7 STEM concepts accessible to ASL users.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging <strong>CNN</strong> models and contour geometry.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "User Feedback & Evaluation: Synthesized feedback from 50+ STEM students, achieving a 4.6/5 satisfaction score.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Real-Time Video Frame Processing: Optimized OpenCV frame capture for low-latency sign gesture classification.",
+          "resume_role": "de"
+        }
+      ]
     },
     {
       "badge": "Mobile & Education",
@@ -449,7 +719,25 @@
         "Git"
       ],
       "dashboard_url": "assets/stay_aware_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/stay-aware-of-branch"
+      "github_url": "https://github.com/Deshraj-Jogiya/Stay-Aware-of-Branch",
+      "bullets": [
+        {
+          "html": "Parent-School Mobile Application: Developed a parent-school engagement application using <strong>React Native</strong> and Android frameworks.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Progress & Attendance Tracking: Implemented tracking modules that boosted parent involvement by <strong>40%</strong>.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Cross-Platform Mobile Integration: Delivered seamless mobile UI optimized for Android devices.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Push Notification Services: Integrated native Android notification services for critical school announcements.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Web Development & Catering",
@@ -464,7 +752,25 @@
         "Git"
       ],
       "dashboard_url": "assets/chef_gathering_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/chef-at-gathering"
+      "github_url": "https://github.com/Deshraj-Jogiya/Chef-at-Gathering",
+      "bullets": [
+        {
+          "html": "React Catering Booking Platform: Built an event coordination and catering booking <strong>React</strong> application.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Management Process Optimization: Reduced event coordination time by <strong>50%</strong> and boosted chef bookings by 20%.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Responsive UI Design: Designed responsive, accessible web components for seamless mobile/desktop browsing.",
+          "resume_role": "general"
+        },
+        {
+          "html": "REST API State Integration: Integrated React state management with backend RESTful endpoints.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Web Development & Community",
@@ -479,7 +785,25 @@
         "Git"
       ],
       "dashboard_url": "assets/city_forums_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/city-forums"
+      "github_url": "https://github.com/Deshraj-Jogiya/City-Forums",
+      "bullets": [
+        {
+          "html": "Community Forum & Marketplace: Created an engagement and marketplace platform using <strong>CodeIgniter 3</strong> and MySQL.",
+          "resume_role": "general"
+        },
+        {
+          "html": "User Base Scaling: Scaled user base by 50% in three months, generating $10,000 in classified ad revenue.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Relational Database Design: Modeled MySQL tables for user topics, thread replies, and classified ad postings.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Bootstrap Responsive UI: Built clean, responsive community forum layouts.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Web Services & Gamification",
@@ -495,7 +819,25 @@
         "Git"
       ],
       "dashboard_url": "assets/make_it_short_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/make-it-short"
+      "github_url": "https://github.com/Deshraj-Jogiya/Make-it-Short",
+      "bullets": [
+        {
+          "html": "Link Shortening Web Engine: Integrated a link shortening engine into a <strong>CodeIgniter 4</strong> PHP web application.",
+          "resume_role": "general"
+        },
+        {
+          "html": "URL Generation & Analytics: Generated 10,000+ shortened URLs, driving a 15% increase in engagement via gamification.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Monetization & Reporting: Built backend analytics models tracking click origins and user redemptions.",
+          "resume_role": "general"
+        },
+        {
+          "html": "URL Redirection & Hash Indexing: Designed fast MySQL key-value lookup indices for high-frequency redirections.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "FinTech & Blockchain",
@@ -510,7 +852,25 @@
         "Git"
       ],
       "dashboard_url": "assets/get_your_token_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/get-your-token"
+      "github_url": "https://github.com/Deshraj-Jogiya/Get-Your-Token",
+      "bullets": [
+        {
+          "html": "Web3 Crypto Marketplace: Published a marketplace frontend and admin dashboard using <strong>Express.js and Angular</strong> for NFT transactions.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Transaction Ingestion Microservices: Handled 1,000+ transactions in the first month with sub-100ms response latency.",
+          "resume_role": "general"
+        },
+        {
+          "html": "High User Satisfaction: Delivered clean UI design and crypto API integration, achieving a 90% satisfaction rate.",
+          "resume_role": "general"
+        },
+        {
+          "html": "RESTful Microservice Endpoints: Modeled modular Node.js controller routes handling payment processing.",
+          "resume_role": "general"
+        }
+      ]
     },
     {
       "badge": "Computer Vision & Deep Learning",
@@ -526,7 +886,25 @@
         "Git"
       ],
       "dashboard_url": "assets/solid_object_confusion_matrix.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing"
+      "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing",
+      "bullets": [
+        {
+          "html": "Computer Vision & Geometry Pipeline: Developed a shape detection pipeline using <strong>PyTorch and OpenCV</strong> with custom CNN models.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "High Classification Accuracy: Achieved <strong>99.20% classification accuracy</strong> on a 10,000+ image dataset.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Contour Analysis & Preprocessing: Applied Gaussian blurring and Canny edge detection prior to neural network classification.",
+          "resume_role": "de"
+        }
+      ]
     }
   ],
   "skills": [
@@ -592,6 +970,40 @@
         "ArcGIS Geospatial Emissions Analytics & Chart.js Visualizations",
         "Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)"
       ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science, IT",
+      "institution": "Arizona State University (ASU)",
+      "date": "Aug 2022 – May 2024 | GPA: 4.0/4.0"
+    },
+    {
+      "degree": "Bachelor of Technology, Computer Eng.",
+      "institution": "Institute of Advanced Research",
+      "date": "Aug 2017 – May 2021 | GPA: 7.8/10"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Tableau Business Intelligence Analyst",
+      "date": "Feb 2026"
+    },
+    {
+      "name": "ElevateMe Bootcamp Data Analytics Certificate of Completion",
+      "date": "Feb 2026"
+    },
+    {
+      "name": "IBM Data Analyst Specialization",
+      "date": "Sep 2025"
+    },
+    {
+      "name": "Generative AI Mastermind – Outskill",
+      "date": ""
+    },
+    {
+      "name": "Guinness World Record – AI Training Hackathon (Kanz)",
+      "date": ""
     }
   ]
 }
