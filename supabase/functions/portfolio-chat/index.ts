@@ -7,13 +7,17 @@ const corsHeaders = {
 
 const PROJECTS_JSON_URL = "https://raw.githubusercontent.com/Deshraj-Jogiya/Deshraj-Jogiya.github.io/main/projects.json"
 const MAX_MESSAGE_LENGTH = 500
+const MAX_HISTORY_TURNS = 6 // server-side cap regardless of what the client sends
 
 // Fetched live on every request rather than duplicated as hardcoded text --
 // the old version had the entire background hand-typed into this prompt,
 // which meant every profile update (new project, new skill) required
 // remembering to edit this file separately and redeploy it. Reading the
 // same projects.json the website itself renders from means this can never
-// drift out of sync with the live site again.
+// drift out of sync with the live site again. (The client-side answer
+// cache can still serve a stale cached reply for a repeated question --
+// see clear-chatbot-cache, invoked by the deploy workflow only when this
+// file actually changes.)
 async function fetchProfileContext(): Promise<string> {
   const res = await fetch(PROJECTS_JSON_URL, { headers: { "Cache-Control": "no-cache" } })
   if (!res.ok) {
@@ -39,9 +43,11 @@ async function fetchProfileContext(): Promise<string> {
   return `Work History:\n${expLines}\n\nKey Projects:\n${projectLines}\n\nTechnical Skills:\n${skillLines}`
 }
 
-const SYSTEM_INSTRUCTIONS = `You are a virtual career assistant agent trained on Deshraj Jogiya's professional profile.
+function buildSystemPrompt(profileContext: string): string {
+  return `You are a virtual career assistant agent trained on Deshraj Jogiya's professional profile.
 Your goal is to answer questions about his technical experience, engineering projects, background, or availability.
 You must stay professional, polite, objective, and speak in the third person.
+This is a real-time conversation -- use any earlier turns for context (e.g. "that role", "his other project") instead of treating every message as standalone.
 
 CRITICAL RECRUITER-FIRST RESPONSE RULES:
 1. BREVITY & BLUF DIRECTIVE: Lead with the direct executive-summary answer in the first sentence. Keep the whole response short -- a couple of tight sentences, or a few bullet points for a list-style question. Never recite his entire resume or write long narrative paragraphs. Bold key terms, tools, and metrics with **double asterisks**; use "- " for list items when a question calls for a list. The chat window renders both correctly.
@@ -64,9 +70,26 @@ Contact Information:
   - GitHub: https://github.com/Deshraj-Jogiya
   - Portfolio: https://Deshraj-Jogiya.github.io
 
-Write a recruiter-optimized, third-person answer following the BLUF and brevity rules above.`
+Deshraj's Current Professional Background:
+${profileContext}
 
-async function callAnthropic(apiKey: string, prompt: string): Promise<string> {
+Write a recruiter-optimized, third-person answer following the BLUF and brevity rules above.`
+}
+
+type Turn = { role: "user" | "assistant"; text: string }
+
+function sanitizeHistory(history: unknown): Turn[] {
+  if (!Array.isArray(history)) return []
+  return history
+    .filter((h): h is Turn => h && typeof h === "object" && typeof h.text === "string" && (h.role === "user" || h.role === "assistant"))
+    .slice(-MAX_HISTORY_TURNS * 2)
+}
+
+async function callAnthropic(apiKey: string, systemPrompt: string, history: Turn[], userMessage: string): Promise<string> {
+  const messages = [
+    ...history.map(h => ({ role: h.role, content: h.text })),
+    { role: "user", content: userMessage },
+  ]
   const response = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -76,11 +99,9 @@ async function callAnthropic(apiKey: string, prompt: string): Promise<string> {
     },
     body: JSON.stringify({
       model: "claude-haiku-4-5-20251001",
-      // The client (app.js) injects its own request for STAR-format,
-      // bulleted, bold-highlighted answers into every message -- a cap
-      // this low truncated real replies mid-sentence in testing.
       max_tokens: 700,
-      messages: [{ role: "user", content: prompt }],
+      system: systemPrompt,
+      messages,
     }),
   })
   if (!response.ok) {
@@ -91,12 +112,19 @@ async function callAnthropic(apiKey: string, prompt: string): Promise<string> {
   return data.content?.[0]?.text || "I'm sorry, I couldn't process that query."
 }
 
-async function callGemini(apiKey: string, prompt: string): Promise<string> {
+async function callGemini(apiKey: string, systemPrompt: string, history: Turn[], userMessage: string): Promise<string> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`
+  const contents = [
+    ...history.map(h => ({ role: h.role === "assistant" ? "model" : "user", parts: [{ text: h.text }] })),
+    { role: "user", parts: [{ text: userMessage }] },
+  ]
   const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      contents,
+    }),
   })
   if (!response.ok) {
     const errText = await response.text()
@@ -112,7 +140,7 @@ serve(async (req) => {
   }
 
   try {
-    const { message } = await req.json()
+    const { message, history } = await req.json()
     if (!message) {
       return new Response(JSON.stringify({ error: "Missing message" }), {
         status: 400,
@@ -125,6 +153,7 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       })
     }
+    const safeHistory = sanitizeHistory(history)
 
     const anthropicKey = Deno.env.get("ANTHROPIC_API_KEY")
     const geminiKey = Deno.env.get("GEMINI_API_KEY")
@@ -132,7 +161,9 @@ serve(async (req) => {
     // defaults to whichever key is actually present, preferring Anthropic
     // if both are configured -- same provider-choice pattern as Career
     // Pilot's own LLM_PROVIDER setting, so keeping or dropping either key
-    // never breaks this function outright.
+    // never breaks this function outright. Currently set to "anthropic" as
+    // a deliberate choice (a real paid key, not the free Gemini tier) --
+    // flip this secret to "gemini" any time to go back to $0 per call.
     const requestedProvider = (Deno.env.get("LLM_PROVIDER") || "").toLowerCase()
     const provider = requestedProvider || (anthropicKey ? "anthropic" : geminiKey ? "gemini" : "")
 
@@ -153,11 +184,11 @@ serve(async (req) => {
     }
 
     const profileContext = await fetchProfileContext()
-    const prompt = `${SYSTEM_INSTRUCTIONS}\n\nDeshraj's Current Professional Background:\n${profileContext}\n\nUser Query: "${message}"`
+    const systemPrompt = buildSystemPrompt(profileContext)
 
     const reply = provider === "anthropic"
-      ? await callAnthropic(anthropicKey!, prompt)
-      : await callGemini(geminiKey!, prompt)
+      ? await callAnthropic(anthropicKey!, systemPrompt, safeHistory, message)
+      : await callGemini(geminiKey!, systemPrompt, safeHistory, message)
 
     return new Response(JSON.stringify({ reply: reply.trim(), provider }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }

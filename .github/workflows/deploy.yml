@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -53,3 +55,17 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Clear chatbot cache if projects.json changed
+        # Only clears on an actual data change, not every push -- a
+        # time-based cache expiry would mean paying for more LLM calls
+        # than necessary; this only invalidates when there's a real
+        # reason to, keeping the free-tier cost model intact.
+        run: |
+          if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q '^projects.json$' || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "projects.json changed -- clearing chatbot_cache"
+            curl -sf -X POST "https://mtvcrttbdjwcixzhlkvo.supabase.co/functions/v1/clear-chatbot-cache" \
+              -H "Authorization: Bearer ${{ secrets.CACHE_CLEAR_TOKEN }}"
+          else
+            echo "projects.json unchanged -- leaving chatbot_cache alone"
+          fi
