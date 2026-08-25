@@ -57,22 +57,33 @@ To demonstrate data engineering, database modeling, and frontend integration ski
 
 ---
 
-## 🛠️ Dynamic Showcase Repositories (10 Production Pipelines)
+## 🛠️ Dynamic Showcase Repositories (21 Projects)
 
-This portfolio website dynamically displays 10 modular repositories spanning data engineering, machine learning, and advanced analytics.
+This portfolio website dynamically displays 21 repositories spanning generative AI/agentic systems, data engineering, machine learning, and full-stack development. The full, current list — including every tag and description shown on the live site — lives in [projects.json](projects.json); the table below is a summary, not the source of truth, so it won't go stale the same way a hand-maintained list would.
 
 | Repository / Project | Focus Area | Core Tech Stack |
 |---|---|---|
-| **[FinTech Credit Risk Pipeline](https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline)** | Credit risk & real-time fraud command center | FastAPI, SQLite, Scikit-learn |
+| **[Job Search CRM & AI Application Tailoring Center](https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation)** | AI-powered job application command center & resume tailoring | FastAPI, Python, SQLite, OpenAI API |
+| **[CurioSync](https://github.com/Deshraj-Jogiya/curiosync)** | Serverless tech news curation & LinkedIn publisher | FastAPI, Python, Gemini LLM, GitHub Actions |
+| **[TalentVenue EventIntel](https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel)** | Enterprise data platform & contract-risk prediction | Python, Snowflake, Azure ADLS, Streamlit |
+| **[Member Messages QA System](https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system)** | Semantic-search QA API with NER-based subject detection | Python, Sentence-Transformers, spaCy |
+| **[ML Apprentice Take-Home Exercise](https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise)** | Sentence Transformer & multi-task learning architecture | TensorFlow, TensorFlow Hub, BERT |
+| **[AI Model Observability & Fairness Audits](https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing)** | Production drift tracking (KS-test) and bias evaluation | Python, SciPy, Tableau |
+| **[FinTech Credit Risk Pipeline](https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline)** | Credit risk & real-time fraud command center | FastAPI, SQLite, Scikit-learn, XGBoost |
+| **[Multi-State Land Use Emissions Analysis](https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis)** | Geospatial emissions tracking and CO₂ trend forecasting | SQLite, Random Forest, ArcGIS |
+| **[Tax Anomaly Audit Compliance Engine](https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline)** | Transaction auditing modeling following Benford's Law | SQLite, Isolation Forest, Power BI |
 | **[Automated Daily Data Insights](https://github.com/Deshraj-Jogiya/automated-data-insights)** | Stateless daily financial ingestion & anomaly alerts | Python, yFinance, GitHub Actions |
 | **[Sales Customer Segmentation](https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline)** | Star schema warehouse modeling & RFM K-Means clustering | SQLite, Scikit-learn, Power BI |
 | **[Clinical Trials Outcomes Analysis](https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis)** | Medical trial outcomes tracking & statistical survival testing | lifelines, SciPy, Tableau |
-| **[Tax Anomaly Audit Compliance Engine](https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline)** | Transaction auditing modeling following Benford's Law | SQLite, Isolation Forest, Power BI |
-| **[AI Model Observability & Fairness Audits](https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing)** | Product drift tracking (KS-test) and bias evaluations | SQL, NumPy, SciPy, Tableau |
 | **[Real-Time IoT Telematics](https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance)** | High-frequency telematics streaming & RUL estimation | Python, Z-score outliers, Power BI |
-| **[Multi-State Land Use Emissions Analysis](https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis)** | Geospatial emissions tracking and CO₂ trend forecasting | SQLite, Random Forest, ArcGIS |
 | **[AI-ML Data Science Simulation](https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation)** | Cross-branch retail sales ETL ingestion and demand planning | Python, Pandas, Scikit-learn, Tableau |
 | **[Extending STEM across ASL](https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL)** | Inclusive educational tool utilizing hand-gesture CNN models | TensorFlow, Keras, Flask |
+| **[Stay Aware of Branch](https://github.com/Deshraj-Jogiya/Stay-Aware-of-Branch)** | Parent-school engagement mobile app | React Native, Android |
+| **[Chef at Gathering](https://github.com/Deshraj-Jogiya/Chef-at-Gathering)** | Event coordination & catering booking platform | React, JavaScript |
+| **[City Forums](https://github.com/Deshraj-Jogiya/City-Forums)** | Community engagement & marketplace platform | PHP, CodeIgniter 3, MySQL |
+| **[Make It Short](https://github.com/Deshraj-Jogiya/Make-it-Short)** | Gamified link-shortening web engine | PHP, CodeIgniter 4, MySQL |
+| **[Get your Token](https://github.com/Deshraj-Jogiya/Get-Your-Token)** | Web3 crypto marketplace frontend & dashboard | Node.js, Express, Angular |
+| **[Solid Object Detection & Identification](https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing)** | Shape detection combining a custom CNN with contour geometry | PyTorch, OpenCV |
 
 ---
 
