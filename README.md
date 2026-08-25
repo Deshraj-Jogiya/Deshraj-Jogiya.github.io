@@ -42,6 +42,7 @@ Unlike static HTML sites, this portfolio is built using a **Python-based Static 
 * [.github/workflows/deploy.yml](.github/workflows/deploy.yml) — GitHub Actions pipeline running Python compilation and publishing the static directory to GitHub Pages.
 * [style.css](style.css) — Cyber-dark glassmorphism design system styles, including dark/light variable sets and media overrides.
 * [app.js](app.js) — Interactive scripts (terminal animation, filter tabs, SQL Playground simulation, Observability Monitor logs, and GitHub timeline API fetches).
+* [supabase/functions/](supabase/functions/) — Serverless backend: `portfolio-chat` (the AI recruiter assistant), `submit-contact` (contact form → email notification via GitHub Actions dispatch), and `clear-chatbot-cache` (invoked by the deploy workflow, not by visitors). Deployed independently of the site itself with the Supabase CLI (`supabase functions deploy <name>`) -- pushing to `main` does not redeploy these.
 
 ---
 
@@ -53,7 +54,7 @@ To demonstrate data engineering, database modeling, and frontend integration ski
 3. **A/B Hypothesis Testing Simulator:** Drag conversion rate sliders and simulate live hypothesis testing. Runs a two-tailed Z-test on proportions, outputs Uplift, Z-Score, and P-value, and evaluates statistical significance ($p < 0.05$).
 4. **Model Decision Threshold Optimizer:** Adjust decision thresholds to optimize user conversion and model performance. Simulates confusion matrices, Precision/Recall, and models Net ROI impact to identify the most profitable classification boundary.
 5. **Print-Ready HTML Resume Viewer:** A modal rendering a complete structured resume. Equipped with CSS `@media print` layout overrides to print perfectly as a clean document (without dark background, navigation elements, or modal buttons).
-6. **AI Resume Q&A Chatbot:** A conversational chatbot answering questions about Deshraj's technical projects and experience, backed by cached and serverless AI responses.
+6. **AI Recruiter Assistant:** A conversational chatbot (hero CTA + launcher) answering questions about Deshraj's experience, projects, and skills, with real conversation memory for natural follow-ups. Backed by a Supabase Edge Function ([`supabase/functions/portfolio-chat`](supabase/functions/portfolio-chat)) that reads live from [`projects.json`](projects.json) on every request -- it can't answer with stale data because it's never given the chance to. Supports Anthropic or Gemini as the LLM provider via a `LLM_PROVIDER` secret. Answers are cached in Supabase per question to avoid repeat LLM calls; the cache is automatically cleared by the deploy workflow whenever `projects.json` changes ([`supabase/functions/clear-chatbot-cache`](supabase/functions/clear-chatbot-cache)), so a cached answer can't outlive the data it was generated from.
 
 ---
 
