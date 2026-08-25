@@ -976,6 +976,7 @@
 <div class="resume-job-item">
 <div class="resume-job-header">
 <h4>{{ proj.name }} <a href="{{ proj.github_url }}" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+{% if proj.date %}<span>{{ proj.date }}</span>{% endif %}
 </div>
 <p class="resume-job-company">Technologies: {{ proj.tags | join(", ") }}</p>
 <ul>
