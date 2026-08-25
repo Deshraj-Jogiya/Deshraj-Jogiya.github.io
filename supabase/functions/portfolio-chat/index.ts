@@ -134,13 +134,129 @@ async function callGemini(apiKey: string, systemPrompt: string, history: Turn[],
   return data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I couldn't process that query."
 }
 
+// Shared SSE-to-plain-text relay: reads an upstream event-stream Response,
+// extracts just the text delta from each event via `extractText`, and
+// writes those plain-text chunks straight to the client. Keeps the client
+// simple (append raw bytes, no provider-specific SSE parsing needed there)
+// and keeps both providers' very different event shapes out of app.js.
+//
+// Closes explicitly on `isTerminal` rather than waiting for the upstream
+// reader to report done -- confirmed live that relying on transport-level
+// EOF alone left the response hanging open well after all real content had
+// already arrived (content delivered correctly, connection just never
+// closed), almost certainly the upstream connection being kept alive
+// through Supabase's edge proxy. Ending the response the moment the
+// provider's own "that's everything" event arrives sidesteps that instead
+// of depending on a lower-level signal that isn't reliably showing up.
+function streamText(
+  upstream: Response,
+  extractText: (eventData: any) => string | null,
+  isTerminal: (eventData: any) => boolean,
+): ReadableStream<Uint8Array> {
+  const encoder = new TextEncoder()
+  const decoder = new TextDecoder()
+  const reader = upstream.body!.getReader()
+  let buffer = ""
+
+  return new ReadableStream<Uint8Array>({
+    async pull(controller) {
+      const { done, value } = await reader.read()
+      if (done) {
+        controller.close()
+        return
+      }
+      buffer += decoder.decode(value, { stream: true })
+      const lines = buffer.split("\n")
+      buffer = lines.pop() ?? "" // last entry may be a partial line, held for next pull
+
+      for (const line of lines) {
+        const trimmed = line.trim()
+        if (!trimmed.startsWith("data:")) continue
+        const payload = trimmed.slice(5).trim()
+        if (payload === "[DONE]" || !payload) continue
+        try {
+          const evt = JSON.parse(payload)
+          const text = extractText(evt)
+          if (text) controller.enqueue(encoder.encode(text))
+          if (isTerminal(evt)) {
+            controller.close()
+            reader.cancel().catch(() => {})
+            return
+          }
+        } catch {
+          // Genuinely malformed line -- skip it, don't kill the whole stream.
+        }
+      }
+    },
+    cancel() {
+      reader.cancel().catch(() => {})
+    },
+  })
+}
+
+async function streamAnthropic(apiKey: string, systemPrompt: string, history: Turn[], userMessage: string): Promise<ReadableStream<Uint8Array>> {
+  const messages = [
+    ...history.map(h => ({ role: h.role, content: h.text })),
+    { role: "user", content: userMessage },
+  ]
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 700,
+      system: systemPrompt,
+      messages,
+      stream: true,
+    }),
+  })
+  if (!response.ok) {
+    const errText = await response.text()
+    throw new Error(`Anthropic API returned status ${response.status}: ${errText}`)
+  }
+  return streamText(
+    response,
+    (evt) => evt?.delta?.text ?? null,
+    (evt) => evt?.type === "message_stop",
+  )
+}
+
+async function streamGemini(apiKey: string, systemPrompt: string, history: Turn[], userMessage: string): Promise<ReadableStream<Uint8Array>> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=${apiKey}`
+  const contents = [
+    ...history.map(h => ({ role: h.role === "assistant" ? "model" : "user", parts: [{ text: h.text }] })),
+    { role: "user", parts: [{ text: userMessage }] },
+  ]
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      contents,
+    }),
+  })
+  if (!response.ok) {
+    const errText = await response.text()
+    throw new Error(`Gemini API returned status ${response.status}: ${errText}`)
+  }
+  return streamText(
+    response,
+    (evt) => evt?.candidates?.[0]?.content?.parts?.[0]?.text ?? null,
+    (evt) => !!evt?.candidates?.[0]?.finishReason,
+  )
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
 
   try {
-    const { message, history } = await req.json()
+    const { message, history, stream } = await req.json()
     if (!message) {
       return new Response(JSON.stringify({ error: "Missing message" }), {
         status: 400,
@@ -185,6 +301,20 @@ serve(async (req) => {
 
     const profileContext = await fetchProfileContext()
     const systemPrompt = buildSystemPrompt(profileContext)
+
+    // Streaming is strictly opt-in (stream: true) -- a client that doesn't
+    // ask for it gets the exact same single-JSON-response behavior as
+    // before, unchanged. Keeps the well-tested non-streaming path as a
+    // guaranteed fallback regardless of how the streaming path performs.
+    if (stream === true) {
+      const body = provider === "anthropic"
+        ? await streamAnthropic(anthropicKey!, systemPrompt, safeHistory, message)
+        : await streamGemini(geminiKey!, systemPrompt, safeHistory, message)
+
+      return new Response(body, {
+        headers: { ...corsHeaders, 'Content-Type': 'text/plain; charset=utf-8', 'X-LLM-Provider': provider }
+      })
+    }
 
     const reply = provider === "anthropic"
       ? await callAnthropic(anthropicKey!, systemPrompt, safeHistory, message)
