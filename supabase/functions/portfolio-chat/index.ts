@@ -76,7 +76,10 @@ async function callAnthropic(apiKey: string, prompt: string): Promise<string> {
     },
     body: JSON.stringify({
       model: "claude-haiku-4-5-20251001",
-      max_tokens: 300,
+      // The client (app.js) injects its own request for STAR-format,
+      // bulleted, bold-highlighted answers into every message -- a cap
+      // this low truncated real replies mid-sentence in testing.
+      max_tokens: 700,
       messages: [{ role: "user", content: prompt }],
     }),
   })
