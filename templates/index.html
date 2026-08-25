@@ -84,7 +84,7 @@
                 <div class="quick-stats-grid">
                     {% for stat in stats %}
                     <div class="stat-card glass-card">
-                        <h3 class="stat-number" data-target="{{ stat.number }}">0</h3>
+                        <h3 class="stat-number" data-target="{{ stat.number }}">{{ stat.number }}</h3>
                         <p class="stat-label">{{ stat.label }}</p>
                     </div>
                     {% endfor %}
@@ -976,100 +976,21 @@
                     <div class="resume-right-col">
                         <section class="resume-section">
                             <h2 class="resume-section-title">Work Experience</h2>
-                            
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Teleoperation Data Collection Associate</h4>
-                                    <span>May 2026 – Present</span>
-                                </div>
-                                <p class="resume-job-company">Objectways Technologies LLC | Tempe, AZ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Collected and validated 10,000+ high-quality teleoperation data samples for AI/ML model training using Python-based workflows, improving dataset accuracy and consistency by 20%.</li>
-                                    <li class="resume-bullet" data-role="de">Developed and maintained scalable data pipelines using Python, Scala, and Kubernetes to process and organize large datasets, reducing data processing time by 30% and enhancing system efficiency.</li>
-                                    <li class="resume-bullet" data-role="ds">Performed data analysis and quality assurance on robotics-generated datasets, identifying and resolving data inconsistencies, which improved model training performance and reduced error rates by 15%.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Applied Machine Learning Engineer</h4>
-                                    <span>Dec 2025 – May 2026</span>
-                                </div>
-                                <p class="resume-job-company">Technoid LLC | Piscataway, NJ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Optimized GPT-4o mini models for resume analysis/tailoring using OpenAI APIs, SQL, and PostgreSQL, improving recommendation accuracy by 25%.</li>
-                                    <li class="resume-bullet" data-role="de">Established Supabase data sync with RLS fixes and PostgreSQL backend, reducing data sync latency by 65% for real-time operations.</li>
-                                    <li class="resume-bullet" data-role="ds">Produced phased regression and UAT testing frameworks, cutting model deployment errors by 30%.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Analytics &amp; ML Fellow Trainee</h4>
-                                    <span>Jan 2025 – Mar 2026</span>
-                                </div>
-                                <p class="resume-job-company">ElevateMe Bootcamp | Columbus, OH</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Analyzed company financial and operational data with Python and Excel, identifying 4 key revenue-impacting trends that guided department-level strategic actions.</li>
-                                    <li class="resume-bullet" data-role="de">Deployed interactive Power BI dashboards to visualize KPIs and financial trends, improving executive insight and reporting efficiency.</li>
-                                    <li class="resume-bullet" data-role="ds">Led customer segmentation using K-Means clustering and PCA for dimensionality reduction, visualized results in Power BI, and identified six segments that captured 92% of data variance.</li>
-                                    <li class="resume-bullet" data-role="ds">Led marketing intelligence strategy using classification models and Power BI analytics, increasing campaign click-through rates by 12%.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Analyst</h4>
-                                    <span>Jun 2025 – Dec 2025</span>
-                                </div>
-                                <p class="resume-job-company">Zifatech Solutions LLC | Milwaukee, WI</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="de">Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, reducing manual effort by 70% and improving data refresh consistency.</li>
-                                    <li class="resume-bullet" data-role="de">Migrated legacy data workflows to AWS Glue and S3, increasing data availability by 60% and streamlining integration with Snowflake and Power BI.</li>
-                                    <li class="resume-bullet" data-role="de">Modernized Star Schema models in Snowflake using Great Expectations QA validations, achieving over 98% data reliability.</li>
-                                    <li class="resume-bullet" data-role="de">Built interactive Power BI dashboards connected to Snowflake datasets, translating analytical outputs into actionable business insights for sales and operations teams.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Engineer &amp; ML Research Assistant</h4>
-                                    <span>Sep 2024 – Jun 2025</span>
-                                </div>
-                                <p class="resume-job-company">Arizona State University | Tempe, AZ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="de">Produced a real-time data pipeline utilizing Node.js and MongoDB to process streaming data, ensuring 99.9% uptime for 5,000 concurrent users, and optimized data output by 35%.</li>
-                                    <li class="resume-bullet" data-role="ds">Constructed a personalized recommendation engine utilizing behavioral data; refined algorithms weekly, leading to a 12% increase in content click-through rates and reduced user churn.</li>
-                                    <li class="resume-bullet" data-role="ds">Led the development of an NLP chatbot that analyzed user input, pinpointing the top three user interface pain points, and driving a 15% increase in positive user satisfaction.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>AI-ML Analyst Apprentice</h4>
-                                    <span>Jul 2024 – Aug 2024</span>
-                                </div>
-                                <p class="resume-job-company">Jetson Infinity | Austin, TX</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="ds">Implemented a Python-based data processing pipeline leveraging Pandas and NumPy, resulting in a 3% refinement in robotic arm precision and enhanced workflow efficiency by 10%.</li>
-                                    <li class="resume-bullet" data-role="de">Automated data pipeline for robotic arm motion data employing Python and SQL, enhancing data processing efficiency by 17% and enabling real-time anomaly detection and faster analysis.</li>
-                                    <li class="resume-bullet" data-role="general">Devised an internal knowledge base with Python tutorials and real-world case studies, accelerating new data analyst onboarding by 25% and improving team proficiency in Python.</li>
-                                </ul>
-                            </div>
-
-                            <div class="resume-job-item">
-                                <div class="resume-job-header">
-                                    <h4>Data Analyst</h4>
-                                    <span>Aug 2021 – Mar 2022</span>
-                                </div>
-                                <p class="resume-job-company">Kronic Keys | Junagadh, GJ</p>
-                                <ul>
-                                    <li class="resume-bullet" data-role="de">Cleaned and prepared large datasets (500k+ rows), leading to more accurate sales and customer behavior insights and reducing reporting time by 30%.</li>
-                                    <li class="resume-bullet" data-role="de">Built SQL queries and Tableau dashboards that improved sales reporting efficiency by 30%.</li>
-                                    <li class="resume-bullet" data-role="de">Developed and maintained Tableau dashboards that visualized key sales performance indicators, helping drive a 12% increase in customer acquisition; dashboards were built using data extracted from PostgreSQL.</li>
-                                </ul>
-                            </div>
-                        </section>
+{% for exp in experience %}
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>{{ exp.role }}</h4>
+<span>{{ exp.dates }}</span>
+</div>
+<p class="resume-job-company">{{ exp.company }}</p>
+<ul>
+{% for b in exp.bullets %}
+<li class="resume-bullet" data-role="{{ b.resume_role }}">{{ b.html | safe }}</li>
+{% endfor %}
+</ul>
+</div>
+{% endfor %}
+</section>
 
                         <section class="resume-section">
                             <h2 class="resume-section-title">Projects</h2>
@@ -1081,9 +1002,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, FastAPI, SQLite, Jinja2, OpenAI API, TailwindCSS</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Engineered a personal job placement command center using FastAPI and SQLite, designing a relational database schema to track application pipelines on a Kanban board, reducing manual tracking overhead by 40%.</li>
-                                    <li class="resume-bullet" data-role="ds">Built a semantic compatibility matching engine using OpenAI/Gemini APIs to calculate profile-to-job match scores (0-100), highlight keyword gaps, and automate tailoring of experience bullets and cover letters.</li>
-                                    <li class="resume-bullet" data-role="de">Designed an automated recruiter outreach note builder to generate character-constrained LinkedIn connection messages and InMail templates, increasing networking efficiency.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Full Stack Command Center:</strong> Engineered a personal job placement command center using FastAPI and SQLite, designing a relational database schema to track application pipelines on a Kanban board, reducing manual tracking overhead by 40%.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>AI Prompt Tailoring Engine:</strong> Built a semantic compatibility matching engine using OpenAI/Gemini APIs to calculate profile-to-job match scores (0-100), highlight keyword gaps, and automate tailoring of experience bullets and cover letters.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Recruiter Outreach Automation:</strong> Designed an automated recruiter outreach note builder to generate character-constrained LinkedIn connection messages and InMail templates, increasing networking efficiency.</li>
                                 </ul>
                             </div>
 
@@ -1094,9 +1015,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, FastAPI, SQL, Jinja2, HTMX, GitHub Actions, Git</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Built a scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows (achieving a 100% hosting cost reduction), integrating LLM chains and LinkedIn APIs to automate daily posting and drive a 300% increase in weekly profile impressions.</li>
-                                    <li class="resume-bullet" data-role="de">Designed a Jinja2/HTMX glassmorphic administrative control panel, implementing Fernet symmetric encryption to secure credentials with zero compliance leakage.</li>
-                                    <li class="resume-bullet" data-role="de">Developed custom Pillow image-processing engines to automatically render branding graphics, reducing content creation time by 90% while boosting post engagement by 150%.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Serverless Automation Pipeline:</strong> Built a scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows at zero hosting cost, integrating LLM chains and LinkedIn APIs to automate daily posting and drive a 300% increase in weekly profile impressions.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Glassmorphic Administrative Panel:</strong> Designed a Jinja2/HTMX glassmorphic administrative control panel, implementing Fernet symmetric encryption to secure credentials with zero compliance leakage.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>LLM & Image Generation:</strong> Developed custom Pillow image-processing engines to automatically render branding graphics, reducing content creation time significantly while boosting post engagement by 150%.</li>
                                 </ul>
                             </div>
 
@@ -1107,9 +1028,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, Snowflake, Azure ADLS Gen2, Streamlit, Scikit-Learn, SQL Server</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Architected a cloud data platform connecting SQL Server, Azure ADLS Gen2, and Snowflake Star Schemas, accelerating financial reporting queries by <strong>45%</strong>.</li>
-                                    <li class="resume-bullet" data-role="de">Implemented SHA-256 data encryption and automated ledger audit rules, securing sensitive tax IDs and achieving <strong>100% payment reconciliation accuracy</strong>.</li>
-                                    <li class="resume-bullet" data-role="ds">Trained a Random Forest machine learning model in Python to forecast contract cancellation risks with <strong>88% precision</strong>, building an interactive Streamlit dashboard for real-time risk tracking.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Enterprise Cloud Platform:</strong> Architected a cloud data platform connecting SQL Server, Azure ADLS Gen2, and Snowflake Star Schemas, accelerating financial reporting queries by <strong>45%</strong>.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Secure Compliance Automation:</strong> Implemented SHA-256 data encryption and automated ledger audit rules, securing sensitive tax IDs and achieving <strong>100% payment reconciliation accuracy</strong>.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Predictive Contract Risk Model:</strong> Trained a Random Forest machine learning model in Python to forecast contract cancellation risks with <strong>88% precision</strong>, building an interactive Streamlit dashboard for real-time risk tracking.</li>
                                 </ul>
                             </div>
 
@@ -1120,9 +1041,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, SQL, SQLite, Tableau, Scikit-learn</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="ds">Built a production-grade MLOps framework to monitor machine learning feature drift using Population Stability Index (PSI), reducing silent model degradation by 35%.</li>
-                                    <li class="resume-bullet" data-role="ds">Designed demographic parity and Equal Opportunity bias auditing models in compliance with high-risk frameworks (EU AI Act, US FTC Guidelines) for 100% regulatory alignment.</li>
-                                    <li class="resume-bullet" data-role="de">Deployed SQLite audit logging with automated compliance reporting, visualizing results in Tableau to reduce audit review times by 40%.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>MLOps Drift Monitoring:</strong> Built a production-grade MLOps framework to monitor machine learning feature drift using Population Stability Index (PSI), reducing silent model degradation by 35%.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Bias & Fairness Auditing:</strong> Designed demographic parity and Equal Opportunity bias auditing models in compliance with high-risk frameworks (EU AI Act, US FTC Guidelines) for 100% regulatory alignment.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Compliance Reporting:</strong> Deployed SQLite audit logging with automated compliance reporting, visualizing results in Tableau to reduce audit review times by 40%.</li>
                                 </ul>
                             </div>
 
@@ -1133,9 +1054,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, FastAPI, SQL, Scikit-learn, Chart.js</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time transactional validation.</li>
-                                    <li class="resume-bullet" data-role="ds">Trained and optimized a Random Forest ensemble model in Scikit-Learn to predict loan default probability, achieving a 92% precision score.</li>
-                                    <li class="resume-bullet" data-role="de">Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration, reducing audit and approval cycles.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Low-Latency API Pipeline:</strong> Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time transactional validation.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Machine Learning Risk Classifier:</strong> Trained and optimized a Random Forest ensemble model in Scikit-Learn to predict loan default probability, achieving a 92% precision score.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Interactive Fraud Dashboard:</strong> Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration, reducing audit and approval cycles.</li>
                                 </ul>
                             </div>
 
@@ -1146,9 +1067,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, SQL, PostgreSQL, Tableau, ArcGIS</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Engineered a Python-based ETL pipeline for daily land cover datasets from 5 U.S. states, automating emissions inventory compilation with geospatial data transformations, saving 10 hours weekly.</li>
-                                    <li class="resume-bullet" data-role="ds">Centralized data in a SQL database tracking land-use shifts and built regression forecasts (Linear Regression/Random Forest) achieving 90% accuracy for emission trends.</li>
-                                    <li class="resume-bullet" data-role="de">Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by 15%.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Geospatial ETL Pipeline:</strong> Engineered a Python-based ETL pipeline for daily land cover datasets from 5 U.S. states, automating emissions inventory compilation with geospatial data transformations, saving 10 hours weekly.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Emissions Predictive Forecasting:</strong> Centralized data in a SQL database tracking land-use shifts and built regression forecasts (Linear Regression/Random Forest) achieving 90% accuracy for emission trends.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>ArcGIS Stakeholder Dashboards:</strong> Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by 15%.</li>
                                 </ul>
                             </div>
 
@@ -1159,9 +1080,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, SQL, Benford's Law, Isolation Forest, Power BI</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Engineered an automated audit pipeline in Python/SQL to ingest and validate general ledger transaction logs, reducing manual data preparation time by 40%.</li>
-                                    <li class="resume-bullet" data-role="ds">Implemented Benford's Law statistical modeling and an Isolation Forest anomaly detection algorithm to flag high-risk transactions, achieving a 94% precision rate.</li>
-                                    <li class="resume-bullet" data-role="de">Deployed interactive Power BI dashboards that visualized risk scores and transaction anomalies, accelerating audit cycles by 25%.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>General Ledger Audit Pipeline:</strong> Engineered an automated audit pipeline in Python/SQL to ingest and validate general ledger transaction logs, reducing manual data preparation time by 40%.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Statistical & ML Anomaly Detection:</strong> Implemented Benford's Law statistical modeling and an Isolation Forest anomaly detection algorithm to flag high-risk transactions, achieving a 94% precision rate.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Power BI Compliance Dashboard:</strong> Deployed interactive Power BI dashboards that visualized risk scores and transaction anomalies, accelerating audit cycles by 25%.</li>
                                 </ul>
                             </div>
 
@@ -1172,9 +1093,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, yFinance, Matplotlib, GitHub Actions, SQLite</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Built a stateless serverless ETL pipeline using Python to ingest real-time market data from yFinance APIs with automated error handling and logging.</li>
-                                    <li class="resume-bullet" data-role="ds">Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.</li>
-                                    <li class="resume-bullet" data-role="de">Configured GitHub Actions to run the pipeline daily on cron schedules, achieving 99.9% uptime with $0 operational server cost.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Stateless Serverless ETL:</strong> Built a stateless serverless ETL pipeline using Python to ingest real-time market data from yFinance APIs with automated error handling and logging.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Statistical Anomaly Detection:</strong> Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Cron Schedule Reliability:</strong> Configured GitHub Actions to run the pipeline daily on cron schedules, achieving 99.9% uptime.</li>
                                 </ul>
                             </div>
 
@@ -1185,9 +1106,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, SQLite, K-Means, PCA, Power BI, Seaborn</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Designed and implemented a SQL database with an optimized Star Schema modeling 100k+ customer transactions for business intelligence reporting.</li>
-                                    <li class="resume-bullet" data-role="ds">Automated RFM (Recency, Frequency, Monetary) scaling and K-Means clustering in Python, identifying 4 customer personas that captured 92% of variance.</li>
-                                    <li class="resume-bullet" data-role="ds">Developed a Power BI dashboard to track RFM metrics, helping marketing teams optimize campaign conversion rates by 15%.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Star Schema Database:</strong> Designed and implemented a SQL database with an optimized Star Schema modeling 100k+ customer transactions for business intelligence reporting.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>RFM & K-Means Clustering:</strong> Automated RFM (Recency, Frequency, Monetary) scaling and K-Means clustering in Python, identifying 4 customer personas.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Executive Power BI Dashboard:</strong> Developed a Power BI dashboard to track RFM metrics, helping marketing teams optimize campaign conversion rates by 15%.</li>
                                 </ul>
                             </div>
 
@@ -1198,9 +1119,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, SQL, Kaplan-Meier, Log-Rank, Tableau, SciPy</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.</li>
-                                    <li class="resume-bullet" data-role="ds">Conducted survival analysis using Kaplan-Meier curves and computed Log-Rank test statistics in SciPy to evaluate treatment efficacy across 3 patient cohorts.</li>
-                                    <li class="resume-bullet" data-role="general">Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by 30%.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Clinical Data Ingestion Pipeline:</strong> Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Biostatistical Survival Modeling:</strong> Conducted survival analysis using Kaplan-Meier curves and computed Log-Rank test statistics in SciPy to evaluate treatment efficacy across 3 patient cohorts.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Tableau Research Reporting:</strong> Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by 30%.</li>
                                 </ul>
                             </div>
 
@@ -1211,9 +1132,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, SQL, Z-Score Anomaly, RUL Model, Power BI</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Engineered a streaming simulation pipeline in Python to ingest high-frequency EV battery and motor telemetry logs in micro-batches.</li>
-                                    <li class="resume-bullet" data-role="ds">Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures.</li>
-                                    <li class="resume-bullet" data-role="ds">Implemented degradation modeling using exponential decay equations to estimate battery Remaining Useful Life (RUL) and designed Power BI dashboards to track fleet health.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>High-Frequency Telemetry Ingestion:</strong> Engineered a streaming simulation pipeline in Python to ingest high-frequency EV battery and motor telemetry logs in micro-batches.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Anomaly Detection & Device Health:</strong> Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Degradation & RUL Modeling:</strong> Implemented degradation modeling using exponential decay equations to estimate battery Remaining Useful Life (RUL) and designed Power BI dashboards to track fleet health.</li>
                                 </ul>
                             </div>
 
@@ -1224,9 +1145,9 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, SQL, Random Forest, Sales ETL, Tableau</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="de">Created a scalable data automation system utilizing Python for daily sales data ingestion from 5 branches across states, simulating a real ETL pipeline.</li>
-                                    <li class="resume-bullet" data-role="de">Centralized inventory data implementing SQL and visualized trends in Tableau, driving actionable insights across weekly and monthly cycles.</li>
-                                    <li class="resume-bullet" data-role="ds">Operated machine learning models (e.g., Linear Regression, Random Forest) that achieved 90% forecast accuracy and enabled a 15% reduction in stock-outs.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Multi-Branch ETL Automation:</strong> Created a scalable data automation system utilizing Python for daily sales data ingestion from 5 branches across states, simulating a real ETL pipeline.</li>
+                                    <li class="resume-bullet" data-role="de"><strong>Inventory Centralization & Tableau:</strong> Centralized inventory data implementing SQL and visualized trends in Tableau, driving actionable insights across weekly and monthly cycles.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Predictive Inventory Forecasting:</strong> Operated machine learning models (e.g., Linear Regression, Random Forest) that achieved 90% forecast accuracy, enabling a reduction in stock-outs.</li>
                                 </ul>
                             </div>
 
@@ -1237,11 +1158,89 @@
                                 </div>
                                 <p class="resume-job-company">Technologies: Python, TensorFlow, Keras, CNN Model, Flask, ASL Recognition</p>
                                 <ul>
-                                    <li class="resume-bullet" data-role="ds">Pioneered an inclusive Python platform leveraging TensorFlow and Keras, enabling 7 previously inaccessible STEM concepts to users with and without ASL proficiency.</li>
-                                    <li class="resume-bullet" data-role="ds">Implemented a novel search functionality and sign recognition algorithm leveraging Python, cutting gesture redundancy, boosting learning efficiency by 30%, and presented to the Department Head.</li>
-                                    <li class="resume-bullet" data-role="general">Synthesized feedback from 50+ STEM students to identify key areas to improve lesson design, achieving a user satisfaction score of 4.6/5, based on post-lesson surveys.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Deep Learning Web Application:</strong> Pioneered an inclusive Python platform leveraging TensorFlow and Keras, enabling 7 previously inaccessible STEM concepts to users with and without ASL proficiency.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Gesture Recognition Algorithm:</strong> Implemented a novel search functionality and sign recognition algorithm leveraging Python, cutting gesture redundancy, boosting learning efficiency by 30%, and presented to the Department Head.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>User Feedback & Evaluation:</strong> Synthesized feedback from 50+ STEM students to identify key areas to improve lesson design, achieving a strong user satisfaction score based on post-lesson surveys.</li>
                                 </ul>
                             </div>
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Stay Aware of Branch <a href="https://github.com/Deshraj-Jogiya/stay-aware-of-branch" target="_blank">[GitHub]</a></h4>
+                                    <span>Jul 2023 – Dec 2023</span>
+                                </div>
+                                <p class="resume-job-company">Technologies: React Native, Android, JavaScript, Mobile, Git</p>
+                                <ul>
+                                    <li class="resume-bullet" data-role="general"><strong>Parent-School Mobile Application:</strong> Developed an application that links parents and schools through the React Native Android framework.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Progress & Attendance Tracking:</strong> Improved communication between parents and teachers, leading to a 40% boost in parent involvement.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Administrative Workflow Automation:</strong> Implemented features such as integrated progress reports and attendance monitoring, decreasing administrative workload by 25%.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Chef at Gathering <a href="https://github.com/Deshraj-Jogiya/chef-at-gathering" target="_blank">[GitHub]</a></h4>
+                                    <span>Nov 2022 – Mar 2023</span>
+                                </div>
+                                <p class="resume-job-company">Technologies: React, JavaScript, HTML5, CSS3, Git</p>
+                                <ul>
+                                    <li class="resume-bullet" data-role="general"><strong>React Catering Booking Platform:</strong> Developed a React app easing event organization and professional catering arrangements.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Management Process Optimization:</strong> Streamlined event management processes, resulting in a 50% reduction in coordination time.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Chef Discovery & Bookings:</strong> Curated chefs to showcase specialties, leading to a 20% increase in chef bookings.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>City Forums <a href="https://github.com/Deshraj-Jogiya/city-forums" target="_blank">[GitHub]</a></h4>
+                                    <span>Jun 2022 – Oct 2022</span>
+                                </div>
+                                <p class="resume-job-company">Technologies: PHP, CodeIgniter 3, MySQL, Bootstrap, Git</p>
+                                <ul>
+                                    <li class="resume-bullet" data-role="general"><strong>Community Forum & Marketplace:</strong> Created an online forum using CodeIgniter 3, promoting community engagement and event sharing.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>User Base Scaling:</strong> Increased user base by 50% within the first three months through targeted marketing strategies.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Classified Ad Marketplace:</strong> Established a thriving online marketplace generating $10,000 in revenue through classified advertisements and event listings.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Make It Short <a href="https://github.com/Deshraj-Jogiya/make-it-short" target="_blank">[GitHub]</a></h4>
+                                    <span>Jan 2022 – Apr 2022</span>
+                                </div>
+                                <p class="resume-job-company">Technologies: PHP, CodeIgniter 4, MySQL, HTML5, CSS3, Git</p>
+                                <ul>
+                                    <li class="resume-bullet" data-role="general"><strong>Link Shortening Web Engine:</strong> Integrated link shortening and view tracking into a CodeIgniter 4 app, resulting in 10,000+ shortened URLs.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Gamified User Engagement:</strong> Achieved a 15% increase in user engagement by implementing gamification elements.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Monetization & Reporting:</strong> Generated $500 in revenue through redeemable points earned by users.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Get your Token <a href="https://github.com/Deshraj-Jogiya/get-your-token" target="_blank">[GitHub]</a></h4>
+                                    <span>Jul 2021 – Dec 2021</span>
+                                </div>
+                                <p class="resume-job-company">Technologies: Node.js, Express, Angular, Cryptocurrency API, Git</p>
+                                <ul>
+                                    <li class="resume-bullet" data-role="general"><strong>Web3 Crypto Marketplace:</strong> Published a front-end marketplace and administrative panel for NFT cryptocurrency transactions, reducing transaction time by 20%.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>Transaction Ingestion Microservices:</strong> Facilitated the creation and purchase of Penky tokens, resulting in 1,000+ transactions within the first month.</li>
+                                    <li class="resume-bullet" data-role="general"><strong>High User Satisfaction:</strong> Collaborated with stakeholders to meet project requirements, resulting in a 90% satisfaction rate among users and developers.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-job-item">
+                                <div class="resume-job-header">
+                                    <h4>Solid Object Detection &amp; Identification using Image Processing <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank">[GitHub]</a></h4>
+                                    <span>May 2020 – Dec 2020</span>
+                                </div>
+                                <p class="resume-job-company">Technologies: Python, PyTorch, OpenCV, CNN Model, Image Processing, Git</p>
+                                <ul>
+                                    <li class="resume-bullet" data-role="ds"><strong>Computer Vision & Geometry Pipeline:</strong> Developed a robust shape detection and identification algorithm using Python, PyTorch, and OpenCV, achieving a classification accuracy of 99.20%.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Visualization Enhancements:</strong> Implemented traditional contour-based geometry feature extraction alongside a CNN classifier, refining shape recognition with a 33% increase in traditional visualization capabilities.</li>
+                                    <li class="resume-bullet" data-role="ds"><strong>Model Evaluation:</strong> Evaluated the model over a large image dataset, predicting bounding-box regression with a high-precision Mean IoU of 0.90.</li>
+                                </ul>
+                            </div>
+
                         </section>
                     </div>
                 </div>
