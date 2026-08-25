@@ -1005,5 +1005,6 @@
       "name": "Guinness World Record – AI Training Hackathon (Kanz)",
       "date": ""
     }
-  ]
+  ],
+  "summary": "Data Engineer and AI/ML Engineer with 5+ years of experience building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. Hands-on experience with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, Model Context Protocol), and LLMOps evaluation (LangSmith), alongside production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Track record of optimizing LLM fine-tuning, containerizing microservices, orchestrating CI/CD pipelines, and executing robust data quality governance frameworks."
 }
