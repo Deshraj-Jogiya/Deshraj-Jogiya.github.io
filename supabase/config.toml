@@ -1,0 +1,17 @@
+project_id = "mtvcrttbdjwcixzhlkvo"
+
+# All three functions are called directly by public browser JS or by a
+# GitHub Actions workflow, neither of which authenticates with a Supabase
+# user JWT -- each function does its own request validation instead
+# (portfolio-chat/submit-contact: request shape; clear-chatbot-cache: a
+# bearer token compared against CACHE_CLEAR_TOKEN). Recorded here so this
+# is a reproducible, version-controlled setting instead of one-off CLI
+# flags nobody remembers using.
+[functions.portfolio-chat]
+verify_jwt = false
+
+[functions.submit-contact]
+verify_jwt = false
+
+[functions.clear-chatbot-cache]
+verify_jwt = false
