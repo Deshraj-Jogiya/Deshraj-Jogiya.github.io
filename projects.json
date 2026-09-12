@@ -295,7 +295,7 @@
     {
       "badge": "Cloud & Enterprise ML",
       "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 88% precision, alongside automated financial reporting and reconciliation workflows.",
+      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 86.20% accuracy, alongside automated financial reporting and reconciliation workflows.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
@@ -303,7 +303,9 @@
         "Azure ADLS",
         "Streamlit",
         "Scikit-Learn",
-        "SQL Server"
+        "SQL Server",
+        "Terraform",
+        "Parquet"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
       "bullets": [
@@ -316,11 +318,11 @@
           "resume_role": "de"
         },
         {
-          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>88% precision</strong>.",
+          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>86.20% accuracy</strong> (0.87 ROC-AUC), served via a Snowflake Python UDF for real-time inference.",
           "resume_role": "ds"
         },
         {
-          "html": "Databricks & dbt Transformations: Implemented dbt data transformation models on <strong>Databricks</strong> to standardize schema definitions.",
+          "html": "Infrastructure as Code: Provisioned the production data warehouse -- Azure ADLS Gen2 storage, Snowflake database/schemas/warehouse, and the storage integration connecting them -- via <strong>Terraform</strong>.",
           "resume_role": "de"
         }
       ],
