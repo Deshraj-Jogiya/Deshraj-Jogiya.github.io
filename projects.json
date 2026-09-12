@@ -198,7 +198,8 @@
         "OpenAI API",
         "Jinja2",
         "TailwindCSS",
-        "GitHub Actions"
+        "GitHub Actions",
+        "Docker"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation",
       "bullets": [
@@ -215,7 +216,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Automated Document Compiler: Built automated Python PDF compilation scripts to generate formatted resumes and cover letters.",
+          "html": "Automated Document Compiler: Built automated Python PDF compilation scripts to generate formatted resumes and cover letters, containerized with <strong>Docker</strong> for reproducible deployment.",
           "resume_role": "de"
         }
       ],
