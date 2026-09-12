@@ -715,19 +715,19 @@
       "bullets": [
         {
           "html": "React Catering Booking Platform: Built an event coordination and catering booking <strong>React</strong> application.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Management Process Optimization: Reduced event coordination time by <strong>50%</strong> and boosted chef bookings by 20%.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Responsive UI Design: Designed responsive, accessible web components for seamless mobile/desktop browsing.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "REST API State Integration: Integrated React state management with backend RESTful endpoints.",
-          "resume_role": "general"
+          "resume_role": "sde"
         }
       ],
       "date": "Oct 2022 – Dec 2022"
@@ -749,19 +749,19 @@
       "bullets": [
         {
           "html": "Parent-School Mobile Application: Developed a parent-school engagement application using <strong>React Native</strong> and Android frameworks.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Progress & Attendance Tracking: Implemented tracking modules that boosted parent involvement by <strong>40%</strong>.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Cross-Platform Mobile Integration: Delivered seamless mobile UI optimized for Android devices.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Push Notification Services: Integrated native Android notification services for critical school announcements.",
-          "resume_role": "general"
+          "resume_role": "sde"
         }
       ],
       "date": "May 2022 – Aug 2022"
@@ -783,19 +783,19 @@
       "bullets": [
         {
           "html": "Web3 Crypto Marketplace: Published a marketplace frontend and admin dashboard using <strong>Express.js and Angular</strong> for NFT transactions.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Transaction Ingestion Microservices: Handled 1,000+ transactions in the first month with sub-100ms response latency.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "High User Satisfaction: Delivered clean UI design and crypto API integration, achieving a 90% satisfaction rate.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "RESTful Microservice Endpoints: Modeled modular Node.js controller routes handling payment processing.",
-          "resume_role": "general"
+          "resume_role": "sde"
         }
       ],
       "date": "Jan 2022 – Apr 2022"
@@ -817,19 +817,19 @@
       "bullets": [
         {
           "html": "Community Forum & Marketplace: Created an engagement and marketplace platform using <strong>CodeIgniter 3</strong> and MySQL.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "User Base Scaling: Scaled user base by 50% in three months, generating $10,000 in classified ad revenue.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Relational Database Design: Modeled MySQL tables for user topics, thread replies, and classified ad postings.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Bootstrap Responsive UI: Built clean, responsive community forum layouts.",
-          "resume_role": "general"
+          "resume_role": "sde"
         }
       ],
       "date": "Sep 2021 – Dec 2021"
@@ -852,19 +852,19 @@
       "bullets": [
         {
           "html": "Link Shortening Web Engine: Integrated a link shortening engine into a <strong>CodeIgniter 4</strong> PHP web application.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "URL Generation & Analytics: Generated 10,000+ shortened URLs, driving a 15% increase in engagement via gamification.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "Monetization & Reporting: Built backend analytics models tracking click origins and user redemptions.",
-          "resume_role": "general"
+          "resume_role": "sde"
         },
         {
           "html": "URL Redirection & Hash Indexing: Designed fast MySQL key-value lookup indices for high-frequency redirections.",
-          "resume_role": "general"
+          "resume_role": "sde"
         }
       ],
       "date": "May 2021 – Aug 2021"
