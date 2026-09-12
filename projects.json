@@ -306,7 +306,9 @@
         "Scikit-Learn",
         "SQL Server",
         "Terraform",
-        "Parquet"
+        "Parquet",
+        "Delta Lake",
+        "Apache Iceberg"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
       "bullets": [
@@ -324,6 +326,10 @@
         },
         {
           "html": "Infrastructure as Code: Provisioned the production data warehouse -- Azure ADLS Gen2 storage, Snowflake database/schemas/warehouse, and the storage integration connecting them -- via <strong>Terraform</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Table Format Layer: Loaded staged extracts into real <strong>Delta Lake</strong> and <strong>Apache Iceberg</strong> tables as a transactional consumption layer over the raw Parquet staging area.",
           "resume_role": "de"
         }
       ],
