@@ -97,7 +97,7 @@
         <section id="experience" class="experience-section">
             <div class="section-header">
                 <h2 class="section-title">Professional Experience & Technical Impact</h2>
-                <p class="section-subtitle">5+ years of designing production-grade data pipelines, optimizing LLM/AI models, and building high-reliability cloud data architectures.</p>
+                <p class="section-subtitle">3+ years of designing production-grade data pipelines, optimizing LLM/AI models, and building high-reliability cloud data architectures.</p>
             </div>
 
             <div class="experience-container">
@@ -109,7 +109,7 @@
                             <h3 class="experience-role">Teleoperation Data Collection Associate</h3>
                             <p class="experience-company">Objectways Technologies LLC | Tempe, AZ</p>
                         </div>
-                        <div class="experience-date">May 2026 – Present</div>
+                        <div class="experience-date">May 2026 – Present · Part-Time</div>
                     </div>
                     <ul class="experience-bullets">
                         <li>Collected and validated <strong>10,000+</strong> high-quality teleoperation sensor data samples for AI/ML model training, improving dataset accuracy and consistency by <strong>20%</strong>.</li>
@@ -139,7 +139,7 @@
                             <h3 class="experience-role">Applied Machine Learning Engineer</h3>
                             <p class="experience-company">Technoid LLC | Piscataway, NJ</p>
                         </div>
-                        <div class="experience-date">Dec 2025 – May 2026</div>
+                        <div class="experience-date">Dec 2025 – May 2026 · Contract</div>
                     </div>
                     <ul class="experience-bullets">
                         <li>Optimized <strong>GPT-4o mini</strong> models for candidate resume matching using OpenAI APIs, SQL, and PostgreSQL, raising recommendation accuracy by <strong>25%</strong>.</li>
@@ -170,7 +170,7 @@
                             <h3 class="experience-role">Data Analyst</h3>
                             <p class="experience-company">Zifatech Solutions LLC | Milwaukee, WI</p>
                         </div>
-                        <div class="experience-date">Jun 2025 – Dec 2025</div>
+                        <div class="experience-date">Jun 2025 – Dec 2025 · Contract</div>
                     </div>
                     <ul class="experience-bullets">
                         <li>Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, cutting manual reporting effort by <strong>70%</strong>.</li>
@@ -188,34 +188,6 @@
                         <span>Python</span>
                         <span>SQL</span>
                         <span>Great Expectations</span>
-                        <span>Power BI</span>
-                    </div>
-                </div>
-
-                <!-- ElevateMe -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Customer Segmentation & BI</span>
-                            <h3 class="experience-role">Data Analytics & ML Fellow Trainee</h3>
-                            <p class="experience-company">ElevateMe Bootcamp | Columbus, OH</p>
-                        </div>
-                        <div class="experience-date">Jan 2025 – Mar 2026</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Executed customer segmentation using <strong>K-Means clustering & PCA</strong> dimensionality reduction in Python, mapping target personas capturing <strong>92% of data variance</strong>.</li>
-                        <li>Spearheaded marketing intelligence strategies using classification models, driving a <strong>12% increase in campaign click-through rates</strong>.</li>
-                        <li>Developed backend application services in <strong>C# and .NET</strong> connected to SQL Server databases, creating automated ETL routines that boosted query performance by <strong>45%</strong>.</li>
-                        <li>Built dynamic web interfaces and custom PowerApps/React components connected to relational databases, automating real-time alerts and user workflow tracking.</li>
-                        <li>Deployed interactive Power BI KPI dashboards for real-time executive visibility into operational revenue trends and ML performance metrics.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>C# / .NET</span>
-                        <span>SQL Server</span>
-                        <span>Scikit-Learn</span>
-                        <span>K-Means</span>
-                        <span>PCA</span>
                         <span>Power BI</span>
                     </div>
                 </div>
@@ -316,6 +288,7 @@
                     <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
                     <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
                     <button class="filter-btn" data-filter="analytics">Analytics & BI</button>
+                    <button class="filter-btn" data-filter="software-dev">Full Stack</button>
                 </div>
             </div>
 
@@ -340,7 +313,9 @@
                             {% endfor %}
                         </div>
                         <div class="card-actions">
+                            {% if project.github_url %}
                             <a href="{{ project.github_url }}" target="_blank" class="btn btn-sm btn-primary">View Repository 🔗</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -832,7 +807,7 @@
                         </div>
                         <div class="info-item">
                             <span class="info-icon">💼</span>
-                            <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">linkedin.com/in/deshraj-jogiya</a>
+                            <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank">linkedin.com/in/deshrajjogiya</a>
                         </div>
                         <div class="info-item">
                             <span class="info-icon">🐙</span>
@@ -904,7 +879,7 @@
                         <span>🌐 <a href="https://Deshraj-Jogiya.github.io" target="_blank">Portfolio</a></span>
                         <span>📞 (480) 876-2863</span>
                         <span>📧 <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a></span>
-                        <span>💼 <a href="https://linkedin.com/in/deshraj-jogiya" target="_blank">LinkedIn</a></span>
+                        <span>💼 <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank">LinkedIn</a></span>
                         <span>🐙 <a href="https://github.com/Deshraj-Jogiya" target="_blank">GitHub</a></span>
                     </div>
                 </div>
@@ -975,7 +950,7 @@
 {% for proj in projects %}
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>{{ proj.name }} <a href="{{ proj.github_url }}" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<h4>{{ proj.name }}{% if proj.github_url %} <a href="{{ proj.github_url }}" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a>{% endif %}</h4>
 {% if proj.date %}<span>{{ proj.date }}</span>{% endif %}
 </div>
 <p class="resume-job-company">Technologies: {{ proj.tags | join(", ") }}</p>
