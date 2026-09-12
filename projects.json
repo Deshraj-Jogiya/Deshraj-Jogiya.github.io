@@ -22,7 +22,7 @@
       "badge": "Robotics & Parallel Pipelines",
       "role": "Teleoperation Data Collection Associate",
       "company": "Objectways Technologies LLC | Tempe, AZ",
-      "dates": "May 2026 – Present · Part-Time",
+      "dates": "May 2026 – Present",
       "tags": [
         "Python",
         "Scala",
@@ -44,13 +44,14 @@
           "html": "Executed robotics dataset QA and anomaly detection, lowering downstream model training error rates by <strong>15%</strong>.",
           "resume_role": "ds"
         }
-      ]
+      ],
+      "employment_type": "Part-Time"
     },
     {
       "badge": "LLMs, Supabase & Vector Sync",
       "role": "Applied Machine Learning Engineer",
       "company": "Technoid LLC | Piscataway, NJ",
-      "dates": "Dec 2025 – May 2026 · Contract",
+      "dates": "Dec 2025 – May 2026",
       "tags": [
         "Python",
         "GPT-4o mini",
@@ -73,13 +74,14 @@
           "html": "Established automated phased regression and UAT testing frameworks, cutting model deployment errors by <strong>30%</strong>.",
           "resume_role": "ds"
         }
-      ]
+      ],
+      "employment_type": "Contract"
     },
     {
       "badge": "Cloud Migration & Data Quality",
       "role": "Data Analyst",
       "company": "Zifatech Solutions LLC | Milwaukee, WI",
-      "dates": "Jun 2025 – Dec 2025 · Contract",
+      "dates": "Jun 2025 – Dec 2025",
       "tags": [
         "AWS Glue",
         "AWS S3",
@@ -106,7 +108,8 @@
           "html": "Built executive Power BI dashboards connected to Snowflake data warehouses, converting complex data streams into strategic business insights.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "employment_type": "Contract"
     },
     {
       "badge": "Streaming & Recommendation Systems",
@@ -903,22 +906,6 @@
         }
       ],
       "date": "Aug 2020 – May 2021"
-    },
-    {
-      "badge": "Customer Segmentation & BI",
-      "name": "ElevateMe Bootcamp: Customer Segmentation & Marketing Intelligence",
-      "desc": "Customer segmentation and marketing-intelligence work from the ElevateMe Bootcamp -- K-Means/PCA clustering, classification-driven campaign targeting, and a C#/.NET + Power BI reporting layer.",
-      "category": "machine-learning analytics",
-      "tags": [
-        "Python",
-        "C# / .NET",
-        "SQL Server",
-        "Scikit-Learn",
-        "K-Means",
-        "PCA",
-        "Power BI"
-      ],
-      "github_url": null
     }
   ],
   "skills": [
@@ -1020,5 +1007,5 @@
       "date": "Jul 2026"
     }
   ],
-  "summary": "Data Engineer and AI/ML Engineer with 3+ years of experience building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. Hands-on experience with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, Model Context Protocol), and LLMOps evaluation (LangSmith), alongside production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Track record of optimizing LLM fine-tuning, containerizing microservices, orchestrating CI/CD pipelines, and executing robust data quality governance frameworks."
+  "summary": "Data Engineer and AI/ML Engineer building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. Hands-on experience with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, Model Context Protocol), and LLMOps evaluation (LangSmith), alongside production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Track record of optimizing LLM fine-tuning, containerizing microservices, orchestrating CI/CD pipelines, and executing robust data quality governance frameworks."
 }

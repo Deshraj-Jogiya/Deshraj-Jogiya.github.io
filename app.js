@@ -1525,7 +1525,7 @@ document.addEventListener("DOMContentLoaded", () => {
         asu: "Deshraj completed his Master of Science in IT at Arizona State University with a perfect 4.0/4.0 GPA, specializing in cloud data architectures, streaming ingestion, and predictive modeling.",
         contact: "You can reach Deshraj directly via email at djogiya786@gmail.com. He is actively interviewing for Data Engineering, Machine Learning Engineering, and Cloud Data Architecture roles.",
         cloud: "Deshraj builds secure, high-throughput cloud architectures using AWS (Glue ETL, S3 data lakes), Snowflake OLAP star schemas, Azure ADLS Gen2, and Supabase serverless backends.",
-        experience: "Deshraj has 3+ years of experience as a Data & AI/ML Engineer. Key achievements include cutting vector sync latency by 65% at Technoid, boosting Snowflake data availability by 60% at Zifatech, and scaling Kubernetes teleoperation pipelines at Objectways.",
+        experience: "Deshraj is a Data & AI/ML Engineer. Key achievements include cutting vector sync latency by 65% at Technoid, boosting Snowflake data availability by 60% at Zifatech, and scaling Kubernetes teleoperation pipelines at Objectways.",
         projects: "Deshraj's top repositories include TalentVenue EventIntel (Azure/Snowflake Star Schema BI), CurioSync (Serverless LinkedIn Publisher), Job Search CRM (FastAPI/SQLite AI Tailoring), and FinTech Credit Risk Pipeline. Explore the Projects section above!",
         observability: "Deshraj integrates automated Great Expectations QA data rules into ingestion cycles and runs Kolmogorov-Smirnov (KS) tests to flag feature drift before it affects model performance.",
         skills: "Deshraj specializes in Python (Asyncio, FastAPI, Pandas), SQL (PostgreSQL, Snowflake), AWS Glue/S3, Azure ADLS Gen2, Supabase, Scikit-Learn, TensorFlow, Great Expectations, Power BI, and Tableau.",
@@ -2687,7 +2687,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Professional Experience",
-            desc: "Explore Deshraj's 3+ years of hands-on work history, featuring quantified metrics from Technoid LLC, Objectways, Zifatech Solutions, and Arizona State University.",
+            desc: "Explore Deshraj's hands-on work history, featuring quantified metrics from Technoid LLC, Objectways, Zifatech Solutions, and Arizona State University.",
             target: "#experience",
             duration: 10000,
             action: async () => {
@@ -2964,7 +2964,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Career Assistant Chatbot",
-            desc: "Finally, let's open the AI assistant. The tour will type and send: 'summarize his 3+ years of experience' so you can see live RAG retrieval in action.",
+            desc: "Finally, let's open the AI assistant. The tour will type and send: 'summarize his engineering experience' so you can see live RAG retrieval in action.",
             target: "#chat-launcher",
             duration: 22000,
             action: async () => {
@@ -2989,7 +2989,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const inputEl = document.getElementById("chat-input");
                 if (inputEl) {
-                    const text = "summarize his 3+ years of experience";
+                    const text = "summarize his engineering experience";
                     inputEl.value = "";
                     for (let i = 0; i < text.length; i++) {
                         inputEl.value += text[i];
