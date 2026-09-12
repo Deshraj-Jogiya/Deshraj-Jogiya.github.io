@@ -635,7 +635,8 @@
         "Python",
         "Power BI",
         "SQL",
-        "GitHub Actions"
+        "GitHub Actions",
+        "Jax"
       ],
       "dashboard_url": "assets/iot_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
@@ -655,6 +656,10 @@
         {
           "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
           "resume_role": "general"
+        },
+        {
+          "html": "Jax-Accelerated Recurrence: Reimplemented the sequential health-decay/RUL calculation as a single JIT-compiled <strong>jax.lax.scan</strong>, verified numerically identical to the original per-row implementation.",
+          "resume_role": "de"
         }
       ],
       "date": "Sep 2023 – Dec 2023"
