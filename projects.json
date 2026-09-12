@@ -208,7 +208,7 @@
           "resume_role": "de"
         },
         {
-          "html": "AI Prompt Tailoring Engine: Integrated <strong>OpenAI API</strong> prompt tailoring chains to automatically align candidate resumes with specific job description keywords.",
+          "html": "AI Prompt Tailoring Engine: Integrated <strong>OpenAI API</strong> prompt tailoring chains to automatically align candidate resumes with specific job description keywords, plus a standalone <strong>ReAct-pattern</strong> research agent with real tool-calling over the app's own data.",
           "resume_role": "ds"
         },
         {
@@ -270,7 +270,8 @@
         "Scikit-Learn",
         "Pandas",
         "GitHub Actions",
-        "LlamaIndex"
+        "LlamaIndex",
+        "Semantic Kernel"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
       "bullets": [
@@ -292,6 +293,10 @@
         },
         {
           "html": "LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using <strong>LlamaIndex</strong>'s VectorStoreIndex over the same embedding model, verified against the real message dataset.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native <strong>Semantic Kernel</strong> plugin functions, orchestrated through a real Kernel instance.",
           "resume_role": "ds"
         }
       ],
