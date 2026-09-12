@@ -489,13 +489,14 @@
         "Python",
         "Power BI",
         "SQL",
-        "GitHub Actions"
+        "GitHub Actions",
+        "Dagster"
       ],
       "dashboard_url": "assets/compliance_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
       "bullets": [
         {
-          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>Python</strong> and SQL to validate transaction logs.",
+          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>Python</strong> and SQL to validate transaction logs, orchestrated as a <strong>Dagster</strong> asset graph.",
           "resume_role": "de"
         },
         {
