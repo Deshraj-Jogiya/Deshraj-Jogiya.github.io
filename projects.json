@@ -374,7 +374,8 @@
         "Scikit-Learn",
         "Chart.js",
         "XGBoost",
-        "GitHub Actions"
+        "GitHub Actions",
+        "MLflow"
       ],
       "dashboard_url": "assets/finrisk_feature_importance.png",
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
@@ -384,7 +385,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>.",
+          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>, tracked in <strong>MLflow</strong> for experiment comparison.",
           "resume_role": "ds"
         },
         {
