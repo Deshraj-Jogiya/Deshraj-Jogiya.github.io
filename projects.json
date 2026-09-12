@@ -267,7 +267,8 @@
         "Sentence-Transformers",
         "spaCy",
         "Scikit-Learn",
-        "Pandas"
+        "Pandas",
+        "GitHub Actions"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
       "bullets": [
@@ -336,7 +337,8 @@
         "Drift Audit",
         "KS-Test",
         "Tableau",
-        "SQL"
+        "SQL",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/ai_observability.png",
       "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
@@ -371,7 +373,8 @@
         "SQL",
         "Scikit-Learn",
         "Chart.js",
-        "XGBoost"
+        "XGBoost",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/finrisk_feature_importance.png",
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
@@ -405,7 +408,8 @@
         "TensorFlow Hub",
         "BERT",
         "Multi-Task Learning",
-        "NumPy"
+        "NumPy",
+        "GitHub Actions"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise",
       "bullets": [
@@ -439,7 +443,8 @@
         "SQLite",
         "Random Forest",
         "ETL Ingestion",
-        "ArcGIS"
+        "ArcGIS",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/emissions_by_state.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
@@ -473,7 +478,8 @@
         "Isolation Forest",
         "Python",
         "Power BI",
-        "SQL"
+        "SQL",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/compliance_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
@@ -542,7 +548,8 @@
         "PCA",
         "SQLite",
         "Power BI",
-        "Seaborn"
+        "Seaborn",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/sales_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
@@ -576,7 +583,8 @@
         "Kaplan-Meier",
         "Log-Rank",
         "Tableau",
-        "scipy"
+        "scipy",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/clinical_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
@@ -610,7 +618,8 @@
         "RUL Model",
         "Python",
         "Power BI",
-        "SQL"
+        "SQL",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/iot_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
@@ -644,7 +653,8 @@
         "SQL",
         "Random Forest",
         "Sales ETL",
-        "Tableau"
+        "Tableau",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/forecast_vs_actual.png",
       "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation",
@@ -679,7 +689,8 @@
         "Keras",
         "CNN Model",
         "Flask",
-        "ASL Recognition"
+        "ASL Recognition",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/training_curves.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL",
@@ -885,7 +896,8 @@
         "OpenCV",
         "CNN Model",
         "Image Processing",
-        "Git"
+        "Git",
+        "GitHub Actions"
       ],
       "dashboard_url": "assets/solid_object_confusion_matrix.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing",
