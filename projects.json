@@ -313,7 +313,8 @@
         "Terraform",
         "Parquet",
         "Delta Lake",
-        "Apache Iceberg"
+        "Apache Iceberg",
+        "TypeScript"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
       "bullets": [
@@ -335,6 +336,10 @@
         },
         {
           "html": "Table Format Layer: Loaded staged extracts into real <strong>Delta Lake</strong> and <strong>Apache Iceberg</strong> tables as a transactional consumption layer over the raw Parquet staging area.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Data Contract Validation: Built a <strong>TypeScript</strong> CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.",
           "resume_role": "de"
         }
       ],
