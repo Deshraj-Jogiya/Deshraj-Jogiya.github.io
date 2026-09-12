@@ -97,7 +97,7 @@
         <section id="experience" class="experience-section">
             <div class="section-header">
                 <h2 class="section-title">Professional Experience & Technical Impact</h2>
-                <p class="section-subtitle">3+ years of designing production-grade data pipelines, optimizing LLM/AI models, and building high-reliability cloud data architectures.</p>
+                <p class="section-subtitle">Designing production-grade data pipelines, optimizing LLM/AI models, and building high-reliability cloud data architectures.</p>
             </div>
 
             <div class="experience-container">
@@ -934,7 +934,7 @@
 <div class="resume-job-item">
 <div class="resume-job-header">
 <h4>{{ exp.role }}</h4>
-<span>{{ exp.dates }}</span>
+<span>{{ exp.dates }}{% if exp.employment_type %} · {{ exp.employment_type }}{% endif %}</span>
 </div>
 <p class="resume-job-company">{{ exp.company }}</p>
 <ul>
