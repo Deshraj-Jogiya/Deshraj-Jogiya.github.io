@@ -389,7 +389,8 @@
         "Chart.js",
         "XGBoost",
         "GitHub Actions",
-        "MLflow"
+        "MLflow",
+        "GraphQL"
       ],
       "dashboard_url": "assets/finrisk_feature_importance.png",
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
@@ -409,6 +410,10 @@
         {
           "html": "Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.",
           "resume_role": "general"
+        },
+        {
+          "html": "GraphQL API Layer: Added a <strong>Strawberry-GraphQL</strong> query layer alongside the existing REST endpoints, serving customer and loan data from the same database.",
+          "resume_role": "de"
         }
       ],
       "date": "Mar 2025 – May 2025"
