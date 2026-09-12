@@ -269,7 +269,8 @@
         "spaCy",
         "Scikit-Learn",
         "Pandas",
-        "GitHub Actions"
+        "GitHub Actions",
+        "LlamaIndex"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
       "bullets": [
@@ -288,6 +289,10 @@
         {
           "html": "Architecture Tradeoff Analysis: Evaluated five candidate approaches (rule-based, knowledge graph, fine-tuned LLM, hybrid) before selecting embeddings-based semantic search.",
           "resume_role": "general"
+        },
+        {
+          "html": "LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using <strong>LlamaIndex</strong>'s VectorStoreIndex over the same embedding model, verified against the real message dataset.",
+          "resume_role": "ds"
         }
       ],
       "dashboard_url": "assets/qa_system_retrieval_accuracy.png",
