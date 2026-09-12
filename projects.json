@@ -197,7 +197,8 @@
         "SQLite",
         "OpenAI API",
         "Jinja2",
-        "TailwindCSS"
+        "TailwindCSS",
+        "GitHub Actions"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation",
       "bullets": [
@@ -210,7 +211,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "Relational Database & ORM: Deployed a local <strong>SQLite</strong> database using SQLAlchemy ORM to manage application logs, recruiter follow-ups, and interview stages.",
+          "html": "Relational Database & ORM: Deployed a local <strong>SQLite</strong> database using SQLAlchemy ORM to manage application logs, recruiter follow-ups, and interview stages, backed by a <strong>GitHub Actions</strong> CI pipeline running 690+ pytest cases on every push.",
           "resume_role": "de"
         },
         {
@@ -369,7 +370,8 @@
         "Python",
         "SQL",
         "Scikit-Learn",
-        "Chart.js"
+        "Chart.js",
+        "XGBoost"
       ],
       "dashboard_url": "assets/finrisk_feature_importance.png",
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
@@ -477,11 +479,11 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
       "bullets": [
         {
-          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>PySpark</strong> and SQL to validate transaction logs.",
+          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>Python</strong> and SQL to validate transaction logs.",
           "resume_role": "de"
         },
         {
-          "html": "Statistical & ML Anomaly Detection: Implemented Benford's Law modeling and <strong>Isolation Forest</strong> anomaly detection, achieving <strong>94% precision</strong>.",
+          "html": "Statistical & ML Anomaly Detection: Implemented Benford's Law modeling and an unsupervised <strong>Isolation Forest</strong> anomaly detection, achieving <strong>94% precision</strong>.",
           "resume_role": "ds"
         },
         {
@@ -550,7 +552,7 @@
           "resume_role": "de"
         },
         {
-          "html": "RFM & K-Means Clustering: Automated RFM scaling and <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
+          "html": "RFM & K-Means Clustering: Automated RFM scaling and unsupervised <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
           "resume_role": "ds"
         },
         {
@@ -875,7 +877,7 @@
     {
       "badge": "Computer Vision & Deep Learning",
       "name": "Solid Object Detection & Identification using Image Processing",
-      "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV, achieving 99.20% classification accuracy by combining a custom CNN with traditional contour geometry approximations.",
+      "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV, achieving 98.97% classification accuracy by combining a custom CNN with traditional contour geometry approximations.",
       "category": "machine-learning analytics",
       "tags": [
         "Python",
@@ -893,7 +895,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "High Classification Accuracy: Achieved <strong>99.20% classification accuracy</strong> on a 10,000+ image dataset.",
+          "html": "High Classification Accuracy: Achieved <strong>98.97% classification accuracy</strong> on a 10,000+ image dataset.",
           "resume_role": "ds"
         },
         {
