@@ -22,7 +22,7 @@
       "badge": "Robotics & Parallel Pipelines",
       "role": "Teleoperation Data Collection Associate",
       "company": "Objectways Technologies LLC | Tempe, AZ",
-      "dates": "May 2026 – Present",
+      "dates": "May 2026 – Present · Part-Time",
       "tags": [
         "Python",
         "Scala",
@@ -50,7 +50,7 @@
       "badge": "LLMs, Supabase & Vector Sync",
       "role": "Applied Machine Learning Engineer",
       "company": "Technoid LLC | Piscataway, NJ",
-      "dates": "Dec 2025 – May 2026",
+      "dates": "Dec 2025 – May 2026 · Contract",
       "tags": [
         "Python",
         "GPT-4o mini",
@@ -79,7 +79,7 @@
       "badge": "Cloud Migration & Data Quality",
       "role": "Data Analyst",
       "company": "Zifatech Solutions LLC | Milwaukee, WI",
-      "dates": "Jun 2025 – Dec 2025",
+      "dates": "Jun 2025 – Dec 2025 · Contract",
       "tags": [
         "AWS Glue",
         "AWS S3",
@@ -105,34 +105,6 @@
         {
           "html": "Built executive Power BI dashboards connected to Snowflake data warehouses, converting complex data streams into strategic business insights.",
           "resume_role": "de"
-        }
-      ]
-    },
-    {
-      "badge": "Customer Segmentation & BI",
-      "role": "Data Analytics & ML Fellow Trainee",
-      "company": "ElevateMe Bootcamp | Columbus, OH (Part-time, concurrent)",
-      "dates": "Jan 2025 – Mar 2026",
-      "tags": [
-        "Python",
-        "Scikit-Learn",
-        "K-Means",
-        "PCA",
-        "Power BI",
-        "SQL"
-      ],
-      "bullets": [
-        {
-          "html": "Executed customer segmentation using <strong>K-Means clustering &amp; PCA</strong> dimensionality reduction in Python, capturing <strong>92% of data variance</strong> across target personas.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Spearheaded marketing intelligence strategies using classification models, driving a <strong>12% increase in campaign click-through rates</strong>.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Deployed interactive Power BI KPI dashboards for real-time executive visibility into operational revenue trends.",
-          "resume_role": "ds"
         }
       ]
     },
@@ -931,6 +903,22 @@
         }
       ],
       "date": "Aug 2020 – May 2021"
+    },
+    {
+      "badge": "Customer Segmentation & BI",
+      "name": "ElevateMe Bootcamp: Customer Segmentation & Marketing Intelligence",
+      "desc": "Customer segmentation and marketing-intelligence work from the ElevateMe Bootcamp -- K-Means/PCA clustering, classification-driven campaign targeting, and a C#/.NET + Power BI reporting layer.",
+      "category": "machine-learning analytics",
+      "tags": [
+        "Python",
+        "C# / .NET",
+        "SQL Server",
+        "Scikit-Learn",
+        "K-Means",
+        "PCA",
+        "Power BI"
+      ],
+      "github_url": null
     }
   ],
   "skills": [
@@ -1002,12 +990,12 @@
     {
       "degree": "Master of Science, IT",
       "institution": "Arizona State University (ASU)",
-      "date": "Aug 2022 – May 2024 | GPA: 4.0/4.0"
+      "date": "Aug 2022 – Jul 2024 | GPA: 4.0/4.0"
     },
     {
       "degree": "Bachelor of Technology, Computer Eng.",
       "institution": "Institute of Advanced Research",
-      "date": "Aug 2017 – May 2021 | GPA: 7.8/10"
+      "date": "Aug 2017 – Jul 2021 | GPA: 7.8/10"
     }
   ],
   "certifications": [
@@ -1032,5 +1020,5 @@
       "date": "Jul 2026"
     }
   ],
-  "summary": "Data Engineer and AI/ML Engineer with 5+ years of experience building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. Hands-on experience with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, Model Context Protocol), and LLMOps evaluation (LangSmith), alongside production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Track record of optimizing LLM fine-tuning, containerizing microservices, orchestrating CI/CD pipelines, and executing robust data quality governance frameworks."
+  "summary": "Data Engineer and AI/ML Engineer with 3+ years of experience building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. Hands-on experience with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, Model Context Protocol), and LLMOps evaluation (LangSmith), alongside production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Track record of optimizing LLM fine-tuning, containerizing microservices, orchestrating CI/CD pipelines, and executing robust data quality governance frameworks."
 }
