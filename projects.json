@@ -592,6 +592,34 @@
       "date": "Sep 2026"
     },
     {
+      "badge": "Geospatial",
+      "name": "ArcGIS Commute Insights",
+      "desc": "A job-search tool geocoding addresses and pulling real ArcGIS basemap vector-tile data via the live ArcGIS APIs.",
+      "category": "data-engineering analytics",
+      "tags": [
+        "ArcGIS",
+        "Geocoding",
+        "Vector Tiles",
+        "Geospatial Analysis"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/arcgis-commute-insights",
+      "bullets": [
+        {
+          "html": "Real Geocoding: Built a job-search tool geocoding addresses via the live <strong>ArcGIS</strong> World Geocoding Service, ranking companies by real great-circle distance.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Real Basemap Vector Tiles: Fetched and decoded real Mapbox Vector Tile data from Esri's World Basemap v2 service -- the tile URL was discovered from the real style JSON, not assumed, after an initial guess returned a real 404.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Verified End-to-End: All 7 tests hit the real ArcGIS APIs, including a hand-verified tile coordinate and real observed basemap layer assertions.",
+          "resume_role": "de"
+        }
+      ],
+      "date": "Sep 2026"
+    },
+    {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
