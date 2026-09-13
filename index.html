@@ -473,6 +473,33 @@
                     </div>
                 </div>
                 
+                <div class="project-card glass-card" data-category="software-dev">
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Reactive Systems</div>
+                        <h3 class="card-title">Reactive Job Ingest Gateway</h3>
+                        <p class="card-desc">A non-blocking job-posting ingestion gateway built on Spring WebFlux and R2DBC, republishing ingested postings as a live Server-Sent-Events stream.</p>
+                        <div class="tech-tags">
+                            
+                            <span>Java</span>
+                            
+                            <span>Spring Boot</span>
+                            
+                            <span>Spring WebFlux</span>
+                            
+                            <span>R2DBC</span>
+                            
+                            <span>Project Reactor</span>
+                            
+                        </div>
+                        <div class="card-actions">
+                            
+                            <a href="https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway" target="_blank" class="btn btn-sm btn-primary">View Repository 🔗</a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
                     
                     <div class="card-image-wrapper view-dashboard-btn" data-dashboard="assets/ai_observability.png">
@@ -2037,6 +2064,23 @@
 <li class="resume-bullet" data-role="de">Data Contract Validation: Built a <strong>TypeScript</strong> CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.</li>
 
 <li class="resume-bullet" data-role="de">CI/CD Pipeline: Authored a <strong>Jenkins</strong> declarative pipeline (per-stage Docker agents) mirroring the existing GitHub Actions CI, verified against a real temporary Jenkins instance.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Reactive Job Ingest Gateway <a href="https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: Java, Spring Boot, Spring WebFlux, R2DBC, Project Reactor</p>
+<ul>
+
+<li class="resume-bullet" data-role="sde">Non-Blocking Ingestion API: Built a <strong>Spring WebFlux</strong> REST endpoint persisting job-posting events via <strong>R2DBC</strong> without blocking a thread per request.</li>
+
+<li class="resume-bullet" data-role="sde">Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying <strong>Sinks.Many</strong>, so a client connecting mid-stream still sees recent history before live updates.</li>
+
+<li class="resume-bullet" data-role="sde">Verified End-to-End: Packaged and ran the real application against live curl requests -- found and fixed two real bugs surfaced only by running it, not just the test suite.</li>
 
 </ul>
 </div>
