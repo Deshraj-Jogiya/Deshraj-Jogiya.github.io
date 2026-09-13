@@ -271,7 +271,8 @@
         "Pandas",
         "GitHub Actions",
         "LlamaIndex",
-        "Semantic Kernel"
+        "Semantic Kernel",
+        "LangChain"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
       "bullets": [
@@ -297,6 +298,10 @@
         },
         {
           "html": "Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native <strong>Semantic Kernel</strong> plugin functions, orchestrated through a real Kernel instance.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Real RAG Pipeline: Built a genuine retrieve-then-generate RAG chain with <strong>LangChain</strong>, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and a real end-to-end generation test.",
           "resume_role": "ds"
         }
       ],
