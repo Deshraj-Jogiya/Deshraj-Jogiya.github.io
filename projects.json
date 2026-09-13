@@ -357,6 +357,35 @@
       "date": "Aug 2025 – Nov 2025"
     },
     {
+      "badge": "Reactive Systems",
+      "name": "Reactive Job Ingest Gateway",
+      "desc": "A non-blocking job-posting ingestion gateway built on Spring WebFlux and R2DBC, republishing ingested postings as a live Server-Sent-Events stream.",
+      "category": "software-dev",
+      "tags": [
+        "Java",
+        "Spring Boot",
+        "Spring WebFlux",
+        "R2DBC",
+        "Project Reactor"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway",
+      "bullets": [
+        {
+          "html": "Non-Blocking Ingestion API: Built a <strong>Spring WebFlux</strong> REST endpoint persisting job-posting events via <strong>R2DBC</strong> without blocking a thread per request.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying <strong>Sinks.Many</strong>, so a client connecting mid-stream still sees recent history before live updates.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: Packaged and ran the real application against live curl requests -- found and fixed two real bugs surfaced only by running it, not just the test suite.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026"
+    },
+    {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
