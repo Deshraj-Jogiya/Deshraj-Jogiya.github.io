@@ -505,6 +505,33 @@
       "date": "Sep 2026"
     },
     {
+      "badge": "Full Stack",
+      "name": "Company Blocklist",
+      "desc": "A real PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with real automated feature tests.",
+      "category": "software-dev",
+      "tags": [
+        "PHP",
+        "CodeIgniter 4",
+        "SQLite"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/company-blocklist",
+      "bullets": [
+        {
+          "html": "CodeIgniter 4 App: Built a real <strong>PHP</strong>/<strong>CodeIgniter 4</strong> app tracking companies to avoid, with a real migration, model, and controller.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: 5 real feature tests hitting real routes through the real router/controller/model stack against a real SQLite database.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Found and fixed two real CodeIgniter testing gotchas surfaced only by actually running the suite, not just writing it.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026"
+    },
+    {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
