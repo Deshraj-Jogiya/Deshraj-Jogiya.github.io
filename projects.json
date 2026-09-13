@@ -319,7 +319,8 @@
         "Parquet",
         "Delta Lake",
         "Apache Iceberg",
-        "TypeScript"
+        "TypeScript",
+        "Jenkins"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
       "bullets": [
@@ -345,6 +346,10 @@
         },
         {
           "html": "Data Contract Validation: Built a <strong>TypeScript</strong> CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.",
+          "resume_role": "de"
+        },
+        {
+          "html": "CI/CD Pipeline: Authored a <strong>Jenkins</strong> declarative pipeline (per-stage Docker agents) mirroring the existing GitHub Actions CI, verified against a real temporary Jenkins instance.",
           "resume_role": "de"
         }
       ],
