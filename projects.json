@@ -414,6 +414,39 @@
       "date": "Sep 2026"
     },
     {
+      "badge": "Big Data & Orchestration",
+      "name": "Job Market Lakehouse",
+      "desc": "A PySpark/Scala Spark SQL pipeline over 60k synthetic postings, gated by real Great Expectations checks and orchestrated end-to-end by a real Airflow DAG.",
+      "category": "data-engineering",
+      "tags": [
+        "PySpark",
+        "Spark SQL",
+        "Scala",
+        "Great Expectations",
+        "Apache Airflow"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/job-market-lakehouse",
+      "bullets": [
+        {
+          "html": "PySpark Transformation Pipeline: Built a real <strong>PySpark</strong> job over 60k synthetic postings -- a join, a groupBy/agg salary-stats aggregation, and a <strong>dense_rank()</strong> window function.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Scala Spark Job: Wrote a complementary <strong>Scala</strong> Spark SQL aggregation job, run via spark-shell against a real Spark distribution.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Data Quality Gating: Wrote 11 real <strong>Great Expectations</strong> checks validating the PySpark output before it's considered usable.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Pipeline Orchestration: Built a real <strong>Airflow</strong> DAG, verified end-to-end via a live DAG run reaching SUCCESS.",
+          "resume_role": "de"
+        }
+      ],
+      "date": "Sep 2026"
+    },
+    {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
