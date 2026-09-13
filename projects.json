@@ -532,6 +532,61 @@
       "date": "Sep 2026"
     },
     {
+      "badge": "Full Stack",
+      "name": "Interview Prep Mobile",
+      "desc": "A real React Native (Expo) app for browsing/practicing interview-prep questions against a companion ASP.NET Core API.",
+      "category": "software-dev",
+      "tags": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "AsyncStorage"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/interview-prep-mobile",
+      "bullets": [
+        {
+          "html": "React Native App: Built a real <strong>Expo</strong> app browsing/practicing interview-prep questions, with local persistence via AsyncStorage.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: Real React Native Testing Library tests, plus a real Metro web export loaded in real headless Chromium against the real live companion API -- zero console errors.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Found and fixed two real bugs, including Hermes' bytecode compiler lacking an arm64 Linux build -- documented transparently rather than skipped.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026"
+    },
+    {
+      "badge": "Full Stack",
+      "name": "Company Search (HTMX)",
+      "desc": "A live-search page using HTMX for partial-page updates -- FastAPI + Jinja2, no client-side JS framework.",
+      "category": "software-dev",
+      "tags": [
+        "HTMX",
+        "FastAPI",
+        "Jinja2"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/htmx-company-search",
+      "bullets": [
+        {
+          "html": "Live Search UI: Built a real live-search page using <strong>HTMX</strong> for partial-page updates -- FastAPI + Jinja2 rendering real HTML, no JS framework.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: 5 real TestClient tests, plus a full live interaction check with a real headless-Chromium session driving the actual running app.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Found and fixed a real bug the TestClient tests couldn't catch: a keyup-only trigger never fired for autofill/paste -- fixed and re-verified live.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026"
+    },
+    {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
