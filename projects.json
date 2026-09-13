@@ -386,6 +386,34 @@
       "date": "Sep 2026"
     },
     {
+      "badge": "Data Warehousing",
+      "name": "Job Search dbt Warehouse",
+      "desc": "A dimensional dbt project (staging views into dimension and fact tables) running against a live Databricks SQL warehouse, with real data-quality tests in CI.",
+      "category": "data-engineering analytics",
+      "tags": [
+        "Databricks",
+        "dbt",
+        "SQL",
+        "Dimensional Modeling"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse",
+      "bullets": [
+        {
+          "html": "Dimensional Data Model: Built a <strong>dbt</strong> project (staging views into dimension and fact tables) on a live <strong>Databricks</strong> SQL warehouse, including a datediff-based measure and a <strong>row_number()</strong> window function.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Data Quality Testing: Wrote 15 dbt tests (uniqueness, not-null, referential integrity, accepted values) across the model, all passing against the real warehouse in CI.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Verified End-to-End: Ran <strong>dbt seed/run/test</strong> against a live Databricks warehouse and spot-checked the resulting tables by hand; CI re-runs the same commands on every push.",
+          "resume_role": "de"
+        }
+      ],
+      "date": "Sep 2026"
+    },
+    {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
       "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
