@@ -1202,7 +1202,10 @@
         "CNN Model",
         "Image Processing",
         "Git",
-        "GitHub Actions"
+        "GitHub Actions",
+        "AWS Lambda",
+        "AWS S3",
+        "ONNX Runtime"
       ],
       "dashboard_url": "assets/solid_object_confusion_matrix.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing",
@@ -1221,6 +1224,10 @@
         },
         {
           "html": "Contour Analysis & Preprocessing: Applied Gaussian blurring and Canny edge detection prior to neural network classification.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Real-Time Serverless Inference: Deployed the trained model as a live <strong>AWS Lambda</strong> function triggered by real <strong>S3</strong> image uploads, exported to <strong>ONNX</strong> to ship as a plain Lambda zip and avoid a container/ECR footprint.",
           "resume_role": "de"
         }
       ],
