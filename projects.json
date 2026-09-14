@@ -699,14 +699,17 @@
     },
     {
       "badge": "NLP & Transfer Learning",
-      "name": "ML Apprentice Take-Home Exercise: Sentence Transformer & Multi-Task Learning",
-      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, then extended it into a multi-task architecture with classification and sentiment heads, evaluating transfer-learning freeze strategies.",
+      "name": "Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
+      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, extended it into a multi-task architecture with classification and sentiment heads, and later added real LoRA fine-tuning of a modern generative LLM on a free GPU.",
       "category": "machine-learning",
       "tags": [
         "TensorFlow",
         "TensorFlow Hub",
         "BERT",
         "Multi-Task Learning",
+        "PyTorch",
+        "LoRA",
+        "Hugging Face",
         "NumPy",
         "GitHub Actions"
       ],
@@ -727,10 +730,14 @@
         {
           "html": "Training Loop Simulation: Simulated multi-task training with synthetic data via model.fit(), logging per-task loss and accuracy.",
           "resume_role": "de"
+        },
+        {
+          "html": "Real LoRA Fine-Tuning: <strong>LoRA</strong> fine-tuned Qwen2.5-0.5B-Instruct on a real Databricks Dolly-15k subset (free Colab T4 GPU), with a real declining loss curve over 3 epochs and an honest before/after comparison on held-out prompts.",
+          "resume_role": "ds"
         }
       ],
       "dashboard_url": "assets/ml_apprentice_training_curves.png",
-      "date": "Apr 2025"
+      "date": "Apr 2025 – Sep 2026"
     },
     {
       "badge": "Geospatial & Climate",
