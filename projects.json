@@ -1249,7 +1249,7 @@
         "LangChain, LlamaIndex & Semantic Kernel",
         "MCP (Model Context Protocol) & Tool Calling",
         "ReAct Agent Workflows & Autonomous Agents",
-        "Retrieval-Augmented Generation (RAG) & Fine-Tuning",
+        "Retrieval-Augmented Generation (RAG) & Fine-Tuning (LoRA/PEFT)",
         "Vector Databases (pgvector, ChromaDB, Supabase RLS)",
         "OpenAI APIs (GPT-4o mini) & Gemini LLM Integration",
         "LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)"
