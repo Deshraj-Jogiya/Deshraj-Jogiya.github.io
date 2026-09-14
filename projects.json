@@ -645,7 +645,7 @@
           "resume_role": "general"
         },
         {
-          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in <strong>Tableau</strong>.",
+          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in a real, <a href=\"https://public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard/Dashboard1\" target=\"_blank\" rel=\"noopener\">published interactive <strong>Tableau</strong> dashboard</a> -- a live drift-trend chart plus a real subgroup fairness comparison over 30,000 simulated inference records.",
           "resume_role": "de"
         },
         {
