@@ -848,6 +848,7 @@
         "PCA",
         "SQLite",
         "Power BI",
+        "DAX",
         "Seaborn",
         "GitHub Actions"
       ],
@@ -863,7 +864,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "Executive Power BI Dashboard: Developed a Power BI dashboard to track RFM metrics for marketing teams.",
+          "html": "Executive Power BI Dashboard: Built a real, interactive <strong>Power BI</strong> report with star-schema relationships and DAX measures over the pipeline's live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.",
           "resume_role": "de"
         },
         {
