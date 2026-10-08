@@ -1,9 +1,9 @@
 {
-    "total_visits": 581,
-    "active_today": 7,
-    "forecasted_next_week": 54,
-    "updated_at": "2026-10-08T04:53:25.638031",
+    "total_visits": 585,
+    "active_today": 12,
+    "forecasted_next_week": 55,
+    "updated_at": "2026-10-08T18:31:52.954646",
     "segments": {
-        "Desktop Analysts (Windows)": 1183
+        "Desktop Analysts (Windows)": 1187
     }
 }
