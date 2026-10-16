@@ -326,11 +326,25 @@ serve(async (req) => {
       })
     }
 
-    const reply = provider === "anthropic"
-      ? await callAnthropic(anthropicKey!, systemPrompt, safeHistory, message)
-      : await callGemini(geminiKey!, systemPrompt, safeHistory, message)
+    // If the chosen provider fails (for example an exhausted Anthropic balance) and the other key is configured, answer with the other one
+    // instead of showing visitors an error; the response says which provider actually answered.
+    let usedProvider = provider
+    let reply: string
+    try {
+      reply = provider === "anthropic"
+        ? await callAnthropic(anthropicKey!, systemPrompt, safeHistory, message)
+        : await callGemini(geminiKey!, systemPrompt, safeHistory, message)
+    } catch (primaryError) {
+      const fallback = provider === "anthropic" ? (geminiKey ? "gemini" : "") : (anthropicKey ? "anthropic" : "")
+      if (!fallback) throw primaryError
+      console.warn(`portfolio-chat: ${provider} failed (${(primaryError as Error).message.slice(0, 160)}); answering with ${fallback}`)
+      usedProvider = fallback
+      reply = fallback === "gemini"
+        ? await callGemini(geminiKey!, systemPrompt, safeHistory, message)
+        : await callAnthropic(anthropicKey!, systemPrompt, safeHistory, message)
+    }
 
-    return new Response(JSON.stringify({ reply: reply.trim(), provider }), {
+    return new Response(JSON.stringify({ reply: reply.trim(), provider: usedProvider }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
 
