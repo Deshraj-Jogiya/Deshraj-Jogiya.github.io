@@ -3,6 +3,17 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Recommendations: expand / collapse the full text of long recommendations
+    document.querySelectorAll(".testimonial-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const quote = document.getElementById(btn.getAttribute("aria-controls"));
+            if (!quote) return;
+            const expanded = quote.classList.toggle("expanded");
+            btn.setAttribute("aria-expanded", String(expanded));
+            btn.textContent = expanded ? "Show less" : "Read full recommendation";
+        });
+    });
+
     // Mobile Hamburger Menu Navigation Toggle
     const mobileMenuBtn = document.getElementById("mobile-menu-btn");
     const navLinks = document.querySelector(".nav-links");
@@ -1706,10 +1717,13 @@ document.addEventListener("DOMContentLoaded", () => {
         observability_project: "AI Model Observability & Fairness Audits runs automated Kolmogorov-Smirnov (KS) tests on production features for data drift and calculates Disparate Impact ratios for bias auditing."
     };
 
+    answers.recommendations = "Deshraj has four LinkedIn recommendations, shown word for word in the Recommendations section: Michelle M Licata (Director of Career Services, who managed him at ElevateMe Bootcamp) highlights his K-Means segmentation work capturing 92% of variance; Dr. John A. Lewis (ASU professor) highlights his ASL recognition Master's project; Kaxa Dholakia and Ridham Dholakia recommend him from development projects they worked on together.";
+
     const searchKeyword = (msg) => {
         const query = msg.toLowerCase();
         
         // 0. Location, Current Role, Best Work & Achievement metrics matching
+        if (query.includes("testimonial") || query.includes("reference") || query.includes("what do people say") || query.includes("what others say") || (query.includes("recommend") && !query.includes("accuracy") && !query.includes("engine") && !query.includes("system") && !query.includes("25%"))) return answers.recommendations;
         if (query.includes("location") || query.includes("located") || query.includes("where is") || query.includes("where does") || query.includes("live")) return answers.location;
         if (query.includes("currently doing") || query.includes("doing now") || query.includes("current role") || query.includes("latest work") || query.includes("current work")) return answers.current_doing;
         if (query.includes("best work") || query.includes("top work") || query.includes("best project") || query.includes("flagship")) return answers.best_work;
