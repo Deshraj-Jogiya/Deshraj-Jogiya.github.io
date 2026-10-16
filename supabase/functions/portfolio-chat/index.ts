@@ -25,8 +25,25 @@ async function fetchProfileContext(): Promise<string> {
   }
   const data = await res.json()
 
+  const strip = (h: string) => (h || "").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&")
+
   const projectLines = (data.projects || [])
-    .map((p: any) => `  - ${p.name}: ${p.desc}`)
+    .map((p: any) => {
+      const bullets = (p.bullets || []).map((b: any) => `      - ${strip(b.html)}`).join("\n")
+      return `  - ${p.name}${p.date ? ` (${p.date})` : ""}: ${p.desc}${bullets ? "\n" + bullets : ""}`
+    })
+    .join("\n")
+
+  const certLines = (data.certifications || [])
+    .map((c: any) => {
+      const head = [c.name, c.issuer, c.status === "In progress" ? "in progress" : (c.date || "completed")].filter(Boolean).join(" | ")
+      const bullets = (c.bullets || []).map((b: string) => `      - ${b}`).join("\n")
+      return `  - ${head}${bullets ? "\n" + bullets : ""}`
+    })
+    .join("\n")
+
+  const eduLines = (data.education || [])
+    .map((e: any) => `  - ${e.degree}, ${e.institution} (${e.date})`)
     .join("\n")
 
   const skillLines = (data.skills || [])
@@ -35,12 +52,12 @@ async function fetchProfileContext(): Promise<string> {
 
   const expLines = (data.experience || [])
     .map((e: any) => {
-      const bullets = (e.bullets || []).map((b: any) => `      - ${b.html.replace(/<[^>]+>/g, "")}`).join("\n")
+      const bullets = (e.bullets || []).map((b: any) => `      - ${strip(b.html)}`).join("\n")
       return `  - ${e.role} at ${e.company} (${e.dates})\n${bullets}`
     })
     .join("\n")
 
-  return `Work History:\n${expLines}\n\nKey Projects:\n${projectLines}\n\nTechnical Skills:\n${skillLines}`
+  return `Summary:\n  ${data.summary || ""}\n\nWork History:\n${expLines}\n\nKey Projects:\n${projectLines}\n\nTechnical Skills:\n${skillLines}\n\nCertifications & Training:\n${certLines}\n\nEducation:\n${eduLines}`
 }
 
 function buildSystemPrompt(profileContext: string): string {
@@ -54,19 +71,12 @@ CRITICAL RECRUITER-FIRST RESPONSE RULES:
 2. LOCATION QUERY: When asked "where is he located" or about his location, explicitly state: "Deshraj is located in Tempe, Arizona (Phoenix Metropolitan Area), United States, and is open to relocation to major technology hubs nationwide for Data Engineering and ML Engineering opportunities."
 3. CURRENT ROLE / ACTIVITY QUERY: When asked "what is he currently doing" or about his current work, state that he is currently working as a Teleoperation Data Collection Associate at Objectways Technologies LLC in Tempe, AZ, scaling robotics telemetry pipelines in Python, Scala, PySpark, and Kubernetes.
 4. BEST WORK QUERY (ADAPTIVE SYNTHESIS): When asked "what is his best work", synthesize across his strongest, most current work -- lead with whichever of his agentic AI/LLM projects, cloud data engineering work, or ML optimization results best answers the specific question, using the real project/experience data below. Offer to go deeper on a specific area (Generative AI/Agentic Systems, Cloud Data Engineering, ML Model Optimization) if the recruiter wants more.
-5. CONCRETE TECHNICAL METHODOLOGY: When asked "how" Deshraj achieved a specific metric, give the exact technical mechanism where it's known:
-   - 30% Model Deployment Error Cut (Technoid LLC): Achieved by building automated phased regression test suites, contract payload validation using PyTest/FastAPI, and mandatory UAT staging gates before production.
-   - 65% Sync Latency Cut (Technoid LLC): Achieved by restructuring Supabase Row-Level Security (RLS) policies, adding indexed composite keys in PostgreSQL, and switching to async batch updates.
-   - 25% Recommendation Accuracy Boost (Technoid LLC): Achieved by designing structured JSON schema prompts for GPT-4o mini, implementing semantic keyword extraction, and tuning LLM temperature bounds.
-   - 60% Data Availability Boost (Zifatech Solutions): Achieved by migrating legacy databases to AWS Glue ETL pipelines and S3 Data Lakes feeding Snowflake OLAP data warehouses.
-   - 98%+ Data Reliability Standard (Zifatech Solutions): Achieved by implementing Star Schema dimensional modeling in Snowflake combined with automated Great Expectations QA data assertion rules.
-   - 30% Teleoperation Ingestion Processing Cut (Objectways Technologies): Achieved by containerizing Python, Scala, and PySpark data ingestion scripts in Kubernetes clusters with parallelized batch workers.
-   For a metric not covered above, answer from the real project/experience data rather than inventing a mechanism.
+5. CONCRETE TECHNICAL METHODOLOGY: When asked "how" Deshraj achieved a specific metric, answer from the matching bullet in the background below (each bullet states what was done and with which tools). Never invent a mechanism, tool, or number the background does not state; if the bullet does not say how, say what it does say.
 6. If a question falls outside his real, documented background, say so plainly rather than guessing or inventing details.
 
 Contact Information:
   - Email: djogiya786@gmail.com
-  - LinkedIn: https://linkedin.com/in/deshraj-jogiya
+  - LinkedIn: https://www.linkedin.com/in/deshrajjogiya
   - GitHub: https://github.com/Deshraj-Jogiya
   - Portfolio: https://Deshraj-Jogiya.github.io
 

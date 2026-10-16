@@ -509,14 +509,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const parseNoteContent = (filename, content) => {
         const cleanName = filename.replace(/\.(md|txt)$/i, "");
-        const parts = cleanName.split("_");
+        // Note files are named "til-YYYY-MM-DD-topic-slug.md" (older ones "YYYY-MM-DD_topic.md"); both carry the date up front.
+        const dated = cleanName.match(/^(?:til-)?(\d{4}-\d{2}-\d{2})[-_](.+)$/i);
         let dateStr = "";
         let titleStr = "";
 
-        if (parts[0] && /^\d{4}-\d{2}-\d{2}$/.test(parts[0])) {
-            const dateObj = new Date(parts[0] + "T00:00:00");
+        if (dated) {
+            const dateObj = new Date(dated[1] + "T00:00:00");
             dateStr = dateObj.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
-            titleStr = parts.slice(1).join(" ").replace(/-/g, " ");
+            titleStr = dated[2].replace(/[-_]/g, " ");
         } else {
             dateStr = "Recent Note";
             titleStr = cleanName.replace(/-/g, " ").replace(/_/g, " ");
@@ -1101,6 +1102,138 @@ document.addEventListener("DOMContentLoaded", () => {
                 ["Miami", "6,800", "280 units", "18 units"],
                 ["Dallas", "5,230", "640 units", "95 units"]
             ]
+        },
+        career_pilot_intake: {
+                    "raw": "SELECT\n  source AS intake_source,\n  COUNT(*) AS postings\nFROM job_postings\nGROUP BY source\nORDER BY postings DESC;",
+                    "html": "<span class=\"sql-keyword\">SELECT</span>\n  source <span class=\"sql-keyword\">AS</span> intake_source,\n  <span class=\"sql-keyword\">COUNT</span>(*) <span class=\"sql-keyword\">AS</span> postings\n<span class=\"sql-keyword\">FROM</span> <span class=\"sql-table\">job_postings</span>\n<span class=\"sql-keyword\">GROUP BY</span> source\n<span class=\"sql-keyword\">ORDER BY</span> postings <span class=\"sql-keyword\">DESC</span>;",
+                    "headers": [
+                                "intake_source",
+                                "postings"
+                    ],
+                    "data": [
+                                [
+                                            "manual (Chrome extension add)",
+                                            "18"
+                                ],
+                                [
+                                            "greenhouse",
+                                            "10"
+                                ],
+                                [
+                                            "ashby",
+                                            "9"
+                                ],
+                                [
+                                            "jobspipe",
+                                            "4"
+                                ],
+                                [
+                                            "linkedin",
+                                            "2"
+                                ]
+                    ]
+        },
+        dbt_application_outcomes: {
+                    "raw": "SELECT\n  status,\n  COUNT(*) AS applications,\n  COUNT(*) FILTER (WHERE reached_interview) AS reached_interview,\n  ROUND(AVG(days_to_decision), 1) AS avg_days_to_decision\nFROM fct_application\nGROUP BY status\nORDER BY applications DESC;",
+                    "html": "<span class=\"sql-keyword\">SELECT</span>\n  status,\n  <span class=\"sql-keyword\">COUNT</span>(*) <span class=\"sql-keyword\">AS</span> applications,\n  <span class=\"sql-keyword\">COUNT</span>(*) <span class=\"sql-keyword\">FILTER</span> (<span class=\"sql-keyword\">WHERE</span> reached_interview) <span class=\"sql-keyword\">AS</span> reached_interview,\n  <span class=\"sql-keyword\">ROUND</span>(<span class=\"sql-keyword\">AVG</span>(days_to_decision), <span class=\"sql-number\">1</span>) <span class=\"sql-keyword\">AS</span> avg_days_to_decision\n<span class=\"sql-keyword\">FROM</span> <span class=\"sql-table\">fct_application</span>\n<span class=\"sql-keyword\">GROUP BY</span> status\n<span class=\"sql-keyword\">ORDER BY</span> applications <span class=\"sql-keyword\">DESC</span>;",
+                    "headers": [
+                                "status",
+                                "applications",
+                                "reached_interview",
+                                "avg_days_to_decision"
+                    ],
+                    "data": [
+                                [
+                                            "rejected",
+                                            "6",
+                                            "5",
+                                            "7.5"
+                                ],
+                                [
+                                            "applied",
+                                            "3",
+                                            "0",
+                                            "-"
+                                ],
+                                [
+                                            "interviewing",
+                                            "2",
+                                            "2",
+                                            "-"
+                                ],
+                                [
+                                            "offer",
+                                            "2",
+                                            "2",
+                                            "22.5"
+                                ],
+                                [
+                                            "screening",
+                                            "2",
+                                            "0",
+                                            "-"
+                                ],
+                                [
+                                            "withdrawn",
+                                            "2",
+                                            "0",
+                                            "2.0"
+                                ]
+                    ]
+        },
+        lakehouse_salary_by_industry: {
+                    "raw": "SELECT\n  c.industry,\n  COUNT(*) AS posting_count,\n  ROUND(AVG(p.salary_usd), 2) AS avg_salary,\n  MAX(p.salary_usd) AS max_salary\nFROM raw_postings p\nJOIN raw_companies c ON p.company_id = c.company_id\nGROUP BY c.industry\nORDER BY avg_salary DESC;",
+                    "html": "<span class=\"sql-keyword\">SELECT</span>\n  c.industry,\n  <span class=\"sql-keyword\">COUNT</span>(*) <span class=\"sql-keyword\">AS</span> posting_count,\n  <span class=\"sql-keyword\">ROUND</span>(<span class=\"sql-keyword\">AVG</span>(p.salary_usd), <span class=\"sql-number\">2</span>) <span class=\"sql-keyword\">AS</span> avg_salary,\n  <span class=\"sql-keyword\">MAX</span>(p.salary_usd) <span class=\"sql-keyword\">AS</span> max_salary\n<span class=\"sql-keyword\">FROM</span> <span class=\"sql-table\">raw_postings</span> p\n<span class=\"sql-keyword\">JOIN</span> <span class=\"sql-table\">raw_companies</span> c <span class=\"sql-keyword\">ON</span> p.company_id = c.company_id\n<span class=\"sql-keyword\">GROUP BY</span> c.industry\n<span class=\"sql-keyword\">ORDER BY</span> avg_salary <span class=\"sql-keyword\">DESC</span>;",
+                    "headers": [
+                                "industry",
+                                "posting_count",
+                                "avg_salary",
+                                "max_salary"
+                    ],
+                    "data": [
+                                [
+                                            "Healthcare",
+                                            "7,595",
+                                            "$131,541.87",
+                                            "$204,979"
+                                ],
+                                [
+                                            "Retail",
+                                            "9,096",
+                                            "$131,271.01",
+                                            "$204,986"
+                                ],
+                                [
+                                            "Software",
+                                            "7,501",
+                                            "$131,244.72",
+                                            "$204,956"
+                                ],
+                                [
+                                            "Manufacturing",
+                                            "8,248",
+                                            "$131,189.78",
+                                            "$204,992"
+                                ],
+                                [
+                                            "Energy",
+                                            "8,225",
+                                            "$131,042.77",
+                                            "$205,000"
+                                ],
+                                [
+                                            "Finance",
+                                            "9,394",
+                                            "$130,692.52",
+                                            "$204,985"
+                                ],
+                                [
+                                            "Logistics",
+                                            "9,941",
+                                            "$130,672.83",
+                                            "$204,994"
+                                ]
+                    ]
         }
     };
 
@@ -1115,6 +1248,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Business value insights mapping to playground queries
     const recruiterInsights = {
+        career_pilot_intake: {"text": "Business Value: Career Pilot pulls postings from 7 applicant-tracking systems' job-board APIs and from the browser extension, scores them, and only then spends money on LLM tailoring. Knowing which source actually feeds the pipeline decides where polling effort goes. Live snapshot of the production database (16 Oct 2026).", "takeaway": "Key Skills: Multi-source ingestion, PostgreSQL (Supabase) data modeling, and production pipeline monitoring."},
+        dbt_application_outcomes: {"text": "Business Value: The dbt project models raw application events into dimension and fact tables on a live Databricks SQL warehouse, so questions like 'how long until a decision' become one query instead of spreadsheet work. 15 dbt tests and a business-rule test (no decision dated before its application) run in CI on every push.", "takeaway": "Key Skills: dbt dimensional modeling, Databricks SQL, data tests, and CI for data pipelines."},
+        lakehouse_salary_by_industry: {"text": "Business Value: A PySpark job joins 60,000 synthetic postings to 400 companies, aggregates salary statistics and ranks postings per industry with a window function; 11 Great Expectations checks validate the output before anything downstream reads it, orchestrated as an Airflow DAG.", "takeaway": "Key Skills: PySpark and Spark SQL, window functions, Great Expectations data quality, and Airflow orchestration."},
         revenue_by_segment: {
             text: "Business Value: Groups customers by their shopping frequency and spending. This helps a business target loyal customers with rewards and win back inactive customers with custom discounts, raising overall sales.",
             takeaway: "Key Skills: Customer Segmentation (K-Means, PCA), Database Star Schema design, and Business Intelligence dashboarding."
@@ -1284,6 +1420,24 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             bgColors = [roseGrad, amberGrad, "rgba(100, 116, 139, 0.7)"];
             borderColors = [roseBorder, amberBorder, "#64748b"];
+        } else if (selected === "career_pilot_intake") {
+            chartType = "doughnut";
+            chartLabel = "Postings";
+            query.data.forEach(row => { labels.push(row[0]); chartData.push(parseInt(row[1].replace(/,/g, ""))); });
+            bgColors = [purpleGrad, blueGrad, emeraldGrad, amberGrad, "rgba(100, 116, 139, 0.7)"];
+            borderColors = [purpleBorder, blueBorder, emeraldBorder, amberBorder, "#64748b"];
+        } else if (selected === "dbt_application_outcomes") {
+            chartType = "bar";
+            chartLabel = "Applications";
+            query.data.forEach(row => { labels.push(row[0]); chartData.push(parseInt(row[1])); });
+            bgColors = query.data.map(row => row[0] === "offer" ? emeraldGrad : row[0] === "rejected" ? roseGrad : blueGrad);
+            borderColors = query.data.map(row => row[0] === "offer" ? emeraldBorder : row[0] === "rejected" ? roseBorder : blueBorder);
+        } else if (selected === "lakehouse_salary_by_industry") {
+            chartType = "bar";
+            chartLabel = "Postings per industry";
+            query.data.forEach(row => { labels.push(row[0]); chartData.push(parseInt(row[1].replace(/,/g, ""))); });
+            bgColors = Array(query.data.length).fill(purpleGrad);
+            borderColors = Array(query.data.length).fill(purpleBorder);
         } else if (selected === "simulated_sales_forecast") {
             chartType = "bar";
             chartLabel = "Total Units Sold";
@@ -1737,6 +1891,244 @@ document.addEventListener("DOMContentLoaded", () => {
     // 13. Data Pipeline Architecture explorer
     // ==========================================================================
     const pipelineData = {
+        careerpilot: {
+                    "nodes": [
+                                {
+                                            "id": "cp_ingest",
+                                            "label": "Ingest",
+                                            "icon": "📥",
+                                            "tags": [
+                                                        "Python",
+                                                        "REST APIs",
+                                                        "7 ATS boards"
+                                            ],
+                                            "desc": "Polls the public job-board APIs of Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee and Personio for tracked companies, filtering by title keywords, seniority and location before anything is stored.",
+                                            "impact": "One intake path for every source, so new postings arrive without manual searching; company-name cross-checks stop false-positive board matches.",
+                                            "inputs": "ATS job-board APIs",
+                                            "process": "Keyword & location filters",
+                                            "outputs": "Raw postings",
+                                            "code": "resp = requests.get(\n    f\"https://boards-api.greenhouse.io/v1/boards/{company.greenhouse_slug}/jobs\",\n    params={\"content\": \"true\"}, timeout=_TIMEOUT,\n)\nfor job in resp.json().get(\"jobs\", []):\n    title = job.get(\"title\", \"\")\n    if not title or not posting_matches(title, keywords, exclusions):\n        continue\n    location = (job.get(\"location\") or {}).get(\"name\")\n    if not location_allowed(location, location_exclusions):\n        continue\n    postings.append(RawPosting(source=SOURCE_NAME, job_title=title, ...))"
+                                },
+                                {
+                                            "id": "cp_score",
+                                            "label": "Score",
+                                            "icon": "🎯",
+                                            "tags": [
+                                                        "Python",
+                                                        "PostgreSQL"
+                                            ],
+                                            "desc": "Computes a free mechanical score first (title match, recency, sponsorship signals, company tier) and only then pays for the LLM match score, and only for postings that could clear the tailoring threshold.",
+                                            "impact": "Cuts paid LLM calls on postings that could never be tailored; a daily spend cap stops paid calls at the limit.",
+                                            "inputs": "Raw postings",
+                                            "process": "Mechanical + LLM scoring",
+                                            "outputs": "Ranked queue",
+                                            "code": "breakdown = compute_score_breakdown(posting, profile)\nif breakdown.max_possible < settings.auto_tailor_threshold:\n    return breakdown          # the paid LLM call is never made\nbreakdown.match_score = llm_match_score(posting, profile)"
+                                },
+                                {
+                                            "id": "cp_tailor",
+                                            "label": "Tailor",
+                                            "icon": "✍️",
+                                            "tags": [
+                                                        "Claude API",
+                                                        "Prompt caching"
+                                            ],
+                                            "desc": "Rewrites the summary, skills and bullets for the posting from the candidate's own profile, with prompt caching on the shared profile block.",
+                                            "impact": "A tailored resume and cover letter per posting in minutes instead of an hour of manual editing.",
+                                            "inputs": "Ranked posting + profile",
+                                            "process": "LLM tailoring",
+                                            "outputs": "Draft resume",
+                                            "code": "raw = llm.complete_json(\n    system=TAILOR_SYSTEM,\n    cacheable_prefix=profile_block,   # cached across calls\n    prompt=build_tailor_prompt(posting, profile),\n)"
+                                },
+                                {
+                                            "id": "cp_guard",
+                                            "label": "Guardrail",
+                                            "icon": "🛡️",
+                                            "tags": [
+                                                        "Python",
+                                                        "Non-LLM checks"
+                                            ],
+                                            "desc": "Checks every generated claim against the source profile: unchanged companies, roles and dates, no over-claimed years, no unsupported numbers. A 2-pass correction loop fixes what it can; only unresolved findings go to a human.",
+                                            "impact": "Stops fabricated skills or metrics from ever reaching an employer.",
+                                            "inputs": "Draft resume",
+                                            "process": "Fact checks + correction",
+                                            "outputs": "Approved documents",
+                                            "code": "violations = _verify_structural_fidelity(original_experience, tailored_experience)\nfindings = check_bullet_fabrication(\n    original_experience, tailored_experience,\n    original_projects, tailored_projects, jd_text,\n)\nif violations or findings:\n    tailored = _correct_fabricated_content_pass(...)   # up to 2 passes, then human review"
+                                },
+                                {
+                                            "id": "cp_apply",
+                                            "label": "Apply",
+                                            "icon": "🧩",
+                                            "tags": [
+                                                        "Chrome extension",
+                                                        "JavaScript"
+                                            ],
+                                            "desc": "A Manifest V3 extension fills application forms on all 7 platforms in the user's own browser, including iframe-embedded and Shadow-DOM forms, and attaches the tailored PDFs. Nothing is ever submitted automatically.",
+                                            "impact": "Applications filled in seconds, with a person always clicking Submit.",
+                                            "inputs": "Approved documents",
+                                            "process": "Form autofill",
+                                            "outputs": "Submitted by a human",
+                                            "code": "const file = new File([pdfBytes], filename, { type: \"application/pdf\" });\nconst dt = new DataTransfer();\ndt.items.add(file);\nfileInput.files = dt.files;          // same technique real job-apply extensions use\nfileInput.dispatchEvent(new Event(\"change\", { bubbles: true }));"
+                                }
+                    ]
+        },
+        reactive: {
+                    "nodes": [
+                                {
+                                            "id": "rx_post",
+                                            "label": "POST API",
+                                            "icon": "📮",
+                                            "tags": [
+                                                        "Spring WebFlux",
+                                                        "Java"
+                                            ],
+                                            "desc": "A non-blocking REST endpoint accepts job-posting events and returns a Mono, so no thread is held per request.",
+                                            "impact": "Handles bursts of incoming events without a thread-per-request bottleneck.",
+                                            "inputs": "JSON posting event",
+                                            "process": "WebFlux controller",
+                                            "outputs": "Mono<JobPostingEvent>",
+                                            "code": "@PostMapping\n@ResponseStatus(HttpStatus.CREATED)\npublic Mono<JobPostingEvent> ingest(@Valid @RequestBody JobPostingEvent posting) {\n    return service.ingest(posting);\n}"
+                                },
+                                {
+                                            "id": "rx_persist",
+                                            "label": "Persist",
+                                            "icon": "🗄️",
+                                            "tags": [
+                                                        "R2DBC",
+                                                        "SQL"
+                                            ],
+                                            "desc": "Saves each event through a reactive R2DBC repository; the server sets received_at so a client cannot leave the NOT NULL column empty.",
+                                            "impact": "Durable storage that stays non-blocking end to end.",
+                                            "inputs": "Validated event",
+                                            "process": "R2DBC save",
+                                            "outputs": "job_posting_event row",
+                                            "code": "posting.setReceivedAt(Instant.now());\nreturn repository.save(posting)\n        .doOnNext(saved -> liveFeed.tryEmitNext(saved));"
+                                },
+                                {
+                                            "id": "rx_replay",
+                                            "label": "Replay Sink",
+                                            "icon": "🔁",
+                                            "tags": [
+                                                        "Project Reactor",
+                                                        "Sinks.Many"
+                                            ],
+                                            "desc": "Publishes every saved posting to a replaying sink that keeps the last 20 events, so a subscriber who connects mid-stream still sees recent history.",
+                                            "impact": "Late-joining dashboards are never empty.",
+                                            "inputs": "Saved posting",
+                                            "process": "Sinks.many().replay().limit(20)",
+                                            "outputs": "Live feed",
+                                            "code": "private final Sinks.Many<JobPostingEvent> liveFeed =\n        Sinks.many().replay().limit(20);"
+                                },
+                                {
+                                            "id": "rx_sse",
+                                            "label": "SSE Stream",
+                                            "icon": "📡",
+                                            "tags": [
+                                                        "Server-Sent Events",
+                                                        "Backpressure"
+                                            ],
+                                            "desc": "Streams the feed as Server-Sent Events with a bounded per-subscriber buffer (50); a slow subscriber drops its oldest backlog instead of growing memory without limit.",
+                                            "impact": "Real-time updates for clients with protection against slow consumers.",
+                                            "inputs": "Live feed",
+                                            "process": "text/event-stream",
+                                            "outputs": "Browser clients",
+                                            "code": "@GetMapping(path = \"/stream\", produces = MediaType.TEXT_EVENT_STREAM_VALUE)\npublic Flux<JobPostingEvent> stream() {\n    return service.stream();   // bounded buffer: drop oldest when a subscriber lags\n}"
+                                },
+                                {
+                                            "id": "rx_test",
+                                            "label": "Verify",
+                                            "icon": "✅",
+                                            "tags": [
+                                                        "JUnit",
+                                                        "curl"
+                                            ],
+                                            "desc": "Integration and backpressure tests, plus a run of the packaged app with live curl requests, including an SSE subscriber receiving an event ingested after it connected; 2 bugs the tests missed were found this way and fixed.",
+                                            "impact": "Confidence that the stream works as a running service, not only in unit tests.",
+                                            "inputs": "Running service",
+                                            "process": "Tests + live curl",
+                                            "outputs": "Verified behaviour",
+                                            "code": "curl -N http://localhost:8080/api/postings/stream &\ncurl -X POST http://localhost:8080/api/postings \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"companyName\":\"Acme\",\"jobTitle\":\"Data Engineer\",\"source\":\"greenhouse\"}'"
+                                }
+                    ]
+        },
+        lakehouse: {
+                    "nodes": [
+                                {
+                                            "id": "lh_generate",
+                                            "label": "Generate",
+                                            "icon": "🧬",
+                                            "tags": [
+                                                        "Python"
+                                            ],
+                                            "desc": "Generates 60,000 clearly synthetic postings across 400 companies with a fixed seed, a scale where a Spark pipeline is a real design choice.",
+                                            "impact": "Reproducible input for every run and every test.",
+                                            "inputs": "Seeded generator",
+                                            "process": "CSV writer",
+                                            "outputs": "raw_postings, raw_companies",
+                                            "code": "random.seed(42)\nCOMPANY_COUNT = 400\nPOSTING_COUNT = 60000"
+                                },
+                                {
+                                            "id": "lh_spark",
+                                            "label": "PySpark",
+                                            "icon": "⚡",
+                                            "tags": [
+                                                        "PySpark",
+                                                        "Spark SQL",
+                                                        "Window functions"
+                                            ],
+                                            "desc": "Joins postings to companies, aggregates salary statistics per industry and seniority, and ranks postings within each industry with dense_rank().",
+                                            "impact": "The same DataFrame code runs locally or on a cluster.",
+                                            "inputs": "Raw CSVs",
+                                            "process": "groupBy/agg + window",
+                                            "outputs": "Parquet outputs",
+                                            "code": "industry_window = Window.partitionBy(\"industry\").orderBy(F.desc(\"salary_usd\"))\ntop_postings = (\n    joined.withColumn(\"salary_rank_in_industry\", F.dense_rank().over(industry_window))\n    .filter(F.col(\"salary_rank_in_industry\") <= 5)\n)"
+                                },
+                                {
+                                            "id": "lh_ge",
+                                            "label": "Validate",
+                                            "icon": "🛡️",
+                                            "tags": [
+                                                        "Great Expectations"
+                                            ],
+                                            "desc": "11 Great Expectations checks on the Spark output: row counts, allowed category sets, uniqueness, value ranges and a cross-column rule (max salary >= min salary).",
+                                            "impact": "Bad output is caught before any dashboard or model reads it.",
+                                            "inputs": "Parquet outputs",
+                                            "process": "Expectation suites",
+                                            "outputs": "Validated data",
+                                            "code": "dataset.expect_column_values_to_be_in_set(\"industry\", list(INDUSTRIES))\ndataset.expect_column_pair_values_A_to_be_greater_than_B(\n    \"max_salary\", \"min_salary\", or_equal=True)"
+                                },
+                                {
+                                            "id": "lh_dbt",
+                                            "label": "dbt Models",
+                                            "icon": "🧱",
+                                            "tags": [
+                                                        "dbt",
+                                                        "Databricks SQL"
+                                            ],
+                                            "desc": "In the companion dbt project, staging views feed dimension and fact tables on a live Databricks SQL warehouse, including days-to-decision and interview-round counts.",
+                                            "impact": "Analytics-ready tables with clear definitions instead of ad-hoc queries.",
+                                            "inputs": "Seeded raw tables",
+                                            "process": "Staging -> marts",
+                                            "outputs": "fct_application, dims",
+                                            "code": "datediff(a.decision_date, a.applied_date) as days_to_decision,\ncoalesce(ic.interview_round_count, 0) > 0 as reached_interview,\na.status in ('offer', 'rejected', 'withdrawn') as is_closed"
+                                },
+                                {
+                                            "id": "lh_ci",
+                                            "label": "Tests & CI",
+                                            "icon": "🔄",
+                                            "tags": [
+                                                        "dbt tests",
+                                                        "GitHub Actions",
+                                                        "Airflow"
+                                            ],
+                                            "desc": "15 dbt tests plus a business-rule test run on every push through CI with repository secrets; the Spark side runs as an Airflow DAG (generate -> transform -> validate).",
+                                            "impact": "Every change is rebuilt and tested against the real warehouse automatically.",
+                                            "inputs": "Every push",
+                                            "process": "dbt seed/run/test",
+                                            "outputs": "Green build",
+                                            "code": "- run: dbt seed --profiles-dir . --full-refresh\n- run: dbt run --profiles-dir .\n- run: dbt test --profiles-dir ."
+                                }
+                    ]
+        },
         batch: {
             nodes: [
                 { 
@@ -2117,7 +2509,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Initialize default pipeline flow
-    renderPipelineFlow("batch");
+    renderPipelineFlow("careerpilot");  // newest work first; matches the tab marked active in the template
 
     // ==========================================================================
     // 14. Interactive ML Evaluation Metrics & SVG Tracker Curves
@@ -2681,7 +3073,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const gpaText = document.getElementById("resume-gpa-highlight");
                 if (gpaText) gpaText.classList.remove("tour-highlight");
                 
-                const closeResumeBtn = document.getElementById("close-resume-btn");
+                const allRolesFilter = document.querySelector('.resume-filter-btn[data-role="all"]');
+                if (allRolesFilter) allRolesFilter.click();
+                const closeResumeBtn = document.querySelector(".close-resume-btn");
                 if (closeResumeBtn) closeResumeBtn.click();
             }
         },
@@ -2693,7 +3087,7 @@ document.addEventListener("DOMContentLoaded", () => {
             action: async () => {
                 const expSec = document.getElementById("experience");
                 if (expSec) {
-                    expSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    expSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     expSec.classList.add("tour-highlight");
                 }
             },
@@ -2710,8 +3104,9 @@ document.addEventListener("DOMContentLoaded", () => {
             action: async () => {
                 const section = document.getElementById("projects");
                 if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     section.classList.add("tour-highlight");
+                    const firstFilter = document.querySelector('.filter-btn');
+                    (firstFilter ? firstFilter.parentElement : section).scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
                 await delay(1000);
                 
@@ -2753,6 +3148,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (mlFilter) mlFilter.classList.remove("tour-highlight");
                 const biFilter = document.querySelector('.filter-btn[data-filter="analytics"]');
                 if (biFilter) biFilter.classList.remove("tour-highlight");
+                // leaving the step early must not leave the project grid filtered to one category
+                const allFilter = document.querySelector('.filter-btn[data-filter="all"]');
+                if (allFilter && !allFilter.classList.contains("active")) allFilter.click();
             }
         },
         {
@@ -2936,10 +3334,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Technical Skills & Learning Log",
-            desc: "Take a look at Deshraj's skills category cards, followed by the 'Today I Learned' (TIL) logging repository showcasing his ongoing study topics.",
+            title: "Skills, Certifications & Learning Log",
+            desc: "Take a look at Deshraj's skills category cards, his certifications and training, and the 'Today I Learned' (TIL) log of his ongoing study topics.",
             target: "#skills",
-            duration: 8000,
+            duration: 11000,
             action: async () => {
                 const skills = document.getElementById("skills");
                 if (skills) {
@@ -2948,7 +3346,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 await delay(3000);
                 if (skills) skills.classList.remove("tour-highlight");
-                
+
+                const certs = document.getElementById("certifications");
+                if (certs) {
+                    certs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    certs.classList.add("tour-highlight");
+                    await delay(3000);
+                    certs.classList.remove("tour-highlight");
+                }
+
                 const learning = document.getElementById("learning");
                 if (learning) {
                     learning.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -2958,6 +3364,8 @@ document.addEventListener("DOMContentLoaded", () => {
             cleanup: () => {
                 const skills = document.getElementById("skills");
                 if (skills) skills.classList.remove("tour-highlight");
+                const certs = document.getElementById("certifications");
+                if (certs) certs.classList.remove("tour-highlight");
                 const learning = document.getElementById("learning");
                 if (learning) learning.classList.remove("tour-highlight");
             }
@@ -3278,4 +3686,78 @@ document.addEventListener("DOMContentLoaded", () => {
             startTour();
         });
     }
+    // ==========================================================================
+    // Small-screen layout (<= 768px): lead bullet + expand, projects 6 at a time, certificate pointers on demand.
+    // The buttons always exist; CSS hides them on wider screens, so resizing never leaves the page half-collapsed.
+    // ==========================================================================
+    const metricValue = (text) => {
+        // Strongest bullet = largest measured result: a percentage counts first, then any large number.
+        let best = 0;
+        (text.match(/(\d[\d,]*(?:\.\d+)?)\s*%/g) || []).forEach(m => { best = Math.max(best, 1000 + parseFloat(m.replace(/[,%\s]/g, ""))); });
+        (text.match(/\d[\d,]{2,}\+?/g) || []).forEach(m => { best = Math.max(best, Math.min(999, parseFloat(m.replace(/[,+]/g, "")) / 100)); });
+        return best;
+    };
+
+    document.querySelectorAll(".experience-card .experience-bullets").forEach(list => {
+        const items = [...list.querySelectorAll("li")];
+        if (items.length < 2) return;
+        let lead = items[0];
+        items.forEach(li => { if (metricValue(li.textContent) > metricValue(lead.textContent)) lead = li; });
+        lead.classList.add("lead-bullet");
+        list.classList.add("is-collapsible");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "collapse-toggle exp-toggle";
+        const more = items.length - 1;
+        const label = (open) => open ? "Show less ▴" : `Show ${more} more achievement${more > 1 ? "s" : ""} ▾`;
+        btn.textContent = label(false);
+        btn.setAttribute("aria-expanded", "false");
+        btn.addEventListener("click", () => {
+            const open = list.classList.toggle("expanded");
+            btn.textContent = label(open);
+            btn.setAttribute("aria-expanded", String(open));
+        });
+        list.insertAdjacentElement("afterend", btn);
+    });
+
+    const PROJECT_STEP = 6;
+    let projectLimit = PROJECT_STEP;
+    const projectsGrid = document.querySelector(".projects-grid");
+    const moreProjectsBtn = document.createElement("button");
+    moreProjectsBtn.type = "button";
+    moreProjectsBtn.className = "collapse-toggle projects-more-btn";
+    const applyProjectLimit = () => {
+        const visible = [...document.querySelectorAll(".project-card")].filter(c => !c.classList.contains("hidden"));
+        visible.forEach((c, i) => c.classList.toggle("beyond-limit", i >= projectLimit));
+        const remaining = visible.length - Math.min(projectLimit, visible.length);
+        moreProjectsBtn.style.visibility = remaining > 0 ? "visible" : "hidden";
+        moreProjectsBtn.textContent = `Show more projects (${remaining}) ▾`;
+    };
+    if (projectsGrid) {
+        projectsGrid.insertAdjacentElement("afterend", moreProjectsBtn);
+        moreProjectsBtn.addEventListener("click", () => { projectLimit += PROJECT_STEP; applyProjectLimit(); });
+        document.querySelectorAll(".filter-btn").forEach(b => b.addEventListener("click", () => { projectLimit = PROJECT_STEP; applyProjectLimit(); }));
+        applyProjectLimit();
+    }
+    document.querySelectorAll(".project-card .card-desc").forEach(desc => {
+        desc.addEventListener("click", () => desc.classList.toggle("expanded"));
+    });
+
+    document.querySelectorAll(".cert-card").forEach(card => {
+        const list = card.querySelector("ul");
+        if (!list) return;
+        list.classList.add("cert-points");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "collapse-toggle cert-toggle";
+        btn.textContent = "What it covered ▾";
+        btn.setAttribute("aria-expanded", "false");
+        btn.addEventListener("click", () => {
+            const open = list.classList.toggle("expanded");
+            btn.textContent = open ? "Hide details ▴" : "What it covered ▾";
+            btn.setAttribute("aria-expanded", String(open));
+        });
+        list.insertAdjacentElement("beforebegin", btn);
+    });
+
 });

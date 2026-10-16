@@ -3782,5 +3782,102 @@ body.light-theme .close-visitor-btn:hover {
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* ==========================================================================
+   Responsive & light-theme fixes (2026-10): found by rendering every section at 375 / 768 / 1280 / 1920 px
+   ========================================================================== */
+/* Contact cards were wider than a phone screen (grid track sized to its content) */
+.contact-details-card, .contact-form-card, .info-item { min-width: 0; }
+.info-item a { overflow-wrap: anywhere; }
+.contact-info-links { align-items: flex-start; }
+@media (max-width: 768px) {
+    .contact-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 480px) {
+    .contact-details-card, .contact-form-card { padding: 2rem 1.25rem; }
+    .info-item a { font-size: 0.85rem; }   /* keeps the LinkedIn URL on one line at 375px */
+}
 
+/* SQL playground: the Execute button was pushed past the card edge on tablets */
+@media (max-width: 900px) {
+    .sql-selector-group { flex-wrap: wrap; }
+    .sql-select { flex: 1 1 100%; min-width: 0; width: 100%; max-width: 100%; text-overflow: ellipsis; }
+    .sql-btn-run { flex: 1 1 100%; }
+}
 
+/* Pipeline explorer: on phones only 2 of 5 stages were visible; wrap the stages instead */
+@media (max-width: 640px) {
+    .arch-diagram-flow { flex-wrap: wrap; justify-content: center !important; gap: 1.25rem 1.5rem !important; overflow-x: visible !important; }
+    .arch-diagram-flow .arch-connector { display: none; }
+}
+.arch-diagram-card { background: rgba(10, 15, 30, 0.4); border-color: rgba(255, 255, 255, 0.04); }
+body.light-theme .arch-diagram-card { background: #eef2ff; border-color: rgba(99, 102, 241, 0.18); }
+
+/* Light theme: badges and amber values were too faint to read */
+body.light-theme .badge-accent { color: #4338ca; }
+.cert-status { color: #f59e0b; }
+body.light-theme .cert-status { color: #b45309; }
+body.light-theme #cm-fp, body.light-theme #profit-fp-loss { color: #b45309 !important; }
+
+/* Project cards without a dashboard image */
+.card-image-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem;
+    text-align: center;
+    cursor: default;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(16, 185, 129, 0.14));
+}
+.card-image-placeholder .placeholder-badge {
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+.card-image-placeholder .placeholder-tags {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+body.light-theme .card-image-placeholder { background: linear-gradient(135deg, #e0e7ff, #d1fae5); }
+
+/* ==========================================================================
+   Small-screen layout (<= 768px): lead bullet + expand, projects 6 at a time, certificate pointers on demand
+   ========================================================================== */
+.collapse-toggle { display: none; }
+@media (max-width: 768px) {
+    .collapse-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.75rem;
+        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(99, 102, 241, 0.35);
+        background: rgba(99, 102, 241, 0.08);
+        color: var(--accent-blue);
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .collapse-toggle:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+    .exp-toggle { margin-bottom: 0.9rem; }
+    .experience-bullets.is-collapsible:not(.expanded) li:not(.lead-bullet) { display: none; }
+    .project-card.beyond-limit { display: none !important; }
+    .projects-more-btn { display: flex; margin: 1.5rem auto 0; }
+    .project-card .card-desc:not(.expanded) {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .cert-card .cert-points:not(.expanded) { display: none; }
+    .cert-toggle { margin: 0 0 0.5rem; }
+}
+@media print {
+    .collapse-toggle { display: none !important; }
+    .experience-bullets li, .project-card.beyond-limit, .cert-card .cert-points { display: revert !important; }
+}

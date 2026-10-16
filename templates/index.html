@@ -34,6 +34,7 @@
                 <a href="#projects">Projects</a>
                 <a href="#interactive">Interactive</a>
                 <a href="#skills">Skills</a>
+                <a href="#certifications">Certifications</a>
                 <a href="#learning">Learning</a>
                 <button id="tour-nav-btn" class="btn-tour-nav" style="margin-right: 0.5rem;">Tour ⚡</button>
                 <button id="resume-nav-btn" class="btn-resume-nav">Resume</button>
@@ -101,178 +102,28 @@
             </div>
 
             <div class="experience-container">
-                <!-- Objectways -->
+                {% for exp in experience %}
                 <div class="experience-card glass-card">
                     <div class="experience-card-header">
                         <div class="experience-title-area">
-                            <span class="badge badge-accent">Robotics & Parallel Pipelines</span>
-                            <h3 class="experience-role">Teleoperation Data Collection Associate</h3>
-                            <p class="experience-company">Objectways Technologies LLC | Tempe, AZ</p>
+                            <span class="badge badge-accent">{{ exp.badge }}</span>
+                            <h3 class="experience-role">{{ exp.role }}</h3>
+                            <p class="experience-company">{{ exp.company }}</p>
                         </div>
-                        <div class="experience-date">May 2026 – Present · Part-Time</div>
+                        <div class="experience-date">{{ exp.dates }}{% if exp.employment_type %} · {{ exp.employment_type }}{% endif %}</div>
                     </div>
                     <ul class="experience-bullets">
-                        <li>Collected and validated <strong>10,000+</strong> high-quality teleoperation sensor data samples for AI/ML model training, improving dataset accuracy and consistency by <strong>20%</strong>.</li>
-                        <li>Engineered scalable data pipelines using <strong>Python, Scala, PySpark, and Kubernetes</strong> to process massive robotics datasets, cutting data processing time by <strong>30%</strong>.</li>
-                        <li>Developed responsive web dashboards using <strong>React JS, JavaScript, and Java Spring Boot</strong> to monitor 10,000+ concurrent telemetry streams, improving system latency visualization by <strong>30%</strong>.</li>
-                        <li>Executed robotics dataset QA and statistical anomaly detection, lowering downstream ML model training error rates by <strong>15%</strong>.</li>
-                        <li>Leveraged AI-powered developer tools (<strong>Cursor, GitHub Copilot</strong>) to refactor backend microservices, write automated unit/integration tests, and maintain technical documentation.</li>
+                        {% for b in exp.bullets %}
+                        <li>{{ b.html | safe }}</li>
+                        {% endfor %}
                     </ul>
                     <div class="tech-tags">
-                        <span>Python</span>
-                        <span>PySpark</span>
-                        <span>Scala</span>
-                        <span>Kubernetes</span>
-                        <span>Docker</span>
-                        <span>React JS</span>
-                        <span>Spring Boot</span>
-                        <span>Robotics Data QA</span>
-                        <span>Linux</span>
+                        {% for tag in exp.tags %}
+                        <span>{{ tag }}</span>
+                        {% endfor %}
                     </div>
                 </div>
-
-                <!-- Technoid -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">LLMs, Supabase & Vector Sync</span>
-                            <h3 class="experience-role">Applied Machine Learning Engineer</h3>
-                            <p class="experience-company">Technoid LLC | Piscataway, NJ</p>
-                        </div>
-                        <div class="experience-date">Dec 2025 – May 2026 · Contract</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Optimized <strong>GPT-4o mini</strong> models for candidate resume matching using OpenAI APIs, SQL, and PostgreSQL, raising recommendation accuracy by <strong>25%</strong>.</li>
-                        <li>Restructured <strong>Supabase</strong> data sync layers with PostgreSQL backend RLS fixes, cutting real-time vector synchronization latency by <strong>65%</strong>.</li>
-                        <li>Architected backend microservices and RESTful APIs using <strong>Core Java, Spring Boot, and Python</strong> endpoints, reducing data sync latency by <strong>65%</strong>.</li>
-                        <li>Built dynamic, accessible UI components in <strong>React JS</strong> connected to Spring Boot backend services, conducting peer code reviews to ensure Object-Oriented design compliance.</li>
-                        <li>Established automated phased regression and UAT testing frameworks using <strong>PyTest</strong>, cutting model deployment errors across AWS and Azure cloud environments by <strong>30%</strong>.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>Core Java</span>
-                        <span>Spring Boot</span>
-                        <span>React JS</span>
-                        <span>GPT-4o mini</span>
-                        <span>OpenAI API</span>
-                        <span>PostgreSQL</span>
-                        <span>Supabase</span>
-                        <span>PyTest</span>
-                        <span>AWS/Azure</span>
-                    </div>
-                </div>
-
-                <!-- Zifatech -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Cloud Migration & Data Quality</span>
-                            <h3 class="experience-role">Data Analyst</h3>
-                            <p class="experience-company">Zifatech Solutions LLC | Milwaukee, WI</p>
-                        </div>
-                        <div class="experience-date">Jun 2025 – Dec 2025 · Contract</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, cutting manual reporting effort by <strong>70%</strong>.</li>
-                        <li>Migrated legacy database workflows to <strong>AWS Glue & S3</strong>, increasing data availability by <strong>60%</strong> and streamlining integration with Snowflake and Power BI.</li>
-                        <li>Modernized Star Schema dimensional models in Snowflake using <strong>Great Expectations</strong> QA validations, securing a <strong>98%+ data reliability standard</strong>.</li>
-                        <li>Built executive Power BI dashboards connected to Snowflake data warehouses, converting complex data streams into strategic business insights.</li>
-                        <li>Engineered serverless RESTful API data pipelines on AWS (Glue, S3, Lambda) with <strong>Apache Airflow</strong> orchestration to aggregate multi-source application data, accelerating ingestion speed by <strong>60%</strong>.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>AWS Glue</span>
-                        <span>AWS S3</span>
-                        <span>AWS Lambda</span>
-                        <span>Apache Airflow</span>
-                        <span>Snowflake</span>
-                        <span>Python</span>
-                        <span>SQL</span>
-                        <span>Great Expectations</span>
-                        <span>Power BI</span>
-                    </div>
-                </div>
-
-                <!-- Arizona State University -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Streaming & Recommendation Systems</span>
-                            <h3 class="experience-role">Data Engineer & ML Research Assistant</h3>
-                            <p class="experience-company">Arizona State University | Tempe, AZ</p>
-                        </div>
-                        <div class="experience-date">Sep 2024 – Jun 2025</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Architected a real-time streaming pipeline utilizing <strong>Node.js & MongoDB</strong>, sustaining <strong>99.9% uptime</strong> for 5,000 concurrent users and optimizing data throughput by <strong>35%</strong>.</li>
-                        <li>Constructed a behavioral content recommendation engine, refining algorithms weekly to drive a <strong>12% increase in click-through rates</strong> and lower user churn.</li>
-                        <li>Developed an NLP chatbot analyzing user input trends, identifying top UI friction points and boosting positive user satisfaction by <strong>15%</strong>.</li>
-                        <li>Integrated transformer NLP classifiers (<strong>BERT</strong>) into web applications, boosting user sentiment feature extraction accuracy by <strong>15%</strong>.</li>
-                        <li>Centralized application telemetry into SQL databases, presenting architecture designs, schema maps, and visual decks directly to leadership.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Node.js</span>
-                        <span>MongoDB</span>
-                        <span>Python</span>
-                        <span>BERT / NLP</span>
-                        <span>Recommendation Engine</span>
-                        <span>Streaming ETL</span>
-                        <span>SQL</span>
-                    </div>
-                </div>
-
-                <!-- Jetson Infinity -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Robotics Pipeline Automation</span>
-                            <h3 class="experience-role">AI-ML Analyst Apprentice</h3>
-                            <p class="experience-company">Jetson Infinity | Austin, TX</p>
-                        </div>
-                        <div class="experience-date">Jul 2024 – Aug 2024</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Implemented Python-based data processing pipelines leveraging Pandas & NumPy (+3% robotic arm precision, +10% workflow efficiency).</li>
-                        <li>Automated robotic arm motion ETL pipeline with Python & SQL, improving data processing speed by 17% and enabling real-time anomaly detection.</li>
-                        <li>Developed modular Python, C#, and .NET data transformation scripts, improving application dataset cleaning efficiency by 17%.</li>
-                        <li>Leveraged AI-powered developer tools (<strong>GitHub Copilot, Cursor</strong>) to write, test, debug, and refactor production-grade microservices and transformation pipelines.</li>
-                        <li>Devised an internal knowledge base with Python tutorials and real-world case studies, accelerating new analyst onboarding by <strong>25%</strong> across Unix/Linux environments.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>Pandas</span>
-                        <span>NumPy</span>
-                        <span>SQL</span>
-                        <span>C# / .NET</span>
-                        <span>Cursor / Copilot</span>
-                        <span>Linux</span>
-                    </div>
-                </div>
-
-                <!-- Kronic Keys -->
-                <div class="experience-card glass-card">
-                    <div class="experience-card-header">
-                        <div class="experience-title-area">
-                            <span class="badge badge-accent">Subledger Accounting & BI</span>
-                            <h3 class="experience-role">Data Analyst</h3>
-                            <p class="experience-company">Kronic Keys | Junagadh, GJ</p>
-                        </div>
-                        <div class="experience-date">Aug 2021 – Mar 2022</div>
-                    </div>
-                    <ul class="experience-bullets">
-                        <li>Cleaned and prepared large financial datasets (500k+ rows) in PostgreSQL, reducing monthly reporting cycle times by <strong>30%</strong>.</li>
-                        <li>Engineered SQL queries and Tableau executive dashboards, contributing to a <strong>12% increase in customer acquisition</strong>.</li>
-                        <li>Conducted weekly data integrity audits across relational database tables, eliminating duplicate records and ensuring 100% data quality control.</li>
-                        <li>Designed relational database schemas and indexed foreign keys in PostgreSQL to accelerate analytics query performance.</li>
-                        <li>Documented data definitions, data dictionary assets, and reporting workflows for business stakeholders.</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span>PostgreSQL</span>
-                        <span>SQL</span>
-                        <span>Tableau</span>
-                        <span>ETL Ingestion</span>
-                        <span>Data Modeling</span>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </section>
 
@@ -301,6 +152,11 @@
                         <div class="image-overlay">
                             <span>Zoom Dashboard 🔍</span>
                         </div>
+                    </div>
+                    {% else %}
+                    <div class="card-image-wrapper card-image-placeholder" aria-hidden="true">
+                        <span class="placeholder-badge">{{ project.badge }}</span>
+                        <span class="placeholder-tags">{{ project.tags[:4] | join(" · ") }}</span>
                     </div>
                     {% endif %}
                     <div class="card-content">
@@ -338,6 +194,9 @@
                     </div>
                     <div class="sql-selector-group" style="margin-top: 1.5rem;">
                         <select id="sql-query-select" class="sql-select">
+                            <option value="career_pilot_intake">Live Job Postings by Intake Source (Career Pilot)</option>
+                            <option value="dbt_application_outcomes">Application Outcomes &amp; Days to Decision (dbt Warehouse)</option>
+                            <option value="lakehouse_salary_by_industry">Average &amp; Top Salary by Industry over 60k Postings (Job Market Lakehouse)</option>
                             <option value="revenue_by_segment">Total Revenue &amp; Customer Count by Segment (Sales Segmentation)</option>
                             <option value="anomaly_risk_claims">Top 5 Audit Compliance Risk Tax Claims (Tax Anomaly Audit)</option>
                             <option value="survival_by_treatment">Oncology Trial Survival Rate &amp; BP by Dosage Arm (Clinical Trials)</option>
@@ -541,7 +400,7 @@
                                 <div class="ab-result-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); padding: 0.75rem;">
                                     <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Control (A)</div>
                                     <div style="margin: 0.35rem 0; display: flex; align-items: baseline; gap: 0.25rem;">
-                                        <span id="ab-a-cr" style="font-size: 1.4rem; font-weight: 700; color: #fff;">0.00%</span>
+                                        <span id="ab-a-cr" style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary);">0.00%</span>
                                         <span style="font-size: 0.75rem; color: var(--text-secondary);">conv. rate</span>
                                     </div>
                                     <div style="font-size: 0.7rem; color: var(--text-secondary);">
@@ -555,7 +414,7 @@
                                 <div class="ab-result-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); padding: 0.75rem;">
                                     <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Challenger (B)</div>
                                     <div style="margin: 0.35rem 0; display: flex; align-items: baseline; gap: 0.25rem;">
-                                        <span id="ab-b-cr" style="font-size: 1.4rem; font-weight: 700; color: #fff;">0.00%</span>
+                                        <span id="ab-b-cr" style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary);">0.00%</span>
                                         <span style="font-size: 0.75rem; color: var(--text-secondary);">conv. rate</span>
                                     </div>
                                     <div style="font-size: 0.7rem; color: var(--text-secondary);">
@@ -570,15 +429,15 @@
                             <div class="ab-stats-output" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; font-size: 0.75rem; margin-bottom: 1rem;">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
                                     <span style="color: var(--text-secondary);">Uplift (Relative):</span>
-                                    <span id="ab-uplift" style="font-weight: 600; color: #fff;">0.00%</span>
+                                    <span id="ab-uplift" style="font-weight: 600; color: var(--text-primary);">0.00%</span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
                                     <span style="color: var(--text-secondary);">Z-Score:</span>
-                                    <span id="ab-zscore" style="font-weight: 600; color: #fff;">0.00</span>
+                                    <span id="ab-zscore" style="font-weight: 600; color: var(--text-primary);">0.00</span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
                                     <span style="color: var(--text-secondary);">Two-tailed P-value:</span>
-                                    <span id="ab-pvalue" style="font-weight: 600; color: #fff;">0.0000</span>
+                                    <span id="ab-pvalue" style="font-weight: 600; color: var(--text-primary);">0.0000</span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem;">
                                     <span style="color: var(--text-secondary); font-weight: 600;">Status:</span>
@@ -587,7 +446,7 @@
                             </div>
 
                             <div class="widget-context" style="padding: 1rem; background: rgba(99, 102, 241, 0.03); border: 1px solid rgba(99, 102, 241, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong> to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong> on the proportions.</p>
                                 <p style="margin: 0;"><strong>Recruiting Value:</strong> This simulates how a Data Engineer or Scientist conducts hypothesis testing to validate feature rolls. A result is statistically significant if the P-value is less than 0.05 (95% confidence).</p>
@@ -642,11 +501,11 @@
                                 <div style="display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding-left: 0.5rem;">
                                     <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
                                         <div style="font-size: 0.65rem; color: var(--text-secondary);">Precision</div>
-                                        <div id="val-precision" style="font-size: 1.1rem; font-weight: 700; color: #fff;">0.0%</div>
+                                        <div id="val-precision" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
                                     </div>
                                     <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
                                         <div style="font-size: 0.65rem; color: var(--text-secondary);">Recall</div>
-                                        <div id="val-recall" style="font-size: 1.1rem; font-weight: 700; color: #fff;">0.0%</div>
+                                        <div id="val-recall" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
                                     </div>
                                 </div>
                             </div>
@@ -666,13 +525,13 @@
                                     <span id="profit-fn-loss" style="font-weight: 600; color: #ef4444;">-$0</span>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
-                                    <span style="color: #fff; font-weight: 600;">Net Conversion ROI Impact:</span>
+                                    <span style="color: var(--text-primary); font-weight: 600;">Net Conversion ROI Impact:</span>
                                     <span id="val-net-profit" style="font-weight: 700; font-size: 1rem; color: #10b981;">$0</span>
                                 </div>
                             </div>
 
                             <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: #fff; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
                                 <p style="margin: 0;"><strong>ROI Business Value:</strong> By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
@@ -692,7 +551,10 @@
 
                     <!-- Pipeline Tabs -->
                     <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; width: 100%;">
-                        <button class="arch-tab-btn active" data-pipeline="batch">📊 Batch ETL Sales Analytics</button>
+                        <button class="arch-tab-btn active" data-pipeline="careerpilot">🤖 Career Pilot AI Tailoring</button>
+                        <button class="arch-tab-btn" data-pipeline="reactive">🔁 Reactive Job Ingest (WebFlux)</button>
+                        <button class="arch-tab-btn" data-pipeline="lakehouse">🧱 Lakehouse + dbt Warehouse</button>
+                        <button class="arch-tab-btn" data-pipeline="batch">📊 Batch ETL Sales Analytics</button>
                         <button class="arch-tab-btn" data-pipeline="stream">⚡ Streaming IoT Fleet Telematics</button>
                         <button class="arch-tab-btn" data-pipeline="geospatial">🌎 Geospatial Carbon Emissions</button>
                         <button id="arch-tour-btn">Play Tour ⏯️</button>
@@ -700,7 +562,7 @@
 
                     <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
                         <!-- Interactive System Diagram -->
-                        <div class="arch-diagram-card glass-card" style="background: rgba(10, 15, 30, 0.4); border-color: rgba(255,255,255,0.04); padding: 1.5rem;">
+                        <div class="arch-diagram-card glass-card" style="padding: 1.5rem;">
                             <div class="arch-diagram-flow" id="arch-flow-diagram" style="display: flex; justify-content: space-between; align-items: center; position: relative; padding: 1rem 0; overflow-x: auto; gap: 1.5rem;">
                                 <!-- Nodes will be injected here via Javascript -->
                             </div>
@@ -772,6 +634,32 @@
                         <li>{{ item }}</li>
                         {% endfor %}
                     </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Certifications & Training Section (rendered from projects.json, same source as the resume modal and the chatbot) -->
+        <section id="certifications" class="skills-section certifications-section">
+            <div class="section-header">
+                <h2 class="section-title">Certifications &amp; Training</h2>
+                <p class="section-subtitle">Professional certificates and ongoing training, with what each program covered.</p>
+            </div>
+
+            <div class="skills-grid">
+                {% for cert in certifications %}
+                <div class="skill-category glass-card cert-card">
+                    <h3 style="margin-bottom: 0.35rem;">{{ cert.name }}</h3>
+                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
+                        {% if cert.issuer %}{{ cert.issuer }}{% endif %}{% if cert.issuer and (cert.date or cert.status) %} · {% endif %}{% if cert.status and cert.status != "Completed" %}<span class="badge cert-status" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 4px;">{{ cert.status }}</span>{% else %}{{ cert.date or "Completed" }}{% endif %}
+                    </p>
+                    {% if cert.bullets %}
+                    <ul>
+                        {% for b in cert.bullets[:3] %}
+                        <li>{{ b }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
@@ -920,7 +808,11 @@
 {% for cert in certifications %}
 <div class="resume-edu-item" style="margin-bottom: 0.75rem;">
 <h4>{{ cert.name }}</h4>
-{% if cert.date %}<p class="resume-edu-date">{{ cert.date }}</p>{% endif %}
+{% if cert.issuer %}<p class="resume-edu-inst">{{ cert.issuer }}</p>{% endif %}
+<p class="resume-edu-date">{% if cert.status and cert.status != "Completed" %}{{ cert.status }}{% else %}{{ cert.date or "Completed" }}{% endif %}</p>
+{% if cert.bullets %}<ul style="margin: 0.35rem 0 0 1rem; padding: 0;">
+{% for b in cert.bullets %}<li style="font-size: 0.85em;">{{ b }}</li>
+{% endfor %}</ul>{% endif %}
 </div>
 {% endfor %}
                         </section>
