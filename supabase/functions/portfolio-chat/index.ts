@@ -57,7 +57,11 @@ async function fetchProfileContext(): Promise<string> {
     })
     .join("\n")
 
-  return `Summary:\n  ${data.summary || ""}\n\nWork History:\n${expLines}\n\nKey Projects:\n${projectLines}\n\nTechnical Skills:\n${skillLines}\n\nCertifications & Training:\n${certLines}\n\nEducation:\n${eduLines}`
+  const recLines = (data.testimonials || [])
+    .map((t: any) => `  - ${t.name} (${t.headline}; ${t.relation}, ${t.date}): "${(t.paragraphs || []).join(" ")}"`)
+    .join("\n")
+
+  return `Summary:\n  ${data.summary || ""}\n\nWork History:\n${expLines}\n\nKey Projects:\n${projectLines}\n\nTechnical Skills:\n${skillLines}\n\nCertifications & Training:\n${certLines}\n\nEducation:\n${eduLines}\n\nLinkedIn Recommendations (verbatim, quote only from these when asked what others say about him):\n${recLines}`
 }
 
 function buildSystemPrompt(profileContext: string): string {

@@ -35,6 +35,7 @@
                 <a href="#interactive">Interactive</a>
                 <a href="#skills">Skills</a>
                 <a href="#certifications">Certifications</a>
+                <a href="#recommendations">Recommendations</a>
                 <a href="#learning">Learning</a>
                 <button id="tour-nav-btn" class="btn-tour-nav" style="margin-right: 0.5rem;">Tour ⚡</button>
                 <button id="resume-nav-btn" class="btn-resume-nav">Resume</button>
@@ -664,6 +665,37 @@
                 {% endfor %}
             </div>
         </section>
+
+        <!-- Recommendations Section (verbatim LinkedIn recommendations, from projects.json "testimonials") -->
+        {% if testimonials %}
+        <section id="recommendations" class="testimonials-section">
+            <div class="section-header">
+                <h2 class="section-title">Recommendations</h2>
+                <p class="section-subtitle">Written by mentors and managers on LinkedIn, shown here word for word. <a href="{{ testimonials_source }}" target="_blank" rel="noopener" class="testimonial-verify">Verify on LinkedIn ↗</a></p>
+            </div>
+
+            <div class="testimonials-grid">
+                {% for t in testimonials %}
+                <figure class="testimonial-card glass-card" id="testimonial-{{ loop.index }}">
+                    <blockquote class="testimonial-quote{% if t.paragraphs|length > 1 or (t.paragraphs[0]|length) > 420 %} is-collapsible{% endif %}" id="testimonial-text-{{ loop.index }}">
+                        {% for p in t.paragraphs %}<p>{{ p }}</p>{% endfor %}
+                    </blockquote>
+                    {% if t.paragraphs|length > 1 or (t.paragraphs[0]|length) > 420 %}
+                    <button type="button" class="testimonial-toggle" aria-expanded="false" aria-controls="testimonial-text-{{ loop.index }}">Read full recommendation</button>
+                    {% endif %}
+                    <figcaption class="testimonial-author">
+                        <span class="testimonial-avatar" aria-hidden="true">{{ t.name.replace('Dr. ', '').split(' ')[0][0] }}{{ t.name.split(' ')[-1][0] }}</span>
+                        <span class="testimonial-meta">
+                            <a href="{{ t.profile }}" target="_blank" rel="noopener" class="testimonial-name">{{ t.name }}</a>
+                            <span class="testimonial-headline">{{ t.headline }}</span>
+                            <span class="testimonial-relation">{{ t.relation }} · {{ t.date }}</span>
+                        </span>
+                    </figcaption>
+                </figure>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
 
         <!-- Live Learning Logs Section -->
         <section id="learning" class="learning-section">
