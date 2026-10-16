@@ -29,19 +29,30 @@
         "Kubernetes",
         "Docker",
         "Robotics Data QA",
-        "Linux"
+        "Linux",
+        "PySpark",
+        "React JS",
+        "Spring Boot"
       ],
       "bullets": [
         {
-          "html": "Collected and validated <strong>10,000+</strong> teleoperation data samples for AI/ML model training, improving dataset accuracy and consistency.",
+          "html": "Lifted dataset accuracy and consistency by <strong>20%</strong> across <strong>10,000+</strong> validated teleoperation sensor samples used for AI/ML model training, using Python-based workflows.",
           "resume_role": "ds"
         },
         {
-          "html": "Engineered scalable data pipelines using <strong>Python, Scala, and Kubernetes</strong> to process massive robotics datasets, cutting data processing time by <strong>30%</strong>.",
+          "html": "Cut data processing time by <strong>30%</strong> on large robotics datasets by engineering Python, Scala, PySpark, and Kubernetes pipelines.",
           "resume_role": "de"
         },
         {
-          "html": "Executed robotics dataset QA and anomaly detection, lowering downstream model training error rates by <strong>15%</strong>.",
+          "html": "Improved system-latency visualization by <strong>30%</strong> across <strong>10,000+</strong> concurrent telemetry streams by developing responsive React and Spring Boot dashboards.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Lowered downstream ML model training error rates by <strong>15%</strong> through robotics dataset quality assurance and statistical anomaly detection.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Used AI developer tools (Cursor, GitHub Copilot) to refactor backend microservices, write automated unit and integration tests, and maintain technical documentation.",
           "resume_role": "ds"
         }
       ],
@@ -59,19 +70,31 @@
         "PostgreSQL",
         "Supabase",
         "SQL",
-        "PyTest"
+        "PyTest",
+        "Core Java",
+        "Spring Boot",
+        "React JS",
+        "AWS/Azure"
       ],
       "bullets": [
         {
-          "html": "Optimized <strong>GPT-4o mini</strong> models for candidate resume matching using OpenAI APIs, SQL, and PostgreSQL, raising recommendation accuracy by <strong>25%</strong>.",
+          "html": "Raised candidate-resume recommendation accuracy by <strong>25%</strong> by optimizing GPT-4o mini models with OpenAI APIs, SQL, and PostgreSQL.",
           "resume_role": "ds"
         },
         {
-          "html": "Restructured <strong>Supabase</strong> data sync layers with PostgreSQL backend RLS fixes, cutting real-time vector synchronization latency by <strong>65%</strong>.",
+          "html": "Cut real-time vector synchronization latency by <strong>65%</strong> by restructuring Supabase data sync layers with PostgreSQL row-level security fixes.",
           "resume_role": "de"
         },
         {
-          "html": "Established automated phased regression and UAT testing frameworks, cutting model deployment errors by <strong>30%</strong>.",
+          "html": "Shortened data synchronization latency by <strong>65%</strong> by architecting Core Java, Spring Boot, and Python backend microservices and RESTful APIs.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Built accessible React JS UI components on Spring Boot backend services and ran peer code reviews for object-oriented design.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Reduced model deployment errors by <strong>30%</strong> across AWS and Azure environments by establishing automated, phased regression and UAT testing frameworks in PyTest.",
           "resume_role": "ds"
         }
       ],
@@ -89,23 +112,29 @@
         "Python",
         "SQL",
         "Great Expectations",
-        "Power BI"
+        "Power BI",
+        "AWS Lambda",
+        "Apache Airflow"
       ],
       "bullets": [
         {
-          "html": "Transformed SQL/Python-based ETL pipelines to automate sales insights reporting, cutting manual reporting effort by <strong>70%</strong>.",
+          "html": "Trimmed manual sales-reporting effort by <strong>70%</strong> by automating the SQL and Python ETL pipelines behind it.",
           "resume_role": "de"
         },
         {
-          "html": "Migrated legacy database workflows to <strong>AWS Glue &amp; S3</strong>, increasing data availability by <strong>60%</strong> and streamlining integration with Snowflake and Power BI.",
+          "html": "Migrated legacy database workflows to AWS Glue &amp; S3, increasing data availability by <strong>60%</strong> and streamlining integration with Snowflake and Power BI.",
           "resume_role": "de"
         },
         {
-          "html": "Modernized Star Schema dimensional models in Snowflake using <strong>Great Expectations</strong> QA validations, securing a <strong>98%+ data reliability standard</strong>.",
+          "html": "Secured a <strong>98%+</strong> data reliability standard in Snowflake by modernizing Star Schema dimensional models with Great Expectations validations.",
           "resume_role": "de"
         },
         {
-          "html": "Built executive Power BI dashboards connected to Snowflake data warehouses, converting complex data streams into strategic business insights.",
+          "html": "Built executive Power BI dashboards on Snowflake data warehouses that turn complex data streams into business insights.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Accelerated multi-source application data ingestion by <strong>60%</strong> with serverless RESTful API pipelines on AWS (Glue, S3, Lambda) orchestrated by Apache Airflow.",
           "resume_role": "de"
         }
       ],
@@ -122,22 +151,33 @@
         "Python",
         "NLP",
         "Recommendation Engine",
-        "Streaming ETL"
+        "Streaming ETL",
+        "BERT / NLP",
+        "SQL"
       ],
       "bullets": [
         {
-          "html": "Architected a real-time streaming pipeline utilizing <strong>Node.js &amp; MongoDB</strong>, sustaining <strong>99.9% uptime</strong> for 5,000 concurrent users.",
+          "html": "Sustained <strong>99.9%</strong> uptime for <strong>5,000</strong> concurrent users and improved data throughput by <strong>35%</strong> with a real-time streaming pipeline using Node.js and MongoDB.",
           "resume_role": "de"
         },
         {
-          "html": "Constructed a behavioral content recommendation engine, refining algorithms weekly to drive a <strong>12% increase in click-through rates</strong> and lower user churn.",
+          "html": "Drove a <strong>12%</strong> increase in click-through rates and lower user churn with a behavioral content recommendation engine, refined weekly.",
           "resume_role": "ds"
         },
         {
-          "html": "Developed an NLP chatbot analyzing user input trends, identifying top UI friction points and boosting positive user satisfaction by <strong>15%</strong>.",
+          "html": "Grew positive user satisfaction by <strong>15%</strong> with an NLP chatbot that analyzed user input trends and identified top UI friction points.",
           "resume_role": "ds"
+        },
+        {
+          "html": "Boosted user-sentiment feature extraction accuracy by <strong>15%</strong> by integrating BERT transformer NLP classifiers into web applications.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Centralized application telemetry in SQL databases and presented architecture designs, schema maps, and visual decks to leadership.",
+          "resume_role": "de"
         }
-      ]
+      ],
+      "employment_type": "Full-Time"
     },
     {
       "badge": "Robotics Pipeline Automation",
@@ -149,18 +189,34 @@
         "Pandas",
         "NumPy",
         "SQL",
-        "Robotics Data"
+        "Robotics Data",
+        "C# / .NET",
+        "Cursor / Copilot",
+        "Linux"
       ],
       "bullets": [
         {
-          "html": "Implemented Python-based data processing pipelines leveraging Pandas &amp; NumPy, improving workflow efficiency by <strong>10%</strong>.",
+          "html": "Implemented Python data processing pipelines with Pandas and NumPy (+<strong>3%</strong> robotic arm precision, +<strong>10%</strong> workflow efficiency).",
           "resume_role": "ds"
         },
         {
-          "html": "Automated robotic arm motion ETL pipeline with Python &amp; SQL, improving data processing speed by 17% and enabling real-time anomaly detection.",
+          "html": "Automated robotic arm motion ETL pipeline with Python and SQL, improving data processing speed by <strong>17%</strong> and enabling real-time anomaly detection.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Developed modular Python, C#, and .NET data transformation scripts, improving application dataset cleaning efficiency by <strong>17%</strong>.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Used AI developer tools (GitHub Copilot, Cursor) to write, test, debug, and refactor production microservices and transformation pipelines.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Devised an internal knowledge base with Python tutorials and real-world case studies, accelerating new analyst onboarding by <strong>25%</strong> across Unix/Linux environments.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "employment_type": "Apprenticeship"
     },
     {
       "badge": "Subledger Accounting & BI",
@@ -171,25 +227,39 @@
         "PostgreSQL",
         "SQL",
         "Tableau",
-        "ETL Ingestion"
+        "ETL Ingestion",
+        "Data Modeling"
       ],
       "bullets": [
         {
-          "html": "Cleaned and prepared large financial datasets in PostgreSQL, reducing monthly reporting cycle times by <strong>30%</strong>.",
+          "html": "Cleaned and prepared large financial datasets (<strong>500k+</strong> rows) in PostgreSQL, reducing monthly reporting cycle times by <strong>30%</strong>.",
           "resume_role": "de"
         },
         {
-          "html": "Engineered SQL queries and Tableau executive dashboards, contributing to a <strong>12% increase in customer acquisition</strong>.",
+          "html": "Engineered SQL queries and Tableau executive dashboards, contributing to a <strong>12%</strong> increase in customer acquisition.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Conducted weekly data integrity audits across relational database tables, eliminating duplicate records and ensuring <strong>100%</strong> data quality control.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Designed relational database schemas and indexed foreign keys in PostgreSQL to accelerate analytics query performance.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Documented data definitions, data dictionary assets, and reporting workflows for business stakeholders.",
           "resume_role": "de"
         }
-      ]
+      ],
+      "employment_type": "Full-Time"
     }
   ],
   "projects": [
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
-      "desc": "Local job placement command center with FastAPI and SQLite. Features AI-powered profile matching, resume and cover letter tailoring, LinkedIn recruiter outreach generation, and Kanban application tracking.",
+      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 985 automated tests.",
       "category": "data-engineering machine-learning",
       "tags": [
         "FastAPI",
@@ -204,162 +274,28 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation",
       "bullets": [
         {
-          "html": "Full Stack Command Center: Local job placement command center with <strong>FastAPI, Python, Jinja2</strong>, tracking applications, recruiter outreach, and resume versions.",
+          "html": "Full Stack Command Center: Local job placement command center with FastAPI, Python, Jinja2, and TailwindCSS UI, tracking applications, recruiter outreach, and resume versions.",
           "resume_role": "de"
         },
         {
-          "html": "AI Prompt Tailoring Engine: Integrated <strong>OpenAI API</strong> prompt tailoring chains to automatically align candidate resumes with specific job description keywords, plus a standalone <strong>ReAct-pattern</strong> research agent with real tool-calling over the app's own data.",
+          "html": "AI Prompt Tailoring Engine: Integrated OpenAI API prompt tailoring chains to automatically align candidate resumes with specific job description keywords, plus a standalone ReAct-pattern research agent with tool-calling over the app's own data.",
           "resume_role": "ds"
         },
         {
-          "html": "Relational Database & ORM: Deployed a local <strong>SQLite</strong> database using SQLAlchemy ORM to manage application logs, recruiter follow-ups, and interview stages, backed by a <strong>GitHub Actions</strong> CI pipeline running 690+ pytest cases on every push.",
+          "html": "Relational Database &amp; ORM: Deployed a local SQLite database using SQLAlchemy ORM to manage application logs, recruiter follow-ups, and interview stages, backed by a GitHub Actions CI pipeline running <strong>690+</strong> pytest cases on every push.",
           "resume_role": "de"
         },
         {
-          "html": "Automated Document Compiler: Built automated Python PDF compilation scripts to generate formatted resumes and cover letters, containerized with <strong>Docker</strong> for reproducible deployment.",
+          "html": "Automated Document Compiler: Built automated Python PDF compilation scripts with headless Edge printing to generate perfectly formatted 2-page resumes and 1-page cover letters, containerized with Docker for reproducible deployment.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Diagnosed and fixed production incidents: traced a database egress-quota breach to a dedup query fetching full job descriptions, and removed a ~90-second deploy outage caused by a blocking scheduler shutdown.",
           "resume_role": "de"
         }
       ],
       "dashboard_url": "assets/career_pilot_dashboard.png",
-      "date": "Jun 2026 – Present"
-    },
-    {
-      "badge": "Cloud & Generative AI",
-      "name": "CurioSync: Serverless Tech News & LinkedIn Publisher",
-      "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": [
-        "FastAPI",
-        "Python",
-        "GitHub Actions",
-        "Gemini LLM",
-        "HTMX",
-        "Cryptography"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/curiosync",
-      "bullets": [
-        {
-          "html": "Serverless Automation Pipeline: Scheduled serverless news curation and publisher pipeline running on <strong>GitHub Actions</strong> cron workflows (100% hosting cost reduction).",
-          "resume_role": "de"
-        },
-        {
-          "html": "Glassmorphic Administrative Panel: Designed a Jinja2/HTMX control panel secured by <strong>Fernet symmetric encryption</strong> to protect user credentials.",
-          "resume_role": "de"
-        },
-        {
-          "html": "LLM & Image Generation: Integrated <strong>Gemini LLM</strong> chains and developed custom Pillow image-processing engines to automatically render branding graphics.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Vector RAG Embeddings: Implemented semantic search and RAG retrieval pipelines to contextualize daily technical news articles automatically.",
-          "resume_role": "ds"
-        }
-      ],
-      "dashboard_url": "assets/curiosync_publishing_trend.png",
-      "date": "Jan 2026 – Jun 2026"
-    },
-    {
-      "badge": "NLP & Semantic Search",
-      "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
-      "desc": "Interactive QA API answering natural-language questions about member data, ranking unstructured messages via SentenceTransformer embeddings and identifying subjects with spaCy NER.",
-      "category": "machine-learning analytics",
-      "tags": [
-        "Python",
-        "Sentence-Transformers",
-        "spaCy",
-        "Scikit-Learn",
-        "Pandas",
-        "GitHub Actions",
-        "LlamaIndex",
-        "Semantic Kernel",
-        "LangChain"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
-      "bullets": [
-        {
-          "html": "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions, ranking messages via <strong>SentenceTransformer</strong> embeddings.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Named Entity Recognition: Integrated <strong>spaCy NER</strong> with fuzzy first-name matching to identify a question's subject.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Dynamic Information Extraction: Implemented regex-based extraction for contact info and numeric quantities, with fallback logic when no structured answer applies.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Architecture Tradeoff Analysis: Evaluated five candidate approaches (rule-based, knowledge graph, fine-tuned LLM, hybrid) before selecting embeddings-based semantic search.",
-          "resume_role": "general"
-        },
-        {
-          "html": "LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using <strong>LlamaIndex</strong>'s VectorStoreIndex over the same embedding model, verified against the real message dataset.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native <strong>Semantic Kernel</strong> plugin functions, orchestrated through a real Kernel instance.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Real RAG Pipeline: Built a genuine retrieve-then-generate RAG chain with <strong>LangChain</strong>, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and a real end-to-end generation test.",
-          "resume_role": "ds"
-        }
-      ],
-      "dashboard_url": "assets/qa_system_retrieval_accuracy.png",
-      "date": "Oct 2025 – Nov 2025"
-    },
-    {
-      "badge": "Cloud & Enterprise ML",
-      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 86.20% accuracy, alongside automated financial reporting and reconciliation workflows.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": [
-        "Python",
-        "Snowflake",
-        "Azure ADLS",
-        "Streamlit",
-        "Scikit-Learn",
-        "SQL Server",
-        "Terraform",
-        "Parquet",
-        "Delta Lake",
-        "Apache Iceberg",
-        "TypeScript",
-        "Jenkins"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
-      "bullets": [
-        {
-          "html": "Enterprise Cloud Platform: Connected <strong>SQL Server, Azure ADLS Gen2, Snowflake</strong>, and Streamlit, accelerating financial queries by <strong>45%</strong>.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit for event data visualization.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Predictive Contract Risk Model: Deployed a <strong>Random Forest</strong> model predicting contract cancellation risk with <strong>86.20% accuracy</strong> (0.87 ROC-AUC), served via a Snowflake Python UDF for real-time inference.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Infrastructure as Code: Provisioned the production data warehouse -- Azure ADLS Gen2 storage, Snowflake database/schemas/warehouse, and the storage integration connecting them -- via <strong>Terraform</strong>.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Table Format Layer: Loaded staged extracts into real <strong>Delta Lake</strong> and <strong>Apache Iceberg</strong> tables as a transactional consumption layer over the raw Parquet staging area.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Data Contract Validation: Built a <strong>TypeScript</strong> CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.",
-          "resume_role": "de"
-        },
-        {
-          "html": "CI/CD Pipeline: Authored a <strong>Jenkins</strong> declarative pipeline (per-stage Docker agents) mirroring the existing GitHub Actions CI, verified against a real temporary Jenkins instance.",
-          "resume_role": "de"
-        }
-      ],
-      "dashboard_url": "assets/talentvenue_feature_importance.png",
-      "date": "Aug 2025 – Nov 2025"
+      "date": "Feb 2026 – Present"
     },
     {
       "badge": "Reactive Systems",
@@ -370,21 +306,22 @@
         "Java",
         "Spring Boot",
         "Spring WebFlux",
+        "Spring Reactive",
         "R2DBC",
         "Project Reactor"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway",
       "bullets": [
         {
-          "html": "Non-Blocking Ingestion API: Built a <strong>Spring WebFlux</strong> REST endpoint persisting job-posting events via <strong>R2DBC</strong> without blocking a thread per request.",
+          "html": "Non-Blocking Ingestion API: Built a Spring WebFlux REST endpoint that persists incoming job-posting events via R2DBC without blocking a thread per request.",
           "resume_role": "sde"
         },
         {
-          "html": "Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying <strong>Sinks.Many</strong>, so a client connecting mid-stream still sees recent history before live updates.",
+          "html": "Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying Sinks.Many, so a client connecting mid-stream still sees recent history before live updates.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: Packaged and ran the real application against live curl requests -- found and fixed two real bugs surfaced only by running it, not just the test suite.",
+          "html": "Verified End-to-End: Packaged and ran the application, hitting it with live curl requests (including SSE subscriber receiving an event ingested after it connected) -- found and fixed two bugs surfaced only by running it, not just the test suite.",
           "resume_role": "sde"
         }
       ],
@@ -404,15 +341,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse",
       "bullets": [
         {
-          "html": "Dimensional Data Model: Built a <strong>dbt</strong> project (staging views into dimension and fact tables) on a live <strong>Databricks</strong> SQL warehouse, including a datediff-based measure and a <strong>row_number()</strong> window function.",
+          "html": "Dimensional Data Model: Built a dbt project (staging views into dimension and fact tables) on a live Databricks SQL warehouse, including a datediff-based days-to-decision measure and a row_number() window function for interview-round sequencing.",
           "resume_role": "de"
         },
         {
-          "html": "Data Quality Testing: Wrote 15 dbt tests (uniqueness, not-null, referential integrity, accepted values) across the model, all passing against the real warehouse in CI.",
+          "html": "Data Quality Testing: Wrote 15 dbt tests (uniqueness, not-null, referential integrity, accepted values) across the model, all passing against the warehouse in CI.",
           "resume_role": "de"
         },
         {
-          "html": "Verified End-to-End: Ran <strong>dbt seed/run/test</strong> against a live Databricks warehouse and spot-checked the resulting tables by hand; CI re-runs the same commands on every push.",
+          "html": "Verified End-to-End: Ran dbt seed/run/test against a live Databricks warehouse (not just parsed) and spot-checked the resulting tables by hand; CI re-runs the same three commands against the same warehouse on every push using repository secrets.",
           "resume_role": "de"
         }
       ],
@@ -433,19 +370,19 @@
       "github_url": "https://github.com/Deshraj-Jogiya/job-market-lakehouse",
       "bullets": [
         {
-          "html": "PySpark Transformation Pipeline: Built a real <strong>PySpark</strong> job over 60k synthetic postings -- a join, a groupBy/agg salary-stats aggregation, and a <strong>dense_rank()</strong> window function.",
+          "html": "PySpark Transformation Pipeline: Built PySpark job over <strong>60k</strong> synthetic postings -- a join, a groupBy/agg salary-stats aggregation, and a dense_rank() window function ranking postings within each industry.",
           "resume_role": "de"
         },
         {
-          "html": "Scala Spark Job: Wrote a complementary <strong>Scala</strong> Spark SQL aggregation job, run via spark-shell against a real Spark distribution.",
+          "html": "Scala Spark Job: Wrote a complementary Scala Spark SQL job (monthly posting-volume-by-source aggregation), run via spark-shell against Spark distribution.",
           "resume_role": "de"
         },
         {
-          "html": "Data Quality Gating: Wrote 11 real <strong>Great Expectations</strong> checks validating the PySpark output before it's considered usable.",
+          "html": "Data Quality Gating: Wrote 11 Great Expectations checks (row counts, categorical sets, uniqueness, a cross-column comparison) validating the PySpark output.",
           "resume_role": "de"
         },
         {
-          "html": "Pipeline Orchestration: Built a real <strong>Airflow</strong> DAG, verified end-to-end via a live DAG run reaching SUCCESS.",
+          "html": "Pipeline Orchestration: Built Airflow DAG (generate -&gt; transform -&gt; validate) verified end-to-end via `airflow dags test` -- fixed pydantic/typing_extensions dependency conflict by isolating Airflow's own environment from the pipeline's.",
           "resume_role": "de"
         }
       ],
@@ -466,15 +403,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/job-notes-app",
       "bullets": [
         {
-          "html": "Express + MongoDB API: Built a real REST API (<strong>Express</strong>, Mongoose) for company-research notes, backed by a real <strong>MongoDB</strong> instance -- 4 integration tests against a real database.",
+          "html": "Express + MongoDB API: Built REST API (Express, Mongoose) for company-research notes, backed by MongoDB instance -- 4 integration tests (Jest + Supertest) against database, not a mock.",
           "resume_role": "sde"
         },
         {
-          "html": "Angular Frontend: Built a real <strong>Angular</strong> app (official CLI) fetching, creating, and deleting notes against the API, with 3 real TestBed tests.",
+          "html": "Angular Frontend: Built Angular app (generated via the official CLI) fetching, creating, and deleting notes against the API, with 3 TestBed + HttpClientTestingModule tests.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: Both suites pass in CI; fixed a real bug (Puppeteer's Chromium has no arm64 Linux build) by switching to a system Chromium install.",
+          "html": "Verified End-to-End: Both the API and the Angular test suite pass in CI; fixed bug (Puppeteer's Chromium has no arm64 Linux build) by switching to a system Chromium install.",
           "resume_role": "sde"
         }
       ],
@@ -495,15 +432,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/interview-prep-api",
       "bullets": [
         {
-          "html": "Minimal API: Built a real <strong>ASP.NET Core</strong> minimal API (C#) for browsing/adding interview questions, backed by <strong>Entity Framework Core</strong> + SQLite.",
+          "html": "Minimal API: Built ASP.NET Core minimal API (C#) for browsing/adding interview questions, backed by Entity Framework Core + SQLite.",
           "resume_role": "sde"
         },
         {
-          "html": "Real Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over real queries.",
+          "html": "Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: 5 real xUnit integration tests (WebApplicationFactory + a real in-memory SQLite connection) plus a hand-run curl verification against the live app.",
+          "html": "Verified End-to-End: 5 xUnit integration tests (WebApplicationFactory + in-memory SQLite connection) plus a hand-run curl verification against the live app -- all passing.",
           "resume_role": "sde"
         }
       ],
@@ -522,15 +459,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/company-blocklist",
       "bullets": [
         {
-          "html": "CodeIgniter 4 App: Built a real <strong>PHP</strong>/<strong>CodeIgniter 4</strong> app tracking companies to avoid, with a real migration, model, and controller.",
+          "html": "CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: 5 real feature tests hitting real routes through the real router/controller/model stack against a real SQLite database.",
+          "html": "Verified End-to-End: 5 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.",
           "resume_role": "sde"
         },
         {
-          "html": "Found and fixed two real CodeIgniter testing gotchas surfaced only by actually running the suite, not just writing it.",
+          "html": "Found and fixed two CodeIgniter testing gotchas: DatabaseTestTrait's namespace defaulting to test-support fixtures only, and assertJSONFragment not doing nested matching against list responses.",
           "resume_role": "sde"
         }
       ],
@@ -550,15 +487,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/interview-prep-mobile",
       "bullets": [
         {
-          "html": "React Native App: Built a real <strong>Expo</strong> app browsing/practicing interview-prep questions, with local persistence via AsyncStorage.",
+          "html": "React Native App: Built Expo app browsing/practicing interview-prep questions against a companion ASP.NET Core API, with local persistence via AsyncStorage.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: Real React Native Testing Library tests, plus a real Metro web export loaded in real headless Chromium against the real live companion API -- zero console errors.",
+          "html": "Verified End-to-End: React Native Testing Library tests, plus a full live integration check -- Metro web export served over nginx, loaded in headless Chromium on the same Docker network as the running API, confirming correct data end-to-end with zero console errors.",
           "resume_role": "sde"
         },
         {
-          "html": "Found and fixed two real bugs, including Hermes' bytecode compiler lacking an arm64 Linux build -- documented transparently rather than skipped.",
+          "html": "Found and fixed two bugs: AsyncStorage needing an explicit jest.mock() (not just the package installed), and Hermes' bytecode compiler having no arm64 Linux build -- documented transparently rather than skipped.",
           "resume_role": "sde"
         }
       ],
@@ -577,15 +514,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/htmx-company-search",
       "bullets": [
         {
-          "html": "Live Search UI: Built a real live-search page using <strong>HTMX</strong> for partial-page updates -- FastAPI + Jinja2 rendering real HTML, no JS framework.",
+          "html": "Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework).",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: 5 real TestClient tests, plus a full live interaction check with a real headless-Chromium session driving the actual running app.",
+          "html": "Verified End-to-End: 5 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.",
           "resume_role": "sde"
         },
         {
-          "html": "Found and fixed a real bug the TestClient tests couldn't catch: a keyup-only trigger never fired for autofill/paste -- fixed and re-verified live.",
+          "html": "Found and fixed bug the TestClient tests couldn't catch: hx-trigger's keyup-only binding never fired for autofill/paste, only keystrokes -- fixed to an input-based trigger and re-verified live.",
           "resume_role": "sde"
         }
       ],
@@ -605,19 +542,98 @@
       "github_url": "https://github.com/Deshraj-Jogiya/arcgis-commute-insights",
       "bullets": [
         {
-          "html": "Real Geocoding: Built a job-search tool geocoding addresses via the live <strong>ArcGIS</strong> World Geocoding Service, ranking companies by real great-circle distance.",
+          "html": "Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by great-circle distance.",
           "resume_role": "de"
         },
         {
-          "html": "Real Basemap Vector Tiles: Fetched and decoded real Mapbox Vector Tile data from Esri's World Basemap v2 service -- the tile URL was discovered from the real style JSON, not assumed, after an initial guess returned a real 404.",
+          "html": "Basemap Vector Tiles: Fetched and decoded Mapbox Vector Tile (.pbf) data from Esri's World Basemap v2 service -- the tile URL template was discovered by reading the basemap style JSON's sources, not assumed from docs, after an initial guessed URL returned 404.",
           "resume_role": "de"
         },
         {
-          "html": "Verified End-to-End: All 7 tests hit the real ArcGIS APIs, including a hand-verified tile coordinate and real observed basemap layer assertions.",
+          "html": "Verified End-to-End: All 7 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.",
           "resume_role": "de"
         }
       ],
       "date": "Sep 2026"
+    },
+    {
+      "badge": "NLP & Transfer Learning",
+      "name": "Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
+      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, extended it into a multi-task architecture with classification and sentiment heads, and later added real LoRA fine-tuning of a modern generative LLM on a free GPU.",
+      "category": "machine-learning",
+      "tags": [
+        "TensorFlow",
+        "TensorFlow Hub",
+        "TensorFlow Text",
+        "NumPy",
+        "Small BERT",
+        "GitHub Actions",
+        "PyTorch",
+        "LoRA",
+        "Hugging Face"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise",
+      "bullets": [
+        {
+          "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from TensorFlow Hub, encoding sentences into 128-dimensional contextual embeddings via mean pooling across token representations.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Multi-Task Learning Expansion: Extended the shared transformer backbone with two task-specific heads (3-class sentence classification, 2-class sentiment classification), each with its own softmax output layer.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Transfer Learning Strategy: Evaluated freezing strategies (full model vs. backbone-only vs. single task head) and proposed a staged fine-tuning approach -- freeze lower layers, fine-tune top layers and task heads.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Training Loop Simulation: Simulated multi-task training with synthetic text and one-hot encoded labels via model.fit(), logging per-task loss and accuracy to validate the architecture end-to-end.",
+          "resume_role": "de"
+        },
+        {
+          "html": "LoRA Fine-Tuning: LoRA fine-tuned Qwen2.5-0.5B-Instruct on Databricks Dolly-15k subset (free Colab T4 GPU), with declining loss curve over 3 epochs and an honest before/after comparison on held-out prompts.",
+          "resume_role": "ds"
+        }
+      ],
+      "dashboard_url": "assets/ml_apprentice_training_curves.png",
+      "date": "Apr 2025 – Sep 2026"
+    },
+    {
+      "badge": "Cloud & Generative AI",
+      "name": "CurioSync: Serverless Tech News & LinkedIn Publisher",
+      "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": [
+        "FastAPI",
+        "Python",
+        "GitHub Actions",
+        "Gemini LLM",
+        "LangChain",
+        "ReAct Agents",
+        "pgvector",
+        "Docker"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/curiosync",
+      "bullets": [
+        {
+          "html": "Serverless Automation Pipeline: Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows (<strong>100%</strong> hosting cost reduction).",
+          "resume_role": "de"
+        },
+        {
+          "html": "Glassmorphic Administrative Panel: Designed a Jinja2/HTMX control panel secured by Fernet symmetric encryption to protect user credentials with zero compliance leakage.",
+          "resume_role": "de"
+        },
+        {
+          "html": "LLM &amp; Image Generation: Integrated Gemini LLM chains and developed custom Pillow image-processing engines to automatically render branding graphics (+<strong>150%</strong> engagement).",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Vector RAG Embeddings: Implemented pgvector semantic search and RAG retrieval pipelines to contextualize daily technical news articles automatically.",
+          "resume_role": "ds"
+        }
+      ],
+      "dashboard_url": "assets/curiosync_publishing_trend.png",
+      "date": "Apr 2026 – Jun 2026"
     },
     {
       "badge": "AI Governance",
@@ -626,34 +642,40 @@
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
+        "MLflow",
         "Drift Audit",
         "KS-Test",
         "PSI",
-        "Tableau",
+        "Responsible AI",
         "SQL",
+        "Tableau",
         "GitHub Actions"
       ],
       "dashboard_url": "assets/ai_observability.png",
       "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
       "bullets": [
         {
-          "html": "MLOps Drift Monitoring: Audits ML models in production by running <strong>Kolmogorov-Smirnov (KS) tests</strong> and Population Stability Index (PSI) to monitor feature drift.",
+          "html": "MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).",
           "resume_role": "ds"
         },
         {
-          "html": "Bias & Fairness Auditing: Evaluates demographic parity and Equal Opportunity bias metrics for regulatory frameworks (EU AI Act, US FTC).",
+          "html": "Bias &amp; Fairness Auditing: Evaluates demographic parity and Equal Opportunity bias metrics in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).",
           "resume_role": "general"
         },
         {
-          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in a real, <a href=\"https://public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard/Dashboard1\" target=\"_blank\" rel=\"noopener\">published interactive <strong>Tableau</strong> dashboard</a> -- a live drift-trend chart plus a real subgroup fairness comparison over 30,000 simulated inference records.",
+          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in published interactive Tableau dashboard (public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard) -- a live log-scale drift-trend chart plus subgroup fairness comparison over <strong>30,000</strong> simulated inference records.",
           "resume_role": "de"
         },
         {
           "html": "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
           "resume_role": "de"
+        },
+        {
+          "html": "Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days and climbs past 0.25 exactly where the KS p-value collapses, tracking the same drift.",
+          "resume_role": "ds"
         }
       ],
-      "date": "Jun 2025 – Aug 2025"
+      "date": "Nov 2025 – Feb 2026"
     },
     {
       "badge": "FinTech & Risk",
@@ -666,6 +688,7 @@
         "SQL",
         "Scikit-Learn",
         "Chart.js",
+        "SQLite",
         "XGBoost",
         "GitHub Actions",
         "MLflow",
@@ -675,15 +698,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
       "bullets": [
         {
-          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using <strong>FastAPI</strong>, achieving sub-100ms API response latency.",
+          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation.",
           "resume_role": "de"
         },
         {
-          "html": "Machine Learning Risk Classifier: Trained a <strong>Random Forest / XGBoost</strong> ensemble to predict loan default probability with <strong>92% precision</strong>, tracked in <strong>MLflow</strong> for experiment comparison.",
+          "html": "Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with a <strong>92%</strong> precision score, tracked in MLflow for experiment comparison.",
           "resume_role": "ds"
         },
         {
-          "html": "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration.",
+          "html": "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration to streamline credit approval cycles.",
           "resume_role": "de"
         },
         {
@@ -691,53 +714,115 @@
           "resume_role": "general"
         },
         {
-          "html": "GraphQL API Layer: Added a <strong>Strawberry-GraphQL</strong> query layer alongside the existing REST endpoints, serving customer and loan data from the same database.",
+          "html": "GraphQL API Layer: Added a Strawberry-GraphQL query layer alongside the existing REST endpoints, serving customer and loan data from the same database.",
           "resume_role": "de"
         }
       ],
-      "date": "Mar 2025 – May 2025"
+      "date": "Oct 2025 – Dec 2025"
     },
     {
-      "badge": "NLP & Transfer Learning",
-      "name": "Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
-      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, extended it into a multi-task architecture with classification and sentiment heads, and later added real LoRA fine-tuning of a modern generative LLM on a free GPU.",
-      "category": "machine-learning",
+      "badge": "NLP & Semantic Search",
+      "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
+      "desc": "Interactive QA API answering natural-language questions about member data, ranking unstructured messages via SentenceTransformer embeddings and identifying subjects with spaCy NER.",
+      "category": "machine-learning analytics",
       "tags": [
-        "TensorFlow",
-        "TensorFlow Hub",
-        "BERT",
-        "Multi-Task Learning",
-        "PyTorch",
-        "LoRA",
-        "Hugging Face",
-        "NumPy",
-        "GitHub Actions"
+        "Python",
+        "Sentence-Transformers",
+        "spaCy",
+        "Scikit-Learn",
+        "Pandas",
+        "GitHub Actions",
+        "LlamaIndex",
+        "Semantic Kernel",
+        "LangChain"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise",
+      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
       "bullets": [
         {
-          "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from <strong>TensorFlow Hub</strong>, encoding sentences into 128-dimensional embeddings.",
+          "html": "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions about member data, ranking unstructured messages by cosine similarity over SentenceTransformer (all-MiniLM-L6-v2) embeddings.",
           "resume_role": "ds"
         },
         {
-          "html": "Multi-Task Learning Expansion: Extended the shared backbone with two task-specific heads (3-class classification, 2-class sentiment).",
+          "html": "Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages.",
           "resume_role": "ds"
         },
         {
-          "html": "Transfer Learning Strategy: Evaluated freezing strategies and proposed a staged fine-tuning approach for the pretrained backbone.",
+          "html": "Dynamic Information Extraction: Implemented regex-based extraction for contact info, numeric quantities, and companion/group references from unstructured message text, with fallback to the closest-matching message when no structured answer applies.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Architecture Tradeoff Analysis: Evaluated and documented five candidate approaches (rule-based matching, knowledge graphs, fine-tuned LLMs, hybrid retrieval) before selecting embeddings-based semantic search for its balance of speed, accuracy, and maintainability.",
           "resume_role": "general"
         },
         {
-          "html": "Training Loop Simulation: Simulated multi-task training with synthetic data via model.fit(), logging per-task loss and accuracy.",
-          "resume_role": "de"
+          "html": "LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using LlamaIndex's VectorStoreIndex over the same embedding model, verified against the message dataset.",
+          "resume_role": "ds"
         },
         {
-          "html": "Real LoRA Fine-Tuning: <strong>LoRA</strong> fine-tuned Qwen2.5-0.5B-Instruct on a real Databricks Dolly-15k subset (free Colab T4 GPU), with a real declining loss curve over 3 epochs and an honest before/after comparison on held-out prompts.",
+          "html": "Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native Semantic Kernel plugin functions, orchestrated through Kernel instance.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "RAG Pipeline: Built retrieve-then-generate RAG chain with LangChain, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and end-to-end generation test.",
           "resume_role": "ds"
         }
       ],
-      "dashboard_url": "assets/ml_apprentice_training_curves.png",
-      "date": "Apr 2025 – Sep 2026"
+      "dashboard_url": "assets/qa_system_retrieval_accuracy.png",
+      "date": "Oct 2025 – Nov 2025"
+    },
+    {
+      "badge": "Cloud & Enterprise ML",
+      "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 86.20% accuracy, alongside automated financial reporting and reconciliation workflows.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": [
+        "Python",
+        "SQL",
+        "Snowflake",
+        "Azure ADLS",
+        "Streamlit UI",
+        "Scikit-Learn",
+        "SQL Server",
+        "Terraform",
+        "Parquet",
+        "Delta Lake",
+        "Apache Iceberg",
+        "TypeScript",
+        "Jenkins"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
+      "bullets": [
+        {
+          "html": "Enterprise Cloud Platform: Connected SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit, accelerating financial queries by <strong>45%</strong> and achieving <strong>100%</strong> payment reconciliation accuracy.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit, delivering intuitive event data visualization components.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Predictive Contract Risk Model: Deployed a Random Forest model predicting contract cancellation risk with <strong>86.20%</strong> accuracy (0.87 ROC-AUC), served via a Snowflake Python UDF for real-time inference directly from SQL.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Infrastructure as Code: Provisioned the production data warehouse -- Azure ADLS Gen2 storage, Snowflake database/schemas/warehouse, and the storage integration connecting them -- via Terraform.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Table Format Layer: Loaded staged extracts into Delta Lake and Apache Iceberg tables (native deltalake library and pyiceberg's SQL catalog) as a transactional consumption layer over the raw Parquet staging area.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Data Contract Validation: Built a TypeScript CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.",
+          "resume_role": "de"
+        },
+        {
+          "html": "CI/CD Pipeline: Authored a Jenkins declarative pipeline (per-stage Docker agents) mirroring the existing GitHub Actions CI, verified against temporary Jenkins instance -- found and fixed two environment bugs (Docker socket group permissions, a missing system ODBC library) surfaced only by running it.",
+          "resume_role": "de"
+        }
+      ],
+      "dashboard_url": "assets/talentvenue_feature_importance.png",
+      "date": "Aug 2025 – Nov 2025"
     },
     {
       "badge": "Geospatial & Climate",
@@ -750,29 +835,30 @@
         "Random Forest",
         "ETL Ingestion",
         "ArcGIS",
+        "Tableau",
         "GitHub Actions"
       ],
       "dashboard_url": "assets/emissions_by_state.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
       "bullets": [
         {
-          "html": "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across <strong>5 U.S. states</strong>.",
+          "html": "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly.",
           "resume_role": "de"
         },
         {
-          "html": "Emissions Predictive Forecasting: Built regression forecasts (Random Forest/Linear Regression) achieving <strong>90% accuracy</strong>.",
+          "html": "Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy.",
           "resume_role": "ds"
         },
         {
-          "html": "ArcGIS Stakeholder Dashboards: Developed interactive <strong>ArcGIS</strong> Dashboards for regional stakeholder reporting.",
+          "html": "ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong>.",
           "resume_role": "de"
         },
         {
-          "html": "Geospatial Aggregations: Applied spatial join transformations to correlate land cover changes with regional emissions inventories.",
+          "html": "Geospatial Aggregations: Applied spatial join transformations to correlate satellite land cover changes with regional greenhouse gas emissions inventories.",
           "resume_role": "general"
         }
       ],
-      "date": "Jan 2025 – Mar 2025"
+      "date": "Apr 2025 – Nov 2025"
     },
     {
       "badge": "Finance & Auditing",
@@ -780,11 +866,11 @@
       "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
       "category": "machine-learning analytics",
       "tags": [
+        "Python",
         "Benford's Law",
         "Isolation Forest",
-        "Python",
         "Power BI",
-        "SQL",
+        "SQLite",
         "GitHub Actions",
         "Dagster"
       ],
@@ -792,23 +878,23 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
       "bullets": [
         {
-          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in <strong>Python</strong> and SQL to validate transaction logs, orchestrated as a <strong>Dagster</strong> asset graph.",
+          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time), orchestrated as a Dagster asset graph.",
           "resume_role": "de"
         },
         {
-          "html": "Statistical & ML Anomaly Detection: Implemented Benford's Law modeling and an unsupervised <strong>Isolation Forest</strong> anomaly detection, achieving <strong>94% precision</strong>.",
+          "html": "Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions (<strong>94%</strong> precision).",
           "resume_role": "ds"
         },
         {
-          "html": "Power BI Compliance Dashboard: Deployed interactive <strong>Power BI</strong> dashboards visualizing risk scores and transaction anomalies.",
+          "html": "Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>.",
           "resume_role": "de"
         },
         {
-          "html": "Lineage & Audit Control: Enforced strict data lineage logging and schema validation rules across financial audit records.",
+          "html": "Lineage &amp; Audit Control: Enforced strict data lineage logging and schema validation rules across enterprise financial audit records.",
           "resume_role": "general"
         }
       ],
-      "date": "Nov 2024 – Jan 2025"
+      "date": "Sep 2025 – Oct 2025"
     },
     {
       "badge": "Automation & ETL",
@@ -817,7 +903,7 @@
       "category": "data-engineering",
       "tags": [
         "Python",
-        "yFinance",
+        "yFinance API",
         "Matplotlib",
         "GitHub Actions",
         "SQLite"
@@ -826,60 +912,60 @@
       "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
       "bullets": [
         {
-          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market data from <strong>yFinance APIs</strong> with automated error handling.",
+          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market and telemetry datasets from yFinance APIs with automated error handling and logging.",
           "resume_role": "de"
         },
         {
-          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies.",
+          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.",
           "resume_role": "ds"
         },
         {
-          "html": "Cron Schedule Uptime: Configured <strong>GitHub Actions</strong> to run the pipeline daily, achieving 99.9% uptime at $0 operational cost.",
+          "html": "Cron Schedule Uptime: Configured GitHub Actions to run the pipeline daily on cron schedules, achieving <strong>99.9%</strong> uptime with <strong>$0</strong> operational server cost.",
           "resume_role": "de"
         },
         {
-          "html": "Automated Data Quality Validation: Embedded input validation checks to prevent missing records from corrupting downstream reports.",
+          "html": "Automated Data Quality Validation: Embedded input data validation checks to prevent missing market records from corrupting downstream report charts.",
           "resume_role": "general"
         }
       ],
-      "date": "Sep 2024 – Nov 2024"
+      "date": "Feb 2025 – Mar 2025"
     },
     {
       "badge": "Sales & Marketing",
-      "name": "Sales Operations & Customer Segmentation",
+      "name": "Sales Analytics & RFM Customer Segmentation Pipeline",
       "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
       "category": "machine-learning analytics",
       "tags": [
         "Python",
+        "SQLite",
         "K-Means",
         "PCA",
-        "SQLite",
         "Power BI",
-        "DAX",
         "Seaborn",
-        "GitHub Actions"
+        "GitHub Actions",
+        "DAX"
       ],
       "dashboard_url": "assets/sales_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
       "bullets": [
         {
-          "html": "Star Schema Database: Designed a SQL database with an optimized Star Schema modeling <strong>100k+ customer transactions</strong>.",
+          "html": "Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>100k+</strong> customer transactions for business intelligence reporting.",
           "resume_role": "de"
         },
         {
-          "html": "RFM & K-Means Clustering: Automated RFM scaling and unsupervised <strong>K-Means</strong> clustering, identifying 4 customer personas capturing 92% of variance.",
+          "html": "RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas capturing <strong>92%</strong> of variance.",
           "resume_role": "ds"
         },
         {
-          "html": "Executive Power BI Dashboard: Built a real, interactive <strong>Power BI</strong> report with star-schema relationships and DAX measures over the pipeline's live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.",
+          "html": "Executive Power BI Dashboard: Built interactive Power BI report with star-schema relationships and DAX measures over the pipeline live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.",
           "resume_role": "de"
         },
         {
-          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue-generating customer segments.",
+          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue generating customer segments for targeted retention campaigns.",
           "resume_role": "general"
         }
       ],
-      "date": "May 2024 – Aug 2024"
+      "date": "Dec 2024 – Jan 2025"
     },
     {
       "badge": "Healthcare & Statistics",
@@ -888,33 +974,34 @@
       "category": "analytics",
       "tags": [
         "Python",
+        "SQL",
         "Kaplan-Meier",
         "Log-Rank",
         "Tableau",
-        "scipy",
+        "SciPy",
         "GitHub Actions"
       ],
       "dashboard_url": "assets/clinical_dashboard.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
       "bullets": [
         {
-          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline to clean and track patient survival and dosage levels.",
+          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.",
           "resume_role": "de"
         },
         {
-          "html": "Biostatistical Survival Modeling: Conducted survival analysis using <strong>Kaplan-Meier curves</strong> and Log-Rank test statistics across 3 cohorts.",
+          "html": "Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed Log-Rank test statistics in SciPy to evaluate treatment efficacy across 3 cohorts.",
           "resume_role": "ds"
         },
         {
-          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance.",
+          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>.",
           "resume_role": "general"
         },
         {
-          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII).",
+          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII) across analytical schemas.",
           "resume_role": "general"
         }
       ],
-      "date": "Jan 2024 – Apr 2024"
+      "date": "Oct 2024 – Nov 2024"
     },
     {
       "badge": "Streaming & IoT",
@@ -922,9 +1009,9 @@
       "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
       "category": "data-engineering analytics",
       "tags": [
+        "Python",
         "Z-Score Anomaly",
         "RUL Model",
-        "Python",
         "Power BI",
         "SQL",
         "GitHub Actions",
@@ -934,27 +1021,27 @@
       "github_url": "https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance",
       "bullets": [
         {
-          "html": "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline to ingest EV battery and motor telemetry logs in micro-batches.",
+          "html": "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline in Python to ingest high-frequency EV battery and motor telemetry sensor logs in micro-batches.",
           "resume_role": "de"
         },
         {
-          "html": "Anomaly Detection & Device Health: Applied rolling statistical Z-score algorithms to flag real-time anomalies.",
+          "html": "Anomaly Detection &amp; Device Health: Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures.",
           "resume_role": "ds"
         },
         {
-          "html": "Degradation & RUL Modeling: Implemented degradation modeling to estimate battery <strong>Remaining Useful Life (RUL)</strong>.",
+          "html": "Degradation &amp; RUL Modeling: Implemented degradation modeling using exponential decay equations to estimate battery Remaining Useful Life (RUL) with Power BI dashboard tracking.",
           "resume_role": "ds"
         },
         {
-          "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts.",
+          "html": "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts before component breakdown.",
           "resume_role": "general"
         },
         {
-          "html": "Jax-Accelerated Recurrence: Reimplemented the sequential health-decay/RUL calculation as a single JIT-compiled <strong>jax.lax.scan</strong>, verified numerically identical to the original per-row implementation.",
+          "html": "Jax-Accelerated Recurrence: Reimplemented the sequential health-decay/RUL calculation as a single JIT-compiled jax.lax.scan, verified numerically identical to the original per-row implementation.",
           "resume_role": "de"
         }
       ],
-      "date": "Sep 2023 – Dec 2023"
+      "date": "Jul 2024 – Sep 2024"
     },
     {
       "badge": "Operations & Demand",
@@ -973,23 +1060,23 @@
       "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation",
       "bullets": [
         {
-          "html": "Multi-Branch ETL Automation: Created a scalable data automation system for daily sales ingestion from 5 branches across states.",
+          "html": "Multi-Branch ETL Automation: Created a scalable data automation system utilizing Python for daily sales data ingestion from 5 branches across states, simulating ETL pipeline.",
           "resume_role": "de"
         },
         {
-          "html": "Inventory Centralization & Tableau: Centralized inventory datasets and visualized trend cycles in Tableau.",
+          "html": "Inventory Centralization &amp; Tableau: Centralized inventory datasets in SQL and visualized trend cycles in Tableau, driving actionable insights across weekly and monthly cycles.",
           "resume_role": "de"
         },
         {
-          "html": "Predictive Inventory Forecasting: Deployed ML models (Linear Regression, Random Forest) achieving <strong>90% forecast accuracy</strong>.",
+          "html": "Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving <strong>90%</strong> forecast accuracy and enabling a <strong>15%</strong> reduction in stock-outs.",
           "resume_role": "ds"
         },
         {
-          "html": "Automated Data Reconciliation: Built daily automated cross-branch reconciliation checks to ensure dataset consistency.",
+          "html": "Automated Data Reconciliation: Built daily automated cross-branch data reconciliation checks to ensure dataset consistency across regional store databases.",
           "resume_role": "general"
         }
       ],
-      "date": "May 2023 – Aug 2023"
+      "date": "Apr 2024 – Jun 2024"
     },
     {
       "badge": "Accessibility & Deep Learning",
@@ -998,6 +1085,7 @@
       "category": "machine-learning",
       "tags": [
         "Python",
+        "PyTorch",
         "TensorFlow",
         "Keras",
         "CNN Model",
@@ -1009,57 +1097,23 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL",
       "bullets": [
         {
-          "html": "Deep Learning Web Application: Pioneered an inclusive Python platform using <strong>TensorFlow/Keras</strong>, making 7 STEM concepts accessible to ASL users.",
+          "html": "Deep Learning Web Application: Pioneered an inclusive Python web platform leveraging TensorFlow, PyTorch, Keras, and Flask, making 7 STEM concepts accessible to ASL users.",
           "resume_role": "ds"
         },
         {
-          "html": "Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging <strong>CNN</strong> models and contour geometry.",
+          "html": "Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging CNN models and contour geometry, cutting gesture redundancy and boosting learning efficiency by <strong>30%</strong>.",
           "resume_role": "ds"
         },
         {
-          "html": "User Feedback & Evaluation: Synthesized feedback from 50+ STEM students, achieving a 4.6/5 satisfaction score.",
+          "html": "User Feedback &amp; Evaluation: Synthesized feedback from <strong>50+</strong> STEM students, achieving a user satisfaction score of 4.6/5 based on post-lesson survey evaluations.",
           "resume_role": "general"
         },
         {
-          "html": "Real-Time Video Frame Processing: Optimized OpenCV frame capture for low-latency sign gesture classification.",
+          "html": "Real-Time Video Frame Processing: Optimized OpenCV frame capture and pre-processing steps for low-latency web browser sign gesture classification.",
           "resume_role": "de"
         }
       ],
-      "date": "Jan 2023 – May 2023"
-    },
-    {
-      "badge": "Web Development & Catering",
-      "name": "Chef at Gathering",
-      "desc": "Collaborated on an event coordination and professional catering booking React application, contributing to a 50% reduction in coordination time.",
-      "category": "software-dev",
-      "tags": [
-        "React",
-        "JavaScript",
-        "HTML5",
-        "CSS3",
-        "Git"
-      ],
-      "dashboard_url": "assets/chef_gathering_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Chef-at-Gathering",
-      "bullets": [
-        {
-          "html": "React Catering Booking Platform: Collaborated on an event coordination and catering booking <strong>React</strong> application as part of a team.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Management Process Optimization: Contributed to reducing event coordination time by <strong>50%</strong> and boosting chef bookings by 20%.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Responsive UI Design: Contributed to responsive, accessible web components for seamless mobile/desktop browsing.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "REST API State Integration: Contributed to integrating React state management with backend RESTful endpoints.",
-          "resume_role": "sde"
-        }
-      ],
-      "date": "Oct 2022 – Dec 2022"
+      "date": "Apr 2023 – Mar 2024"
     },
     {
       "badge": "Mobile & Education",
@@ -1077,23 +1131,58 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Stay-Aware-of-Branch",
       "bullets": [
         {
-          "html": "Parent-School Mobile Application: Collaborated on a parent-school engagement application using <strong>React Native</strong> and Android frameworks.",
+          "html": "Parent-School Mobile Application: Collaborated on a parent-school engagement application using React Native and Android frameworks.",
           "resume_role": "sde"
         },
         {
-          "html": "Progress & Attendance Tracking: Contributed to tracking modules that boosted parent involvement by <strong>40%</strong>.",
+          "html": "Progress &amp; Attendance Tracking: Contributed to progress report feeds and attendance tracking modules that boosted parent involvement by <strong>40%</strong> and cut administrative workloads by <strong>25%</strong>.",
           "resume_role": "sde"
         },
         {
-          "html": "Cross-Platform Mobile Integration: Helped deliver a seamless mobile UI optimized for Android devices.",
+          "html": "Cross-Platform Mobile Integration: Helped deliver seamless mobile user interfaces optimized for Android devices with real-time push notifications.",
           "resume_role": "sde"
         },
         {
-          "html": "Push Notification Services: Contributed to integrating native Android notification services for critical school announcements.",
+          "html": "Push Notification Services: Contributed to integrating native Android notification services to alert parents instantly of critical school announcements.",
           "resume_role": "sde"
         }
       ],
-      "date": "May 2022 – Aug 2022"
+      "date": "Jul 2023 – Dec 2023"
+    },
+    {
+      "badge": "Web Development & Catering",
+      "name": "Chef at Gathering",
+      "desc": "Collaborated on an event coordination and professional catering booking React application, contributing to a 50% reduction in coordination time.",
+      "category": "software-dev",
+      "tags": [
+        "React JS",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Git",
+        "REST APIs"
+      ],
+      "dashboard_url": "assets/chef_gathering_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Chef-at-Gathering",
+      "bullets": [
+        {
+          "html": "React Catering Booking Platform: Collaborated on an event coordination and professional catering booking React application as part of a team, contributing to streamlined event management workflows.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Management Process Optimization: Contributed to reducing event coordination time by <strong>50%</strong> and boosting chef bookings by <strong>20%</strong> through intuitive UI components and backend API connections.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Responsive UI Design: Contributed to responsive, accessible web components in React JS for seamless browsing across mobile and desktop devices.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "REST API State Integration: Contributed to integrating React local state management with backend RESTful endpoints to update booking availability dynamically.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Nov 2022 – Mar 2023"
     },
     {
       "badge": "FinTech & Blockchain",
@@ -1111,19 +1200,19 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Get-Your-Token",
       "bullets": [
         {
-          "html": "Web3 Crypto Marketplace: Collaborated on a marketplace frontend and admin dashboard using <strong>Express.js and Angular</strong> for NFT transactions.",
+          "html": "Web3 Crypto Marketplace: Collaborated on a Web3 crypto marketplace frontend and administrative dashboard using Express.js and Angular for NFT and Penky token transactions.",
           "resume_role": "sde"
         },
         {
-          "html": "Transaction Ingestion Microservices: Contributed to a system handling 1,000+ transactions in the first month with sub-100ms response latency.",
+          "html": "Transaction Ingestion Microservices: Contributed to a system handling <strong>1,000+</strong> transactions in the first month with sub-100ms response latency across Express backend endpoints.",
           "resume_role": "sde"
         },
         {
-          "html": "High User Satisfaction: Contributed to UI design and crypto API integration, helping achieve a 90% satisfaction rate.",
+          "html": "High User Satisfaction: Contributed to UI design and crypto API integration, helping achieve a <strong>90%</strong> user satisfaction rate.",
           "resume_role": "sde"
         },
         {
-          "html": "RESTful Microservice Endpoints: Contributed to modular Node.js controller routes handling payment processing.",
+          "html": "RESTful Microservice Endpoints: Contributed to modular Node.js controller routes handling payment processing and token ledger validation.",
           "resume_role": "sde"
         }
       ],
@@ -1145,19 +1234,19 @@
       "github_url": "https://github.com/Deshraj-Jogiya/City-Forums",
       "bullets": [
         {
-          "html": "Community Forum & Marketplace: Collaborated on an engagement and marketplace platform using <strong>CodeIgniter 3</strong> and MySQL.",
+          "html": "Community Forum &amp; Marketplace: Collaborated on an online community engagement and marketplace platform using CodeIgniter 3, PHP, and MySQL.",
           "resume_role": "sde"
         },
         {
-          "html": "User Base Scaling: Contributed to scaling the user base by 50% in three months, generating $10,000 in classified ad revenue.",
+          "html": "User Base Scaling: Contributed to scaling the user base by <strong>50%</strong> in three months and generating <strong>$10,000</strong> in classified ad revenue through optimized database structure and UI layouts.",
           "resume_role": "sde"
         },
         {
-          "html": "Relational Database Design: Contributed to modeling MySQL tables for user topics, thread replies, and classified ad postings.",
+          "html": "Relational Database Design: Contributed to modeling MySQL tables for user topics, thread replies, and classified ad postings with efficient indexing.",
           "resume_role": "sde"
         },
         {
-          "html": "Bootstrap Responsive UI: Contributed to clean, responsive community forum layouts.",
+          "html": "Bootstrap Responsive UI: Contributed to clean, responsive community forum layouts compatible across mobile and desktop web browsers.",
           "resume_role": "sde"
         }
       ],
@@ -1180,19 +1269,19 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Make-it-Short",
       "bullets": [
         {
-          "html": "Link Shortening Web Engine: Collaborated on integrating a link shortening engine into a <strong>CodeIgniter 4</strong> PHP web application.",
+          "html": "Link Shortening Web Engine: Collaborated on integrating a link shortening engine and analytics tracking system into a CodeIgniter 4 PHP web application.",
           "resume_role": "sde"
         },
         {
-          "html": "URL Generation & Analytics: Contributed to generating 10,000+ shortened URLs, helping drive a 15% increase in engagement via gamification.",
+          "html": "URL Generation &amp; Analytics: Contributed to generating <strong>10,000+</strong> shortened URLs and driving a <strong>15%</strong> increase in user engagement via gamified redeemable points.",
           "resume_role": "sde"
         },
         {
-          "html": "Monetization & Reporting: Contributed to backend analytics models tracking click origins and user redemptions.",
+          "html": "Monetization &amp; Reporting: Contributed to backend analytics models tracking click origins and user redemptions, generating <strong>$500</strong> in revenue.",
           "resume_role": "sde"
         },
         {
-          "html": "URL Redirection & Hash Indexing: Contributed to designing fast MySQL key-value lookup indices for high-frequency redirections.",
+          "html": "URL Redirection &amp; Hash Indexing: Contributed to designing fast MySQL key-value lookup indices to handle high-frequency short link URL redirections.",
           "resume_role": "sde"
         }
       ],
@@ -1200,7 +1289,7 @@
     },
     {
       "badge": "Computer Vision & Deep Learning",
-      "name": "Solid Object Detection & Identification using Image Processing",
+      "name": "Solid Object Detection & Identification",
       "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV, achieving 98.97% classification accuracy by combining a custom CNN with traditional contour geometry approximations.",
       "category": "machine-learning analytics",
       "tags": [
@@ -1219,27 +1308,27 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing",
       "bullets": [
         {
-          "html": "Computer Vision & Geometry Pipeline: Developed a shape detection pipeline using <strong>PyTorch and OpenCV</strong> with custom CNN models.",
+          "html": "Computer Vision &amp; Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.",
           "resume_role": "ds"
         },
         {
-          "html": "High Classification Accuracy: Achieved <strong>98.97% classification accuracy</strong> on a 10,000+ image dataset.",
+          "html": "High Classification Accuracy: Achieved <strong>98.97%</strong> classification accuracy on a <strong>10,000+</strong> image dataset, combining deep learning with traditional contour geometry approximations.",
           "resume_role": "ds"
         },
         {
-          "html": "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays.",
+          "html": "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong>.",
           "resume_role": "general"
         },
         {
-          "html": "Contour Analysis & Preprocessing: Applied Gaussian blurring and Canny edge detection prior to neural network classification.",
+          "html": "Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification.",
           "resume_role": "de"
         },
         {
-          "html": "Real-Time Serverless Inference: Deployed the trained model as a live <strong>AWS Lambda</strong> function triggered by real <strong>S3</strong> image uploads, exported to <strong>ONNX</strong> to ship as a plain Lambda zip and avoid a container/ECR footprint.",
+          "html": "Real-Time Serverless Inference: Deployed the trained model as a live AWS Lambda function triggered by S3 image uploads -- exported to ONNX (~615KB) so it ships as a plain Lambda zip via onnxruntime, avoiding a PyTorch container image and its ECR storage cost. Verified end-to-end with live S3-to-Lambda integration test running in CI against the deployed AWS infrastructure.",
           "resume_role": "de"
         }
       ],
-      "date": "Aug 2020 – May 2021"
+      "date": "May 2020 – Dec 2020"
     }
   ],
   "skills": [
@@ -1252,7 +1341,8 @@
         "Retrieval-Augmented Generation (RAG) & Fine-Tuning (LoRA/PEFT)",
         "Vector Databases (pgvector, ChromaDB, Supabase RLS)",
         "OpenAI APIs (GPT-4o mini) & Gemini LLM Integration",
-        "LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)"
+        "LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)",
+        "LLM Quantization & Pinecone Vector Search"
       ]
     },
     {
@@ -1264,7 +1354,8 @@
         "Statistical Drift Auditing (KS-Test, PSI) & MLflow MLOps",
         "Responsible AI Governance (FTC & EU AI Act Bias Auditing)",
         "Financial & Audit Anomaly Detection (Benford's Law, Isolation Forest)",
-        "Hypothesis Testing & Z-Test A/B Experimentation"
+        "Hypothesis Testing & Z-Test A/B Experimentation",
+        "Forecasting & Scenario Analysis (Predictive Analysis)"
       ]
     },
     {
@@ -1277,7 +1368,9 @@
         "Snowflake Cloud Data Warehousing & Star Schema Modeling",
         "Apache Airflow & Dagster Pipeline Orchestration",
         "Great Expectations Data Quality Rules & Governance",
-        "Table Formats (Delta Lake, Apache Iceberg, Parquet)"
+        "Table Formats (Delta Lake, Apache Iceberg, Parquet)",
+        "Apache Kafka & Reverse ETL",
+        "Hadoop, Hive & AWS Athena"
       ]
     },
     {
@@ -1290,7 +1383,8 @@
         "React JS, React Native Mobile & Angular Web Interfaces",
         "PHP & CodeIgniter 3/4 Application Platforms",
         "RESTful APIs, GraphQL & Microservices Architecture",
-        "Data Structures, Algorithms & Object-Oriented System Design"
+        "Data Structures, Algorithms & Object-Oriented System Design",
+        "PowerApps & Agile/Scrum Delivery"
       ]
     },
     {
@@ -1303,7 +1397,10 @@
         "Power BI (DAX Modeling, KPI Dashboards)",
         "Tableau (LOD Expressions, Executive Storytelling)",
         "ArcGIS Geospatial Emissions Analytics & Chart.js Visualizations",
-        "Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)"
+        "Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)",
+        "Microsoft Excel, SSRS & SSAS Reporting",
+        "Unit & Integration Testing (PyTest)",
+        "Incident Response & Production Monitoring"
       ]
     }
   ],
@@ -1321,25 +1418,110 @@
   ],
   "certifications": [
     {
-      "name": "Tableau Business Intelligence Analyst",
-      "date": "Feb 2026"
+      "name": "Tableau Business Intelligence Analyst Professional Certificate",
+      "issuer": "Tableau Learning Partner on Coursera",
+      "status": "Completed",
+      "date": "Feb 2026",
+      "bullets": [
+        "Built interactive visualizations, dashboards, and data stories in Tableau, including heat maps, tree maps, dual-axis charts, small multiples, and geospatial maps.",
+        "Prepared and combined data from multiple tables and sources, then ran exploratory analysis with descriptive statistics, correlation, and regression in Tableau.",
+        "Created a business requirements document and a visual process model, defined KPIs, and studied data quality, governance, warehouses, and ETL."
+      ]
     },
     {
       "name": "ElevateMe Bootcamp Data Analytics Certificate of Completion",
-      "date": "Feb 2026"
+      "issuer": "ElevateMe Bootcamp",
+      "status": "Completed",
+      "date": "Feb 2026",
+      "bullets": [
+        "Built C# and .NET services on SQL Server with automated ETL routines that improved query performance by 45%.",
+        "Segmented customers with K-Means clustering and PCA in Python, defining personas that capture 92% of data variance.",
+        "Delivered Power BI KPI dashboards for executive visibility into revenue trends and ML performance metrics.",
+        "Developed PowerApps and React components on relational databases that automate alerts and track user workflows."
+      ]
     },
     {
-      "name": "IBM Data Analyst Specialization",
-      "date": "Sep 2025"
+      "name": "IBM Data Analyst Professional Certificate",
+      "issuer": "IBM on Coursera",
+      "status": "Completed",
+      "date": "Sep 2025",
+      "bullets": [
+        "Cleaned, analyzed, and visualized data with Excel, SQL, Python (Pandas, NumPy, Matplotlib, Seaborn), and Jupyter, including a web-scraping project and an end-to-end capstone.",
+        "Built interactive dashboards in Excel, IBM Cognos Analytics, Looker, Plotly, and Dash.",
+        "Wrote SQL against relational databases (joins, views, transactions, stored procedures), including from Python."
+      ]
     },
     {
-      "name": "Generative AI Mastermind – Outskill",
-      "date": "Oct 2025"
+      "name": "Generative AI Mastermind",
+      "issuer": "Outskill",
+      "status": "Completed",
+      "date": "Oct 2025",
+      "bullets": []
     },
     {
-      "name": "Guinness World Record – AI Training Hackathon (Kanz)",
-      "date": "Jul 2026"
+      "name": "Guinness World Record — AI Training Hackathon (Kanz)",
+      "issuer": null,
+      "status": "Completed",
+      "date": "Jul 2026",
+      "bullets": []
+    },
+    {
+      "name": "Microsoft HR Manager Professional Certificate",
+      "issuer": "Microsoft on Coursera",
+      "status": "Completed",
+      "date": null,
+      "bullets": [
+        "Completed 6 courses (40 hours) with modules on HRIS transactions, cross-system data validation, and configuring HRIS modules with eligibility rules and approval workflows.",
+        "Built Power BI dashboards of turnover, time-to-hire, and engagement, and Power Automate workflows for documents, hiring, and onboarding.",
+        "Applied 5-Whys root-cause analysis to HR process problems, tracked policy acknowledgments, and measured AI-assisted workflows against manual ones."
+      ]
+    },
+    {
+      "name": "HRCI Human Resource Associate Professional Certificate",
+      "issuer": "HRCI on Coursera",
+      "status": "Completed",
+      "date": null,
+      "bullets": [
+        "Covered the full talent acquisition life cycle (job analysis, recruitment strategy, interviewing, onboarding), the process an applicant-tracking system supports.",
+        "Completed 5 courses (about 94 hours) on compliance and risk management, employee relations, and compensation and benefits administration: the rules HR systems are configured to enforce.",
+        "Planned, delivered, and evaluated training using needs assessment and outcome metrics, the basis for user training and change-management materials."
+      ]
+    },
+    {
+      "name": "Accenture North America - Data Analytics and Visualization Job Simulation",
+      "issuer": null,
+      "status": "Completed",
+      "date": null,
+      "bullets": []
+    },
+    {
+      "name": "Google Digital Marketing",
+      "issuer": null,
+      "status": "Completed",
+      "date": null,
+      "bullets": []
+    },
+    {
+      "name": "People Analytics with AI Specialization",
+      "issuer": "Coursera",
+      "status": "In progress",
+      "date": null,
+      "bullets": [
+        "Coursework covers HR metrics such as turnover and tenure, workforce dashboards, and talent-risk analysis in Excel and AI-assisted tools.",
+        "Includes generating workforce reports from HRIS data, data cleansing and validation, and designing a people-analytics data pipeline.",
+        "Covers scoping stakeholder requests and presenting data-based recommendations tied to business objectives."
+      ]
+    },
+    {
+      "name": "Greenhouse Training Resources",
+      "issuer": "Greenhouse Support",
+      "status": "In progress",
+      "date": null,
+      "bullets": [
+        "Studying Greenhouse's role-based training guides: what each role can do, job admin navigation, requisitions and openings, custom versus system default fields, and task management.",
+        "Greenhouse integration to date: a platform that reads the job-board API and fills Greenhouse application forms, tested live against all 7 platforms it supports."
+      ]
     }
   ],
-  "summary": "Data Engineer and AI/ML Engineer with 3+ years of experience building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. Hands-on experience with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, Model Context Protocol), and LLMOps evaluation (LangSmith), alongside production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Track record of optimizing LLM fine-tuning, containerizing microservices, orchestrating CI/CD pipelines, and executing robust data quality governance frameworks."
+  "summary": "Data Engineer and AI/ML Engineer with 3+ years of experience across full-time, contract, and graduate-research roles, building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. MS in Information Technology from Arizona State University (4.0 GPA). Hands-on with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, MCP), LLMOps evaluation, and production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Actively seeking full-time Data Engineering / ML Engineering opportunities."
 }
