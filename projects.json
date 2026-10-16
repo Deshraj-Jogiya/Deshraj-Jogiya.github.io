@@ -126,7 +126,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Secured a <strong>98%+</strong> data reliability standard in Snowflake by modernizing Star Schema dimensional models with Great Expectations validations.",
+          "html": "Secured a <strong>98%</strong>+ data reliability standard in Snowflake by modernizing Star Schema dimensional models with Great Expectations validations.",
           "resume_role": "de"
         },
         {
@@ -1523,5 +1523,6 @@
       ]
     }
   ],
-  "summary": "Data Engineer and AI/ML Engineer with 3+ years of experience across full-time, contract, and graduate-research roles, building production LLM and agentic AI systems, scalable data pipelines, and full-stack applications. MS in Information Technology from Arizona State University (4.0 GPA). Hands-on with retrieval-augmented generation, agent orchestration (LangChain, LangGraph, MCP), LLMOps evaluation, and production data engineering across Databricks, Snowflake, and AWS/GCP/Azure. Actively seeking full-time Data Engineering / ML Engineering opportunities."
+  "summary": "Data engineer and machine learning engineer (MS Information Technology, ASU, 4.0 GPA) who builds data pipelines, warehouses, and AI systems that run in production. Accelerated multi-source ingestion 60% on AWS and held a 98%+ data reliability standard in Snowflake at Zifatech; raised candidate-matching accuracy 25% with GPT-4o mini at Technoid. Runs a deployed AI platform with a guardrail on every generated claim, a daily spend cap, and 985 automated tests.",
+  "title": "Data Engineer & Machine Learning Engineer"
 }
