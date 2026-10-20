@@ -1,6 +1,6 @@
 # 🧠 Deshraj Jogiya — Data & AI/ML Engineering Portfolio
 
-Welcome to my central portfolio repository! This project hosts my live, interactive portfolio website, demonstrating my expertise in building resilient data pipelines, scalable machine learning architectures, and production-grade automation systems.
+Source code for the portfolio website: projects, certifications, interactive SQL and pipeline demos, and a recruiter chatbot that answers from the same project data.
 
 👉 **Live Site:** **[https://deshraj-jogiya.github.io/](https://deshraj-jogiya.github.io/)**
 
@@ -60,7 +60,7 @@ To demonstrate data engineering, database modeling, and frontend integration ski
 
 ## 🛠️ Showcase Projects (30)
 
-The site shows 30 projects across data engineering, machine learning, analytics and software development. [projects.json](projects.json) is the source of truth (regenerated from my master profile); this table is built from it.
+The site shows 30 projects across data engineering, machine learning, analytics and software development. [projects.json](projects.json) is the source of truth (regenerated from the master profile); this table is built from it.
 
 | Project | Area | Core stack |
 |---|---|---|
