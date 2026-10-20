@@ -259,7 +259,7 @@
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
-      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 985 automated tests.",
+      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.",
       "category": "data-engineering machine-learning",
       "tags": [
         "Python",
@@ -578,7 +578,7 @@
         "LoRA",
         "Hugging Face"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/ML-Apprentice-Take-Home-Exercise",
+      "github_url": "https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning",
       "bullets": [
         {
           "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from TensorFlow Hub, encoding sentences into 128-dimensional contextual embeddings via mean pooling across token representations.",
@@ -606,8 +606,8 @@
     },
     {
       "badge": "Cloud & Generative AI",
-      "name": "CurioSync: Serverless Tech News & LinkedIn Publisher",
-      "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
+      "name": "CurioSync: Fact-Checked LinkedIn Publishing Pipeline",
+      "desc": "LinkedIn publishing pipeline on GitHub Actions (Monday, Wednesday, Friday): Gemini drafts each post only from the live portfolio profile, mechanical checks and a second model pass reject invented claims, and a Pillow image card shows the same facts.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
@@ -623,7 +623,7 @@
       "github_url": "https://github.com/Deshraj-Jogiya/curiosync",
       "bullets": [
         {
-          "html": "Serverless Publishing Pipeline: Scheduled news curation and LinkedIn publishing pipeline running on GitHub Actions cron workflows at <strong>$0</strong> hosting cost, with the LinkedIn Posts API and a daily TIL note committed to a second repository.",
+          "html": "Serverless Publishing Pipeline: LinkedIn publishing pipeline on GitHub Actions cron workflows (Monday, Wednesday, Friday) at <strong>$0</strong> hosting cost, posting through the LinkedIn Posts API with an image card checked against the same facts as the text.",
           "resume_role": "de"
         },
         {
@@ -1125,12 +1125,12 @@
     {
       "badge": "Mobile & Education",
       "name": "Stay Aware of Branch",
-      "desc": "Collaborated on a parent-school engagement application using React Native and Android frameworks, contributing to progress-report and attendance-tracking features that boosted parent involvement by 40%.",
+      "desc": "Collaborated on a native Android parent-school app (Java, Firebase Cloud Messaging), contributing progress-report and attendance-tracking features that boosted parent involvement by 40%.",
       "category": "software-dev",
       "tags": [
-        "React Native",
+        "Java",
         "Android",
-        "JavaScript",
+        "Firebase",
         "Mobile",
         "Git"
       ],
@@ -1138,7 +1138,7 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Stay-Aware-of-Branch",
       "bullets": [
         {
-          "html": "Parent-School Mobile Application: Collaborated on a parent-school engagement application using React Native and Android frameworks.",
+          "html": "Parent-School Mobile Application: Collaborated on a parent-school engagement application as a native Android app (Java).",
           "resume_role": "sde"
         },
         {
@@ -1238,7 +1238,7 @@
         "Git"
       ],
       "dashboard_url": "assets/city_forums_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/City-Forums",
+      "github_url": "",
       "bullets": [
         {
           "html": "Community Forum &amp; Marketplace: Collaborated on an online community engagement and marketplace platform using CodeIgniter 3, PHP, and MySQL.",

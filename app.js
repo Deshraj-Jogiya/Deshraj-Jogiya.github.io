@@ -476,123 +476,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================================================
-    // 8. Dynamic Learning Logs Timeline Ingestion (GitHub API)
-    // ==========================================================================
-    const learningFeed = document.getElementById("learning-feed");
-
-    const loadLearningLogs = async () => {
-        if (!learningFeed) return;
-
-        try {
-            // Fetch list of files in the notes folder of the dev-root-affinity repo
-            const response = await fetch("https://api.github.com/repos/Deshraj-Jogiya/dev-root-affinity/contents/notes");
-            if (!response.ok) throw new Error("Failed to load notes from repository.");
-
-            const files = await response.json();
-            
-            // Filter only markdown/text files and exclude READMEs
-            const noteFiles = files.filter(f => f.type === "file" && (f.name.endsWith(".md") || f.name.endsWith(".txt")) && f.name.toLowerCase() !== "readme.md");
-
-            if (noteFiles.length === 0) {
-                renderFallbackLogs();
-                return;
-            }
-
-            // Sort descending to get the latest files
-            noteFiles.sort((a, b) => b.name.localeCompare(a.name));
-
-            // Fetch the 3 most recent notes
-            const latestNotes = noteFiles.slice(0, 3);
-            learningFeed.innerHTML = ""; // Clear loader
-
-            for (const note of latestNotes) {
-                const noteRes = await fetch(note.download_url);
-                const text = await noteRes.text();
-                
-                const parsedNote = parseNoteContent(note.name, text);
-                renderLogItem(parsedNote);
-            }
-        } catch (err) {
-            console.warn("GitHub API rate limit or network error, loading local fallback logs:", err);
-            renderFallbackLogs();
-        }
-    };
-
-    const parseNoteContent = (filename, content) => {
-        const cleanName = filename.replace(/\.(md|txt)$/i, "");
-        // Note files are named "til-YYYY-MM-DD-topic-slug.md" (older ones "YYYY-MM-DD_topic.md"); both carry the date up front.
-        const dated = cleanName.match(/^(?:til-)?(\d{4}-\d{2}-\d{2})[-_](.+)$/i);
-        let dateStr = "";
-        let titleStr = "";
-
-        if (dated) {
-            const dateObj = new Date(dated[1] + "T00:00:00");
-            dateStr = dateObj.toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
-            titleStr = dated[2].replace(/[-_]/g, " ");
-        } else {
-            dateStr = "Recent Note";
-            titleStr = cleanName.replace(/-/g, " ").replace(/_/g, " ");
-        }
-
-        const lines = content.split("\n");
-        const takeaways = [];
-        lines.forEach(line => {
-            const trimmed = line.trim();
-            const bulletMatch = trimmed.match(/^[-*]\s+(.*)$/);
-            if (bulletMatch) {
-                const bullet = bulletMatch[1].trim();
-                if (bullet && takeaways.length < 3) {
-                    takeaways.push(bullet);
-                }
-            }
-        });
-
-
-        return {
-            date: dateStr,
-            title: titleStr.toUpperCase(),
-            takeaways: takeaways
-        };
-    };
-
-    const renderLogItem = (log) => {
-        const item = document.createElement("div");
-        item.className = "learning-item glass-card learning-card";
-        
-        let bulletsHtml = "";
-        log.takeaways.forEach(pt => {
-            // Convert simple markdown elements like **bold** and `code` to HTML tags
-            let formattedPt = pt
-                .replace(/\*\*(.*?)\*\//g, '<strong>$1</strong>') // Handle nested formats
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\`(.*?)\`/g, '<code>$1</code>');
-            bulletsHtml += `<li>${formattedPt}</li>`;
-        });
-
-        item.innerHTML = `
-            <div class="learning-date">${log.date}</div>
-            <h4 class="learning-title" style="margin-bottom: 0.75rem;">${log.title}</h4>
-            <ul class="learning-takeaways">
-                ${bulletsHtml}
-            </ul>
-        `;
-        learningFeed.appendChild(item);
-    };
-
-    const renderFallbackLogs = () => {
-        // Shown only when the notes cannot be fetched. No sample entries: anything listed here would be invented.
-        if (!learningFeed) return;
-        learningFeed.innerHTML = `
-            <div class="learning-item glass-card learning-card">
-                <h4 class="learning-title" style="margin-bottom: 0.75rem;">NOTES COULD NOT BE LOADED</h4>
-                <p>The daily learning notes are read live from GitHub, which did not respond just now.
-                <a href="https://github.com/Deshraj-Jogiya/dev-root-affinity/tree/main/notes" target="_blank" rel="noopener">Read them on GitHub</a>.</p>
-            </div>`;
-    };
-
-    loadLearningLogs();
-
-    // ==========================================================================
     // 9. Observability Monitor Simulation
     // ==========================================================================
     const runObsBtn = document.getElementById("run-obs-btn");
@@ -3318,8 +3201,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Skills, Certifications & Learning Log",
-            desc: "Take a look at Deshraj's skills category cards, his certifications and training, and the 'Today I Learned' (TIL) log of his ongoing study topics.",
+            title: "Skills & Certifications",
+            desc: "Take a look at Deshraj's skills category cards, and his certifications and training.",
             target: "#skills",
             duration: 11000,
             action: async () => {
@@ -3339,19 +3222,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     certs.classList.remove("tour-highlight");
                 }
 
-                const learning = document.getElementById("learning");
-                if (learning) {
-                    learning.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    learning.classList.add("tour-highlight");
-                }
             },
             cleanup: () => {
                 const skills = document.getElementById("skills");
                 if (skills) skills.classList.remove("tour-highlight");
                 const certs = document.getElementById("certifications");
                 if (certs) certs.classList.remove("tour-highlight");
-                const learning = document.getElementById("learning");
-                if (learning) learning.classList.remove("tour-highlight");
             }
         },
         {
