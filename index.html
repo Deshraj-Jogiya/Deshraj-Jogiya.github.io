@@ -2027,9 +2027,9 @@
 <p class="resume-job-company">Technologies: FastAPI, Python, SQL, Scikit-Learn, Chart.js, SQLite, XGBoost, GitHub Actions, MLflow, GraphQL</p>
 <ul>
 
-<li class="resume-bullet" data-role="de">Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation.</li>
+<li class="resume-bullet" data-role="de">Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation (67 ms median in the test suite).</li>
 
-<li class="resume-bullet" data-role="ds">Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with a <strong>92%</strong> precision score, tracked in MLflow for experiment comparison.</li>
+<li class="resume-bullet" data-role="ds">Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with <strong>93.4%</strong> precision on declined applications (0.92 ROC-AUC on a held-out set), tracked in MLflow for experiment comparison.</li>
 
 <li class="resume-bullet" data-role="de">Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration to streamline credit approval cycles.</li>
 
@@ -2104,7 +2104,7 @@
 
 <li class="resume-bullet" data-role="de">ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong>.</li>
 
-<li class="resume-bullet" data-role="general">Geospatial Aggregations: Applied spatial join transformations to correlate satellite land cover changes with regional greenhouse gas emissions inventories.</li>
+<li class="resume-bullet" data-role="de">Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and exported GeoJSON layers for mapping.</li>
 
 </ul>
 </div>
@@ -2119,7 +2119,7 @@
 
 <li class="resume-bullet" data-role="de">General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time), orchestrated as a Dagster asset graph.</li>
 
-<li class="resume-bullet" data-role="ds">Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions (<strong>94%</strong> precision).</li>
+<li class="resume-bullet" data-role="ds">Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions (<strong>94.7%</strong> precision, measured against a separate table of known injected anomalies).</li>
 
 <li class="resume-bullet" data-role="de">Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>.</li>
 
@@ -2155,13 +2155,13 @@
 <p class="resume-job-company">Technologies: Python, SQLite, K-Means, PCA, Power BI, Seaborn, GitHub Actions, DAX</p>
 <ul>
 
-<li class="resume-bullet" data-role="de">Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>100k+</strong> customer transactions for business intelligence reporting.</li>
+<li class="resume-bullet" data-role="de">Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>106,228</strong> customer transactions (<strong>2,000</strong> customers over 2 years) for business intelligence reporting.</li>
 
-<li class="resume-bullet" data-role="ds">RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas capturing <strong>92%</strong> of variance.</li>
+<li class="resume-bullet" data-role="ds">RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas that explain <strong>93.9%</strong> of the variance in the scaled RFM features.</li>
 
 <li class="resume-bullet" data-role="de">Executive Power BI Dashboard: Built interactive Power BI report with star-schema relationships and DAX measures over the pipeline live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.</li>
 
-<li class="resume-bullet" data-role="general">Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue generating customer segments for targeted retention campaigns.</li>
+<li class="resume-bullet" data-role="general">Pareto 80/20 Insights: Applied Pareto analysis showing the top <strong>20%</strong> of customers generate <strong>79.9%</strong> of revenue, isolating them for targeted retention campaigns.</li>
 
 </ul>
 </div>
@@ -2176,7 +2176,7 @@
 
 <li class="resume-bullet" data-role="de">Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.</li>
 
-<li class="resume-bullet" data-role="ds">Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed Log-Rank test statistics in SciPy to evaluate treatment efficacy across 3 cohorts.</li>
+<li class="resume-bullet" data-role="ds">Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed pairwise log-rank tests (lifelines) and a chi-square adverse-event test (SciPy) to evaluate treatment efficacy across 3 cohorts.</li>
 
 <li class="resume-bullet" data-role="general">Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>.</li>
 
@@ -2218,7 +2218,7 @@
 
 <li class="resume-bullet" data-role="de">Inventory Centralization &amp; Tableau: Centralized inventory datasets in SQL and visualized trend cycles in Tableau, driving actionable insights across weekly and monthly cycles.</li>
 
-<li class="resume-bullet" data-role="ds">Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving <strong>90%</strong> forecast accuracy and enabling a <strong>15%</strong> reduction in stock-outs.</li>
+<li class="resume-bullet" data-role="ds">Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving <strong>90%</strong> forecast accuracy (1 - WAPE on a 28-day chronological holdout, vs <strong>78.4%</strong> for a naive baseline); in a reorder simulation, forecast-driven ordering cut stock-out days by <strong>60.8%</strong>.</li>
 
 <li class="resume-bullet" data-role="general">Automated Data Reconciliation: Built daily automated cross-branch data reconciliation checks to ensure dataset consistency across regional store databases.</li>
 
@@ -2349,7 +2349,7 @@
 
 <li class="resume-bullet" data-role="ds">Computer Vision &amp; Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.</li>
 
-<li class="resume-bullet" data-role="ds">High Classification Accuracy: Achieved <strong>98.97%</strong> classification accuracy on <strong>10,000</strong> generated shape images across 7 classes, combining deep learning with traditional contour geometry approximations.</li>
+<li class="resume-bullet" data-role="ds">High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI), combining deep learning with traditional contour geometry approximations.</li>
 
 <li class="resume-bullet" data-role="general">Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong>.</li>
 

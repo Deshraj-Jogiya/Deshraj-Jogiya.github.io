@@ -724,11 +724,11 @@
       "github_url": "https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline",
       "bullets": [
         {
-          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation.",
+          "html": "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation (67 ms median in the test suite).",
           "resume_role": "de"
         },
         {
-          "html": "Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with a <strong>92%</strong> precision score, tracked in MLflow for experiment comparison.",
+          "html": "Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with <strong>93.4%</strong> precision on declined applications (0.92 ROC-AUC on a held-out set), tracked in MLflow for experiment comparison.",
           "resume_role": "ds"
         },
         {
@@ -884,8 +884,8 @@
           "resume_role": "de"
         },
         {
-          "html": "Geospatial Aggregations: Applied spatial join transformations to correlate satellite land cover changes with regional greenhouse gas emissions inventories.",
-          "resume_role": "general"
+          "html": "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and exported GeoJSON layers for mapping.",
+          "resume_role": "de"
         }
       ],
       "date": "Apr 2025 – Nov 2025",
@@ -913,7 +913,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions (<strong>94%</strong> precision).",
+          "html": "Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions (<strong>94.7%</strong> precision, measured against a separate table of known injected anomalies).",
           "resume_role": "ds"
         },
         {
@@ -982,11 +982,11 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
       "bullets": [
         {
-          "html": "Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>100k+</strong> customer transactions for business intelligence reporting.",
+          "html": "Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>106,228</strong> customer transactions (<strong>2,000</strong> customers over 2 years) for business intelligence reporting.",
           "resume_role": "de"
         },
         {
-          "html": "RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas capturing <strong>92%</strong> of variance.",
+          "html": "RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas that explain <strong>93.9%</strong> of the variance in the scaled RFM features.",
           "resume_role": "ds"
         },
         {
@@ -994,7 +994,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Pareto 80/20 Insights: Applied Pareto analysis to isolate top-tier revenue generating customer segments for targeted retention campaigns.",
+          "html": "Pareto 80/20 Insights: Applied Pareto analysis showing the top <strong>20%</strong> of customers generate <strong>79.9%</strong> of revenue, isolating them for targeted retention campaigns.",
           "resume_role": "general"
         }
       ],
@@ -1023,7 +1023,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed Log-Rank test statistics in SciPy to evaluate treatment efficacy across 3 cohorts.",
+          "html": "Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed pairwise log-rank tests (lifelines) and a chi-square adverse-event test (SciPy) to evaluate treatment efficacy across 3 cohorts.",
           "resume_role": "ds"
         },
         {
@@ -1104,7 +1104,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving <strong>90%</strong> forecast accuracy and enabling a <strong>15%</strong> reduction in stock-outs.",
+          "html": "Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving <strong>90%</strong> forecast accuracy (1 - WAPE on a 28-day chronological holdout, vs <strong>78.4%</strong> for a naive baseline); in a reorder simulation, forecast-driven ordering cut stock-out days by <strong>60.8%</strong>.",
           "resume_role": "ds"
         },
         {
@@ -1355,7 +1355,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "High Classification Accuracy: Achieved <strong>98.97%</strong> classification accuracy on <strong>10,000</strong> generated shape images across 7 classes, combining deep learning with traditional contour geometry approximations.",
+          "html": "High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI), combining deep learning with traditional contour geometry approximations.",
           "resume_role": "ds"
         },
         {
