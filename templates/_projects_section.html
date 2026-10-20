@@ -1,0 +1,95 @@
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="section-header">
+                <h2 class="section-title">Featured case studies</h2>
+                <p class="section-subtitle">Four projects in depth: the problem, the architecture, where the data comes from, the decisions and trade-offs, how it is tested, and the results.</p>
+            </div>
+
+            <div class="featured-grid">
+                {% for project in featured_projects %}
+                {% set cs = case_studies[project.slug] %}
+                <article class="featured-card glass-card">
+                    {% if project.dashboard_url %}
+                    <a class="featured-image" href="/projects/{{ project.slug }}/" tabindex="-1" aria-hidden="true">
+                        <img src="/{{ project.dashboard_url }}" alt="" loading="lazy" decoding="async"
+                             width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
+                    </a>
+                    {% endif %}
+                    <div class="card-content">
+                        <div class="card-badge">{{ project.badge }}</div>
+                        <h3 class="card-title"><a href="/projects/{{ project.slug }}/">{{ cs.title }}</a></h3>
+                        <p class="card-desc">{{ cs.summary }}</p>
+                        <div class="tech-tags">
+                            {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
+                        </div>
+                        <div class="card-actions">
+                            <a href="/projects/{{ project.slug }}/" class="btn btn-sm btn-primary">Read the case study</a>
+                            {% if cs.demo_url %}<a href="{{ cs.demo_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
+                            {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Code ↗</a>{% endif %}
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <div class="section-header more-projects-header">
+                <h2 class="section-title section-title-sm">More projects</h2>
+                <p class="section-subtitle">Data engineering, machine learning, analytics and full-stack work. Each repository's README says where its data comes from.</p>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
+                    <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                    <button class="filter-btn" data-filter="analytics">Analytics &amp; BI</button>
+                    <button class="filter-btn" data-filter="software-dev">Full Stack</button>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                {% for project in other_projects %}
+                <div class="project-card glass-card" data-category="{{ project.category }}">
+                    {% if project.dashboard_url %}
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/{{ project.dashboard_url }}" data-title="{{ project.name }}">
+                        <img src="/{{ project.dashboard_url }}" alt="{{ project.name }} chart" class="card-image" loading="lazy" decoding="async"
+                             width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    {% endif %}
+                    <div class="card-content">
+                        <div class="card-badge">{{ project.badge }}</div>
+                        <h3 class="card-title">{{ project.name }}</h3>
+                        <p class="card-desc">{{ project.desc }}</p>
+                        <div class="tech-tags">
+                            {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
+                        </div>
+                        <div class="card-actions">
+                            {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="section-header more-projects-header">
+                <h2 class="section-title section-title-sm">Team projects</h2>
+                <p class="section-subtitle">Built with a team; each repository's README lists the individual contribution.</p>
+            </div>
+            <div class="projects-grid team-grid">
+                {% for project in team_projects %}
+                <div class="project-card glass-card" data-category="{{ project.category }}">
+                    <div class="card-content">
+                        <div class="card-badge">Team project · {{ project.date }}</div>
+                        <h3 class="card-title">{{ project.name }}</h3>
+                        <p class="card-desc">{{ project.desc }}</p>
+                        <div class="tech-tags">
+                            {% for tag in project.tags[:5] %}<span>{{ tag }}</span>{% endfor %}
+                        </div>
+                        <div class="card-actions">
+                            {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">View repository ↗</a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <p class="lab-callout glass-card">Interactive demos (SQL playground, pipeline monitor, A/B test simulator, architecture explorer) are on the <a href="/lab/">Lab page</a>.</p>
+        </section>

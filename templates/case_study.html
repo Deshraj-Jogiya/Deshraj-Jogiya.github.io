@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% include "_seo.html" %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v={{ asset_version }}">
+</head>
+<body class="subpage">
+{% include "_subpage_header.html" %}
+
+    <main class="main-content case-study">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#projects">Case studies</a> / {{ project.name }}</nav>
+
+        <header class="case-hero">
+            <span class="badge badge-accent">{{ project.badge }}</span>
+            <h1 class="case-title">{{ cs.title }}</h1>
+            <p class="case-summary">{{ cs.summary }}</p>
+            <p class="case-meta">{{ project.date }}{% if cs.audience %} · For: {{ cs.audience }}{% endif %}</p>
+            <div class="hero-actions">
+                {% if cs.demo_url %}<a href="{{ cs.demo_url }}" class="btn btn-primary" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
+                {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-outline" target="_blank" rel="noopener">Code on GitHub ↗</a>{% endif %}
+            </div>
+            {% if cs.demo_note %}<p class="case-note">{{ cs.demo_note }}</p>{% endif %}
+        </header>
+
+        {% if project.dashboard_url %}
+        <figure class="case-figure glass-card">
+            <img src="/{{ project.dashboard_url }}" alt="{{ project.name }}: output chart from the project's pipeline" loading="lazy" decoding="async"
+                 width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
+        </figure>
+        {% endif %}
+
+        <section class="case-section glass-card">
+            <h2>How it works</h2>
+            <ol class="case-steps">
+                {% for step in cs.architecture %}<li>{{ step }}</li>{% endfor %}
+            </ol>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Data</h2>
+            <p>{{ cs.data }}</p>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Problems found and decisions made</h2>
+            <dl class="case-decisions">
+                {% for problem, decision in cs.decisions %}
+                <dt>{{ problem }}</dt>
+                <dd>{{ decision }}</dd>
+                {% endfor %}
+            </dl>
+        </section>
+
+        <div class="case-two-col">
+            <section class="case-section glass-card">
+                <h2>Testing and reliability</h2>
+                <ul>{% for item in cs.reliability %}<li>{{ item }}</li>{% endfor %}</ul>
+            </section>
+            <section class="case-section glass-card">
+                <h2>Results</h2>
+                <ul>{% for item in cs.results %}<li>{{ item }}</li>{% endfor %}</ul>
+            </section>
+        </div>
+
+        <section class="case-section glass-card">
+            <h2>Limits and next steps</h2>
+            <ul>{% for item in cs.limits %}<li>{{ item }}</li>{% endfor %}</ul>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Stack</h2>
+            <div class="tech-tags">{% for tag in project.tags %}<span>{{ tag }}</span>{% endfor %}</div>
+        </section>
+
+        <nav class="case-nav" aria-label="Other case studies">
+            {% for other in featured_projects if other.slug != project.slug %}
+            <a href="/projects/{{ other.slug }}/" class="btn btn-sm btn-outline">{{ case_studies[other.slug].title.split(':')[0] }} →</a>
+            {% endfor %}
+        </nav>
+    </main>
+
+    <footer class="footer-bar">
+{% include "_footer.html" %}
+    </footer>
+    <script src="/app.js?v={{ asset_version }}" defer></script>
+</body>
+</html>

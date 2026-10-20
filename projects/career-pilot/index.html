@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Pilot: a job-search assistant in production | Deshraj Jogiya</title>
+    <meta name="description" content="A self-hosted platform that collects job postings, scores how well each matches the candidate's master profile, drafts a tailored resume and cover letter, and pre-fills application forms. Every application is reviewed and submitted by a person.">
+    <link rel="canonical" href="https://deshraj-jogiya.github.io/projects/career-pilot/">
+    <meta name="author" content="Deshraj Jogiya">
+    <meta name="theme-color" content="#0f172a">
+    <!-- Link previews (LinkedIn, Slack, email) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Deshraj Jogiya">
+    <meta property="og:title" content="Career Pilot: a job-search assistant in production | Deshraj Jogiya">
+    <meta property="og:description" content="A self-hosted platform that collects job postings, scores how well each matches the candidate's master profile, drafts a tailored resume and cover letter, and pre-fills application forms. Every application is reviewed and submitted by a person.">
+    <meta property="og:url" content="https://deshraj-jogiya.github.io/projects/career-pilot/">
+    <meta property="og:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Deshraj Jogiya, Data Engineer and Machine Learning Engineer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Career Pilot: a job-search assistant in production | Deshraj Jogiya">
+    <meta name="twitter:description" content="A self-hosted platform that collects job postings, scores how well each matches the candidate's master profile, drafts a tailored resume and cover letter, and pre-fills application forms. Every application is reviewed and submitted by a person.">
+    <meta name="twitter:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=53e6242179">
+</head>
+<body class="subpage">
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-text">DESHRAJ JOGIYA</a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#experience">Experience</a>
+                <a href="/#projects">Projects</a>
+                <a href="/lab/">Lab</a>
+                <a href="/#contact" class="btn btn-secondary">Connect</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content case-study">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#projects">Case studies</a> / Job Search CRM & AI Application Tailoring Center</nav>
+
+        <header class="case-hero">
+            <span class="badge badge-accent">AI & Process Automation</span>
+            <h1 class="case-title">Career Pilot: a job-search assistant in production</h1>
+            <p class="case-summary">A self-hosted platform that collects job postings, scores how well each matches the candidate's master profile, drafts a tailored resume and cover letter, and pre-fills application forms. Every application is reviewed and submitted by a person.</p>
+            <p class="case-meta">Feb 2026 – Present · For: One job seeker running a long search, and anyone who forks it to run their own copy.</p>
+            <div class="hero-actions">
+                <a href="https://demo.129-146-36-193.sslip.io" class="btn btn-primary" target="_blank" rel="noopener">Live demo ↗</a>
+                <a href="https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation" class="btn btn-outline" target="_blank" rel="noopener">Code on GitHub ↗</a>
+            </div>
+            <p class="case-note">Public demo with a sample profile; automation is off and nothing is ever submitted.</p>
+        </header>
+
+        
+        <figure class="case-figure glass-card">
+            <img src="/assets/career-pilot-flow.svg" alt="Job Search CRM & AI Application Tailoring Center: output chart from the project's pipeline" loading="lazy" decoding="async"
+                 width="960" height="350">
+        </figure>
+        
+
+        <section class="case-section glass-card">
+            <h2>How it works</h2>
+            <ol class="case-steps">
+                <li>Intake from direct ATS boards (Greenhouse, Lever, Ashby, Recruitee, Personio, Workable, SmartRecruiters) and remote job boards, with duplicate removal</li><li>A free rule-based fit score first; only postings that can still reach the tailoring threshold go to the LLM</li><li>LLM tailoring (Claude by default, Gemini and Ollama as alternates) under a daily spending limit</li><li>A non-LLM fact check against the master profile; a failing draft gets up to two rewrites, then goes to human review</li><li>A Chrome extension that pre-fills the application form in the job seeker's own browser</li><li>FastAPI and Jinja2 on an Oracle Cloud VM behind Caddy HTTPS, PostgreSQL on Supabase with row-level security on every table</li>
+            </ol>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Data</h2>
+            <p>Real job postings from public ATS and job-board APIs, and the owner's own profile. The public demo runs on a separate database with a sample profile and no API keys.</p>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Problems found and decisions made</h2>
+            <dl class="case-decisions">
+                
+                <dt>The language model sometimes listed skills the candidate doesn't have</dt>
+                <dd>Every generated resume is checked by ordinary code, not another model, against the master profile. Anything missing from the profile triggers a rewrite, then human review.</dd>
+                
+                <dt>An early version spent far more on API calls than planned</dt>
+                <dd>Postings get a free rule-based score first, a posting that can't reach the tailoring threshold never reaches the model, and a daily spending limit is checked before every paid call.</dd>
+                
+                <dt>Employer sites blocked automated form filling from the cloud server</dt>
+                <dd>Form filling moved into a Chrome extension in the user's own browser. Testing on seven applicant-tracking systems found fields inside Shadow DOM, upload fields hidden behind custom buttons and hidden decoy fields meant for bots, which are now left empty.</dd>
+                
+                <dt>The first location filter wrongly excluded 458 US postings</dt>
+                <dd>It now excludes a posting only when its location names a country outside the US and Canada.</dd>
+                
+            </dl>
+        </section>
+
+        <div class="case-two-col">
+            <section class="case-section glass-card">
+                <h2>Testing and reliability</h2>
+                <ul><li>1,100+ pytest tests in GitHub Actions on every push</li><li>Alembic migrations applied to PostgreSQL in production, with a test that the same chain runs on the demo's SQLite</li><li>Encrypted daily backups, a health-check watchdog that restarts a hung service, and external uptime monitoring</li><li>Row-level security on every table, with a regression test that fails if a new table ships without it</li></ul>
+            </section>
+            <section class="case-section glass-card">
+                <h2>Results</h2>
+                <ul><li>Running in production since February 2026 for a real job search</li><li>Form filling verified live on 7 applicant-tracking systems</li><li>Nothing is submitted or sent without a human click</li></ul>
+            </section>
+        </div>
+
+        <section class="case-section glass-card">
+            <h2>Limits and next steps</h2>
+            <ul><li>Workday forms need an account before any question is reachable, so they are only partly covered</li><li>Custom phone-country pickers on some forms are left at the page's default</li></ul>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Stack</h2>
+            <div class="tech-tags"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>SQLAlchemy</span><span>Alembic</span><span>Jinja2</span><span>Anthropic Claude API</span><span>JavaScript</span><span>Chrome Extension</span><span>ReportLab</span><span>Docker</span><span>GitHub Actions</span><span>Oracle Cloud</span></div>
+        </section>
+
+        <nav class="case-nav" aria-label="Other case studies">
+            
+            <a href="/projects/job-market-lakehouse/" class="btn btn-sm btn-outline">Job Market Lakehouse →</a>
+            
+            <a href="/projects/dbt-warehouse/" class="btn btn-sm btn-outline">Job Search dbt Warehouse →</a>
+            
+            <a href="/projects/finrisk/" class="btn btn-sm btn-outline">FinRisk →</a>
+            
+        </nav>
+    </main>
+
+    <footer class="footer-bar">
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/#projects">Case studies</a>
+            <a href="/lab/">Lab</a>
+            <a href="https://github.com/Deshraj-Jogiya" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:djogiya786@gmail.com">Email</a>
+        </nav>
+        <p>&copy; 2026 Deshraj Jogiya. Static site generated with Python and Jinja2, hosted on GitHub Pages.</p>
+        <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
+    </footer>
+    <script src="/app.js?v=53e6242179" defer></script>
+</body>
+</html>

@@ -300,8 +300,11 @@
           "resume_role": "de"
         }
       ],
-      "dashboard_url": "assets/career_pilot_dashboard.png",
-      "date": "Feb 2026 – Present"
+      "dashboard_url": "assets/career-pilot-flow.svg",
+      "date": "Feb 2026 – Present",
+      "slug": "career-pilot",
+      "featured": 1,
+      "team": false
     },
     {
       "badge": "Reactive Systems",
@@ -331,7 +334,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "team": false
     },
     {
       "badge": "Data Warehousing",
@@ -359,7 +363,10 @@
           "resume_role": "de"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "slug": "dbt-warehouse",
+      "featured": 3,
+      "team": false
     },
     {
       "badge": "Big Data & Orchestration",
@@ -392,7 +399,10 @@
           "resume_role": "de"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "slug": "job-market-lakehouse",
+      "featured": 2,
+      "team": false
     },
     {
       "badge": "Full Stack",
@@ -421,7 +431,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "team": false
     },
     {
       "badge": "Full Stack",
@@ -450,7 +461,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "team": false
     },
     {
       "badge": "Full Stack",
@@ -477,7 +489,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "team": false
     },
     {
       "badge": "Full Stack",
@@ -505,7 +518,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "team": false
     },
     {
       "badge": "Full Stack",
@@ -532,7 +546,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "team": false
     },
     {
       "badge": "Geospatial",
@@ -560,7 +575,8 @@
           "resume_role": "de"
         }
       ],
-      "date": "Sep 2026"
+      "date": "Sep 2026",
+      "team": false
     },
     {
       "badge": "NLP & Transfer Learning",
@@ -601,8 +617,9 @@
           "resume_role": "ds"
         }
       ],
-      "dashboard_url": "assets/ml_apprentice_training_curves.png",
-      "date": "Apr 2025 – Sep 2026"
+      "dashboard_url": "assets/ml_apprentice_embeddings.png",
+      "date": "Apr 2025 – Sep 2026",
+      "team": false
     },
     {
       "badge": "Cloud & Generative AI",
@@ -640,7 +657,8 @@
         }
       ],
       "dashboard_url": "assets/curiosync_publishing_trend.png",
-      "date": "Apr 2026 – Jun 2026"
+      "date": "Apr 2026 – Jun 2026",
+      "team": false
     },
     {
       "badge": "AI Governance",
@@ -682,7 +700,8 @@
           "resume_role": "ds"
         }
       ],
-      "date": "Nov 2025 – Feb 2026"
+      "date": "Nov 2025 – Feb 2026",
+      "team": false
     },
     {
       "badge": "FinTech & Risk",
@@ -725,7 +744,10 @@
           "resume_role": "de"
         }
       ],
-      "date": "Oct 2025 – Dec 2025"
+      "date": "Oct 2025 – Dec 2025",
+      "slug": "finrisk",
+      "featured": 4,
+      "team": false
     },
     {
       "badge": "NLP & Semantic Search",
@@ -774,8 +796,8 @@
           "resume_role": "ds"
         }
       ],
-      "dashboard_url": "assets/qa_system_retrieval_accuracy.png",
-      "date": "Oct 2025 – Nov 2025"
+      "date": "Oct 2025 – Nov 2025",
+      "team": false
     },
     {
       "badge": "Cloud & Enterprise ML",
@@ -829,7 +851,8 @@
         }
       ],
       "dashboard_url": "assets/talentvenue_feature_importance.png",
-      "date": "Aug 2025 – Nov 2025"
+      "date": "Aug 2025 – Nov 2025",
+      "team": false
     },
     {
       "badge": "Geospatial & Climate",
@@ -845,7 +868,7 @@
         "Tableau",
         "GitHub Actions"
       ],
-      "dashboard_url": "assets/emissions_by_state.png",
+      "dashboard_url": "assets/co2_forecast_vs_actual.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
       "bullets": [
         {
@@ -865,7 +888,8 @@
           "resume_role": "general"
         }
       ],
-      "date": "Apr 2025 – Nov 2025"
+      "date": "Apr 2025 – Nov 2025",
+      "team": false
     },
     {
       "badge": "Finance & Auditing",
@@ -901,7 +925,8 @@
           "resume_role": "general"
         }
       ],
-      "date": "Sep 2025 – Oct 2025"
+      "date": "Sep 2025 – Oct 2025",
+      "team": false
     },
     {
       "badge": "Automation & ETL",
@@ -935,7 +960,8 @@
           "resume_role": "general"
         }
       ],
-      "date": "Feb 2025 – Mar 2025"
+      "date": "Feb 2025 – Mar 2025",
+      "team": false
     },
     {
       "badge": "Sales & Marketing",
@@ -972,7 +998,8 @@
           "resume_role": "general"
         }
       ],
-      "date": "Dec 2024 – Jan 2025"
+      "date": "Dec 2024 – Jan 2025",
+      "team": false
     },
     {
       "badge": "Healthcare & Statistics",
@@ -1008,7 +1035,8 @@
           "resume_role": "general"
         }
       ],
-      "date": "Oct 2024 – Nov 2024"
+      "date": "Oct 2024 – Nov 2024",
+      "team": false
     },
     {
       "badge": "Streaming & IoT",
@@ -1048,7 +1076,8 @@
           "resume_role": "de"
         }
       ],
-      "date": "Jul 2024 – Sep 2024"
+      "date": "Jul 2024 – Sep 2024",
+      "team": false
     },
     {
       "badge": "Operations & Demand",
@@ -1083,7 +1112,8 @@
           "resume_role": "general"
         }
       ],
-      "date": "Apr 2024 – Jun 2024"
+      "date": "Apr 2024 – Jun 2024",
+      "team": false
     },
     {
       "badge": "Accessibility & Deep Learning",
@@ -1120,7 +1150,8 @@
           "resume_role": "de"
         }
       ],
-      "date": "Apr 2023 – Mar 2024"
+      "date": "Apr 2023 – Mar 2024",
+      "team": false
     },
     {
       "badge": "Mobile & Education",
@@ -1154,7 +1185,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Jul 2023 – Dec 2023"
+      "date": "Jul 2023 – Dec 2023",
+      "team": true
     },
     {
       "badge": "Web Development & Catering",
@@ -1189,7 +1221,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Nov 2022 – Mar 2023"
+      "date": "Nov 2022 – Mar 2023",
+      "team": true
     },
     {
       "badge": "FinTech & Blockchain",
@@ -1223,7 +1256,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Jan 2022 – Apr 2022"
+      "date": "Jan 2022 – Apr 2022",
+      "team": true
     },
     {
       "badge": "Web Development & Community",
@@ -1238,7 +1272,7 @@
         "Git"
       ],
       "dashboard_url": "assets/city_forums_dashboard.png",
-      "github_url": "",
+      "github_url": "https://github.com/Deshraj-Jogiya/City-Forums",
       "bullets": [
         {
           "html": "Community Forum &amp; Marketplace: Collaborated on an online community engagement and marketplace platform using CodeIgniter 3, PHP, and MySQL.",
@@ -1257,7 +1291,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "Sep 2021 – Dec 2021"
+      "date": "Sep 2021 – Dec 2021",
+      "team": true
     },
     {
       "badge": "Web Services & Gamification",
@@ -1292,7 +1327,8 @@
           "resume_role": "sde"
         }
       ],
-      "date": "May 2021 – Aug 2021"
+      "date": "May 2021 – Aug 2021",
+      "team": true
     },
     {
       "badge": "Computer Vision & Deep Learning",
@@ -1335,7 +1371,8 @@
           "resume_role": "de"
         }
       ],
-      "date": "May 2020 – Dec 2020"
+      "date": "May 2020 – Dec 2020",
+      "team": false
     }
   ],
   "skills": [

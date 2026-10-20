@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deshraj Jogiya | {{ title }} Portfolio</title>
+{% include "_seo.html" %}
     <!-- Modern Typography: Outfit & Inter from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2.0.0">
+    <link rel="stylesheet" href="/style.css?v={{ asset_version }}">
 </head>
 <body>
     <!-- Floating Background Orbs for Depth -->
@@ -32,7 +32,7 @@
                 <a href="#about">About</a>
                 <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
-                <a href="#interactive">Interactive</a>
+                <a href="/lab/">Lab</a>
                 <a href="#skills">Skills</a>
                 <a href="#certifications">Certifications</a>
                 <a href="#recommendations">Recommendations</a>
@@ -51,34 +51,40 @@
         <!-- Hero Section -->
         <section id="about" class="hero-section">
             <div class="hero-left">
-                <span class="badge badge-accent">Data Engineering &amp; Machine Learning</span>
-                <h1 class="hero-title">Designing Resilient Pipelines <br><span class="gradient-text">Engineering AI Insights</span></h1>
-                
+                <span class="badge badge-accent">Open to Data Engineer &amp; ML Engineer roles</span>
+                <h1 class="hero-title">Deshraj Jogiya</h1>
+                <p class="hero-role">Data Engineer &amp; Machine Learning Engineer <span class="hero-sep">·</span> Tempe, AZ <span class="hero-sep">·</span> open to relocation</p>
+                <p class="hero-proof">
+                    Builds and runs <a href="/projects/career-pilot/">Career Pilot</a>, a job-search platform in production: LLM resume tailoring checked against a master profile by plain code, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.
+                </p>
+                <div class="hero-actions">
+                    <button id="resume-hero-btn" class="btn btn-primary">View Resume</button>
+                    <a href="https://demo.129-146-36-193.sslip.io" class="btn btn-outline" target="_blank" rel="noopener">Career Pilot live demo ↗</a>
+                    <a href="#projects" class="btn btn-outline">Case studies</a>
+                </div>
+
                 <!-- Typing Terminal Header -->
                 <div class="terminal-text">
                     <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
                 </div>
-                
                 <p class="hero-description">
-                    I am a Master of Science in Information Technology graduate from Arizona State University (GPA: 4.0/4.0), specializing in scalable ETL/ELT pipelines, real-time IoT telematics, machine learning models, and automated data observability frameworks using Python, SQL, and advanced business intelligence analytics.
+                    MS in Information Technology, Arizona State University (4.0 GPA). Data pipelines, warehouses and machine learning systems in Python, SQL, PySpark, dbt, Airflow, Snowflake and Databricks, with tests and data-quality checks built in.
                 </p>
-                <div class="hero-actions">
-                    <a href="#projects" class="btn btn-primary">Explore Pipelines</a>
-                    <button id="resume-hero-btn" class="btn btn-outline">View Resume</button>
-                    <button id="ask-ai-hero-btn" class="btn btn-outline">Ask AI Assistant 💬</button>
-                    <button id="start-tour-btn" class="btn btn-tour-hero">Recruiter Tour ⚡</button>
+                <div class="hero-actions hero-actions-secondary">
+                    <button id="ask-ai-hero-btn" class="btn btn-outline btn-sm">Ask the AI assistant 💬</button>
+                    <button id="start-tour-btn" class="btn btn-tour-hero btn-sm">Guided tour ⚡</button>
                 </div>
             </div>
-            
+
             <!-- Quick Link Cards / Stats -->
             <div class="hero-right">
                 <!-- Professional Profile Card -->
                 <div class="profile-card glass-card">
                     <div class="profile-image-container">
-                        <img src="assets/profile.jpg" alt="Deshraj Jogiya" class="profile-image">
+                        <img src="/assets/profile.jpg" alt="Deshraj Jogiya" class="profile-image" width="{{ img_sizes['assets/profile.jpg'][0] }}" height="{{ img_sizes['assets/profile.jpg'][1] }}" fetchpriority="high">
                     </div>
                     <div class="profile-details">
-                        <h3>Deshraj Jogiya</h3>
+                        <p class="profile-name">Deshraj Jogiya</p>
                         <p class="profile-title">{{ title }}</p>
                     </div>
                 </div>
@@ -92,6 +98,102 @@
                     {% endfor %}
                 </div>
             </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="section-header">
+                <h2 class="section-title">Featured case studies</h2>
+                <p class="section-subtitle">Four projects in depth: the problem, the architecture, where the data comes from, the decisions and trade-offs, how it is tested, and the results.</p>
+            </div>
+
+            <div class="featured-grid">
+                {% for project in featured_projects %}
+                {% set cs = case_studies[project.slug] %}
+                <article class="featured-card glass-card">
+                    {% if project.dashboard_url %}
+                    <a class="featured-image" href="/projects/{{ project.slug }}/" tabindex="-1" aria-hidden="true">
+                        <img src="/{{ project.dashboard_url }}" alt="" loading="lazy" decoding="async"
+                             width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
+                    </a>
+                    {% endif %}
+                    <div class="card-content">
+                        <div class="card-badge">{{ project.badge }}</div>
+                        <h3 class="card-title"><a href="/projects/{{ project.slug }}/">{{ cs.title }}</a></h3>
+                        <p class="card-desc">{{ cs.summary }}</p>
+                        <div class="tech-tags">
+                            {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
+                        </div>
+                        <div class="card-actions">
+                            <a href="/projects/{{ project.slug }}/" class="btn btn-sm btn-primary">Read the case study</a>
+                            {% if cs.demo_url %}<a href="{{ cs.demo_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
+                            {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Code ↗</a>{% endif %}
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <div class="section-header more-projects-header">
+                <h2 class="section-title section-title-sm">More projects</h2>
+                <p class="section-subtitle">Data engineering, machine learning, analytics and full-stack work. Each repository's README says where its data comes from.</p>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
+                    <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                    <button class="filter-btn" data-filter="analytics">Analytics &amp; BI</button>
+                    <button class="filter-btn" data-filter="software-dev">Full Stack</button>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                {% for project in other_projects %}
+                <div class="project-card glass-card" data-category="{{ project.category }}">
+                    {% if project.dashboard_url %}
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/{{ project.dashboard_url }}" data-title="{{ project.name }}">
+                        <img src="/{{ project.dashboard_url }}" alt="{{ project.name }} chart" class="card-image" loading="lazy" decoding="async"
+                             width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    {% endif %}
+                    <div class="card-content">
+                        <div class="card-badge">{{ project.badge }}</div>
+                        <h3 class="card-title">{{ project.name }}</h3>
+                        <p class="card-desc">{{ project.desc }}</p>
+                        <div class="tech-tags">
+                            {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
+                        </div>
+                        <div class="card-actions">
+                            {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="section-header more-projects-header">
+                <h2 class="section-title section-title-sm">Team projects</h2>
+                <p class="section-subtitle">Built with a team; each repository's README lists the individual contribution.</p>
+            </div>
+            <div class="projects-grid team-grid">
+                {% for project in team_projects %}
+                <div class="project-card glass-card" data-category="{{ project.category }}">
+                    <div class="card-content">
+                        <div class="card-badge">Team project · {{ project.date }}</div>
+                        <h3 class="card-title">{{ project.name }}</h3>
+                        <p class="card-desc">{{ project.desc }}</p>
+                        <div class="tech-tags">
+                            {% for tag in project.tags[:5] %}<span>{{ tag }}</span>{% endfor %}
+                        </div>
+                        <div class="card-actions">
+                            {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">View repository ↗</a>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <p class="lab-callout glass-card">Interactive demos (SQL playground, pipeline monitor, A/B test simulator, architecture explorer, decision-threshold explorer) are on the <a href="/lab/">Lab page</a>.</p>
         </section>
 
         <!-- Experience Showcase Section -->
@@ -124,492 +226,6 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects-section">
-            <div class="section-header">
-                <h2 class="section-title">Relentless Execution: Portfolio Repositories</h2>
-                <p class="section-subtitle">Filter through active production-ready implementations built with end-to-end automation, modeling, and custom dashboards.</p>
-                
-                <!-- Project Filters -->
-                <div class="filter-controls">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
-                    <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
-                    <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
-                    <button class="filter-btn" data-filter="analytics">Analytics & BI</button>
-                    <button class="filter-btn" data-filter="software-dev">Full Stack</button>
-                </div>
-            </div>
-
-            <div class="projects-grid">
-                {% for project in projects %}
-                <div class="project-card glass-card" data-category="{{ project.category }}">
-                    {% if project.dashboard_url %}
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="{{ project.dashboard_url }}">
-                        <img src="{{ project.dashboard_url }}" alt="{{ project.name }} Dashboard" class="card-image">
-                        <div class="image-overlay">
-                            <span>Zoom Dashboard 🔍</span>
-                        </div>
-                    </div>
-                    {% else %}
-                    <div class="card-image-wrapper card-image-placeholder" aria-hidden="true">
-                        <span class="placeholder-badge">{{ project.badge }}</span>
-                        <span class="placeholder-tags">{{ project.tags[:4] | join(" · ") }}</span>
-                    </div>
-                    {% endif %}
-                    <div class="card-content">
-                        <div class="card-badge">{{ project.badge }}</div>
-                        <h3 class="card-title">{{ project.name }}</h3>
-                        <p class="card-desc">{{ project.desc }}</p>
-                        <div class="tech-tags">
-                            {% for tag in project.tags %}
-                            <span>{{ tag }}</span>
-                            {% endfor %}
-                        </div>
-                        <div class="card-actions">
-                            {% if project.github_url %}
-                            <a href="{{ project.github_url }}" target="_blank" class="btn btn-sm btn-primary">View Repository 🔗</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div> <!-- End of projects-grid -->
-        </section>
-
-        <!-- Interactive Recruiter Showcase Section -->
-        <section id="interactive" class="interactive-section">
-            <div class="section-header">
-                <h2 class="section-title">Interactive Engineering Demos</h2>
-                <p class="section-subtitle">Test and monitor pipeline diagnostics or execute analytical SQL queries directly in-browser to see how data decisions are made.</p>
-            </div>
-            
-            <div class="interactive-grid" style="display: flex; flex-direction: column; gap: 3rem; max-width: 1000px; margin: 0 auto;">
-                <!-- SQL Analytics Playground -->
-                <div class="sql-widget glass-card">
-                    <div class="sql-header">
-                        <h3 class="sql-title">📊 SQL Analytics Playground</h3>
-                    </div>
-                    <div class="sql-selector-group" style="margin-top: 1.5rem;">
-                        <select id="sql-query-select" class="sql-select">
-                            <option value="career_pilot_intake">Live Job Postings by Intake Source (Career Pilot)</option>
-                            <option value="dbt_application_outcomes">Application Outcomes &amp; Days to Decision (dbt Warehouse)</option>
-                            <option value="lakehouse_salary_by_industry">Average &amp; Top Salary by Industry over 60k Postings (Job Market Lakehouse)</option>
-                            <option value="revenue_by_segment">Total Revenue &amp; Customer Count by Segment (Sales Segmentation)</option>
-                            <option value="anomaly_risk_claims">Top 5 Audit Compliance Risk Tax Claims (Tax Anomaly Audit)</option>
-                            <option value="survival_by_treatment">Oncology Trial Survival Rate &amp; BP by Dosage Arm (Clinical Trials)</option>
-                            <option value="drift_by_feature">Observability Log Data Drift &amp; KS-Test Metrics (AI Observability)</option>
-                            <option value="emissions_by_state">Net Carbon Emissions &amp; Forest Area by State (Land Use Emissions)</option>
-                            <option value="credit_fraud_risk">Applicant Loan Decisioning Tiers &amp; Fraud Flag (Credit Risk)</option>
-                            <option value="iot_telematics">Telemetry Vibration Alert Log (IoT Telematics)</option>
-                            <option value="simulated_sales_forecast">Unit Sales &amp; Average Stock Level by Branch (Sales Simulation)</option>
-                        </select>
-                        <button class="btn btn-accent sql-btn-run" id="run-sql-btn" style="flex-shrink: 0; padding: 0.75rem 1.5rem;">Execute Query ⚡</button>
-                    </div>
-                    
-                    <div class="sql-editor-container" id="sql-editor" style="margin-top: 1.5rem;"></div>
-                    
-                    <!-- Project Value & Key Takeaways -->
-                    <div class="recruiter-insights-card" id="recruiter-insights">
-                        <div class="recruiter-insight-title">
-                            💡 Project Value &amp; Key Takeaways
-                        </div>
-                        <div class="recruiter-insight-text" id="recruiter-insight-text">
-                            Select a query above to see the business value of this data engineering task and the core skills it demonstrates.
-                        </div>
-                        <div class="recruiter-insight-takeaway" id="recruiter-insight-takeaway">
-                            Key Takeaway: -
-                        </div>
-                    </div>
-                    
-                    <div class="sql-results-panel">
-                        <div class="sql-results-title">📋 Query Results Output</div>
-                        <div class="sql-output-flex" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem;">
-                            <!-- Table container -->
-                            <div class="sql-table-container" style="flex: 1.2; min-width: 280px; width: 100%;">
-                                <table class="sql-table-data" id="sql-results-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Click 'Execute Query' to fetch database records...</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- Interactive Chart container -->
-                            <div id="sql-chart-container" class="glass-card" style="display: none; flex: 0.8; min-width: 280px; width: 100%; padding: 1.25rem; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: var(--border-radius-md); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);">
-                                <canvas id="sql-results-chart" style="width: 100%; max-height: 250px;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Live ETL Observability Monitor -->
-                <div class="observability-widget glass-card">
-                    <div class="obs-header">
-                        <h3 class="obs-title">🤖 Live ETL Pipeline Observability Monitor</h3>
-                        <div class="obs-status idle" id="obs-status">
-                            <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Observability Explanatory Box -->
-                    <div class="obs-info-box" style="background: rgba(59, 130, 246, 0.04); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
-                        <strong>💡 What is this?</strong> This widget simulates a real-time data engineering pipeline monitoring system. In production, data pipelines process millions of rows daily and can fail silently due to bad data. 
-                        Click <strong>"Run Pipeline Diagnostics"</strong> to run a live validation check. You'll see how data ingestion, quality checks, machine learning scoring, and database commits flow sequentially, demonstrating automated pipeline monitoring and observability skills.
-                    </div>
-                    
-                    <!-- Pipeline Flow Diagram -->
-                    <div class="pipeline-flow-container">
-                        <div class="pipeline-flow">
-                            <div class="pipeline-line"></div>
-                            <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
-                            
-                            <div class="pipeline-node-item" id="node-ingest">
-                                <div class="pipeline-node-icon">📥</div>
-                                <div class="pipeline-node-label">Ingest</div>
-                            </div>
-                            <div class="pipeline-node-item" id="node-validate">
-                                <div class="pipeline-node-icon">🛡️</div>
-                                <div class="pipeline-node-label">Validate</div>
-                            </div>
-                            <div class="pipeline-node-item" id="node-score">
-                                <div class="pipeline-node-icon">🧠</div>
-                                <div class="pipeline-node-label">ML Score</div>
-                            </div>
-                            <div class="pipeline-node-item" id="node-commit">
-                                <div class="pipeline-node-icon">💾</div>
-                                <div class="pipeline-node-label">Commit</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="obs-content" style="margin-top: 1.5rem;">
-                        <!-- Tab Navigation for Observability Widget -->
-                        <div class="obs-tab-nav">
-                            <button class="obs-tab-btn active" data-tab="console">🖥️ Console Outputs</button>
-                            <button class="obs-tab-btn" data-tab="qa-report">🛡️ Data QA Audit Report</button>
-                        </div>
-                        
-                        <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
-                            <div class="obs-panel-content active" id="obs-console-panel">
-                                <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-                                    <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-                                        <div style="display: flex; gap: 0.35rem;">
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
-                                        </div>
-                                        <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
-                                    </div>
-                                    <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
-                                        <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
-                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
-                                    <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
-                                        🕒 Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="obs-metrics-panel">
-                            <div class="obs-metrics-grid">
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-latency">0.00s</div>
-                                    <div class="obs-metric-lbl">ETL Latency</div>
-                                </div>
-                                <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-                                    <div>
-                                        <div class="obs-metric-val" id="metric-reliability">98.2%</div>
-                                        <div class="obs-metric-lbl">Reliability (30d)</div>
-                                    </div>
-                                    <div class="obs-history-dots" style="display: flex; gap: 3px; justify-content: center; margin-top: 0.4rem;">
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span id="reliability-drift-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                    </div>
-                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">59/60 Daily Runs Successful</div>
-                                </div>
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-rows">0</div>
-                                    <div class="obs-metric-lbl">Processed Rows</div>
-                                </div>
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--accent-emerald);">Stable</div>
-                                    <div class="obs-metric-lbl">Drift Status</div>
-                                </div>
-                            </div>
-                            <div class="obs-actions" style="margin-top: 1.5rem;">
-                                <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics 🚀</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- Data Science & Machine Learning Experiments -->
-                <div class="experiments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
-                    <!-- A/B Testing Simulator Widget -->
-                    <div id="ab-testing-widget" class="glass-card">
-                        <div class="widget-header">
-                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">🧪 A/B Testing &amp; Hypothesis Testing Simulator</h3>
-                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Compute real-time Z-scores &amp; p-values for experimental conversions.</p>
-                        </div>
-                        
-                        <div class="widget-body">
-                            <div class="ab-inputs-row ab-inputs-grid">
-                                <div class="input-group">
-                                    <label for="ab-a-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
-                                        <span>Control (A) Target:</span>
-                                        <span id="ab-a-target-val" style="color: var(--accent-indigo, #6366f1); font-weight: 700;">10%</span>
-                                    </label>
-                                    <input type="range" id="ab-a-target-input" min="1" max="30" value="10" step="1" style="width: 100%; accent-color: var(--accent-indigo, #6366f1); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
-                                </div>
-                                <div class="input-group">
-                                    <label for="ab-b-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
-                                        <span>Challenger (B) Target:</span>
-                                        <span id="ab-b-target-val" style="color: var(--accent-pink, #ec4899); font-weight: 700;">13%</span>
-                                    </label>
-                                    <input type="range" id="ab-b-target-input" min="1" max="30" value="13" step="1" style="width: 100%; accent-color: var(--accent-pink, #ec4899); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
-                                </div>
-                            </div>
-
-                            <div class="ab-simulation-status" style="margin-bottom: 1.25rem;">
-                                <button id="run-ab-btn" class="btn btn-outline" style="width: 100%;">Run Experiment Simulation 🔄</button>
-                            </div>
-
-                            <div class="ab-results-grid ab-results-container">
-                                <!-- Control Card -->
-                                <div class="ab-result-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); padding: 0.75rem;">
-                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Control (A)</div>
-                                    <div style="margin: 0.35rem 0; display: flex; align-items: baseline; gap: 0.25rem;">
-                                        <span id="ab-a-cr" style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary);">0.00%</span>
-                                        <span style="font-size: 0.75rem; color: var(--text-secondary);">conv. rate</span>
-                                    </div>
-                                    <div style="font-size: 0.7rem; color: var(--text-secondary);">
-                                        Conversions: <span id="ab-a-conv" style="font-weight: 600;">0</span> / <span id="ab-a-visitors" style="font-weight: 600;">1000</span>
-                                    </div>
-                                    <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                                        <div id="ab-a-bar" style="width: 0%; height: 100%; background: var(--accent-indigo, #6366f1); transition: width 0.5s ease-out;"></div>
-                                    </div>
-                                </div>
-                                <!-- Challenger Card -->
-                                <div class="ab-result-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); padding: 0.75rem;">
-                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Challenger (B)</div>
-                                    <div style="margin: 0.35rem 0; display: flex; align-items: baseline; gap: 0.25rem;">
-                                        <span id="ab-b-cr" style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary);">0.00%</span>
-                                        <span style="font-size: 0.75rem; color: var(--text-secondary);">conv. rate</span>
-                                    </div>
-                                    <div style="font-size: 0.7rem; color: var(--text-secondary);">
-                                        Conversions: <span id="ab-b-conv" style="font-weight: 600;">0</span> / <span id="ab-b-visitors" style="font-weight: 600;">1000</span>
-                                    </div>
-                                    <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                                        <div id="ab-b-bar" style="width: 0%; height: 100%; background: var(--accent-pink, #ec4899); transition: width 0.5s ease-out;"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ab-stats-output" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; font-size: 0.75rem; margin-bottom: 1rem;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
-                                    <span style="color: var(--text-secondary);">Uplift (Relative):</span>
-                                    <span id="ab-uplift" style="font-weight: 600; color: var(--text-primary);">0.00%</span>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
-                                    <span style="color: var(--text-secondary);">Z-Score:</span>
-                                    <span id="ab-zscore" style="font-weight: 600; color: var(--text-primary);">0.00</span>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
-                                    <span style="color: var(--text-secondary);">Two-tailed P-value:</span>
-                                    <span id="ab-pvalue" style="font-weight: 600; color: var(--text-primary);">0.0000</span>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem;">
-                                    <span style="color: var(--text-secondary); font-weight: 600;">Status:</span>
-                                    <span id="ab-status-badge" class="badge-status-neutral" style="padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase;">Not Simulated</span>
-                                </div>
-                            </div>
-
-                            <div class="widget-context" style="padding: 1rem; background: rgba(99, 102, 241, 0.03); border: 1px solid rgba(99, 102, 241, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
-                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong> to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong> on the proportions.</p>
-                                <p style="margin: 0;"><strong>Recruiting Value:</strong> This simulates how a Data Engineer or Scientist conducts hypothesis testing to validate feature rolls. A result is statistically significant if the P-value is less than 0.05 (95% confidence).</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Model Decision Threshold Optimizer widget -->
-                    <div id="threshold-widget" class="glass-card">
-                        <div class="widget-header">
-                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">🎛️ ML Model Threshold &amp; User Conversion Optimizer</h3>
-                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Adjust decision boundary to balance user friction and maximize conversion ROI.</p>
-                        </div>
-                        
-                        <div class="widget-body">
-                            <div class="slider-container" style="margin-bottom: 1.25rem;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent-1, #6366f1); font-size: 0.9rem;">0.50</span></label>
-                                    <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">OPTIMAL (0.35)</span>
-                                </div>
-                                <input type="range" id="threshold-slider" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent-1, #6366f1); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
-                            </div>
-
-                            <div class="threshold-metrics-grid" style="margin-bottom: 1rem;">
-                                <!-- Confusion Matrix Table -->
-                                <div>
-                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.35rem; text-transform: uppercase;">Confusion Matrix</div>
-                                    <table class="confusion-table" style="width: 100%; font-size: 0.7rem; border-collapse: collapse; text-align: center;">
-                                        <thead>
-                                            <tr>
-                                                <th style="border: none; padding: 2px;"></th>
-                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Conversion</th>
-                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Passive</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Conversion</td>
-                                                <td id="cm-tp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #10b981;">0</td>
-                                                <td id="cm-fn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #ef4444;">0</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Passive</td>
-                                                <td id="cm-fp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #f59e0b;">0</td>
-                                                <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #3b82f6;">0</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <!-- Metrics Output -->
-                                <div style="display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding-left: 0.5rem;">
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
-                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Precision</div>
-                                        <div id="val-precision" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
-                                    </div>
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
-                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Recall</div>
-                                        <div id="val-recall" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Profit Calculator Details -->
-                            <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; margin-bottom: 1rem;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Engaged Converter (+$100/TP):</span>
-                                    <span id="profit-tp-gain" style="font-weight: 600; color: #10b981;">+$0</span>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">User Friction Cost (-$20/FP):</span>
-                                    <span id="profit-fp-loss" style="font-weight: 600; color: #f59e0b;">-$0</span>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Missed Conversions (-$150/FN):</span>
-                                    <span id="profit-fn-loss" style="font-weight: 600; color: #ef4444;">-$0</span>
-                                </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
-                                    <span style="color: var(--text-primary); font-weight: 600;">Net Conversion ROI Impact:</span>
-                                    <span id="val-net-profit" style="font-weight: 700; font-size: 1rem; color: #10b981;">$0</span>
-                                </div>
-                            </div>
-
-                            <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
-                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
-                                <p style="margin: 0;"><strong>ROI Business Value:</strong> By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Pipeline Architecture Explorer -->
-                <div class="architecture-widget glass-card">
-                    <div class="arch-header" style="margin-bottom: 1.5rem;">
-                        <h3 class="arch-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">🗺️ Data Pipeline Architecture Explorer</h3>
-                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Interact with real-world pipeline system designs to see data flow, tool stacks, and Python execution modules.</p>
-                    </div>
-
-                    <!-- Pipeline Tabs -->
-                    <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; width: 100%;">
-                        <button class="arch-tab-btn active" data-pipeline="careerpilot">🤖 Career Pilot AI Tailoring</button>
-                        <button class="arch-tab-btn" data-pipeline="reactive">🔁 Reactive Job Ingest (WebFlux)</button>
-                        <button class="arch-tab-btn" data-pipeline="lakehouse">🧱 Lakehouse + dbt Warehouse</button>
-                        <button class="arch-tab-btn" data-pipeline="batch">📊 Batch ETL Sales Analytics</button>
-                        <button class="arch-tab-btn" data-pipeline="stream">⚡ Streaming IoT Fleet Telematics</button>
-                        <button class="arch-tab-btn" data-pipeline="geospatial">🌎 Geospatial Carbon Emissions</button>
-                        <button id="arch-tour-btn">Play Tour ⏯️</button>
-                    </div>
-
-                    <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
-                        <!-- Interactive System Diagram -->
-                        <div class="arch-diagram-card glass-card" style="padding: 1.5rem;">
-                            <div class="arch-diagram-flow" id="arch-flow-diagram" style="display: flex; justify-content: space-between; align-items: center; position: relative; padding: 1rem 0; overflow-x: auto; gap: 1.5rem;">
-                                <!-- Nodes will be injected here via Javascript -->
-                            </div>
-                        </div>
-
-                        <!-- Info Pane / Code Snippet -->
-                        <div class="arch-info-pane glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.01); border-color: rgba(255, 255, 255, 0.05);">
-                            <div id="arch-node-details">
-                                <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-blue);" id="arch-node-name">Select a pipeline block above...</h4>
-                                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;" id="arch-node-tags">
-                                    <!-- Tags will go here -->
-                                </div>
-                                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.75rem;" id="arch-node-desc">
-                                    Click on any stage in the flow diagram above to view its technical specifications, tool stack, and Python code implementation.
-                                </p>
-                                
-                                <!-- Visual Input-Process-Output Flow Diagram -->
-                                <div class="arch-visual-flow" id="arch-node-flow-box" style="display: none;">
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 0.55rem; border-radius: var(--border-radius-sm);">
-                                        <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Inputs</div>
-                                        <div id="arch-flow-input" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
-                                    </div>
-                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">➔</div>
-                                    <div style="background: rgba(99, 102, 241, 0.06); border: 1px solid rgba(99, 102, 241, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
-                                        <div style="font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Process</div>
-                                        <div id="arch-flow-process" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
-                                    </div>
-                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">➔</div>
-                                    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
-                                        <div style="font-size: 0.65rem; color: var(--accent-emerald); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Outputs</div>
-                                        <div id="arch-flow-output" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
-                                    </div>
-                                </div>
-
-                                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; display: none; background: rgba(59, 130, 246, 0.04); border: 1px solid rgba(59, 130, 246, 0.15); padding: 0.75rem; border-radius: var(--border-radius-sm);" id="arch-node-impact">
-                                    <!-- Business value will go here -->
-                                </p>
-                                <button id="arch-toggle-code-btn" class="btn btn-secondary btn-sm" style="display: none; width: 100%; margin-top: 0.5rem; font-size: 0.78rem; padding: 0.45rem 0.75rem; cursor: pointer;">
-                                    View Technical Code Snippet 🛠️
-                                </button>
-                                <div class="arch-code-wrapper" style="border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #070b13; padding: 1rem; display: none; margin-top: 1rem;" id="arch-code-box">
-                                    <pre style="margin: 0; font-family: monospace; font-size: 0.78rem; overflow-x: auto; color: #94a3b8;"><code id="arch-code-content"></code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -749,8 +365,8 @@
                 <img id="modal-dashboard-img" src="" alt="BI Dashboard Preview">
             </div>
             <div class="modal-caption">
-                <h4>Interactive BI Dashboard Mockup</h4>
-                <p>Simulated report showing key business performance indicators, statistical metrics, and analytics.</p>
+                <h4 id="modal-dashboard-title">Project chart</h4>
+                <p id="modal-dashboard-caption">Output generated by the project's own pipeline; see the repository for the code and data source.</p>
             </div>
         </div>
     </div>
@@ -777,7 +393,7 @@
             
             <div id="resume-paper" class="resume-paper">
                 <div class="resume-header-block">
-                    <h1>Deshraj Jogiya</h1>
+                    <h2 class="resume-name">Deshraj Jogiya</h2>
                     <p class="resume-sub">{{ title }}</p>
                     <div class="resume-meta">
                         <span>📍 Tempe, Arizona (open to relocation)</span>
@@ -942,7 +558,7 @@
                         🎯 Classifier Decision Boundary &amp; Performance Metrics
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;">
-                        Adjust the classification decision boundary threshold to evaluate the trade-off between false alarms (FP) and missed detections (FN). This simulates live classifier tuning for risk decisioning.
+                        Adjust the classification decision boundary threshold to evaluate the trade-off between false alarms (FP) and missed detections (FN). The score distributions are simulated to show the trade-off; no model is trained on visitor data here.
                     </p>
 
                     <div class="ml-metrics-interactive-grid" style="display: flex; flex-direction: column; gap: 1.25rem;">
@@ -951,8 +567,8 @@
                             <div class="form-group" style="margin-bottom: 1rem;">
                                 <label style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--text-secondary);">Select Target Model</label>
                                 <select id="ml-model-select" class="sql-select" style="width: 100%;">
-                                    <option value="conversion">Visitor Conversion Predictor (XGBoost - AUC 0.91)</option>
-                                    <option value="bot">Bot/Spam Session Detector (Isolation Forest - AUC 0.88)</option>
+                                    <option value="conversion">Example: lead-scoring classifier (simulated scores)</option>
+                                    <option value="bot">Example: bot-session detector (simulated scores)</option>
                                 </select>
                             </div>
                             
@@ -1075,10 +691,10 @@
 
     <!-- Footer -->
     <footer class="footer-bar">
-        <p>&copy; 2026 Deshraj Jogiya. Built with Python automation & Jinja2, HTML5, CSS3 Glassmorphism, and Vanilla JavaScript. Hosted on GitHub Pages.</p>
+{% include "_footer.html" %}
     </footer>
 
-    <!-- Interactive Resume AI Q&A Bot Widget (RAG Simulation) -->
+    <!-- Career assistant: an LLM answering only from projects.json (Supabase Edge Function), with built-in answers as a fallback -->
     <div id="ai-chat-widget" class="ai-chat-widget">
         <!-- Launcher Button -->
         <button id="chat-launcher" class="chat-launcher-btn" aria-label="Open AI Career Assistant">
@@ -1095,7 +711,7 @@
                     <span class="chat-avatar">💬</span>
                     <div>
                         <div class="chat-bot-name">Career Assistant Agent</div>
-                        <div class="chat-status"><span class="status-dot"></span> Online (RAG Simulation)</div>
+                        <div class="chat-status"><span class="status-dot"></span> AI assistant · answers only from this site's project data</div>
                     </div>
                 </div>
                 <button id="close-chat-btn" class="close-chat-btn" aria-label="Close Chat">&times;</button>
@@ -1104,7 +720,7 @@
             <!-- Messages Log -->
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-msg bot-msg">
-                    Hello! I am a virtual assistant trained on Deshraj's professional profile. You can ask me questions about his technical experience, engineering projects, or background, or choose a suggestion below.
+                    Hello! I'm an AI assistant that answers from the project and experience data on this site. You can ask me questions about his technical experience, engineering projects, or background, or choose a suggestion below.
                 </div>
             </div>
 
@@ -1113,6 +729,8 @@
                 <button class="chat-suggest-btn" data-question="Tell me about his work experience">Work Experience 💼</button>
                 <button class="chat-suggest-btn" data-question="What technical skills does he have?">Technical Skills 🛠️</button>
                 <button class="chat-suggest-btn" data-question="Tell me about his projects">Featured Projects 🚀</button>
+                <button class="chat-suggest-btn" data-question="What is Career Pilot and what does it do?">Career Pilot 🧭</button>
+                <button class="chat-suggest-btn" data-question="Where is he based and is he open to relocation?">Location &amp; relocation 📍</button>
                 <button class="chat-suggest-btn" data-question="How can you contact Deshraj?">Contact &amp; Connect 📧</button>
             </div>
 
@@ -1158,11 +776,11 @@
                         </span>
                     </div>
                     <div class="visitor-stats-row">
-                        <span class="visitor-stat-label">Total Unique Visits</span>
+                        <span class="visitor-stat-label">Unique visitors (since <span id="visitor-since">Jun 2026</span>)</span>
                         <span class="visitor-stat-value" id="visitor-count">...</span>
                     </div>
                     <div class="visitor-stats-row">
-                        <span class="visitor-stat-label">Active Users Today</span>
+                        <span class="visitor-stat-label">Visitors today (UTC)</span>
                         <span class="visitor-stat-value" id="visitor-today">...</span>
                     </div>
                 </div>
@@ -1174,15 +792,12 @@
                     </div>
                     <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
                     <div class="visitor-stat-label" style="font-size: 0.75rem; margin-bottom: 0.5rem;">Expected visits next week</div>
-                    <div class="visitor-progress-bar">
-                        <div class="visitor-progress-fill" id="visitor-progress-fill"></div>
-                    </div>
                 </div>
 
                 <!-- ML Action -->
                 <div class="visitor-ml-panel" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.85rem;">
                     <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; margin: 0; font-style: italic;">
-                        🕵️‍♂️ Statistically speaking, you are now a row in my database! (I only track city &amp; browser). Click below to see how my K-Means model clusters you!
+                        This site logs anonymous visit stats: approximate city and country (looked up from your IP address by ipapi.co), device and browser, under a random ID kept in local storage. No cookies. The charts below cluster those visits with K-Means.
                     </p>
                     <div class="visitor-ml-btn-box" style="margin-top: 0.75rem;">
                         <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
@@ -1229,7 +844,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="app.js?v=2.0.0"></script>
+    <script src="/app.js?v={{ asset_version }}" defer></script>
 </body>
 </html>

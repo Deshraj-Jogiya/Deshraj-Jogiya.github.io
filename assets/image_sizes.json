@@ -1,0 +1,186 @@
+{
+ "assets/ai_observability.png": [
+  2913,
+  1482
+ ],
+ "assets/ai_observability.webp": [
+  1600,
+  814
+ ],
+ "assets/career-pilot-flow.svg": [
+  960,
+  350
+ ],
+ "assets/chef_gathering_dashboard.png": [
+  1859,
+  1196
+ ],
+ "assets/chef_gathering_dashboard.webp": [
+  1600,
+  1029
+ ],
+ "assets/city_forums_dashboard.png": [
+  3600,
+  1800
+ ],
+ "assets/city_forums_dashboard.webp": [
+  1600,
+  800
+ ],
+ "assets/clinical_dashboard.png": [
+  3313,
+  2287
+ ],
+ "assets/clinical_dashboard.webp": [
+  1600,
+  1104
+ ],
+ "assets/co2_forecast_vs_actual.png": [
+  2079,
+  884
+ ],
+ "assets/co2_forecast_vs_actual.webp": [
+  1600,
+  680
+ ],
+ "assets/compliance_dashboard.png": [
+  2283,
+  1729
+ ],
+ "assets/compliance_dashboard.webp": [
+  1600,
+  1212
+ ],
+ "assets/curiosync_publishing_trend.png": [
+  1430,
+  676
+ ],
+ "assets/curiosync_publishing_trend.webp": [
+  1430,
+  676
+ ],
+ "assets/daily_insights.png": [
+  3600,
+  1800
+ ],
+ "assets/daily_insights.webp": [
+  1600,
+  800
+ ],
+ "assets/emissions_by_state.png": [
+  1634,
+  884
+ ],
+ "assets/emissions_by_state.webp": [
+  1600,
+  866
+ ],
+ "assets/finrisk_feature_importance.png": [
+  3000,
+  1800
+ ],
+ "assets/finrisk_feature_importance.webp": [
+  1600,
+  960
+ ],
+ "assets/forecast_vs_actual.png": [
+  2077,
+  884
+ ],
+ "assets/forecast_vs_actual.webp": [
+  1600,
+  681
+ ],
+ "assets/get_your_token_dashboard.png": [
+  1350,
+  675
+ ],
+ "assets/get_your_token_dashboard.webp": [
+  1350,
+  675
+ ],
+ "assets/iot_dashboard.png": [
+  1656,
+  1268
+ ],
+ "assets/iot_dashboard.webp": [
+  1600,
+  1225
+ ],
+ "assets/make_it_short_dashboard.png": [
+  2082,
+  1033
+ ],
+ "assets/make_it_short_dashboard.webp": [
+  1600,
+  794
+ ],
+ "assets/ml_apprentice_embeddings.png": [
+  1544,
+  640
+ ],
+ "assets/ml_apprentice_embeddings.webp": [
+  1544,
+  640
+ ],
+ "assets/profile.jpg": [
+  768,
+  1024
+ ],
+ "assets/sales_dashboard.png": [
+  1797,
+  1198
+ ],
+ "assets/sales_dashboard.webp": [
+  1600,
+  1067
+ ],
+ "assets/solid_object_confusion_matrix.png": [
+  1105,
+  910
+ ],
+ "assets/solid_object_confusion_matrix.webp": [
+  1105,
+  910
+ ],
+ "assets/stay_aware_dashboard.png": [
+  1024,
+  1024
+ ],
+ "assets/stay_aware_dashboard.webp": [
+  1024,
+  1024
+ ],
+ "assets/talentvenue_feature_importance.png": [
+  1300,
+  676
+ ],
+ "assets/talentvenue_feature_importance.webp": [
+  1300,
+  676
+ ],
+ "assets/traffic_forecast.png": [
+  1350,
+  675
+ ],
+ "assets/traffic_forecast.webp": [
+  1350,
+  675
+ ],
+ "assets/training_curves.png": [
+  1428,
+  476
+ ],
+ "assets/training_curves.webp": [
+  1428,
+  476
+ ],
+ "assets/visitor_segments.png": [
+  1350,
+  675
+ ],
+ "assets/visitor_segments.webp": [
+  1350,
+  675
+ ]
+}

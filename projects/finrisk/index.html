@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinRisk: predicting loan default and serving it in under 100 ms | Deshraj Jogiya</title>
+    <meta name="description" content="An end-to-end credit-risk pipeline: ETL into SQLite, a Random Forest and an XGBoost model predicting loan default compared in MLflow, rule-based fraud flags, and a FastAPI service with REST and GraphQL endpoints behind a Chart.js dashboard.">
+    <link rel="canonical" href="https://deshraj-jogiya.github.io/projects/finrisk/">
+    <meta name="author" content="Deshraj Jogiya">
+    <meta name="theme-color" content="#0f172a">
+    <!-- Link previews (LinkedIn, Slack, email) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Deshraj Jogiya">
+    <meta property="og:title" content="FinRisk: predicting loan default and serving it in under 100 ms | Deshraj Jogiya">
+    <meta property="og:description" content="An end-to-end credit-risk pipeline: ETL into SQLite, a Random Forest and an XGBoost model predicting loan default compared in MLflow, rule-based fraud flags, and a FastAPI service with REST and GraphQL endpoints behind a Chart.js dashboard.">
+    <meta property="og:url" content="https://deshraj-jogiya.github.io/projects/finrisk/">
+    <meta property="og:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Deshraj Jogiya, Data Engineer and Machine Learning Engineer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FinRisk: predicting loan default and serving it in under 100 ms | Deshraj Jogiya">
+    <meta name="twitter:description" content="An end-to-end credit-risk pipeline: ETL into SQLite, a Random Forest and an XGBoost model predicting loan default compared in MLflow, rule-based fraud flags, and a FastAPI service with REST and GraphQL endpoints behind a Chart.js dashboard.">
+    <meta name="twitter:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=53e6242179">
+</head>
+<body class="subpage">
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-text">DESHRAJ JOGIYA</a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#experience">Experience</a>
+                <a href="/#projects">Projects</a>
+                <a href="/lab/">Lab</a>
+                <a href="/#contact" class="btn btn-secondary">Connect</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content case-study">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#projects">Case studies</a> / FinTech Credit Risk & Fraud Command Center</nav>
+
+        <header class="case-hero">
+            <span class="badge badge-accent">FinTech & Risk</span>
+            <h1 class="case-title">FinRisk: predicting loan default and serving it in under 100 ms</h1>
+            <p class="case-summary">An end-to-end credit-risk pipeline: ETL into SQLite, a Random Forest and an XGBoost model predicting loan default compared in MLflow, rule-based fraud flags, and a FastAPI service with REST and GraphQL endpoints behind a Chart.js dashboard.</p>
+            <p class="case-meta">Oct 2025 – Dec 2025 · For: A lender deciding which applications to decline outright and which to approve or review.</p>
+            <div class="hero-actions">
+                
+                <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" class="btn btn-outline" target="_blank" rel="noopener">Code on GitHub ↗</a>
+            </div>
+            
+        </header>
+
+        
+        <figure class="case-figure glass-card">
+            <img src="/assets/finrisk_feature_importance.webp" alt="FinTech Credit Risk & Fraud Command Center: output chart from the project's pipeline" loading="lazy" decoding="async"
+                 width="1600" height="960">
+        </figure>
+        
+
+        <section class="case-section glass-card">
+            <h2>How it works</h2>
+            <ol class="case-steps">
+                <li>A seeded generator creates 12,500 customers, 10,586 loan applications and about 344,000 card transactions</li><li>Each loan's default is drawn from a probability driven by credit score, late-payment history, utilization, DTI, income and tenure</li><li>Random Forest and XGBoost are trained on 80% of loans and compared on the held-out 20%; both runs are logged to MLflow</li><li>FastAPI serves POST /api/predict with the model loaded once and cached, plus REST KPIs and a Strawberry GraphQL layer</li>
+            </ol>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Data</h2>
+            <p>Fully synthetic (fixed seed), with a 23.4% default rate similar to a subprime lender's book. No real customer data.</p>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Problems found and decisions made</h2>
+            <dl class="case-decisions">
+                
+                <dt>The first version predicted the approve/reject decision, which a fixed rule computes from the same features, and scored a meaningless 100%</dt>
+                <dd>The model now predicts actual default, and neither the underwriting decision nor the simulator's true probability is used as a feature.</dd>
+                
+                <dt>Reloading the model from disk on every request made latency depend on model size</dt>
+                <dd>The model is loaded once and cached, giving a median of 67 ms per score (95th percentile 85 ms).</dd>
+                
+                <dt>A single accuracy number hides the business trade-off</dt>
+                <dd>Precision and recall are reported at an explicit decline threshold (80% predicted default probability).</dd>
+                
+            </dl>
+        </section>
+
+        <div class="case-two-col">
+            <section class="case-section glass-card">
+                <h2>Testing and reliability</h2>
+                <ul><li>CI trains both models, checks that MLflow logged both runs, boots the API and calls its REST and GraphQL endpoints</li><li>Tests check that a risky applicant is declined and a safe one approved, and fail if median scoring latency reaches 100 ms</li></ul>
+            </section>
+            <section class="case-section glass-card">
+                <h2>Results</h2>
+                <ul><li>Random Forest: ROC AUC 0.92 and 93.4% precision when declining scores of 80% or more (34% of defaults caught, 8.6% of applications declined)</li><li>XGBoost: 91.3% precision with 44.6% recall at the same threshold</li><li>Median scoring latency 67 ms</li></ul>
+            </section>
+        </div>
+
+        <section class="case-section glass-card">
+            <h2>Limits and next steps</h2>
+            <ul><li>Synthetic data: the effects are built into the generator, so the model recovers relationships that were put there</li><li>The decline threshold is fixed; a production system would set it from loss and approval-rate targets</li></ul>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Stack</h2>
+            <div class="tech-tags"><span>FastAPI</span><span>Python</span><span>SQL</span><span>Scikit-Learn</span><span>Chart.js</span><span>SQLite</span><span>XGBoost</span><span>GitHub Actions</span><span>MLflow</span><span>GraphQL</span></div>
+        </section>
+
+        <nav class="case-nav" aria-label="Other case studies">
+            
+            <a href="/projects/career-pilot/" class="btn btn-sm btn-outline">Career Pilot →</a>
+            
+            <a href="/projects/job-market-lakehouse/" class="btn btn-sm btn-outline">Job Market Lakehouse →</a>
+            
+            <a href="/projects/dbt-warehouse/" class="btn btn-sm btn-outline">Job Search dbt Warehouse →</a>
+            
+        </nav>
+    </main>
+
+    <footer class="footer-bar">
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/#projects">Case studies</a>
+            <a href="/lab/">Lab</a>
+            <a href="https://github.com/Deshraj-Jogiya" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:djogiya786@gmail.com">Email</a>
+        </nav>
+        <p>&copy; 2026 Deshraj Jogiya. Static site generated with Python and Jinja2, hosted on GitHub Pages.</p>
+        <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
+    </footer>
+    <script src="/app.js?v=53e6242179" defer></script>
+</body>
+</html>

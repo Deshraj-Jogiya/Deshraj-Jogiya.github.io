@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Market Lakehouse: PySpark, Great Expectations and Airflow | Deshraj Jogiya</title>
+    <meta name="description" content="A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.">
+    <link rel="canonical" href="https://deshraj-jogiya.github.io/projects/job-market-lakehouse/">
+    <meta name="author" content="Deshraj Jogiya">
+    <meta name="theme-color" content="#0f172a">
+    <!-- Link previews (LinkedIn, Slack, email) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Deshraj Jogiya">
+    <meta property="og:title" content="Job Market Lakehouse: PySpark, Great Expectations and Airflow | Deshraj Jogiya">
+    <meta property="og:description" content="A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.">
+    <meta property="og:url" content="https://deshraj-jogiya.github.io/projects/job-market-lakehouse/">
+    <meta property="og:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Deshraj Jogiya, Data Engineer and Machine Learning Engineer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Job Market Lakehouse: PySpark, Great Expectations and Airflow | Deshraj Jogiya">
+    <meta name="twitter:description" content="A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.">
+    <meta name="twitter:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=53e6242179">
+</head>
+<body class="subpage">
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-text">DESHRAJ JOGIYA</a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#experience">Experience</a>
+                <a href="/#projects">Projects</a>
+                <a href="/lab/">Lab</a>
+                <a href="/#contact" class="btn btn-secondary">Connect</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content case-study">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#projects">Case studies</a> / Job Market Lakehouse</nav>
+
+        <header class="case-hero">
+            <span class="badge badge-accent">Big Data & Orchestration</span>
+            <h1 class="case-title">Job Market Lakehouse: PySpark, Great Expectations and Airflow</h1>
+            <p class="case-summary">A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.</p>
+            <p class="case-meta">Sep 2026 · For: Analysts asking how salaries vary by industry and seniority, and which postings rank highest within an industry.</p>
+            <div class="hero-actions">
+                
+                <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse" class="btn btn-outline" target="_blank" rel="noopener">Code on GitHub ↗</a>
+            </div>
+            
+        </header>
+
+        
+
+        <section class="case-section glass-card">
+            <h2>How it works</h2>
+            <ol class="case-steps">
+                <li>A seeded generator writes 60,000 postings and 400 companies as raw CSV</li><li>PySpark joins postings to companies, aggregates salary statistics per industry and seniority, and ranks postings within each industry with dense_rank(); output is Parquet</li><li>11 Great Expectations checks (row counts, value sets, uniqueness, a cross-column max >= min rule) fail the run if any expectation fails</li><li>An Airflow DAG runs generate, transform and validate, verified end to end with airflow dags test</li><li>A Scala Spark job computes monthly posting volume by source</li><li>A static HTML data-quality report is built from the expectation results and uploaded by CI</li>
+            </ol>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Data</h2>
+            <p>Synthetic and seeded (data/generate_raw_data.py); it describes no real company.</p>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Problems found and decisions made</h2>
+            <dl class="case-decisions">
+                
+                <dt>Airflow's dependency pins clashed with the pipeline's (pydantic, typing_extensions)</dt>
+                <dd>Airflow runs in its own environment, separate from the pipeline's, in CI as well as locally.</dd>
+                
+                <dt>Validation needs to stop bad data, not just report it</dt>
+                <dd>Any failed expectation fails the run, so nothing downstream sees an output that broke a rule.</dd>
+                
+                <dt>Library versions drifted: an unpinned pandas 3 and pyarrow 26 stopped importing against the numpy that Great Expectations needs</dt>
+                <dd>CI flagged the break; pandas and pyarrow are now pinned to compatible ranges.</dd>
+                
+            </dl>
+        </section>
+
+        <div class="case-two-col">
+            <section class="case-section glass-card">
+                <h2>Testing and reliability</h2>
+                <ul><li>CI runs the PySpark job, the Great Expectations validation and the unit tests on every push</li><li>A second CI job installs Airflow and runs the DAG end to end</li></ul>
+            </section>
+            <section class="case-section glass-card">
+                <h2>Results</h2>
+                <ul><li>11 expectations pass on every run</li><li>A downloadable data-quality report from each CI run</li></ul>
+            </section>
+        </div>
+
+        <section class="case-section glass-card">
+            <h2>Limits and next steps</h2>
+            <ul><li>Runs Spark in local mode, not on a cluster</li><li>The Scala job is run by hand against a Spark distribution rather than in CI</li></ul>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Stack</h2>
+            <div class="tech-tags"><span>PySpark</span><span>Spark SQL</span><span>Scala</span><span>Great Expectations</span><span>Apache Airflow</span></div>
+        </section>
+
+        <nav class="case-nav" aria-label="Other case studies">
+            
+            <a href="/projects/career-pilot/" class="btn btn-sm btn-outline">Career Pilot →</a>
+            
+            <a href="/projects/dbt-warehouse/" class="btn btn-sm btn-outline">Job Search dbt Warehouse →</a>
+            
+            <a href="/projects/finrisk/" class="btn btn-sm btn-outline">FinRisk →</a>
+            
+        </nav>
+    </main>
+
+    <footer class="footer-bar">
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/#projects">Case studies</a>
+            <a href="/lab/">Lab</a>
+            <a href="https://github.com/Deshraj-Jogiya" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:djogiya786@gmail.com">Email</a>
+        </nav>
+        <p>&copy; 2026 Deshraj Jogiya. Static site generated with Python and Jinja2, hosted on GitHub Pages.</p>
+        <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
+    </footer>
+    <script src="/app.js?v=53e6242179" defer></script>
+</body>
+</html>

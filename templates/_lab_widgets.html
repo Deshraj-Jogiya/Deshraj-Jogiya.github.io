@@ -1,0 +1,431 @@
+        <!-- Interactive Recruiter Showcase Section -->
+        <section id="interactive" class="interactive-section">
+
+            
+            <div class="interactive-grid" style="display: flex; flex-direction: column; gap: 3rem; max-width: 1000px; margin: 0 auto;">
+                <!-- SQL Analytics Playground -->
+                <div class="sql-widget glass-card">
+                    <div class="sql-header">
+                        <h3 class="sql-title">📊 SQL Analytics Playground</h3>
+                    </div>
+                    <div class="sql-selector-group" style="margin-top: 1.5rem;">
+                        <select id="sql-query-select" class="sql-select">
+                            <option value="career_pilot_intake">Live Job Postings by Intake Source (Career Pilot)</option>
+                            <option value="dbt_application_outcomes">Application Outcomes &amp; Days to Decision (dbt Warehouse)</option>
+                            <option value="lakehouse_salary_by_industry">Average &amp; Top Salary by Industry over 60k Postings (Job Market Lakehouse)</option>
+                            <option value="revenue_by_segment">Total Revenue &amp; Customer Count by Segment (Sales Segmentation)</option>
+                            <option value="anomaly_risk_claims">Top 5 Audit Compliance Risk Tax Claims (Tax Anomaly Audit)</option>
+                            <option value="survival_by_treatment">Oncology Trial Survival Rate &amp; BP by Dosage Arm (Clinical Trials)</option>
+                            <option value="drift_by_feature">Observability Log Data Drift &amp; KS-Test Metrics (AI Observability)</option>
+                            <option value="emissions_by_state">Net Carbon Emissions &amp; Forest Area by State (Land Use Emissions)</option>
+                            <option value="credit_fraud_risk">Applicant Loan Decisioning Tiers &amp; Fraud Flag (Credit Risk)</option>
+                            <option value="iot_telematics">Telemetry Vibration Alert Log (IoT Telematics)</option>
+                            <option value="simulated_sales_forecast">Unit Sales &amp; Average Stock Level by Branch (Sales Simulation)</option>
+                        </select>
+                        <button class="btn btn-accent sql-btn-run" id="run-sql-btn" style="flex-shrink: 0; padding: 0.75rem 1.5rem;">Execute Query ⚡</button>
+                    </div>
+                    
+                    <div class="sql-editor-container" id="sql-editor" style="margin-top: 1.5rem;"></div>
+                    
+                    <!-- Project Value & Key Takeaways -->
+                    <div class="recruiter-insights-card" id="recruiter-insights">
+                        <div class="recruiter-insight-title">
+                            💡 Project Value &amp; Key Takeaways
+                        </div>
+                        <div class="recruiter-insight-text" id="recruiter-insight-text">
+                            Select a query above to see the business value of this data engineering task and the core skills it demonstrates.
+                        </div>
+                        <div class="recruiter-insight-takeaway" id="recruiter-insight-takeaway">
+                            Key Takeaway: -
+                        </div>
+                    </div>
+                    
+                    <div class="sql-results-panel">
+                        <div class="sql-results-title">📋 Query Results Output</div>
+                        <div class="sql-output-flex" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <!-- Table container -->
+                            <div class="sql-table-container" style="flex: 1.2; min-width: 280px; width: 100%;">
+                                <table class="sql-table-data" id="sql-results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Click 'Execute Query' to fetch database records...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Interactive Chart container -->
+                            <div id="sql-chart-container" class="glass-card" style="display: none; flex: 0.8; min-width: 280px; width: 100%; padding: 1.25rem; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: var(--border-radius-md); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);">
+                                <canvas id="sql-results-chart" style="width: 100%; max-height: 250px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live ETL Observability Monitor -->
+                <div class="observability-widget glass-card">
+                    <div class="obs-header">
+                        <h3 class="obs-title">🤖 Live ETL Pipeline Observability Monitor</h3>
+                        <div class="obs-status idle" id="obs-status">
+                            <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Observability Explanatory Box -->
+                    <div class="obs-info-box" style="background: rgba(59, 130, 246, 0.04); border: 1px solid rgba(59, 130, 246, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
+                        <strong>💡 What is this?</strong> This widget simulates a real-time data engineering pipeline monitoring system. In production, data pipelines process millions of rows daily and can fail silently due to bad data. 
+                        Click <strong>"Run Pipeline Diagnostics"</strong> to run a live validation check. You'll see how data ingestion, quality checks, machine learning scoring, and database commits flow sequentially, demonstrating automated pipeline monitoring and observability skills.
+                    </div>
+                    
+                    <!-- Pipeline Flow Diagram -->
+                    <div class="pipeline-flow-container">
+                        <div class="pipeline-flow">
+                            <div class="pipeline-line"></div>
+                            <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
+                            
+                            <div class="pipeline-node-item" id="node-ingest">
+                                <div class="pipeline-node-icon">📥</div>
+                                <div class="pipeline-node-label">Ingest</div>
+                            </div>
+                            <div class="pipeline-node-item" id="node-validate">
+                                <div class="pipeline-node-icon">🛡️</div>
+                                <div class="pipeline-node-label">Validate</div>
+                            </div>
+                            <div class="pipeline-node-item" id="node-score">
+                                <div class="pipeline-node-icon">🧠</div>
+                                <div class="pipeline-node-label">ML Score</div>
+                            </div>
+                            <div class="pipeline-node-item" id="node-commit">
+                                <div class="pipeline-node-icon">💾</div>
+                                <div class="pipeline-node-label">Commit</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="obs-content" style="margin-top: 1.5rem;">
+                        <!-- Tab Navigation for Observability Widget -->
+                        <div class="obs-tab-nav">
+                            <button class="obs-tab-btn active" data-tab="console">🖥️ Console Outputs</button>
+                            <button class="obs-tab-btn" data-tab="qa-report">🛡️ Data QA Audit Report</button>
+                        </div>
+                        
+                        <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
+                            <div class="obs-panel-content active" id="obs-console-panel">
+                                <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                                    <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <div style="display: flex; gap: 0.35rem;">
+                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                                        </div>
+                                        <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
+                                    </div>
+                                    <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
+                                        <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
+                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+                                    <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
+                                        🕒 Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="obs-metrics-panel">
+                            <div class="obs-metrics-grid">
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-latency">0.00s</div>
+                                    <div class="obs-metric-lbl">ETL Latency</div>
+                                </div>
+                                <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div>
+                                        <div class="obs-metric-val" id="metric-reliability">98.2%</div>
+                                        <div class="obs-metric-lbl">Reliability (30d)</div>
+                                    </div>
+                                    <div class="obs-history-dots" style="display: flex; gap: 3px; justify-content: center; margin-top: 0.4rem;">
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span id="reliability-drift-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+                                    </div>
+                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">59/60 Daily Runs Successful</div>
+                                </div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-rows">0</div>
+                                    <div class="obs-metric-lbl">Processed Rows</div>
+                                </div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--accent-emerald);">Stable</div>
+                                    <div class="obs-metric-lbl">Drift Status</div>
+                                </div>
+                            </div>
+                            <div class="obs-actions" style="margin-top: 1.5rem;">
+                                <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics 🚀</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Data Science & Machine Learning Experiments -->
+                <div class="experiments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                    <!-- A/B Testing Simulator Widget -->
+                    <div id="ab-testing-widget" class="glass-card">
+                        <div class="widget-header">
+                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">🧪 A/B Testing &amp; Hypothesis Testing Simulator</h3>
+                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Compute real-time Z-scores &amp; p-values for experimental conversions.</p>
+                        </div>
+                        
+                        <div class="widget-body">
+                            <div class="ab-inputs-row ab-inputs-grid">
+                                <div class="input-group">
+                                    <label for="ab-a-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                                        <span>Control (A) Target:</span>
+                                        <span id="ab-a-target-val" style="color: var(--accent-indigo, #6366f1); font-weight: 700;">10%</span>
+                                    </label>
+                                    <input type="range" id="ab-a-target-input" min="1" max="30" value="10" step="1" style="width: 100%; accent-color: var(--accent-indigo, #6366f1); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
+                                </div>
+                                <div class="input-group">
+                                    <label for="ab-b-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                                        <span>Challenger (B) Target:</span>
+                                        <span id="ab-b-target-val" style="color: var(--accent-pink, #ec4899); font-weight: 700;">13%</span>
+                                    </label>
+                                    <input type="range" id="ab-b-target-input" min="1" max="30" value="13" step="1" style="width: 100%; accent-color: var(--accent-pink, #ec4899); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
+                                </div>
+                            </div>
+
+                            <div class="ab-simulation-status" style="margin-bottom: 1.25rem;">
+                                <button id="run-ab-btn" class="btn btn-outline" style="width: 100%;">Run Experiment Simulation 🔄</button>
+                            </div>
+
+                            <div class="ab-results-grid ab-results-container">
+                                <!-- Control Card -->
+                                <div class="ab-result-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); padding: 0.75rem;">
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Control (A)</div>
+                                    <div style="margin: 0.35rem 0; display: flex; align-items: baseline; gap: 0.25rem;">
+                                        <span id="ab-a-cr" style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary);">0.00%</span>
+                                        <span style="font-size: 0.75rem; color: var(--text-secondary);">conv. rate</span>
+                                    </div>
+                                    <div style="font-size: 0.7rem; color: var(--text-secondary);">
+                                        Conversions: <span id="ab-a-conv" style="font-weight: 600;">0</span> / <span id="ab-a-visitors" style="font-weight: 600;">1000</span>
+                                    </div>
+                                    <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
+                                        <div id="ab-a-bar" style="width: 0%; height: 100%; background: var(--accent-indigo, #6366f1); transition: width 0.5s ease-out;"></div>
+                                    </div>
+                                </div>
+                                <!-- Challenger Card -->
+                                <div class="ab-result-card" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-md); padding: 0.75rem;">
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Challenger (B)</div>
+                                    <div style="margin: 0.35rem 0; display: flex; align-items: baseline; gap: 0.25rem;">
+                                        <span id="ab-b-cr" style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary);">0.00%</span>
+                                        <span style="font-size: 0.75rem; color: var(--text-secondary);">conv. rate</span>
+                                    </div>
+                                    <div style="font-size: 0.7rem; color: var(--text-secondary);">
+                                        Conversions: <span id="ab-b-conv" style="font-weight: 600;">0</span> / <span id="ab-b-visitors" style="font-weight: 600;">1000</span>
+                                    </div>
+                                    <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
+                                        <div id="ab-b-bar" style="width: 0%; height: 100%; background: var(--accent-pink, #ec4899); transition: width 0.5s ease-out;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ab-stats-output" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; font-size: 0.75rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: var(--text-secondary);">Uplift (Relative):</span>
+                                    <span id="ab-uplift" style="font-weight: 600; color: var(--text-primary);">0.00%</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: var(--text-secondary);">Z-Score:</span>
+                                    <span id="ab-zscore" style="font-weight: 600; color: var(--text-primary);">0.00</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+                                    <span style="color: var(--text-secondary);">Two-tailed P-value:</span>
+                                    <span id="ab-pvalue" style="font-weight: 600; color: var(--text-primary);">0.0000</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem;">
+                                    <span style="color: var(--text-secondary); font-weight: 600;">Status:</span>
+                                    <span id="ab-status-badge" class="badge-status-neutral" style="padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase;">Not Simulated</span>
+                                </div>
+                            </div>
+
+                            <div class="widget-context" style="padding: 1rem; background: rgba(99, 102, 241, 0.03); border: 1px solid rgba(99, 102, 241, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong> to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong> on the proportions.</p>
+                                <p style="margin: 0;"><strong>Recruiting Value:</strong> This simulates how a Data Engineer or Scientist conducts hypothesis testing to validate feature rolls. A result is statistically significant if the P-value is less than 0.05 (95% confidence).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Model Decision Threshold Optimizer widget -->
+                    <div id="threshold-widget" class="glass-card">
+                        <div class="widget-header">
+                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">🎛️ ML Model Threshold &amp; User Conversion Optimizer</h3>
+                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Adjust decision boundary to balance user friction and maximize conversion ROI.</p>
+                        </div>
+                        
+                        <div class="widget-body">
+                            <div class="slider-container" style="margin-bottom: 1.25rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent-1, #6366f1); font-size: 0.9rem;">0.50</span></label>
+                                    <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">OPTIMAL (0.35)</span>
+                                </div>
+                                <input type="range" id="threshold-slider" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent-1, #6366f1); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
+                            </div>
+
+                            <div class="threshold-metrics-grid" style="margin-bottom: 1rem;">
+                                <!-- Confusion Matrix Table -->
+                                <div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.35rem; text-transform: uppercase;">Confusion Matrix</div>
+                                    <table class="confusion-table" style="width: 100%; font-size: 0.7rem; border-collapse: collapse; text-align: center;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: none; padding: 2px;"></th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Conversion</th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Passive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Conversion</td>
+                                                <td id="cm-tp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #10b981;">0</td>
+                                                <td id="cm-fn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #ef4444;">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Passive</td>
+                                                <td id="cm-fp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #f59e0b;">0</td>
+                                                <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #3b82f6;">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- Metrics Output -->
+                                <div style="display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding-left: 0.5rem;">
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
+                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Precision</div>
+                                        <div id="val-precision" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
+                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Recall</div>
+                                        <div id="val-recall" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Profit Calculator Details -->
+                            <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">Engaged Converter (+$100/TP):</span>
+                                    <span id="profit-tp-gain" style="font-weight: 600; color: #10b981;">+$0</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">User Friction Cost (-$20/FP):</span>
+                                    <span id="profit-fp-loss" style="font-weight: 600; color: #f59e0b;">-$0</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">Missed Conversions (-$150/FN):</span>
+                                    <span id="profit-fn-loss" style="font-weight: 600; color: #ef4444;">-$0</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
+                                    <span style="color: var(--text-primary); font-weight: 600;">Net Conversion ROI Impact:</span>
+                                    <span id="val-net-profit" style="font-weight: 700; font-size: 1rem; color: #10b981;">$0</span>
+                                </div>
+                            </div>
+
+                            <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">📊 Methodology &amp; Business Context</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
+                                <p style="margin: 0;"><strong>ROI Business Value:</strong> By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Pipeline Architecture Explorer -->
+                <div class="architecture-widget glass-card">
+                    <div class="arch-header" style="margin-bottom: 1.5rem;">
+                        <h3 class="arch-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">🗺️ Data Pipeline Architecture Explorer</h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Interact with real-world pipeline system designs to see data flow, tool stacks, and Python execution modules.</p>
+                    </div>
+
+                    <!-- Pipeline Tabs -->
+                    <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; width: 100%;">
+                        <button class="arch-tab-btn active" data-pipeline="careerpilot">🤖 Career Pilot AI Tailoring</button>
+                        <button class="arch-tab-btn" data-pipeline="reactive">🔁 Reactive Job Ingest (WebFlux)</button>
+                        <button class="arch-tab-btn" data-pipeline="lakehouse">🧱 Lakehouse + dbt Warehouse</button>
+                        <button class="arch-tab-btn" data-pipeline="batch">📊 Batch ETL Sales Analytics</button>
+                        <button class="arch-tab-btn" data-pipeline="stream">⚡ Streaming IoT Fleet Telematics</button>
+                        <button class="arch-tab-btn" data-pipeline="geospatial">🌎 Geospatial Carbon Emissions</button>
+                        <button id="arch-tour-btn">Play Tour ⏯️</button>
+                    </div>
+
+                    <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                        <!-- Interactive System Diagram -->
+                        <div class="arch-diagram-card glass-card" style="padding: 1.5rem;">
+                            <div class="arch-diagram-flow" id="arch-flow-diagram" style="display: flex; justify-content: space-between; align-items: center; position: relative; padding: 1rem 0; overflow-x: auto; gap: 1.5rem;">
+                                <!-- Nodes will be injected here via Javascript -->
+                            </div>
+                        </div>
+
+                        <!-- Info Pane / Code Snippet -->
+                        <div class="arch-info-pane glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.01); border-color: rgba(255, 255, 255, 0.05);">
+                            <div id="arch-node-details">
+                                <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-blue);" id="arch-node-name">Select a pipeline block above...</h4>
+                                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;" id="arch-node-tags">
+                                    <!-- Tags will go here -->
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.75rem;" id="arch-node-desc">
+                                    Click on any stage in the flow diagram above to view its technical specifications, tool stack, and Python code implementation.
+                                </p>
+                                
+                                <!-- Visual Input-Process-Output Flow Diagram -->
+                                <div class="arch-visual-flow" id="arch-node-flow-box" style="display: none;">
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Inputs</div>
+                                        <div id="arch-flow-input" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+                                    </div>
+                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">➔</div>
+                                    <div style="background: rgba(99, 102, 241, 0.06); border: 1px solid rgba(99, 102, 241, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Process</div>
+                                        <div id="arch-flow-process" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+                                    </div>
+                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">➔</div>
+                                    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--accent-emerald); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Outputs</div>
+                                        <div id="arch-flow-output" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+                                    </div>
+                                </div>
+
+                                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; display: none; background: rgba(59, 130, 246, 0.04); border: 1px solid rgba(59, 130, 246, 0.15); padding: 0.75rem; border-radius: var(--border-radius-sm);" id="arch-node-impact">
+                                    <!-- Business value will go here -->
+                                </p>
+                                <button id="arch-toggle-code-btn" class="btn btn-secondary btn-sm" style="display: none; width: 100%; margin-top: 0.5rem; font-size: 0.78rem; padding: 0.45rem 0.75rem; cursor: pointer;">
+                                    View Technical Code Snippet 🛠️
+                                </button>
+                                <div class="arch-code-wrapper" style="border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #070b13; padding: 1rem; display: none; margin-top: 1rem;" id="arch-code-box">
+                                    <pre style="margin: 0; font-family: monospace; font-size: 0.78rem; overflow-x: auto; color: #94a3b8;"><code id="arch-code-content"></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+

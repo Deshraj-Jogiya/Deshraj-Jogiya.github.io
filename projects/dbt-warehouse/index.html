@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search dbt Warehouse: a dimensional model on Databricks | Deshraj Jogiya</title>
+    <meta name="description" content="A dbt project that builds a dimensional model on a Databricks SQL warehouse: staging views over seed data, dimension and fact tables, an incremental daily snapshot, and data tests that run against the warehouse.">
+    <link rel="canonical" href="https://deshraj-jogiya.github.io/projects/dbt-warehouse/">
+    <meta name="author" content="Deshraj Jogiya">
+    <meta name="theme-color" content="#0f172a">
+    <!-- Link previews (LinkedIn, Slack, email) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Deshraj Jogiya">
+    <meta property="og:title" content="Job Search dbt Warehouse: a dimensional model on Databricks | Deshraj Jogiya">
+    <meta property="og:description" content="A dbt project that builds a dimensional model on a Databricks SQL warehouse: staging views over seed data, dimension and fact tables, an incremental daily snapshot, and data tests that run against the warehouse.">
+    <meta property="og:url" content="https://deshraj-jogiya.github.io/projects/dbt-warehouse/">
+    <meta property="og:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Deshraj Jogiya, Data Engineer and Machine Learning Engineer">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Job Search dbt Warehouse: a dimensional model on Databricks | Deshraj Jogiya">
+    <meta name="twitter:description" content="A dbt project that builds a dimensional model on a Databricks SQL warehouse: staging views over seed data, dimension and fact tables, an incremental daily snapshot, and data tests that run against the warehouse.">
+    <meta name="twitter:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=53e6242179">
+</head>
+<body class="subpage">
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-text">DESHRAJ JOGIYA</a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#experience">Experience</a>
+                <a href="/#projects">Projects</a>
+                <a href="/lab/">Lab</a>
+                <a href="/#contact" class="btn btn-secondary">Connect</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content case-study">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#projects">Case studies</a> / Job Search dbt Warehouse</nav>
+
+        <header class="case-hero">
+            <span class="badge badge-accent">Data Warehousing</span>
+            <h1 class="case-title">Job Search dbt Warehouse: a dimensional model on Databricks</h1>
+            <p class="case-summary">A dbt project that builds a dimensional model on a Databricks SQL warehouse: staging views over seed data, dimension and fact tables, an incremental daily snapshot, and data tests that run against the warehouse.</p>
+            <p class="case-meta">Sep 2026 · For: Anyone tracking a job search who wants answers like days from application to decision, and pipeline counts by day.</p>
+            <div class="hero-actions">
+                
+                <a href="https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse" class="btn btn-outline" target="_blank" rel="noopener">Code on GitHub ↗</a>
+            </div>
+            
+        </header>
+
+        
+
+        <section class="case-section glass-card">
+            <h2>How it works</h2>
+            <ol class="case-steps">
+                <li>Four seed files (companies, postings, applications, interview rounds) load into staging views</li><li>dim_company, dim_job_posting and dim_date (a 2025 to 2027 date spine built with sequence() and explode())</li><li>fct_application with a datediff days-to-decision measure, and fct_interview_event with a row_number() round sequence</li><li>fct_daily_pipeline_snapshot, an incremental model that merges on date so later runs only recompute new days</li>
+            </ol>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Data</h2>
+            <p>Synthetic seed data describing a job search; not a real company's data.</p>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Problems found and decisions made</h2>
+            <dl class="case-decisions">
+                
+                <dt>A full rebuild of the daily snapshot grows with every day of history</dt>
+                <dd>The snapshot is incremental and merges on date_day.</dd>
+                
+                <dt>Generic tests can't express business rules</dt>
+                <dd>Two singular tests: a decision date never precedes the applied date, and snapshot counts never go negative.</dd>
+                
+                <dt>The original workspace ran out of trial credits</dt>
+                <dd>The project moved to Databricks Free Edition, and credentials are read only from environment variables.</dd>
+                
+            </dl>
+        </section>
+
+        <div class="case-two-col">
+            <section class="case-section glass-card">
+                <h2>Testing and reliability</h2>
+                <ul><li>22 dbt tests: 20 schema tests (6 unique, 9 not-null, 4 referential-integrity, 1 accepted-values) and 2 business-rule tests</li><li>CI runs dbt seed, dbt run and dbt test against the warehouse in a separate CI schema</li></ul>
+            </section>
+            <section class="case-section glass-card">
+                <h2>Results</h2>
+                <ul><li>A working dimensional model with an incremental snapshot</li><li>All 22 tests passing when the warehouse is reachable</li></ul>
+            </section>
+        </div>
+
+        <section class="case-section glass-card">
+            <h2>Limits and next steps</h2>
+            <ul><li>CI depends on the Databricks workspace being reachable; when it isn't, the run fails on the connection rather than on the model</li></ul>
+        </section>
+
+        <section class="case-section glass-card">
+            <h2>Stack</h2>
+            <div class="tech-tags"><span>Databricks</span><span>dbt</span><span>SQL</span><span>Dimensional Modeling</span></div>
+        </section>
+
+        <nav class="case-nav" aria-label="Other case studies">
+            
+            <a href="/projects/career-pilot/" class="btn btn-sm btn-outline">Career Pilot →</a>
+            
+            <a href="/projects/job-market-lakehouse/" class="btn btn-sm btn-outline">Job Market Lakehouse →</a>
+            
+            <a href="/projects/finrisk/" class="btn btn-sm btn-outline">FinRisk →</a>
+            
+        </nav>
+    </main>
+
+    <footer class="footer-bar">
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/#projects">Case studies</a>
+            <a href="/lab/">Lab</a>
+            <a href="https://github.com/Deshraj-Jogiya" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:djogiya786@gmail.com">Email</a>
+        </nav>
+        <p>&copy; 2026 Deshraj Jogiya. Static site generated with Python and Jinja2, hosted on GitHub Pages.</p>
+        <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
+    </footer>
+    <script src="/app.js?v=53e6242179" defer></script>
+</body>
+</html>

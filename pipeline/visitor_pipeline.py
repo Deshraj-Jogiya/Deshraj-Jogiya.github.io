@@ -1,6 +1,5 @@
 import os
 import json
-import random
 import requests
 import numpy as np
 import pandas as pd
@@ -36,134 +35,32 @@ def setup_matplotlib_theme():
         'figure.autolayout': True
     })
 
-def generate_mock_visits(n_visits=304):
-    """Generates exactly n_visits realistic synthetic visitor logs with unique visitor_ids distributed smoothly."""
-    print(f"Generating {n_visits} synthetic visitor logs for bootstrapping...")
-    
-    browsers = ["Chrome", "Safari", "Firefox", "Edge", "Mobile Safari"]
-    browser_weights = [0.55, 0.25, 0.10, 0.07, 0.03]
-    
-    oses = ["Windows", "macOS", "iOS", "Android", "Linux"]
-    os_weights = [0.45, 0.30, 0.12, 0.08, 0.05]
-    
-    countries = [
-        ("United States", "US", ["New York", "San Francisco", "Austin", "Chicago", "Seattle"]),
-        ("India", "IN", ["Mumbai", "Bangalore", "Delhi", "Pune"]),
-        ("United Kingdom", "GB", ["London", "Manchester"]),
-        ("Canada", "CA", ["Toronto", "Vancouver"]),
-        ("Germany", "DE", ["Berlin", "Munich"])
-    ]
-    country_weights = [0.55, 0.25, 0.10, 0.05, 0.05]
-    
-    referrers = ["LinkedIn", "GitHub", "Resume PDF", "Google Search", "Direct"]
-    referrer_weights = [0.45, 0.25, 0.20, 0.06, 0.04]
-    
-    data = []
-    base_time = datetime.now()
-    
-    # Generate daily target counts over 30 days
-    # Days are 0 (29 days ago) to 29 (today)
-    daily_counts = []
-    for i in range(30):
-        # Gentle upward trend: base grows from 6 to 14
-        base = 6 + (i * 8) / 29
-        # Random noise
-        noise = random.choice([-2, -1, 0, 1, 2])
-        count = int(base + noise)
-        
-        # Check if the date is a weekend
-        date_at_day = base_time - timedelta(days=29 - i)
-        if date_at_day.weekday() >= 5: # Saturday or Sunday
-            count = max(3, int(count * 0.55))
-            
-        daily_counts.append(count)
-        
-    # Adjust sum to match exactly n_visits
-    current_sum = sum(daily_counts)
-    diff = n_visits - current_sum
-    if diff != 0:
-        step = 1 if diff > 0 else -1
-        for _ in range(abs(diff)):
-            adj_day = random.randint(0, 29)
-            daily_counts[adj_day] += step
-            
-    # Generate visits per day
-    visitor_counter = 0
-    for day_idx, count in enumerate(daily_counts):
-        day_date = base_time - timedelta(days=29 - day_idx)
-        for _ in range(count):
-            visitor_id = f"vis_{1000 + visitor_counter}"
-            visitor_counter += 1
-            is_new = random.random() < 0.85
-            
-            browser = random.choices(browsers, weights=browser_weights)[0]
-            os_name = random.choices(oses, weights=os_weights)[0]
-            if os_name in ["iOS", "Android"]:
-                device = "Mobile" if random.random() < 0.9 else "Tablet"
-            else:
-                device = "Desktop"
-                
-            country_info = random.choices(countries, weights=country_weights)[0]
-            country = country_info[0]
-            country_code = country_info[1]
-            city = random.choice(country_info[2])
-            
-            referrer = random.choices(referrers, weights=referrer_weights)[0]
-            page_path = "/"
-            
-            # Random time of day
-            hour_choices = list(range(24))
-            hour_weights = [0.01]*7 + [0.03, 0.06] + [0.09]*9 + [0.04]*5 + [0.02]
-            hour = random.choices(hour_choices, weights=hour_weights)[0]
-            minute = random.randint(0, 59)
-            second = random.randint(0, 59)
-            microsecond = random.randint(0, 999999)
-            
-            visit_time = day_date.replace(hour=hour, minute=minute, second=second, microsecond=microsecond)
-            
-            data.append({
-                "visitor_id": visitor_id,
-                "is_new": is_new,
-                "city": city,
-                "country": country,
-                "country_code": country_code,
-                "device": device,
-                "os": os_name,
-                "browser": browser,
-                "referrer": referrer,
-                "page_path": page_path,
-                "created_at": visit_time.isoformat()
-            })
-            
-    df = pd.DataFrame(data)
-    # Sort by created_at
-    df = df.sort_values("created_at").reset_index(drop=True)
-    return df
-
 def fetch_supabase_visits():
-    """Fetches visits from Supabase REST API. Returns a DataFrame or None on failure."""
+    """Fetches every visit from Supabase, 1,000 rows per request (the API's page limit). Returns a DataFrame or None."""
     headers = {
         "apikey": SUPABASE_KEY,
         "Authorization": f"Bearer {SUPABASE_KEY}",
-        "Content-Type": "application/json"
+        "Range-Unit": "items",
     }
+    rows, start, page_size = [], 0, 1000
     try:
-        print(f"Fetching visitor logs from Supabase REST API: {REST_URL}")
-        r = requests.get(f"{REST_URL}?select=*", headers=headers, timeout=10)
-        if r.status_code == 200:
-            data = r.json()
-            if isinstance(data, list) and len(data) > 0:
-                print(f"Successfully fetched {len(data)} records from database.")
-                return pd.DataFrame(data)
-            else:
-                print("Database query returned empty list.")
+        while True:
+            r = requests.get(f"{REST_URL}?select=*&order=created_at.asc",
+                             headers={**headers, "Range": f"{start}-{start + page_size - 1}"}, timeout=30)
+            if r.status_code not in (200, 206):
+                print(f"Supabase REST query failed (status: {r.status_code}): {r.text}")
                 return None
-        else:
-            print(f"Supabase REST query failed (status: {r.status_code}): {r.text}")
-            return None
+            page = r.json()
+            rows += page
+            if len(page) < page_size:
+                break
+            start += page_size
     except Exception as e:
         print(f"Error fetching data from Supabase: {e}")
         return None
+    print(f"Fetched {len(rows)} visit records from the database.")
+    return pd.DataFrame(rows) if rows else None
+
 
 def process_and_run_ml(df):
     """Processes DataFrame, fits K-Means and Linear Regression models, saves metrics and charts."""
@@ -201,20 +98,15 @@ def process_and_run_ml(df):
         'visits': forecast_visits
     })
     
-    # Save statistics variables
-    total_visits = int(df['visitor_id'].nunique())
-    
-    # Calculate a realistic, dynamic Active Users Today based on current execution hour
-    current_hour = datetime.now().hour
-    if 9 <= current_hour <= 17:
-        active_today = int(14 + np.sin((current_hour - 9) / 8 * np.pi) * 3 + random.randint(-1, 1))
-    elif (7 <= current_hour < 9) or (17 < current_hour <= 22):
-        active_today = random.randint(8, 12)
-    else:
-        active_today = random.randint(4, 7)
-        
+    # Real counts: unique visitors overall and today (UTC), and total sessions
+    unique_visitors = int(df['visitor_id'].nunique())
+    today = datetime.utcnow().date()
+    visitors_today = int(df.loc[df['date'] == today, 'visitor_id'].nunique())
+    sessions = int(len(df))
     forecasted_next_week = int(np.sum(forecast_visits))
-    
+    # Prediction band from the trend's own residuals (about 95%), not a fixed percentage
+    residual_sd = float(np.std(y - model_lr.predict(X), ddof=1)) if len(y) > 2 else 0.0
+
     # 2. Feature Engineering & K-Means (Visitor Clustering)
     # Convert categoricals to numeric codes
     df['device_cat'] = df['device'].astype('category').cat.codes
@@ -231,23 +123,17 @@ def process_and_run_ml(df):
     kmeans = KMeans(n_clusters=n_clusters, random_state=42)
     df['cluster'] = kmeans.fit_predict(X_clust)
     
-    # Name clusters dynamically based on dominant features
-    cluster_names = {}
+    # Name each cluster by what dominates it (device, OS, time of day in UTC); a suffix keeps names unique so
+    # value_counts never merges two clusters into one bar
+    def band(h):
+        return "night" if h < 6 else "morning" if h < 12 else "afternoon" if h < 18 else "evening"
+    cluster_names, used = {}, {}
     for c in range(n_clusters):
-        c_subset = df[df['cluster'] == c]
-        dom_device = c_subset['device'].mode()[0] if not c_subset['device'].empty else "Visitor"
-        dom_os = c_subset['os'].mode()[0] if not c_subset['os'].empty else "OS"
-        dom_referrer = c_subset['referrer'].mode()[0] if not c_subset['referrer'].empty else "Direct"
-        
-        if dom_device == "Mobile":
-            name = f"Mobile Explorers ({dom_os})"
-        elif dom_referrer in ["LinkedIn", "Resume PDF"]:
-            name = f"Recruiters / Peers ({dom_referrer})"
-        else:
-            name = f"Desktop Analysts ({dom_os})"
-            
-        cluster_names[c] = name
-        
+        sub = df[df['cluster'] == c]
+        name = f"{sub['device'].mode()[0]}, {sub['os'].mode()[0]}, {band(int(sub['hour'].median()))} (UTC)"
+        used[name] = used.get(name, 0) + 1
+        cluster_names[c] = name if used[name] == 1 else f"{name} #{used[name]}"
+
     df['cluster_name'] = df['cluster'].map(cluster_names)
     
     # 3. Create & Save Plots
@@ -263,12 +149,12 @@ def process_and_run_ml(df):
     
     # Plot forecast
     ax.plot(forecast_df['date'], forecast_df['visits'], label='7-Day ML Forecast', color='#10b981', linewidth=2.5, linestyle=':', marker='s', markersize=5)
-    ax.fill_between(forecast_df['date'], forecast_df['visits'] * 0.85, forecast_df['visits'] * 1.15, color='#10b981', alpha=0.15, label='Confidence Interval')
+    ax.fill_between(forecast_df['date'], np.clip(forecast_df['visits'] - 1.96 * residual_sd, 0, None), forecast_df['visits'] + 1.96 * residual_sd, color='#10b981', alpha=0.15, label='~95% band (trend residuals)')
     
     # Formatting
     ax.set_title('Machine Learning Traffic Forecast Model (Linear Regression)', fontsize=12, fontweight='bold', pad=15)
     ax.set_xlabel('Date', fontsize=10, labelpad=8)
-    ax.set_ylabel('Unique Visits', fontsize=10, labelpad=8)
+    ax.set_ylabel('Visits per day', fontsize=10, labelpad=8)
     ax.grid(True, linestyle=':', alpha=0.6)
     ax.legend(frameon=True, facecolor='#1e293b', edgecolor='#334155', loc='upper left')
     
@@ -306,13 +192,15 @@ def process_and_run_ml(df):
     
     # 4. Save JSON Stats
     stats_data = {
-        "total_visits": total_visits,
-        "active_today": active_today,
+        "unique_visitors": unique_visitors,
+        "visitors_today": visitors_today,
+        "sessions": sessions,
+        "first_visit": str(df['date'].min()),
         "forecasted_next_week": forecasted_next_week,
-        "updated_at": datetime.now().isoformat(),
-        "segments": segment_counts.to_dict()
+        "updated_at": datetime.utcnow().isoformat() + "Z",
+        "segments": segment_counts.to_dict(),   # sessions per K-Means segment (sums to "sessions")
     }
-    
+
     with open('assets/visitor_stats.json', 'w') as f:
         json.dump(stats_data, f, indent=4)
         
@@ -320,37 +208,14 @@ def process_and_run_ml(df):
 
 def main():
     print("Starting ML Visitor Pipeline...")
-    
-    # Try fetching real data from Supabase
-    df_real = fetch_supabase_visits()
-    
-    # Standardize columns for merging
-    cols = ["visitor_id", "is_new", "city", "country", "country_code", "device", "os", "browser", "referrer", "page_path", "created_at"]
-    
-    # We want a base of 321 unique visitors.
-    # Since we currently have 17 real unique visits logged in the database, we fix the synthetic
-    # baseline to 304 visits so the combined count is exactly 321.
-    # Any future new real visits logged in Supabase will increase this count dynamically.
-    n_synthetic = 304
-    
-    df_synthetic = generate_mock_visits(n_synthetic)
-    
-    if df_real is not None and len(df_real) > 0:
-        print(f"Merging {len(df_real)} real visits with {n_synthetic} synthetic training baseline.")
-        # Ensure all expected columns are present in real data
-        for col in cols:
-            if col not in df_real.columns:
-                df_real[col] = "Unknown"
-        df_real = df_real[cols]
-        # Concatenate and drop duplicates by created_at to avoid double-counting
-        df = pd.concat([df_real, df_synthetic]).drop_duplicates(subset=["created_at"]).reset_index(drop=True)
-    else:
-        print(f"No real visits fetched. Training on synthetic baseline of {n_synthetic} visits.")
-        df = df_synthetic
-        
-    # Process dataset & run ML modeling
+    df = fetch_supabase_visits()
+    if df is None or len(df) == 0:
+        # Keep the last published stats rather than publish anything that isn't real visitor data
+        print("No visitor data fetched; leaving the existing stats unchanged.")
+        return
     process_and_run_ml(df)
     print("Pipeline Execution Complete!")
+
 
 if __name__ == "__main__":
     main()

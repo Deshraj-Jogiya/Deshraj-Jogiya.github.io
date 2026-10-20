@@ -115,39 +115,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function updateVisitorStatsUI() {
         try {
-            const res = await fetch("assets/visitor_stats.json");
+            const res = await fetch("/assets/visitor_stats.json");
             if (res.ok) {
                 const stats = await res.json();
                 const countEl = document.getElementById("visitor-count");
                 const todayEl = document.getElementById("visitor-today");
                 const forecastEl = document.getElementById("visitor-forecast-val");
-                const progressFillEl = document.getElementById("visitor-progress-fill");
 
-                if (countEl) countEl.textContent = stats.total_visits || "...";
-                if (forecastEl) forecastEl.textContent = stats.forecasted_next_week || "...";
-
-                if (todayEl) {
-                    const baseActive = stats.active_today || 12;
-                    todayEl.textContent = baseActive;
-                    
-                    if (window.activeUserInterval) clearInterval(window.activeUserInterval);
-                    
-                    window.activeUserInterval = setInterval(() => {
-                        const hour = new Date().getHours();
-                        let timeModifier = 0;
-                        if (hour >= 9 && hour <= 17) {
-                            timeModifier = 2; // peak hours
-                        } else if (hour >= 23 || hour <= 5) {
-                            timeModifier = -3; // night drop
-                        }
-                        const currentActive = Math.max(3, baseActive + timeModifier + Math.floor(Math.random() * 5) - 2);
-                        todayEl.textContent = currentActive;
-                    }, 8000);
-                }
-
-                if (progressFillEl && stats.total_visits && stats.forecasted_next_week) {
-                    const ratio = Math.min(100, Math.round((stats.total_visits / stats.forecasted_next_week) * 100));
-                    progressFillEl.style.width = `${ratio}%`;
+                if (countEl) countEl.textContent = stats.unique_visitors ?? stats.total_visits ?? "...";
+                if (forecastEl) forecastEl.textContent = stats.forecasted_next_week ?? "...";
+                // Real count from the last pipeline run (every 12 hours); no simulated live movement
+                if (todayEl) todayEl.textContent = stats.visitors_today ?? "...";
+                const sinceEl = document.getElementById("visitor-since");
+                if (sinceEl && stats.first_visit) {
+                    sinceEl.textContent = new Date(stats.first_visit + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
                 }
             }
         } catch (e) {
@@ -158,51 +139,38 @@ document.addEventListener("DOMContentLoaded", () => {
     logVisit();
     updateVisitorStatsUI();
 
-    // 1. Typing Terminal Animation
-    const words = [
-        "Data Pipeline Engineer.",
-        "Machine Learning Specialist.",
-        "Business Intelligence Analyst.",
-        "ETL Automation Architect."
-    ];
-    let i = 0;
-    let timer;
-
-    function typingEffect() {
-        let word = words[i].split("");
-        var loopTyping = function() {
-            if (word.length > 0) {
-                document.getElementById('typing-text').innerHTML += word.shift();
-            } else {
-                setTimeout(deletingEffect, 2000);
-                return false;
-            }
-            timer = setTimeout(loopTyping, 80);
-        };
-        loopTyping();
-    }
-
-    function deletingEffect() {
-        let word = words[i].split("");
-        var loopDeleting = function() {
-            if (word.length > 0) {
-                word.pop();
-                document.getElementById('typing-text').innerHTML = word.join("");
-            } else {
-                if (words.length > (i + 1)) {
-                    i++;
-                } else {
-                    i = 0;
+    // 1. Typing Terminal Animation: types each phrase once and stops on the last one (WCAG 2.2.2: no endless motion);
+    // with reduced motion requested it shows the final phrase straight away
+    const typingEl = document.getElementById("typing-text");
+    const words = ["Machine Learning Engineer.", "ETL Automation Architect.", "Data Pipeline Engineer."];
+    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (typingEl && reduceMotion) {
+        typingEl.textContent = words[words.length - 1];
+    } else if (typingEl) {
+        let i = 0;
+        const typeWord = () => {
+            const chars = words[i].split("");
+            const step = () => {
+                if (chars.length) {
+                    typingEl.textContent += chars.shift();
+                    setTimeout(step, 80);
+                } else if (i < words.length - 1) {
+                    setTimeout(eraseWord, 1600);
                 }
-                setTimeout(typingEffect, 500);
-                return false;
-            }
-            timer = setTimeout(loopDeleting, 40);
+            };
+            step();
         };
-        loopDeleting();
+        const eraseWord = () => {
+            if (typingEl.textContent.length) {
+                typingEl.textContent = typingEl.textContent.slice(0, -1);
+                setTimeout(eraseWord, 35);
+            } else {
+                i += 1;
+                setTimeout(typeWord, 400);
+            }
+        };
+        typeWord();
     }
-
-    typingEffect();
 
     // 2. Stats Counter Animation
     const counters = document.querySelectorAll(".stat-number");
@@ -286,38 +254,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = document.querySelector(".close-modal-btn");
     const viewButtons = document.querySelectorAll(".view-dashboard-btn");
 
-    viewButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const dashboardSrc = button.getAttribute("data-dashboard");
-            modalImg.src = dashboardSrc;
-            modal.classList.add("active");
-            document.body.style.overflow = "hidden"; // Disable background scrolling
+    // The lightbox exists only on the home page
+    if (modal && modalImg && closeBtn) {
+        viewButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const dashboardSrc = button.getAttribute("data-dashboard");
+                modalImg.src = dashboardSrc;
+                const titleEl = document.getElementById("modal-dashboard-title");
+                if (titleEl) titleEl.textContent = button.getAttribute("data-title") || "Project chart";
+                modalImg.alt = (button.getAttribute("data-title") || "Project") + " chart";
+                modal.classList.add("active");
+                document.body.style.overflow = "hidden"; // Disable background scrolling
+            });
         });
-    });
 
-    const closeModal = () => {
-        modal.classList.remove("active");
-        document.body.style.overflow = "auto"; // Re-enable background scrolling
-        setTimeout(() => {
-            modalImg.src = ""; // Clear source after transition completes
-        }, 300);
-    };
+        const closeModal = () => {
+            modal.classList.remove("active");
+            document.body.style.overflow = "auto"; // Re-enable background scrolling
+            setTimeout(() => {
+                modalImg.src = ""; // Clear source after transition completes
+            }, 300);
+        };
 
-    closeBtn.addEventListener("click", closeModal);
+        closeBtn.addEventListener("click", closeModal);
     
-    // Close modal when clicking on dark overlay background
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
+        // Close modal when clicking on dark overlay background
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
 
-    // Close modal on Escape key press
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.classList.contains("active")) {
-            closeModal();
-        }
-    });
+        // Close modal on Escape key press
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modal.classList.contains("active")) {
+                closeModal();
+            }
+        });
+
+    }
 
     // Visitor ML Models & Charts Modal
     const mlModal = document.getElementById("ml-charts-modal");
@@ -408,14 +383,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (resumeHeroBtn) resumeHeroBtn.addEventListener("click", openResume);
     if (closeResumeBtn) closeResumeBtn.addEventListener("click", closeResume);
     
-    resumeModal.addEventListener("click", (e) => {
+    if (resumeModal) resumeModal.addEventListener("click", (e) => {
         if (e.target === resumeModal) {
             closeResume();
         }
     });
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && resumeModal.classList.contains("active")) {
+        if (e.key === "Escape" && resumeModal && resumeModal.classList.contains("active")) {
             closeResume();
         }
     });
@@ -2830,10 +2805,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const tourSkipBtn = document.getElementById("tour-skip-btn");
     const tourPausePlayBtn = document.getElementById("tour-pause-play-btn");
     
-    const tourSteps = [
+    const allTourSteps = [
         {
             title: "Welcome to Deshraj's Portfolio!",
-            desc: "This interactive guided tour showcases Deshraj's professional experience, pipeline dashboard, SQL charts, and conversational AI chatbot in sequence. Choose how you would like to proceed below:",
+            desc: "This guided tour walks through Deshraj's experience, the featured case studies, the visitor analytics and the AI assistant. The interactive demos are on the Lab page. Choose how you would like to proceed below:",
             target: null,
             duration: 0,
             action: async () => {
@@ -3301,6 +3276,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     ];
+    // Only steps whose target exists on this page (the demos live on /lab/, case studies on their own pages)
+    const tourSteps = allTourSteps.filter(step => !step.target || document.querySelector(step.target));
 
     function startStepTimer(duration) {
         clearStepTimer();

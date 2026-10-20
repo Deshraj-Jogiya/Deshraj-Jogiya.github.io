@@ -1,0 +1,132 @@
+{
+  "career-pilot": {
+    "project": "Job Search CRM & AI Application Tailoring Center",
+    "title": "Career Pilot: a job-search assistant in production",
+    "summary": "A self-hosted platform that collects job postings, scores how well each matches the candidate's master profile, drafts a tailored resume and cover letter, and pre-fills application forms. Every application is reviewed and submitted by a person.",
+    "audience": "One job seeker running a long search, and anyone who forks it to run their own copy.",
+    "demo_url": "https://demo.129-146-36-193.sslip.io",
+    "demo_note": "Public demo with a sample profile; automation is off and nothing is ever submitted.",
+    "architecture": [
+      "Intake from direct ATS boards (Greenhouse, Lever, Ashby, Recruitee, Personio, Workable, SmartRecruiters) and remote job boards, with duplicate removal",
+      "A free rule-based fit score first; only postings that can still reach the tailoring threshold go to the LLM",
+      "LLM tailoring (Claude by default, Gemini and Ollama as alternates) under a daily spending limit",
+      "A non-LLM fact check against the master profile; a failing draft gets up to two rewrites, then goes to human review",
+      "A Chrome extension that pre-fills the application form in the job seeker's own browser",
+      "FastAPI and Jinja2 on an Oracle Cloud VM behind Caddy HTTPS, PostgreSQL on Supabase with row-level security on every table"
+    ],
+    "data": "Real job postings from public ATS and job-board APIs, and the owner's own profile. The public demo runs on a separate database with a sample profile and no API keys.",
+    "decisions": [
+      ["The language model sometimes listed skills the candidate doesn't have", "Every generated resume is checked by ordinary code, not another model, against the master profile. Anything missing from the profile triggers a rewrite, then human review."],
+      ["An early version spent far more on API calls than planned", "Postings get a free rule-based score first, a posting that can't reach the tailoring threshold never reaches the model, and a daily spending limit is checked before every paid call."],
+      ["Employer sites blocked automated form filling from the cloud server", "Form filling moved into a Chrome extension in the user's own browser. Testing on seven applicant-tracking systems found fields inside Shadow DOM, upload fields hidden behind custom buttons and hidden decoy fields meant for bots, which are now left empty."],
+      ["The first location filter wrongly excluded 458 US postings", "It now excludes a posting only when its location names a country outside the US and Canada."]
+    ],
+    "reliability": [
+      "1,100+ pytest tests in GitHub Actions on every push",
+      "Alembic migrations applied to PostgreSQL in production, with a test that the same chain runs on the demo's SQLite",
+      "Encrypted daily backups, a health-check watchdog that restarts a hung service, and external uptime monitoring",
+      "Row-level security on every table, with a regression test that fails if a new table ships without it"
+    ],
+    "results": [
+      "Running in production since February 2026 for a real job search",
+      "Form filling verified live on 7 applicant-tracking systems",
+      "Nothing is submitted or sent without a human click"
+    ],
+    "limits": [
+      "Workday forms need an account before any question is reachable, so they are only partly covered",
+      "Custom phone-country pickers on some forms are left at the page's default"
+    ]
+  },
+  "job-market-lakehouse": {
+    "project": "Job Market Lakehouse",
+    "title": "Job Market Lakehouse: PySpark, Great Expectations and Airflow",
+    "summary": "A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.",
+    "audience": "Analysts asking how salaries vary by industry and seniority, and which postings rank highest within an industry.",
+    "architecture": [
+      "A seeded generator writes 60,000 postings and 400 companies as raw CSV",
+      "PySpark joins postings to companies, aggregates salary statistics per industry and seniority, and ranks postings within each industry with dense_rank(); output is Parquet",
+      "11 Great Expectations checks (row counts, value sets, uniqueness, a cross-column max >= min rule) fail the run if any expectation fails",
+      "An Airflow DAG runs generate, transform and validate, verified end to end with airflow dags test",
+      "A Scala Spark job computes monthly posting volume by source",
+      "A static HTML data-quality report is built from the expectation results and uploaded by CI"
+    ],
+    "data": "Synthetic and seeded (data/generate_raw_data.py); it describes no real company.",
+    "decisions": [
+      ["Airflow's dependency pins clashed with the pipeline's (pydantic, typing_extensions)", "Airflow runs in its own environment, separate from the pipeline's, in CI as well as locally."],
+      ["Validation needs to stop bad data, not just report it", "Any failed expectation fails the run, so nothing downstream sees an output that broke a rule."],
+      ["Library versions drifted: an unpinned pandas 3 and pyarrow 26 stopped importing against the numpy that Great Expectations needs", "CI flagged the break; pandas and pyarrow are now pinned to compatible ranges."]
+    ],
+    "reliability": [
+      "CI runs the PySpark job, the Great Expectations validation and the unit tests on every push",
+      "A second CI job installs Airflow and runs the DAG end to end"
+    ],
+    "results": [
+      "11 expectations pass on every run",
+      "A downloadable data-quality report from each CI run"
+    ],
+    "limits": [
+      "Runs Spark in local mode, not on a cluster",
+      "The Scala job is run by hand against a Spark distribution rather than in CI"
+    ]
+  },
+  "dbt-warehouse": {
+    "project": "Job Search dbt Warehouse",
+    "title": "Job Search dbt Warehouse: a dimensional model on Databricks",
+    "summary": "A dbt project that builds a dimensional model on a Databricks SQL warehouse: staging views over seed data, dimension and fact tables, an incremental daily snapshot, and data tests that run against the warehouse.",
+    "audience": "Anyone tracking a job search who wants answers like days from application to decision, and pipeline counts by day.",
+    "architecture": [
+      "Four seed files (companies, postings, applications, interview rounds) load into staging views",
+      "dim_company, dim_job_posting and dim_date (a 2025 to 2027 date spine built with sequence() and explode())",
+      "fct_application with a datediff days-to-decision measure, and fct_interview_event with a row_number() round sequence",
+      "fct_daily_pipeline_snapshot, an incremental model that merges on date so later runs only recompute new days"
+    ],
+    "data": "Synthetic seed data describing a job search; not a real company's data.",
+    "decisions": [
+      ["A full rebuild of the daily snapshot grows with every day of history", "The snapshot is incremental and merges on date_day."],
+      ["Generic tests can't express business rules", "Two singular tests: a decision date never precedes the applied date, and snapshot counts never go negative."],
+      ["The original workspace ran out of trial credits", "The project moved to Databricks Free Edition, and credentials are read only from environment variables."]
+    ],
+    "reliability": [
+      "22 dbt tests: 20 schema tests (6 unique, 9 not-null, 4 referential-integrity, 1 accepted-values) and 2 business-rule tests",
+      "CI runs dbt seed, dbt run and dbt test against the warehouse in a separate CI schema"
+    ],
+    "results": [
+      "A working dimensional model with an incremental snapshot",
+      "All 22 tests passing when the warehouse is reachable"
+    ],
+    "limits": [
+      "CI depends on the Databricks workspace being reachable; when it isn't, the run fails on the connection rather than on the model"
+    ]
+  },
+  "finrisk": {
+    "project": "FinTech Credit Risk & Fraud Command Center",
+    "title": "FinRisk: predicting loan default and serving it in under 100 ms",
+    "summary": "An end-to-end credit-risk pipeline: ETL into SQLite, a Random Forest and an XGBoost model predicting loan default compared in MLflow, rule-based fraud flags, and a FastAPI service with REST and GraphQL endpoints behind a Chart.js dashboard.",
+    "audience": "A lender deciding which applications to decline outright and which to approve or review.",
+    "architecture": [
+      "A seeded generator creates 12,500 customers, 10,586 loan applications and about 344,000 card transactions",
+      "Each loan's default is drawn from a probability driven by credit score, late-payment history, utilization, DTI, income and tenure",
+      "Random Forest and XGBoost are trained on 80% of loans and compared on the held-out 20%; both runs are logged to MLflow",
+      "FastAPI serves POST /api/predict with the model loaded once and cached, plus REST KPIs and a Strawberry GraphQL layer"
+    ],
+    "data": "Fully synthetic (fixed seed), with a 23.4% default rate similar to a subprime lender's book. No real customer data.",
+    "decisions": [
+      ["The first version predicted the approve/reject decision, which a fixed rule computes from the same features, and scored a meaningless 100%", "The model now predicts actual default, and neither the underwriting decision nor the simulator's true probability is used as a feature."],
+      ["Reloading the model from disk on every request made latency depend on model size", "The model is loaded once and cached, giving a median of 67 ms per score (95th percentile 85 ms)."],
+      ["A single accuracy number hides the business trade-off", "Precision and recall are reported at an explicit decline threshold (80% predicted default probability)."]
+    ],
+    "reliability": [
+      "CI trains both models, checks that MLflow logged both runs, boots the API and calls its REST and GraphQL endpoints",
+      "Tests check that a risky applicant is declined and a safe one approved, and fail if median scoring latency reaches 100 ms"
+    ],
+    "results": [
+      "Random Forest: ROC AUC 0.92 and 93.4% precision when declining scores of 80% or more (34% of defaults caught, 8.6% of applications declined)",
+      "XGBoost: 91.3% precision with 44.6% recall at the same threshold",
+      "Median scoring latency 67 ms"
+    ],
+    "limits": [
+      "Synthetic data: the effects are built into the generator, so the model recovers relationships that were put there",
+      "The decline threshold is fixed; a production system would set it from loss and approval-rate targets"
+    ]
+  }
+}
