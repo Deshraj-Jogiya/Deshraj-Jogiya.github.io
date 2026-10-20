@@ -259,7 +259,7 @@
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
-      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.",
+      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 985 automated tests.",
       "category": "data-engineering machine-learning",
       "tags": [
         "Python",
@@ -610,32 +610,33 @@
       "desc": "Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows. Integrates Gemini LLM chains and LinkedIn APIs, secured by Fernet symmetric encryption.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
-        "FastAPI",
         "Python",
+        "FastAPI",
         "GitHub Actions",
         "Gemini LLM",
-        "LangChain",
-        "ReAct Agents",
-        "pgvector",
-        "Docker"
+        "LinkedIn API",
+        "Pillow",
+        "Jinja2",
+        "HTMX",
+        "SQLAlchemy"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/curiosync",
       "bullets": [
         {
-          "html": "Serverless Automation Pipeline: Scheduled serverless news curation and publisher pipeline running on GitHub Actions cron workflows (<strong>100%</strong> hosting cost reduction).",
+          "html": "Serverless Publishing Pipeline: Scheduled news curation and LinkedIn publishing pipeline running on GitHub Actions cron workflows at <strong>$0</strong> hosting cost, with the LinkedIn Posts API and a daily TIL note committed to a second repository.",
           "resume_role": "de"
         },
         {
-          "html": "Glassmorphic Administrative Panel: Designed a Jinja2/HTMX control panel secured by Fernet symmetric encryption to protect user credentials with zero compliance leakage.",
-          "resume_role": "de"
+          "html": "Fact-Checked LLM Drafting: Gemini drafts posts only from the live portfolio profile; mechanical checks reject any number or tool not in the facts, 'we' on solo work and undisclosed simulated data, and a second model pass flags invented claims before anything is published.",
+          "resume_role": "ds"
         },
         {
           "html": "LLM &amp; Image Generation: Integrated Gemini LLM chains and developed custom Pillow image-processing engines to automatically render branding graphics (+<strong>150%</strong> engagement).",
           "resume_role": "ds"
         },
         {
-          "html": "Vector RAG Embeddings: Implemented pgvector semantic search and RAG retrieval pipelines to contextualize daily technical news articles automatically.",
-          "resume_role": "ds"
+          "html": "Credential-Safe Control Panel: Jinja2/HTMX control panel with Fernet symmetric encryption protecting stored LinkedIn credentials.",
+          "resume_role": "de"
         }
       ],
       "dashboard_url": "assets/curiosync_publishing_trend.png",
