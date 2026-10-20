@@ -351,7 +351,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Data Quality Testing: Wrote 15 dbt tests (uniqueness, not-null, referential integrity, accepted values) across the model, all passing against the warehouse in CI.",
+          "html": "Data Quality Testing: Wrote 22 dbt tests (20 schema tests for uniqueness, not-null, referential integrity and accepted values, plus 2 business-rule tests: a decision date never precedes the applied date, and snapshot counts never go negative), run against the warehouse in CI.",
           "resume_role": "de"
         },
         {

@@ -2784,7 +2784,7 @@
 
 <li class="resume-bullet" data-role="de">Dimensional Data Model: Built a dbt project (staging views into dimension and fact tables) on a live Databricks SQL warehouse, including a datediff-based days-to-decision measure and a row_number() window function for interview-round sequencing.</li>
 
-<li class="resume-bullet" data-role="de">Data Quality Testing: Wrote 15 dbt tests (uniqueness, not-null, referential integrity, accepted values) across the model, all passing against the warehouse in CI.</li>
+<li class="resume-bullet" data-role="de">Data Quality Testing: Wrote 22 dbt tests (20 schema tests for uniqueness, not-null, referential integrity and accepted values, plus 2 business-rule tests: a decision date never precedes the applied date, and snapshot counts never go negative), run against the warehouse in CI.</li>
 
 <li class="resume-bullet" data-role="de">Verified End-to-End: Ran dbt seed/run/test against a live Databricks warehouse (not just parsed) and spot-checked the resulting tables by hand; CI re-runs the same three commands against the same warehouse on every push using repository secrets.</li>
 
