@@ -547,10 +547,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        if (takeaways.length === 0) {
-            takeaways.push("Refined model training parameters and feature pipelines.");
-            takeaways.push("Reviewed logs and anomaly scores for audit validations.");
-        }
 
         return {
             date: dateStr,
@@ -584,40 +580,14 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const renderFallbackLogs = () => {
+        // Shown only when the notes cannot be fetched. No sample entries: anything listed here would be invented.
         if (!learningFeed) return;
-        learningFeed.innerHTML = "";
-        
-        const fallbackData = [
-            {
-                date: "June 16, 2026",
-                title: "ETL OBSERVABILITY PIPELINE ROBUSTNESS",
-                takeaways: [
-                    "Integrated Kolmogorov-Smirnov (KS) tests into live monitoring to catch feature drift dynamically.",
-                    "Improved isolation forest thresholds on General Ledger transactions, reducing tax false positives by 12%.",
-                    "Resolved namespace collision in ASU STEM platform module imports."
-                ]
-            },
-            {
-                date: "June 15, 2026",
-                title: "K-MEANS CLUSTERING & RFM SCALING",
-                takeaways: [
-                    "Standardized customer metrics using StandardScaler before training K-Means (k=4) models.",
-                    "Configured principal component analysis (PCA) dimension reduction to plot clusters in 2D space.",
-                    "Wrote automated CSV output script to pipe customer segmentations directly to Power BI reports."
-                ]
-            },
-            {
-                date: "June 14, 2026",
-                title: "TELEOPERATION ROBOTICS DATA QA PIPELINES",
-                takeaways: [
-                    "Built high-frequency EV battery sensor ingestion pipeline running Z-score calculations.",
-                    "Optimized database indexing for telematics SQLite instances, speeding up rolling query execution by 30%.",
-                    "Integrated remaining useful life (RUL) estimation algorithms for fleet battery monitoring."
-                ]
-            }
-        ];
-
-        fallbackData.forEach(renderLogItem);
+        learningFeed.innerHTML = `
+            <div class="learning-item glass-card learning-card">
+                <h4 class="learning-title" style="margin-bottom: 0.75rem;">NOTES COULD NOT BE LOADED</h4>
+                <p>The daily learning notes are read live from GitHub, which did not respond just now.
+                <a href="https://github.com/Deshraj-Jogiya/dev-root-affinity/tree/main/notes" target="_blank" rel="noopener">Read them on GitHub</a>.</p>
+            </div>`;
     };
 
     loadLearningLogs();
@@ -1685,19 +1655,19 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", handleVisitorResponsiveLayout);
 
     const answers = {
-        gpa: "Deshraj earned a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University. He specialized in cloud data engineering, distributed systems, and predictive model governance.",
-        python: "Python is Deshraj's primary stack for building asynchronous data pipelines, running Great Expectations quality QA, and training machine learning models (Random Forest, XGBoost, CNNs) using Scikit-Learn and TensorFlow.",
-        asu: "Deshraj completed his Master of Science in IT at Arizona State University with a perfect 4.0/4.0 GPA, specializing in cloud data architectures, streaming ingestion, and predictive modeling.",
-        contact: "You can reach Deshraj directly via email at djogiya786@gmail.com. He is actively interviewing for Data Engineering, Machine Learning Engineering, and Cloud Data Architecture roles.",
+        gpa: "Deshraj earned a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University.",
+        python: "Python is Deshraj's primary language: ETL pipelines with Pandas and PySpark, Great Expectations data-quality checks, FastAPI services, and machine learning models with Scikit-Learn (Random Forest, XGBoost) and TensorFlow/Keras (CNNs).",
+        asu: "Deshraj completed his Master of Science in IT at Arizona State University with a perfect 4.0/4.0 GPA.",
+        contact: "You can reach Deshraj directly via email at djogiya786@gmail.com. He is actively interviewing for Data Engineer, Machine Learning Engineer and Analytics Engineer roles.",
         cloud: "Deshraj builds secure, high-throughput cloud architectures using AWS (Glue ETL, S3 data lakes), Snowflake OLAP star schemas, Azure ADLS Gen2, and Supabase serverless backends.",
         experience: "Deshraj has 3+ years of experience as a data engineer and machine learning engineer. Highlights: 25% better recommendation accuracy and 30% fewer model deployment errors at Technoid, 60% faster ingestion and a 98%+ data reliability standard at Zifatech, and 30% faster robotics data processing at Objectways.",
         projects: "Deshraj's top repositories include Career Pilot (a deployed FastAPI/PostgreSQL job-search platform with LLM agents, a non-LLM guardrail and a Chrome extension), TalentVenue EventIntel (Azure ADLS Gen2, Snowflake and Terraform), the Job Search dbt Warehouse on Databricks, and CurioSync (a serverless publisher). Explore the Projects section for all 30.",
         observability: "Deshraj integrates automated Great Expectations QA data rules into ingestion cycles and runs Kolmogorov-Smirnov (KS) tests to flag feature drift before it affects model performance.",
-        skills: "Deshraj specializes in Python (Asyncio, FastAPI, Pandas), SQL (PostgreSQL, Snowflake), AWS Glue/S3, Azure ADLS Gen2, Supabase, Scikit-Learn, TensorFlow, Great Expectations, Power BI, and Tableau.",
+        skills: "Deshraj specializes in Python (FastAPI, Pandas, PySpark), SQL (PostgreSQL, Snowflake), AWS Glue/S3, Azure ADLS Gen2, Supabase, Scikit-Learn, TensorFlow, Great Expectations, Power BI, and Tableau.",
         analytics: "Deshraj models dimensional Star Schemas in Snowflake and PostgreSQL, developing interactive Power BI and Tableau dashboards that cut reporting cycles by 30% and lift customer acquisition by 12%.",
         objectways: "At Objectways Technologies, Deshraj scaled teleoperation ingestion pipelines in Python, Scala, and Kubernetes, processing 10,000+ robotics telemetry samples and cutting data processing time by 30%.",
         technoid: "At Technoid LLC, Deshraj optimized GPT-4o mini models (+25% recommendation accuracy), restructured Supabase/PostgreSQL RLS sync (-65% latency), and built regression frameworks (-30% deployment errors).",
-        zifatech: "At Zifatech Solutions, Deshraj migrated legacy database workflows to AWS Glue & S3 (+60% Snowflake availability), automated sales ETL (-70% manual effort), and set up Great Expectations QA (98%+ reliability).",
+        zifatech: "At Zifatech Solutions, Deshraj migrated legacy database workflows to AWS Glue & S3 (+60% data availability), automated sales ETL (-70% manual effort), and set up Great Expectations QA (98%+ reliability).",
         elevateme: "Through the ElevateMe Bootcamp, Deshraj built C# and .NET services on SQL Server with automated ETL routines (45% better query performance), segmented customers with K-Means and PCA (personas capturing 92% of variance), and delivered Power BI KPI dashboards.",
         kronic: "At Kronic Keys, Deshraj cleaned 500k+ row financial datasets in PostgreSQL, building Tableau dashboards that cut monthly reporting cycles by 30%.",
         talentvenue: "TalentVenue EventIntel is an enterprise BI & predictive ML platform. Deshraj engineered a conformed Azure ADLS Gen2 landing zone, Snowflake OLAP Star Schema, SHA-256 PII tokenization, and a Random Forest contract cancellation risk classifier in Streamlit.",
@@ -1706,7 +1676,7 @@ document.addEventListener("DOMContentLoaded", () => {
         recommendation_accuracy: "At Technoid LLC, Deshraj raised candidate-resume recommendation accuracy by 25% by optimizing GPT-4o mini models with OpenAI APIs, SQL and PostgreSQL.",
         location: "Deshraj is located in Tempe, Arizona (Phoenix Metropolitan Area), United States. He is open to relocation to major technology hubs nationwide for Data Engineering and ML Engineering roles.",
         current_doing: "Deshraj currently works as a Teleoperation Data Collection Associate at Objectways Technologies LLC in Tempe, AZ, building Python, Scala, PySpark and Kubernetes pipelines for robotics data. Alongside it he runs Career Pilot, his deployed job-search platform with LLM agents.",
-        best_work: "Deshraj's strongest work joins data engineering with production AI. At Technoid LLC he raised recommendation accuracy 25% and cut model deployment errors 30%; at Zifatech he sped ingestion 60% and held a 98%+ data reliability standard. His flagship project is Career Pilot, a deployed AI platform with a guardrail on every generated claim, a daily spend cap and 985 automated tests. Ask about Data Engineering, Machine Learning, or Career Pilot to go deeper.",
+        best_work: "Deshraj's strongest work joins data engineering with production AI. At Technoid LLC he raised recommendation accuracy 25% and cut model deployment errors 30%; at Zifatech he sped ingestion 60% and held a 98%+ data reliability standard. His flagship project is Career Pilot, a deployed AI platform with a guardrail on every generated claim, a daily spend cap and 1,100+ automated tests. Ask about Data Engineering, Machine Learning, or Career Pilot to go deeper.",
         emissions: "Multi-State Land Use Emissions Analysis is a geospatial pipeline processing daily land cover changes across 5 U.S. states. Deshraj built Python/SQLite ETL ingestion and Random Forest models forecasting CO2 trends with 90% accuracy.",
         fintech: "FinTech Credit Risk Command Center is an end-to-end transaction pipeline featuring a FastAPI backend, Scikit-Learn Random Forest default prediction (92% precision), and real-time sub-100ms fraud evaluation.",
         telematics: "IoT Telematics & Predictive Maintenance processes streaming EV battery telemetry micro-batches, running Z-score anomaly detection and Remaining Useful Life (RUL) regression models for maintenance alerts.",

@@ -259,38 +259,44 @@
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
-      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 985 automated tests.",
+      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.",
       "category": "data-engineering machine-learning",
       "tags": [
-        "FastAPI",
         "Python",
-        "SQLite",
-        "OpenAI API",
+        "FastAPI",
+        "PostgreSQL",
+        "Supabase",
+        "SQLAlchemy",
+        "Alembic",
         "Jinja2",
-        "TailwindCSS",
+        "Anthropic Claude API",
+        "JavaScript",
+        "Chrome Extension",
+        "ReportLab",
+        "Docker",
         "GitHub Actions",
-        "Docker"
+        "Oracle Cloud"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation",
       "bullets": [
         {
-          "html": "Full Stack Command Center: Local job placement command center with FastAPI, Python, Jinja2, and TailwindCSS UI, tracking applications, recruiter outreach, and resume versions.",
+          "html": "Deployed Platform: FastAPI and Jinja2 application on an Oracle Cloud VM behind Caddy HTTPS, backed by Supabase PostgreSQL with row-level security on every table and Alembic migrations.",
           "resume_role": "de"
         },
         {
-          "html": "AI Prompt Tailoring Engine: Integrated OpenAI API prompt tailoring chains to automatically align candidate resumes with specific job description keywords, plus a standalone ReAct-pattern research agent with tool-calling over the app's own data.",
+          "html": "Guarded AI Tailoring: Tailors resumes and cover letters with Claude (provider-agnostic, with Gemini and Ollama as alternates), checked by a non-LLM guardrail that blocks any skill or claim not in the master profile, plus a ReAct research agent with tool-calling over the app's own data.",
           "resume_role": "ds"
         },
         {
-          "html": "Relational Database &amp; ORM: Deployed a local SQLite database using SQLAlchemy ORM to manage application logs, recruiter follow-ups, and interview stages, backed by a GitHub Actions CI pipeline running <strong>690+</strong> pytest cases on every push.",
+          "html": "Application Autofill Extension: Chrome extension that fills applications on 7 applicant-tracking systems (Greenhouse, Lever, Ashby, Recruitee, Personio, Workable, SmartRecruiters), including Shadow DOM forms, file attachment and honeypot-field detection; nothing is ever submitted without a human click.",
           "resume_role": "de"
         },
         {
-          "html": "Automated Document Compiler: Built automated Python PDF compilation scripts with headless Edge printing to generate perfectly formatted 2-page resumes and 1-page cover letters, containerized with Docker for reproducible deployment.",
-          "resume_role": "de"
+          "html": "Cost-Controlled Intake: Ingests postings from direct ATS boards and remote job boards, runs free mechanical scoring before any paid LLM call, and enforces a daily LLM spend cap; resumes render to PDF with ReportLab and page-count check.",
+          "resume_role": "ds"
         },
         {
-          "html": "Diagnosed and fixed production incidents: traced a database egress-quota breach to a dedup query fetching full job descriptions, and removed a ~90-second deploy outage caused by a blocking scheduler shutdown.",
+          "html": "Tested and Operated in Production: <strong>1,100+</strong> pytest tests in a GitHub Actions CI pipeline; traced a database egress-quota breach to a dedup query fetching full job descriptions, and removed a ~90-second deploy outage caused by a blocking scheduler shutdown.",
           "resume_role": "de"
         }
       ],
@@ -793,7 +799,7 @@
       "github_url": "https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel",
       "bullets": [
         {
-          "html": "Enterprise Cloud Platform: Connected SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit, accelerating financial queries by <strong>45%</strong> and achieving <strong>100%</strong> payment reconciliation accuracy.",
+          "html": "ElevateMe Bootcamp Capstone: Built on the bootcamp's business data, connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit, accelerating financial queries by <strong>45%</strong> and achieving <strong>100%</strong> payment reconciliation accuracy.",
           "resume_role": "de"
         },
         {
@@ -1523,7 +1529,7 @@
       ]
     }
   ],
-  "summary": "Data engineer and machine learning engineer (MS Information Technology, ASU, 4.0 GPA) who builds data pipelines, warehouses, and AI systems that run in production. Accelerated multi-source ingestion 60% on AWS and held a 98%+ data reliability standard in Snowflake at Zifatech; raised candidate-matching accuracy 25% with GPT-4o mini at Technoid. Runs a deployed AI platform with a guardrail on every generated claim, a daily spend cap, and 985 automated tests.",
+  "summary": "Data engineer and machine learning engineer (MS Information Technology, ASU, 4.0 GPA) who builds data pipelines, warehouses, and AI systems that run in production. Accelerated multi-source ingestion 60% on AWS and held a 98%+ data reliability standard in Snowflake at Zifatech; raised candidate-matching accuracy 25% with GPT-4o mini at Technoid. Runs a deployed AI platform with a guardrail on every generated claim, a daily spend cap, and 1,100+ automated tests.",
   "title": "Data Engineer & Machine Learning Engineer",
   "testimonials_source": "https://www.linkedin.com/in/deshrajjogiya/details/recommendations/",
   "testimonials": [
