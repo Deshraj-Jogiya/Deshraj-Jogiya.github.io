@@ -1319,7 +1319,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "High Classification Accuracy: Achieved <strong>98.97%</strong> classification accuracy on a <strong>10,000+</strong> image dataset, combining deep learning with traditional contour geometry approximations.",
+          "html": "High Classification Accuracy: Achieved <strong>98.97%</strong> classification accuracy on <strong>10,000</strong> generated shape images across 7 classes, combining deep learning with traditional contour geometry approximations.",
           "resume_role": "ds"
         },
         {
