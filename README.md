@@ -87,7 +87,7 @@ The site shows 30 projects across data engineering, machine learning, analytics 
 | **[Clinical Trials Patient Outcomes Analysis](https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis)** | Healthcare & Statistics | Python, SQL, Kaplan-Meier, Log-Rank |
 | **[Real-Time IoT Telematics & Predictive Maintenance](https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance)** | Streaming & IoT | Python, Z-Score Anomaly, RUL Model, Power BI |
 | **[AI-ML Data Science Simulation](https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation)** | Operations & Demand | Python, SQL, Random Forest, Sales ETL |
-| **[Extending STEM across ASL](https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL)** | Accessibility & Deep Learning | Python, PyTorch, TensorFlow, Keras |
+| **[Extending STEM across ASL](https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL)** | Accessibility & Deep Learning | Python, PyTorch, MediaPipe, OpenCV, TensorFlow, Keras |
 | **[Stay Aware of Branch](https://github.com/Deshraj-Jogiya/Stay-Aware-of-Branch)** | Mobile & Education | Java, Android, Firebase, Mobile |
 | **[Chef at Gathering](https://github.com/Deshraj-Jogiya/Chef-at-Gathering)** | Web Development & Catering | React JS, JavaScript, HTML5, CSS3 |
 | **[Get your Token](https://github.com/Deshraj-Jogiya/Get-Your-Token)** | FinTech & Blockchain | Node.js, Express, Angular, Cryptocurrency API |
