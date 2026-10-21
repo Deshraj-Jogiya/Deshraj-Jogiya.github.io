@@ -453,11 +453,11 @@
           "resume_role": "sde"
         },
         {
-          "html": "Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries.",
+          "html": "Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries, plus SM-2 spaced-repetition scheduling of practice attempts with streak and mastery stats.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: 5 xUnit integration tests (WebApplicationFactory + in-memory SQLite connection) plus a hand-run curl verification against the live app -- all passing.",
+          "html": "Verified End-to-End: 19 xUnit tests -- 12 integration tests (WebApplicationFactory + in-memory SQLite connection) and 7 for the SM-2 scheduler -- plus a hand-run curl verification against the live app -- all passing.",
           "resume_role": "sde"
         }
       ],
@@ -477,11 +477,11 @@
       "github_url": "https://github.com/Deshraj-Jogiya/company-blocklist",
       "bullets": [
         {
-          "html": "CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller.",
+          "html": "CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller, plus bulk CSV import (imported/skipped/rejected rows) and a California WARN Act layoff-notice check.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: 5 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.",
+          "html": "Verified End-to-End: 12 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.",
           "resume_role": "sde"
         },
         {
@@ -534,11 +534,11 @@
       "github_url": "https://github.com/Deshraj-Jogiya/htmx-company-search",
       "bullets": [
         {
-          "html": "Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework).",
+          "html": "Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework), with inline editing and Server-Sent Events syncing changes across open tabs.",
           "resume_role": "sde"
         },
         {
-          "html": "Verified End-to-End: 5 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.",
+          "html": "Verified End-to-End: 12 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.",
           "resume_role": "sde"
         },
         {
@@ -563,7 +563,7 @@
       "github_url": "https://github.com/Deshraj-Jogiya/arcgis-commute-insights",
       "bullets": [
         {
-          "html": "Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by great-circle distance.",
+          "html": "Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by ArcGIS World Route drive time (great-circle distance as the fallback) on an interactive Leaflet map.",
           "resume_role": "de"
         },
         {
@@ -571,7 +571,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Verified End-to-End: All 7 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.",
+          "html": "Verified End-to-End: All 11 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.",
           "resume_role": "de"
         }
       ],
@@ -684,7 +684,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "Bias &amp; Fairness Auditing: Evaluates demographic parity and Equal Opportunity bias metrics in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).",
+          "html": "Bias &amp; Fairness Auditing: Evaluates disparate impact, demographic parity and Equal Opportunity (true-positive-rate gap) bias metrics, writing guardrail alerts to an audit table, in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).",
           "resume_role": "general"
         },
         {
@@ -772,7 +772,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages.",
+          "html": "Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages; on 26 labelled paraphrased questions it finds the right member <strong>100%</strong> of the time and the right answer <strong>96%</strong>.",
           "resume_role": "ds"
         },
         {
@@ -1363,7 +1363,7 @@
           "resume_role": "general"
         },
         {
-          "html": "Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification.",
+          "html": "Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification (Canny-located boxes reach a mean IoU of 0.93 against 0.82 for a thresholded mask).",
           "resume_role": "de"
         },
         {
