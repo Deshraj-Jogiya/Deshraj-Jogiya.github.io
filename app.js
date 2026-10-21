@@ -1571,7 +1571,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (query.includes("emissions") || query.includes("land use") || query.includes("geospatial") || query.includes("arcgis")) return answers.emissions;
         if (query.includes("fintech") || query.includes("credit risk") || query.includes("fraud") || query.includes("credit evaluation")) return answers.fintech;
         if (query.includes("telematics") || query.includes("iot") || query.includes("fleet") || query.includes("battery") || query.includes("predictive")) return answers.telematics;
-        if (query.includes("stem") || query.includes("asl") || query.includes("sign language") || query.includes("tensorflow") || query.includes("keras") || query.includes("mediapipe") || query.includes("pytorch")) return answers.stem;
+        if (query.includes("stem") || query.includes("asl") || query.includes("sign language") || query.includes("tensorflow") || query.includes("keras") || query.includes("mediapipe")) return answers.stem;
         if (query.includes("sales operations") || query.includes("segmentation pipeline") || query.includes("customer segmentation") || query.includes("segmentation")) return answers.sales;
         if (query.includes("anomaly") || query.includes("tax") || query.includes("benford") || query.includes("audit") || query.includes("isolation forest")) return answers.anomaly;
         if (query.includes("simulation project") || (query.includes("simulation") && query.includes("data science"))) return answers.simulation;
