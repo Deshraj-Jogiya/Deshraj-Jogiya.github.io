@@ -1359,7 +1359,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong>.",
+          "html": "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong> (four overlays, up from three: box, label, confidence and the located outline coloured by contour-geometry agreement).",
           "resume_role": "general"
         },
         {
