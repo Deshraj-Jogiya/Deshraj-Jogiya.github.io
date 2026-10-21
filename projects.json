@@ -880,7 +880,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong>.",
+          "html": "ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong> (the vectorised shock detector runs <strong>52%</strong> faster with identical flags).",
           "resume_role": "de"
         },
         {
@@ -909,15 +909,15 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline",
       "bullets": [
         {
-          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time), orchestrated as a Dagster asset graph.",
+          "html": "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time; vectorised entry validation runs <strong>99.9%</strong> faster than entry-by-entry checks on <strong>100,000</strong> entries), orchestrated as a Dagster asset graph.",
           "resume_role": "de"
         },
         {
-          "html": "Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions (<strong>94.7%</strong> precision, measured against a separate table of known injected anomalies).",
+          "html": "Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions, adding a tax-rate rule layer for <strong>97.8%</strong> precision and <strong>95.7%</strong> recall, measured against a separate table of known injected anomalies.",
           "resume_role": "ds"
         },
         {
-          "html": "Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>.",
+          "html": "Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>; working in risk-priority order, an auditor finds <strong>90%</strong> of anomalies after opening 43 entries instead of <strong>1,108</strong> (<strong>96%</strong> less review work).",
           "resume_role": "de"
         },
         {
@@ -1027,7 +1027,7 @@
           "resume_role": "ds"
         },
         {
-          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>.",
+          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>; a one-process refresh rebuilds the full report <strong>60%</strong> faster (6.3 s instead of 15.5 s).",
           "resume_role": "general"
         },
         {
