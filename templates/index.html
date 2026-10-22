@@ -7,7 +7,7 @@
     <!-- Modern Typography: Outfit & Inter from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css?v={{ asset_version }}">
 </head>
 <body>
@@ -16,7 +16,7 @@
         <div class="bg-orb orb-1"></div>
         <div class="bg-orb orb-2"></div>
         <div class="bg-orb orb-3"></div>
-    </div>
+</div>
 
 
     <!-- Navigation Header -->
@@ -27,7 +27,7 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
+</button>
             <nav class="nav-links">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
@@ -41,10 +41,10 @@
                 <button id="resume-nav-btn" class="btn-resume-nav">Resume</button>
                 <a href="#contact" class="btn btn-secondary">Connect</a>
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-                    <span class="theme-icon">🌙</span>
-                </button>
+                    <span class="theme-icon">◐</span>
+</button>
             </nav>
-        </div>
+</div>
     </header>
 
     <!-- Main Content Container -->
@@ -56,13 +56,13 @@
                 <div class="hero-intro">
                     <img src="/assets/profile.jpg" alt="Deshraj Jogiya" class="hero-avatar" width="{{ img_sizes['assets/profile.jpg'][0] }}" height="{{ img_sizes['assets/profile.jpg'][1] }}" fetchpriority="high">
                     <p class="hero-kicker">Deshraj Jogiya<span>Tempe, AZ · open to relocation</span></p>
-                </div>
+</div>
                 <h1 class="hero-title">Data pipelines that hold up.<br><span class="gradient-text">AI systems that ship.</span></h1>
 
                 <!-- Role rotator: loops through every role -->
                 <div class="terminal-text" aria-hidden="true">
                     <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
-                </div>
+</div>
                 <p class="sr-only">Data Engineer, Machine Learning Engineer, Data Pipeline Engineer, Analytics Engineer, LLM and RAG Engineer, MLOps and Data Quality Engineer.</p>
 
                 <p class="hero-description">
@@ -79,10 +79,10 @@
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">See the case studies</a>
                     <button id="resume-hero-btn" class="btn btn-outline">View resume</button>
-                    <button id="start-tour-btn" class="btn btn-tour-hero">Guided tour ⚡</button>
-                    <button id="ask-ai-hero-btn" class="btn btn-ghost">Ask the AI assistant 💬</button>
-                </div>
-            </div>
+                    <button id="start-tour-btn" class="btn btn-tour-hero">Guided tour</button>
+                    <button id="ask-ai-hero-btn" class="btn btn-ghost">Ask the AI assistant</button>
+</div>
+</div>
 
             <!-- Quick Link Cards / Stats -->
             <div class="hero-right">
@@ -91,17 +91,17 @@
                     <div class="stat-card glass-card">
                         <p class="stat-number" data-target="{{ stat.number }}" data-suffix="{{ stat.suffix }}" data-decimals="{{ stat.decimals or 0 }}">{{ stat.number }}{{ stat.suffix }}</p>
                         <p class="stat-label">{{ stat.label }}</p>
-                    </div>
+</div>
                     {% endfor %}
-                </div>
-            </div>
+</div>
+</div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects" class="projects-section">
             <div class="section-header">
                 <h2 class="section-title">Selected work</h2>
-            </div>
+</div>
 
             <div class="featured-grid">
                 {% for project in featured_projects %}
@@ -111,7 +111,7 @@
                     <a class="featured-image" href="/projects/{{ project.slug }}/" tabindex="-1" aria-hidden="true">
                         <img src="/{{ project.dashboard_url }}" alt="" loading="lazy" decoding="async"
                              width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
-                    </a>
+</a>
                     {% endif %}
                     <div class="card-content">
                         <div class="card-badge">{{ project.badge }}</div>
@@ -120,16 +120,16 @@
                         {% if cs.card_result %}<p class="card-result">{{ cs.card_result }}</p>{% endif %}
                         <div class="tech-tags">
                             {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
-                        </div>
+</div>
                         <div class="card-actions">
                             <a href="/projects/{{ project.slug }}/" class="btn btn-sm btn-primary">Read the case study</a>
                             {% if cs.demo_url %}<a href="{{ cs.demo_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
                             {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Code ↗</a>{% endif %}
-                        </div>
-                    </div>
+</div>
+</div>
                 </article>
                 {% endfor %}
-            </div>
+</div>
 
             <div class="section-header more-projects-header">
                 <h2 class="section-title section-title-sm">More projects</h2>
@@ -139,8 +139,8 @@
                     <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
                     <button class="filter-btn" data-filter="analytics">Analytics &amp; BI</button>
                     <button class="filter-btn" data-filter="software-dev">Full Stack</button>
-                </div>
-            </div>
+</div>
+</div>
 
             <div class="projects-grid">
                 {% for project in other_projects %}
@@ -149,12 +149,12 @@
                     <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/{{ project.dashboard_url }}" data-title="{{ project.name }}">
                         <img src="/{{ project.dashboard_url }}" alt="{{ project.name }} chart" class="card-image" loading="lazy" decoding="async"
                              width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
-                        <div class="image-overlay"><span>Zoom 🔍</span></div>
-                    </div>
+                        <div class="image-overlay"><span>Zoom</span></div>
+</div>
                     {% else %}
                     <div class="card-banner card-banner-{{ project.category.split(' ')[0] }}" aria-hidden="true">
                         <span>{{ project.tags[:3] | join(' · ') }}</span>
-                    </div>
+</div>
                     {% endif %}
                     <div class="card-content">
                         <div class="card-badge">{{ project.badge }}</div>
@@ -162,18 +162,18 @@
                         <p class="card-desc">{{ project.desc }}</p>
                         <div class="tech-tags">
                             {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
-                        </div>
+</div>
                         <div class="card-actions">
                             {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>{% endif %}
-                        </div>
-                    </div>
-                </div>
+</div>
+</div>
+</div>
                 {% endfor %}
-            </div>
+</div>
 
             <div class="section-header more-projects-header">
                 <h2 class="section-title section-title-sm">Team projects</h2>
-            </div>
+</div>
             <div class="projects-grid team-grid">
                 {% for project in team_projects %}
                 <div class="project-card glass-card" data-category="{{ project.category }}">
@@ -183,14 +183,14 @@
                         <p class="card-desc">{{ project.desc }}</p>
                         <div class="tech-tags">
                             {% for tag in project.tags[:5] %}<span>{{ tag }}</span>{% endfor %}
-                        </div>
+</div>
                         <div class="card-actions">
                             {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline">View repository ↗</a>{% endif %}
-                        </div>
-                    </div>
-                </div>
+</div>
+</div>
+</div>
                 {% endfor %}
-            </div>
+</div>
 
             <a class="lab-cta glass-card" href="/lab/"><span class="lab-cta-title">The Lab</span><span class="lab-cta-text">Don't just read about it. Run SQL, test an A/B result for significance, or move a model's decision threshold and watch precision and recall trade off.</span><span class="lab-cta-arrow" aria-hidden="true">→</span></a>
         </section>
@@ -199,7 +199,7 @@
         <section id="experience" class="experience-section">
             <div class="section-header">
                 <h2 class="section-title">Experience</h2>
-            </div>
+</div>
 
             <div class="experience-container">
                 {% for exp in experience %}
@@ -209,9 +209,9 @@
                             <span class="badge badge-accent">{{ exp.badge }}</span>
                             <h3 class="experience-role">{{ exp.role }}</h3>
                             <p class="experience-company">{{ exp.company }}</p>
-                        </div>
+</div>
                         <div class="experience-date">{{ exp.dates }}{% if exp.employment_type %} · {{ exp.employment_type }}{% endif %}</div>
-                    </div>
+</div>
                     <ul class="experience-bullets">
                         {% for b in exp.bullets %}
                         <li>{{ b.html | safe }}</li>
@@ -221,10 +221,10 @@
                         {% for tag in exp.tags %}
                         <span>{{ tag }}</span>
                         {% endfor %}
-                    </div>
-                </div>
+</div>
+</div>
                 {% endfor %}
-            </div>
+</div>
         </section>
 
         <!-- Mobile Visitor Analytics Section (Embedded on smaller viewports) -->
@@ -236,7 +236,7 @@
         <section id="skills" class="skills-section">
             <div class="section-header">
                 <h2 class="section-title">Skills</h2>
-            </div>
+</div>
             
             <div class="skills-grid skills-cards">
                 {% for cat in skills %}
@@ -247,16 +247,16 @@
                         <li>{{ item }}</li>
                         {% endfor %}
                     </ul>
-                </div>
+</div>
                 {% endfor %}
-            </div>
+</div>
         </section>
 
         <!-- Certifications & Training Section (rendered from projects.json, same source as the resume modal and the chatbot) -->
         <section id="certifications" class="skills-section certifications-section">
             <div class="section-header">
                 <h2 class="section-title">Certifications</h2>
-            </div>
+</div>
 
             {% set other_words = ['HR', 'HRCI', 'People Analytics', 'Digital Marketing', 'Greenhouse'] %}
             <div class="cert-grid">
@@ -273,9 +273,9 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
-                </div>
+</div>
                 {% endfor %}
-            </div>
+</div>
             <div class="cert-other">
                 <h3>Also completed</h3>
                 <ul>
@@ -283,7 +283,7 @@
                     <li><strong>{{ cert.name }}</strong>{% if cert.issuer %} · {{ cert.issuer }}{% endif %}{% if cert.status and cert.status != "Completed" %} · <span class="badge cert-status">{{ cert.status }}</span>{% endif %}</li>
                     {% endfor %}
                 </ul>
-            </div>
+</div>
         </section>
 
         <!-- Recommendations Section (verbatim LinkedIn recommendations, from projects.json "testimonials") -->
@@ -292,7 +292,7 @@
             <div class="section-header">
                 <h2 class="section-title">What people say</h2>
                 <a href="{{ testimonials_source }}" target="_blank" rel="noopener" class="testimonial-verify">On LinkedIn ↗</a>
-            </div>
+</div>
 
             <div class="testimonials-grid">
                 {% for t in testimonials %}
@@ -309,11 +309,11 @@
                             <span class="testimonial-name">{{ t.name }}</span>
                             <span class="testimonial-headline">{{ t.headline }}</span>
                             <span class="testimonial-relation">{{ t.relation }} · {{ t.date }}</span>
-                        </span>
+</span>
                     </figcaption>
                 </figure>
                 {% endfor %}
-            </div>
+</div>
         </section>
         {% endif %}
 
@@ -327,19 +327,19 @@
                     <p class="contact-text">Building a data platform or putting a model into production? I would like to hear about it.</p>
                     <div class="contact-info-links">
                         <div class="info-item">
-                            <span class="info-icon">📧</span>
+                            <span class="info-icon">Email</span>
                             <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a>
-                        </div>
+</div>
                         <div class="info-item">
-                            <span class="info-icon">💼</span>
+                            <span class="info-icon">LinkedIn</span>
                             <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank">linkedin.com/in/deshrajjogiya</a>
-                        </div>
+</div>
                         <div class="info-item">
-                            <span class="info-icon">🐙</span>
+                            <span class="info-icon">GitHub</span>
                             <a href="https://github.com/Deshraj-Jogiya" target="_blank">github.com/Deshraj-Jogiya</a>
-                        </div>
-                    </div>
-                </div>
+</div>
+</div>
+</div>
 
                 <!-- Contact Form Card -->
                 <div class="contact-form-card glass-card">
@@ -347,18 +347,18 @@
                     <form action="#" method="POST" id="contact-form">
                         <div class="form-group">
                             <input type="text" name="name" required placeholder="Your Name" class="form-input">
-                        </div>
+</div>
                         <div class="form-group">
                             <input type="email" name="email" required placeholder="Email Address" class="form-input">
-                        </div>
+</div>
                         <div class="form-group">
                             <textarea name="message" required rows="4" placeholder="Your Message..." class="form-input"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-submit">Send Message 🚀</button>
+</div>
+                        <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
                         <div id="form-result" class="form-result-text"></div>
                     </form>
-                </div>
-            </div>
+</div>
+</div>
         </section>
     </main>
 
@@ -368,13 +368,13 @@
             <button class="close-modal-btn">&times;</button>
             <div class="modal-image-container">
                 <img id="modal-dashboard-img" src="" alt="BI Dashboard Preview">
-            </div>
+</div>
             <div class="modal-caption">
                 <h4 id="modal-dashboard-title">Project chart</h4>
                 <p id="modal-dashboard-caption">Output generated by the project's own pipeline; see the repository for the code and data source.</p>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
 
     <!-- Interactive HTML Resume Modal Overlay -->
     <div id="resume-modal" class="modal-overlay">
@@ -383,32 +383,32 @@
                 <div class="resume-modal-header-top">
                     <h2>DESHRAJ JOGIYA — Professional Resume</h2>
                     <div class="resume-modal-actions">
-                        <button id="print-resume-btn" class="btn btn-sm btn-outline">Print / Save PDF 🖨️</button>
+                        <button id="print-resume-btn" class="btn btn-sm btn-outline">Print / Save PDF</button>
                         <button class="close-modal-btn close-resume-btn">&times;</button>
-                    </div>
-                </div>
+</div>
+</div>
                 <!-- Interactive Resume Role Filters -->
                 <div class="resume-filters">
                     <button class="resume-filter-btn active" data-role="all">Show All</button>
-                    <button class="resume-filter-btn" data-role="de">Data Engineering 🛠️</button>
-                    <button class="resume-filter-btn" data-role="ds">Data Science &amp; ML 🧠</button>
-                    <button class="resume-filter-btn" data-role="sde">Full Stack 💻</button>
-                </div>
-            </div>
+                    <button class="resume-filter-btn" data-role="de">Data Engineering</button>
+                    <button class="resume-filter-btn" data-role="ds">Data Science &amp; ML</button>
+                    <button class="resume-filter-btn" data-role="sde">Full Stack</button>
+</div>
+</div>
             
             <div id="resume-paper" class="resume-paper">
                 <div class="resume-header-block">
                     <h2 class="resume-name">Deshraj Jogiya</h2>
                     <p class="resume-sub">{{ title }}</p>
                     <div class="resume-meta">
-                        <span>📍 Tempe, Arizona (open to relocation)</span>
-                        <span>🌐 <a href="https://Deshraj-Jogiya.github.io" target="_blank">Portfolio</a></span>
-                        <span>📞 (480) 876-2863</span>
-                        <span>📧 <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a></span>
-                        <span>💼 <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank">LinkedIn</a></span>
-                        <span>🐙 <a href="https://github.com/Deshraj-Jogiya" target="_blank">GitHub</a></span>
-                    </div>
-                </div>
+                        <span>Tempe, Arizona (open to relocation)</span>
+                        <span> <a href="https://Deshraj-Jogiya.github.io" target="_blank">Portfolio</a></span>
+                        <span> (480) 876-2863</span>
+                        <span> <a href="mailto:djogiya786@gmail.com">djogiya786@gmail.com</a></span>
+                        <span> <a href="https://www.linkedin.com/in/deshrajjogiya" target="_blank">LinkedIn</a></span>
+                        <span> <a href="https://github.com/Deshraj-Jogiya" target="_blank">GitHub</a></span>
+</div>
+</div>
 
                 <div class="resume-body-grid">
                     <!-- Summary (Spans 2 columns) -->
@@ -453,7 +453,7 @@
 </div>
 {% endfor %}
                         </section>
-                    </div>
+</div>
 
                     <!-- Right Column -->
                     <div class="resume-right-col">
@@ -492,11 +492,11 @@
 </div>
 {% endfor %}
                         </section>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
     <!-- SVG Gradient Definitions for charts -->
     <svg style="width:0; height:0; position:absolute;">
@@ -517,50 +517,50 @@
         <div class="modal-content ml-charts-modal-content glass-card" style="max-width: 900px; width: 95%;">
             <div class="resume-modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <h2 style="font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">📊 Live Visitor AI/ML Insights</h2>
+                    <h2 style="font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">Live Visitor AI/ML Insights</h2>
                     <button class="close-modal-btn close-ml-modal-btn" id="close-ml-modal-btn" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
-                </div>
+</div>
                 
                 <!-- Tab Buttons for ML Modal -->
                 <div class="ml-modal-tabs" style="display: flex; gap: 0.5rem;">
-                    <button class="ml-tab-btn active" data-ml-tab="forecast" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: var(--grad-primary); color: #fff; border: none;">📈 Traffic Forecast</button>
-                    <button class="ml-tab-btn" data-ml-tab="cohorts" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">👥 Visitor Cohorts</button>
-                    <button class="ml-tab-btn" data-ml-tab="metrics" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">🎯 Classifier Boundaries</button>
-                </div>
-            </div>
+                    <button class="ml-tab-btn active" data-ml-tab="forecast" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: var(--grad-primary); color: #fff; border: none;">Traffic Forecast</button>
+                    <button class="ml-tab-btn" data-ml-tab="cohorts" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">Visitor Cohorts</button>
+                    <button class="ml-tab-btn" data-ml-tab="metrics" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">Classifier Boundaries</button>
+</div>
+</div>
             
             <div class="ml-charts-container" style="max-height: 65vh; overflow-y: auto; padding-right: 0.5rem;">
                 
                 <!-- Tab 1: Traffic Forecast -->
                 <div class="ml-panel-content" id="ml-forecast-panel">
                     <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-blue); display: flex; align-items: center; gap: 0.5rem;">
-                        📈 7-Day Traffic Forecast Model (Linear Regression)
+                         7-Day Traffic Forecast Model (Linear Regression)
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
-                        This model aggregates visitor logs daily and fits a <strong>Linear Regression</strong> model on the timeline index. It forecasts unique traffic trends for the upcoming 7 days to evaluate profile engagement.
+                        This model aggregates visitor logs daily and fits a <strong>Linear Regression</strong>model on the timeline index. It forecasts unique traffic trends for the upcoming 7 days to evaluate profile engagement.
                     </p>
                     <div style="border-radius: var(--border-radius-md); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #0f172a; padding: 1rem; display: flex; justify-content: center;">
                         <img src="assets/traffic_forecast.png" alt="Traffic Forecast Chart" style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 4px;">
-                    </div>
-                </div>
+</div>
+</div>
                 
                 <!-- Tab 2: Visitor Cohorts -->
                 <div class="ml-panel-content" id="ml-cohorts-panel" style="display: none;">
                     <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-purple); display: flex; align-items: center; gap: 0.5rem;">
-                        👥 Visitor Cohort Segmentation Model (K-Means)
+                         Visitor Cohort Segmentation Model (K-Means)
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
-                        This model runs a <strong>K-Means Clustering</strong> algorithm on visitor characteristics (OS, Device, Browser, Hour of Visit). It groups users into distinct behavioral cohorts (e.g. Mobile Explorers, recruiters, or desktop analysts).
+                        This model runs a <strong>K-Means Clustering</strong>algorithm on visitor characteristics (OS, Device, Browser, Hour of Visit). It groups users into distinct behavioral cohorts (e.g. Mobile Explorers, recruiters, or desktop analysts).
                     </p>
                     <div style="border-radius: var(--border-radius-md); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #0f172a; padding: 1rem; display: flex; justify-content: center;">
                         <img src="assets/visitor_segments.png" alt="Visitor Segmentation Clusters Chart" style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 4px;">
-                    </div>
-                </div>
+</div>
+</div>
 
                 <!-- Tab 3: Interactive Evaluation Dials -->
                 <div class="ml-panel-content" id="ml-metrics-panel" style="display: none;">
                     <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-emerald); display: flex; align-items: center; gap: 0.5rem;">
-                        🎯 Classifier Decision Boundary &amp; Performance Metrics
+                         Classifier Decision Boundary &amp; Performance Metrics
                     </h4>
                     <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;">
                         Adjust the classification decision boundary threshold to evaluate the trade-off between false alarms (FP) and missed detections (FN). The score distributions are simulated to show the trade-off; no model is trained on visitor data here.
@@ -575,20 +575,20 @@
                                     <option value="conversion">Example: lead-scoring classifier (simulated scores)</option>
                                     <option value="bot">Example: bot-session detector (simulated scores)</option>
                                 </select>
-                            </div>
+</div>
                             
                             <div class="slider-group">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                                     <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Classification Threshold</span>
                                     <span class="threshold-badge" id="modal-threshold-val" style="background: var(--grad-primary); color: #fff; padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">0.50</span>
-                                </div>
+</div>
                                 <input type="range" id="modal-threshold-slider" min="0.00" max="1.00" step="0.01" value="0.50" style="width: 100%; cursor: pointer;">
                                 <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;">
                                     <span>0.00 (High Recall / Flag All)</span>
                                     <span>1.00 (High Precision / Flag None)</span>
-                                </div>
-                            </div>
-                        </div>
+</div>
+</div>
+</div>
 
                         <!-- Main Grid: Metrics, Matrix, and Graphs -->
                         <div class="ml-metrics-details-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
@@ -599,16 +599,16 @@
                                     <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
                                         <div class="obs-metric-val" id="metric-precision" style="font-size: 1.3rem;">89.2%</div>
                                         <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">Precision</div>
-                                    </div>
+</div>
                                     <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
                                         <div class="obs-metric-val" id="metric-recall" style="font-size: 1.3rem;">82.5%</div>
                                         <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">Recall</div>
-                                    </div>
+</div>
                                     <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
                                         <div class="obs-metric-val" id="metric-f1" style="font-size: 1.3rem;">85.7%</div>
                                         <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">F1-Score</div>
-                                    </div>
-                                </div>
+</div>
+</div>
 
                                 <!-- Confusion Matrix -->
                                 <div class="confusion-matrix-card glass-card" style="padding: 1.25rem; background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.06);">
@@ -625,9 +625,9 @@
                                         <div style="font-weight: 600; text-align: right; align-self: center; padding-right: 8px; color: var(--text-muted);">Actual Pos</div>
                                         <div class="matrix-cell" id="cell-fn" style="background: rgba(239, 68, 68, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: #ef4444;">35</div>
                                         <div class="matrix-cell" id="cell-tp" style="background: rgba(16, 185, 129, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: var(--accent-emerald);">165</div>
-                                    </div>
-                                </div>
-                            </div>
+</div>
+</div>
+</div>
 
                             <!-- Column B: SVG Curves -->
                             <div class="curves-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -654,7 +654,7 @@
                                         <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">FPR (1-Spec)</text>
                                         <text x="-50" y="-8" font-size="7" fill="var(--text-muted)" transform="rotate(-90)" text-anchor="middle">TPR (Sensitivity)</text>
                                     </svg>
-                                </div>
+</div>
 
                                 <!-- PR Curve -->
                                 <div class="curve-block glass-card" style="padding: 0.75rem; text-align: center; background: rgba(0,0,0,0.1); border-color: rgba(255,255,255,0.05);">
@@ -677,22 +677,22 @@
                                         <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">Recall</text>
                                         <text x="-50" y="-8" font-size="7" fill="var(--text-muted)" transform="rotate(-90)" text-anchor="middle">Precision</text>
                                     </svg>
-                                </div>
-                            </div>
-                        </div>
+</div>
+</div>
+</div>
 
                         <!-- Business explanation card -->
                         <div class="ml-business-card glass-card" style="background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: var(--border-radius-md); padding: 1rem; font-size: 0.82rem; line-height: 1.5; width: 100%;">
                             <div style="font-weight: 700; color: var(--accent-emerald); margin-bottom: 0.25rem;" id="ml-business-title">Optimal Balanced Threshold (0.50)</div>
                             <div style="color: var(--text-secondary);" id="ml-business-desc">
                                 Optimal F1-Score. Balances customer experience and capital protection. Fraud is minimized, while maintaining a smooth experience for 98% of creditworthy customers.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
     <!-- Footer -->
     <footer class="footer-bar">
@@ -703,72 +703,72 @@
     <div id="ai-chat-widget" class="ai-chat-widget">
         <!-- Launcher Button -->
         <button id="chat-launcher" class="chat-launcher-btn" aria-label="Open AI Career Assistant">
-            <span class="launcher-icon">💬</span>
+            <span class="launcher-icon">Ask</span>
             <span class="launcher-text">Career Assistant Agent</span>
             <span class="launcher-pulse"></span>
-        </button>
+</button>
 
         <!-- Chat Window Container -->
         <div id="chat-container" class="chat-container glass-card">
             <!-- Header -->
             <div class="chat-header">
                 <div class="chat-header-info">
-                    <span class="chat-avatar">💬</span>
+                    <span class="chat-avatar">DJ</span>
                     <div>
                         <div class="chat-bot-name">Career Assistant Agent</div>
-                        <div class="chat-status"><span class="status-dot"></span> AI assistant · answers only from this site's project data</div>
-                    </div>
-                </div>
+                        <div class="chat-status"><span class="status-dot"></span>AI assistant · answers only from this site's project data</div>
+</div>
+</div>
                 <button id="close-chat-btn" class="close-chat-btn" aria-label="Close Chat">&times;</button>
-            </div>
+</div>
 
             <!-- Messages Log -->
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-msg bot-msg">
                     Hello! I'm an AI assistant that answers from the project and experience data on this site. You can ask me questions about his technical experience, engineering projects, or background, or choose a suggestion below.
-                </div>
-            </div>
+</div>
+</div>
 
             <!-- Quick Suggestions Row -->
             <div class="chat-suggestions">
-                <button class="chat-suggest-btn" data-question="Tell me about his work experience">Work Experience 💼</button>
-                <button class="chat-suggest-btn" data-question="What technical skills does he have?">Technical Skills 🛠️</button>
-                <button class="chat-suggest-btn" data-question="Tell me about his projects">Featured Projects 🚀</button>
-                <button class="chat-suggest-btn" data-question="What is Career Pilot and what does it do?">Career Pilot 🧭</button>
-                <button class="chat-suggest-btn" data-question="Where is he based and is he open to relocation?">Location &amp; relocation 📍</button>
-                <button class="chat-suggest-btn" data-question="How can you contact Deshraj?">Contact &amp; Connect 📧</button>
-            </div>
+                <button class="chat-suggest-btn" data-question="Tell me about his work experience">Work Experience</button>
+                <button class="chat-suggest-btn" data-question="What technical skills does he have?">Technical Skills</button>
+                <button class="chat-suggest-btn" data-question="Tell me about his projects">Featured Projects</button>
+                <button class="chat-suggest-btn" data-question="What is Career Pilot and what does it do?">Career Pilot</button>
+                <button class="chat-suggest-btn" data-question="Where is he based and is he open to relocation?">Location &amp; relocation</button>
+                <button class="chat-suggest-btn" data-question="How can you contact Deshraj?">Contact &amp; Connect</button>
+</div>
 
             <!-- Input Form -->
             <form id="chat-form" class="chat-form">
                 <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." required>
-                <button type="submit" class="chat-send-btn">Send ⚡</button>
+                <button type="submit" class="chat-send-btn">Send</button>
             </form>
-        </div>
-    </div>
+</div>
+</div>
 
     <!-- Live Visitor Analytics Floating Widget -->
     <div id="visitor-analytics-widget" class="visitor-analytics-widget">
         <!-- Launcher Button (Vertical Tab on Right Edge) -->
         <button id="visitor-launcher" class="visitor-launcher-btn" aria-label="Open Visitor Analytics">
-            <span class="launcher-icon">📡</span>
+            <span class="launcher-icon">Live</span>
             <span class="launcher-text-vertical">VISITORS</span>
             <span class="launcher-pulse"></span>
-        </button>
+</button>
 
         <!-- Panel Container -->
         <div id="visitor-container" class="visitor-container glass-card">
             <!-- Header -->
             <div class="visitor-header">
                 <div class="visitor-header-info">
-                    <span class="visitor-avatar">📡</span>
+                    <span class="visitor-avatar">Live</span>
                     <div>
                         <div class="visitor-widget-name">Visitor Analytics</div>
-                        <div class="visitor-widget-status"><span class="status-dot visitor-status-dot"></span> Supabase Sync Active</div>
-                    </div>
-                </div>
+                        <div class="visitor-widget-status"><span class="status-dot visitor-status-dot"></span>Supabase Sync Active</div>
+</div>
+</div>
                 <button id="close-visitor-btn" class="close-visitor-btn" aria-label="Close Visitor Stats">&times;</button>
-            </div>
+</div>
 
             <!-- Scrollable Stats Content -->
             <div class="visitor-widget-content">
@@ -777,27 +777,27 @@
                     <div class="visitor-stats-row">
                         <span class="visitor-stat-label">Your Location</span>
                         <span class="visitor-location-badge" id="visitor-loc">
-                            <span id="visitor-flag">📍</span> <span id="visitor-city">Detecting...</span>
-                        </span>
-                    </div>
+                            <span id="visitor-flag"></span> <span id="visitor-city">Detecting...</span>
+</span>
+</div>
                     <div class="visitor-stats-row">
                         <span class="visitor-stat-label">Unique visitors (since <span id="visitor-since">Jun 2026</span>)</span>
                         <span class="visitor-stat-value" id="visitor-count">...</span>
-                    </div>
+</div>
                     <div class="visitor-stats-row">
                         <span class="visitor-stat-label">Visitors today (UTC)</span>
                         <span class="visitor-stat-value" id="visitor-today">...</span>
-                    </div>
-                </div>
+</div>
+</div>
 
                 <!-- Forecast -->
                 <div class="visitor-forecast-box">
                     <div class="visitor-stat-label" style="font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-secondary);">
                         7-Day Traffic Forecast
-                    </div>
+</div>
                     <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
                     <div class="visitor-stat-label" style="font-size: 0.75rem; margin-bottom: 0.5rem;">Expected visits next week</div>
-                </div>
+</div>
 
                 <!-- ML Action -->
                 <div class="visitor-ml-panel" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.85rem;">
@@ -806,13 +806,13 @@
                     </p>
                     <div class="visitor-ml-btn-box" style="margin-top: 0.75rem;">
                         <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
-                            📊 View ML Model Charts
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                             View ML Model Charts
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
     <!-- Tour Elements -->
     <div id="tour-backdrop" class="tour-backdrop" style="display: none;"></div>
@@ -820,34 +820,34 @@
     <div id="tour-overlay-card" class="tour-overlay-card glass-card" style="display: none;">
         <div id="tour-progress-container" style="height: 3px; width: 100%; background: rgba(255,255,255,0.05); position: absolute; top: 0; left: 0; display: none; overflow: hidden; border-top-left-radius: 12px; border-top-right-radius: 12px;">
             <div id="tour-progress-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.1s linear;"></div>
-        </div>
+</div>
         <div class="tour-header">
-            <span class="tour-badge">Recruiter Tour ⚡</span>
+            <span class="tour-badge">Recruiter Tour</span>
             <span id="tour-step-indicator" class="tour-step-indicator">Step 1 of 6</span>
-        </div>
+</div>
         <h4 id="tour-step-title" class="tour-step-title">Welcome to the Tour!</h4>
         <p id="tour-step-desc" class="tour-step-desc">This guided walkthrough highlights Deshraj's interactive data and ML engineering projects.</p>
         <div id="tour-mode-selector" style="display: none; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
             <button id="tour-btn-autoplay" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; font-weight: 600; padding: 0.6rem;">
-                🤖 Autoplay Guided Tour (~90s)
-            </button>
+                 Autoplay Guided Tour (~90s)
+</button>
             <button id="tour-btn-manual" class="btn btn-outline" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; font-weight: 500; padding: 0.6rem; border-color: rgba(255,255,255,0.15);">
-                👤 Self-Paced Exploration
-            </button>
-        </div>
+                 Self-Paced Exploration
+</button>
+</div>
         <div class="tour-actions">
             <div style="display: flex; gap: 0.5rem; align-items: center;">
                 <button id="tour-prev-btn" class="btn btn-sm btn-outline">Back</button>
                 <button id="tour-pause-play-btn" class="btn btn-sm btn-outline" style="display: none; gap: 0.25rem; align-items: center; padding: 0.25rem 0.5rem;">
-                    <span id="tour-pause-play-icon">⏸️</span> <span id="tour-pause-play-text">Pause</span>
-                </button>
-            </div>
+                    <span id="tour-pause-play-icon">⏸</span> <span id="tour-pause-play-text">Pause</span>
+</button>
+</div>
             <div class="tour-right-actions">
                 <button id="tour-skip-btn" class="btn btn-sm btn-link">Skip</button>
                 <button id="tour-next-btn" class="btn btn-sm btn-primary">Next Step</button>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
 
     <script src="/app.js?v={{ asset_version }}" defer></script>
 </body>

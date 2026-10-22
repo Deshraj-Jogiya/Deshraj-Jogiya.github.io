@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const SUPABASE_KEY = "sb_publishable_ZuB30vNfc-7b7Pr6ebZNqQ_sXjox-wu";
 
     function getFlagEmoji(countryCode) {
-        if (!countryCode) return "📍";
+        if (!countryCode) return "";
         const codePoints = countryCode
             .toUpperCase()
             .split("")
@@ -315,20 +315,20 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (savedTheme === "light") {
         document.body.classList.add("light-theme");
-        themeIcon.textContent = "☀️";
+        themeIcon.textContent = "◑";
     } else {
         document.body.classList.remove("light-theme");
-        themeIcon.textContent = "🌙";
+        themeIcon.textContent = "◐";
     }
 
     themeToggleBtn.addEventListener("click", () => {
         if (document.body.classList.contains("light-theme")) {
             document.body.classList.remove("light-theme");
-            themeIcon.textContent = "🌙";
+            themeIcon.textContent = "◐";
             localStorage.setItem("theme", "dark");
         } else {
             document.body.classList.add("light-theme");
-            themeIcon.textContent = "☀️";
+            themeIcon.textContent = "◑";
             localStorage.setItem("theme", "light");
         }
     });
@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(async (response) => {
                 let json = await response.json();
                 if (response.ok) {
-                    formResult.textContent = "Message sent successfully! 🚀";
+                    formResult.textContent = "Message sent successfully! ";
                     formResult.className = "form-result-text success";
                     contactForm.reset();
                 } else {
@@ -506,7 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isRunning) {
             qaReport.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
-                    <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-amber);">VALIDATING... 🔄</span></span>
+                    <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-amber);">VALIDATING... </span></span>
                     <span style="font-size: 0.72rem; color: var(--text-muted);">Executing Schema Checks</span>
                 </div>
                 <div style="text-align: center; padding: 2rem 0;">
@@ -519,11 +519,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let qaHtml = `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
-                <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-emerald);">PASS ✅</span></span>
+                <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-emerald);">PASS </span></span>
                 <span style="font-size: 0.72rem; color: var(--text-muted);">6/6 Expectations Succeeded</span>
             </div>
             <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--border-radius-sm); padding: 0.6rem; font-size: 0.75rem; color: #f59e0b; margin-bottom: 0.75rem; line-height: 1.4;">
-                ⚠️ <strong>Non-blocking Warning on Benford's Law:</strong> This check detects mild transaction distribution drift. The schema is 100% valid and the pipeline passed, but this warning is logged for analytics auditing.
+                 <strong>Non-blocking Warning on Benford's Law:</strong> This check detects mild transaction distribution drift. The schema is 100% valid and the pipeline passed, but this warning is logged for analytics auditing.
             </div>
             <div class="qa-rules-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
         `;
@@ -568,7 +568,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isRunningObs) return;
             isRunningObs = true;
             runObsBtn.disabled = true;
-            runObsBtn.textContent = "Processing ETL Pipeline... 🔄";
+            runObsBtn.textContent = "Processing ETL Pipeline... ";
             
             // Set status to running
             obsStatus.className = "obs-status running";
@@ -654,7 +654,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         renderQaReport(false);
                     }
                     if (currentLogIndex === 8) {
-                        metricDrift.textContent = "Warning ⚠️";
+                        metricDrift.textContent = "Warning ";
                         metricDrift.style.color = "var(--accent-amber)";
                     }
                     if (currentLogIndex === 12) {
@@ -696,7 +696,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Complete
                     isRunningObs = false;
                     runObsBtn.disabled = false;
-                    runObsBtn.textContent = "Run Pipeline Diagnostics 🚀";
+                    runObsBtn.textContent = "Run Pipeline Diagnostics ";
                     
                     obsStatus.className = "obs-status idle";
                     obsStatusText.textContent = "System Idle";
@@ -1711,7 +1711,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "cp_ingest",
                                             "label": "Ingest",
-                                            "icon": "📥",
+                                            "icon": "",
                                             "tags": [
                                                         "Python",
                                                         "REST APIs",
@@ -1727,7 +1727,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "cp_score",
                                             "label": "Score",
-                                            "icon": "🎯",
+                                            "icon": "",
                                             "tags": [
                                                         "Python",
                                                         "PostgreSQL"
@@ -1742,7 +1742,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "cp_tailor",
                                             "label": "Tailor",
-                                            "icon": "✍️",
+                                            "icon": "",
                                             "tags": [
                                                         "Claude API",
                                                         "Prompt caching"
@@ -1757,7 +1757,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "cp_guard",
                                             "label": "Guardrail",
-                                            "icon": "🛡️",
+                                            "icon": "",
                                             "tags": [
                                                         "Python",
                                                         "Non-LLM checks"
@@ -1772,7 +1772,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "cp_apply",
                                             "label": "Apply",
-                                            "icon": "🧩",
+                                            "icon": "",
                                             "tags": [
                                                         "Chrome extension",
                                                         "JavaScript"
@@ -1791,7 +1791,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "rx_post",
                                             "label": "POST API",
-                                            "icon": "📮",
+                                            "icon": "",
                                             "tags": [
                                                         "Spring WebFlux",
                                                         "Java"
@@ -1806,7 +1806,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "rx_persist",
                                             "label": "Persist",
-                                            "icon": "🗄️",
+                                            "icon": "",
                                             "tags": [
                                                         "R2DBC",
                                                         "SQL"
@@ -1821,7 +1821,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "rx_replay",
                                             "label": "Replay Sink",
-                                            "icon": "🔁",
+                                            "icon": "",
                                             "tags": [
                                                         "Project Reactor",
                                                         "Sinks.Many"
@@ -1836,7 +1836,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "rx_sse",
                                             "label": "SSE Stream",
-                                            "icon": "📡",
+                                            "icon": "",
                                             "tags": [
                                                         "Server-Sent Events",
                                                         "Backpressure"
@@ -1851,7 +1851,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "rx_test",
                                             "label": "Verify",
-                                            "icon": "✅",
+                                            "icon": "",
                                             "tags": [
                                                         "JUnit",
                                                         "curl"
@@ -1870,7 +1870,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "lh_generate",
                                             "label": "Generate",
-                                            "icon": "🧬",
+                                            "icon": "",
                                             "tags": [
                                                         "Python"
                                             ],
@@ -1884,7 +1884,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "lh_spark",
                                             "label": "PySpark",
-                                            "icon": "⚡",
+                                            "icon": "",
                                             "tags": [
                                                         "PySpark",
                                                         "Spark SQL",
@@ -1900,7 +1900,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "lh_ge",
                                             "label": "Validate",
-                                            "icon": "🛡️",
+                                            "icon": "",
                                             "tags": [
                                                         "Great Expectations"
                                             ],
@@ -1914,7 +1914,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "lh_dbt",
                                             "label": "dbt Models",
-                                            "icon": "🧱",
+                                            "icon": "",
                                             "tags": [
                                                         "dbt",
                                                         "Databricks SQL"
@@ -1929,7 +1929,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 {
                                             "id": "lh_ci",
                                             "label": "Tests & CI",
-                                            "icon": "🔄",
+                                            "icon": "",
                                             "tags": [
                                                         "dbt tests",
                                                         "GitHub Actions",
@@ -1949,7 +1949,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "ingest", 
                     label: "Ingest", 
-                    icon: "📥", 
+                    icon: "", 
                     tags: ["Python", "yFinance", "Pandas"], 
                     desc: "Fetches raw daily market pricing and transactional telemetry from finance APIs. Standardizes data columns and formats ISO timestamps.",
                     impact: "Replaces manual daily downloading and aggregation: a GitHub Actions job runs it every day at $0 server cost.",
@@ -1961,7 +1961,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "validate", 
                     label: "Validate", 
-                    icon: "🛡️", 
+                    icon: "", 
                     tags: ["Great Expectations", "Python"], 
                     desc: "Runs automated schema validations, verifying column types, non-null primary keys, and data boundaries.",
                     impact: "Acts as a gatekeeper, preventing corrupt or malformed transaction data from breaking downstream metrics and business databases.",
@@ -1973,7 +1973,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "model", 
                     label: "Model", 
-                    icon: "🧠", 
+                    icon: "", 
                     tags: ["Scikit-Learn", "Isolation Forest"], 
                     desc: "Applies unsupervised Isolation Forest anomaly scoring and statistical checks to evaluate data outliers.",
                     impact: "Enables proactive threat and anomaly detection, immediately flagging compliance and auditing risks for human review.",
@@ -1985,7 +1985,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "warehouse", 
                     label: "Warehouse", 
-                    icon: "❄️", 
+                    icon: "", 
                     tags: ["Snowflake", "SQL", "Star Schema"], 
                     desc: "Pipes cleaned data into persistent Snowflake data warehouse dimensions and fact tables.",
                     impact: "Centralizes records into star schemas so analytic queries run on clean, joined data.",
@@ -1997,7 +1997,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "bi", 
                     label: "BI Dashboard", 
-                    icon: "📊", 
+                    icon: "", 
                     tags: ["Power BI", "DAX"], 
                     desc: "Materializes metrics into live Power BI dashboards to track performance trends and KPI aggregates.",
                     impact: "Gives executives real-time visibility into business performance and active alerts, enabling fast data-driven decisions.",
@@ -2013,7 +2013,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "ingest", 
                     label: "IoT Ingest", 
-                    icon: "📟", 
+                    icon: "", 
                     tags: ["MQTT", "HTTP", "FastAPI"], 
                     desc: "Receives high-frequency sensor readings (vibration, heat, voltage) in real-time from fleet battery systems.",
                     impact: "Ingests continuous battery and motor telemetry in micro-batches.",
@@ -2025,7 +2025,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "validate", 
                     label: "Validation", 
-                    icon: "🛡️", 
+                    icon: "", 
                     tags: ["Python", "Z-Score"], 
                     desc: "Performs rolling Z-score checks on micro-batches to detect immediate sensor hardware failures.",
                     impact: "Filters out high-frequency sensor noise and hardware errors before they corrupt predictive modeling algorithms.",
@@ -2037,7 +2037,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "model", 
                     label: "RUL Estimator", 
-                    icon: "🧠", 
+                    icon: "", 
                     tags: ["Scikit-Learn", "Regression"], 
                     desc: "Applies an exponential health decay model to forecast the fleet component's Remaining Useful Life (RUL).",
                     impact: "Estimates each battery's remaining useful life so maintenance can be scheduled before a failure.",
@@ -2049,7 +2049,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "alert", 
                     label: "Alert Hook", 
-                    icon: "🚨", 
+                    icon: "", 
                     tags: ["Webhooks", "FastAPI"], 
                     desc: "Triggers notifications to maintenance teams if RUL drops below critical safety threshold levels.",
                     impact: "Automates incident management by alerting mechanics in real time, preventing active on-road failures.",
@@ -2065,7 +2065,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "ingest", 
                     label: "Spatial Ingest", 
-                    icon: "🌎", 
+                    icon: "", 
                     tags: ["Python", "Geopandas", "Shapefiles"], 
                     desc: "Loads multi-state daily land cover shapefiles and raster coordinates, aligning coordinate reference systems (CRS).",
                     impact: "Aggregates complex geographic and environmental shape coordinates from separate state databases into a single system.",
@@ -2077,7 +2077,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "validate", 
                     label: "Carbon Engine", 
-                    icon: "🍃", 
+                    icon: "", 
                     tags: ["Python", "Pandas"], 
                     desc: "Calculates net carbon emissions based on land cover type changes (forest loss vs. urban expansion).",
                     impact: "Measures net land-use carbon per state with factors from the EPA's state inventory and compares the yearly total with EPA's figure.",
@@ -2089,7 +2089,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "model", 
                     label: "ML Forecast", 
-                    icon: "🧠", 
+                    icon: "", 
                     tags: ["Random Forest", "Scikit-Learn"], 
                     desc: "Fits Linear Regression and Random Forest models to forecast CO2 trend lines.",
                     impact: "Predicts future carbon trends to optimize forestry projects and plan emissions offset targets.",
@@ -2101,7 +2101,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "warehouse", 
                     label: "DB Storage", 
-                    icon: "💾", 
+                    icon: "", 
                     tags: ["SQLite", "SQL"], 
                     desc: "Saves regional emissions inventory records to SQLite database.",
                     impact: "Ensures carbon offsets and land cover changes are saved for audit verification.",
@@ -2113,7 +2113,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { 
                     id: "dashboard", 
                     label: "ArcGIS Dashboard", 
-                    icon: "🗺️", 
+                    icon: "", 
                     tags: ["ArcGIS Python API", "GIS"], 
                     desc: "Visualizes land cover shifts, forest loss, and regional emission summaries dynamically.",
                     impact: "Enables stakeholders to explore spatial trends interactively, reducing anomaly detection time by 15%.",
@@ -2209,7 +2209,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const isCurrentlyVisible = codeBox.style.display === "block";
             if (toggleCodeBtn) {
                 toggleCodeBtn.style.display = "block";
-                toggleCodeBtn.textContent = isCurrentlyVisible ? "Hide Technical Code Snippet 🙈" : "View Technical Code Snippet 🛠️";
+                toggleCodeBtn.textContent = isCurrentlyVisible ? "Hide Technical Code Snippet " : "View Technical Code Snippet ";
             }
             if (!isCurrentlyVisible) {
                 codeBox.style.display = "none";
@@ -2221,7 +2221,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isPlayingTour) return;
         isPlayingTour = true;
         if (tourBtn) {
-            tourBtn.innerHTML = "Stop Tour ⏹️";
+            tourBtn.innerHTML = "Stop Tour ⏹";
             tourBtn.style.background = "rgba(239, 68, 68, 0.1)";
             tourBtn.style.borderColor = "rgba(239, 68, 68, 0.25)";
             tourBtn.style.color = "var(--accent-red, #ef4444)";
@@ -2264,7 +2264,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tourInterval = null;
         }
         if (tourBtn) {
-            tourBtn.innerHTML = "Play Tour ⏯️";
+            tourBtn.innerHTML = "Play Tour ⏯";
             tourBtn.style.background = "rgba(16, 185, 129, 0.1)";
             tourBtn.style.borderColor = "rgba(16, 185, 129, 0.25)";
             tourBtn.style.color = "var(--accent-emerald)";
@@ -2304,10 +2304,10 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleCodeBtn.addEventListener("click", () => {
             if (codeBox.style.display === "none") {
                 codeBox.style.display = "block";
-                toggleCodeBtn.textContent = "Hide Technical Code Snippet 🙈";
+                toggleCodeBtn.textContent = "Hide Technical Code Snippet ";
             } else {
                 codeBox.style.display = "none";
-                toggleCodeBtn.textContent = "View Technical Code Snippet 🛠️";
+                toggleCodeBtn.textContent = "View Technical Code Snippet ";
             }
         });
     }
@@ -2445,29 +2445,29 @@ document.addEventListener("DOMContentLoaded", () => {
         if (businessTitle && businessDesc) {
             if (model === "conversion") {
                 if (t < 0.30) {
-                    businessTitle.textContent = `⚠️ High Recall / Low Precision Conversion Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = ` High Recall / Low Precision Conversion Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
                     businessDesc.textContent = "Flags almost all visitors as likely to convert. This triggers aggressive modal popups, newsletter signups, and sales outreach, causing high user bounce rates and user frustration.";
                 } else if (t > 0.70) {
-                    businessTitle.textContent = `⚠️ High Precision / Low Recall Conversion Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = ` High Precision / Low Recall Conversion Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
                     businessDesc.textContent = "Only triggers conversion outreach when 100% certain. Genuine recruiters browse in peace, but you miss proactive opportunities to trigger the recruiter tour or AI chatbot, losing warm leads.";
                 } else {
-                    businessTitle.textContent = `✅ Optimal Balanced Conversion Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = ` Optimal Balanced Conversion Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-emerald)";
                     businessDesc.textContent = "Optimal F1-Score trade-off. Automatically triggers the guided tour and AI assistant launcher for high-interest users while keeping background tracking passive and non-intrusive.";
                 }
             } else {
                 if (t < 0.35) {
-                    businessTitle.textContent = `⚠️ High Recall / Low Precision Bot Filtering Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = ` High Recall / Low Precision Bot Filtering Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
                     businessDesc.textContent = "Flags almost all sessions as potential bot traffic. Enforces strict CAPTCHA verification challenges for every visitor, causing high friction and driving away real recruiters.";
                 } else if (t > 0.65) {
-                    businessTitle.textContent = `⚠️ High Precision / Low Recall Bot Filtering Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = ` High Precision / Low Recall Bot Filtering Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-amber)";
                     businessDesc.textContent = "Only blocks sessions that are undeniably bots. Real users experience zero friction, but the backend is flooded with automated scrapers, spam database inserts, and fake analytics logs.";
                 } else {
-                    businessTitle.textContent = `✅ Optimal Balanced Bot Security Threshold (${t.toFixed(2)})`;
+                    businessTitle.textContent = ` Optimal Balanced Bot Security Threshold (${t.toFixed(2)})`;
                     businessTitle.style.color = "var(--accent-emerald)";
                     businessDesc.textContent = "Balanced security threshold. Filters out 98% of aggressive headless scrapers and automated spam bots while ensuring a completely friction-free experience for 99.9% of human recruiters.";
                 }
@@ -2584,7 +2584,7 @@ document.addEventListener("DOMContentLoaded", () => {
         runABBtn.addEventListener("click", () => {
             if (abInterval) clearInterval(abInterval);
             runABBtn.disabled = true;
-            runABBtn.textContent = "Simulating Traffic... 🚦";
+            runABBtn.textContent = "Simulating Traffic... ";
             
             const nA = 1000;
             const nB = 1000;
@@ -2603,7 +2603,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     currentVisitors = 1000;
                     clearInterval(abInterval);
                     runABBtn.disabled = false;
-                    runABBtn.textContent = "Run Experiment Simulation 🔄";
+                    runABBtn.textContent = "Run Experiment Simulation ";
                 }
                 
                 const curA = Math.round((currentVisitors / 1000) * finalA);
@@ -3020,85 +3020,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Visitor analytics",
-            desc: "Explore persistent visitor telemetry! Watch as we open the panel, cycle through 7-Day Traffic Forecasts, visualize K-Means Visitor Cohort Clusters, and test live ML model inference.",
-            target: "#visitor-container",
-            duration: 18000,
-            action: async () => {
-                const container = document.getElementById("visitor-container");
-                if (container) {
-                    container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                
-                const widget = document.getElementById("visitor-analytics-widget");
-                if (widget && window.innerWidth >= 992) {
-                    widget.style.zIndex = "100002"; // Elevate stacking context above backdrop on desktop
-                }
-                
-                const launcher = document.getElementById("visitor-launcher");
-                
-                // If collapsed, open it
-                if (launcher && window.getComputedStyle(launcher).display !== "none") {
-                    launcher.click();
-                }
-                
-                if (container) {
-                    container.classList.add("tour-highlight");
-                }
-                await delay(1500);
-                
-                const mlBtn = document.getElementById("view-ml-charts-btn");
-                if (mlBtn) mlBtn.click();
-                
-                // Elevate the ML charts modal so it is not blurred by the tour backdrop
-                const mlModal = document.getElementById("ml-charts-modal");
-                if (mlModal) {
-                    mlModal.classList.add("tour-highlight");
-                }
-                await delay(3000);
-                
-                // Switch to Tab 2: Visitor Cohorts (K-Means)
-                const cohortTab = document.querySelector('.ml-tab-btn[data-ml-tab="cohorts"]');
-                if (cohortTab) {
-                    cohortTab.click();
-                }
-                await delay(4000);
-                
-                // Switch to Tab 3: Model Playground
-                const playgroundTab = document.querySelector('.ml-tab-btn[data-ml-tab="playground"]');
-                if (playgroundTab) {
-                    playgroundTab.click();
-                }
-                await delay(2000);
-                
-                const runMlBtn = document.getElementById("run-ml-model-btn");
-                if (runMlBtn) {
-                    runMlBtn.click();
-                }
-                await delay(4000);
-            },
-            cleanup: () => {
-                const closeMlBtn = document.getElementById("close-ml-modal-btn");
-                if (closeMlBtn) closeMlBtn.click();
-                
-                const mlModal = document.getElementById("ml-charts-modal");
-                if (mlModal) {
-                    mlModal.classList.remove("tour-highlight");
-                }
-                
-                const container = document.getElementById("visitor-container");
-                if (container) {
-                    container.classList.remove("tour-highlight");
-                    container.classList.remove("active");
-                }
-                
-                const widget = document.getElementById("visitor-analytics-widget");
-                if (widget) {
-                    widget.style.zIndex = ""; // Restore original z-index
-                }
-            }
-        },
-        {
             title: "Skills",
             desc: "Skills grouped by area, from data engineering and warehousing to machine learning, LLMs and cloud.",
             target: "#skills",
@@ -3295,10 +3216,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const pausePlayIcon = document.getElementById("tour-pause-play-icon");
         const pausePlayText = document.getElementById("tour-pause-play-text");
         if (isAutoplayPaused) {
-            if (pausePlayIcon) pausePlayIcon.textContent = "▶️";
+            if (pausePlayIcon) pausePlayIcon.textContent = "▶";
             if (pausePlayText) pausePlayText.textContent = "Resume";
         } else {
-            if (pausePlayIcon) pausePlayIcon.textContent = "⏸️";
+            if (pausePlayIcon) pausePlayIcon.textContent = "⏸";
             if (pausePlayText) pausePlayText.textContent = "Pause";
         }
     }
@@ -3548,4 +3469,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const hero = document.getElementById("about");
     if (!hero || !("IntersectionObserver" in window)) return;
     new IntersectionObserver(([entry]) => document.body.classList.toggle("at-hero", entry.isIntersecting), { threshold: 0.25 }).observe(hero);
+})();
+
+// Engagement events (anonymous, same random visitor ID as the visit log): how far the page is scrolled, which sections are
+// seen, and which key links are clicked. Each scroll depth and section is sent once per page view.
+(() => {
+    const URL = "https://mtvcrttbdjwcixzhlkvo.supabase.co/rest/v1/portfolio_events";
+    const KEY = "sb_publishable_ZuB30vNfc-7b7Pr6ebZNqQ_sXjox-wu";
+    const vid = (() => { try { return localStorage.getItem("portfolio_visitor_id") || "anon"; } catch (e) { return "anon"; } })();
+    const sent = new Set();
+    const send = (event, detail) => {
+        const key = event + ":" + detail;
+        if (event !== "click" && sent.has(key)) return;
+        sent.add(key);
+        fetch(URL, { method: "POST", keepalive: true,
+            headers: { apikey: KEY, Authorization: `Bearer ${KEY}`, "Content-Type": "application/json", Prefer: "return=minimal" },
+            body: JSON.stringify({ visitor_id: vid.slice(0, 40), event, detail: String(detail).slice(0, 80), page_path: location.pathname.slice(0, 120) })
+        }).catch(() => {});
+    };
+    window.addEventListener("scroll", () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        if (max <= 0) return;
+        const pct = (scrollY / max) * 100;
+        [25, 50, 75, 100].forEach(m => { if (pct >= m - 1) send("scroll", m); });
+    }, { passive: true });
+    if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { send("section", en.target.id); io.unobserve(en.target); } }), { rootMargin: "-45% 0px -45% 0px" });
+        document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
+    }
+    document.addEventListener("click", e => {
+        const el = e.target.closest("a, button");
+        if (!el) return;
+        const label = el.dataset.track || (el.id ? "#" + el.id : "") || (el.getAttribute("href") || "").replace(/^https?:\/\//, "");
+        if (/resume|tour|ask-ai|case|projects\/|github\.com|demo\.|lab|contact|mailto|linkedin/i.test(label + " " + el.textContent)) {
+            send("click", (label || el.textContent.trim()).slice(0, 80));
+        }
+    });
 })();
