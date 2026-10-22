@@ -1143,16 +1143,16 @@ document.addEventListener("DOMContentLoaded", () => {
         let bgColors = [];
         let borderColors = [];
 
-        const purpleGrad = "rgba(139, 92, 246, 0.75)";
-        const purpleBorder = "rgba(139, 92, 246, 1)";
+        const purpleGrad = "rgba(242, 169, 59, 0.75)";
+        const purpleBorder = "rgba(242, 169, 59, 1)";
         const emeraldGrad = "rgba(16, 185, 129, 0.75)";
         const emeraldBorder = "rgba(16, 185, 129, 1)";
         const amberGrad = "rgba(245, 158, 11, 0.75)";
         const amberBorder = "rgba(245, 158, 11, 1)";
         const roseGrad = "rgba(239, 68, 68, 0.75)";
         const roseBorder = "rgba(239, 68, 68, 1)";
-        const blueGrad = "rgba(59, 130, 246, 0.75)";
-        const blueBorder = "rgba(59, 130, 246, 1)";
+        const blueGrad = "rgba(242, 169, 59, 0.75)";
+        const blueBorder = "rgba(242, 169, 59, 1)";
 
         if (selected === "revenue_by_segment") {
             chartType = "pie";
@@ -1162,8 +1162,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const val = parseFloat(row[3].replace(/[$,]/g, ""));
                 chartData.push(val);
             });
-            bgColors = ["rgba(139, 92, 246, 0.7)", "rgba(59, 130, 246, 0.7)", "rgba(245, 158, 11, 0.7)", "rgba(100, 116, 139, 0.7)"];
-            borderColors = ["#8b5cf6", "#3b82f6", "#f59e0b", "#64748b"];
+            bgColors = ["rgba(242, 169, 59, 0.7)", "rgba(242, 169, 59, 0.7)", "rgba(245, 158, 11, 0.7)", "rgba(100, 116, 139, 0.7)"];
+            borderColors = ["#f2a93b", "#f2a93b", "#f59e0b", "#64748b"];
         } else if (selected === "anomaly_risk_claims") {
             chartType = "bar";
             chartLabel = "Tax Claimed ($)";
@@ -1221,8 +1221,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 labels.push(row[0].split(" (")[0]);
                 chartData.push(parseInt(row[1]));
             });
-            bgColors = ["rgba(16, 185, 129, 0.7)", "rgba(59, 130, 246, 0.7)", "rgba(245, 158, 11, 0.7)", "rgba(239, 68, 68, 0.7)"];
-            borderColors = ["#10b981", "#3b82f6", "#f59e0b", "#ef4444"];
+            bgColors = ["rgba(16, 185, 129, 0.7)", "rgba(242, 169, 59, 0.7)", "rgba(245, 158, 11, 0.7)", "rgba(239, 68, 68, 0.7)"];
+            borderColors = ["#10b981", "#f2a93b", "#f59e0b", "#ef4444"];
         } else if (selected === "iot_telematics") {
             chartType = "bar";
             chartLabel = "Anomaly Alerts";
@@ -1353,7 +1353,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         } else if (val === "COMPLIANT" || val === "STABLE") {
                             cellStyle = "style='color: var(--accent-emerald); font-weight: bold;'";
                         } else if (val.includes("Target")) {
-                            cellStyle = "style='color: #8b5cf6; font-weight: bold;'";
+                            cellStyle = "style='color: #f2a93b; font-weight: bold;'";
                         }
                         dataRow += `<td ${cellStyle}>${val}</td>`;
                     });
@@ -2181,8 +2181,8 @@ document.addEventListener("DOMContentLoaded", () => {
         node.tags.forEach(t => {
             const span = document.createElement("span");
             span.className = "badge";
-            span.style.background = "rgba(99, 102, 241, 0.1)";
-            span.style.border = "1px solid rgba(99, 102, 241, 0.2)";
+            span.style.background = "rgba(242, 169, 59, 0.1)";
+            span.style.border = "1px solid rgba(242, 169, 59, 0.2)";
             span.style.color = "var(--accent-blue)";
             span.style.fontSize = "0.7rem";
             span.style.padding = "0.2rem 0.5rem";

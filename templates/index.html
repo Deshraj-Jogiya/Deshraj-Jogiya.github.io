@@ -502,11 +502,11 @@
     <svg style="width:0; height:0; position:absolute;">
       <defs>
         <linearGradient id="purpleGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.3"/>
-          <stop offset="100%" stop-color="#a855f7" stop-opacity="1"/>
+          <stop offset="0%" stop-color="#f2a93b" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#f2a93b" stop-opacity="1"/>
         </linearGradient>
         <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#3b82f6" stop-opacity="1"/>
+          <stop offset="0%" stop-color="#f2a93b" stop-opacity="1"/>
           <stop offset="100%" stop-color="#06b6d4" stop-opacity="1"/>
         </linearGradient>
       </defs>
@@ -648,7 +648,7 @@
                                         <!-- Curve path -->
                                         <path id="roc-path" d="M 0 100 Q 15 15, 100 0" fill="none" stroke="url(#purpleGradient)" stroke-width="2.5" />
                                         <!-- Threshold dot tracker -->
-                                        <circle id="roc-dot" r="4.5" fill="#8b5cf6" stroke="#fff" stroke-width="1.5" cx="0" cy="100"></circle>
+                                        <circle id="roc-dot" r="4.5" fill="#f2a93b" stroke="#fff" stroke-width="1.5" cx="0" cy="100"></circle>
                                         
                                         <!-- Axis Labels -->
                                         <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">FPR (1-Spec)</text>
@@ -671,7 +671,7 @@
                                         <!-- Curve path -->
                                         <path id="pr-path" d="M 0 10 C 65 10, 85 25, 100 100" fill="none" stroke="url(#blueGradient)" stroke-width="2.5" />
                                         <!-- Threshold dot tracker -->
-                                        <circle id="pr-dot" r="4.5" fill="#3b82f6" stroke="#fff" stroke-width="1.5" cx="0" cy="10"></circle>
+                                        <circle id="pr-dot" r="4.5" fill="#f2a93b" stroke="#fff" stroke-width="1.5" cx="0" cy="10"></circle>
                                         
                                         <!-- Axis Labels -->
                                         <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">Recall</text>
@@ -819,7 +819,7 @@
     
     <div id="tour-overlay-card" class="tour-overlay-card glass-card" style="display: none;">
         <div id="tour-progress-container" style="height: 3px; width: 100%; background: rgba(255,255,255,0.05); position: absolute; top: 0; left: 0; display: none; overflow: hidden; border-top-left-radius: 12px; border-top-right-radius: 12px;">
-            <div id="tour-progress-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.1s linear;"></div>
+            <div id="tour-progress-bar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #f2a93b, #f2a93b); transition: width 0.1s linear;"></div>
 </div>
         <div class="tour-header">
             <span class="tour-badge">Recruiter Tour</span>
