@@ -139,78 +139,45 @@ document.addEventListener("DOMContentLoaded", () => {
     logVisit();
     updateVisitorStatsUI();
 
-    // 1. Role rotator: types each role, erases it and moves to the next, looping through all of them. A pause button stops it
-    // (WCAG 2.2.2), and with reduced motion requested it shows the roles as one static line instead.
+    // 1. Role rotator: types each role, erases it and moves to the next, looping through all of them for as long as the page is open.
+    // With reduced motion requested it shows one static line instead.
     const typingEl = document.getElementById("typing-text");
-    const pauseBtn = document.getElementById("typing-pause");
     const words = ["Data Engineer", "Machine Learning Engineer", "Data Pipeline Engineer", "Analytics Engineer",
                    "LLM & RAG Engineer", "MLOps & Data Quality Engineer"];
     const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (typingEl && reduceMotion) {
         typingEl.textContent = "Data Engineer · ML Engineer";
-        if (pauseBtn) pauseBtn.hidden = true;
     } else if (typingEl) {
-        let i = 0, pos = 0, erasing = false, paused = false, timer = null;
+        let i = 0, pos = 0, erasing = false;
         const tick = () => {
-            if (paused) return;
             const word = words[i];
-            if (!erasing) {
-                pos += 1;
-                typingEl.textContent = word.slice(0, pos);
-                if (pos === word.length) { erasing = true; timer = setTimeout(tick, 1700); return; }
-                timer = setTimeout(tick, 70);
-            } else {
-                pos -= 1;
-                typingEl.textContent = word.slice(0, pos);
-                if (pos === 0) { erasing = false; i = (i + 1) % words.length; timer = setTimeout(tick, 350); return; }
-                timer = setTimeout(tick, 30);
-            }
+            pos += erasing ? -1 : 1;
+            typingEl.textContent = word.slice(0, pos);
+            if (!erasing && pos === word.length) { erasing = true; return setTimeout(tick, 1700); }
+            if (erasing && pos === 0) { erasing = false; i = (i + 1) % words.length; return setTimeout(tick, 350); }
+            setTimeout(tick, erasing ? 30 : 70);
         };
         tick();
-        if (pauseBtn) {
-            pauseBtn.addEventListener("click", () => {
-                paused = !paused;
-                pauseBtn.setAttribute("aria-pressed", String(paused));
-                pauseBtn.setAttribute("aria-label", paused ? "Play the role animation" : "Pause the role animation");
-                pauseBtn.textContent = paused ? "▶" : "❚❚";
-                if (paused) clearTimeout(timer); else tick();
-            });
-        }
     }
 
     // 2. Stats Counter Animation
     const counters = document.querySelectorAll(".stat-number");
-    const speed = 100; // The lower the slower
 
+    // Counts each stat up from zero to its data-target, then shows it with its data-suffix and data-decimals
     const startCounters = () => {
         counters.forEach(counter => {
-            const updateCount = () => {
-                const target = +counter.getAttribute("data-target");
-                const count = +counter.innerText.replace("+", "").replace(".", "");
-                
-                // Set increment step
-                let inc = target / speed;
-                if (target === 4) {
-                    // Specific formatting for MS IT GPA 4.0
-                    counter.innerText = "4.0/4.0";
-                    return;
-                }
-                
-                if (inc < 1) inc = 1;
-                
-                if (count < target) {
-                    const nextVal = Math.ceil(count + inc);
-                    if (nextVal >= target) {
-                        counter.innerText = target === 98 ? "98%+" : target + "+";
-                    } else {
-                        counter.innerText = nextVal;
-                        setTimeout(updateCount, 15);
-                    }
-                } else {
-                    counter.innerText = target === 98 ? "98%+" : target + "+";
-                }
+            const target = parseFloat(counter.dataset.target);
+            const suffix = counter.dataset.suffix || "";
+            const decimals = parseInt(counter.dataset.decimals || "0", 10);
+            const show = v => { counter.textContent = v.toLocaleString("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix; };
+            if (reduceMotion || !isFinite(target)) { show(target); return; }
+            const start = performance.now(), ms = 1200;
+            const step = now => {
+                const t = Math.min((now - start) / ms, 1);
+                show(target * (1 - Math.pow(1 - t, 3)));
+                if (t < 1) requestAnimationFrame(step);
             };
-            updateCount();
+            requestAnimationFrame(step);
         });
     };
 
@@ -233,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Project Filter Logic
     const filterButtons = document.querySelectorAll(".filter-btn");
-    const projectCards = document.querySelectorAll(".project-card");
+    const projectCards = document.querySelectorAll(".projects-grid:not(.team-grid) .project-card");
 
     filterButtons.forEach(button => {
         button.addEventListener("click", () => {
@@ -1541,14 +1508,14 @@ document.addEventListener("DOMContentLoaded", () => {
         location: "Deshraj is located in Tempe, Arizona (Phoenix Metropolitan Area), United States. He is open to relocation to major technology hubs nationwide for Data Engineering and ML Engineering roles.",
         current_doing: "Deshraj currently works as a Teleoperation Data Collection Associate at Objectways Technologies LLC in Tempe, AZ, building Python, Scala, PySpark and Kubernetes pipelines for robotics data. Alongside it he runs Career Pilot, his deployed job-search platform with LLM agents.",
         best_work: "Deshraj's strongest work joins data engineering with production AI. At Technoid LLC he raised recommendation accuracy 25% and cut model deployment errors 30%; at Zifatech he sped ingestion 60% and held a 98%+ data reliability standard. His flagship project is Career Pilot, a deployed AI platform with a guardrail on every generated claim, a daily spend cap and 1,100+ automated tests. Ask about Data Engineering, Machine Learning, or Career Pilot to go deeper.",
-        emissions: "Multi-State Land Use Emissions Analysis is a geospatial pipeline processing daily land cover changes across 5 U.S. states. Deshraj built Python/SQLite ETL ingestion and Random Forest models forecasting CO2 trends with 90% accuracy.",
-        fintech: "FinTech Credit Risk Command Center is an end-to-end transaction pipeline featuring a FastAPI backend, Scikit-Learn Random Forest default prediction (92% precision), and real-time sub-100ms fraud evaluation.",
-        telematics: "IoT Telematics & Predictive Maintenance processes streaming EV battery telemetry micro-batches, running Z-score anomaly detection and Remaining Useful Life (RUL) regression models for maintenance alerts.",
+        emissions: "Multi-State Land Use Emissions Analysis is a land-use emissions ETL for 5 U.S. states built on the EPA's real state greenhouse-gas inventory (1990-2022): EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection with GeoPandas map layers on Census boundaries, and 10.2 hours of manual preparation replaced each week.",
+        fintech: "FinTech Credit Risk & Fraud Command Center is an end-to-end credit-risk pipeline: a Random Forest at 93.4% precision on declined loans (0.92 ROC-AUC) tracked in MLflow, rule-based fraud flags that caught all 1,110 planted card-testing charges, and a FastAPI service with REST and GraphQL answering in 67 ms median.",
+        telematics: "IoT Telematics & Predictive Maintenance processes streaming EV battery and motor telemetry in micro-batches: Z-score detection catches 98.1% of planted sensor spikes at 90.5% precision, and a JIT-compiled Jax recurrence estimates battery remaining useful life.",
         stem: "Extending STEM across ASL is an accessibility platform that teaches 7 core STEM concepts in American Sign Language. It recognises 29 STEM and computing word signs from video (MediaPipe hand landmarks, OpenCV contour features and a PyTorch GRU: 75.9% top-1 and 94.8% top-3 on held-out WLASL clips), works live from a webcam, and keeps a TensorFlow/Keras CNN for fingerspelled letters. The original 2023 version earned a 4.6/5 rating from 50+ STEM students.",
         sales: "Sales Analytics & RFM Customer Segmentation automates RFM scaling and K-Means clustering in Python over a 100k+ transaction star schema, identifying 4 customer personas, with an interactive Power BI report for marketing teams.",
-        anomaly: "Tax Anomaly Audit Engine scans general ledger entries using Benford's Law distribution checks and Isolation Forest models to isolate multivariate financial outliers.",
-        simulation: "AI-ML Data Science Simulation automates daily sales ingestion across 5 state branches, running Linear Regression and Random Forest models to cut stock-outs by 15%.",
-        observability_project: "AI Model Observability & Fairness Audits runs automated Kolmogorov-Smirnov (KS) tests on production features for data drift and calculates Disparate Impact ratios for bias auditing."
+        anomaly: "Tax Anomaly Audit Compliance Engine scores general-ledger entries with Benford's Law, an Isolation Forest and a tax-rate rule: 97.8% precision and 95.7% recall against known injected anomalies, and an auditor finds 90% of them after 43 entries instead of 1,108. It runs as a Dagster asset graph.",
+        simulation: "AI-ML Data Science Simulation automates daily sales ingestion for 5 branches and forecasts demand at 90% accuracy (1 - WAPE) against a 78.4% naive baseline; in a reorder simulation, forecast-driven ordering cut stock-out days by 60.8%.",
+        observability_project: "AI Model Observability & Fairness Audits runs KS and PSI drift tests and disparate-impact and equal-opportunity checks on deployed models, writes alerts to an audit table, and publishes a Tableau dashboard over 30,000 simulated inference records."
     };
 
     answers.recommendations = "Deshraj has four LinkedIn recommendations, shown word for word in the Recommendations section: Michelle M Licata (Director of Career Services, who managed him at ElevateMe Bootcamp) highlights his K-Means segmentation work capturing 92% of variance; Dr. John A. Lewis (ASU professor) highlights his ASL recognition Master's project; Kaxa Dholakia and Ridham Dholakia recommend him from development projects they worked on together.";
@@ -1985,7 +1952,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon: "📥", 
                     tags: ["Python", "yFinance", "Pandas"], 
                     desc: "Fetches raw daily market pricing and transactional telemetry from finance APIs. Standardizes data columns and formats ISO timestamps.",
-                    impact: "Replaces manual daily CSV downloading and aggregation workflows, saving 10+ hours of operational overhead weekly.",
+                    impact: "Replaces manual daily downloading and aggregation: a GitHub Actions job runs it every day at $0 server cost.",
                     inputs: "Yahoo Finance API",
                     process: "yFinance Ingestion",
                     outputs: "Raw Market CSV",
@@ -2021,7 +1988,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon: "❄️", 
                     tags: ["Snowflake", "SQL", "Star Schema"], 
                     desc: "Pipes cleaned data into persistent Snowflake data warehouse dimensions and fact tables.",
-                    impact: "Centralizes organizational records into structured Star Schemas, enabling 15x faster analytic queries for business teams.",
+                    impact: "Centralizes records into star schemas so analytic queries run on clean, joined data.",
                     inputs: "Flagged anomalies",
                     process: "Snowflake Schema",
                     outputs: "Analytical Tables",
@@ -2049,7 +2016,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon: "📟", 
                     tags: ["MQTT", "HTTP", "FastAPI"], 
                     desc: "Receives high-frequency sensor readings (vibration, heat, voltage) in real-time from fleet battery systems.",
-                    impact: "Ingests continuous device data from 5,000+ devices concurrently with sub-second ingestion latency.",
+                    impact: "Ingests continuous battery and motor telemetry in micro-batches.",
                     inputs: "IoT Telemetry Streams",
                     process: "MQTT Broker Ingest",
                     outputs: "Kafka Event Buffer",
@@ -2073,7 +2040,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon: "🧠", 
                     tags: ["Scikit-Learn", "Regression"], 
                     desc: "Applies an exponential health decay model to forecast the fleet component's Remaining Useful Life (RUL).",
-                    impact: "Enables predictive maintenance schedules, reducing fleet breakdown rates by 15% and saving repair costs.",
+                    impact: "Estimates each battery's remaining useful life so maintenance can be scheduled before a failure.",
                     inputs: "Validated Signals",
                     process: "RUL Regression Model",
                     outputs: "Failure Projections",
@@ -2113,7 +2080,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     icon: "🍃", 
                     tags: ["Python", "Pandas"], 
                     desc: "Calculates net carbon emissions based on land cover type changes (forest loss vs. urban expansion).",
-                    impact: "Measures and audits net regional carbon offset changes, ensuring compliance with EPA state standards.",
+                    impact: "Measures net land-use carbon per state with factors from the EPA's state inventory and compares the yearly total with EPA's figure.",
                     inputs: "Clean GeoDataFrames",
                     process: "Carbon Offset Engine",
                     outputs: "CO2 Delta Matrices",
@@ -3541,7 +3508,7 @@ document.addEventListener("DOMContentLoaded", () => {
     moreProjectsBtn.type = "button";
     moreProjectsBtn.className = "collapse-toggle projects-more-btn";
     const applyProjectLimit = () => {
-        const visible = [...document.querySelectorAll(".project-card")].filter(c => !c.classList.contains("hidden"));
+        const visible = [...document.querySelectorAll(".projects-grid:not(.team-grid) .project-card")].filter(c => !c.classList.contains("hidden"));
         visible.forEach((c, i) => c.classList.toggle("beyond-limit", i >= projectLimit));
         const remaining = visible.length - Math.min(projectLimit, visible.length);
         moreProjectsBtn.style.visibility = remaining > 0 ? "visible" : "hidden";

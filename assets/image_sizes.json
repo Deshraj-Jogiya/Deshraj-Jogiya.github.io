@@ -7,6 +7,14 @@
   1600,
   814
  ],
+ "assets/asl_word_signs.png": [
+  1200,
+  675
+ ],
+ "assets/asl_word_signs.webp": [
+  1200,
+  675
+ ],
  "assets/career-pilot-flow.svg": [
   960,
   350
@@ -67,6 +75,10 @@
   1600,
   800
  ],
+ "assets/dbt-flow.svg": [
+  960,
+  350
+ ],
  "assets/emissions_by_state.png": [
   1634,
   884
@@ -106,6 +118,10 @@
  "assets/iot_dashboard.webp": [
   1600,
   1225
+ ],
+ "assets/lakehouse-flow.svg": [
+  960,
+  350
  ],
  "assets/make_it_short_dashboard.png": [
   2082,

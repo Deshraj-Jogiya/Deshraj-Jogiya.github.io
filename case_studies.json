@@ -16,10 +16,22 @@
     ],
     "data": "Real job postings from public ATS and job-board APIs, and the owner's own profile. The public demo runs on a separate database with a sample profile and no API keys.",
     "decisions": [
-      ["The language model sometimes listed skills the candidate doesn't have", "Every generated resume is checked by ordinary code, not another model, against the master profile. Anything missing from the profile triggers a rewrite, then human review."],
-      ["An early version spent far more on API calls than planned", "Postings get a free rule-based score first, a posting that can't reach the tailoring threshold never reaches the model, and a daily spending limit is checked before every paid call."],
-      ["Employer sites blocked automated form filling from the cloud server", "Form filling moved into a Chrome extension in the user's own browser. Testing on seven applicant-tracking systems found fields inside Shadow DOM, upload fields hidden behind custom buttons and hidden decoy fields meant for bots, which are now left empty."],
-      ["The first location filter wrongly excluded 458 US postings", "It now excludes a posting only when its location names a country outside the US and Canada."]
+      [
+        "The language model sometimes listed skills the candidate doesn't have",
+        "Every generated resume is checked by ordinary code, not another model, against the master profile. Anything missing from the profile triggers a rewrite, then human review."
+      ],
+      [
+        "An early version spent far more on API calls than planned",
+        "Postings get a free rule-based score first, a posting that can't reach the tailoring threshold never reaches the model, and a daily spending limit is checked before every paid call."
+      ],
+      [
+        "Employer sites blocked automated form filling from the cloud server",
+        "Form filling moved into a Chrome extension in the user's own browser. Testing on seven applicant-tracking systems found fields inside Shadow DOM, upload fields hidden behind custom buttons and hidden decoy fields meant for bots, which are now left empty."
+      ],
+      [
+        "The first location filter wrongly excluded 458 US postings",
+        "It now excludes a posting only when its location names a country outside the US and Canada."
+      ]
     ],
     "reliability": [
       "1,100+ pytest tests in GitHub Actions on every push",
@@ -35,7 +47,8 @@
     "limits": [
       "Workday forms need an account before any question is reachable, so they are only partly covered",
       "Custom phone-country pickers on some forms are left at the page's default"
-    ]
+    ],
+    "card_result": "In production since February 2026 · fills forms on 7 applicant-tracking systems · nothing sent without a human click"
   },
   "job-market-lakehouse": {
     "project": "Job Market Lakehouse",
@@ -52,9 +65,18 @@
     ],
     "data": "Synthetic and seeded (data/generate_raw_data.py); it describes no real company.",
     "decisions": [
-      ["Airflow's dependency pins clashed with the pipeline's (pydantic, typing_extensions)", "Airflow runs in its own environment, separate from the pipeline's, in CI as well as locally."],
-      ["Validation needs to stop bad data, not just report it", "Any failed expectation fails the run, so nothing downstream sees an output that broke a rule."],
-      ["Library versions drifted: an unpinned pandas 3 and pyarrow 26 stopped importing against the numpy that Great Expectations needs", "CI flagged the break; pandas and pyarrow are now pinned to compatible ranges."]
+      [
+        "Airflow's dependency pins clashed with the pipeline's (pydantic, typing_extensions)",
+        "Airflow runs in its own environment, separate from the pipeline's, in CI as well as locally."
+      ],
+      [
+        "Validation needs to stop bad data, not just report it",
+        "Any failed expectation fails the run, so nothing downstream sees an output that broke a rule."
+      ],
+      [
+        "Library versions drifted: an unpinned pandas 3 and pyarrow 26 stopped importing against the numpy that Great Expectations needs",
+        "CI flagged the break; pandas and pyarrow are now pinned to compatible ranges."
+      ]
     ],
     "reliability": [
       "CI runs the PySpark job, the Great Expectations validation and the unit tests on every push",
@@ -67,7 +89,8 @@
     "limits": [
       "Runs Spark in local mode, not on a cluster",
       "The Scala job is run by hand against a Spark distribution rather than in CI"
-    ]
+    ],
+    "card_result": "11 data-quality expectations gate every run · a quality report from each CI run"
   },
   "dbt-warehouse": {
     "project": "Job Search dbt Warehouse",
@@ -82,9 +105,18 @@
     ],
     "data": "Synthetic seed data describing a job search; not a real company's data.",
     "decisions": [
-      ["A full rebuild of the daily snapshot grows with every day of history", "The snapshot is incremental and merges on date_day."],
-      ["Generic tests can't express business rules", "Two singular tests: a decision date never precedes the applied date, and snapshot counts never go negative."],
-      ["The original workspace ran out of trial credits", "The project moved to Databricks Free Edition, and credentials are read only from environment variables."]
+      [
+        "A full rebuild of the daily snapshot grows with every day of history",
+        "The snapshot is incremental and merges on date_day."
+      ],
+      [
+        "Generic tests can't express business rules",
+        "Two singular tests: a decision date never precedes the applied date, and snapshot counts never go negative."
+      ],
+      [
+        "The original workspace ran out of trial credits",
+        "The project moved to Databricks Free Edition, and credentials are read only from environment variables."
+      ]
     ],
     "reliability": [
       "22 dbt tests: 20 schema tests (6 unique, 9 not-null, 4 referential-integrity, 1 accepted-values) and 2 business-rule tests",
@@ -96,7 +128,8 @@
     ],
     "limits": [
       "CI depends on the Databricks workspace being reachable; when it isn't, the run fails on the connection rather than on the model"
-    ]
+    ],
+    "card_result": "22 data tests against a live Databricks SQL warehouse · incremental daily snapshot"
   },
   "finrisk": {
     "project": "FinTech Credit Risk & Fraud Command Center",
@@ -111,9 +144,18 @@
     ],
     "data": "Fully synthetic (fixed seed), with a 23.4% default rate similar to a subprime lender's book. No real customer data.",
     "decisions": [
-      ["The first version predicted the approve/reject decision, which a fixed rule computes from the same features, and scored a meaningless 100%", "The model now predicts actual default, and neither the underwriting decision nor the simulator's true probability is used as a feature."],
-      ["Reloading the model from disk on every request made latency depend on model size", "The model is loaded once and cached, giving a median of 67 ms per score (95th percentile 85 ms)."],
-      ["A single accuracy number hides the business trade-off", "Precision and recall are reported at an explicit decline threshold (80% predicted default probability)."]
+      [
+        "The first version predicted the approve/reject decision, which a fixed rule computes from the same features, and scored a meaningless 100%",
+        "The model now predicts actual default, and neither the underwriting decision nor the simulator's true probability is used as a feature."
+      ],
+      [
+        "Reloading the model from disk on every request made latency depend on model size",
+        "The model is loaded once and cached, giving a median of 67 ms per score (95th percentile 85 ms)."
+      ],
+      [
+        "A single accuracy number hides the business trade-off",
+        "Precision and recall are reported at an explicit decline threshold (80% predicted default probability)."
+      ]
     ],
     "reliability": [
       "CI trains both models, checks that MLflow logged both runs, boots the API and calls its REST and GraphQL endpoints",
@@ -127,6 +169,7 @@
     "limits": [
       "Synthetic data: the effects are built into the generator, so the model recovers relationships that were put there",
       "The decline threshold is fixed; a production system would set it from loss and approval-rate targets"
-    ]
+    ],
+    "card_result": "93.4% precision on declined loans · 0.92 ROC-AUC · 67 ms median scoring"
   }
 }

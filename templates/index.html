@@ -52,27 +52,28 @@
         <section id="about" class="hero-section">
             <div class="hero-left">
                 <span class="badge badge-accent">Open to Data Engineer &amp; ML Engineer roles</span>
-                <p class="hero-kicker">Hi, I'm Deshraj Jogiya <span class="hero-sep">·</span> Tempe, AZ, open to relocation</p>
+                <div class="hero-intro">
+                    <img src="/assets/profile.jpg" alt="Deshraj Jogiya" class="hero-avatar" width="{{ img_sizes['assets/profile.jpg'][0] }}" height="{{ img_sizes['assets/profile.jpg'][1] }}" fetchpriority="high">
+                    <p class="hero-kicker">Deshraj Jogiya<span>Tempe, AZ · open to relocation</span></p>
+                </div>
                 <h1 class="hero-title">Data pipelines that hold up.<br><span class="gradient-text">AI systems that ship.</span></h1>
 
-                <!-- Role rotator: loops through every role, with a pause control (WCAG 2.2.2) -->
-                <div class="terminal-text" aria-live="off">
-                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor" aria-hidden="true">|</span>
-                    <button id="typing-pause" class="typing-pause" type="button" aria-label="Pause the role animation" aria-pressed="false">❚❚</button>
+                <!-- Role rotator: loops through every role -->
+                <div class="terminal-text" aria-hidden="true">
+                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
                 </div>
                 <p class="sr-only">Data Engineer, Machine Learning Engineer, Data Pipeline Engineer, Analytics Engineer, LLM and RAG Engineer, MLOps and Data Quality Engineer.</p>
 
                 <p class="hero-description">
-                    I turn messy, multi-source data into pipelines teams can trust, then put machine learning on top of it. At Zifatech that meant
-                    <strong>60% faster ingestion on AWS</strong> and a <strong>98%+ data-reliability standard</strong> in Snowflake; at Technoid,
-                    GPT-4o mini matching that lifted candidate-matching accuracy <strong>25%</strong>. Today I run
-                    <a href="/projects/career-pilot/">Career Pilot</a>, my own AI job-search platform in production, where a plain-code check
-                    stops any claim the AI cannot back up.
+                    I build the data platforms that analytics and AI depend on: ingestion, warehouses and quality checks that hold up at scale,
+                    and the machine learning that runs on top of them. At Zifatech I made multi-source ingestion on AWS <strong>60% faster</strong>
+                    and held Snowflake data to a <strong>98%+ reliability standard</strong>; at Technoid I raised candidate-matching accuracy
+                    <strong>25%</strong> with GPT-4o mini. Everything I ship is tested, monitored and guarded against bad data and bad model output.
                 </p>
                 <ul class="hero-proof-chips" aria-label="Highlights">
                     <li><span>Career Pilot</span><a href="https://demo.129-146-36-193.sslip.io" target="_blank" rel="noopener">Live demo ↗</a></li>
-                    <li><span>Career Pilot</span>1,100+ automated tests</li>
-                    <li><span>Autofill extension</span>7 applicant-tracking systems</li>
+                    <li><span>Test suite</span>1,100+ automated tests</li>
+                    <li><span>Chrome extension</span>7 applicant-tracking systems</li>
                 </ul>
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">See the case studies</a>
@@ -84,21 +85,10 @@
 
             <!-- Quick Link Cards / Stats -->
             <div class="hero-right">
-                <!-- Professional Profile Card -->
-                <div class="profile-card glass-card">
-                    <div class="profile-image-container">
-                        <img src="/assets/profile.jpg" alt="Deshraj Jogiya" class="profile-image" width="{{ img_sizes['assets/profile.jpg'][0] }}" height="{{ img_sizes['assets/profile.jpg'][1] }}" fetchpriority="high">
-                    </div>
-                    <div class="profile-details">
-                        <p class="profile-name">Deshraj Jogiya</p>
-                        <p class="profile-title">{{ title }}</p>
-                    </div>
-                </div>
-
                 <div class="quick-stats-grid">
                     {% for stat in stats %}
                     <div class="stat-card glass-card">
-                        <h3 class="stat-number" data-target="{{ stat.number }}">{{ stat.number }}</h3>
+                        <p class="stat-number" data-target="{{ stat.number }}" data-suffix="{{ stat.suffix }}" data-decimals="{{ stat.decimals or 0 }}">{{ stat.number }}{{ stat.suffix }}</p>
                         <p class="stat-label">{{ stat.label }}</p>
                     </div>
                     {% endfor %}
@@ -127,6 +117,7 @@
                         <div class="card-badge">{{ project.badge }}</div>
                         <h3 class="card-title"><a href="/projects/{{ project.slug }}/">{{ cs.title }}</a></h3>
                         <p class="card-desc">{{ cs.summary }}</p>
+                        {% if cs.card_result %}<p class="card-result">{{ cs.card_result }}</p>{% endif %}
                         <div class="tech-tags">
                             {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
                         </div>
@@ -160,6 +151,10 @@
                         <img src="/{{ project.dashboard_url }}" alt="{{ project.name }} chart" class="card-image" loading="lazy" decoding="async"
                              width="{{ img_sizes[project.dashboard_url][0] }}" height="{{ img_sizes[project.dashboard_url][1] }}">
                         <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    {% else %}
+                    <div class="card-banner card-banner-{{ project.category.split(' ')[0] }}" aria-hidden="true">
+                        <span>{{ project.tags[:3] | join(' · ') }}</span>
                     </div>
                     {% endif %}
                     <div class="card-content">
@@ -206,7 +201,7 @@
         <section id="experience" class="experience-section">
             <div class="section-header">
                 <h2 class="section-title">Professional Experience & Technical Impact</h2>
-                <p class="section-subtitle">3+ years of designing production-grade data pipelines, optimizing LLM/AI models, and building high-reliability cloud data architectures.</p>
+                <p class="section-subtitle">Six roles across data engineering, machine learning and analytics, each with the results it delivered.</p>
             </div>
 
             <div class="experience-container">
@@ -244,17 +239,15 @@
         <section id="skills" class="skills-section">
             <div class="section-header">
                 <h2 class="section-title">Core Technical Expertise</h2>
-                <p class="section-subtitle">Proficient across modern data engineering tools, machine learning modeling, database modeling, and visual analytics platforms.</p>
+                <p class="section-subtitle">The tools behind the projects and roles above, grouped by area.</p>
             </div>
             
-            <div class="skills-grid">
+            <div class="skills-rows">
                 {% for cat in skills %}
-                <div class="skill-category glass-card">
+                <div class="skill-row glass-card">
                     <h3>{{ cat.category }}</h3>
-                    <ul>
-                        {% for item in cat['items'] %}
-                        <li>{{ item }}</li>
-                        {% endfor %}
+                    <ul class="skill-chips">
+                        {% for item in cat['items'] %}<li>{{ item }}</li>{% endfor %}
                     </ul>
                 </div>
                 {% endfor %}
@@ -265,15 +258,16 @@
         <section id="certifications" class="skills-section certifications-section">
             <div class="section-header">
                 <h2 class="section-title">Certifications &amp; Training</h2>
-                <p class="section-subtitle">Professional certificates and ongoing training, with what each program covered.</p>
+                <p class="section-subtitle">Data, analytics and AI certificates first, with what each program covered.</p>
             </div>
 
-            <div class="skills-grid">
-                {% for cert in certifications %}
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">{{ cert.name }}</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
-                        {% if cert.issuer %}{{ cert.issuer }}{% endif %}{% if cert.issuer and (cert.date or cert.status) %} · {% endif %}{% if cert.status and cert.status != "Completed" %}<span class="badge cert-status" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 4px;">{{ cert.status }}</span>{% else %}{{ cert.date or "Completed" }}{% endif %}
+            {% set other_words = ['HR', 'HRCI', 'People Analytics', 'Digital Marketing', 'Greenhouse'] %}
+            <div class="cert-grid">
+                {% for cert in certifications if not (other_words | select('in', cert.name) | list) %}
+                <div class="glass-card cert-card">
+                    <h3>{{ cert.name }}</h3>
+                    <p class="cert-meta">
+                        {% if cert.issuer %}{{ cert.issuer }}{% endif %}{% if cert.issuer and (cert.date or cert.status) %} · {% endif %}{% if cert.status and cert.status != "Completed" %}<span class="badge cert-status">{{ cert.status }}</span>{% else %}{{ cert.date or "Completed" }}{% endif %}
                     </p>
                     {% if cert.bullets %}
                     <ul>
@@ -284,6 +278,14 @@
                     {% endif %}
                 </div>
                 {% endfor %}
+            </div>
+            <div class="cert-other">
+                <h3>Other training</h3>
+                <ul>
+                    {% for cert in certifications if (other_words | select('in', cert.name) | list) %}
+                    <li><strong>{{ cert.name }}</strong>{% if cert.issuer %} · {{ cert.issuer }}{% endif %}{% if cert.status and cert.status != "Completed" %} · <span class="badge cert-status">{{ cert.status }}</span>{% endif %}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </section>
 
@@ -325,7 +327,7 @@
                 <!-- Contact Details -->
                 <div class="contact-details-card glass-card">
                     <h2 class="contact-title">Let's Connect</h2>
-                    <p class="contact-text">Looking for a technical Data Engineer / ML Engineer who combines mathematical modeling with production-grade data pipelines? Get in touch via these channels or send a message directly.</p>
+                    <p class="contact-text">Hiring a data engineer or ML engineer who ships tested, production-ready pipelines and models? Reach me directly or send a message here.</p>
                     <div class="contact-info-links">
                         <div class="info-item">
                             <span class="info-icon">📧</span>

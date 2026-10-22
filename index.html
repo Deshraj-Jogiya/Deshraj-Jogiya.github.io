@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=dd109597b6">
+    <link rel="stylesheet" href="/style.css?v=696e0d44f4">
 </head>
 <body>
     <!-- Floating Background Orbs for Depth -->
@@ -72,27 +72,28 @@
         <section id="about" class="hero-section">
             <div class="hero-left">
                 <span class="badge badge-accent">Open to Data Engineer &amp; ML Engineer roles</span>
-                <p class="hero-kicker">Hi, I'm Deshraj Jogiya <span class="hero-sep">·</span> Tempe, AZ, open to relocation</p>
+                <div class="hero-intro">
+                    <img src="/assets/profile.jpg" alt="Deshraj Jogiya" class="hero-avatar" width="768" height="1024" fetchpriority="high">
+                    <p class="hero-kicker">Deshraj Jogiya<span>Tempe, AZ · open to relocation</span></p>
+                </div>
                 <h1 class="hero-title">Data pipelines that hold up.<br><span class="gradient-text">AI systems that ship.</span></h1>
 
-                <!-- Role rotator: loops through every role, with a pause control (WCAG 2.2.2) -->
-                <div class="terminal-text" aria-live="off">
-                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor" aria-hidden="true">|</span>
-                    <button id="typing-pause" class="typing-pause" type="button" aria-label="Pause the role animation" aria-pressed="false">❚❚</button>
+                <!-- Role rotator: loops through every role -->
+                <div class="terminal-text" aria-hidden="true">
+                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
                 </div>
                 <p class="sr-only">Data Engineer, Machine Learning Engineer, Data Pipeline Engineer, Analytics Engineer, LLM and RAG Engineer, MLOps and Data Quality Engineer.</p>
 
                 <p class="hero-description">
-                    I turn messy, multi-source data into pipelines teams can trust, then put machine learning on top of it. At Zifatech that meant
-                    <strong>60% faster ingestion on AWS</strong> and a <strong>98%+ data-reliability standard</strong> in Snowflake; at Technoid,
-                    GPT-4o mini matching that lifted candidate-matching accuracy <strong>25%</strong>. Today I run
-                    <a href="/projects/career-pilot/">Career Pilot</a>, my own AI job-search platform in production, where a plain-code check
-                    stops any claim the AI cannot back up.
+                    I build the data platforms that analytics and AI depend on: ingestion, warehouses and quality checks that hold up at scale,
+                    and the machine learning that runs on top of them. At Zifatech I made multi-source ingestion on AWS <strong>60% faster</strong>
+                    and held Snowflake data to a <strong>98%+ reliability standard</strong>; at Technoid I raised candidate-matching accuracy
+                    <strong>25%</strong> with GPT-4o mini. Everything I ship is tested, monitored and guarded against bad data and bad model output.
                 </p>
                 <ul class="hero-proof-chips" aria-label="Highlights">
                     <li><span>Career Pilot</span><a href="https://demo.129-146-36-193.sslip.io" target="_blank" rel="noopener">Live demo ↗</a></li>
-                    <li><span>Career Pilot</span>1,100+ automated tests</li>
-                    <li><span>Autofill extension</span>7 applicant-tracking systems</li>
+                    <li><span>Test suite</span>1,100+ automated tests</li>
+                    <li><span>Chrome extension</span>7 applicant-tracking systems</li>
                 </ul>
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-primary">See the case studies</a>
@@ -104,37 +105,26 @@
 
             <!-- Quick Link Cards / Stats -->
             <div class="hero-right">
-                <!-- Professional Profile Card -->
-                <div class="profile-card glass-card">
-                    <div class="profile-image-container">
-                        <img src="/assets/profile.jpg" alt="Deshraj Jogiya" class="profile-image" width="768" height="1024" fetchpriority="high">
-                    </div>
-                    <div class="profile-details">
-                        <p class="profile-name">Deshraj Jogiya</p>
-                        <p class="profile-title">Data Engineer & Machine Learning Engineer</p>
-                    </div>
-                </div>
-
                 <div class="quick-stats-grid">
                     
                     <div class="stat-card glass-card">
-                        <h3 class="stat-number" data-target="11">11</h3>
-                        <p class="stat-label">Production Pipelines</p>
+                        <p class="stat-number" data-target="3000" data-suffix="+" data-decimals="0">3000+</p>
+                        <p class="stat-label">Public Git commits</p>
                     </div>
                     
                     <div class="stat-card glass-card">
-                        <h3 class="stat-number" data-target="2300">2300</h3>
-                        <p class="stat-label">Git Commits</p>
+                        <p class="stat-number" data-target="32" data-suffix="" data-decimals="0">32</p>
+                        <p class="stat-label">Public repositories</p>
                     </div>
                     
                     <div class="stat-card glass-card">
-                        <h3 class="stat-number" data-target="98">98</h3>
-                        <p class="stat-label">ETL Reliability %</p>
+                        <p class="stat-number" data-target="30" data-suffix="" data-decimals="0">30</p>
+                        <p class="stat-label">Projects shipped</p>
                     </div>
                     
                     <div class="stat-card glass-card">
-                        <h3 class="stat-number" data-target="4">4</h3>
-                        <p class="stat-label">ASU MS IT GPA</p>
+                        <p class="stat-number" data-target="4.0" data-suffix="" data-decimals="1">4.0</p>
+                        <p class="stat-label">GPA, MS IT, Arizona State</p>
                     </div>
                     
                 </div>
@@ -162,6 +152,7 @@
                         <div class="card-badge">AI & Process Automation</div>
                         <h3 class="card-title"><a href="/projects/career-pilot/">Career Pilot: a job-search assistant in production</a></h3>
                         <p class="card-desc">A self-hosted platform that collects job postings, scores how well each matches the candidate's master profile, drafts a tailored resume and cover letter, and pre-fills application forms. Every application is reviewed and submitted by a person.</p>
+                        <p class="card-result">In production since February 2026 · fills forms on 7 applicant-tracking systems · nothing sent without a human click</p>
                         <div class="tech-tags">
                             <span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>SQLAlchemy</span><span>Alembic</span>
                         </div>
@@ -176,10 +167,16 @@
                 
                 <article class="featured-card glass-card">
                     
+                    <a class="featured-image" href="/projects/job-market-lakehouse/" tabindex="-1" aria-hidden="true">
+                        <img src="/assets/lakehouse-flow.svg" alt="" loading="lazy" decoding="async"
+                             width="960" height="350">
+                    </a>
+                    
                     <div class="card-content">
                         <div class="card-badge">Big Data & Orchestration</div>
                         <h3 class="card-title"><a href="/projects/job-market-lakehouse/">Job Market Lakehouse: PySpark, Great Expectations and Airflow</a></h3>
                         <p class="card-desc">A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.</p>
+                        <p class="card-result">11 data-quality expectations gate every run · a quality report from each CI run</p>
                         <div class="tech-tags">
                             <span>PySpark</span><span>Spark SQL</span><span>Scala</span><span>Great Expectations</span><span>Apache Airflow</span>
                         </div>
@@ -194,10 +191,16 @@
                 
                 <article class="featured-card glass-card">
                     
+                    <a class="featured-image" href="/projects/dbt-warehouse/" tabindex="-1" aria-hidden="true">
+                        <img src="/assets/dbt-flow.svg" alt="" loading="lazy" decoding="async"
+                             width="960" height="350">
+                    </a>
+                    
                     <div class="card-content">
                         <div class="card-badge">Data Warehousing</div>
                         <h3 class="card-title"><a href="/projects/dbt-warehouse/">Job Search dbt Warehouse: a dimensional model on Databricks</a></h3>
                         <p class="card-desc">A dbt project that builds a dimensional model on a Databricks SQL warehouse: staging views over seed data, dimension and fact tables, an incremental daily snapshot, and data tests that run against the warehouse.</p>
+                        <p class="card-result">22 data tests against a live Databricks SQL warehouse · incremental daily snapshot</p>
                         <div class="tech-tags">
                             <span>Databricks</span><span>dbt</span><span>SQL</span><span>Dimensional Modeling</span>
                         </div>
@@ -221,6 +224,7 @@
                         <div class="card-badge">FinTech & Risk</div>
                         <h3 class="card-title"><a href="/projects/finrisk/">FinRisk: predicting loan default and serving it in under 100 ms</a></h3>
                         <p class="card-desc">An end-to-end credit-risk pipeline: ETL into SQLite, a Random Forest and an XGBoost model predicting loan default compared in MLflow, rule-based fraud flags, and a FastAPI service with REST and GraphQL endpoints behind a Chart.js dashboard.</p>
+                        <p class="card-result">93.4% precision on declined loans · 0.92 ROC-AUC · 67 ms median scoring</p>
                         <div class="tech-tags">
                             <span>FastAPI</span><span>Python</span><span>SQL</span><span>Scikit-Learn</span><span>Chart.js</span><span>SQLite</span>
                         </div>
@@ -250,6 +254,10 @@
                 
                 <div class="project-card glass-card" data-category="software-dev">
                     
+                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
+                        <span>Java · Spring Boot · Spring WebFlux</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">Reactive Systems</div>
                         <h3 class="card-title">Reactive Job Ingest Gateway</h3>
@@ -265,10 +273,14 @@
                 
                 <div class="project-card glass-card" data-category="software-dev">
                     
+                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
+                        <span>MongoDB · Express · Angular</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">Full Stack</div>
                         <h3 class="card-title">Job Notes</h3>
-                        <p class="card-desc">A company-research notes app: Express + MongoDB backend, Angular frontend, both with real automated tests.</p>
+                        <p class="card-desc">A company-research notes app: an Express and MongoDB API with an Angular frontend, both covered by automated tests against a running database.</p>
                         <div class="tech-tags">
                             <span>MongoDB</span><span>Express</span><span>Angular</span><span>Node.js</span><span>Mongoose</span>
                         </div>
@@ -280,10 +292,14 @@
                 
                 <div class="project-card glass-card" data-category="software-dev">
                     
+                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
+                        <span>C# · .NET · ASP.NET Core</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">Full Stack</div>
                         <h3 class="card-title">Interview Prep API</h3>
-                        <p class="card-desc">A real ASP.NET Core minimal API (C#) for interview-prep questions, backed by Entity Framework Core + SQLite.</p>
+                        <p class="card-desc">An ASP.NET Core minimal API in C# with Entity Framework Core and SQLite, covered by 19 xUnit tests including an SM-2 spaced-repetition scheduler.</p>
                         <div class="tech-tags">
                             <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>Entity Framework Core</span><span>SQLite</span>
                         </div>
@@ -295,10 +311,14 @@
                 
                 <div class="project-card glass-card" data-category="software-dev">
                     
+                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
+                        <span>PHP · CodeIgniter 4 · SQLite</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">Full Stack</div>
                         <h3 class="card-title">Company Blocklist</h3>
-                        <p class="card-desc">A real PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with real automated feature tests.</p>
+                        <p class="card-desc">A PHP CodeIgniter 4 app for tracking companies to avoid, with bulk CSV import, a check against California WARN Act layoff notices, and 12 feature tests through the full router, controller and model stack.</p>
                         <div class="tech-tags">
                             <span>PHP</span><span>CodeIgniter 4</span><span>SQLite</span>
                         </div>
@@ -310,10 +330,14 @@
                 
                 <div class="project-card glass-card" data-category="software-dev">
                     
+                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
+                        <span>React Native · Expo · TypeScript</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">Full Stack</div>
                         <h3 class="card-title">Interview Prep Mobile</h3>
-                        <p class="card-desc">A real React Native (Expo) app for browsing/practicing interview-prep questions against a companion ASP.NET Core API.</p>
+                        <p class="card-desc">A React Native (Expo) app for practising interview questions against the ASP.NET Core API, tested with React Native Testing Library and in a live browser run.</p>
                         <div class="tech-tags">
                             <span>React Native</span><span>Expo</span><span>TypeScript</span><span>AsyncStorage</span>
                         </div>
@@ -325,10 +349,14 @@
                 
                 <div class="project-card glass-card" data-category="software-dev">
                     
+                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
+                        <span>HTMX · FastAPI · Jinja2</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">Full Stack</div>
                         <h3 class="card-title">Company Search (HTMX)</h3>
-                        <p class="card-desc">A live-search page using HTMX for partial-page updates -- FastAPI + Jinja2, no client-side JS framework.</p>
+                        <p class="card-desc">Live search with HTMX partial updates on FastAPI and Jinja2, inline editing, and Server-Sent Events syncing every open tab, with no client-side framework.</p>
                         <div class="tech-tags">
                             <span>HTMX</span><span>FastAPI</span><span>Jinja2</span>
                         </div>
@@ -340,10 +368,14 @@
                 
                 <div class="project-card glass-card" data-category="data-engineering analytics">
                     
+                    <div class="card-banner card-banner-data-engineering" aria-hidden="true">
+                        <span>ArcGIS · Geocoding · Vector Tiles</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">Geospatial</div>
                         <h3 class="card-title">ArcGIS Commute Insights</h3>
-                        <p class="card-desc">A job-search tool geocoding addresses and pulling real ArcGIS basemap vector-tile data via the live ArcGIS APIs.</p>
+                        <p class="card-desc">Ranks companies by drive time from home using the live ArcGIS geocoding and routing services on an interactive map; all 11 tests hit the live APIs.</p>
                         <div class="tech-tags">
                             <span>ArcGIS</span><span>Geocoding</span><span>Vector Tiles</span><span>Geospatial Analysis</span>
                         </div>
@@ -364,7 +396,7 @@
                     <div class="card-content">
                         <div class="card-badge">NLP & Transfer Learning</div>
                         <h3 class="card-title">Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning</h3>
-                        <p class="card-desc">Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, extended it into a multi-task architecture with classification and sentiment heads, and later added real LoRA fine-tuning of a modern generative LLM on a free GPU.</p>
+                        <p class="card-desc">A Small BERT sentence transformer extended into a multi-task model, plus LoRA fine-tuning of Qwen2.5-0.5B on Dolly-15k with a declining loss curve over 3 epochs.</p>
                         <div class="tech-tags">
                             <span>TensorFlow</span><span>TensorFlow Hub</span><span>TensorFlow Text</span><span>NumPy</span><span>Small BERT</span><span>GitHub Actions</span>
                         </div>
@@ -385,7 +417,7 @@
                     <div class="card-content">
                         <div class="card-badge">Cloud & Generative AI</div>
                         <h3 class="card-title">CurioSync: Fact-Checked LinkedIn Publishing Pipeline</h3>
-                        <p class="card-desc">LinkedIn publishing pipeline on GitHub Actions (Monday, Wednesday, Friday): Gemini drafts each post only from the live portfolio profile, mechanical checks and a second model pass reject invented claims, and a Pillow image card shows the same facts.</p>
+                        <p class="card-desc">LinkedIn publishing on GitHub Actions: Gemini drafts only from the live profile, mechanical checks reject any invented number or tool, and each image card is checked against the same facts.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>FastAPI</span><span>GitHub Actions</span><span>Gemini LLM</span><span>LinkedIn API</span><span>Pillow</span>
                         </div>
@@ -406,7 +438,7 @@
                     <div class="card-content">
                         <div class="card-badge">AI Governance</div>
                         <h3 class="card-title">AI Model Observability & Fairness Audits</h3>
-                        <p class="card-desc">Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.</p>
+                        <p class="card-desc">Drift and fairness auditing for deployed models: KS and PSI drift tests, disparate-impact and equal-opportunity checks, and a published Tableau dashboard over 30,000 simulated inference records.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>MLflow</span><span>Drift Audit</span><span>KS-Test</span><span>PSI</span><span>Responsible AI</span>
                         </div>
@@ -418,10 +450,14 @@
                 
                 <div class="project-card glass-card" data-category="machine-learning analytics">
                     
+                    <div class="card-banner card-banner-machine-learning" aria-hidden="true">
+                        <span>Python · Sentence-Transformers · spaCy</span>
+                    </div>
+                    
                     <div class="card-content">
                         <div class="card-badge">NLP & Semantic Search</div>
                         <h3 class="card-title">Member Messages QA System: Semantic Search & NER-Based Question Answering</h3>
-                        <p class="card-desc">Interactive QA API answering natural-language questions about member data, ranking unstructured messages via SentenceTransformer embeddings and identifying subjects with spaCy NER.</p>
+                        <p class="card-desc">Answers natural-language questions about members from their messages: on 26 labelled questions it finds the right member 100% of the time and the right answer 96%.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>Sentence-Transformers</span><span>spaCy</span><span>Scikit-Learn</span><span>Pandas</span><span>GitHub Actions</span>
                         </div>
@@ -442,7 +478,7 @@
                     <div class="card-content">
                         <div class="card-badge">Cloud & Enterprise ML</div>
                         <h3 class="card-title">TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence</h3>
-                        <p class="card-desc">Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 86.20% accuracy, alongside automated financial reporting and reconciliation workflows.</p>
+                        <p class="card-desc">Bootcamp capstone on real business data across SQL Server, Azure ADLS Gen2, Snowflake and Streamlit, with a contract-cancellation model at 86.20% accuracy served as a Snowflake Python UDF.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>SQL</span><span>Snowflake</span><span>Azure ADLS</span><span>Streamlit UI</span><span>Scikit-Learn</span>
                         </div>
@@ -463,7 +499,7 @@
                     <div class="card-content">
                         <div class="card-badge">Geospatial & Climate</div>
                         <h3 class="card-title">Multi-State Land Use Emissions Analysis</h3>
-                        <p class="card-desc">Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.</p>
+                        <p class="card-desc">Land-use emissions ETL for 5 U.S. states built on the EPA's real state inventory: EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection and Census map layers.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>SQLite</span><span>Random Forest</span><span>ETL Ingestion</span><span>ArcGIS</span><span>Tableau</span>
                         </div>
@@ -484,7 +520,7 @@
                     <div class="card-content">
                         <div class="card-badge">Finance & Auditing</div>
                         <h3 class="card-title">Tax Anomaly Audit Compliance Engine</h3>
-                        <p class="card-desc">Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.</p>
+                        <p class="card-desc">General-ledger audit pipeline where Benford's Law, an Isolation Forest and a tax-rate rule reach 97.8% precision and 95.7% recall; an auditor finds 90% of anomalies after 43 entries instead of 1,108.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>Benford's Law</span><span>Isolation Forest</span><span>Power BI</span><span>SQLite</span><span>GitHub Actions</span>
                         </div>
@@ -505,7 +541,7 @@
                     <div class="card-content">
                         <div class="card-badge">Automation & ETL</div>
                         <h3 class="card-title">Automated Daily Data Insights</h3>
-                        <p class="card-desc">Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.</p>
+                        <p class="card-desc">A daily market-data pipeline on GitHub Actions: pulls yFinance, flags rolling Z-score anomalies and publishes the report, at $0 server cost.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>yFinance API</span><span>Matplotlib</span><span>GitHub Actions</span><span>SQLite</span>
                         </div>
@@ -526,7 +562,7 @@
                     <div class="card-content">
                         <div class="card-badge">Sales & Marketing</div>
                         <h3 class="card-title">Sales Analytics & RFM Customer Segmentation Pipeline</h3>
-                        <p class="card-desc">Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.</p>
+                        <p class="card-desc">A star-schema warehouse of 106,228 transactions where RFM scoring and K-Means find 4 customer personas explaining 93.9% of the variance, explored in a Power BI report.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>SQLite</span><span>K-Means</span><span>PCA</span><span>Power BI</span><span>Seaborn</span>
                         </div>
@@ -547,7 +583,7 @@
                     <div class="card-content">
                         <div class="card-badge">Healthcare & Statistics</div>
                         <h3 class="card-title">Clinical Trials Patient Outcomes Analysis</h3>
-                        <p class="card-desc">Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.</p>
+                        <p class="card-desc">Survival analysis across 3 cohorts with Kaplan-Meier curves, pairwise log-rank tests and de-identified patient data; the full report refreshes 60% faster.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>SQL</span><span>Kaplan-Meier</span><span>Log-Rank</span><span>Tableau</span><span>SciPy</span>
                         </div>
@@ -568,7 +604,7 @@
                     <div class="card-content">
                         <div class="card-badge">Streaming & IoT</div>
                         <h3 class="card-title">Real-Time IoT Telematics & Predictive Maintenance</h3>
-                        <p class="card-desc">Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).</p>
+                        <p class="card-desc">EV battery and motor telemetry processed in micro-batches: Z-score detection catches 98.1% of planted sensor spikes at 90.5% precision, plus battery remaining-useful-life estimates.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>Z-Score Anomaly</span><span>RUL Model</span><span>Power BI</span><span>SQL</span><span>GitHub Actions</span>
                         </div>
@@ -589,7 +625,7 @@
                     <div class="card-content">
                         <div class="card-badge">Operations & Demand</div>
                         <h3 class="card-title">AI-ML Data Science Simulation</h3>
-                        <p class="card-desc">Retail data pipeline automating daily sales ingestion from 5 U.S. branches. Centralizes operations in SQL and uses Linear Regression/Random Forest forecasting to reduce stockouts by 15%.</p>
+                        <p class="card-desc">Daily sales ETL for 5 branches with forecasts at 90% accuracy against a 78.4% naive baseline; in a reorder simulation, forecast-driven ordering cut stock-out days by 60.8%.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>SQL</span><span>Random Forest</span><span>Sales ETL</span><span>Tableau</span><span>GitHub Actions</span>
                         </div>
@@ -601,16 +637,16 @@
                 
                 <div class="project-card glass-card" data-category="machine-learning">
                     
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/training_curves.webp" data-title="Extending STEM across ASL">
-                        <img src="/assets/training_curves.webp" alt="Extending STEM across ASL chart" class="card-image" loading="lazy" decoding="async"
-                             width="1428" height="476">
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/asl_word_signs.webp" data-title="Extending STEM across ASL">
+                        <img src="/assets/asl_word_signs.webp" alt="Extending STEM across ASL chart" class="card-image" loading="lazy" decoding="async"
+                             width="1200" height="675">
                         <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
                         <div class="card-badge">Accessibility & Deep Learning</div>
                         <h3 class="card-title">Extending STEM across ASL</h3>
-                        <p class="card-desc">Inclusive educational learning platform utilizing a Convolutional Neural Network (CNN) in TensorFlow/Keras to recognize American Sign Language gestures for 7 core STEM concepts.</p>
+                        <p class="card-desc">Teaches 7 STEM concepts in ASL and recognises 29 STEM and computing word signs from video, 75.9% top-1 and 94.8% top-3 on held-out WLASL clips, live from a webcam.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>PyTorch</span><span>OpenCV</span><span>MediaPipe</span><span>TensorFlow</span><span>Keras</span>
                         </div>
@@ -631,7 +667,7 @@
                     <div class="card-content">
                         <div class="card-badge">Computer Vision & Deep Learning</div>
                         <h3 class="card-title">Solid Object Detection & Identification</h3>
-                        <p class="card-desc">Developed a shape detection and identification pipeline using PyTorch and OpenCV, achieving 98.97% classification accuracy by combining a custom CNN with traditional contour geometry approximations.</p>
+                        <p class="card-desc">A PyTorch CNN that classifies 7 shape classes at 99.2% on 2,000 held-out images, with OpenCV contour geometry as an independent check, served on AWS Lambda through ONNX.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>PyTorch</span><span>OpenCV</span><span>CNN Model</span><span>Image Processing</span><span>Git</span>
                         </div>
@@ -728,7 +764,7 @@
         <section id="experience" class="experience-section">
             <div class="section-header">
                 <h2 class="section-title">Professional Experience & Technical Impact</h2>
-                <p class="section-subtitle">3+ years of designing production-grade data pipelines, optimizing LLM/AI models, and building high-reliability cloud data architectures.</p>
+                <p class="section-subtitle">Six roles across data engineering, machine learning and analytics, each with the results it delivered.</p>
             </div>
 
             <div class="experience-container">
@@ -1007,135 +1043,43 @@
         <section id="skills" class="skills-section">
             <div class="section-header">
                 <h2 class="section-title">Core Technical Expertise</h2>
-                <p class="section-subtitle">Proficient across modern data engineering tools, machine learning modeling, database modeling, and visual analytics platforms.</p>
+                <p class="section-subtitle">The tools behind the projects and roles above, grouped by area.</p>
             </div>
             
-            <div class="skills-grid">
+            <div class="skills-rows">
                 
-                <div class="skill-category glass-card">
+                <div class="skill-row glass-card">
                     <h3>Generative AI, LLMs & Agentic Systems</h3>
-                    <ul>
-                        
-                        <li>LangChain, LlamaIndex & Semantic Kernel</li>
-                        
-                        <li>MCP (Model Context Protocol) & Tool Calling</li>
-                        
-                        <li>ReAct Agent Workflows & Autonomous Agents</li>
-                        
-                        <li>Retrieval-Augmented Generation (RAG) & Fine-Tuning (LoRA/PEFT)</li>
-                        
-                        <li>Vector Databases (pgvector, ChromaDB, Supabase RLS)</li>
-                        
-                        <li>OpenAI APIs (GPT-4o mini) & Gemini LLM Integration</li>
-                        
-                        <li>LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)</li>
-                        
-                        <li>LLM Quantization & Pinecone Vector Search</li>
-                        
+                    <ul class="skill-chips">
+                        <li>LangChain, LlamaIndex & Semantic Kernel</li><li>MCP (Model Context Protocol) & Tool Calling</li><li>ReAct Agent Workflows & Autonomous Agents</li><li>Retrieval-Augmented Generation (RAG) & Fine-Tuning (LoRA/PEFT)</li><li>Vector Databases (pgvector, ChromaDB, Supabase RLS)</li><li>OpenAI APIs (GPT-4o mini) & Gemini LLM Integration</li><li>LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)</li><li>LLM Quantization & Pinecone Vector Search</li>
                     </ul>
                 </div>
                 
-                <div class="skill-category glass-card">
+                <div class="skill-row glass-card">
                     <h3>Machine Learning & Deep Learning Frameworks</h3>
-                    <ul>
-                        
-                        <li>PyTorch, Jax, TensorFlow & Keras Deep Learning</li>
-                        
-                        <li>Scikit-Learn Modeling (Random Forest, XGBoost, K-Means)</li>
-                        
-                        <li>Computer Vision & Pattern Recognition (OpenCV, YOLO CNNs)</li>
-                        
-                        <li>Statistical Drift Auditing (KS-Test, PSI) & MLflow MLOps</li>
-                        
-                        <li>Responsible AI Governance (FTC & EU AI Act Bias Auditing)</li>
-                        
-                        <li>Financial & Audit Anomaly Detection (Benford's Law, Isolation Forest)</li>
-                        
-                        <li>Hypothesis Testing & Z-Test A/B Experimentation</li>
-                        
-                        <li>Forecasting & Scenario Analysis (Predictive Analysis)</li>
-                        
+                    <ul class="skill-chips">
+                        <li>PyTorch, Jax, TensorFlow & Keras Deep Learning</li><li>Scikit-Learn Modeling (Random Forest, XGBoost, K-Means)</li><li>Computer Vision & Pattern Recognition (OpenCV, YOLO CNNs)</li><li>Statistical Drift Auditing (KS-Test, PSI) & MLflow MLOps</li><li>Responsible AI Governance (FTC & EU AI Act Bias Auditing)</li><li>Financial & Audit Anomaly Detection (Benford's Law, Isolation Forest)</li><li>Hypothesis Testing & Z-Test A/B Experimentation</li><li>Forecasting & Scenario Analysis (Predictive Analysis)</li>
                     </ul>
                 </div>
                 
-                <div class="skill-category glass-card">
+                <div class="skill-row glass-card">
                     <h3>Data Engineering, Platforms & Cloud</h3>
-                    <ul>
-                        
-                        <li>PySpark & Spark SQL Large-Scale Data Processing</li>
-                        
-                        <li>Databricks Platform & dbt Dimensional Transformations</li>
-                        
-                        <li>AWS Cloud Infrastructure (S3, Glue, Lambda, EC2)</li>
-                        
-                        <li>GCP (Google Cloud Platform, BigQuery, Vertex AI) & Azure (ADLS Gen2)</li>
-                        
-                        <li>Snowflake Cloud Data Warehousing & Star Schema Modeling</li>
-                        
-                        <li>Apache Airflow & Dagster Pipeline Orchestration</li>
-                        
-                        <li>Great Expectations Data Quality Rules & Governance</li>
-                        
-                        <li>Table Formats (Delta Lake, Apache Iceberg, Parquet)</li>
-                        
-                        <li>Apache Kafka & Reverse ETL</li>
-                        
-                        <li>Hadoop, Hive & AWS Athena</li>
-                        
+                    <ul class="skill-chips">
+                        <li>PySpark & Spark SQL Large-Scale Data Processing</li><li>Databricks Platform & dbt Dimensional Transformations</li><li>AWS Cloud Infrastructure (S3, Glue, Lambda, EC2)</li><li>GCP (Google Cloud Platform, BigQuery, Vertex AI) & Azure (ADLS Gen2)</li><li>Snowflake Cloud Data Warehousing & Star Schema Modeling</li><li>Apache Airflow & Dagster Pipeline Orchestration</li><li>Great Expectations Data Quality Rules & Governance</li><li>Table Formats (Delta Lake, Apache Iceberg, Parquet)</li><li>Apache Kafka & Reverse ETL</li><li>Hadoop, Hive & AWS Athena</li>
                     </ul>
                 </div>
                 
-                <div class="skill-category glass-card">
+                <div class="skill-row glass-card">
                     <h3>Full Stack & Software Engineering</h3>
-                    <ul>
-                        
-                        <li>Python Backend Microservices (FastAPI, Flask, Asyncio)</li>
-                        
-                        <li>Core Java, Spring Boot & Spring Reactive Engineering</li>
-                        
-                        <li>C# & .NET Framework Backend Services</li>
-                        
-                        <li>JavaScript, TypeScript & Node.js/Express APIs</li>
-                        
-                        <li>React JS, React Native Mobile & Angular Web Interfaces</li>
-                        
-                        <li>PHP & CodeIgniter 3/4 Application Platforms</li>
-                        
-                        <li>RESTful APIs, GraphQL & Microservices Architecture</li>
-                        
-                        <li>Data Structures, Algorithms & Object-Oriented System Design</li>
-                        
-                        <li>PowerApps & Agile/Scrum Delivery</li>
-                        
+                    <ul class="skill-chips">
+                        <li>Python Backend Microservices (FastAPI, Flask, Asyncio)</li><li>Core Java, Spring Boot & Spring Reactive Engineering</li><li>C# & .NET Framework Backend Services</li><li>JavaScript, TypeScript & Node.js/Express APIs</li><li>React JS, React Native Mobile & Angular Web Interfaces</li><li>PHP & CodeIgniter 3/4 Application Platforms</li><li>RESTful APIs, GraphQL & Microservices Architecture</li><li>Data Structures, Algorithms & Object-Oriented System Design</li><li>PowerApps & Agile/Scrum Delivery</li>
                     </ul>
                 </div>
                 
-                <div class="skill-category glass-card">
+                <div class="skill-row glass-card">
                     <h3>DevOps, Tooling & Analytics</h3>
-                    <ul>
-                        
-                        <li>Docker Containerization & Kubernetes Cluster Scaling</li>
-                        
-                        <li>Git & GitHub Actions CI/CD Automated Pipelines</li>
-                        
-                        <li>Terraform Infrastructure as Code (IaC) & Jenkins</li>
-                        
-                        <li>AI Developer Productivity Tools (Cursor, Claude Code, GitHub Copilot)</li>
-                        
-                        <li>Power BI (DAX Modeling, KPI Dashboards)</li>
-                        
-                        <li>Tableau (LOD Expressions, Executive Storytelling)</li>
-                        
-                        <li>ArcGIS Geospatial Emissions Analytics & Chart.js Visualizations</li>
-                        
-                        <li>Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)</li>
-                        
-                        <li>Microsoft Excel, SSRS & SSAS Reporting</li>
-                        
-                        <li>Unit & Integration Testing (PyTest)</li>
-                        
-                        <li>Incident Response & Production Monitoring</li>
-                        
+                    <ul class="skill-chips">
+                        <li>Docker Containerization & Kubernetes Cluster Scaling</li><li>Git & GitHub Actions CI/CD Automated Pipelines</li><li>Terraform Infrastructure as Code (IaC) & Jenkins</li><li>AI Developer Productivity Tools (Cursor, Claude Code, GitHub Copilot)</li><li>Power BI (DAX Modeling, KPI Dashboards)</li><li>Tableau (LOD Expressions, Executive Storytelling)</li><li>ArcGIS Geospatial Emissions Analytics & Chart.js Visualizations</li><li>Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)</li><li>Microsoft Excel, SSRS & SSAS Reporting</li><li>Unit & Integration Testing (PyTest)</li><li>Incident Response & Production Monitoring</li>
                     </ul>
                 </div>
                 
@@ -1146,14 +1090,15 @@
         <section id="certifications" class="skills-section certifications-section">
             <div class="section-header">
                 <h2 class="section-title">Certifications &amp; Training</h2>
-                <p class="section-subtitle">Professional certificates and ongoing training, with what each program covered.</p>
+                <p class="section-subtitle">Data, analytics and AI certificates first, with what each program covered.</p>
             </div>
 
-            <div class="skills-grid">
+            
+            <div class="cert-grid">
                 
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">Tableau Business Intelligence Analyst Professional Certificate</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
+                <div class="glass-card cert-card">
+                    <h3>Tableau Business Intelligence Analyst Professional Certificate</h3>
+                    <p class="cert-meta">
                         Tableau Learning Partner on Coursera · Feb 2026
                     </p>
                     
@@ -1169,9 +1114,9 @@
                     
                 </div>
                 
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">ElevateMe Bootcamp Data Analytics Certificate of Completion</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
+                <div class="glass-card cert-card">
+                    <h3>ElevateMe Bootcamp Data Analytics Certificate of Completion</h3>
+                    <p class="cert-meta">
                         ElevateMe Bootcamp · Feb 2026
                     </p>
                     
@@ -1187,9 +1132,9 @@
                     
                 </div>
                 
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">IBM Data Analyst Professional Certificate</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
+                <div class="glass-card cert-card">
+                    <h3>IBM Data Analyst Professional Certificate</h3>
+                    <p class="cert-meta">
                         IBM on Coursera · Sep 2025
                     </p>
                     
@@ -1205,108 +1150,46 @@
                     
                 </div>
                 
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">Generative AI Mastermind</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
+                <div class="glass-card cert-card">
+                    <h3>Generative AI Mastermind</h3>
+                    <p class="cert-meta">
                         Outskill · Oct 2025
                     </p>
                     
                 </div>
                 
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">Guinness World Record — AI Training Hackathon (Kanz)</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
+                <div class="glass-card cert-card">
+                    <h3>Guinness World Record — AI Training Hackathon (Kanz)</h3>
+                    <p class="cert-meta">
                         Jul 2026
                     </p>
                     
                 </div>
                 
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">Microsoft HR Manager Professional Certificate</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
-                        Microsoft on Coursera · Completed
-                    </p>
-                    
-                    <ul>
-                        
-                        <li>Completed 6 courses (40 hours) with modules on HRIS transactions, cross-system data validation, and configuring HRIS modules with eligibility rules and approval workflows.</li>
-                        
-                        <li>Built Power BI dashboards of turnover, time-to-hire, and engagement, and Power Automate workflows for documents, hiring, and onboarding.</li>
-                        
-                        <li>Applied 5-Whys root-cause analysis to HR process problems, tracked policy acknowledgments, and measured AI-assisted workflows against manual ones.</li>
-                        
-                    </ul>
-                    
-                </div>
-                
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">HRCI Human Resource Associate Professional Certificate</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
-                        HRCI on Coursera · Completed
-                    </p>
-                    
-                    <ul>
-                        
-                        <li>Covered the full talent acquisition life cycle (job analysis, recruitment strategy, interviewing, onboarding), the process an applicant-tracking system supports.</li>
-                        
-                        <li>Completed 5 courses (about 94 hours) on compliance and risk management, employee relations, and compensation and benefits administration: the rules HR systems are configured to enforce.</li>
-                        
-                        <li>Planned, delivered, and evaluated training using needs assessment and outcome metrics, the basis for user training and change-management materials.</li>
-                        
-                    </ul>
-                    
-                </div>
-                
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">Accenture North America - Data Analytics and Visualization Job Simulation</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
+                <div class="glass-card cert-card">
+                    <h3>Accenture North America - Data Analytics and Visualization Job Simulation</h3>
+                    <p class="cert-meta">
                         Completed
                     </p>
                     
                 </div>
                 
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">Google Digital Marketing</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
-                        Completed
-                    </p>
+            </div>
+            <div class="cert-other">
+                <h3>Other training</h3>
+                <ul>
                     
-                </div>
-                
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">People Analytics with AI Specialization</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
-                        Coursera · <span class="badge cert-status" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 4px;">In progress</span>
-                    </p>
+                    <li><strong>Microsoft HR Manager Professional Certificate</strong> · Microsoft on Coursera</li>
                     
-                    <ul>
-                        
-                        <li>Coursework covers HR metrics such as turnover and tenure, workforce dashboards, and talent-risk analysis in Excel and AI-assisted tools.</li>
-                        
-                        <li>Includes generating workforce reports from HRIS data, data cleansing and validation, and designing a people-analytics data pipeline.</li>
-                        
-                        <li>Covers scoping stakeholder requests and presenting data-based recommendations tied to business objectives.</li>
-                        
-                    </ul>
+                    <li><strong>HRCI Human Resource Associate Professional Certificate</strong> · HRCI on Coursera</li>
                     
-                </div>
-                
-                <div class="skill-category glass-card cert-card">
-                    <h3 style="margin-bottom: 0.35rem;">Greenhouse Training Resources</h3>
-                    <p style="margin: 0 0 0.5rem; font-size: 0.85rem; opacity: 0.85;">
-                        Greenhouse Support · <span class="badge cert-status" style="background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 4px;">In progress</span>
-                    </p>
+                    <li><strong>Google Digital Marketing</strong></li>
                     
-                    <ul>
-                        
-                        <li>Studying Greenhouse's role-based training guides: what each role can do, job admin navigation, requisitions and openings, custom versus system default fields, and task management.</li>
-                        
-                        <li>Greenhouse integration to date: a platform that reads the job-board API and fills Greenhouse application forms, tested live against all 7 platforms it supports.</li>
-                        
-                    </ul>
+                    <li><strong>People Analytics with AI Specialization</strong> · Coursera · <span class="badge cert-status">In progress</span></li>
                     
-                </div>
-                
+                    <li><strong>Greenhouse Training Resources</strong> · Greenhouse Support · <span class="badge cert-status">In progress</span></li>
+                    
+                </ul>
             </div>
         </section>
 
@@ -1399,7 +1282,7 @@
                 <!-- Contact Details -->
                 <div class="contact-details-card glass-card">
                     <h2 class="contact-title">Let's Connect</h2>
-                    <p class="contact-text">Looking for a technical Data Engineer / ML Engineer who combines mathematical modeling with production-grade data pipelines? Get in touch via these channels or send a message directly.</p>
+                    <p class="contact-text">Hiring a data engineer or ML engineer who ships tested, production-ready pipelines and models? Reach me directly or send a message here.</p>
                     <div class="contact-info-links">
                         <div class="info-item">
                             <span class="info-icon">📧</span>
@@ -2733,6 +2616,6 @@
         </div>
     </div>
 
-    <script src="/app.js?v=dd109597b6" defer></script>
+    <script src="/app.js?v=696e0d44f4" defer></script>
 </body>
 </html>

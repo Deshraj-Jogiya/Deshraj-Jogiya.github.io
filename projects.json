@@ -1,20 +1,25 @@
 {
   "stats": [
     {
-      "number": "11",
-      "label": "Production Pipelines"
+      "number": "3000",
+      "suffix": "+",
+      "label": "Public Git commits"
     },
     {
-      "number": "2300",
-      "label": "Git Commits"
+      "number": "32",
+      "suffix": "",
+      "label": "Public repositories"
     },
     {
-      "number": "98",
-      "label": "ETL Reliability %"
+      "number": "30",
+      "suffix": "",
+      "label": "Projects shipped"
     },
     {
-      "number": "4",
-      "label": "ASU MS IT GPA"
+      "number": "4.0",
+      "suffix": "",
+      "decimals": 1,
+      "label": "GPA, MS IT, Arizona State"
     }
   ],
   "experience": [
@@ -259,7 +264,7 @@
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
-      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.",
+      "desc": "An AI job-search platform running in production on Oracle Cloud: LLM tailoring checked by a non-LLM guardrail, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ tests in CI.",
       "category": "data-engineering machine-learning",
       "tags": [
         "Python",
@@ -340,7 +345,7 @@
     {
       "badge": "Data Warehousing",
       "name": "Job Search dbt Warehouse",
-      "desc": "A dimensional dbt project (staging views into dimension and fact tables) running against a live Databricks SQL warehouse, with real data-quality tests in CI.",
+      "desc": "A dbt dimensional model on a live Databricks SQL warehouse: staging views feeding dimension and fact tables, an incremental snapshot, and data tests CI runs against the warehouse on every push.",
       "category": "data-engineering analytics",
       "tags": [
         "Databricks",
@@ -366,12 +371,13 @@
       "date": "Sep 2026",
       "slug": "dbt-warehouse",
       "featured": 3,
-      "team": false
+      "team": false,
+      "dashboard_url": "assets/dbt-flow.svg"
     },
     {
       "badge": "Big Data & Orchestration",
       "name": "Job Market Lakehouse",
-      "desc": "A PySpark/Scala Spark SQL pipeline over 60k synthetic postings, gated by real Great Expectations checks and orchestrated end-to-end by a real Airflow DAG.",
+      "desc": "PySpark and Scala Spark SQL over 60,000 synthetic job postings, with Great Expectations gating the output and an Airflow DAG running the whole pipeline end to end.",
       "category": "data-engineering",
       "tags": [
         "PySpark",
@@ -402,12 +408,13 @@
       "date": "Sep 2026",
       "slug": "job-market-lakehouse",
       "featured": 2,
-      "team": false
+      "team": false,
+      "dashboard_url": "assets/lakehouse-flow.svg"
     },
     {
       "badge": "Full Stack",
       "name": "Job Notes",
-      "desc": "A company-research notes app: Express + MongoDB backend, Angular frontend, both with real automated tests.",
+      "desc": "A company-research notes app: an Express and MongoDB API with an Angular frontend, both covered by automated tests against a running database.",
       "category": "software-dev",
       "tags": [
         "MongoDB",
@@ -437,7 +444,7 @@
     {
       "badge": "Full Stack",
       "name": "Interview Prep API",
-      "desc": "A real ASP.NET Core minimal API (C#) for interview-prep questions, backed by Entity Framework Core + SQLite.",
+      "desc": "An ASP.NET Core minimal API in C# with Entity Framework Core and SQLite, covered by 19 xUnit tests including an SM-2 spaced-repetition scheduler.",
       "category": "software-dev",
       "tags": [
         "C#",
@@ -467,7 +474,7 @@
     {
       "badge": "Full Stack",
       "name": "Company Blocklist",
-      "desc": "A real PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with real automated feature tests.",
+      "desc": "A PHP CodeIgniter 4 app for tracking companies to avoid, with bulk CSV import, a check against California WARN Act layoff notices, and 12 feature tests through the full router, controller and model stack.",
       "category": "software-dev",
       "tags": [
         "PHP",
@@ -495,7 +502,7 @@
     {
       "badge": "Full Stack",
       "name": "Interview Prep Mobile",
-      "desc": "A real React Native (Expo) app for browsing/practicing interview-prep questions against a companion ASP.NET Core API.",
+      "desc": "A React Native (Expo) app for practising interview questions against the ASP.NET Core API, tested with React Native Testing Library and in a live browser run.",
       "category": "software-dev",
       "tags": [
         "React Native",
@@ -524,7 +531,7 @@
     {
       "badge": "Full Stack",
       "name": "Company Search (HTMX)",
-      "desc": "A live-search page using HTMX for partial-page updates -- FastAPI + Jinja2, no client-side JS framework.",
+      "desc": "Live search with HTMX partial updates on FastAPI and Jinja2, inline editing, and Server-Sent Events syncing every open tab, with no client-side framework.",
       "category": "software-dev",
       "tags": [
         "HTMX",
@@ -552,7 +559,7 @@
     {
       "badge": "Geospatial",
       "name": "ArcGIS Commute Insights",
-      "desc": "A job-search tool geocoding addresses and pulling real ArcGIS basemap vector-tile data via the live ArcGIS APIs.",
+      "desc": "Ranks companies by drive time from home using the live ArcGIS geocoding and routing services on an interactive map; all 11 tests hit the live APIs.",
       "category": "data-engineering analytics",
       "tags": [
         "ArcGIS",
@@ -581,7 +588,7 @@
     {
       "badge": "NLP & Transfer Learning",
       "name": "Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
-      "desc": "Built a Sentence Transformer from a Small BERT backbone with TensorFlow Hub, extended it into a multi-task architecture with classification and sentiment heads, and later added real LoRA fine-tuning of a modern generative LLM on a free GPU.",
+      "desc": "A Small BERT sentence transformer extended into a multi-task model, plus LoRA fine-tuning of Qwen2.5-0.5B on Dolly-15k with a declining loss curve over 3 epochs.",
       "category": "machine-learning",
       "tags": [
         "TensorFlow",
@@ -624,7 +631,7 @@
     {
       "badge": "Cloud & Generative AI",
       "name": "CurioSync: Fact-Checked LinkedIn Publishing Pipeline",
-      "desc": "LinkedIn publishing pipeline on GitHub Actions (Monday, Wednesday, Friday): Gemini drafts each post only from the live portfolio profile, mechanical checks and a second model pass reject invented claims, and a Pillow image card shows the same facts.",
+      "desc": "LinkedIn publishing on GitHub Actions: Gemini drafts only from the live profile, mechanical checks reject any invented number or tool, and each image card is checked against the same facts.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
@@ -663,7 +670,7 @@
     {
       "badge": "AI Governance",
       "name": "AI Model Observability & Fairness Audits",
-      "desc": "Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests to track input data drift and evaluating Disparate Impact for bias protection.",
+      "desc": "Drift and fairness auditing for deployed models: KS and PSI drift tests, disparate-impact and equal-opportunity checks, and a published Tableau dashboard over 30,000 simulated inference records.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
@@ -706,7 +713,7 @@
     {
       "badge": "FinTech & Risk",
       "name": "FinTech Credit Risk & Fraud Command Center",
-      "desc": "End-to-end transaction ingestion and credit evaluation pipeline. Integrates a Random Forest classifier predicting loan eligibility with real-time transactional fraud checks.",
+      "desc": "A credit-risk pipeline whose Random Forest reaches 93.4% precision on declined loans (0.92 ROC-AUC), with rule-based fraud flags and a FastAPI service answering in 67 ms median.",
       "category": "data-engineering machine-learning",
       "tags": [
         "FastAPI",
@@ -752,7 +759,7 @@
     {
       "badge": "NLP & Semantic Search",
       "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
-      "desc": "Interactive QA API answering natural-language questions about member data, ranking unstructured messages via SentenceTransformer embeddings and identifying subjects with spaCy NER.",
+      "desc": "Answers natural-language questions about members from their messages: on 26 labelled questions it finds the right member 100% of the time and the right answer 96%.",
       "category": "machine-learning analytics",
       "tags": [
         "Python",
@@ -802,7 +809,7 @@
     {
       "badge": "Cloud & Enterprise ML",
       "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
-      "desc": "Enterprise cloud data platform connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit. Deployed a Random Forest model predicting contract cancellation risk with 86.20% accuracy, alongside automated financial reporting and reconciliation workflows.",
+      "desc": "Bootcamp capstone on real business data across SQL Server, Azure ADLS Gen2, Snowflake and Streamlit, with a contract-cancellation model at 86.20% accuracy served as a Snowflake Python UDF.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
@@ -857,7 +864,7 @@
     {
       "badge": "Geospatial & Climate",
       "name": "Multi-State Land Use Emissions Analysis",
-      "desc": "Geospatial emissions intelligence pipeline processing daily land cover changes across 5 U.S. states. Computes CO₂ inventory and forecasts emissions with ~90% accuracy using Linear Regression and Random Forest.",
+      "desc": "Land-use emissions ETL for 5 U.S. states built on the EPA's real state inventory: EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection and Census map layers.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
@@ -894,7 +901,7 @@
     {
       "badge": "Finance & Auditing",
       "name": "Tax Anomaly Audit Compliance Engine",
-      "desc": "Relational general ledger audit pipeline modeling transaction values following Benford's Law distribution and executing Isolation Forest anomaly flags for audit risk.",
+      "desc": "General-ledger audit pipeline where Benford's Law, an Isolation Forest and a tax-rate rule reach 97.8% precision and 95.7% recall; an auditor finds 90% of anomalies after 43 entries instead of 1,108.",
       "category": "machine-learning analytics",
       "tags": [
         "Python",
@@ -931,7 +938,7 @@
     {
       "badge": "Automation & ETL",
       "name": "Automated Daily Data Insights",
-      "desc": "Stateless serverless daily financial data ingestion pipeline calling yFinance, computing rolling Z-score anomalies, and committing reports automatically via GitHub Actions.",
+      "desc": "A daily market-data pipeline on GitHub Actions: pulls yFinance, flags rolling Z-score anomalies and publishes the report, at $0 server cost.",
       "category": "data-engineering",
       "tags": [
         "Python",
@@ -966,7 +973,7 @@
     {
       "badge": "Sales & Marketing",
       "name": "Sales Analytics & RFM Customer Segmentation Pipeline",
-      "desc": "Star schema database pipeline modeling Pareto 80/20 sales distributions. Automates RFM scaling and K-Means clustering to classify customers into 4 target personas.",
+      "desc": "A star-schema warehouse of 106,228 transactions where RFM scoring and K-Means find 4 customer personas explaining 93.9% of the variance, explored in a Power BI report.",
       "category": "machine-learning analytics",
       "tags": [
         "Python",
@@ -1004,7 +1011,7 @@
     {
       "badge": "Healthcare & Statistics",
       "name": "Clinical Trials Patient Outcomes Analysis",
-      "desc": "Clinical database pipeline tracking patient survival and blood pressure across 3 treatment arms. Computes Log-Rank test statistics and Kaplan-Meier curves.",
+      "desc": "Survival analysis across 3 cohorts with Kaplan-Meier curves, pairwise log-rank tests and de-identified patient data; the full report refreshes 60% faster.",
       "category": "analytics",
       "tags": [
         "Python",
@@ -1041,7 +1048,7 @@
     {
       "badge": "Streaming & IoT",
       "name": "Real-Time IoT Telematics & Predictive Maintenance",
-      "desc": "Processes high-frequency EV fleet battery and motor sensor telemetry in streaming micro-batches, detecting Z-score anomalies and estimating Remaining Useful Life (RUL).",
+      "desc": "EV battery and motor telemetry processed in micro-batches: Z-score detection catches 98.1% of planted sensor spikes at 90.5% precision, plus battery remaining-useful-life estimates.",
       "category": "data-engineering analytics",
       "tags": [
         "Python",
@@ -1082,7 +1089,7 @@
     {
       "badge": "Operations & Demand",
       "name": "AI-ML Data Science Simulation",
-      "desc": "Retail data pipeline automating daily sales ingestion from 5 U.S. branches. Centralizes operations in SQL and uses Linear Regression/Random Forest forecasting to reduce stockouts by 15%.",
+      "desc": "Daily sales ETL for 5 branches with forecasts at 90% accuracy against a 78.4% naive baseline; in a reorder simulation, forecast-driven ordering cut stock-out days by 60.8%.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
@@ -1118,7 +1125,7 @@
     {
       "badge": "Accessibility & Deep Learning",
       "name": "Extending STEM across ASL",
-      "desc": "Inclusive educational learning platform utilizing a Convolutional Neural Network (CNN) in TensorFlow/Keras to recognize American Sign Language gestures for 7 core STEM concepts.",
+      "desc": "Teaches 7 STEM concepts in ASL and recognises 29 STEM and computing word signs from video, 75.9% top-1 and 94.8% top-3 on held-out WLASL clips, live from a webcam.",
       "category": "machine-learning",
       "tags": [
         "Python",
@@ -1132,7 +1139,7 @@
         "ASL Recognition",
         "GitHub Actions"
       ],
-      "dashboard_url": "assets/training_curves.png",
+      "dashboard_url": "assets/asl_word_signs.png",
       "github_url": "https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL",
       "bullets": [
         {
@@ -1335,7 +1342,7 @@
     {
       "badge": "Computer Vision & Deep Learning",
       "name": "Solid Object Detection & Identification",
-      "desc": "Developed a shape detection and identification pipeline using PyTorch and OpenCV, achieving 98.97% classification accuracy by combining a custom CNN with traditional contour geometry approximations.",
+      "desc": "A PyTorch CNN that classifies 7 shape classes at 99.2% on 2,000 held-out images, with OpenCV contour geometry as an independent check, served on AWS Lambda through ONNX.",
       "category": "machine-learning analytics",
       "tags": [
         "Python",
