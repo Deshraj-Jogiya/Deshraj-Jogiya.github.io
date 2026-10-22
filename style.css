@@ -4444,3 +4444,28 @@ body.light-theme .obs-tab-btn.active, body.light-theme .arch-tab-btn.active { co
 /* the console stays dark in both themes, so it keeps the dark-theme status colours */
 .mock-terminal { --ok: #4fd1a5; --warn: #f0b45a; --bad: #f58a8a; --accent-emerald: #4fd1a5; --accent-amber: #f0b45a; --accent-red: #f58a8a; }
 body.light-theme .mock-terminal-header span { color: #a8acb2 !important; }
+/* chat window in the site's type and palette */
+#ai-chat-widget, #ai-chat-widget input, #ai-chat-widget button, .chat-msg { font-family: var(--font-body) !important; }
+.chat-window, .ai-chat-window, #ai-chat-widget .chat-container { background: var(--surface) !important; border: 1px solid var(--line) !important; box-shadow: 0 12px 32px rgba(0,0,0,0.35) !important; }
+.chat-avatar { display: inline-grid !important; place-items: center; width: 2rem; height: 2rem; border-radius: 6px; background: var(--accent) !important;
+               color: var(--accent-ink) !important; font-family: var(--font-mono) !important; font-size: 0.8rem !important; font-weight: 600; }
+.chat-bot-name { font-family: var(--font-display); }
+.chat-msg.bot-msg, .bot-msg { background: var(--surface-2) !important; border: 1px solid var(--line) !important; color: var(--text-primary) !important; }
+.chat-msg.user-msg, .user-msg { background: var(--accent) !important; color: var(--accent-ink) !important; border: none !important; }
+.chat-suggestions { flex-wrap: wrap !important; overflow-x: visible !important; }
+.chat-suggest-btn { background: transparent !important; border: 1px solid var(--line) !important; color: var(--text-secondary) !important; border-radius: 6px !important; }
+.chat-suggest-btn:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+.chat-send-btn { background: var(--accent) !important; color: var(--accent-ink) !important; box-shadow: none !important; }
+.chat-input, #chat-input { background: var(--surface-2) !important; border: 1px solid var(--line) !important; color: var(--text-primary) !important; }
+/* themed scrollbars (Firefox + Chromium) */
+* { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--line); border-radius: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+/* tour card in the site's type and palette */
+#tour-overlay-card, #tour-overlay-card * { font-family: var(--font-body); }
+#tour-overlay-card { background: var(--surface) !important; border: 1px solid var(--line) !important; box-shadow: 0 12px 32px rgba(0,0,0,0.4) !important; }
+#tour-step-title { font-family: var(--font-display) !important; }
+.tour-badge { font-family: var(--font-mono) !important; background: transparent !important; color: var(--accent) !important; border: 1px solid var(--accent); }
+#tour-step-indicator { font-family: var(--font-mono) !important; color: var(--text-muted); }
+#tour-progress-bar { background: var(--accent) !important; }

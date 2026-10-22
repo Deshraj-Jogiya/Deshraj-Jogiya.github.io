@@ -2781,7 +2781,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const allTourSteps = [
         {
             title: "Quick tour",
-            desc: "This tour follows the page from top to bottom: who Deshraj is, his resume, the case studies and projects, the Lab, his experience, skills, certifications, recommendations and the AI assistant. Choose how you would like to go:",
+            desc: "A walk down the page: the work, the experience and the people who vouch for it. Watch it play, or step through at your own pace.",
             target: null,
             duration: 0,
             action: async () => {
