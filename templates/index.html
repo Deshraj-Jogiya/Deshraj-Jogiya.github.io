@@ -734,15 +734,19 @@
 </div>
 
             <!-- Quick Suggestions Row -->
+            <button type="button" class="chat-fit-btn" id="chat-fit-btn" aria-expanded="false" aria-controls="fit-panel">
+                <span class="fit-btn-title">Hiring? Compare him with your job description</span>
+                <span class="fit-btn-sub">Paste the posting to see what he matches and where the gaps are</span>
+            </button>
             <div class="chat-suggestions">
-                <button type="button" class="chat-fit-btn" id="chat-fit-btn" aria-expanded="false" aria-controls="fit-panel">Check fit for my role</button>
+                
                 <button class="chat-suggest-btn" data-question="What is his best data engineering work?">Best data-engineering work</button>
                 <button class="chat-suggest-btn" data-question="Summarise Deshraj in 30 seconds">Summary in 30 seconds</button>
                 <button class="chat-suggest-btn" data-question="Tell me about his work experience">Experience</button>
                 <button class="chat-suggest-btn" data-question="How can you contact Deshraj?">Contact</button>
             </div>
             <div class="fit-panel" id="fit-panel" hidden>
-                <label for="fit-jd" class="fit-label">Paste the job description. It is checked against this site's profile and is not stored.</label>
+                <label for="fit-jd" class="fit-label">Paste the job description. It is compared with the profile on this site and is not stored.</label>
                 <textarea id="fit-jd" rows="6" maxlength="5900" placeholder="Job title, responsibilities, requirements..."></textarea>
                 <button type="button" class="chat-send-btn" id="fit-go">Check fit</button>
             </div>
