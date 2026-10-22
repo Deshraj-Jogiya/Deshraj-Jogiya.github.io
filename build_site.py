@@ -28,7 +28,7 @@ def write(path, text):
 
 def asset_version():
     h = hashlib.sha256()
-    for name in ("app.js", "style.css"):
+    for name in ("app.js", "style.css", "assistant-local.js"):
         with open(name, "rb") as f:
             h.update(f.read())
     return h.hexdigest()[:10]

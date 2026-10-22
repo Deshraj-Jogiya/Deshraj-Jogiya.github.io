@@ -1597,14 +1597,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }).catch(e => console.warn("Failed to write to chatbot cache:", e));
 
         } catch (error) {
-            console.warn("Live AI chatbot failure, falling back to local searchKeyword:", error);
-            // Fallback: Run local keyword-based answers
-            const answer = isFitCheck
-                ? "The fit check needs the live assistant, which is not responding right now. Please try again in a moment."
-                : searchKeyword(userQuery);
-            setTimeout(() => {
-                respond(answer);
-            }, 600);
+            // No LLM answer: the local assistant (assistant-local.js) answers from the profile itself, quoting each fact
+            // with its source, and runs the fit check by the same skill rules as Career Pilot. Nothing is generated.
+            console.warn("Live assistant unavailable, answering from the profile directly:", error);
+            let answer = null;
+            const local = window.localAssistant;
+            try {
+                if (local) {
+                    answer = isFitCheck
+                        ? local.formatFit(await local.fitCheck(userQuery.replace(/^FIT CHECK:\s*/, "")))
+                        : (await local.answer(userQuery)).text;
+                }
+            } catch (e) {
+                console.warn("Local assistant failed:", e);
+            }
+            if (!answer) {
+                answer = isFitCheck
+                    ? "The fit check is not available right now. Please try again in a moment."
+                    : searchKeyword(userQuery);
+            }
+            respond(answer);
         }
     };
 
