@@ -876,7 +876,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy.",
+          "html": "Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy (<strong>94.2%</strong> year-ahead on the EPA's 1990-2022 state land-use inventory).",
           "resume_role": "ds"
         },
         {
@@ -884,7 +884,7 @@
           "resume_role": "de"
         },
         {
-          "html": "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and exported GeoJSON layers for mapping.",
+          "html": "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.",
           "resume_role": "de"
         }
       ],
