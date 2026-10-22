@@ -100,7 +100,7 @@ def main():
         pages.append(path)
 
     write("lab/index.html", env.get_template("lab.html").render(
-        common, page_path="/lab/", page_title="Lab: interactive data demos | Deshraj Jogiya",
+        common, page_path="/lab/", page_title="The Lab | Deshraj Jogiya",
         page_description="In-browser demos of data work: a SQL playground, a pipeline monitor, an A/B test simulator and an architecture explorer, on sample data.",
         json_ld=None))
     pages.append("/lab/")

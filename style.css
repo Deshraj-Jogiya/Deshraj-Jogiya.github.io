@@ -1603,10 +1603,10 @@ body.light-theme .obs-console {
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-.sql-keyword { color: #f472b6; font-weight: bold; }
-.sql-table { color: #8cc4ad; }
-.sql-string { color: #34d399; }
-.sql-number { color: #fbbf24; }
+.sql-keyword { color: #8cc4ad; font-weight: 600; }
+.sql-table { color: #d8c9a3; }
+.sql-string { color: #a9c4d6; }
+.sql-number { color: #d8b98a; }
 
 .sql-btn-run {
     font-weight: 600;
@@ -3019,7 +3019,7 @@ body.light-theme .btn-tour-nav {
 
 /* Hero Tour Button */
 .btn-tour-hero {
-    background: linear-gradient(135deg, #8cc4ad, #ec4899);
+    background: linear-gradient(135deg, #8cc4ad, #d8b98a);
     color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -3029,11 +3029,11 @@ body.light-theme .btn-tour-nav {
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     transition: var(--transition-smooth);
-    box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+    box-shadow: 0 0 15px rgba(216, 185, 138, 0.4);
     animation: tour-pulse 2s infinite alternate;
 }
 .btn-tour-hero:hover {
-    box-shadow: 0 0 20px rgba(236, 72, 153, 0.7);
+    box-shadow: 0 0 20px rgba(216, 185, 138, 0.7);
     transform: translateY(-2px);
 }
 @keyframes tour-pulse {
@@ -3041,7 +3041,7 @@ body.light-theme .btn-tour-nav {
         box-shadow: 0 0 8px rgba(140, 196, 173, 0.4), 0 0 0 0px rgba(140, 196, 173, 0.2);
     }
     100% {
-        box-shadow: 0 0 16px rgba(236, 72, 153, 0.6), 0 0 0 6px rgba(236, 72, 153, 0);
+        box-shadow: 0 0 16px rgba(216, 185, 138, 0.6), 0 0 0 6px rgba(216, 185, 138, 0);
     }
 }
 
@@ -4089,7 +4089,7 @@ body.light-theme .skill-chips li { background: #f1f5f9; color: #334155; }
 .skills-cards .skill-category:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-emerald), var(--accent-blue)); }
 .skills-cards .skill-category:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-amber), #ef4444); }
 .skills-cards .skill-category:nth-child(4)::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-indigo)); }
-.skills-cards .skill-category:nth-child(5)::before { background: linear-gradient(90deg, #ec4899, var(--accent-purple)); }
+.skills-cards .skill-category:nth-child(5)::before { background: linear-gradient(90deg, #d8b98a, var(--accent-purple)); }
 .skills-cards .skill-category li { align-items: flex-start; line-height: 1.45; }
 .skills-cards .skill-category li::before { margin-top: 0.15rem; }
 @media (max-width: 1024px) { .skills-cards .skill-category { flex-basis: calc((100% - 1.5rem) / 2); } }
@@ -4328,3 +4328,8 @@ body.light-theme .navbar { background: rgba(243, 244, 245, 0.97) !important; }
 /* one filled button per group: the tour is secondary to the case studies */
 .hero-actions .btn-tour-hero { background: transparent !important; color: var(--text-primary) !important; border: 1px solid var(--line) !important; }
 .hero-actions .btn-tour-hero:hover { border-color: var(--accent) !important; color: var(--accent) !important; }
+
+/* Lab: demos as wide as the page title, quiet explainer boxes */
+.interactive-grid { max-width: none !important; }
+.recruiter-insights-card, .obs-info-box, .widget-context { background: var(--surface-2) !important; border: 1px solid var(--line) !important; }
+.recruiter-insight-title { color: var(--text-primary) !important; font-family: var(--font-mono); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.06em; }

@@ -1060,40 +1060,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Business value insights mapping to playground queries
     const recruiterInsights = {
-        career_pilot_intake: {"text": "Business Value: Career Pilot pulls postings from 7 applicant-tracking systems' job-board APIs and from the browser extension, scores them, and only then spends money on LLM tailoring. Knowing which source actually feeds the pipeline decides where polling effort goes. Live snapshot of the production database (16 Oct 2026).", "takeaway": "Key Skills: Multi-source ingestion, PostgreSQL (Supabase) data modeling, and production pipeline monitoring."},
-        dbt_application_outcomes: {"text": "Business Value: The dbt project models raw application events into dimension and fact tables on a live Databricks SQL warehouse, so questions like 'how long until a decision' become one query instead of spreadsheet work. 15 dbt tests and a business-rule test (no decision dated before its application) run in CI on every push.", "takeaway": "Key Skills: dbt dimensional modeling, Databricks SQL, data tests, and CI for data pipelines."},
-        lakehouse_salary_by_industry: {"text": "Business Value: A PySpark job joins 60,000 synthetic postings to 400 companies, aggregates salary statistics and ranks postings per industry with a window function; 11 Great Expectations checks validate the output before anything downstream reads it, orchestrated as an Airflow DAG.", "takeaway": "Key Skills: PySpark and Spark SQL, window functions, Great Expectations data quality, and Airflow orchestration."},
+        career_pilot_intake: {"text": "Career Pilot pulls postings from 7 applicant-tracking systems' job-board APIs and from the browser extension, scores them, and only then spends money on LLM tailoring. Knowing which source actually feeds the pipeline decides where polling effort goes. Live snapshot of the production database (16 Oct 2026).", "takeaway": "Multi-source ingestion, PostgreSQL (Supabase) data modeling, and production pipeline monitoring."},
+        dbt_application_outcomes: {"text": "The dbt project models raw application events into dimension and fact tables on a live Databricks SQL warehouse, so questions like 'how long until a decision' become one query instead of spreadsheet work. 15 dbt tests and a business-rule test (no decision dated before its application) run in CI on every push.", "takeaway": "dbt dimensional modeling, Databricks SQL, data tests, and CI for data pipelines."},
+        lakehouse_salary_by_industry: {"text": "A PySpark job joins 60,000 synthetic postings to 400 companies, aggregates salary statistics and ranks postings per industry with a window function; 11 Great Expectations checks validate the output before anything downstream reads it, orchestrated as an Airflow DAG.", "takeaway": "PySpark and Spark SQL, window functions, Great Expectations data quality, and Airflow orchestration."},
         revenue_by_segment: {
-            text: "Business Value: Groups customers by their shopping frequency and spending. This helps a business target loyal customers with rewards and win back inactive customers with custom discounts, raising overall sales.",
-            takeaway: "Key Skills: Customer Segmentation (K-Means, PCA), Database Star Schema design, and Business Intelligence dashboarding."
+            text: "Groups customers by their shopping frequency and spending. This helps a business target loyal customers with rewards and win back inactive customers with custom discounts, raising overall sales.",
+            takeaway: "Customer Segmentation (K-Means, PCA), Database Star Schema design, and Business Intelligence dashboarding."
         },
         anomaly_risk_claims: {
-            text: "Business Value: Audits financial transactions automatically to flag weird patterns or potential errors. This saves finance teams hundreds of hours of manual verification and stops transaction fraud early.",
-            takeaway: "Key Skills: Automated Auditing, Anomaly Detection modeling, and Compliance reporting."
+            text: "Audits financial transactions automatically to flag weird patterns or potential errors. This saves finance teams hundreds of hours of manual verification and stops transaction fraud early.",
+            takeaway: "Automated Auditing, Anomaly Detection modeling, and Compliance reporting."
         },
         survival_by_treatment: {
-            text: "Business Value: Analyzes patient treatment groups in clinical trials to evaluate which medicine dosages are most effective and safe. It proves therapeutic success with high statistical certainty.",
-            takeaway: "Key Skills: Biostatistics, Survival Curve modeling, and Clinical Database architecture."
+            text: "Analyzes patient treatment groups in clinical trials to evaluate which medicine dosages are most effective and safe. It proves therapeutic success with high statistical certainty.",
+            takeaway: "Biostatistics, Survival Curve modeling, and Clinical Database architecture."
         },
         drift_by_feature: {
-            text: "Business Value: Monitors live AI models to make sure their accuracy hasn't dropped since they were deployed. This guarantees the AI keeps outputting reliable predictions as customer behaviors change.",
-            takeaway: "Key Skills: AI/ML Observability, Data Quality Audits, and automated retraining pipelines."
+            text: "Monitors live AI models to make sure their accuracy hasn't dropped since they were deployed. This guarantees the AI keeps outputting reliable predictions as customer behaviors change.",
+            takeaway: "AI/ML Observability, Data Quality Audits, and automated retraining pipelines."
         },
         emissions_by_state: {
-            text: "Business Value: Tracks regional land cover changes (like forest loss vs urban growth) to calculate environmental carbon impact. This enables governments and companies to plan sustainability efforts accurately.",
-            takeaway: "Key Skills: Geospatial ETL pipelines, Carbon Accounting logic, and regional scale analysis."
+            text: "Tracks regional land cover changes (like forest loss vs urban growth) to calculate environmental carbon impact. This enables governments and companies to plan sustainability efforts accurately.",
+            takeaway: "Geospatial ETL pipelines, Carbon Accounting logic, and regional scale analysis."
         },
         credit_fraud_risk: {
-            text: "Business Value: Automatically evaluates loan applicant risk scores alongside transaction safety metrics. This protects banking capital from defaults while ensuring safe, legitimate applicants get approved quickly.",
-            takeaway: "Key Skills: Financial Risk Auditing, Credit Tier modeling, and security checkpoints."
+            text: "Automatically evaluates loan applicant risk scores alongside transaction safety metrics. This protects banking capital from defaults while ensuring safe, legitimate applicants get approved quickly.",
+            takeaway: "Financial Risk Auditing, Credit Tier modeling, and security checkpoints."
         },
         iot_telematics: {
-            text: "Business Value: Monitors live vehicle telemetry (vibration, heat) to flag when a component is starting to wear down. This lets fleet operators schedule maintenance before a vehicle breaks down on the road, avoiding costly repairs.",
-            takeaway: "Key Skills: Real-time Telemetry processing, IoT anomaly flags, and predictive maintenance algorithms."
+            text: "Monitors live vehicle telemetry (vibration, heat) to flag when a component is starting to wear down. This lets fleet operators schedule maintenance before a vehicle breaks down on the road, avoiding costly repairs.",
+            takeaway: "Real-time Telemetry processing, IoT anomaly flags, and predictive maintenance algorithms."
         },
         simulated_sales_forecast: {
-            text: "Business Value: Forecasts daily inventory demand across multiple retail branches to match stock levels. This prevents out-of-stock scenarios (lost sales) and reduces warehousing overhead costs.",
-            takeaway: "Key Skills: Retail demand forecasting, Multi-branch data synchronization, and Inventory Analytics."
+            text: "Forecasts daily inventory demand across multiple retail branches to match stock levels. This prevents out-of-stock scenarios (lost sales) and reduces warehousing overhead costs.",
+            takeaway: "Retail demand forecasting, Multi-branch data synchronization, and Inventory Analytics."
         }
     };
 
@@ -1104,7 +1104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const takeawayEl = document.getElementById("recruiter-insight-takeaway");
         if (insight && textEl && takeawayEl) {
             textEl.textContent = insight.text;
-            takeawayEl.innerHTML = `<strong>Key Takeaway:</strong> ${insight.takeaway}`;
+            takeawayEl.innerHTML = `<strong>Skills:</strong> ${insight.takeaway}`;
         }
     }
 

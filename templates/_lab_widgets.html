@@ -30,13 +30,13 @@
                     <!-- Project Value & Key Takeaways -->
                     <div class="recruiter-insights-card" id="recruiter-insights">
                         <div class="recruiter-insight-title">
-                             Project Value &amp; Key Takeaways
+                             Why it matters
 </div>
                         <div class="recruiter-insight-text" id="recruiter-insight-text">
-                            Select a query above to see the business value of this data engineering task and the core skills it demonstrates.
+                            Pick a query to see what it answers.
 </div>
                         <div class="recruiter-insight-takeaway" id="recruiter-insight-takeaway">
-                            Key Takeaway: -
+                            
 </div>
 </div>
                     
@@ -74,8 +74,7 @@
                     
                     <!-- Observability Explanatory Box -->
                     <div class="obs-info-box" style="background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
-                        <strong>What is this?</strong>This widget simulates a real-time data engineering pipeline monitoring system. In production, data pipelines process millions of rows daily and can fail silently due to bad data. 
-                        Click <strong>"Run Pipeline Diagnostics"</strong>to run a live validation check. You'll see how data ingestion, quality checks, machine learning scoring, and database commits flow sequentially, demonstrating automated pipeline monitoring and observability skills.
+                        Run a check to watch a batch move through ingest, validation, scoring and commit, and see which records fail and why.
 </div>
                     
                     <!-- Pipeline Flow Diagram -->
@@ -114,11 +113,6 @@
                             <div class="obs-panel-content active" id="obs-console-panel">
                                 <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
                                     <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-                                        <div style="display: flex; gap: 0.35rem;">
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
-                                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
-</div>
                                         <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
 </div>
                                     <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
@@ -201,9 +195,9 @@
                                 <div class="input-group">
                                     <label for="ab-b-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
                                         <span>Challenger (B) Target:</span>
-                                        <span id="ab-b-target-val" style="color: var(--accent-pink, #ec4899); font-weight: 700;">13%</span>
+                                        <span id="ab-b-target-val" style="color: var(--accent-pink, #d8b98a); font-weight: 700;">13%</span>
                                     </label>
-                                    <input type="range" id="ab-b-target-input" min="1" max="30" value="13" step="1" style="width: 100%; accent-color: var(--accent-pink, #ec4899); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
+                                    <input type="range" id="ab-b-target-input" min="1" max="30" value="13" step="1" style="width: 100%; accent-color: var(--accent-pink, #d8b98a); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
 </div>
 </div>
 
@@ -237,7 +231,7 @@
                                         Conversions: <span id="ab-b-conv" style="font-weight: 600;">0</span> / <span id="ab-b-visitors" style="font-weight: 600;">1000</span>
 </div>
                                     <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                                        <div id="ab-b-bar" style="width: 0%; height: 100%; background: var(--accent-pink, #ec4899); transition: width 0.5s ease-out;"></div>
+                                        <div id="ab-b-bar" style="width: 0%; height: 100%; background: var(--accent-pink, #d8b98a); transition: width 0.5s ease-out;"></div>
 </div>
 </div>
 </div>
@@ -262,10 +256,9 @@
 </div>
 
                             <div class="widget-context" style="padding: 1rem; background: rgba(140, 196, 173, 0.03); border: 1px solid rgba(140, 196, 173, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">Methodology &amp; Business Context</div>
-                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong>When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong>Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong>to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong>on the proportions.</p>
-                                <p style="margin: 0;"><strong>Recruiting Value:</strong>This simulates how a Data Engineer or Scientist conducts hypothesis testing to validate feature rolls. A result is statistically significant if the P-value is less than 0.05 (95% confidence).</p>
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
+                                <p style="margin: 0;"><strong>Try it:</strong> Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong>to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong>on the proportions.</p>
 </div>
 </div>
 </div>
@@ -347,10 +340,10 @@
 </div>
 
                             <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">Methodology &amp; Business Context</div>
-                                <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong>Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong>Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
-                                <p style="margin: 0;"><strong>ROI Business Value:</strong>By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
+                                <p style="margin: 0;"><strong>Try it:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
+                                <p style="margin: 0;"><strong>Cost view:</strong>By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
 </div>
 </div>
 </div>
