@@ -4469,3 +4469,11 @@ body.light-theme .mock-terminal-header span { color: #a8acb2 !important; }
 .tour-badge { font-family: var(--font-mono) !important; background: transparent !important; color: var(--accent) !important; border: 1px solid var(--accent); }
 #tour-step-indicator { font-family: var(--font-mono) !important; color: var(--text-muted); }
 #tour-progress-bar { background: var(--accent) !important; }
+.live-strip { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; margin: -0.4rem 0 1.6rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); }
+.live-strip[hidden], .live-item[hidden] { display: none; }
+.live-item { display: inline-flex; align-items: center; gap: 0.45rem; }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 25%, transparent); }
+.live-val { color: var(--text-primary); }
+a.live-val { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+a.live-val:hover { text-decoration-color: var(--accent); }
+@media (max-width: 768px) { .live-strip { justify-content: center; } }

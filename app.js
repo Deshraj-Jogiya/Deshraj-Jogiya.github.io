@@ -3506,3 +3506,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 })();
+
+// Live strip: Career Pilot reachability and the latest project push, both checked in the visitor's browser; an item that cannot be
+// checked stays hidden rather than showing a stale value.
+(() => {
+    const strip = document.getElementById("live-strip");
+    if (!strip) return;
+    const show = id => { document.getElementById(id).hidden = false; strip.hidden = false; };
+    const ago = iso => {
+        const m = Math.round((Date.now() - new Date(iso)) / 60000);
+        if (m < 60) return `${Math.max(m, 1)} min ago`;
+        const h = Math.round(m / 60);
+        return h < 48 ? `${h} h ago` : `${Math.round(h / 24)} days ago`;
+    };
+    // no-cors: the reply is unreadable, but it resolves only if the server answered
+    const ctl = new AbortController();
+    setTimeout(() => ctl.abort(), 6000);
+    fetch("https://129-146-36-193.sslip.io/api/health", { mode: "no-cors", cache: "no-store", signal: ctl.signal })
+        .then(() => show("live-cp")).catch(() => {});
+    const SKIP = new Set(["Deshraj-Jogiya/Deshraj-Jogiya.github.io", "Deshraj-Jogiya/Deshraj-Jogiya"]);
+    fetch("https://api.github.com/users/Deshraj-Jogiya/events/public?per_page=30")
+        .then(r => r.ok ? r.json() : [])
+        .then(events => {
+            const push = events.filter(e => e.type === "PushEvent" && !SKIP.has(e.repo.name))
+                               .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+            if (!push) return;
+            const a = document.getElementById("live-push-repo");
+            a.textContent = push.repo.name.split("/")[1];
+            a.href = `https://github.com/${push.repo.name}`;
+            document.getElementById("live-push-age").textContent = ago(push.created_at);
+            show("live-push");
+        }).catch(() => {});
+})();
