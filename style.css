@@ -4079,3 +4079,69 @@ body.light-theme .skill-chips li { background: #f1f5f9; color: #334155; }
 @media (max-width: 768px) { .hero-section { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 768px) { .quick-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; } .stat-card { padding: 1.1rem 0.75rem; } }
 @media (max-width: 480px) { .hero-left .hero-title { font-size: clamp(1.7rem, 7.4vw, 2.4rem); } }
+/* Skills: the original cards, three per row with the last row centred, so no card is left alone in a narrow column */
+.skills-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+.skills-cards .skill-category { flex: 0 1 calc((100% - 3rem) / 3); min-width: 0; position: relative; overflow: hidden; }
+.skills-cards .skill-category::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+}
+.skills-cards .skill-category:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-emerald), var(--accent-blue)); }
+.skills-cards .skill-category:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-amber), #ef4444); }
+.skills-cards .skill-category:nth-child(4)::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-indigo)); }
+.skills-cards .skill-category:nth-child(5)::before { background: linear-gradient(90deg, #ec4899, var(--accent-purple)); }
+.skills-cards .skill-category li { align-items: flex-start; line-height: 1.45; }
+.skills-cards .skill-category li::before { margin-top: 0.15rem; }
+@media (max-width: 1024px) { .skills-cards .skill-category { flex-basis: calc((100% - 1.5rem) / 2); } }
+@media (max-width: 640px) { .skills-cards .skill-category { flex-basis: 100%; } }
+
+/* flow diagrams on project cards: show the whole diagram instead of cropping it */
+.card-image[src$=".svg"] { object-fit: contain; background: #0d1117; padding: 0.4rem; }
+
+/* Navigation (2026-10-22): monogram + name, links in page order, one button family */
+.navbar { border-bottom: 1px solid var(--card-border); }
+.logo-text {
+    display: inline-flex; align-items: center; gap: 0.65rem;
+    background: none; -webkit-text-fill-color: currentColor; color: var(--text-primary);
+    letter-spacing: 0; font-size: 1.05rem; font-weight: 700;
+}
+.logo-mark {
+    display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple));
+    color: #fff; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.02em;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+}
+.logo-name { font-family: 'Outfit', 'Inter', sans-serif; }
+body.light-theme .logo-text { background: none; -webkit-text-fill-color: currentColor; color: #0f172a; }
+.nav-links { gap: 1.4rem; align-items: center; }
+.nav-links > a:not(.btn) { position: relative; font-size: 0.9rem; padding: 0.35rem 0; }
+.nav-links > a:not(.btn)::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease;
+}
+.nav-links > a:not(.btn):hover::after, .nav-links > a:not(.btn):focus-visible::after { transform: scaleX(1); }
+.nav-links > a:not(.btn):hover { text-shadow: none; }
+.nav-divider { width: 1px; height: 1.4rem; background: var(--card-border); }
+.btn-tour-nav, .btn-resume-nav, .nav-links .btn.btn-secondary {
+    height: 2.25rem; padding: 0 1rem; display: inline-flex; align-items: center; border-radius: 999px;
+    font-size: 0.85rem; font-weight: 600; white-space: nowrap; margin: 0;
+}
+.btn-tour-nav { background: transparent; color: var(--text-secondary); border: 1px solid var(--card-border); box-shadow: none; }
+.btn-tour-nav:hover { color: var(--text-primary); border-color: var(--accent-purple); }
+.btn-resume-nav { background: transparent; color: var(--text-primary); border: 1px solid rgba(139, 92, 246, 0.45); }
+.btn-resume-nav:hover { background: rgba(139, 92, 246, 0.12); }
+.nav-links .btn.btn-secondary { background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple)); color: #fff; border: none; }
+.nav-links .btn.btn-secondary:hover { filter: brightness(1.1); }
+@media (max-width: 1200px) { .nav-links { gap: 1rem; } .nav-links > a:not(.btn) { font-size: 0.85rem; } }
+@media (max-width: 768px) { .nav-divider { display: none; } .logo-name { font-size: 1rem; } }
+/* one frame for every featured image, so the case-study cards line up */
+.featured-image img, .featured-image img[src$=".svg"] { aspect-ratio: 960 / 350; object-fit: contain; object-position: center; background: #0d1117; padding: 0.5rem; }
+@media (max-width: 480px) { .hero-left .terminal-text { justify-content: flex-start; white-space: nowrap; font-size: 0.95rem; } }
+/* The header's blur made it the containing block for the fixed phone menu, so the open menu never showed.
+   The blur now sits on a background layer behind the header instead. */
+.navbar { backdrop-filter: none; -webkit-backdrop-filter: none; }
+.navbar::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}

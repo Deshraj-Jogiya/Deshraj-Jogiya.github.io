@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=696e0d44f4">
+    <link rel="stylesheet" href="/style.css?v=16244c3ac2">
 </head>
 <body>
     <!-- Floating Background Orbs for Depth -->
@@ -42,7 +42,7 @@
     <!-- Navigation Header -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo-text">DESHRAJ JOGIYA</a>
+            <a href="#" class="logo-text" aria-label="Deshraj Jogiya, back to top"><span class="logo-mark" aria-hidden="true">DJ</span><span class="logo-name">Deshraj Jogiya</span></a>
             <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -50,13 +50,14 @@
             </button>
             <nav class="nav-links">
                 <a href="#about">About</a>
-                <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
                 <a href="/lab/">Lab</a>
+                <a href="#experience">Experience</a>
                 <a href="#skills">Skills</a>
                 <a href="#certifications">Certifications</a>
                 <a href="#recommendations">Recommendations</a>
-                <button id="tour-nav-btn" class="btn-tour-nav" style="margin-right: 0.5rem;">Tour ⚡</button>
+                <span class="nav-divider" aria-hidden="true"></span>
+                <button id="tour-nav-btn" class="btn-tour-nav">Tour</button>
                 <button id="resume-nav-btn" class="btn-resume-nav">Resume</button>
                 <a href="#contact" class="btn btn-secondary">Connect</a>
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
@@ -252,135 +253,170 @@
 
             <div class="projects-grid">
                 
-                <div class="project-card glass-card" data-category="software-dev">
+                <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
                     
-                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
-                        <span>Java · Spring Boot · Spring WebFlux</span>
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/talentvenue_feature_importance.webp" data-title="TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence">
+                        <img src="/assets/talentvenue_feature_importance.webp" alt="TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence chart" class="card-image" loading="lazy" decoding="async"
+                             width="1300" height="676">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Reactive Systems</div>
-                        <h3 class="card-title">Reactive Job Ingest Gateway</h3>
-                        <p class="card-desc">A non-blocking job-posting ingestion gateway built on Spring WebFlux and R2DBC, republishing ingested postings as a live Server-Sent-Events stream.</p>
+                        <div class="card-badge">Cloud & Enterprise ML</div>
+                        <h3 class="card-title">TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence</h3>
+                        <p class="card-desc">Bootcamp capstone on real business data across SQL Server, Azure ADLS Gen2, Snowflake and Streamlit, with a contract-cancellation model at 86.20% accuracy served as a Snowflake Python UDF.</p>
                         <div class="tech-tags">
-                            <span>Java</span><span>Spring Boot</span><span>Spring WebFlux</span><span>Spring Reactive</span><span>R2DBC</span><span>Project Reactor</span>
+                            <span>Python</span><span>SQL</span><span>Snowflake</span><span>Azure ADLS</span><span>Streamlit UI</span><span>Scikit-Learn</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card glass-card" data-category="software-dev">
+                <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
                     
-                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
-                        <span>MongoDB · Express · Angular</span>
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/ai_observability.webp" data-title="AI Model Observability & Fairness Audits">
+                        <img src="/assets/ai_observability.webp" alt="AI Model Observability & Fairness Audits chart" class="card-image" loading="lazy" decoding="async"
+                             width="1600" height="814">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Full Stack</div>
-                        <h3 class="card-title">Job Notes</h3>
-                        <p class="card-desc">A company-research notes app: an Express and MongoDB API with an Angular frontend, both covered by automated tests against a running database.</p>
+                        <div class="card-badge">AI Governance</div>
+                        <h3 class="card-title">AI Model Observability & Fairness Audits</h3>
+                        <p class="card-desc">Drift and fairness auditing for deployed models: KS and PSI drift tests, disparate-impact and equal-opportunity checks, and a published Tableau dashboard over 30,000 simulated inference records.</p>
                         <div class="tech-tags">
-                            <span>MongoDB</span><span>Express</span><span>Angular</span><span>Node.js</span><span>Mongoose</span>
+                            <span>Python</span><span>MLflow</span><span>Drift Audit</span><span>KS-Test</span><span>PSI</span><span>Responsible AI</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/job-notes-app" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card glass-card" data-category="software-dev">
+                <div class="project-card glass-card" data-category="machine-learning analytics">
                     
-                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
-                        <span>C# · .NET · ASP.NET Core</span>
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/compliance_dashboard.webp" data-title="Tax Anomaly Audit Compliance Engine">
+                        <img src="/assets/compliance_dashboard.webp" alt="Tax Anomaly Audit Compliance Engine chart" class="card-image" loading="lazy" decoding="async"
+                             width="1600" height="1212">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Full Stack</div>
-                        <h3 class="card-title">Interview Prep API</h3>
-                        <p class="card-desc">An ASP.NET Core minimal API in C# with Entity Framework Core and SQLite, covered by 19 xUnit tests including an SM-2 spaced-repetition scheduler.</p>
+                        <div class="card-badge">Finance & Auditing</div>
+                        <h3 class="card-title">Tax Anomaly Audit Compliance Engine</h3>
+                        <p class="card-desc">General-ledger audit pipeline where Benford's Law, an Isolation Forest and a tax-rate rule reach 97.8% precision and 95.7% recall; an auditor finds 90% of anomalies after 43 entries instead of 1,108.</p>
                         <div class="tech-tags">
-                            <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>Entity Framework Core</span><span>SQLite</span>
+                            <span>Python</span><span>Benford's Law</span><span>Isolation Forest</span><span>Power BI</span><span>SQLite</span><span>GitHub Actions</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/interview-prep-api" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card glass-card" data-category="software-dev">
+                <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
                     
-                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
-                        <span>PHP · CodeIgniter 4 · SQLite</span>
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/co2_forecast_vs_actual.webp" data-title="Multi-State Land Use Emissions Analysis">
+                        <img src="/assets/co2_forecast_vs_actual.webp" alt="Multi-State Land Use Emissions Analysis chart" class="card-image" loading="lazy" decoding="async"
+                             width="1600" height="680">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Full Stack</div>
-                        <h3 class="card-title">Company Blocklist</h3>
-                        <p class="card-desc">A PHP CodeIgniter 4 app for tracking companies to avoid, with bulk CSV import, a check against California WARN Act layoff notices, and 12 feature tests through the full router, controller and model stack.</p>
+                        <div class="card-badge">Geospatial & Climate</div>
+                        <h3 class="card-title">Multi-State Land Use Emissions Analysis</h3>
+                        <p class="card-desc">Land-use emissions ETL for 5 U.S. states built on the EPA's real state inventory: EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection and Census map layers.</p>
                         <div class="tech-tags">
-                            <span>PHP</span><span>CodeIgniter 4</span><span>SQLite</span>
+                            <span>Python</span><span>SQLite</span><span>Random Forest</span><span>ETL Ingestion</span><span>ArcGIS</span><span>Tableau</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/company-blocklist" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card glass-card" data-category="software-dev">
-                    
-                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
-                        <span>React Native · Expo · TypeScript</span>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">Full Stack</div>
-                        <h3 class="card-title">Interview Prep Mobile</h3>
-                        <p class="card-desc">A React Native (Expo) app for practising interview questions against the ASP.NET Core API, tested with React Native Testing Library and in a live browser run.</p>
-                        <div class="tech-tags">
-                            <span>React Native</span><span>Expo</span><span>TypeScript</span><span>AsyncStorage</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/interview-prep-mobile" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card glass-card" data-category="software-dev">
-                    
-                    <div class="card-banner card-banner-software-dev" aria-hidden="true">
-                        <span>HTMX · FastAPI · Jinja2</span>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">Full Stack</div>
-                        <h3 class="card-title">Company Search (HTMX)</h3>
-                        <p class="card-desc">Live search with HTMX partial updates on FastAPI and Jinja2, inline editing, and Server-Sent Events syncing every open tab, with no client-side framework.</p>
-                        <div class="tech-tags">
-                            <span>HTMX</span><span>FastAPI</span><span>Jinja2</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/htmx-company-search" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="project-card glass-card" data-category="data-engineering analytics">
                     
-                    <div class="card-banner card-banner-data-engineering" aria-hidden="true">
-                        <span>ArcGIS · Geocoding · Vector Tiles</span>
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/iot_dashboard.webp" data-title="Real-Time IoT Telematics & Predictive Maintenance">
+                        <img src="/assets/iot_dashboard.webp" alt="Real-Time IoT Telematics & Predictive Maintenance chart" class="card-image" loading="lazy" decoding="async"
+                             width="1600" height="1225">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Geospatial</div>
-                        <h3 class="card-title">ArcGIS Commute Insights</h3>
-                        <p class="card-desc">Ranks companies by drive time from home using the live ArcGIS geocoding and routing services on an interactive map; all 11 tests hit the live APIs.</p>
+                        <div class="card-badge">Streaming & IoT</div>
+                        <h3 class="card-title">Real-Time IoT Telematics & Predictive Maintenance</h3>
+                        <p class="card-desc">EV battery and motor telemetry processed in micro-batches: Z-score detection catches 98.1% of planted sensor spikes at 90.5% precision, plus battery remaining-useful-life estimates.</p>
                         <div class="tech-tags">
-                            <span>ArcGIS</span><span>Geocoding</span><span>Vector Tiles</span><span>Geospatial Analysis</span>
+                            <span>Python</span><span>Z-Score Anomaly</span><span>RUL Model</span><span>Power BI</span><span>SQL</span><span>GitHub Actions</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/arcgis-commute-insights" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="machine-learning analytics">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/sales_dashboard.webp" data-title="Sales Analytics & RFM Customer Segmentation Pipeline">
+                        <img src="/assets/sales_dashboard.webp" alt="Sales Analytics & RFM Customer Segmentation Pipeline chart" class="card-image" loading="lazy" decoding="async"
+                             width="1600" height="1067">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Sales & Marketing</div>
+                        <h3 class="card-title">Sales Analytics & RFM Customer Segmentation Pipeline</h3>
+                        <p class="card-desc">A star-schema warehouse of 106,228 transactions where RFM scoring and K-Means find 4 customer personas explaining 93.9% of the variance, explored in a Power BI report.</p>
+                        <div class="tech-tags">
+                            <span>Python</span><span>SQLite</span><span>K-Means</span><span>PCA</span><span>Power BI</span><span>Seaborn</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="machine-learning">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/asl_word_signs.webp" data-title="Extending STEM across ASL">
+                        <img src="/assets/asl_word_signs.webp" alt="Extending STEM across ASL chart" class="card-image" loading="lazy" decoding="async"
+                             width="1200" height="675">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Accessibility & Deep Learning</div>
+                        <h3 class="card-title">Extending STEM across ASL</h3>
+                        <p class="card-desc">Teaches 7 STEM concepts in ASL and recognises 29 STEM and computing word signs from video, 75.9% top-1 and 94.8% top-3 on held-out WLASL clips, live from a webcam.</p>
+                        <div class="tech-tags">
+                            <span>Python</span><span>PyTorch</span><span>OpenCV</span><span>MediaPipe</span><span>TensorFlow</span><span>Keras</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="machine-learning analytics">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/member-qa-flow.svg" data-title="Member Messages QA System: Semantic Search & NER-Based Question Answering">
+                        <img src="/assets/member-qa-flow.svg" alt="Member Messages QA System: Semantic Search & NER-Based Question Answering chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">NLP & Semantic Search</div>
+                        <h3 class="card-title">Member Messages QA System: Semantic Search & NER-Based Question Answering</h3>
+                        <p class="card-desc">Answers natural-language questions about members from their messages: on 26 labelled questions it finds the right member 100% of the time and the right answer 96%.</p>
+                        <div class="tech-tags">
+                            <span>Python</span><span>Sentence-Transformers</span><span>spaCy</span><span>Scikit-Learn</span><span>Pandas</span><span>GitHub Actions</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
@@ -417,7 +453,7 @@
                     <div class="card-content">
                         <div class="card-badge">Cloud & Generative AI</div>
                         <h3 class="card-title">CurioSync: Fact-Checked LinkedIn Publishing Pipeline</h3>
-                        <p class="card-desc">LinkedIn publishing on GitHub Actions: Gemini drafts only from the live profile, mechanical checks reject any invented number or tool, and each image card is checked against the same facts.</p>
+                        <p class="card-desc">LinkedIn publishing pipeline on GitHub Actions (Monday, Wednesday, Friday): Gemini drafts each post only from the live portfolio profile, mechanical checks and a second model pass reject invented claims, and a Pillow image card shows the same facts.</p>
                         <div class="tech-tags">
                             <span>Python</span><span>FastAPI</span><span>GitHub Actions</span><span>Gemini LLM</span><span>LinkedIn API</span><span>Pillow</span>
                         </div>
@@ -427,147 +463,23 @@
                     </div>
                 </div>
                 
-                <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
-                    
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/ai_observability.webp" data-title="AI Model Observability & Fairness Audits">
-                        <img src="/assets/ai_observability.webp" alt="AI Model Observability & Fairness Audits chart" class="card-image" loading="lazy" decoding="async"
-                             width="1600" height="814">
-                        <div class="image-overlay"><span>Zoom 🔍</span></div>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">AI Governance</div>
-                        <h3 class="card-title">AI Model Observability & Fairness Audits</h3>
-                        <p class="card-desc">Drift and fairness auditing for deployed models: KS and PSI drift tests, disparate-impact and equal-opportunity checks, and a published Tableau dashboard over 30,000 simulated inference records.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>MLflow</span><span>Drift Audit</span><span>KS-Test</span><span>PSI</span><span>Responsible AI</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="project-card glass-card" data-category="machine-learning analytics">
                     
-                    <div class="card-banner card-banner-machine-learning" aria-hidden="true">
-                        <span>Python · Sentence-Transformers · spaCy</span>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">NLP & Semantic Search</div>
-                        <h3 class="card-title">Member Messages QA System: Semantic Search & NER-Based Question Answering</h3>
-                        <p class="card-desc">Answers natural-language questions about members from their messages: on 26 labelled questions it finds the right member 100% of the time and the right answer 96%.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>Sentence-Transformers</span><span>spaCy</span><span>Scikit-Learn</span><span>Pandas</span><span>GitHub Actions</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
-                    
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/talentvenue_feature_importance.webp" data-title="TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence">
-                        <img src="/assets/talentvenue_feature_importance.webp" alt="TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence chart" class="card-image" loading="lazy" decoding="async"
-                             width="1300" height="676">
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/solid_object_confusion_matrix.webp" data-title="Solid Object Detection & Identification">
+                        <img src="/assets/solid_object_confusion_matrix.webp" alt="Solid Object Detection & Identification chart" class="card-image" loading="lazy" decoding="async"
+                             width="1105" height="910">
                         <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Cloud & Enterprise ML</div>
-                        <h3 class="card-title">TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence</h3>
-                        <p class="card-desc">Bootcamp capstone on real business data across SQL Server, Azure ADLS Gen2, Snowflake and Streamlit, with a contract-cancellation model at 86.20% accuracy served as a Snowflake Python UDF.</p>
+                        <div class="card-badge">Computer Vision & Deep Learning</div>
+                        <h3 class="card-title">Solid Object Detection & Identification</h3>
+                        <p class="card-desc">A PyTorch CNN that classifies 7 shape classes at 99.2% on 2,000 held-out images, with OpenCV contour geometry as an independent check, served on AWS Lambda through ONNX.</p>
                         <div class="tech-tags">
-                            <span>Python</span><span>SQL</span><span>Snowflake</span><span>Azure ADLS</span><span>Streamlit UI</span><span>Scikit-Learn</span>
+                            <span>Python</span><span>PyTorch</span><span>OpenCV</span><span>CNN Model</span><span>Image Processing</span><span>Git</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
-                    
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/co2_forecast_vs_actual.webp" data-title="Multi-State Land Use Emissions Analysis">
-                        <img src="/assets/co2_forecast_vs_actual.webp" alt="Multi-State Land Use Emissions Analysis chart" class="card-image" loading="lazy" decoding="async"
-                             width="1600" height="680">
-                        <div class="image-overlay"><span>Zoom 🔍</span></div>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">Geospatial & Climate</div>
-                        <h3 class="card-title">Multi-State Land Use Emissions Analysis</h3>
-                        <p class="card-desc">Land-use emissions ETL for 5 U.S. states built on the EPA's real state inventory: EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection and Census map layers.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>SQLite</span><span>Random Forest</span><span>ETL Ingestion</span><span>ArcGIS</span><span>Tableau</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card glass-card" data-category="machine-learning analytics">
-                    
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/compliance_dashboard.webp" data-title="Tax Anomaly Audit Compliance Engine">
-                        <img src="/assets/compliance_dashboard.webp" alt="Tax Anomaly Audit Compliance Engine chart" class="card-image" loading="lazy" decoding="async"
-                             width="1600" height="1212">
-                        <div class="image-overlay"><span>Zoom 🔍</span></div>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">Finance & Auditing</div>
-                        <h3 class="card-title">Tax Anomaly Audit Compliance Engine</h3>
-                        <p class="card-desc">General-ledger audit pipeline where Benford's Law, an Isolation Forest and a tax-rate rule reach 97.8% precision and 95.7% recall; an auditor finds 90% of anomalies after 43 entries instead of 1,108.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>Benford's Law</span><span>Isolation Forest</span><span>Power BI</span><span>SQLite</span><span>GitHub Actions</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card glass-card" data-category="data-engineering">
-                    
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/daily_insights.webp" data-title="Automated Daily Data Insights">
-                        <img src="/assets/daily_insights.webp" alt="Automated Daily Data Insights chart" class="card-image" loading="lazy" decoding="async"
-                             width="1600" height="800">
-                        <div class="image-overlay"><span>Zoom 🔍</span></div>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">Automation & ETL</div>
-                        <h3 class="card-title">Automated Daily Data Insights</h3>
-                        <p class="card-desc">A daily market-data pipeline on GitHub Actions: pulls yFinance, flags rolling Z-score anomalies and publishes the report, at $0 server cost.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>yFinance API</span><span>Matplotlib</span><span>GitHub Actions</span><span>SQLite</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/automated-data-insights" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card glass-card" data-category="machine-learning analytics">
-                    
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/sales_dashboard.webp" data-title="Sales Analytics & RFM Customer Segmentation Pipeline">
-                        <img src="/assets/sales_dashboard.webp" alt="Sales Analytics & RFM Customer Segmentation Pipeline chart" class="card-image" loading="lazy" decoding="async"
-                             width="1600" height="1067">
-                        <div class="image-overlay"><span>Zoom 🔍</span></div>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">Sales & Marketing</div>
-                        <h3 class="card-title">Sales Analytics & RFM Customer Segmentation Pipeline</h3>
-                        <p class="card-desc">A star-schema warehouse of 106,228 transactions where RFM scoring and K-Means find 4 customer personas explaining 93.9% of the variance, explored in a Power BI report.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>SQLite</span><span>K-Means</span><span>PCA</span><span>Power BI</span><span>Seaborn</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
@@ -593,27 +505,6 @@
                     </div>
                 </div>
                 
-                <div class="project-card glass-card" data-category="data-engineering analytics">
-                    
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/iot_dashboard.webp" data-title="Real-Time IoT Telematics & Predictive Maintenance">
-                        <img src="/assets/iot_dashboard.webp" alt="Real-Time IoT Telematics & Predictive Maintenance chart" class="card-image" loading="lazy" decoding="async"
-                             width="1600" height="1225">
-                        <div class="image-overlay"><span>Zoom 🔍</span></div>
-                    </div>
-                    
-                    <div class="card-content">
-                        <div class="card-badge">Streaming & IoT</div>
-                        <h3 class="card-title">Real-Time IoT Telematics & Predictive Maintenance</h3>
-                        <p class="card-desc">EV battery and motor telemetry processed in micro-batches: Z-score detection catches 98.1% of planted sensor spikes at 90.5% precision, plus battery remaining-useful-life estimates.</p>
-                        <div class="tech-tags">
-                            <span>Python</span><span>Z-Score Anomaly</span><span>RUL Model</span><span>Power BI</span><span>SQL</span><span>GitHub Actions</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="project-card glass-card" data-category="data-engineering machine-learning analytics">
                     
                     <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/forecast_vs_actual.webp" data-title="AI-ML Data Science Simulation">
@@ -635,44 +526,170 @@
                     </div>
                 </div>
                 
-                <div class="project-card glass-card" data-category="machine-learning">
+                <div class="project-card glass-card" data-category="data-engineering">
                     
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/asl_word_signs.webp" data-title="Extending STEM across ASL">
-                        <img src="/assets/asl_word_signs.webp" alt="Extending STEM across ASL chart" class="card-image" loading="lazy" decoding="async"
-                             width="1200" height="675">
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/daily_insights.webp" data-title="Automated Daily Data Insights">
+                        <img src="/assets/daily_insights.webp" alt="Automated Daily Data Insights chart" class="card-image" loading="lazy" decoding="async"
+                             width="1600" height="800">
                         <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Accessibility & Deep Learning</div>
-                        <h3 class="card-title">Extending STEM across ASL</h3>
-                        <p class="card-desc">Teaches 7 STEM concepts in ASL and recognises 29 STEM and computing word signs from video, 75.9% top-1 and 94.8% top-3 on held-out WLASL clips, live from a webcam.</p>
+                        <div class="card-badge">Automation & ETL</div>
+                        <h3 class="card-title">Automated Daily Data Insights</h3>
+                        <p class="card-desc">A daily market-data pipeline on GitHub Actions: pulls yFinance, flags rolling Z-score anomalies and publishes the report, at $0 server cost.</p>
                         <div class="tech-tags">
-                            <span>Python</span><span>PyTorch</span><span>OpenCV</span><span>MediaPipe</span><span>TensorFlow</span><span>Keras</span>
+                            <span>Python</span><span>yFinance API</span><span>Matplotlib</span><span>GitHub Actions</span><span>SQLite</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/automated-data-insights" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card glass-card" data-category="machine-learning analytics">
+                <div class="project-card glass-card" data-category="data-engineering analytics">
                     
-                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/solid_object_confusion_matrix.webp" data-title="Solid Object Detection & Identification">
-                        <img src="/assets/solid_object_confusion_matrix.webp" alt="Solid Object Detection & Identification chart" class="card-image" loading="lazy" decoding="async"
-                             width="1105" height="910">
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/arcgis-commute-flow.svg" data-title="ArcGIS Commute Insights">
+                        <img src="/assets/arcgis-commute-flow.svg" alt="ArcGIS Commute Insights chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
                         <div class="image-overlay"><span>Zoom 🔍</span></div>
                     </div>
                     
                     <div class="card-content">
-                        <div class="card-badge">Computer Vision & Deep Learning</div>
-                        <h3 class="card-title">Solid Object Detection & Identification</h3>
-                        <p class="card-desc">A PyTorch CNN that classifies 7 shape classes at 99.2% on 2,000 held-out images, with OpenCV contour geometry as an independent check, served on AWS Lambda through ONNX.</p>
+                        <div class="card-badge">Geospatial</div>
+                        <h3 class="card-title">ArcGIS Commute Insights</h3>
+                        <p class="card-desc">Ranks companies by drive time from home using the live ArcGIS geocoding and routing services on an interactive map; all 11 tests hit the live APIs.</p>
                         <div class="tech-tags">
-                            <span>Python</span><span>PyTorch</span><span>OpenCV</span><span>CNN Model</span><span>Image Processing</span><span>Git</span>
+                            <span>ArcGIS</span><span>Geocoding</span><span>Vector Tiles</span><span>Geospatial Analysis</span>
                         </div>
                         <div class="card-actions">
-                            <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                            <a href="https://github.com/Deshraj-Jogiya/arcgis-commute-insights" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="software-dev">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/reactive-gateway-flow.svg" data-title="Reactive Job Ingest Gateway">
+                        <img src="/assets/reactive-gateway-flow.svg" alt="Reactive Job Ingest Gateway chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Reactive Systems</div>
+                        <h3 class="card-title">Reactive Job Ingest Gateway</h3>
+                        <p class="card-desc">A non-blocking job-posting ingestion gateway built on Spring WebFlux and R2DBC, republishing ingested postings as a live Server-Sent-Events stream.</p>
+                        <div class="tech-tags">
+                            <span>Java</span><span>Spring Boot</span><span>Spring WebFlux</span><span>Spring Reactive</span><span>R2DBC</span><span>Project Reactor</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="software-dev">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/interview-prep-api-flow.svg" data-title="Interview Prep API">
+                        <img src="/assets/interview-prep-api-flow.svg" alt="Interview Prep API chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Full Stack</div>
+                        <h3 class="card-title">Interview Prep API</h3>
+                        <p class="card-desc">An ASP.NET Core minimal API in C# with Entity Framework Core and SQLite, covered by 19 xUnit tests including an SM-2 spaced-repetition scheduler.</p>
+                        <div class="tech-tags">
+                            <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>Entity Framework Core</span><span>SQLite</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/interview-prep-api" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="software-dev">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/job-notes-flow.svg" data-title="Job Notes">
+                        <img src="/assets/job-notes-flow.svg" alt="Job Notes chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Full Stack</div>
+                        <h3 class="card-title">Job Notes</h3>
+                        <p class="card-desc">A company-research notes app: an Express and MongoDB API with an Angular frontend, both covered by automated tests against a running database.</p>
+                        <div class="tech-tags">
+                            <span>MongoDB</span><span>Express</span><span>Angular</span><span>Node.js</span><span>Mongoose</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/job-notes-app" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="software-dev">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/htmx-search-flow.svg" data-title="Company Search (HTMX)">
+                        <img src="/assets/htmx-search-flow.svg" alt="Company Search (HTMX) chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Full Stack</div>
+                        <h3 class="card-title">Company Search (HTMX)</h3>
+                        <p class="card-desc">Live search with HTMX partial updates on FastAPI and Jinja2, inline editing, and Server-Sent Events syncing every open tab, with no client-side framework.</p>
+                        <div class="tech-tags">
+                            <span>HTMX</span><span>FastAPI</span><span>Jinja2</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/htmx-company-search" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="software-dev">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/interview-prep-mobile-flow.svg" data-title="Interview Prep Mobile">
+                        <img src="/assets/interview-prep-mobile-flow.svg" alt="Interview Prep Mobile chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Full Stack</div>
+                        <h3 class="card-title">Interview Prep Mobile</h3>
+                        <p class="card-desc">A React Native (Expo) app for practising interview questions against the ASP.NET Core API, tested with React Native Testing Library and in a live browser run.</p>
+                        <div class="tech-tags">
+                            <span>React Native</span><span>Expo</span><span>TypeScript</span><span>AsyncStorage</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/interview-prep-mobile" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card glass-card" data-category="software-dev">
+                    
+                    <div class="card-image-wrapper view-dashboard-btn" data-dashboard="/assets/company-blocklist-flow.svg" data-title="Company Blocklist">
+                        <img src="/assets/company-blocklist-flow.svg" alt="Company Blocklist chart" class="card-image" loading="lazy" decoding="async"
+                             width="960" height="350">
+                        <div class="image-overlay"><span>Zoom 🔍</span></div>
+                    </div>
+                    
+                    <div class="card-content">
+                        <div class="card-badge">Full Stack</div>
+                        <h3 class="card-title">Company Blocklist</h3>
+                        <p class="card-desc">A PHP CodeIgniter 4 app for tracking companies to avoid, with bulk CSV import, a check against California WARN Act layoff notices, and 12 feature tests through the full router, controller and model stack.</p>
+                        <div class="tech-tags">
+                            <span>PHP</span><span>CodeIgniter 4</span><span>SQLite</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/Deshraj-Jogiya/company-blocklist" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
                         </div>
                     </div>
                 </div>
@@ -1046,40 +1063,132 @@
                 <p class="section-subtitle">The tools behind the projects and roles above, grouped by area.</p>
             </div>
             
-            <div class="skills-rows">
+            <div class="skills-grid skills-cards">
                 
-                <div class="skill-row glass-card">
+                <div class="skill-category glass-card">
                     <h3>Generative AI, LLMs & Agentic Systems</h3>
-                    <ul class="skill-chips">
-                        <li>LangChain, LlamaIndex & Semantic Kernel</li><li>MCP (Model Context Protocol) & Tool Calling</li><li>ReAct Agent Workflows & Autonomous Agents</li><li>Retrieval-Augmented Generation (RAG) & Fine-Tuning (LoRA/PEFT)</li><li>Vector Databases (pgvector, ChromaDB, Supabase RLS)</li><li>OpenAI APIs (GPT-4o mini) & Gemini LLM Integration</li><li>LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)</li><li>LLM Quantization & Pinecone Vector Search</li>
+                    <ul>
+                        
+                        <li>LangChain, LlamaIndex & Semantic Kernel</li>
+                        
+                        <li>MCP (Model Context Protocol) & Tool Calling</li>
+                        
+                        <li>ReAct Agent Workflows & Autonomous Agents</li>
+                        
+                        <li>Retrieval-Augmented Generation (RAG) & Fine-Tuning (LoRA/PEFT)</li>
+                        
+                        <li>Vector Databases (pgvector, ChromaDB, Supabase RLS)</li>
+                        
+                        <li>OpenAI APIs (GPT-4o mini) & Gemini LLM Integration</li>
+                        
+                        <li>LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)</li>
+                        
+                        <li>LLM Quantization & Pinecone Vector Search</li>
+                        
                     </ul>
                 </div>
                 
-                <div class="skill-row glass-card">
+                <div class="skill-category glass-card">
                     <h3>Machine Learning & Deep Learning Frameworks</h3>
-                    <ul class="skill-chips">
-                        <li>PyTorch, Jax, TensorFlow & Keras Deep Learning</li><li>Scikit-Learn Modeling (Random Forest, XGBoost, K-Means)</li><li>Computer Vision & Pattern Recognition (OpenCV, YOLO CNNs)</li><li>Statistical Drift Auditing (KS-Test, PSI) & MLflow MLOps</li><li>Responsible AI Governance (FTC & EU AI Act Bias Auditing)</li><li>Financial & Audit Anomaly Detection (Benford's Law, Isolation Forest)</li><li>Hypothesis Testing & Z-Test A/B Experimentation</li><li>Forecasting & Scenario Analysis (Predictive Analysis)</li>
+                    <ul>
+                        
+                        <li>PyTorch, Jax, TensorFlow & Keras Deep Learning</li>
+                        
+                        <li>Scikit-Learn Modeling (Random Forest, XGBoost, K-Means)</li>
+                        
+                        <li>Computer Vision & Pattern Recognition (OpenCV, YOLO CNNs)</li>
+                        
+                        <li>Statistical Drift Auditing (KS-Test, PSI) & MLflow MLOps</li>
+                        
+                        <li>Responsible AI Governance (FTC & EU AI Act Bias Auditing)</li>
+                        
+                        <li>Financial & Audit Anomaly Detection (Benford's Law, Isolation Forest)</li>
+                        
+                        <li>Hypothesis Testing & Z-Test A/B Experimentation</li>
+                        
+                        <li>Forecasting & Scenario Analysis (Predictive Analysis)</li>
+                        
                     </ul>
                 </div>
                 
-                <div class="skill-row glass-card">
+                <div class="skill-category glass-card">
                     <h3>Data Engineering, Platforms & Cloud</h3>
-                    <ul class="skill-chips">
-                        <li>PySpark & Spark SQL Large-Scale Data Processing</li><li>Databricks Platform & dbt Dimensional Transformations</li><li>AWS Cloud Infrastructure (S3, Glue, Lambda, EC2)</li><li>GCP (Google Cloud Platform, BigQuery, Vertex AI) & Azure (ADLS Gen2)</li><li>Snowflake Cloud Data Warehousing & Star Schema Modeling</li><li>Apache Airflow & Dagster Pipeline Orchestration</li><li>Great Expectations Data Quality Rules & Governance</li><li>Table Formats (Delta Lake, Apache Iceberg, Parquet)</li><li>Apache Kafka & Reverse ETL</li><li>Hadoop, Hive & AWS Athena</li>
+                    <ul>
+                        
+                        <li>PySpark & Spark SQL Large-Scale Data Processing</li>
+                        
+                        <li>Databricks Platform & dbt Dimensional Transformations</li>
+                        
+                        <li>AWS Cloud Infrastructure (S3, Glue, Lambda, EC2)</li>
+                        
+                        <li>GCP (Google Cloud Platform, BigQuery, Vertex AI) & Azure (ADLS Gen2)</li>
+                        
+                        <li>Snowflake Cloud Data Warehousing & Star Schema Modeling</li>
+                        
+                        <li>Apache Airflow & Dagster Pipeline Orchestration</li>
+                        
+                        <li>Great Expectations Data Quality Rules & Governance</li>
+                        
+                        <li>Table Formats (Delta Lake, Apache Iceberg, Parquet)</li>
+                        
+                        <li>Apache Kafka & Reverse ETL</li>
+                        
+                        <li>Hadoop, Hive & AWS Athena</li>
+                        
                     </ul>
                 </div>
                 
-                <div class="skill-row glass-card">
+                <div class="skill-category glass-card">
                     <h3>Full Stack & Software Engineering</h3>
-                    <ul class="skill-chips">
-                        <li>Python Backend Microservices (FastAPI, Flask, Asyncio)</li><li>Core Java, Spring Boot & Spring Reactive Engineering</li><li>C# & .NET Framework Backend Services</li><li>JavaScript, TypeScript & Node.js/Express APIs</li><li>React JS, React Native Mobile & Angular Web Interfaces</li><li>PHP & CodeIgniter 3/4 Application Platforms</li><li>RESTful APIs, GraphQL & Microservices Architecture</li><li>Data Structures, Algorithms & Object-Oriented System Design</li><li>PowerApps & Agile/Scrum Delivery</li>
+                    <ul>
+                        
+                        <li>Python Backend Microservices (FastAPI, Flask, Asyncio)</li>
+                        
+                        <li>Core Java, Spring Boot & Spring Reactive Engineering</li>
+                        
+                        <li>C# & .NET Framework Backend Services</li>
+                        
+                        <li>JavaScript, TypeScript & Node.js/Express APIs</li>
+                        
+                        <li>React JS, React Native Mobile & Angular Web Interfaces</li>
+                        
+                        <li>PHP & CodeIgniter 3/4 Application Platforms</li>
+                        
+                        <li>RESTful APIs, GraphQL & Microservices Architecture</li>
+                        
+                        <li>Data Structures, Algorithms & Object-Oriented System Design</li>
+                        
+                        <li>PowerApps & Agile/Scrum Delivery</li>
+                        
                     </ul>
                 </div>
                 
-                <div class="skill-row glass-card">
+                <div class="skill-category glass-card">
                     <h3>DevOps, Tooling & Analytics</h3>
-                    <ul class="skill-chips">
-                        <li>Docker Containerization & Kubernetes Cluster Scaling</li><li>Git & GitHub Actions CI/CD Automated Pipelines</li><li>Terraform Infrastructure as Code (IaC) & Jenkins</li><li>AI Developer Productivity Tools (Cursor, Claude Code, GitHub Copilot)</li><li>Power BI (DAX Modeling, KPI Dashboards)</li><li>Tableau (LOD Expressions, Executive Storytelling)</li><li>ArcGIS Geospatial Emissions Analytics & Chart.js Visualizations</li><li>Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)</li><li>Microsoft Excel, SSRS & SSAS Reporting</li><li>Unit & Integration Testing (PyTest)</li><li>Incident Response & Production Monitoring</li>
+                    <ul>
+                        
+                        <li>Docker Containerization & Kubernetes Cluster Scaling</li>
+                        
+                        <li>Git & GitHub Actions CI/CD Automated Pipelines</li>
+                        
+                        <li>Terraform Infrastructure as Code (IaC) & Jenkins</li>
+                        
+                        <li>AI Developer Productivity Tools (Cursor, Claude Code, GitHub Copilot)</li>
+                        
+                        <li>Power BI (DAX Modeling, KPI Dashboards)</li>
+                        
+                        <li>Tableau (LOD Expressions, Executive Storytelling)</li>
+                        
+                        <li>ArcGIS Geospatial Emissions Analytics & Chart.js Visualizations</li>
+                        
+                        <li>Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)</li>
+                        
+                        <li>Microsoft Excel, SSRS & SSAS Reporting</li>
+                        
+                        <li>Unit & Integration Testing (PyTest)</li>
+                        
+                        <li>Incident Response & Production Monitoring</li>
+                        
                     </ul>
                 </div>
                 
@@ -1128,6 +1237,8 @@
                         
                         <li>Delivered Power BI KPI dashboards for executive visibility into revenue trends and ML performance metrics.</li>
                         
+                        <li>Developed PowerApps and React components on relational databases that automate alerts and track user workflows.</li>
+                        
                     </ul>
                     
                 </div>
@@ -1146,6 +1257,8 @@
                         
                         <li>Wrote SQL against relational databases (joins, views, transactions, stored procedures), including from Python.</li>
                         
+                        <li>Applied generative AI tools to data analysis tasks in the program's generative AI course.</li>
+                        
                     </ul>
                     
                 </div>
@@ -1156,13 +1269,29 @@
                         Outskill · Oct 2025
                     </p>
                     
+                    <ul>
+                        
+                        <li>Two-day intensive on applied generative AI: advanced prompt engineering, custom AI assistants, no-code AI agents and workflow automation.</li>
+                        
+                        <li>Live build sessions with Claude, Replit and Perplexity, covering AI-assisted app development and content, image and video generation.</li>
+                        
+                    </ul>
+                    
                 </div>
                 
                 <div class="glass-card cert-card">
                     <h3>Guinness World Record — AI Training Hackathon (Kanz)</h3>
                     <p class="cert-meta">
-                        Jul 2026
+                        Kanz · Jul 2026
                     </p>
+                    
+                    <ul>
+                        
+                        <li>Took part in Kanz's week-long online AI training hackathon, recognised by Guinness World Records in July 2026, with 14,075 participants.</li>
+                        
+                        <li>Built and published a working AI app on day one, then extended it through the week's training sessions.</li>
+                        
+                    </ul>
                     
                 </div>
                 
@@ -1171,6 +1300,16 @@
                     <p class="cert-meta">
                         Completed
                     </p>
+                    
+                    <ul>
+                        
+                        <li>Worked as a data analyst advising a social-media client on its content strategy.</li>
+                        
+                        <li>Cleaned, merged and modelled 7 datasets to find the 5 content categories with the highest audience engagement.</li>
+                        
+                        <li>Presented the findings to the client in a slide deck and a recorded presentation.</li>
+                        
+                    </ul>
                     
                 </div>
                 
@@ -1458,6 +1597,7 @@
 <li style="font-size: 0.85em;">Cleaned, analyzed, and visualized data with Excel, SQL, Python (Pandas, NumPy, Matplotlib, Seaborn), and Jupyter, including a web-scraping project and an end-to-end capstone.</li>
 <li style="font-size: 0.85em;">Built interactive dashboards in Excel, IBM Cognos Analytics, Looker, Plotly, and Dash.</li>
 <li style="font-size: 0.85em;">Wrote SQL against relational databases (joins, views, transactions, stored procedures), including from Python.</li>
+<li style="font-size: 0.85em;">Applied generative AI tools to data analysis tasks in the program's generative AI course.</li>
 </ul>
 </div>
 
@@ -1465,14 +1605,20 @@
 <h4>Generative AI Mastermind</h4>
 <p class="resume-edu-inst">Outskill</p>
 <p class="resume-edu-date">Oct 2025</p>
-
+<ul style="margin: 0.35rem 0 0 1rem; padding: 0;">
+<li style="font-size: 0.85em;">Two-day intensive on applied generative AI: advanced prompt engineering, custom AI assistants, no-code AI agents and workflow automation.</li>
+<li style="font-size: 0.85em;">Live build sessions with Claude, Replit and Perplexity, covering AI-assisted app development and content, image and video generation.</li>
+</ul>
 </div>
 
 <div class="resume-edu-item" style="margin-bottom: 0.75rem;">
 <h4>Guinness World Record — AI Training Hackathon (Kanz)</h4>
-
+<p class="resume-edu-inst">Kanz</p>
 <p class="resume-edu-date">Jul 2026</p>
-
+<ul style="margin: 0.35rem 0 0 1rem; padding: 0;">
+<li style="font-size: 0.85em;">Took part in Kanz's week-long online AI training hackathon, recognised by Guinness World Records in July 2026, with 14,075 participants.</li>
+<li style="font-size: 0.85em;">Built and published a working AI app on day one, then extended it through the week's training sessions.</li>
+</ul>
 </div>
 
 <div class="resume-edu-item" style="margin-bottom: 0.75rem;">
@@ -1501,7 +1647,11 @@
 <h4>Accenture North America - Data Analytics and Visualization Job Simulation</h4>
 
 <p class="resume-edu-date">Completed</p>
-
+<ul style="margin: 0.35rem 0 0 1rem; padding: 0;">
+<li style="font-size: 0.85em;">Worked as a data analyst advising a social-media client on its content strategy.</li>
+<li style="font-size: 0.85em;">Cleaned, merged and modelled 7 datasets to find the 5 content categories with the highest audience engagement.</li>
+<li style="font-size: 0.85em;">Presented the findings to the client in a slide deck and a recorded presentation.</li>
+</ul>
 </div>
 
 <div class="resume-edu-item" style="margin-bottom: 0.75rem;">
@@ -1694,17 +1844,19 @@
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Reactive Job Ingest Gateway <a href="https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<h4>Job Market Lakehouse <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
 <span>Sep 2026</span>
 </div>
-<p class="resume-job-company">Technologies: Java, Spring Boot, Spring WebFlux, Spring Reactive, R2DBC, Project Reactor</p>
+<p class="resume-job-company">Technologies: PySpark, Spark SQL, Scala, Great Expectations, Apache Airflow</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">Non-Blocking Ingestion API: Built a Spring WebFlux REST endpoint that persists incoming job-posting events via R2DBC without blocking a thread per request.</li>
+<li class="resume-bullet" data-role="de">PySpark Transformation Pipeline: Built PySpark job over <strong>60k</strong> synthetic postings -- a join, a groupBy/agg salary-stats aggregation, and a dense_rank() window function ranking postings within each industry.</li>
 
-<li class="resume-bullet" data-role="sde">Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying Sinks.Many, so a client connecting mid-stream still sees recent history before live updates.</li>
+<li class="resume-bullet" data-role="de">Scala Spark Job: Wrote a complementary Scala Spark SQL job (monthly posting-volume-by-source aggregation), run via spark-shell against Spark distribution.</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: Packaged and ran the application, hitting it with live curl requests (including SSE subscriber receiving an event ingested after it connected) -- found and fixed two bugs surfaced only by running it, not just the test suite.</li>
+<li class="resume-bullet" data-role="de">Data Quality Gating: Wrote 11 Great Expectations checks (row counts, categorical sets, uniqueness, a cross-column comparison) validating the PySpark output.</li>
+
+<li class="resume-bullet" data-role="de">Pipeline Orchestration: Built Airflow DAG (generate -&gt; transform -&gt; validate) verified end-to-end via `airflow dags test` -- fixed pydantic/typing_extensions dependency conflict by isolating Airflow's own environment from the pipeline's.</li>
 
 </ul>
 </div>
@@ -1728,121 +1880,189 @@
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Job Market Lakehouse <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2026</span>
+<h4>FinTech Credit Risk & Fraud Command Center <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Oct 2025 – Dec 2025</span>
 </div>
-<p class="resume-job-company">Technologies: PySpark, Spark SQL, Scala, Great Expectations, Apache Airflow</p>
+<p class="resume-job-company">Technologies: FastAPI, Python, SQL, Scikit-Learn, Chart.js, SQLite, XGBoost, GitHub Actions, MLflow, GraphQL</p>
 <ul>
 
-<li class="resume-bullet" data-role="de">PySpark Transformation Pipeline: Built PySpark job over <strong>60k</strong> synthetic postings -- a join, a groupBy/agg salary-stats aggregation, and a dense_rank() window function ranking postings within each industry.</li>
+<li class="resume-bullet" data-role="de">Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation (67 ms median in the test suite).</li>
 
-<li class="resume-bullet" data-role="de">Scala Spark Job: Wrote a complementary Scala Spark SQL job (monthly posting-volume-by-source aggregation), run via spark-shell against Spark distribution.</li>
+<li class="resume-bullet" data-role="ds">Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with <strong>93.4%</strong> precision on declined applications (0.92 ROC-AUC on a held-out set), tracked in MLflow for experiment comparison.</li>
 
-<li class="resume-bullet" data-role="de">Data Quality Gating: Wrote 11 Great Expectations checks (row counts, categorical sets, uniqueness, a cross-column comparison) validating the PySpark output.</li>
+<li class="resume-bullet" data-role="de">Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration to streamline credit approval cycles.</li>
 
-<li class="resume-bullet" data-role="de">Pipeline Orchestration: Built Airflow DAG (generate -&gt; transform -&gt; validate) verified end-to-end via `airflow dags test` -- fixed pydantic/typing_extensions dependency conflict by isolating Airflow's own environment from the pipeline's.</li>
+<li class="resume-bullet" data-role="ds">Real-Time Anomaly Flagging: Embedded velocity, amount-spike and foreign-location rules and scored them against labelled planted fraud; the velocity rule caught all <strong>1,110</strong> planted card-testing charges with no false alarms.</li>
+
+<li class="resume-bullet" data-role="de">GraphQL API Layer: Added a Strawberry-GraphQL query layer alongside the existing REST endpoints, serving customer and loan data from the same database.</li>
 
 </ul>
 </div>
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Job Notes <a href="https://github.com/Deshraj-Jogiya/job-notes-app" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2026</span>
+<h4>TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Aug 2025 – Nov 2025</span>
 </div>
-<p class="resume-job-company">Technologies: MongoDB, Express, Angular, Node.js, Mongoose</p>
+<p class="resume-job-company">Technologies: Python, SQL, Snowflake, Azure ADLS, Streamlit UI, Scikit-Learn, SQL Server, Terraform, Parquet, Delta Lake, Apache Iceberg, TypeScript, Jenkins</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">Express + MongoDB API: Built REST API (Express, Mongoose) for company-research notes, backed by MongoDB instance -- 4 integration tests (Jest + Supertest) against database, not a mock.</li>
+<li class="resume-bullet" data-role="de">ElevateMe Bootcamp Capstone: Built on the bootcamp's business data, connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit, accelerating financial queries by <strong>45%</strong> and achieving <strong>100%</strong> payment reconciliation accuracy.</li>
 
-<li class="resume-bullet" data-role="sde">Angular Frontend: Built Angular app (generated via the official CLI) fetching, creating, and deleting notes against the API, with 3 TestBed + HttpClientTestingModule tests.</li>
+<li class="resume-bullet" data-role="de">Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit, delivering intuitive event data visualization components.</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: Both the API and the Angular test suite pass in CI; fixed bug (Puppeteer's Chromium has no arm64 Linux build) by switching to a system Chromium install.</li>
+<li class="resume-bullet" data-role="ds">Predictive Contract Risk Model: Deployed a Random Forest model predicting contract cancellation risk with <strong>86.20%</strong> accuracy (0.87 ROC-AUC), served via a Snowflake Python UDF for real-time inference directly from SQL.</li>
+
+<li class="resume-bullet" data-role="de">Infrastructure as Code: Provisioned the production data warehouse -- Azure ADLS Gen2 storage, Snowflake database/schemas/warehouse, and the storage integration connecting them -- via Terraform.</li>
+
+<li class="resume-bullet" data-role="de">Table Format Layer: Loaded staged extracts into Delta Lake and Apache Iceberg tables (native deltalake library and pyiceberg's SQL catalog) as a transactional consumption layer over the raw Parquet staging area.</li>
+
+<li class="resume-bullet" data-role="de">Data Contract Validation: Built a TypeScript CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.</li>
+
+<li class="resume-bullet" data-role="de">CI/CD Pipeline: Authored a Jenkins declarative pipeline (per-stage Docker agents) mirroring the existing GitHub Actions CI, verified against temporary Jenkins instance -- found and fixed two environment bugs (Docker socket group permissions, a missing system ODBC library) surfaced only by running it.</li>
 
 </ul>
 </div>
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Interview Prep API <a href="https://github.com/Deshraj-Jogiya/interview-prep-api" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2026</span>
+<h4>AI Model Observability & Fairness Audits <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Nov 2025 – Feb 2026</span>
 </div>
-<p class="resume-job-company">Technologies: C#, .NET, ASP.NET Core, Entity Framework Core, SQLite</p>
+<p class="resume-job-company">Technologies: Python, MLflow, Drift Audit, KS-Test, PSI, Responsible AI, SQL, Tableau, GitHub Actions</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">Minimal API: Built ASP.NET Core minimal API (C#) for browsing/adding interview questions, backed by Entity Framework Core + SQLite.</li>
+<li class="resume-bullet" data-role="ds">MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).</li>
 
-<li class="resume-bullet" data-role="sde">Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries, plus SM-2 spaced-repetition scheduling of practice attempts with streak and mastery stats.</li>
+<li class="resume-bullet" data-role="general">Bias &amp; Fairness Auditing: Evaluates disparate impact, demographic parity and Equal Opportunity (true-positive-rate gap) bias metrics, writing guardrail alerts to an audit table, in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: 19 xUnit tests -- 12 integration tests (WebApplicationFactory + in-memory SQLite connection) and 7 for the SM-2 scheduler -- plus a hand-run curl verification against the live app -- all passing.</li>
+<li class="resume-bullet" data-role="de">Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in published interactive Tableau dashboard (public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard) -- a live log-scale drift-trend chart plus subgroup fairness comparison over <strong>30,000</strong> simulated inference records.</li>
+
+<li class="resume-bullet" data-role="de">Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.</li>
+
+<li class="resume-bullet" data-role="ds">Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days and climbs past 0.25 exactly where the KS p-value collapses, tracking the same drift.</li>
 
 </ul>
 </div>
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Company Blocklist <a href="https://github.com/Deshraj-Jogiya/company-blocklist" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2026</span>
+<h4>Tax Anomaly Audit Compliance Engine <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2025 – Oct 2025</span>
 </div>
-<p class="resume-job-company">Technologies: PHP, CodeIgniter 4, SQLite</p>
+<p class="resume-job-company">Technologies: Python, Benford's Law, Isolation Forest, Power BI, SQLite, GitHub Actions, Dagster</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller, plus bulk CSV import (imported/skipped/rejected rows) and a California WARN Act layoff-notice check.</li>
+<li class="resume-bullet" data-role="de">General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time; vectorised entry validation runs <strong>99.9%</strong> faster than entry-by-entry checks on <strong>100,000</strong> entries), orchestrated as a Dagster asset graph.</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: 12 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.</li>
+<li class="resume-bullet" data-role="ds">Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions, adding a tax-rate rule layer for <strong>97.8%</strong> precision and <strong>95.7%</strong> recall, measured against a separate table of known injected anomalies.</li>
 
-<li class="resume-bullet" data-role="sde">Found and fixed two CodeIgniter testing gotchas: DatabaseTestTrait's namespace defaulting to test-support fixtures only, and assertJSONFragment not doing nested matching against list responses.</li>
+<li class="resume-bullet" data-role="de">Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>; working in risk-priority order, an auditor finds <strong>90%</strong> of anomalies after opening 43 entries instead of <strong>1,108</strong> (<strong>96%</strong> less review work).</li>
+
+<li class="resume-bullet" data-role="general">Lineage &amp; Audit Control: Enforced strict data lineage logging and schema validation rules across enterprise financial audit records.</li>
 
 </ul>
 </div>
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Interview Prep Mobile <a href="https://github.com/Deshraj-Jogiya/interview-prep-mobile" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2026</span>
+<h4>Multi-State Land Use Emissions Analysis <a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Apr 2025 – Nov 2025</span>
 </div>
-<p class="resume-job-company">Technologies: React Native, Expo, TypeScript, AsyncStorage</p>
+<p class="resume-job-company">Technologies: Python, SQLite, Random Forest, ETL Ingestion, ArcGIS, Tableau, GitHub Actions</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">React Native App: Built Expo app browsing/practicing interview-prep questions against a companion ASP.NET Core API, with local persistence via AsyncStorage.</li>
+<li class="resume-bullet" data-role="de">Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly (10.2 hours in the median week, counted from the pipeline's own work over 30 weeks).</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: React Native Testing Library tests, plus a full live integration check -- Metro web export served over nginx, loaded in headless Chromium on the same Docker network as the running API, confirming correct data end-to-end with zero console errors.</li>
+<li class="resume-bullet" data-role="ds">Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy (<strong>94.2%</strong> year-ahead on the EPA's 1990-2022 state land-use inventory).</li>
 
-<li class="resume-bullet" data-role="sde">Found and fixed two bugs: AsyncStorage needing an explicit jest.mock() (not just the package installed), and Hermes' bytecode compiler having no arm64 Linux build -- documented transparently rather than skipped.</li>
+<li class="resume-bullet" data-role="de">ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong> (the vectorised shock detector runs <strong>52%</strong> faster with identical flags).</li>
+
+<li class="resume-bullet" data-role="de">Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.</li>
 
 </ul>
 </div>
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Company Search (HTMX) <a href="https://github.com/Deshraj-Jogiya/htmx-company-search" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2026</span>
+<h4>Real-Time IoT Telematics & Predictive Maintenance <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Jul 2024 – Sep 2024</span>
 </div>
-<p class="resume-job-company">Technologies: HTMX, FastAPI, Jinja2</p>
+<p class="resume-job-company">Technologies: Python, Z-Score Anomaly, RUL Model, Power BI, SQL, GitHub Actions, Jax</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework), with inline editing and Server-Sent Events syncing changes across open tabs.</li>
+<li class="resume-bullet" data-role="de">High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline in Python to ingest high-frequency EV battery and motor telemetry sensor logs in micro-batches.</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: 12 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.</li>
+<li class="resume-bullet" data-role="ds">Anomaly Detection &amp; Device Health: Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures (<strong>98.1%</strong> recall, <strong>90.5%</strong> precision against 214 planted sensor spikes).</li>
 
-<li class="resume-bullet" data-role="sde">Found and fixed bug the TestClient tests couldn't catch: hx-trigger's keyup-only binding never fired for autofill/paste, only keystrokes -- fixed to an input-based trigger and re-verified live.</li>
+<li class="resume-bullet" data-role="ds">Degradation &amp; RUL Modeling: Implemented degradation modeling using exponential decay equations to estimate battery Remaining Useful Life (RUL) with Power BI dashboard tracking.</li>
+
+<li class="resume-bullet" data-role="general">Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts before component breakdown.</li>
+
+<li class="resume-bullet" data-role="de">Jax-Accelerated Recurrence: Reimplemented the sequential health-decay/RUL calculation as a single JIT-compiled jax.lax.scan, verified numerically identical to the original per-row implementation.</li>
 
 </ul>
 </div>
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>ArcGIS Commute Insights <a href="https://github.com/Deshraj-Jogiya/arcgis-commute-insights" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2026</span>
+<h4>Sales Analytics & RFM Customer Segmentation Pipeline <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Dec 2024 – Jan 2025</span>
 </div>
-<p class="resume-job-company">Technologies: ArcGIS, Geocoding, Vector Tiles, Geospatial Analysis</p>
+<p class="resume-job-company">Technologies: Python, SQLite, K-Means, PCA, Power BI, Seaborn, GitHub Actions, DAX</p>
 <ul>
 
-<li class="resume-bullet" data-role="de">Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by ArcGIS World Route drive time (great-circle distance as the fallback) on an interactive Leaflet map.</li>
+<li class="resume-bullet" data-role="de">Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>106,228</strong> customer transactions (<strong>2,000</strong> customers over 2 years) for business intelligence reporting.</li>
 
-<li class="resume-bullet" data-role="de">Basemap Vector Tiles: Fetched and decoded Mapbox Vector Tile (.pbf) data from Esri's World Basemap v2 service -- the tile URL template was discovered by reading the basemap style JSON's sources, not assumed from docs, after an initial guessed URL returned 404.</li>
+<li class="resume-bullet" data-role="ds">RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas that explain <strong>93.9%</strong> of the variance in the scaled RFM features.</li>
 
-<li class="resume-bullet" data-role="de">Verified End-to-End: All 11 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.</li>
+<li class="resume-bullet" data-role="de">Executive Power BI Dashboard: Built interactive Power BI report with star-schema relationships and DAX measures over the pipeline live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.</li>
+
+<li class="resume-bullet" data-role="general">Pareto 80/20 Insights: Applied Pareto analysis showing the top <strong>20%</strong> of customers generate <strong>79.9%</strong> of revenue, isolating them for targeted retention campaigns.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Extending STEM across ASL <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Apr 2023 – Mar 2024</span>
+</div>
+<p class="resume-job-company">Technologies: Python, PyTorch, OpenCV, MediaPipe, TensorFlow, Keras, CNN Model, Flask, ASL Recognition, GitHub Actions</p>
+<ul>
+
+<li class="resume-bullet" data-role="ds">Deep Learning Web Application: Pioneered an inclusive Python web platform leveraging TensorFlow, PyTorch, Keras, and Flask, making 7 STEM concepts accessible to ASL users and recognising 29 STEM and computing word signs from video.</li>
+
+<li class="resume-bullet" data-role="ds">Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging CNN models and contour geometry, cutting gesture redundancy and boosting learning efficiency by <strong>30%</strong> (MediaPipe hand landmarks, OpenCV contour features and a PyTorch GRU reach <strong>75.9%</strong> top-1 and <strong>94.8%</strong> top-3 on held-out WLASL clips; the 29 signs share 18 hand shapes, <strong>38%</strong> fewer to practise).</li>
+
+<li class="resume-bullet" data-role="general">User Feedback &amp; Evaluation: Synthesized feedback from <strong>50+</strong> STEM students, achieving a user satisfaction score of 4.6/5 based on post-lesson survey evaluations.</li>
+
+<li class="resume-bullet" data-role="de">Real-Time Video Frame Processing: Optimized OpenCV frame capture and pre-processing steps for low-latency web browser sign gesture classification (a two-second webcam recording is recognised in about 1.1 s on a laptop CPU).</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Member Messages QA System: Semantic Search & NER-Based Question Answering <a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Oct 2025 – Nov 2025</span>
+</div>
+<p class="resume-job-company">Technologies: Python, Sentence-Transformers, spaCy, Scikit-Learn, Pandas, GitHub Actions, LlamaIndex, Semantic Kernel, LangChain</p>
+<ul>
+
+<li class="resume-bullet" data-role="ds">Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions about member data, ranking unstructured messages by cosine similarity over SentenceTransformer (all-MiniLM-L6-v2) embeddings.</li>
+
+<li class="resume-bullet" data-role="ds">Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages; on 26 labelled paraphrased questions it finds the right member <strong>100%</strong> of the time and the right answer <strong>96%</strong>.</li>
+
+<li class="resume-bullet" data-role="de">Dynamic Information Extraction: Implemented regex-based extraction for contact info, numeric quantities, and companion/group references from unstructured message text, with fallback to the closest-matching message when no structured answer applies.</li>
+
+<li class="resume-bullet" data-role="general">Architecture Tradeoff Analysis: Evaluated and documented five candidate approaches (rule-based matching, knowledge graphs, fine-tuned LLMs, hybrid retrieval) before selecting embeddings-based semantic search for its balance of speed, accuracy, and maintainability.</li>
+
+<li class="resume-bullet" data-role="ds">LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using LlamaIndex's VectorStoreIndex over the same embedding model, verified against the message dataset.</li>
+
+<li class="resume-bullet" data-role="ds">Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native Semantic Kernel plugin functions, orchestrated through Kernel instance.</li>
+
+<li class="resume-bullet" data-role="ds">RAG Pipeline: Built retrieve-then-generate RAG chain with LangChain, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and end-to-end generation test.</li>
 
 </ul>
 </div>
@@ -1889,168 +2109,21 @@
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>AI Model Observability & Fairness Audits <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Nov 2025 – Feb 2026</span>
+<h4>Solid Object Detection & Identification <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>May 2020 – Dec 2020</span>
 </div>
-<p class="resume-job-company">Technologies: Python, MLflow, Drift Audit, KS-Test, PSI, Responsible AI, SQL, Tableau, GitHub Actions</p>
+<p class="resume-job-company">Technologies: Python, PyTorch, OpenCV, CNN Model, Image Processing, Git, GitHub Actions, AWS Lambda, AWS S3, ONNX Runtime</p>
 <ul>
 
-<li class="resume-bullet" data-role="ds">MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).</li>
+<li class="resume-bullet" data-role="ds">Computer Vision &amp; Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.</li>
 
-<li class="resume-bullet" data-role="general">Bias &amp; Fairness Auditing: Evaluates disparate impact, demographic parity and Equal Opportunity (true-positive-rate gap) bias metrics, writing guardrail alerts to an audit table, in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).</li>
+<li class="resume-bullet" data-role="ds">High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI); contour geometry independently confirms the CNN on <strong>66%</strong> of images, and those confirmed predictions are <strong>99.9%</strong> correct.</li>
 
-<li class="resume-bullet" data-role="de">Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in published interactive Tableau dashboard (public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard) -- a live log-scale drift-trend chart plus subgroup fairness comparison over <strong>30,000</strong> simulated inference records.</li>
+<li class="resume-bullet" data-role="general">Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong> (four overlays, up from three: box, label, confidence and the located outline coloured by contour-geometry agreement).</li>
 
-<li class="resume-bullet" data-role="de">Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.</li>
+<li class="resume-bullet" data-role="de">Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification (Canny-located boxes reach a mean IoU of 0.93 against 0.82 for a thresholded mask).</li>
 
-<li class="resume-bullet" data-role="ds">Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days and climbs past 0.25 exactly where the KS p-value collapses, tracking the same drift.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>FinTech Credit Risk & Fraud Command Center <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Oct 2025 – Dec 2025</span>
-</div>
-<p class="resume-job-company">Technologies: FastAPI, Python, SQL, Scikit-Learn, Chart.js, SQLite, XGBoost, GitHub Actions, MLflow, GraphQL</p>
-<ul>
-
-<li class="resume-bullet" data-role="de">Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation (67 ms median in the test suite).</li>
-
-<li class="resume-bullet" data-role="ds">Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with <strong>93.4%</strong> precision on declined applications (0.92 ROC-AUC on a held-out set), tracked in MLflow for experiment comparison.</li>
-
-<li class="resume-bullet" data-role="de">Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration to streamline credit approval cycles.</li>
-
-<li class="resume-bullet" data-role="ds">Real-Time Anomaly Flagging: Embedded velocity, amount-spike and foreign-location rules and scored them against labelled planted fraud; the velocity rule caught all <strong>1,110</strong> planted card-testing charges with no false alarms.</li>
-
-<li class="resume-bullet" data-role="de">GraphQL API Layer: Added a Strawberry-GraphQL query layer alongside the existing REST endpoints, serving customer and loan data from the same database.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>Member Messages QA System: Semantic Search & NER-Based Question Answering <a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Oct 2025 – Nov 2025</span>
-</div>
-<p class="resume-job-company">Technologies: Python, Sentence-Transformers, spaCy, Scikit-Learn, Pandas, GitHub Actions, LlamaIndex, Semantic Kernel, LangChain</p>
-<ul>
-
-<li class="resume-bullet" data-role="ds">Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions about member data, ranking unstructured messages by cosine similarity over SentenceTransformer (all-MiniLM-L6-v2) embeddings.</li>
-
-<li class="resume-bullet" data-role="ds">Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages; on 26 labelled paraphrased questions it finds the right member <strong>100%</strong> of the time and the right answer <strong>96%</strong>.</li>
-
-<li class="resume-bullet" data-role="de">Dynamic Information Extraction: Implemented regex-based extraction for contact info, numeric quantities, and companion/group references from unstructured message text, with fallback to the closest-matching message when no structured answer applies.</li>
-
-<li class="resume-bullet" data-role="general">Architecture Tradeoff Analysis: Evaluated and documented five candidate approaches (rule-based matching, knowledge graphs, fine-tuned LLMs, hybrid retrieval) before selecting embeddings-based semantic search for its balance of speed, accuracy, and maintainability.</li>
-
-<li class="resume-bullet" data-role="ds">LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using LlamaIndex's VectorStoreIndex over the same embedding model, verified against the message dataset.</li>
-
-<li class="resume-bullet" data-role="ds">Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native Semantic Kernel plugin functions, orchestrated through Kernel instance.</li>
-
-<li class="resume-bullet" data-role="ds">RAG Pipeline: Built retrieve-then-generate RAG chain with LangChain, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and end-to-end generation test.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Aug 2025 – Nov 2025</span>
-</div>
-<p class="resume-job-company">Technologies: Python, SQL, Snowflake, Azure ADLS, Streamlit UI, Scikit-Learn, SQL Server, Terraform, Parquet, Delta Lake, Apache Iceberg, TypeScript, Jenkins</p>
-<ul>
-
-<li class="resume-bullet" data-role="de">ElevateMe Bootcamp Capstone: Built on the bootcamp's business data, connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit, accelerating financial queries by <strong>45%</strong> and achieving <strong>100%</strong> payment reconciliation accuracy.</li>
-
-<li class="resume-bullet" data-role="de">Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit, delivering intuitive event data visualization components.</li>
-
-<li class="resume-bullet" data-role="ds">Predictive Contract Risk Model: Deployed a Random Forest model predicting contract cancellation risk with <strong>86.20%</strong> accuracy (0.87 ROC-AUC), served via a Snowflake Python UDF for real-time inference directly from SQL.</li>
-
-<li class="resume-bullet" data-role="de">Infrastructure as Code: Provisioned the production data warehouse -- Azure ADLS Gen2 storage, Snowflake database/schemas/warehouse, and the storage integration connecting them -- via Terraform.</li>
-
-<li class="resume-bullet" data-role="de">Table Format Layer: Loaded staged extracts into Delta Lake and Apache Iceberg tables (native deltalake library and pyiceberg's SQL catalog) as a transactional consumption layer over the raw Parquet staging area.</li>
-
-<li class="resume-bullet" data-role="de">Data Contract Validation: Built a TypeScript CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.</li>
-
-<li class="resume-bullet" data-role="de">CI/CD Pipeline: Authored a Jenkins declarative pipeline (per-stage Docker agents) mirroring the existing GitHub Actions CI, verified against temporary Jenkins instance -- found and fixed two environment bugs (Docker socket group permissions, a missing system ODBC library) surfaced only by running it.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>Multi-State Land Use Emissions Analysis <a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Apr 2025 – Nov 2025</span>
-</div>
-<p class="resume-job-company">Technologies: Python, SQLite, Random Forest, ETL Ingestion, ArcGIS, Tableau, GitHub Actions</p>
-<ul>
-
-<li class="resume-bullet" data-role="de">Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly (10.2 hours in the median week, counted from the pipeline's own work over 30 weeks).</li>
-
-<li class="resume-bullet" data-role="ds">Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy (<strong>94.2%</strong> year-ahead on the EPA's 1990-2022 state land-use inventory).</li>
-
-<li class="resume-bullet" data-role="de">ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong> (the vectorised shock detector runs <strong>52%</strong> faster with identical flags).</li>
-
-<li class="resume-bullet" data-role="de">Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>Tax Anomaly Audit Compliance Engine <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Sep 2025 – Oct 2025</span>
-</div>
-<p class="resume-job-company">Technologies: Python, Benford's Law, Isolation Forest, Power BI, SQLite, GitHub Actions, Dagster</p>
-<ul>
-
-<li class="resume-bullet" data-role="de">General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time; vectorised entry validation runs <strong>99.9%</strong> faster than entry-by-entry checks on <strong>100,000</strong> entries), orchestrated as a Dagster asset graph.</li>
-
-<li class="resume-bullet" data-role="ds">Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions, adding a tax-rate rule layer for <strong>97.8%</strong> precision and <strong>95.7%</strong> recall, measured against a separate table of known injected anomalies.</li>
-
-<li class="resume-bullet" data-role="de">Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>; working in risk-priority order, an auditor finds <strong>90%</strong> of anomalies after opening 43 entries instead of <strong>1,108</strong> (<strong>96%</strong> less review work).</li>
-
-<li class="resume-bullet" data-role="general">Lineage &amp; Audit Control: Enforced strict data lineage logging and schema validation rules across enterprise financial audit records.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>Automated Daily Data Insights <a href="https://github.com/Deshraj-Jogiya/automated-data-insights" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Feb 2025 – Mar 2025</span>
-</div>
-<p class="resume-job-company">Technologies: Python, yFinance API, Matplotlib, GitHub Actions, SQLite</p>
-<ul>
-
-<li class="resume-bullet" data-role="de">Stateless Serverless ETL: Wrote Python scripts to fetch market and telemetry datasets from yFinance APIs with automated error handling and logging.</li>
-
-<li class="resume-bullet" data-role="ds">Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.</li>
-
-<li class="resume-bullet" data-role="de">Cron Schedule Uptime: Configured GitHub Actions to run the pipeline daily on cron schedules, achieving <strong>99.9%</strong> uptime with <strong>$0</strong> operational server cost.</li>
-
-<li class="resume-bullet" data-role="general">Automated Data Quality Validation: Embedded input data validation checks to prevent missing market records from corrupting downstream report charts.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>Sales Analytics & RFM Customer Segmentation Pipeline <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Dec 2024 – Jan 2025</span>
-</div>
-<p class="resume-job-company">Technologies: Python, SQLite, K-Means, PCA, Power BI, Seaborn, GitHub Actions, DAX</p>
-<ul>
-
-<li class="resume-bullet" data-role="de">Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>106,228</strong> customer transactions (<strong>2,000</strong> customers over 2 years) for business intelligence reporting.</li>
-
-<li class="resume-bullet" data-role="ds">RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas that explain <strong>93.9%</strong> of the variance in the scaled RFM features.</li>
-
-<li class="resume-bullet" data-role="de">Executive Power BI Dashboard: Built interactive Power BI report with star-schema relationships and DAX measures over the pipeline live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.</li>
-
-<li class="resume-bullet" data-role="general">Pareto 80/20 Insights: Applied Pareto analysis showing the top <strong>20%</strong> of customers generate <strong>79.9%</strong> of revenue, isolating them for targeted retention campaigns.</li>
+<li class="resume-bullet" data-role="de">Real-Time Serverless Inference: Deployed the trained model as a live AWS Lambda function triggered by S3 image uploads -- exported to ONNX (~615KB) so it ships as a plain Lambda zip via onnxruntime, avoiding a PyTorch container image and its ECR storage cost. Verified end-to-end with live S3-to-Lambda integration test running in CI against the deployed AWS infrastructure.</li>
 
 </ul>
 </div>
@@ -2076,27 +2149,6 @@
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Real-Time IoT Telematics & Predictive Maintenance <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Jul 2024 – Sep 2024</span>
-</div>
-<p class="resume-job-company">Technologies: Python, Z-Score Anomaly, RUL Model, Power BI, SQL, GitHub Actions, Jax</p>
-<ul>
-
-<li class="resume-bullet" data-role="de">High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline in Python to ingest high-frequency EV battery and motor telemetry sensor logs in micro-batches.</li>
-
-<li class="resume-bullet" data-role="ds">Anomaly Detection &amp; Device Health: Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures (<strong>98.1%</strong> recall, <strong>90.5%</strong> precision against 214 planted sensor spikes).</li>
-
-<li class="resume-bullet" data-role="ds">Degradation &amp; RUL Modeling: Implemented degradation modeling using exponential decay equations to estimate battery Remaining Useful Life (RUL) with Power BI dashboard tracking.</li>
-
-<li class="resume-bullet" data-role="general">Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts before component breakdown.</li>
-
-<li class="resume-bullet" data-role="de">Jax-Accelerated Recurrence: Reimplemented the sequential health-decay/RUL calculation as a single JIT-compiled jax.lax.scan, verified numerically identical to the original per-row implementation.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
 <h4>AI-ML Data Science Simulation <a href="https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
 <span>Apr 2024 – Jun 2024</span>
 </div>
@@ -2116,19 +2168,138 @@
 
 <div class="resume-job-item">
 <div class="resume-job-header">
-<h4>Extending STEM across ASL <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>Apr 2023 – Mar 2024</span>
+<h4>Automated Daily Data Insights <a href="https://github.com/Deshraj-Jogiya/automated-data-insights" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Feb 2025 – Mar 2025</span>
 </div>
-<p class="resume-job-company">Technologies: Python, PyTorch, OpenCV, MediaPipe, TensorFlow, Keras, CNN Model, Flask, ASL Recognition, GitHub Actions</p>
+<p class="resume-job-company">Technologies: Python, yFinance API, Matplotlib, GitHub Actions, SQLite</p>
 <ul>
 
-<li class="resume-bullet" data-role="ds">Deep Learning Web Application: Pioneered an inclusive Python web platform leveraging TensorFlow, PyTorch, Keras, and Flask, making 7 STEM concepts accessible to ASL users and recognising 29 STEM and computing word signs from video.</li>
+<li class="resume-bullet" data-role="de">Stateless Serverless ETL: Wrote Python scripts to fetch market and telemetry datasets from yFinance APIs with automated error handling and logging.</li>
 
-<li class="resume-bullet" data-role="ds">Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging CNN models and contour geometry, cutting gesture redundancy and boosting learning efficiency by <strong>30%</strong> (MediaPipe hand landmarks, OpenCV contour features and a PyTorch GRU reach <strong>75.9%</strong> top-1 and <strong>94.8%</strong> top-3 on held-out WLASL clips; the 29 signs share 18 hand shapes, <strong>38%</strong> fewer to practise).</li>
+<li class="resume-bullet" data-role="ds">Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.</li>
 
-<li class="resume-bullet" data-role="general">User Feedback &amp; Evaluation: Synthesized feedback from <strong>50+</strong> STEM students, achieving a user satisfaction score of 4.6/5 based on post-lesson survey evaluations.</li>
+<li class="resume-bullet" data-role="de">Cron Schedule Uptime: Configured GitHub Actions to run the pipeline daily on cron schedules, achieving <strong>99.9%</strong> uptime with <strong>$0</strong> operational server cost.</li>
 
-<li class="resume-bullet" data-role="de">Real-Time Video Frame Processing: Optimized OpenCV frame capture and pre-processing steps for low-latency web browser sign gesture classification (a two-second webcam recording is recognised in about 1.1 s on a laptop CPU).</li>
+<li class="resume-bullet" data-role="general">Automated Data Quality Validation: Embedded input data validation checks to prevent missing market records from corrupting downstream report charts.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>ArcGIS Commute Insights <a href="https://github.com/Deshraj-Jogiya/arcgis-commute-insights" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: ArcGIS, Geocoding, Vector Tiles, Geospatial Analysis</p>
+<ul>
+
+<li class="resume-bullet" data-role="de">Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by ArcGIS World Route drive time (great-circle distance as the fallback) on an interactive Leaflet map.</li>
+
+<li class="resume-bullet" data-role="de">Basemap Vector Tiles: Fetched and decoded Mapbox Vector Tile (.pbf) data from Esri's World Basemap v2 service -- the tile URL template was discovered by reading the basemap style JSON's sources, not assumed from docs, after an initial guessed URL returned 404.</li>
+
+<li class="resume-bullet" data-role="de">Verified End-to-End: All 11 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Reactive Job Ingest Gateway <a href="https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: Java, Spring Boot, Spring WebFlux, Spring Reactive, R2DBC, Project Reactor</p>
+<ul>
+
+<li class="resume-bullet" data-role="sde">Non-Blocking Ingestion API: Built a Spring WebFlux REST endpoint that persists incoming job-posting events via R2DBC without blocking a thread per request.</li>
+
+<li class="resume-bullet" data-role="sde">Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying Sinks.Many, so a client connecting mid-stream still sees recent history before live updates.</li>
+
+<li class="resume-bullet" data-role="sde">Verified End-to-End: Packaged and ran the application, hitting it with live curl requests (including SSE subscriber receiving an event ingested after it connected) -- found and fixed two bugs surfaced only by running it, not just the test suite.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Interview Prep API <a href="https://github.com/Deshraj-Jogiya/interview-prep-api" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: C#, .NET, ASP.NET Core, Entity Framework Core, SQLite</p>
+<ul>
+
+<li class="resume-bullet" data-role="sde">Minimal API: Built ASP.NET Core minimal API (C#) for browsing/adding interview questions, backed by Entity Framework Core + SQLite.</li>
+
+<li class="resume-bullet" data-role="sde">Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries, plus SM-2 spaced-repetition scheduling of practice attempts with streak and mastery stats.</li>
+
+<li class="resume-bullet" data-role="sde">Verified End-to-End: 19 xUnit tests -- 12 integration tests (WebApplicationFactory + in-memory SQLite connection) and 7 for the SM-2 scheduler -- plus a hand-run curl verification against the live app -- all passing.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Job Notes <a href="https://github.com/Deshraj-Jogiya/job-notes-app" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: MongoDB, Express, Angular, Node.js, Mongoose</p>
+<ul>
+
+<li class="resume-bullet" data-role="sde">Express + MongoDB API: Built REST API (Express, Mongoose) for company-research notes, backed by MongoDB instance -- 4 integration tests (Jest + Supertest) against database, not a mock.</li>
+
+<li class="resume-bullet" data-role="sde">Angular Frontend: Built Angular app (generated via the official CLI) fetching, creating, and deleting notes against the API, with 3 TestBed + HttpClientTestingModule tests.</li>
+
+<li class="resume-bullet" data-role="sde">Verified End-to-End: Both the API and the Angular test suite pass in CI; fixed bug (Puppeteer's Chromium has no arm64 Linux build) by switching to a system Chromium install.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Company Search (HTMX) <a href="https://github.com/Deshraj-Jogiya/htmx-company-search" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: HTMX, FastAPI, Jinja2</p>
+<ul>
+
+<li class="resume-bullet" data-role="sde">Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework), with inline editing and Server-Sent Events syncing changes across open tabs.</li>
+
+<li class="resume-bullet" data-role="sde">Verified End-to-End: 12 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.</li>
+
+<li class="resume-bullet" data-role="sde">Found and fixed bug the TestClient tests couldn't catch: hx-trigger's keyup-only binding never fired for autofill/paste, only keystrokes -- fixed to an input-based trigger and re-verified live.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Interview Prep Mobile <a href="https://github.com/Deshraj-Jogiya/interview-prep-mobile" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: React Native, Expo, TypeScript, AsyncStorage</p>
+<ul>
+
+<li class="resume-bullet" data-role="sde">React Native App: Built Expo app browsing/practicing interview-prep questions against a companion ASP.NET Core API, with local persistence via AsyncStorage.</li>
+
+<li class="resume-bullet" data-role="sde">Verified End-to-End: React Native Testing Library tests, plus a full live integration check -- Metro web export served over nginx, loaded in headless Chromium on the same Docker network as the running API, confirming correct data end-to-end with zero console errors.</li>
+
+<li class="resume-bullet" data-role="sde">Found and fixed two bugs: AsyncStorage needing an explicit jest.mock() (not just the package installed), and Hermes' bytecode compiler having no arm64 Linux build -- documented transparently rather than skipped.</li>
+
+</ul>
+</div>
+
+<div class="resume-job-item">
+<div class="resume-job-header">
+<h4>Company Blocklist <a href="https://github.com/Deshraj-Jogiya/company-blocklist" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
+<span>Sep 2026</span>
+</div>
+<p class="resume-job-company">Technologies: PHP, CodeIgniter 4, SQLite</p>
+<ul>
+
+<li class="resume-bullet" data-role="sde">CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller, plus bulk CSV import (imported/skipped/rejected rows) and a California WARN Act layoff-notice check.</li>
+
+<li class="resume-bullet" data-role="sde">Verified End-to-End: 12 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.</li>
+
+<li class="resume-bullet" data-role="sde">Found and fixed two CodeIgniter testing gotchas: DatabaseTestTrait's namespace defaulting to test-support fixtures only, and assertJSONFragment not doing nested matching against list responses.</li>
 
 </ul>
 </div>
@@ -2224,27 +2395,6 @@
 <li class="resume-bullet" data-role="sde">Monetization &amp; Reporting: Contributed to backend analytics models tracking click origins and user redemptions, generating <strong>$500</strong> in revenue.</li>
 
 <li class="resume-bullet" data-role="sde">URL Redirection &amp; Hash Indexing: Contributed to designing fast MySQL key-value lookup indices to handle high-frequency short link URL redirections.</li>
-
-</ul>
-</div>
-
-<div class="resume-job-item">
-<div class="resume-job-header">
-<h4>Solid Object Detection & Identification <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
-<span>May 2020 – Dec 2020</span>
-</div>
-<p class="resume-job-company">Technologies: Python, PyTorch, OpenCV, CNN Model, Image Processing, Git, GitHub Actions, AWS Lambda, AWS S3, ONNX Runtime</p>
-<ul>
-
-<li class="resume-bullet" data-role="ds">Computer Vision &amp; Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.</li>
-
-<li class="resume-bullet" data-role="ds">High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI); contour geometry independently confirms the CNN on <strong>66%</strong> of images, and those confirmed predictions are <strong>99.9%</strong> correct.</li>
-
-<li class="resume-bullet" data-role="general">Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong> (four overlays, up from three: box, label, confidence and the located outline coloured by contour-geometry agreement).</li>
-
-<li class="resume-bullet" data-role="de">Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification (Canny-located boxes reach a mean IoU of 0.93 against 0.82 for a thresholded mask).</li>
-
-<li class="resume-bullet" data-role="de">Real-Time Serverless Inference: Deployed the trained model as a live AWS Lambda function triggered by S3 image uploads -- exported to ONNX (~615KB) so it ships as a plain Lambda zip via onnxruntime, avoiding a PyTorch container image and its ECR storage cost. Verified end-to-end with live S3-to-Lambda integration test running in CI against the deployed AWS infrastructure.</li>
 
 </ul>
 </div>
@@ -2616,6 +2766,6 @@
         </div>
     </div>
 
-    <script src="/app.js?v=696e0d44f4" defer></script>
+    <script src="/app.js?v=16244c3ac2" defer></script>
 </body>
 </html>

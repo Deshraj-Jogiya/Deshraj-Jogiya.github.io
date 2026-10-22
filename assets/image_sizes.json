@@ -198,5 +198,37 @@
  "assets/visitor_segments.webp": [
   1350,
   675
+ ],
+ "assets/reactive-gateway-flow.svg": [
+  960,
+  350
+ ],
+ "assets/job-notes-flow.svg": [
+  960,
+  350
+ ],
+ "assets/interview-prep-api-flow.svg": [
+  960,
+  350
+ ],
+ "assets/company-blocklist-flow.svg": [
+  960,
+  350
+ ],
+ "assets/interview-prep-mobile-flow.svg": [
+  960,
+  350
+ ],
+ "assets/htmx-search-flow.svg": [
+  960,
+  350
+ ],
+ "assets/arcgis-commute-flow.svg": [
+  960,
+  350
+ ],
+ "assets/member-qa-flow.svg": [
+  960,
+  350
  ]
 }

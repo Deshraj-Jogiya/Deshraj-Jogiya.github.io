@@ -22,7 +22,7 @@
     <!-- Navigation Header -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo-text">DESHRAJ JOGIYA</a>
+            <a href="#" class="logo-text" aria-label="Deshraj Jogiya, back to top"><span class="logo-mark" aria-hidden="true">DJ</span><span class="logo-name">Deshraj Jogiya</span></a>
             <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -30,13 +30,14 @@
             </button>
             <nav class="nav-links">
                 <a href="#about">About</a>
-                <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
                 <a href="/lab/">Lab</a>
+                <a href="#experience">Experience</a>
                 <a href="#skills">Skills</a>
                 <a href="#certifications">Certifications</a>
                 <a href="#recommendations">Recommendations</a>
-                <button id="tour-nav-btn" class="btn-tour-nav" style="margin-right: 0.5rem;">Tour ⚡</button>
+                <span class="nav-divider" aria-hidden="true"></span>
+                <button id="tour-nav-btn" class="btn-tour-nav">Tour</button>
                 <button id="resume-nav-btn" class="btn-resume-nav">Resume</button>
                 <a href="#contact" class="btn btn-secondary">Connect</a>
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
@@ -242,12 +243,14 @@
                 <p class="section-subtitle">The tools behind the projects and roles above, grouped by area.</p>
             </div>
             
-            <div class="skills-rows">
+            <div class="skills-grid skills-cards">
                 {% for cat in skills %}
-                <div class="skill-row glass-card">
+                <div class="skill-category glass-card">
                     <h3>{{ cat.category }}</h3>
-                    <ul class="skill-chips">
-                        {% for item in cat['items'] %}<li>{{ item }}</li>{% endfor %}
+                    <ul>
+                        {% for item in cat['items'] %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
                 {% endfor %}
@@ -271,7 +274,7 @@
                     </p>
                     {% if cert.bullets %}
                     <ul>
-                        {% for b in cert.bullets[:3] %}
+                        {% for b in cert.bullets[:4] %}
                         <li>{{ b }}</li>
                         {% endfor %}
                     </ul>

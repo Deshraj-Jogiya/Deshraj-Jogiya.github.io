@@ -264,7 +264,7 @@
     {
       "badge": "AI & Process Automation",
       "name": "Job Search CRM & AI Application Tailoring Center",
-      "desc": "An AI job-search platform running in production on Oracle Cloud: LLM tailoring checked by a non-LLM guardrail, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ tests in CI.",
+      "desc": "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.",
       "category": "data-engineering machine-learning",
       "tags": [
         "Python",
@@ -312,69 +312,6 @@
       "team": false
     },
     {
-      "badge": "Reactive Systems",
-      "name": "Reactive Job Ingest Gateway",
-      "desc": "A non-blocking job-posting ingestion gateway built on Spring WebFlux and R2DBC, republishing ingested postings as a live Server-Sent-Events stream.",
-      "category": "software-dev",
-      "tags": [
-        "Java",
-        "Spring Boot",
-        "Spring WebFlux",
-        "Spring Reactive",
-        "R2DBC",
-        "Project Reactor"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway",
-      "bullets": [
-        {
-          "html": "Non-Blocking Ingestion API: Built a Spring WebFlux REST endpoint that persists incoming job-posting events via R2DBC without blocking a thread per request.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying Sinks.Many, so a client connecting mid-stream still sees recent history before live updates.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Verified End-to-End: Packaged and ran the application, hitting it with live curl requests (including SSE subscriber receiving an event ingested after it connected) -- found and fixed two bugs surfaced only by running it, not just the test suite.",
-          "resume_role": "sde"
-        }
-      ],
-      "date": "Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "Data Warehousing",
-      "name": "Job Search dbt Warehouse",
-      "desc": "A dbt dimensional model on a live Databricks SQL warehouse: staging views feeding dimension and fact tables, an incremental snapshot, and data tests CI runs against the warehouse on every push.",
-      "category": "data-engineering analytics",
-      "tags": [
-        "Databricks",
-        "dbt",
-        "SQL",
-        "Dimensional Modeling"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse",
-      "bullets": [
-        {
-          "html": "Dimensional Data Model: Built a dbt project (staging views into dimension and fact tables) on a live Databricks SQL warehouse, including a datediff-based days-to-decision measure and a row_number() window function for interview-round sequencing.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Data Quality Testing: Wrote 22 dbt tests (20 schema tests for uniqueness, not-null, referential integrity and accepted values, plus 2 business-rule tests: a decision date never precedes the applied date, and snapshot counts never go negative), run against the warehouse in CI.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Verified End-to-End: Ran dbt seed/run/test against a live Databricks warehouse (not just parsed) and spot-checked the resulting tables by hand; CI re-runs the same three commands against the same warehouse on every push using repository secrets.",
-          "resume_role": "de"
-        }
-      ],
-      "date": "Sep 2026",
-      "slug": "dbt-warehouse",
-      "featured": 3,
-      "team": false,
-      "dashboard_url": "assets/dbt-flow.svg"
-    },
-    {
       "badge": "Big Data & Orchestration",
       "name": "Job Market Lakehouse",
       "desc": "PySpark and Scala Spark SQL over 60,000 synthetic job postings, with Great Expectations gating the output and an Airflow DAG running the whole pipeline end to end.",
@@ -412,303 +349,36 @@
       "dashboard_url": "assets/lakehouse-flow.svg"
     },
     {
-      "badge": "Full Stack",
-      "name": "Job Notes",
-      "desc": "A company-research notes app: an Express and MongoDB API with an Angular frontend, both covered by automated tests against a running database.",
-      "category": "software-dev",
-      "tags": [
-        "MongoDB",
-        "Express",
-        "Angular",
-        "Node.js",
-        "Mongoose"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/job-notes-app",
-      "bullets": [
-        {
-          "html": "Express + MongoDB API: Built REST API (Express, Mongoose) for company-research notes, backed by MongoDB instance -- 4 integration tests (Jest + Supertest) against database, not a mock.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Angular Frontend: Built Angular app (generated via the official CLI) fetching, creating, and deleting notes against the API, with 3 TestBed + HttpClientTestingModule tests.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Verified End-to-End: Both the API and the Angular test suite pass in CI; fixed bug (Puppeteer's Chromium has no arm64 Linux build) by switching to a system Chromium install.",
-          "resume_role": "sde"
-        }
-      ],
-      "date": "Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "Full Stack",
-      "name": "Interview Prep API",
-      "desc": "An ASP.NET Core minimal API in C# with Entity Framework Core and SQLite, covered by 19 xUnit tests including an SM-2 spaced-repetition scheduler.",
-      "category": "software-dev",
-      "tags": [
-        "C#",
-        ".NET",
-        "ASP.NET Core",
-        "Entity Framework Core",
-        "SQLite"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/interview-prep-api",
-      "bullets": [
-        {
-          "html": "Minimal API: Built ASP.NET Core minimal API (C#) for browsing/adding interview questions, backed by Entity Framework Core + SQLite.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries, plus SM-2 spaced-repetition scheduling of practice attempts with streak and mastery stats.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Verified End-to-End: 19 xUnit tests -- 12 integration tests (WebApplicationFactory + in-memory SQLite connection) and 7 for the SM-2 scheduler -- plus a hand-run curl verification against the live app -- all passing.",
-          "resume_role": "sde"
-        }
-      ],
-      "date": "Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "Full Stack",
-      "name": "Company Blocklist",
-      "desc": "A PHP CodeIgniter 4 app for tracking companies to avoid, with bulk CSV import, a check against California WARN Act layoff notices, and 12 feature tests through the full router, controller and model stack.",
-      "category": "software-dev",
-      "tags": [
-        "PHP",
-        "CodeIgniter 4",
-        "SQLite"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/company-blocklist",
-      "bullets": [
-        {
-          "html": "CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller, plus bulk CSV import (imported/skipped/rejected rows) and a California WARN Act layoff-notice check.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Verified End-to-End: 12 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Found and fixed two CodeIgniter testing gotchas: DatabaseTestTrait's namespace defaulting to test-support fixtures only, and assertJSONFragment not doing nested matching against list responses.",
-          "resume_role": "sde"
-        }
-      ],
-      "date": "Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "Full Stack",
-      "name": "Interview Prep Mobile",
-      "desc": "A React Native (Expo) app for practising interview questions against the ASP.NET Core API, tested with React Native Testing Library and in a live browser run.",
-      "category": "software-dev",
-      "tags": [
-        "React Native",
-        "Expo",
-        "TypeScript",
-        "AsyncStorage"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/interview-prep-mobile",
-      "bullets": [
-        {
-          "html": "React Native App: Built Expo app browsing/practicing interview-prep questions against a companion ASP.NET Core API, with local persistence via AsyncStorage.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Verified End-to-End: React Native Testing Library tests, plus a full live integration check -- Metro web export served over nginx, loaded in headless Chromium on the same Docker network as the running API, confirming correct data end-to-end with zero console errors.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Found and fixed two bugs: AsyncStorage needing an explicit jest.mock() (not just the package installed), and Hermes' bytecode compiler having no arm64 Linux build -- documented transparently rather than skipped.",
-          "resume_role": "sde"
-        }
-      ],
-      "date": "Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "Full Stack",
-      "name": "Company Search (HTMX)",
-      "desc": "Live search with HTMX partial updates on FastAPI and Jinja2, inline editing, and Server-Sent Events syncing every open tab, with no client-side framework.",
-      "category": "software-dev",
-      "tags": [
-        "HTMX",
-        "FastAPI",
-        "Jinja2"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/htmx-company-search",
-      "bullets": [
-        {
-          "html": "Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework), with inline editing and Server-Sent Events syncing changes across open tabs.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Verified End-to-End: 12 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.",
-          "resume_role": "sde"
-        },
-        {
-          "html": "Found and fixed bug the TestClient tests couldn't catch: hx-trigger's keyup-only binding never fired for autofill/paste, only keystrokes -- fixed to an input-based trigger and re-verified live.",
-          "resume_role": "sde"
-        }
-      ],
-      "date": "Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "Geospatial",
-      "name": "ArcGIS Commute Insights",
-      "desc": "Ranks companies by drive time from home using the live ArcGIS geocoding and routing services on an interactive map; all 11 tests hit the live APIs.",
+      "badge": "Data Warehousing",
+      "name": "Job Search dbt Warehouse",
+      "desc": "A dbt dimensional model on a live Databricks SQL warehouse: staging views feeding dimension and fact tables, an incremental snapshot, and data tests CI runs against the warehouse on every push.",
       "category": "data-engineering analytics",
       "tags": [
-        "ArcGIS",
-        "Geocoding",
-        "Vector Tiles",
-        "Geospatial Analysis"
+        "Databricks",
+        "dbt",
+        "SQL",
+        "Dimensional Modeling"
       ],
-      "github_url": "https://github.com/Deshraj-Jogiya/arcgis-commute-insights",
+      "github_url": "https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse",
       "bullets": [
         {
-          "html": "Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by ArcGIS World Route drive time (great-circle distance as the fallback) on an interactive Leaflet map.",
+          "html": "Dimensional Data Model: Built a dbt project (staging views into dimension and fact tables) on a live Databricks SQL warehouse, including a datediff-based days-to-decision measure and a row_number() window function for interview-round sequencing.",
           "resume_role": "de"
         },
         {
-          "html": "Basemap Vector Tiles: Fetched and decoded Mapbox Vector Tile (.pbf) data from Esri's World Basemap v2 service -- the tile URL template was discovered by reading the basemap style JSON's sources, not assumed from docs, after an initial guessed URL returned 404.",
+          "html": "Data Quality Testing: Wrote 22 dbt tests (20 schema tests for uniqueness, not-null, referential integrity and accepted values, plus 2 business-rule tests: a decision date never precedes the applied date, and snapshot counts never go negative), run against the warehouse in CI.",
           "resume_role": "de"
         },
         {
-          "html": "Verified End-to-End: All 11 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.",
+          "html": "Verified End-to-End: Ran dbt seed/run/test against a live Databricks warehouse (not just parsed) and spot-checked the resulting tables by hand; CI re-runs the same three commands against the same warehouse on every push using repository secrets.",
           "resume_role": "de"
         }
       ],
       "date": "Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "NLP & Transfer Learning",
-      "name": "Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
-      "desc": "A Small BERT sentence transformer extended into a multi-task model, plus LoRA fine-tuning of Qwen2.5-0.5B on Dolly-15k with a declining loss curve over 3 epochs.",
-      "category": "machine-learning",
-      "tags": [
-        "TensorFlow",
-        "TensorFlow Hub",
-        "TensorFlow Text",
-        "NumPy",
-        "Small BERT",
-        "GitHub Actions",
-        "PyTorch",
-        "LoRA",
-        "Hugging Face"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning",
-      "bullets": [
-        {
-          "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from TensorFlow Hub, encoding sentences into 128-dimensional contextual embeddings via mean pooling across token representations.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Multi-Task Learning Expansion: Extended the shared transformer backbone with two task-specific heads (3-class sentence classification, 2-class sentiment classification), each with its own softmax output layer.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Transfer Learning Strategy: Evaluated freezing strategies (full model vs. backbone-only vs. single task head) and proposed a staged fine-tuning approach -- freeze lower layers, fine-tune top layers and task heads.",
-          "resume_role": "general"
-        },
-        {
-          "html": "Training Loop Simulation: Simulated multi-task training with synthetic text and one-hot encoded labels via model.fit(), logging per-task loss and accuracy to validate the architecture end-to-end.",
-          "resume_role": "de"
-        },
-        {
-          "html": "LoRA Fine-Tuning: LoRA fine-tuned Qwen2.5-0.5B-Instruct on Databricks Dolly-15k subset (free Colab T4 GPU), with declining loss curve over 3 epochs and an honest before/after comparison on held-out prompts.",
-          "resume_role": "ds"
-        }
-      ],
-      "dashboard_url": "assets/ml_apprentice_embeddings.png",
-      "date": "Apr 2025 – Sep 2026",
-      "team": false
-    },
-    {
-      "badge": "Cloud & Generative AI",
-      "name": "CurioSync: Fact-Checked LinkedIn Publishing Pipeline",
-      "desc": "LinkedIn publishing on GitHub Actions: Gemini drafts only from the live profile, mechanical checks reject any invented number or tool, and each image card is checked against the same facts.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": [
-        "Python",
-        "FastAPI",
-        "GitHub Actions",
-        "Gemini LLM",
-        "LinkedIn API",
-        "Pillow",
-        "Jinja2",
-        "HTMX",
-        "SQLAlchemy"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/curiosync",
-      "bullets": [
-        {
-          "html": "Serverless Publishing Pipeline: LinkedIn publishing pipeline on GitHub Actions cron workflows (Monday, Wednesday, Friday) at <strong>$0</strong> hosting cost, posting through the LinkedIn Posts API with an image card checked against the same facts as the text.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Fact-Checked LLM Drafting: Gemini drafts posts only from the live portfolio profile; mechanical checks reject any number or tool not in the facts, 'we' on solo work and undisclosed simulated data, and a second model pass flags invented claims before anything is published.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "LLM &amp; Image Generation: Integrated Gemini LLM chains and developed custom Pillow image-processing engines to automatically render branding graphics (+<strong>150%</strong> engagement).",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Credential-Safe Control Panel: Jinja2/HTMX control panel with Fernet symmetric encryption protecting stored LinkedIn credentials.",
-          "resume_role": "de"
-        }
-      ],
-      "dashboard_url": "assets/curiosync_publishing_trend.png",
-      "date": "Apr 2026 – Jun 2026",
-      "team": false
-    },
-    {
-      "badge": "AI Governance",
-      "name": "AI Model Observability & Fairness Audits",
-      "desc": "Drift and fairness auditing for deployed models: KS and PSI drift tests, disparate-impact and equal-opportunity checks, and a published Tableau dashboard over 30,000 simulated inference records.",
-      "category": "data-engineering machine-learning analytics",
-      "tags": [
-        "Python",
-        "MLflow",
-        "Drift Audit",
-        "KS-Test",
-        "PSI",
-        "Responsible AI",
-        "SQL",
-        "Tableau",
-        "GitHub Actions"
-      ],
-      "dashboard_url": "assets/ai_observability.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
-      "bullets": [
-        {
-          "html": "MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Bias &amp; Fairness Auditing: Evaluates disparate impact, demographic parity and Equal Opportunity (true-positive-rate gap) bias metrics, writing guardrail alerts to an audit table, in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).",
-          "resume_role": "general"
-        },
-        {
-          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in published interactive Tableau dashboard (public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard) -- a live log-scale drift-trend chart plus subgroup fairness comparison over <strong>30,000</strong> simulated inference records.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days and climbs past 0.25 exactly where the KS p-value collapses, tracking the same drift.",
-          "resume_role": "ds"
-        }
-      ],
-      "date": "Nov 2025 – Feb 2026",
-      "team": false
+      "slug": "dbt-warehouse",
+      "featured": 3,
+      "team": false,
+      "dashboard_url": "assets/dbt-flow.svg"
     },
     {
       "badge": "FinTech & Risk",
@@ -754,56 +424,6 @@
       "date": "Oct 2025 – Dec 2025",
       "slug": "finrisk",
       "featured": 4,
-      "team": false
-    },
-    {
-      "badge": "NLP & Semantic Search",
-      "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
-      "desc": "Answers natural-language questions about members from their messages: on 26 labelled questions it finds the right member 100% of the time and the right answer 96%.",
-      "category": "machine-learning analytics",
-      "tags": [
-        "Python",
-        "Sentence-Transformers",
-        "spaCy",
-        "Scikit-Learn",
-        "Pandas",
-        "GitHub Actions",
-        "LlamaIndex",
-        "Semantic Kernel",
-        "LangChain"
-      ],
-      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
-      "bullets": [
-        {
-          "html": "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions about member data, ranking unstructured messages by cosine similarity over SentenceTransformer (all-MiniLM-L6-v2) embeddings.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages; on 26 labelled paraphrased questions it finds the right member <strong>100%</strong> of the time and the right answer <strong>96%</strong>.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Dynamic Information Extraction: Implemented regex-based extraction for contact info, numeric quantities, and companion/group references from unstructured message text, with fallback to the closest-matching message when no structured answer applies.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Architecture Tradeoff Analysis: Evaluated and documented five candidate approaches (rule-based matching, knowledge graphs, fine-tuned LLMs, hybrid retrieval) before selecting embeddings-based semantic search for its balance of speed, accuracy, and maintainability.",
-          "resume_role": "general"
-        },
-        {
-          "html": "LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using LlamaIndex's VectorStoreIndex over the same embedding model, verified against the message dataset.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native Semantic Kernel plugin functions, orchestrated through Kernel instance.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "RAG Pipeline: Built retrieve-then-generate RAG chain with LangChain, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and end-to-end generation test.",
-          "resume_role": "ds"
-        }
-      ],
-      "date": "Oct 2025 – Nov 2025",
       "team": false
     },
     {
@@ -862,40 +482,46 @@
       "team": false
     },
     {
-      "badge": "Geospatial & Climate",
-      "name": "Multi-State Land Use Emissions Analysis",
-      "desc": "Land-use emissions ETL for 5 U.S. states built on the EPA's real state inventory: EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection and Census map layers.",
+      "badge": "AI Governance",
+      "name": "AI Model Observability & Fairness Audits",
+      "desc": "Drift and fairness auditing for deployed models: KS and PSI drift tests, disparate-impact and equal-opportunity checks, and a published Tableau dashboard over 30,000 simulated inference records.",
       "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
-        "SQLite",
-        "Random Forest",
-        "ETL Ingestion",
-        "ArcGIS",
+        "MLflow",
+        "Drift Audit",
+        "KS-Test",
+        "PSI",
+        "Responsible AI",
+        "SQL",
         "Tableau",
         "GitHub Actions"
       ],
-      "dashboard_url": "assets/co2_forecast_vs_actual.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
+      "dashboard_url": "assets/ai_observability.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
       "bullets": [
         {
-          "html": "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly (10.2 hours in the median week, counted from the pipeline's own work over 30 weeks).",
-          "resume_role": "de"
-        },
-        {
-          "html": "Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy (<strong>94.2%</strong> year-ahead on the EPA's 1990-2022 state land-use inventory).",
+          "html": "MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).",
           "resume_role": "ds"
         },
         {
-          "html": "ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong> (the vectorised shock detector runs <strong>52%</strong> faster with identical flags).",
+          "html": "Bias &amp; Fairness Auditing: Evaluates disparate impact, demographic parity and Equal Opportunity (true-positive-rate gap) bias metrics, writing guardrail alerts to an audit table, in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).",
+          "resume_role": "general"
+        },
+        {
+          "html": "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in published interactive Tableau dashboard (public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard) -- a live log-scale drift-trend chart plus subgroup fairness comparison over <strong>30,000</strong> simulated inference records.",
           "resume_role": "de"
         },
         {
-          "html": "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.",
+          "html": "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
           "resume_role": "de"
+        },
+        {
+          "html": "Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days and climbs past 0.25 exactly where the KS p-value collapses, tracking the same drift.",
+          "resume_role": "ds"
         }
       ],
-      "date": "Apr 2025 – Nov 2025",
+      "date": "Nov 2025 – Feb 2026",
       "team": false
     },
     {
@@ -936,113 +562,40 @@
       "team": false
     },
     {
-      "badge": "Automation & ETL",
-      "name": "Automated Daily Data Insights",
-      "desc": "A daily market-data pipeline on GitHub Actions: pulls yFinance, flags rolling Z-score anomalies and publishes the report, at $0 server cost.",
-      "category": "data-engineering",
-      "tags": [
-        "Python",
-        "yFinance API",
-        "Matplotlib",
-        "GitHub Actions",
-        "SQLite"
-      ],
-      "dashboard_url": "assets/daily_insights.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
-      "bullets": [
-        {
-          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market and telemetry datasets from yFinance APIs with automated error handling and logging.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Cron Schedule Uptime: Configured GitHub Actions to run the pipeline daily on cron schedules, achieving <strong>99.9%</strong> uptime with <strong>$0</strong> operational server cost.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Automated Data Quality Validation: Embedded input data validation checks to prevent missing market records from corrupting downstream report charts.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Feb 2025 – Mar 2025",
-      "team": false
-    },
-    {
-      "badge": "Sales & Marketing",
-      "name": "Sales Analytics & RFM Customer Segmentation Pipeline",
-      "desc": "A star-schema warehouse of 106,228 transactions where RFM scoring and K-Means find 4 customer personas explaining 93.9% of the variance, explored in a Power BI report.",
-      "category": "machine-learning analytics",
+      "badge": "Geospatial & Climate",
+      "name": "Multi-State Land Use Emissions Analysis",
+      "desc": "Land-use emissions ETL for 5 U.S. states built on the EPA's real state inventory: EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection and Census map layers.",
+      "category": "data-engineering machine-learning analytics",
       "tags": [
         "Python",
         "SQLite",
-        "K-Means",
-        "PCA",
-        "Power BI",
-        "Seaborn",
-        "GitHub Actions",
-        "DAX"
-      ],
-      "dashboard_url": "assets/sales_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
-      "bullets": [
-        {
-          "html": "Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>106,228</strong> customer transactions (<strong>2,000</strong> customers over 2 years) for business intelligence reporting.",
-          "resume_role": "de"
-        },
-        {
-          "html": "RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas that explain <strong>93.9%</strong> of the variance in the scaled RFM features.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Executive Power BI Dashboard: Built interactive Power BI report with star-schema relationships and DAX measures over the pipeline live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Pareto 80/20 Insights: Applied Pareto analysis showing the top <strong>20%</strong> of customers generate <strong>79.9%</strong> of revenue, isolating them for targeted retention campaigns.",
-          "resume_role": "general"
-        }
-      ],
-      "date": "Dec 2024 – Jan 2025",
-      "team": false
-    },
-    {
-      "badge": "Healthcare & Statistics",
-      "name": "Clinical Trials Patient Outcomes Analysis",
-      "desc": "Survival analysis across 3 cohorts with Kaplan-Meier curves, pairwise log-rank tests and de-identified patient data; the full report refreshes 60% faster.",
-      "category": "analytics",
-      "tags": [
-        "Python",
-        "SQL",
-        "Kaplan-Meier",
-        "Log-Rank",
+        "Random Forest",
+        "ETL Ingestion",
+        "ArcGIS",
         "Tableau",
-        "SciPy",
         "GitHub Actions"
       ],
-      "dashboard_url": "assets/clinical_dashboard.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
+      "dashboard_url": "assets/co2_forecast_vs_actual.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis",
       "bullets": [
         {
-          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.",
+          "html": "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly (10.2 hours in the median week, counted from the pipeline's own work over 30 weeks).",
           "resume_role": "de"
         },
         {
-          "html": "Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed pairwise log-rank tests (lifelines) and a chi-square adverse-event test (SciPy) to evaluate treatment efficacy across 3 cohorts.",
+          "html": "Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy (<strong>94.2%</strong> year-ahead on the EPA's 1990-2022 state land-use inventory).",
           "resume_role": "ds"
         },
         {
-          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>; a one-process refresh rebuilds the full report <strong>60%</strong> faster (6.3 s instead of 15.5 s).",
-          "resume_role": "general"
+          "html": "ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong> (the vectorised shock detector runs <strong>52%</strong> faster with identical flags).",
+          "resume_role": "de"
         },
         {
-          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII) across analytical schemas.",
-          "resume_role": "general"
+          "html": "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.",
+          "resume_role": "de"
         }
       ],
-      "date": "Oct 2024 – Nov 2024",
+      "date": "Apr 2025 – Nov 2025",
       "team": false
     },
     {
@@ -1087,39 +640,41 @@
       "team": false
     },
     {
-      "badge": "Operations & Demand",
-      "name": "AI-ML Data Science Simulation",
-      "desc": "Daily sales ETL for 5 branches with forecasts at 90% accuracy against a 78.4% naive baseline; in a reorder simulation, forecast-driven ordering cut stock-out days by 60.8%.",
-      "category": "data-engineering machine-learning analytics",
+      "badge": "Sales & Marketing",
+      "name": "Sales Analytics & RFM Customer Segmentation Pipeline",
+      "desc": "A star-schema warehouse of 106,228 transactions where RFM scoring and K-Means find 4 customer personas explaining 93.9% of the variance, explored in a Power BI report.",
+      "category": "machine-learning analytics",
       "tags": [
         "Python",
-        "SQL",
-        "Random Forest",
-        "Sales ETL",
-        "Tableau",
-        "GitHub Actions"
+        "SQLite",
+        "K-Means",
+        "PCA",
+        "Power BI",
+        "Seaborn",
+        "GitHub Actions",
+        "DAX"
       ],
-      "dashboard_url": "assets/forecast_vs_actual.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation",
+      "dashboard_url": "assets/sales_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline",
       "bullets": [
         {
-          "html": "Multi-Branch ETL Automation: Created a scalable data automation system utilizing Python for daily sales data ingestion from 5 branches across states, simulating ETL pipeline.",
+          "html": "Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling <strong>106,228</strong> customer transactions (<strong>2,000</strong> customers over 2 years) for business intelligence reporting.",
           "resume_role": "de"
         },
         {
-          "html": "Inventory Centralization &amp; Tableau: Centralized inventory datasets in SQL and visualized trend cycles in Tableau, driving actionable insights across weekly and monthly cycles.",
-          "resume_role": "de"
-        },
-        {
-          "html": "Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving <strong>90%</strong> forecast accuracy (1 - WAPE on a 28-day chronological holdout, vs <strong>78.4%</strong> for a naive baseline); in a reorder simulation, forecast-driven ordering cut stock-out days by <strong>60.8%</strong>.",
+          "html": "RFM &amp; K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas that explain <strong>93.9%</strong> of the variance in the scaled RFM features.",
           "resume_role": "ds"
         },
         {
-          "html": "Automated Data Reconciliation: Built daily automated cross-branch data reconciliation checks to ensure dataset consistency across regional store databases.",
+          "html": "Executive Power BI Dashboard: Built interactive Power BI report with star-schema relationships and DAX measures over the pipeline live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Pareto 80/20 Insights: Applied Pareto analysis showing the top <strong>20%</strong> of customers generate <strong>79.9%</strong> of revenue, isolating them for targeted retention campaigns.",
           "resume_role": "general"
         }
       ],
-      "date": "Apr 2024 – Jun 2024",
+      "date": "Dec 2024 – Jan 2025",
       "team": false
     },
     {
@@ -1161,6 +716,503 @@
       ],
       "date": "Apr 2023 – Mar 2024",
       "team": false
+    },
+    {
+      "badge": "NLP & Semantic Search",
+      "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
+      "desc": "Answers natural-language questions about members from their messages: on 26 labelled questions it finds the right member 100% of the time and the right answer 96%.",
+      "category": "machine-learning analytics",
+      "tags": [
+        "Python",
+        "Sentence-Transformers",
+        "spaCy",
+        "Scikit-Learn",
+        "Pandas",
+        "GitHub Actions",
+        "LlamaIndex",
+        "Semantic Kernel",
+        "LangChain"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system",
+      "bullets": [
+        {
+          "html": "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions about member data, ranking unstructured messages by cosine similarity over SentenceTransformer (all-MiniLM-L6-v2) embeddings.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages; on 26 labelled paraphrased questions it finds the right member <strong>100%</strong> of the time and the right answer <strong>96%</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Dynamic Information Extraction: Implemented regex-based extraction for contact info, numeric quantities, and companion/group references from unstructured message text, with fallback to the closest-matching message when no structured answer applies.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Architecture Tradeoff Analysis: Evaluated and documented five candidate approaches (rule-based matching, knowledge graphs, fine-tuned LLMs, hybrid retrieval) before selecting embeddings-based semantic search for its balance of speed, accuracy, and maintainability.",
+          "resume_role": "general"
+        },
+        {
+          "html": "LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using LlamaIndex's VectorStoreIndex over the same embedding model, verified against the message dataset.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native Semantic Kernel plugin functions, orchestrated through Kernel instance.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "RAG Pipeline: Built retrieve-then-generate RAG chain with LangChain, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and end-to-end generation test.",
+          "resume_role": "ds"
+        }
+      ],
+      "date": "Oct 2025 – Nov 2025",
+      "team": false,
+      "dashboard_url": "assets/member-qa-flow.svg"
+    },
+    {
+      "badge": "NLP & Transfer Learning",
+      "name": "Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
+      "desc": "A Small BERT sentence transformer extended into a multi-task model, plus LoRA fine-tuning of Qwen2.5-0.5B on Dolly-15k with a declining loss curve over 3 epochs.",
+      "category": "machine-learning",
+      "tags": [
+        "TensorFlow",
+        "TensorFlow Hub",
+        "TensorFlow Text",
+        "NumPy",
+        "Small BERT",
+        "GitHub Actions",
+        "PyTorch",
+        "LoRA",
+        "Hugging Face"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/sentence-transformers-llm-finetuning",
+      "bullets": [
+        {
+          "html": "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from TensorFlow Hub, encoding sentences into 128-dimensional contextual embeddings via mean pooling across token representations.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Multi-Task Learning Expansion: Extended the shared transformer backbone with two task-specific heads (3-class sentence classification, 2-class sentiment classification), each with its own softmax output layer.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Transfer Learning Strategy: Evaluated freezing strategies (full model vs. backbone-only vs. single task head) and proposed a staged fine-tuning approach -- freeze lower layers, fine-tune top layers and task heads.",
+          "resume_role": "general"
+        },
+        {
+          "html": "Training Loop Simulation: Simulated multi-task training with synthetic text and one-hot encoded labels via model.fit(), logging per-task loss and accuracy to validate the architecture end-to-end.",
+          "resume_role": "de"
+        },
+        {
+          "html": "LoRA Fine-Tuning: LoRA fine-tuned Qwen2.5-0.5B-Instruct on Databricks Dolly-15k subset (free Colab T4 GPU), with declining loss curve over 3 epochs and an honest before/after comparison on held-out prompts.",
+          "resume_role": "ds"
+        }
+      ],
+      "dashboard_url": "assets/ml_apprentice_embeddings.png",
+      "date": "Apr 2025 – Sep 2026",
+      "team": false
+    },
+    {
+      "badge": "Cloud & Generative AI",
+      "name": "CurioSync: Fact-Checked LinkedIn Publishing Pipeline",
+      "desc": "LinkedIn publishing pipeline on GitHub Actions (Monday, Wednesday, Friday): Gemini drafts each post only from the live portfolio profile, mechanical checks and a second model pass reject invented claims, and a Pillow image card shows the same facts.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "GitHub Actions",
+        "Gemini LLM",
+        "LinkedIn API",
+        "Pillow",
+        "Jinja2",
+        "HTMX",
+        "SQLAlchemy"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/curiosync",
+      "bullets": [
+        {
+          "html": "Serverless Publishing Pipeline: LinkedIn publishing pipeline on GitHub Actions cron workflows (Monday, Wednesday, Friday) at <strong>$0</strong> hosting cost, posting through the LinkedIn Posts API with an image card checked against the same facts as the text.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Fact-Checked LLM Drafting: Gemini drafts posts only from the live portfolio profile; mechanical checks reject any number or tool not in the facts, 'we' on solo work and undisclosed simulated data, and a second model pass flags invented claims before anything is published.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "LLM &amp; Image Generation: Integrated Gemini LLM chains and developed custom Pillow image-processing engines to automatically render branding graphics (+<strong>150%</strong> engagement).",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Credential-Safe Control Panel: Jinja2/HTMX control panel with Fernet symmetric encryption protecting stored LinkedIn credentials.",
+          "resume_role": "de"
+        }
+      ],
+      "dashboard_url": "assets/curiosync_publishing_trend.png",
+      "date": "Apr 2026 – Jun 2026",
+      "team": false
+    },
+    {
+      "badge": "Computer Vision & Deep Learning",
+      "name": "Solid Object Detection & Identification",
+      "desc": "A PyTorch CNN that classifies 7 shape classes at 99.2% on 2,000 held-out images, with OpenCV contour geometry as an independent check, served on AWS Lambda through ONNX.",
+      "category": "machine-learning analytics",
+      "tags": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "CNN Model",
+        "Image Processing",
+        "Git",
+        "GitHub Actions",
+        "AWS Lambda",
+        "AWS S3",
+        "ONNX Runtime"
+      ],
+      "dashboard_url": "assets/solid_object_confusion_matrix.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing",
+      "bullets": [
+        {
+          "html": "Computer Vision &amp; Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI); contour geometry independently confirms the CNN on <strong>66%</strong> of images, and those confirmed predictions are <strong>99.9%</strong> correct.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong> (four overlays, up from three: box, label, confidence and the located outline coloured by contour-geometry agreement).",
+          "resume_role": "general"
+        },
+        {
+          "html": "Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification (Canny-located boxes reach a mean IoU of 0.93 against 0.82 for a thresholded mask).",
+          "resume_role": "de"
+        },
+        {
+          "html": "Real-Time Serverless Inference: Deployed the trained model as a live AWS Lambda function triggered by S3 image uploads -- exported to ONNX (~615KB) so it ships as a plain Lambda zip via onnxruntime, avoiding a PyTorch container image and its ECR storage cost. Verified end-to-end with live S3-to-Lambda integration test running in CI against the deployed AWS infrastructure.",
+          "resume_role": "de"
+        }
+      ],
+      "date": "May 2020 – Dec 2020",
+      "team": false
+    },
+    {
+      "badge": "Healthcare & Statistics",
+      "name": "Clinical Trials Patient Outcomes Analysis",
+      "desc": "Survival analysis across 3 cohorts with Kaplan-Meier curves, pairwise log-rank tests and de-identified patient data; the full report refreshes 60% faster.",
+      "category": "analytics",
+      "tags": [
+        "Python",
+        "SQL",
+        "Kaplan-Meier",
+        "Log-Rank",
+        "Tableau",
+        "SciPy",
+        "GitHub Actions"
+      ],
+      "dashboard_url": "assets/clinical_dashboard.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
+      "bullets": [
+        {
+          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed pairwise log-rank tests (lifelines) and a chi-square adverse-event test (SciPy) to evaluate treatment efficacy across 3 cohorts.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>; a one-process refresh rebuilds the full report <strong>60%</strong> faster (6.3 s instead of 15.5 s).",
+          "resume_role": "general"
+        },
+        {
+          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII) across analytical schemas.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Oct 2024 – Nov 2024",
+      "team": false
+    },
+    {
+      "badge": "Operations & Demand",
+      "name": "AI-ML Data Science Simulation",
+      "desc": "Daily sales ETL for 5 branches with forecasts at 90% accuracy against a 78.4% naive baseline; in a reorder simulation, forecast-driven ordering cut stock-out days by 60.8%.",
+      "category": "data-engineering machine-learning analytics",
+      "tags": [
+        "Python",
+        "SQL",
+        "Random Forest",
+        "Sales ETL",
+        "Tableau",
+        "GitHub Actions"
+      ],
+      "dashboard_url": "assets/forecast_vs_actual.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/AI-ML-Data-Science-Simulation",
+      "bullets": [
+        {
+          "html": "Multi-Branch ETL Automation: Created a scalable data automation system utilizing Python for daily sales data ingestion from 5 branches across states, simulating ETL pipeline.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Inventory Centralization &amp; Tableau: Centralized inventory datasets in SQL and visualized trend cycles in Tableau, driving actionable insights across weekly and monthly cycles.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving <strong>90%</strong> forecast accuracy (1 - WAPE on a 28-day chronological holdout, vs <strong>78.4%</strong> for a naive baseline); in a reorder simulation, forecast-driven ordering cut stock-out days by <strong>60.8%</strong>.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Automated Data Reconciliation: Built daily automated cross-branch data reconciliation checks to ensure dataset consistency across regional store databases.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Apr 2024 – Jun 2024",
+      "team": false
+    },
+    {
+      "badge": "Automation & ETL",
+      "name": "Automated Daily Data Insights",
+      "desc": "A daily market-data pipeline on GitHub Actions: pulls yFinance, flags rolling Z-score anomalies and publishes the report, at $0 server cost.",
+      "category": "data-engineering",
+      "tags": [
+        "Python",
+        "yFinance API",
+        "Matplotlib",
+        "GitHub Actions",
+        "SQLite"
+      ],
+      "dashboard_url": "assets/daily_insights.png",
+      "github_url": "https://github.com/Deshraj-Jogiya/automated-data-insights",
+      "bullets": [
+        {
+          "html": "Stateless Serverless ETL: Wrote Python scripts to fetch market and telemetry datasets from yFinance APIs with automated error handling and logging.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Cron Schedule Uptime: Configured GitHub Actions to run the pipeline daily on cron schedules, achieving <strong>99.9%</strong> uptime with <strong>$0</strong> operational server cost.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Automated Data Quality Validation: Embedded input data validation checks to prevent missing market records from corrupting downstream report charts.",
+          "resume_role": "general"
+        }
+      ],
+      "date": "Feb 2025 – Mar 2025",
+      "team": false
+    },
+    {
+      "badge": "Geospatial",
+      "name": "ArcGIS Commute Insights",
+      "desc": "Ranks companies by drive time from home using the live ArcGIS geocoding and routing services on an interactive map; all 11 tests hit the live APIs.",
+      "category": "data-engineering analytics",
+      "tags": [
+        "ArcGIS",
+        "Geocoding",
+        "Vector Tiles",
+        "Geospatial Analysis"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/arcgis-commute-insights",
+      "bullets": [
+        {
+          "html": "Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by ArcGIS World Route drive time (great-circle distance as the fallback) on an interactive Leaflet map.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Basemap Vector Tiles: Fetched and decoded Mapbox Vector Tile (.pbf) data from Esri's World Basemap v2 service -- the tile URL template was discovered by reading the basemap style JSON's sources, not assumed from docs, after an initial guessed URL returned 404.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Verified End-to-End: All 11 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.",
+          "resume_role": "de"
+        }
+      ],
+      "date": "Sep 2026",
+      "team": false,
+      "dashboard_url": "assets/arcgis-commute-flow.svg"
+    },
+    {
+      "badge": "Reactive Systems",
+      "name": "Reactive Job Ingest Gateway",
+      "desc": "A non-blocking job-posting ingestion gateway built on Spring WebFlux and R2DBC, republishing ingested postings as a live Server-Sent-Events stream.",
+      "category": "software-dev",
+      "tags": [
+        "Java",
+        "Spring Boot",
+        "Spring WebFlux",
+        "Spring Reactive",
+        "R2DBC",
+        "Project Reactor"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/reactive-job-ingest-gateway",
+      "bullets": [
+        {
+          "html": "Non-Blocking Ingestion API: Built a Spring WebFlux REST endpoint that persists incoming job-posting events via R2DBC without blocking a thread per request.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying Sinks.Many, so a client connecting mid-stream still sees recent history before live updates.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: Packaged and ran the application, hitting it with live curl requests (including SSE subscriber receiving an event ingested after it connected) -- found and fixed two bugs surfaced only by running it, not just the test suite.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026",
+      "team": false,
+      "dashboard_url": "assets/reactive-gateway-flow.svg"
+    },
+    {
+      "badge": "Full Stack",
+      "name": "Interview Prep API",
+      "desc": "An ASP.NET Core minimal API in C# with Entity Framework Core and SQLite, covered by 19 xUnit tests including an SM-2 spaced-repetition scheduler.",
+      "category": "software-dev",
+      "tags": [
+        "C#",
+        ".NET",
+        "ASP.NET Core",
+        "Entity Framework Core",
+        "SQLite"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/interview-prep-api",
+      "bullets": [
+        {
+          "html": "Minimal API: Built ASP.NET Core minimal API (C#) for browsing/adding interview questions, backed by Entity Framework Core + SQLite.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries, plus SM-2 spaced-repetition scheduling of practice attempts with streak and mastery stats.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: 19 xUnit tests -- 12 integration tests (WebApplicationFactory + in-memory SQLite connection) and 7 for the SM-2 scheduler -- plus a hand-run curl verification against the live app -- all passing.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026",
+      "team": false,
+      "dashboard_url": "assets/interview-prep-api-flow.svg"
+    },
+    {
+      "badge": "Full Stack",
+      "name": "Job Notes",
+      "desc": "A company-research notes app: an Express and MongoDB API with an Angular frontend, both covered by automated tests against a running database.",
+      "category": "software-dev",
+      "tags": [
+        "MongoDB",
+        "Express",
+        "Angular",
+        "Node.js",
+        "Mongoose"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/job-notes-app",
+      "bullets": [
+        {
+          "html": "Express + MongoDB API: Built REST API (Express, Mongoose) for company-research notes, backed by MongoDB instance -- 4 integration tests (Jest + Supertest) against database, not a mock.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Angular Frontend: Built Angular app (generated via the official CLI) fetching, creating, and deleting notes against the API, with 3 TestBed + HttpClientTestingModule tests.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: Both the API and the Angular test suite pass in CI; fixed bug (Puppeteer's Chromium has no arm64 Linux build) by switching to a system Chromium install.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026",
+      "team": false,
+      "dashboard_url": "assets/job-notes-flow.svg"
+    },
+    {
+      "badge": "Full Stack",
+      "name": "Company Search (HTMX)",
+      "desc": "Live search with HTMX partial updates on FastAPI and Jinja2, inline editing, and Server-Sent Events syncing every open tab, with no client-side framework.",
+      "category": "software-dev",
+      "tags": [
+        "HTMX",
+        "FastAPI",
+        "Jinja2"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/htmx-company-search",
+      "bullets": [
+        {
+          "html": "Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework), with inline editing and Server-Sent Events syncing changes across open tabs.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: 12 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Found and fixed bug the TestClient tests couldn't catch: hx-trigger's keyup-only binding never fired for autofill/paste, only keystrokes -- fixed to an input-based trigger and re-verified live.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026",
+      "team": false,
+      "dashboard_url": "assets/htmx-search-flow.svg"
+    },
+    {
+      "badge": "Full Stack",
+      "name": "Interview Prep Mobile",
+      "desc": "A React Native (Expo) app for practising interview questions against the ASP.NET Core API, tested with React Native Testing Library and in a live browser run.",
+      "category": "software-dev",
+      "tags": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "AsyncStorage"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/interview-prep-mobile",
+      "bullets": [
+        {
+          "html": "React Native App: Built Expo app browsing/practicing interview-prep questions against a companion ASP.NET Core API, with local persistence via AsyncStorage.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: React Native Testing Library tests, plus a full live integration check -- Metro web export served over nginx, loaded in headless Chromium on the same Docker network as the running API, confirming correct data end-to-end with zero console errors.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Found and fixed two bugs: AsyncStorage needing an explicit jest.mock() (not just the package installed), and Hermes' bytecode compiler having no arm64 Linux build -- documented transparently rather than skipped.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026",
+      "team": false,
+      "dashboard_url": "assets/interview-prep-mobile-flow.svg"
+    },
+    {
+      "badge": "Full Stack",
+      "name": "Company Blocklist",
+      "desc": "A PHP CodeIgniter 4 app for tracking companies to avoid, with bulk CSV import, a check against California WARN Act layoff notices, and 12 feature tests through the full router, controller and model stack.",
+      "category": "software-dev",
+      "tags": [
+        "PHP",
+        "CodeIgniter 4",
+        "SQLite"
+      ],
+      "github_url": "https://github.com/Deshraj-Jogiya/company-blocklist",
+      "bullets": [
+        {
+          "html": "CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller, plus bulk CSV import (imported/skipped/rejected rows) and a California WARN Act layoff-notice check.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Verified End-to-End: 12 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.",
+          "resume_role": "sde"
+        },
+        {
+          "html": "Found and fixed two CodeIgniter testing gotchas: DatabaseTestTrait's namespace defaulting to test-support fixtures only, and assertJSONFragment not doing nested matching against list responses.",
+          "resume_role": "sde"
+        }
+      ],
+      "date": "Sep 2026",
+      "team": false,
+      "dashboard_url": "assets/company-blocklist-flow.svg"
     },
     {
       "badge": "Mobile & Education",
@@ -1338,50 +1390,6 @@
       ],
       "date": "May 2021 – Aug 2021",
       "team": true
-    },
-    {
-      "badge": "Computer Vision & Deep Learning",
-      "name": "Solid Object Detection & Identification",
-      "desc": "A PyTorch CNN that classifies 7 shape classes at 99.2% on 2,000 held-out images, with OpenCV contour geometry as an independent check, served on AWS Lambda through ONNX.",
-      "category": "machine-learning analytics",
-      "tags": [
-        "Python",
-        "PyTorch",
-        "OpenCV",
-        "CNN Model",
-        "Image Processing",
-        "Git",
-        "GitHub Actions",
-        "AWS Lambda",
-        "AWS S3",
-        "ONNX Runtime"
-      ],
-      "dashboard_url": "assets/solid_object_confusion_matrix.png",
-      "github_url": "https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing",
-      "bullets": [
-        {
-          "html": "Computer Vision &amp; Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI); contour geometry independently confirms the CNN on <strong>66%</strong> of images, and those confirmed predictions are <strong>99.9%</strong> correct.",
-          "resume_role": "ds"
-        },
-        {
-          "html": "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong> (four overlays, up from three: box, label, confidence and the located outline coloured by contour-geometry agreement).",
-          "resume_role": "general"
-        },
-        {
-          "html": "Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification (Canny-located boxes reach a mean IoU of 0.93 against 0.82 for a thresholded mask).",
-          "resume_role": "de"
-        },
-        {
-          "html": "Real-Time Serverless Inference: Deployed the trained model as a live AWS Lambda function triggered by S3 image uploads -- exported to ONNX (~615KB) so it ships as a plain Lambda zip via onnxruntime, avoiding a PyTorch container image and its ECR storage cost. Verified end-to-end with live S3-to-Lambda integration test running in CI against the deployed AWS infrastructure.",
-          "resume_role": "de"
-        }
-      ],
-      "date": "May 2020 – Dec 2020",
-      "team": false
     }
   ],
   "skills": [
@@ -1501,7 +1509,8 @@
       "bullets": [
         "Cleaned, analyzed, and visualized data with Excel, SQL, Python (Pandas, NumPy, Matplotlib, Seaborn), and Jupyter, including a web-scraping project and an end-to-end capstone.",
         "Built interactive dashboards in Excel, IBM Cognos Analytics, Looker, Plotly, and Dash.",
-        "Wrote SQL against relational databases (joins, views, transactions, stored procedures), including from Python."
+        "Wrote SQL against relational databases (joins, views, transactions, stored procedures), including from Python.",
+        "Applied generative AI tools to data analysis tasks in the program's generative AI course."
       ]
     },
     {
@@ -1509,14 +1518,20 @@
       "issuer": "Outskill",
       "status": "Completed",
       "date": "Oct 2025",
-      "bullets": []
+      "bullets": [
+        "Two-day intensive on applied generative AI: advanced prompt engineering, custom AI assistants, no-code AI agents and workflow automation.",
+        "Live build sessions with Claude, Replit and Perplexity, covering AI-assisted app development and content, image and video generation."
+      ]
     },
     {
       "name": "Guinness World Record — AI Training Hackathon (Kanz)",
-      "issuer": null,
+      "issuer": "Kanz",
       "status": "Completed",
       "date": "Jul 2026",
-      "bullets": []
+      "bullets": [
+        "Took part in Kanz's week-long online AI training hackathon, recognised by Guinness World Records in July 2026, with 14,075 participants.",
+        "Built and published a working AI app on day one, then extended it through the week's training sessions."
+      ]
     },
     {
       "name": "Microsoft HR Manager Professional Certificate",
@@ -1545,7 +1560,11 @@
       "issuer": null,
       "status": "Completed",
       "date": null,
-      "bullets": []
+      "bullets": [
+        "Worked as a data analyst advising a social-media client on its content strategy.",
+        "Cleaned, merged and modelled 7 datasets to find the 5 content categories with the highest audience engagement.",
+        "Presented the findings to the client in a slide deck and a recorded presentation."
+      ]
     },
     {
       "name": "Google Digital Marketing",
