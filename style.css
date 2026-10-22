@@ -4502,3 +4502,20 @@ a.live-val:hover { text-decoration-color: var(--accent); }
 .chat-fit-btn:hover .fit-btn-title, .chat-fit-btn[aria-expanded="true"] .fit-btn-title { color: var(--accent); }
 .fit-btn-title { font: 600 0.92rem var(--font-body); color: var(--text-primary); }
 .fit-btn-sub { font: 0.78rem var(--font-body); color: var(--text-secondary); }
+/* the launcher carries the fit-check offer at every width; on phones it stays a compact pill instead of a bare circle */
+.chat-launcher-btn { gap: 0.55rem; padding: 0.55rem 1rem 0.55rem 0.55rem !important; border-radius: 999px !important; }
+.chat-launcher-btn .launcher-text { font: 500 0.88rem var(--font-body); color: var(--accent-ink); }
+.chat-launcher-btn .launcher-text strong { font-weight: 700; }
+.chat-launcher-btn .launcher-icon { display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%;
+                                    background: var(--accent-ink); color: var(--accent); }
+@media (max-width: 768px) {
+    .chat-launcher-btn { width: auto !important; height: auto !important; border-radius: 999px !important; padding: 0.45rem 0.85rem 0.45rem 0.45rem !important; }
+    .chat-launcher-btn .launcher-text { display: inline !important; font-size: 0.8rem; }
+}
+/* while the job-description box is open it gets the whole window: messages, chips and the chat input step aside */
+.chat-container.fit-open .chat-messages, .chat-container.fit-open .chat-suggestions, .chat-container.fit-open .chat-form { display: none !important; }
+.chat-container.fit-open .fit-panel { border-top: 0; }
+@media (max-width: 768px) {
+    .chat-container { max-height: min(480px, calc(100dvh - 120px)) !important; }
+    #fit-jd { min-height: 9rem; }
+}

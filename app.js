@@ -1425,7 +1425,9 @@ document.addEventListener("DOMContentLoaded", () => {
         chatLauncher.addEventListener("click", () => {
             chatContainer.classList.toggle("active");
             if (chatContainer.classList.contains("active")) {
-                chatInput.focus();
+                // the launcher offers the fit check, so it opens straight to the job-description box
+                const panel = document.getElementById("fit-panel"), btn = document.getElementById("chat-fit-btn");
+                if (panel && btn && panel.hidden) btn.click(); else chatInput.focus();
             }
         });
     }
@@ -1695,6 +1697,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fitBtn.addEventListener("click", () => {
             const open = fitPanel.hidden;
             fitPanel.hidden = !open;
+            fitPanel.closest(".chat-container").classList.toggle("fit-open", open);
             fitBtn.setAttribute("aria-expanded", String(open));
             if (open) fitJd.focus();
         });
@@ -1705,6 +1708,7 @@ document.addEventListener("DOMContentLoaded", () => {
             addMessage(`Check fit against a pasted job description (${words} words).`, "user");
             fitJd.value = "";
             fitPanel.hidden = true;
+            fitPanel.closest(".chat-container").classList.remove("fit-open");
             fitBtn.setAttribute("aria-expanded", "false");
             triggerBotResponse("FIT CHECK: " + jd);
         });
