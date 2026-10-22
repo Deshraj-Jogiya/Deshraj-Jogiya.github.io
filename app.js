@@ -139,37 +139,43 @@ document.addEventListener("DOMContentLoaded", () => {
     logVisit();
     updateVisitorStatsUI();
 
-    // 1. Typing Terminal Animation: types each phrase once and stops on the last one (WCAG 2.2.2: no endless motion);
-    // with reduced motion requested it shows the final phrase straight away
+    // 1. Role rotator: types each role, erases it and moves to the next, looping through all of them. A pause button stops it
+    // (WCAG 2.2.2), and with reduced motion requested it shows the roles as one static line instead.
     const typingEl = document.getElementById("typing-text");
-    const words = ["Machine Learning Engineer.", "ETL Automation Architect.", "Data Pipeline Engineer."];
+    const pauseBtn = document.getElementById("typing-pause");
+    const words = ["Data Engineer", "Machine Learning Engineer", "Data Pipeline Engineer", "Analytics Engineer",
+                   "LLM & RAG Engineer", "MLOps & Data Quality Engineer"];
     const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (typingEl && reduceMotion) {
-        typingEl.textContent = words[words.length - 1];
+        typingEl.textContent = "Data Engineer · ML Engineer";
+        if (pauseBtn) pauseBtn.hidden = true;
     } else if (typingEl) {
-        let i = 0;
-        const typeWord = () => {
-            const chars = words[i].split("");
-            const step = () => {
-                if (chars.length) {
-                    typingEl.textContent += chars.shift();
-                    setTimeout(step, 80);
-                } else if (i < words.length - 1) {
-                    setTimeout(eraseWord, 1600);
-                }
-            };
-            step();
-        };
-        const eraseWord = () => {
-            if (typingEl.textContent.length) {
-                typingEl.textContent = typingEl.textContent.slice(0, -1);
-                setTimeout(eraseWord, 35);
+        let i = 0, pos = 0, erasing = false, paused = false, timer = null;
+        const tick = () => {
+            if (paused) return;
+            const word = words[i];
+            if (!erasing) {
+                pos += 1;
+                typingEl.textContent = word.slice(0, pos);
+                if (pos === word.length) { erasing = true; timer = setTimeout(tick, 1700); return; }
+                timer = setTimeout(tick, 70);
             } else {
-                i += 1;
-                setTimeout(typeWord, 400);
+                pos -= 1;
+                typingEl.textContent = word.slice(0, pos);
+                if (pos === 0) { erasing = false; i = (i + 1) % words.length; timer = setTimeout(tick, 350); return; }
+                timer = setTimeout(tick, 30);
             }
         };
-        typeWord();
+        tick();
+        if (pauseBtn) {
+            pauseBtn.addEventListener("click", () => {
+                paused = !paused;
+                pauseBtn.setAttribute("aria-pressed", String(paused));
+                pauseBtn.setAttribute("aria-label", paused ? "Play the role animation" : "Pause the role animation");
+                pauseBtn.textContent = paused ? "▶" : "❚❚";
+                if (paused) clearTimeout(timer); else tick();
+            });
+        }
     }
 
     // 2. Stats Counter Animation
@@ -2808,12 +2814,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const allTourSteps = [
         {
             title: "Welcome to Deshraj's Portfolio!",
-            desc: "This guided tour walks through Deshraj's experience, the featured case studies, the visitor analytics and the AI assistant. The interactive demos are on the Lab page. Choose how you would like to proceed below:",
+            desc: "This tour follows the page from top to bottom: who Deshraj is, his resume, the case studies and projects, the Lab, his experience, skills, certifications, recommendations and the AI assistant. Choose how you would like to go:",
             target: null,
             duration: 0,
             action: async () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 await delay(800);
+            }
+        },
+        {
+            title: "Who Deshraj is",
+            desc: "A data engineer and machine learning engineer: the roles he works in, the results behind them, and Career Pilot, the AI platform he runs in production.",
+            target: "#about",
+            duration: 9000,
+            action: async () => {
+                const el = document.querySelector("#about");
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    el.classList.add("tour-highlight");
+                }
+            },
+            cleanup: () => {
+                const el = document.querySelector("#about");
+                if (el) el.classList.remove("tour-highlight");
             }
         },
         {
@@ -2922,20 +2945,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Professional Experience",
-            desc: "Explore Deshraj's 3+ years of hands-on work history, featuring quantified metrics from Technoid LLC, Objectways, Zifatech Solutions, and Arizona State University.",
-            target: "#experience",
+            title: "Featured case studies",
+            desc: "Four projects told end to end: the problem, what was built, the measured result and what he would change. Each card opens its own page.",
+            target: ".featured-grid",
             duration: 10000,
             action: async () => {
-                const expSec = document.getElementById("experience");
-                if (expSec) {
-                    expSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    expSec.classList.add("tour-highlight");
+                const el = document.querySelector(".featured-grid");
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    el.classList.add("tour-highlight");
                 }
             },
             cleanup: () => {
-                const expSec = document.getElementById("experience");
-                if (expSec) expSec.classList.remove("tour-highlight");
+                const el = document.querySelector(".featured-grid");
+                if (el) el.classList.remove("tour-highlight");
             }
         },
         {
@@ -2996,104 +3019,37 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "SQL Sandbox & Dynamic Visuals",
-            desc: "Watch as we select and execute multiple analytical queries inside the playground to automatically render live metrics, data tables, and custom charts.",
-            target: ".sql-widget",
-            duration: 32000,
+            title: "The Lab",
+            desc: "The interactive demos (SQL playground, pipeline monitor, A/B test simulator, architecture explorer and decision-threshold explorer) live on the Lab page, linked here.",
+            target: ".lab-callout",
+            duration: 7000,
             action: async () => {
-                const widget = document.querySelector('.sql-widget');
-                if (widget) {
-                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    widget.classList.add("tour-highlight");
+                const el = document.querySelector(".lab-callout");
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    el.classList.add("tour-highlight");
                 }
-                await delay(1000);
-                
-                const querySelect = document.getElementById("sql-query-select");
-                const runBtn = document.getElementById("run-sql-btn");
-                
-                // 1. Cycle to Tax Anomaly Audit Query
-                if (querySelect) {
-                    querySelect.value = "anomaly_risk_claims";
-                    querySelect.dispatchEvent(new Event('change'));
-                }
-                await delay(1500);
-                if (runBtn) runBtn.click();
-                await delay(8000);
-                
-                // 2. Cycle to Clinical Trial Outcomes Query
-                if (querySelect) {
-                    querySelect.value = "survival_by_treatment";
-                    querySelect.dispatchEvent(new Event('change'));
-                }
-                await delay(1500);
-                if (runBtn) runBtn.click();
-                await delay(8000);
-                
-                // 3. Cycle to Land Use Emissions Query
-                if (querySelect) {
-                    querySelect.value = "emissions_by_state";
-                    querySelect.dispatchEvent(new Event('change'));
-                }
-                await delay(1500);
-                if (runBtn) runBtn.click();
-                await delay(8000);
             },
             cleanup: () => {
-                const widget = document.querySelector('.sql-widget');
-                if (widget) widget.classList.remove("tour-highlight");
+                const el = document.querySelector(".lab-callout");
+                if (el) el.classList.remove("tour-highlight");
             }
         },
         {
-            title: "Real-Time ETL Observability",
-            desc: "Next, we'll scroll down to the Live ETL Monitor. We'll run full diagnostics to show pipeline checks, data validation status, and drift alerts.",
-            target: ".observability-widget",
-            duration: 18000,
+            title: "Professional Experience",
+            desc: "His work history, with the measured results from each role: Technoid, Objectways, Zifatech Solutions and Arizona State University.",
+            target: "#experience",
+            duration: 10000,
             action: async () => {
-                const widget = document.querySelector('.observability-widget');
-                if (widget) {
-                    widget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    widget.classList.add("tour-highlight");
-                }
-                await delay(1000);
-                
-                const runBtn = document.getElementById("run-obs-btn");
-                if (runBtn) {
-                    runBtn.click();
+                const expSec = document.getElementById("experience");
+                if (expSec) {
+                    expSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    expSec.classList.add("tour-highlight");
                 }
             },
             cleanup: () => {
-                const widget = document.querySelector('.observability-widget');
-                if (widget) widget.classList.remove("tour-highlight");
-            }
-        },
-        {
-            title: "D.S. & ML Experiments Simulator",
-            desc: "Watch as we run a live Z-test in the A/B Testing Simulator, and adjust the classification decision boundary threshold on the ML Optimizer.",
-            target: ".experiments-grid",
-            duration: 16000,
-            action: async () => {
-                const grid = document.querySelector('.experiments-grid');
-                if (grid) {
-                    grid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    grid.classList.add("tour-highlight");
-                }
-                await delay(1000);
-                
-                const runBtn = document.getElementById("run-ab-btn");
-                if (runBtn) {
-                    runBtn.click();
-                }
-                await delay(5000);
-                
-                const slider = document.getElementById("threshold-slider");
-                if (slider) {
-                    slider.value = "0.35";
-                    slider.dispatchEvent(new Event('input'));
-                }
-            },
-            cleanup: () => {
-                const grid = document.querySelector('.experiments-grid');
-                if (grid) grid.classList.remove("tour-highlight");
+                const expSec = document.getElementById("experience");
+                if (expSec) expSec.classList.remove("tour-highlight");
             }
         },
         {
@@ -3176,33 +3132,54 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Skills & Certifications",
-            desc: "Take a look at Deshraj's skills category cards, and his certifications and training.",
+            title: "Core technical skills",
+            desc: "Skills grouped by area, from data engineering and warehousing to machine learning, LLMs and cloud.",
             target: "#skills",
-            duration: 11000,
+            duration: 9000,
             action: async () => {
-                const skills = document.getElementById("skills");
-                if (skills) {
-                    skills.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    skills.classList.add("tour-highlight");
+                const el = document.querySelector("#skills");
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    el.classList.add("tour-highlight");
                 }
-                await delay(3000);
-                if (skills) skills.classList.remove("tour-highlight");
-
-                const certs = document.getElementById("certifications");
-                if (certs) {
-                    certs.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    certs.classList.add("tour-highlight");
-                    await delay(3000);
-                    certs.classList.remove("tour-highlight");
-                }
-
             },
             cleanup: () => {
-                const skills = document.getElementById("skills");
-                if (skills) skills.classList.remove("tour-highlight");
-                const certs = document.getElementById("certifications");
-                if (certs) certs.classList.remove("tour-highlight");
+                const el = document.querySelector("#skills");
+                if (el) el.classList.remove("tour-highlight");
+            }
+        },
+        {
+            title: "Certifications",
+            desc: "Certifications and training, each with its issuer and a link to verify it.",
+            target: "#certifications",
+            duration: 8000,
+            action: async () => {
+                const el = document.querySelector("#certifications");
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    el.classList.add("tour-highlight");
+                }
+            },
+            cleanup: () => {
+                const el = document.querySelector("#certifications");
+                if (el) el.classList.remove("tour-highlight");
+            }
+        },
+        {
+            title: "Recommendations",
+            desc: "What managers, professors and colleagues say about working with him, word for word from LinkedIn.",
+            target: "#recommendations",
+            duration: 9000,
+            action: async () => {
+                const el = document.querySelector("#recommendations");
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    el.classList.add("tour-highlight");
+                }
+            },
+            cleanup: () => {
+                const el = document.querySelector("#recommendations");
+                if (el) el.classList.remove("tour-highlight");
             }
         },
         {
@@ -3257,7 +3234,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Tour Completed!",
-            desc: "Thank you for completing the tour! You've seen Deshraj's full pipeline dashboard, SQL queries, statistical models, and RAG AI chatbot. Connect with him below!",
+            desc: "That's the whole page. To reach Deshraj, use the contact details below, or ask the AI assistant anything the tour did not cover.",
             target: "#contact",
             duration: 10000,
             action: async () => {

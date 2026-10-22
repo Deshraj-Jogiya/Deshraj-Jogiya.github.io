@@ -52,27 +52,33 @@
         <section id="about" class="hero-section">
             <div class="hero-left">
                 <span class="badge badge-accent">Open to Data Engineer &amp; ML Engineer roles</span>
-                <h1 class="hero-title">Deshraj Jogiya</h1>
-                <p class="hero-role">Data Engineer &amp; Machine Learning Engineer <span class="hero-sep">·</span> Tempe, AZ <span class="hero-sep">·</span> open to relocation</p>
-                <p class="hero-proof">
-                    Builds and runs <a href="/projects/career-pilot/">Career Pilot</a>, a job-search platform in production: LLM resume tailoring checked against a master profile by plain code, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.
-                </p>
-                <div class="hero-actions">
-                    <button id="resume-hero-btn" class="btn btn-primary">View Resume</button>
-                    <a href="https://demo.129-146-36-193.sslip.io" class="btn btn-outline" target="_blank" rel="noopener">Career Pilot live demo ↗</a>
-                    <a href="#projects" class="btn btn-outline">Case studies</a>
-                </div>
+                <p class="hero-kicker">Hi, I'm Deshraj Jogiya <span class="hero-sep">·</span> Tempe, AZ, open to relocation</p>
+                <h1 class="hero-title">Data pipelines that hold up.<br><span class="gradient-text">AI systems that ship.</span></h1>
 
-                <!-- Typing Terminal Header -->
-                <div class="terminal-text">
-                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
+                <!-- Role rotator: loops through every role, with a pause control (WCAG 2.2.2) -->
+                <div class="terminal-text" aria-live="off">
+                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor" aria-hidden="true">|</span>
+                    <button id="typing-pause" class="typing-pause" type="button" aria-label="Pause the role animation" aria-pressed="false">❚❚</button>
                 </div>
+                <p class="sr-only">Data Engineer, Machine Learning Engineer, Data Pipeline Engineer, Analytics Engineer, LLM and RAG Engineer, MLOps and Data Quality Engineer.</p>
+
                 <p class="hero-description">
-                    MS in Information Technology, Arizona State University (4.0 GPA). Data pipelines, warehouses and machine learning systems in Python, SQL, PySpark, dbt, Airflow, Snowflake and Databricks, with tests and data-quality checks built in.
+                    I turn messy, multi-source data into pipelines teams can trust, then put machine learning on top of it. At Zifatech that meant
+                    <strong>60% faster ingestion on AWS</strong> and a <strong>98%+ data-reliability standard</strong> in Snowflake; at Technoid,
+                    GPT-4o mini matching that lifted candidate-matching accuracy <strong>25%</strong>. Today I run
+                    <a href="/projects/career-pilot/">Career Pilot</a>, my own AI job-search platform in production, where a plain-code check
+                    stops any claim the AI cannot back up.
                 </p>
-                <div class="hero-actions hero-actions-secondary">
-                    <button id="ask-ai-hero-btn" class="btn btn-outline btn-sm">Ask the AI assistant 💬</button>
-                    <button id="start-tour-btn" class="btn btn-tour-hero btn-sm">Guided tour ⚡</button>
+                <ul class="hero-proof-chips" aria-label="Highlights">
+                    <li><span>Career Pilot</span><a href="https://demo.129-146-36-193.sslip.io" target="_blank" rel="noopener">Live demo ↗</a></li>
+                    <li><span>Career Pilot</span>1,100+ automated tests</li>
+                    <li><span>Autofill extension</span>7 applicant-tracking systems</li>
+                </ul>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">See the case studies</a>
+                    <button id="resume-hero-btn" class="btn btn-outline">View resume</button>
+                    <button id="start-tour-btn" class="btn btn-tour-hero">Guided tour ⚡</button>
+                    <button id="ask-ai-hero-btn" class="btn btn-ghost">Ask the AI assistant 💬</button>
                 </div>
             </div>
 

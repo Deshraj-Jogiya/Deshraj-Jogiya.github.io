@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=53e6242179">
+    <link rel="stylesheet" href="/style.css?v=dd109597b6">
 </head>
 <body>
     <!-- Floating Background Orbs for Depth -->
@@ -72,27 +72,33 @@
         <section id="about" class="hero-section">
             <div class="hero-left">
                 <span class="badge badge-accent">Open to Data Engineer &amp; ML Engineer roles</span>
-                <h1 class="hero-title">Deshraj Jogiya</h1>
-                <p class="hero-role">Data Engineer &amp; Machine Learning Engineer <span class="hero-sep">·</span> Tempe, AZ <span class="hero-sep">·</span> open to relocation</p>
-                <p class="hero-proof">
-                    Builds and runs <a href="/projects/career-pilot/">Career Pilot</a>, a job-search platform in production: LLM resume tailoring checked against a master profile by plain code, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.
-                </p>
-                <div class="hero-actions">
-                    <button id="resume-hero-btn" class="btn btn-primary">View Resume</button>
-                    <a href="https://demo.129-146-36-193.sslip.io" class="btn btn-outline" target="_blank" rel="noopener">Career Pilot live demo ↗</a>
-                    <a href="#projects" class="btn btn-outline">Case studies</a>
-                </div>
+                <p class="hero-kicker">Hi, I'm Deshraj Jogiya <span class="hero-sep">·</span> Tempe, AZ, open to relocation</p>
+                <h1 class="hero-title">Data pipelines that hold up.<br><span class="gradient-text">AI systems that ship.</span></h1>
 
-                <!-- Typing Terminal Header -->
-                <div class="terminal-text">
-                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor">|</span>
+                <!-- Role rotator: loops through every role, with a pause control (WCAG 2.2.2) -->
+                <div class="terminal-text" aria-live="off">
+                    <span class="console-prompt">&gt;</span> <span id="typing-text"></span><span class="cursor" aria-hidden="true">|</span>
+                    <button id="typing-pause" class="typing-pause" type="button" aria-label="Pause the role animation" aria-pressed="false">❚❚</button>
                 </div>
+                <p class="sr-only">Data Engineer, Machine Learning Engineer, Data Pipeline Engineer, Analytics Engineer, LLM and RAG Engineer, MLOps and Data Quality Engineer.</p>
+
                 <p class="hero-description">
-                    MS in Information Technology, Arizona State University (4.0 GPA). Data pipelines, warehouses and machine learning systems in Python, SQL, PySpark, dbt, Airflow, Snowflake and Databricks, with tests and data-quality checks built in.
+                    I turn messy, multi-source data into pipelines teams can trust, then put machine learning on top of it. At Zifatech that meant
+                    <strong>60% faster ingestion on AWS</strong> and a <strong>98%+ data-reliability standard</strong> in Snowflake; at Technoid,
+                    GPT-4o mini matching that lifted candidate-matching accuracy <strong>25%</strong>. Today I run
+                    <a href="/projects/career-pilot/">Career Pilot</a>, my own AI job-search platform in production, where a plain-code check
+                    stops any claim the AI cannot back up.
                 </p>
-                <div class="hero-actions hero-actions-secondary">
-                    <button id="ask-ai-hero-btn" class="btn btn-outline btn-sm">Ask the AI assistant 💬</button>
-                    <button id="start-tour-btn" class="btn btn-tour-hero btn-sm">Guided tour ⚡</button>
+                <ul class="hero-proof-chips" aria-label="Highlights">
+                    <li><span>Career Pilot</span><a href="https://demo.129-146-36-193.sslip.io" target="_blank" rel="noopener">Live demo ↗</a></li>
+                    <li><span>Career Pilot</span>1,100+ automated tests</li>
+                    <li><span>Autofill extension</span>7 applicant-tracking systems</li>
+                </ul>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">See the case studies</a>
+                    <button id="resume-hero-btn" class="btn btn-outline">View resume</button>
+                    <button id="start-tour-btn" class="btn btn-tour-hero">Guided tour ⚡</button>
+                    <button id="ask-ai-hero-btn" class="btn btn-ghost">Ask the AI assistant 💬</button>
                 </div>
             </div>
 
@@ -606,7 +612,7 @@
                         <h3 class="card-title">Extending STEM across ASL</h3>
                         <p class="card-desc">Inclusive educational learning platform utilizing a Convolutional Neural Network (CNN) in TensorFlow/Keras to recognize American Sign Language gestures for 7 core STEM concepts.</p>
                         <div class="tech-tags">
-                            <span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>Keras</span><span>CNN Model</span><span>Flask</span>
+                            <span>Python</span><span>PyTorch</span><span>OpenCV</span><span>MediaPipe</span><span>TensorFlow</span><span>Keras</span>
                         </div>
                         <div class="card-actions">
                             <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>
@@ -1883,9 +1889,9 @@
 
 <li class="resume-bullet" data-role="sde">Minimal API: Built ASP.NET Core minimal API (C#) for browsing/adding interview questions, backed by Entity Framework Core + SQLite.</li>
 
-<li class="resume-bullet" data-role="sde">Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries.</li>
+<li class="resume-bullet" data-role="sde">Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries, plus SM-2 spaced-repetition scheduling of practice attempts with streak and mastery stats.</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: 5 xUnit integration tests (WebApplicationFactory + in-memory SQLite connection) plus a hand-run curl verification against the live app -- all passing.</li>
+<li class="resume-bullet" data-role="sde">Verified End-to-End: 19 xUnit tests -- 12 integration tests (WebApplicationFactory + in-memory SQLite connection) and 7 for the SM-2 scheduler -- plus a hand-run curl verification against the live app -- all passing.</li>
 
 </ul>
 </div>
@@ -1898,9 +1904,9 @@
 <p class="resume-job-company">Technologies: PHP, CodeIgniter 4, SQLite</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller.</li>
+<li class="resume-bullet" data-role="sde">CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller, plus bulk CSV import (imported/skipped/rejected rows) and a California WARN Act layoff-notice check.</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: 5 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.</li>
+<li class="resume-bullet" data-role="sde">Verified End-to-End: 12 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.</li>
 
 <li class="resume-bullet" data-role="sde">Found and fixed two CodeIgniter testing gotchas: DatabaseTestTrait's namespace defaulting to test-support fixtures only, and assertJSONFragment not doing nested matching against list responses.</li>
 
@@ -1932,9 +1938,9 @@
 <p class="resume-job-company">Technologies: HTMX, FastAPI, Jinja2</p>
 <ul>
 
-<li class="resume-bullet" data-role="sde">Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework).</li>
+<li class="resume-bullet" data-role="sde">Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework), with inline editing and Server-Sent Events syncing changes across open tabs.</li>
 
-<li class="resume-bullet" data-role="sde">Verified End-to-End: 5 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.</li>
+<li class="resume-bullet" data-role="sde">Verified End-to-End: 12 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.</li>
 
 <li class="resume-bullet" data-role="sde">Found and fixed bug the TestClient tests couldn't catch: hx-trigger's keyup-only binding never fired for autofill/paste, only keystrokes -- fixed to an input-based trigger and re-verified live.</li>
 
@@ -1949,11 +1955,11 @@
 <p class="resume-job-company">Technologies: ArcGIS, Geocoding, Vector Tiles, Geospatial Analysis</p>
 <ul>
 
-<li class="resume-bullet" data-role="de">Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by great-circle distance.</li>
+<li class="resume-bullet" data-role="de">Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by ArcGIS World Route drive time (great-circle distance as the fallback) on an interactive Leaflet map.</li>
 
 <li class="resume-bullet" data-role="de">Basemap Vector Tiles: Fetched and decoded Mapbox Vector Tile (.pbf) data from Esri's World Basemap v2 service -- the tile URL template was discovered by reading the basemap style JSON's sources, not assumed from docs, after an initial guessed URL returned 404.</li>
 
-<li class="resume-bullet" data-role="de">Verified End-to-End: All 7 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.</li>
+<li class="resume-bullet" data-role="de">Verified End-to-End: All 11 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names.</li>
 
 </ul>
 </div>
@@ -2008,7 +2014,7 @@
 
 <li class="resume-bullet" data-role="ds">MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).</li>
 
-<li class="resume-bullet" data-role="general">Bias &amp; Fairness Auditing: Evaluates demographic parity and Equal Opportunity bias metrics in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).</li>
+<li class="resume-bullet" data-role="general">Bias &amp; Fairness Auditing: Evaluates disparate impact, demographic parity and Equal Opportunity (true-positive-rate gap) bias metrics, writing guardrail alerts to an audit table, in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).</li>
 
 <li class="resume-bullet" data-role="de">Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in published interactive Tableau dashboard (public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard) -- a live log-scale drift-trend chart plus subgroup fairness comparison over <strong>30,000</strong> simulated inference records.</li>
 
@@ -2033,7 +2039,7 @@
 
 <li class="resume-bullet" data-role="de">Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration to streamline credit approval cycles.</li>
 
-<li class="resume-bullet" data-role="general">Real-Time Anomaly Flagging: Embedded automated rules checking transaction velocity and amount spikes to prevent fraudulent loan approvals.</li>
+<li class="resume-bullet" data-role="ds">Real-Time Anomaly Flagging: Embedded velocity, amount-spike and foreign-location rules and scored them against labelled planted fraud; the velocity rule caught all <strong>1,110</strong> planted card-testing charges with no false alarms.</li>
 
 <li class="resume-bullet" data-role="de">GraphQL API Layer: Added a Strawberry-GraphQL query layer alongside the existing REST endpoints, serving customer and loan data from the same database.</li>
 
@@ -2050,7 +2056,7 @@
 
 <li class="resume-bullet" data-role="ds">Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions about member data, ranking unstructured messages by cosine similarity over SentenceTransformer (all-MiniLM-L6-v2) embeddings.</li>
 
-<li class="resume-bullet" data-role="ds">Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages.</li>
+<li class="resume-bullet" data-role="ds">Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages; on 26 labelled paraphrased questions it finds the right member <strong>100%</strong> of the time and the right answer <strong>96%</strong>.</li>
 
 <li class="resume-bullet" data-role="de">Dynamic Information Extraction: Implemented regex-based extraction for contact info, numeric quantities, and companion/group references from unstructured message text, with fallback to the closest-matching message when no structured answer applies.</li>
 
@@ -2098,13 +2104,13 @@
 <p class="resume-job-company">Technologies: Python, SQLite, Random Forest, ETL Ingestion, ArcGIS, Tableau, GitHub Actions</p>
 <ul>
 
-<li class="resume-bullet" data-role="de">Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly.</li>
+<li class="resume-bullet" data-role="de">Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly (10.2 hours in the median week, counted from the pipeline's own work over 30 weeks).</li>
 
-<li class="resume-bullet" data-role="ds">Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy.</li>
+<li class="resume-bullet" data-role="ds">Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving <strong>90%</strong> accuracy (<strong>94.2%</strong> year-ahead on the EPA's 1990-2022 state land-use inventory).</li>
 
-<li class="resume-bullet" data-role="de">ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong>.</li>
+<li class="resume-bullet" data-role="de">ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by <strong>15%</strong> (the vectorised shock detector runs <strong>52%</strong> faster with identical flags).</li>
 
-<li class="resume-bullet" data-role="de">Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and exported GeoJSON layers for mapping.</li>
+<li class="resume-bullet" data-role="de">Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.</li>
 
 </ul>
 </div>
@@ -2117,11 +2123,11 @@
 <p class="resume-job-company">Technologies: Python, Benford's Law, Isolation Forest, Power BI, SQLite, GitHub Actions, Dagster</p>
 <ul>
 
-<li class="resume-bullet" data-role="de">General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time), orchestrated as a Dagster asset graph.</li>
+<li class="resume-bullet" data-role="de">General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time; vectorised entry validation runs <strong>99.9%</strong> faster than entry-by-entry checks on <strong>100,000</strong> entries), orchestrated as a Dagster asset graph.</li>
 
-<li class="resume-bullet" data-role="ds">Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions (<strong>94.7%</strong> precision, measured against a separate table of known injected anomalies).</li>
+<li class="resume-bullet" data-role="ds">Statistical &amp; ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions, adding a tax-rate rule layer for <strong>97.8%</strong> precision and <strong>95.7%</strong> recall, measured against a separate table of known injected anomalies.</li>
 
-<li class="resume-bullet" data-role="de">Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>.</li>
+<li class="resume-bullet" data-role="de">Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by <strong>25%</strong>; working in risk-priority order, an auditor finds <strong>90%</strong> of anomalies after opening 43 entries instead of <strong>1,108</strong> (<strong>96%</strong> less review work).</li>
 
 <li class="resume-bullet" data-role="general">Lineage &amp; Audit Control: Enforced strict data lineage logging and schema validation rules across enterprise financial audit records.</li>
 
@@ -2178,7 +2184,7 @@
 
 <li class="resume-bullet" data-role="ds">Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed pairwise log-rank tests (lifelines) and a chi-square adverse-event test (SciPy) to evaluate treatment efficacy across 3 cohorts.</li>
 
-<li class="resume-bullet" data-role="general">Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>.</li>
+<li class="resume-bullet" data-role="general">Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by <strong>30%</strong>; a one-process refresh rebuilds the full report <strong>60%</strong> faster (6.3 s instead of 15.5 s).</li>
 
 <li class="resume-bullet" data-role="general">HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII) across analytical schemas.</li>
 
@@ -2195,7 +2201,7 @@
 
 <li class="resume-bullet" data-role="de">High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline in Python to ingest high-frequency EV battery and motor telemetry sensor logs in micro-batches.</li>
 
-<li class="resume-bullet" data-role="ds">Anomaly Detection &amp; Device Health: Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures.</li>
+<li class="resume-bullet" data-role="ds">Anomaly Detection &amp; Device Health: Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures (<strong>98.1%</strong> recall, <strong>90.5%</strong> precision against 214 planted sensor spikes).</li>
 
 <li class="resume-bullet" data-role="ds">Degradation &amp; RUL Modeling: Implemented degradation modeling using exponential decay equations to estimate battery Remaining Useful Life (RUL) with Power BI dashboard tracking.</li>
 
@@ -2230,16 +2236,16 @@
 <h4>Extending STEM across ASL <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
 <span>Apr 2023 – Mar 2024</span>
 </div>
-<p class="resume-job-company">Technologies: Python, PyTorch, TensorFlow, Keras, CNN Model, Flask, ASL Recognition, GitHub Actions</p>
+<p class="resume-job-company">Technologies: Python, PyTorch, OpenCV, MediaPipe, TensorFlow, Keras, CNN Model, Flask, ASL Recognition, GitHub Actions</p>
 <ul>
 
-<li class="resume-bullet" data-role="ds">Deep Learning Web Application: Pioneered an inclusive Python web platform leveraging TensorFlow, PyTorch, Keras, and Flask, making 7 STEM concepts accessible to ASL users.</li>
+<li class="resume-bullet" data-role="ds">Deep Learning Web Application: Pioneered an inclusive Python web platform leveraging TensorFlow, PyTorch, Keras, and Flask, making 7 STEM concepts accessible to ASL users and recognising 29 STEM and computing word signs from video.</li>
 
-<li class="resume-bullet" data-role="ds">Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging CNN models and contour geometry, cutting gesture redundancy and boosting learning efficiency by <strong>30%</strong>.</li>
+<li class="resume-bullet" data-role="ds">Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging CNN models and contour geometry, cutting gesture redundancy and boosting learning efficiency by <strong>30%</strong> (MediaPipe hand landmarks, OpenCV contour features and a PyTorch GRU reach <strong>75.9%</strong> top-1 and <strong>94.8%</strong> top-3 on held-out WLASL clips; the 29 signs share 18 hand shapes, <strong>38%</strong> fewer to practise).</li>
 
 <li class="resume-bullet" data-role="general">User Feedback &amp; Evaluation: Synthesized feedback from <strong>50+</strong> STEM students, achieving a user satisfaction score of 4.6/5 based on post-lesson survey evaluations.</li>
 
-<li class="resume-bullet" data-role="de">Real-Time Video Frame Processing: Optimized OpenCV frame capture and pre-processing steps for low-latency web browser sign gesture classification.</li>
+<li class="resume-bullet" data-role="de">Real-Time Video Frame Processing: Optimized OpenCV frame capture and pre-processing steps for low-latency web browser sign gesture classification (a two-second webcam recording is recognised in about 1.1 s on a laptop CPU).</li>
 
 </ul>
 </div>
@@ -2349,11 +2355,11 @@
 
 <li class="resume-bullet" data-role="ds">Computer Vision &amp; Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.</li>
 
-<li class="resume-bullet" data-role="ds">High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI), combining deep learning with traditional contour geometry approximations.</li>
+<li class="resume-bullet" data-role="ds">High Classification Accuracy: Achieved <strong>99.2%</strong> classification accuracy on <strong>2,000</strong> held-out images from <strong>10,000</strong> generated shape images across 7 classes (checked in CI); contour geometry independently confirms the CNN on <strong>66%</strong> of images, and those confirmed predictions are <strong>99.9%</strong> correct.</li>
 
-<li class="resume-bullet" data-role="general">Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong>.</li>
+<li class="resume-bullet" data-role="general">Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by <strong>33%</strong> (four overlays, up from three: box, label, confidence and the located outline coloured by contour-geometry agreement).</li>
 
-<li class="resume-bullet" data-role="de">Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification.</li>
+<li class="resume-bullet" data-role="de">Contour Analysis &amp; Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification (Canny-located boxes reach a mean IoU of 0.93 against 0.82 for a thresholded mask).</li>
 
 <li class="resume-bullet" data-role="de">Real-Time Serverless Inference: Deployed the trained model as a live AWS Lambda function triggered by S3 image uploads -- exported to ONNX (~615KB) so it ships as a plain Lambda zip via onnxruntime, avoiding a PyTorch container image and its ECR storage cost. Verified end-to-end with live S3-to-Lambda integration test running in CI against the deployed AWS infrastructure.</li>
 
@@ -2727,6 +2733,6 @@
         </div>
     </div>
 
-    <script src="/app.js?v=53e6242179" defer></script>
+    <script src="/app.js?v=dd109597b6" defer></script>
 </body>
 </html>
