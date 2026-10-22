@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=2c89943b18">
+    <link rel="stylesheet" href="/style.css?v=e54bf5e3f9">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -132,7 +132,7 @@
 </div>
                     
                     <!-- Observability Explanatory Box -->
-                    <div class="obs-info-box" style="background: rgba(242, 169, 59, 0.04); border: 1px solid rgba(242, 169, 59, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
+                    <div class="obs-info-box" style="background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
                         <strong>What is this?</strong>This widget simulates a real-time data engineering pipeline monitoring system. In production, data pipelines process millions of rows daily and can fail silently due to bad data. 
                         Click <strong>"Run Pipeline Diagnostics"</strong>to run a live validation check. You'll see how data ingestion, quality checks, machine learning scoring, and database commits flow sequentially, demonstrating automated pipeline monitoring and observability skills.
 </div>
@@ -253,9 +253,9 @@
                                 <div class="input-group">
                                     <label for="ab-a-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
                                         <span>Control (A) Target:</span>
-                                        <span id="ab-a-target-val" style="color: var(--accent-indigo, #f2a93b); font-weight: 700;">10%</span>
+                                        <span id="ab-a-target-val" style="color: var(--accent-indigo, #8cc4ad); font-weight: 700;">10%</span>
                                     </label>
-                                    <input type="range" id="ab-a-target-input" min="1" max="30" value="10" step="1" style="width: 100%; accent-color: var(--accent-indigo, #f2a93b); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
+                                    <input type="range" id="ab-a-target-input" min="1" max="30" value="10" step="1" style="width: 100%; accent-color: var(--accent-indigo, #8cc4ad); height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; outline: none;">
 </div>
                                 <div class="input-group">
                                     <label for="ab-b-target-input" style="font-size: 0.78rem; color: var(--text-secondary); display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
@@ -282,7 +282,7 @@
                                         Conversions: <span id="ab-a-conv" style="font-weight: 600;">0</span> / <span id="ab-a-visitors" style="font-weight: 600;">1000</span>
 </div>
                                     <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
-                                        <div id="ab-a-bar" style="width: 0%; height: 100%; background: var(--accent-indigo, #f2a93b); transition: width 0.5s ease-out;"></div>
+                                        <div id="ab-a-bar" style="width: 0%; height: 100%; background: var(--accent-indigo, #8cc4ad); transition: width 0.5s ease-out;"></div>
 </div>
 </div>
                                 <!-- Challenger Card -->
@@ -320,7 +320,7 @@
 </div>
 </div>
 
-                            <div class="widget-context" style="padding: 1rem; background: rgba(242, 169, 59, 0.03); border: 1px solid rgba(242, 169, 59, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
+                            <div class="widget-context" style="padding: 1rem; background: rgba(140, 196, 173, 0.03); border: 1px solid rgba(140, 196, 173, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
                                 <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">Methodology &amp; Business Context</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The Problem:</strong>When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>How to Use:</strong>Drag the target sliders to set conversion rates for A and B. Click <strong>"Run Experiment Simulation"</strong>to simulate 1,000 visitors per group. The engine runs a live <strong>two-tailed Z-test</strong>on the proportions.</p>
@@ -339,10 +339,10 @@
                         <div class="widget-body">
                             <div class="slider-container" style="margin-bottom: 1.25rem;">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent-1, #f2a93b); font-size: 0.9rem;">0.50</span></label>
+                                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent-1, #8cc4ad); font-size: 0.9rem;">0.50</span></label>
                                     <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">OPTIMAL (0.35)</span>
 </div>
-                                <input type="range" id="threshold-slider" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent-1, #f2a93b); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
+                                <input type="range" id="threshold-slider" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent-1, #8cc4ad); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
 </div>
 
                             <div class="threshold-metrics-grid" style="margin-bottom: 1rem;">
@@ -366,7 +366,7 @@
                                             <tr>
                                                 <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Passive</td>
                                                 <td id="cm-fp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #f59e0b;">0</td>
-                                                <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #f2a93b;">0</td>
+                                                <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: #8cc4ad;">0</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -461,7 +461,7 @@
                                         <div id="arch-flow-input" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
 </div>
                                     <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">→</div>
-                                    <div style="background: rgba(242, 169, 59, 0.06); border: 1px solid rgba(242, 169, 59, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                    <div style="background: rgba(140, 196, 173, 0.06); border: 1px solid rgba(140, 196, 173, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
                                         <div style="font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Process</div>
                                         <div id="arch-flow-process" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
 </div>
@@ -472,7 +472,7 @@
 </div>
 </div>
 
-                                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; display: none; background: rgba(242, 169, 59, 0.04); border: 1px solid rgba(242, 169, 59, 0.15); padding: 0.75rem; border-radius: var(--border-radius-sm);" id="arch-node-impact">
+                                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; display: none; background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); padding: 0.75rem; border-radius: var(--border-radius-sm);" id="arch-node-impact">
                                     <!-- Business value will go here -->
                                 </p>
                                 <button id="arch-toggle-code-btn" class="btn btn-secondary btn-sm" style="display: none; width: 100%; margin-top: 0.5rem; font-size: 0.78rem; padding: 0.45rem 0.75rem; cursor: pointer;">
@@ -503,6 +503,6 @@
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=2c89943b18" defer></script>
+    <script src="/app.js?v=e54bf5e3f9" defer></script>
 </body>
 </html>
