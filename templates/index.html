@@ -22,7 +22,7 @@
     <!-- Navigation Header -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo-text" aria-label="Deshraj Jogiya, back to top"><span class="logo-mark" aria-hidden="true">DJ</span><span class="logo-name">Deshraj Jogiya</span></a>
+            <a href="#" class="logo-text" aria-label="Deshraj Jogiya, back to top"><span class="logo-mark" aria-hidden="true">DJ</span><span class="logo-name" id="nav-name">Deshraj Jogiya</span></a>
             <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -100,8 +100,7 @@
         <!-- Projects Section -->
         <section id="projects" class="projects-section">
             <div class="section-header">
-                <h2 class="section-title">Featured case studies</h2>
-                <p class="section-subtitle">Four projects in depth: the problem, the architecture, where the data comes from, the decisions and trade-offs, how it is tested, and the results.</p>
+                <h2 class="section-title">Selected work</h2>
             </div>
 
             <div class="featured-grid">
@@ -134,7 +133,6 @@
 
             <div class="section-header more-projects-header">
                 <h2 class="section-title section-title-sm">More projects</h2>
-                <p class="section-subtitle">Data engineering, machine learning, analytics and full-stack work. Each repository's README says where its data comes from.</p>
                 <div class="filter-controls">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
@@ -175,7 +173,6 @@
 
             <div class="section-header more-projects-header">
                 <h2 class="section-title section-title-sm">Team projects</h2>
-                <p class="section-subtitle">Built with a team; each repository's README lists the individual contribution.</p>
             </div>
             <div class="projects-grid team-grid">
                 {% for project in team_projects %}
@@ -195,14 +192,13 @@
                 {% endfor %}
             </div>
 
-            <p class="lab-callout glass-card">Interactive demos (SQL playground, pipeline monitor, A/B test simulator, architecture explorer, decision-threshold explorer) are on the <a href="/lab/">Lab page</a>.</p>
+            <a class="lab-cta glass-card" href="/lab/"><span class="lab-cta-title">The Lab</span><span class="lab-cta-text">Don't just read about it. Run SQL, test an A/B result for significance, or move a model's decision threshold and watch precision and recall trade off.</span><span class="lab-cta-arrow" aria-hidden="true">→</span></a>
         </section>
 
         <!-- Experience Showcase Section -->
         <section id="experience" class="experience-section">
             <div class="section-header">
-                <h2 class="section-title">Professional Experience & Technical Impact</h2>
-                <p class="section-subtitle">Six roles across data engineering, machine learning and analytics, each with the results it delivered.</p>
+                <h2 class="section-title">Experience</h2>
             </div>
 
             <div class="experience-container">
@@ -239,8 +235,7 @@
         <!-- Skills Section -->
         <section id="skills" class="skills-section">
             <div class="section-header">
-                <h2 class="section-title">Core Technical Expertise</h2>
-                <p class="section-subtitle">The tools behind the projects and roles above, grouped by area.</p>
+                <h2 class="section-title">Skills</h2>
             </div>
             
             <div class="skills-grid skills-cards">
@@ -260,8 +255,7 @@
         <!-- Certifications & Training Section (rendered from projects.json, same source as the resume modal and the chatbot) -->
         <section id="certifications" class="skills-section certifications-section">
             <div class="section-header">
-                <h2 class="section-title">Certifications &amp; Training</h2>
-                <p class="section-subtitle">Data, analytics and AI certificates first, with what each program covered.</p>
+                <h2 class="section-title">Certifications</h2>
             </div>
 
             {% set other_words = ['HR', 'HRCI', 'People Analytics', 'Digital Marketing', 'Greenhouse'] %}
@@ -283,7 +277,7 @@
                 {% endfor %}
             </div>
             <div class="cert-other">
-                <h3>Other training</h3>
+                <h3>Also completed</h3>
                 <ul>
                     {% for cert in certifications if (other_words | select('in', cert.name) | list) %}
                     <li><strong>{{ cert.name }}</strong>{% if cert.issuer %} · {{ cert.issuer }}{% endif %}{% if cert.status and cert.status != "Completed" %} · <span class="badge cert-status">{{ cert.status }}</span>{% endif %}</li>
@@ -296,8 +290,8 @@
         {% if testimonials %}
         <section id="recommendations" class="testimonials-section">
             <div class="section-header">
-                <h2 class="section-title">Recommendations</h2>
-                <p class="section-subtitle">Written by mentors and managers on LinkedIn, shown here word for word. <a href="{{ testimonials_source }}" target="_blank" rel="noopener" class="testimonial-verify">Verify on LinkedIn ↗</a></p>
+                <h2 class="section-title">What people say</h2>
+                <a href="{{ testimonials_source }}" target="_blank" rel="noopener" class="testimonial-verify">On LinkedIn ↗</a>
             </div>
 
             <div class="testimonials-grid">
@@ -330,7 +324,7 @@
                 <!-- Contact Details -->
                 <div class="contact-details-card glass-card">
                     <h2 class="contact-title">Let's Connect</h2>
-                    <p class="contact-text">Hiring a data engineer or ML engineer who ships tested, production-ready pipelines and models? Reach me directly or send a message here.</p>
+                    <p class="contact-text">Building a data platform or putting a model into production? I would like to hear about it.</p>
                     <div class="contact-info-links">
                         <div class="info-item">
                             <span class="info-icon">📧</span>

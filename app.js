@@ -2780,7 +2780,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const allTourSteps = [
         {
-            title: "Welcome to Deshraj's Portfolio!",
+            title: "Quick tour",
             desc: "This tour follows the page from top to bottom: who Deshraj is, his resume, the case studies and projects, the Lab, his experience, skills, certifications, recommendations and the AI assistant. Choose how you would like to go:",
             target: null,
             duration: 0,
@@ -2807,7 +2807,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Interactive Resume Modal",
+            title: "Resume",
             desc: "Watch as we open the Resume, cycle through his 'Data Engineering' and 'Data Science' highlights, and point out his perfect 4.0/4.0 GPA from Arizona State University.",
             target: "#resume-hero-btn",
             duration: 30000,
@@ -2912,7 +2912,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Featured case studies",
+            title: "Selected work",
             desc: "Four projects told end to end: the problem, what was built, the measured result and what he would change. Each card opens its own page.",
             target: ".featured-grid",
             duration: 10000,
@@ -2929,7 +2929,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Portfolio Repositories",
+            title: "More projects",
             desc: "Next, we scroll to his projects. Watch as the search category filters cycle dynamically to show Data Engineering, ML, and Analytics projects.",
             target: "#projects",
             duration: 18000,
@@ -2987,23 +2987,23 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "The Lab",
-            desc: "The interactive demos (SQL playground, pipeline monitor, A/B test simulator, architecture explorer and decision-threshold explorer) live on the Lab page, linked here.",
-            target: ".lab-callout",
+            desc: "Interactive demos you can run in the browser: a SQL playground, a pipeline monitor, an A/B test simulator and more.",
+            target: ".lab-cta",
             duration: 7000,
             action: async () => {
-                const el = document.querySelector(".lab-callout");
+                const el = document.querySelector(".lab-cta");
                 if (el) {
                     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     el.classList.add("tour-highlight");
                 }
             },
             cleanup: () => {
-                const el = document.querySelector(".lab-callout");
+                const el = document.querySelector(".lab-cta");
                 if (el) el.classList.remove("tour-highlight");
             }
         },
         {
-            title: "Professional Experience",
+            title: "Experience",
             desc: "His work history, with the measured results from each role: Technoid, Objectways, Zifatech Solutions and Arizona State University.",
             target: "#experience",
             duration: 10000,
@@ -3020,7 +3020,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Live Visitor Analytics & Traffic Forecast",
+            title: "Visitor analytics",
             desc: "Explore persistent visitor telemetry! Watch as we open the panel, cycle through 7-Day Traffic Forecasts, visualize K-Means Visitor Cohort Clusters, and test live ML model inference.",
             target: "#visitor-container",
             duration: 18000,
@@ -3099,7 +3099,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Core technical skills",
+            title: "Skills",
             desc: "Skills grouped by area, from data engineering and warehousing to machine learning, LLMs and cloud.",
             target: "#skills",
             duration: 9000,
@@ -3117,7 +3117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Certifications",
-            desc: "Certifications and training, each with its issuer and a link to verify it.",
+            desc: "Certifications in data, analytics and AI, and what each one covered.",
             target: "#certifications",
             duration: 8000,
             action: async () => {
@@ -3133,8 +3133,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Recommendations",
-            desc: "What managers, professors and colleagues say about working with him, word for word from LinkedIn.",
+            title: "What people say",
+            desc: "What managers, professors and colleagues say about working with him.",
             target: "#recommendations",
             duration: 9000,
             action: async () => {
@@ -3150,7 +3150,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Career Assistant Chatbot",
+            title: "AI assistant",
             desc: "Finally, let's open the AI assistant. The tour will type and send: 'summarize his 3+ years of experience' so you can see live RAG retrieval in action.",
             target: "#chat-launcher",
             duration: 22000,
@@ -3200,7 +3200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         {
-            title: "Tour Completed!",
+            title: "That's the tour",
             desc: "That's the whole page. To reach Deshraj, use the contact details below, or ask the AI assistant anything the tour did not cover.",
             target: "#contact",
             duration: 10000,
@@ -3542,3 +3542,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+// Header brand: hide the name next to the DJ badge while the hero is visible, show it once the hero scrolls away
+(() => {
+    const hero = document.getElementById("about");
+    if (!hero || !("IntersectionObserver" in window)) return;
+    new IntersectionObserver(([entry]) => document.body.classList.toggle("at-hero", entry.isIntersecting), { threshold: 0.25 }).observe(hero);
+})();
