@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
     "unique_visitors": 417,
     "visitors_today": 23,
     "sessions": 1093,
@@ -8,6 +9,17 @@
     "segments": {
         "Desktop, Windows, morning (UTC)": 480,
         "Desktop, Windows, evening (UTC)": 332,
+=======
+    "unique_visitors": 420,
+    "visitors_today": 26,
+    "sessions": 1096,
+    "first_visit": "2026-06-20",
+    "forecasted_next_week": 24,
+    "updated_at": "2026-10-22T21:28:20.114761Z",
+    "segments": {
+        "Desktop, Windows, morning (UTC)": 480,
+        "Desktop, Windows, evening (UTC)": 335,
+>>>>>>> Stashed changes
         "Desktop, Windows, night (UTC)": 281
     }
 }

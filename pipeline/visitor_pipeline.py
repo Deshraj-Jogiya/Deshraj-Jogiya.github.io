@@ -17,21 +17,27 @@ SUPABASE_URL = "https://mtvcrttbdjwcixzhlkvo.supabase.co"
 SUPABASE_KEY = "sb_publishable_ZuB30vNfc-7b7Pr6ebZNqQ_sXjox-wu"
 REST_URL = f"{SUPABASE_URL}/rest/v1/portfolio_visits"
 
+# The site's own palette (graphite ground, sage accent), so the charts read as part of the page
+BG, SURFACE, LINE = '#111315', '#181b1f', '#2b3036'
+TEXT, MUTED = '#ecebe6', '#a8acb2'
+SAGE, SAGE_DIM, SAND = '#8cc4ad', '#4a5a54', '#d8b98a'
+
+
 def setup_matplotlib_theme():
-    """Sets up a premium cyber-dark theme for matplotlib matching the portfolio site."""
+    """Matplotlib theme matching the portfolio site."""
     plt.style.use('dark_background')
     plt.rcParams.update({
-        'figure.facecolor': '#0f172a',      # Slate 900
-        'axes.facecolor': '#1e293b',        # Slate 800
-        'axes.edgecolor': '#334155',        # Slate 700
-        'grid.color': '#334155',
-        'grid.alpha': 0.3,
-        'text.color': '#f8fafc',            # Slate 50
-        'axes.labelcolor': '#cbd5e1',       # Slate 300
-        'xtick.color': '#94a3b8',           # Slate 400
-        'ytick.color': '#94a3b8',
+        'figure.facecolor': BG,
+        'axes.facecolor': SURFACE,
+        'axes.edgecolor': LINE,
+        'grid.color': LINE,
+        'grid.alpha': 0.8,
+        'text.color': TEXT,
+        'axes.labelcolor': MUTED,
+        'xtick.color': MUTED,
+        'ytick.color': MUTED,
         'font.family': 'sans-serif',
-        'font.sans-serif': ['Inter', 'Roboto', 'DejaVu Sans', 'Arial'],
+        'font.sans-serif': ['IBM Plex Sans', 'DejaVu Sans', 'Arial'],
         'figure.autolayout': True
     })
 
@@ -142,21 +148,21 @@ def process_and_run_ml(df):
     # Plot A: Traffic Forecast Chart
     fig, ax = plt.subplots(figsize=(9, 4.5))
     # Plot historical data
-    ax.plot(daily_counts['date'], daily_counts['visits'], label='Daily Traffic (Historical)', color='#6366f1', linewidth=2.5, marker='o', markersize=4)
+    ax.plot(daily_counts['date'], daily_counts['visits'], label='Daily visits', color=SAGE, linewidth=1.8, marker='o', markersize=3)
     # Plot trendline
     trend_vals = model_lr.predict(X)
-    ax.plot(daily_counts['date'], trend_vals, color='#8b5cf6', linestyle='--', alpha=0.7, label='Growth Trend')
+    ax.plot(daily_counts['date'], trend_vals, color=MUTED, linestyle='--', alpha=0.8, label='Linear trend')
     
     # Plot forecast
-    ax.plot(forecast_df['date'], forecast_df['visits'], label='7-Day ML Forecast', color='#10b981', linewidth=2.5, linestyle=':', marker='s', markersize=5)
-    ax.fill_between(forecast_df['date'], np.clip(forecast_df['visits'] - 1.96 * residual_sd, 0, None), forecast_df['visits'] + 1.96 * residual_sd, color='#10b981', alpha=0.15, label='~95% band (trend residuals)')
+    ax.plot(forecast_df['date'], forecast_df['visits'], label='7-day forecast', color=SAND, linewidth=2.2, linestyle=':', marker='s', markersize=4)
+    ax.fill_between(forecast_df['date'], np.clip(forecast_df['visits'] - 1.96 * residual_sd, 0, None), forecast_df['visits'] + 1.96 * residual_sd, color=SAND, alpha=0.15, label='~95% band (trend residuals)')
     
     # Formatting
-    ax.set_title('Machine Learning Traffic Forecast Model (Linear Regression)', fontsize=12, fontweight='bold', pad=15)
+    ax.set_title('Daily visits and a 7-day forecast (linear regression)', fontsize=12, fontweight='bold', pad=15, loc='left')
     ax.set_xlabel('Date', fontsize=10, labelpad=8)
     ax.set_ylabel('Visits per day', fontsize=10, labelpad=8)
     ax.grid(True, linestyle=':', alpha=0.6)
-    ax.legend(frameon=True, facecolor='#1e293b', edgecolor='#334155', loc='upper left')
+    ax.legend(frameon=True, facecolor=SURFACE, edgecolor=LINE, loc='upper right')
     
     # Rotate x labels
     plt.xticks(rotation=25)
@@ -171,18 +177,19 @@ def process_and_run_ml(df):
     segment_counts = df['cluster_name'].value_counts()
     
     # Plot horizontal bar chart
-    colors = ['#6366f1', '#8b5cf6', '#10b981', '#f59e0b'][:len(segment_counts)]
-    bars = ax.barh(segment_counts.index, segment_counts.values, color=colors, height=0.55, edgecolor='#334155')
+    # Largest segment in the accent, the rest muted, so the eye lands on the biggest group first
+    colors = [SAGE if v == segment_counts.max() else SAGE_DIM for v in segment_counts.values]
+    bars = ax.barh(segment_counts.index, segment_counts.values, color=colors, height=0.55)
     
     # Add values on top of bars
     for bar in bars:
         width = bar.get_width()
         ax.text(width + (max(segment_counts.values) * 0.01), bar.get_y() + bar.get_height()/2, 
                 f'{int(width)} ({width/len(df)*100:.1f}%)', 
-                va='center', ha='left', color='#cbd5e1', fontweight='bold', fontsize=9)
+                va='center', ha='left', color=TEXT, fontweight='bold', fontsize=9)
                 
-    ax.set_title('Visitor Cohort Segmentation Model (K-Means Clustering)', fontsize=12, fontweight='bold', pad=15)
-    ax.set_xlabel('Volume of Sessions', fontsize=10, labelpad=8)
+    ax.set_title('Sessions by visitor segment (K-Means clustering)', fontsize=12, fontweight='bold', pad=15, loc='left')
+    ax.set_xlabel('Sessions', fontsize=10, labelpad=8)
     ax.grid(True, axis='x', linestyle=':', alpha=0.6)
     ax.set_xlim(0, max(segment_counts.values) * 1.15)
     plt.tight_layout()

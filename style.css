@@ -4519,3 +4519,18 @@ a.live-val:hover { text-decoration-color: var(--accent); }
     .chat-container { max-height: min(480px, calc(100dvh - 120px)) !important; }
     #fit-jd { min-height: 9rem; }
 }
+
+/* Lab: this site's own visitor data */
+.site-analytics { margin: 3rem 0 1rem; display: flex; flex-direction: column; gap: 1rem; }
+.site-analytics-intro { max-width: 70ch; color: var(--text-secondary); line-height: 1.6; }
+.site-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 0; }
+@media (max-width: 760px) { .site-stats { grid-template-columns: repeat(2, 1fr); } }
+.site-stats > div { padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.site-stats dt { font-size: 0.78rem; color: var(--text-secondary); }
+.site-stats dd { margin: 0.25rem 0 0; font: 600 1.5rem var(--font-mono); color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.site-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
+.site-charts figure { margin: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #111315; }
+.site-charts img { display: block; width: 100%; height: auto; }
+.site-charts figcaption { padding: 0.75rem 1rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary); background: var(--surface); }
+.site-analytics-updated { font-size: 0.82rem; color: var(--text-secondary); }
+@media (max-width: 480px) { .site-charts { grid-template-columns: 1fr; } }

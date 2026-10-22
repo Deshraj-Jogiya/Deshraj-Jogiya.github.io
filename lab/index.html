@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=b3ff9cb6e8">
+    <link rel="stylesheet" href="/style.css?v=e0cdd7d368">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -55,7 +55,7 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Lab</nav>
         <header class="case-hero">
             <h1 class="case-title">The Lab</h1>
-            <p class="case-summary">Five demos you can drive yourself, running in your browser on sample data. The production systems behind them are in the <a href="/#projects">case studies</a>.</p>
+            <p class="case-summary">Five demos you can drive yourself, running in your browser on sample data, and one panel built on this site's own visitor log. The production systems behind them are in the <a href="/#projects">case studies</a>.</p>
         </header>
         <!-- Interactive Recruiter Showcase Section -->
         <section id="interactive" class="interactive-section">
@@ -481,6 +481,28 @@
 </div>
         </section>
 
+
+        <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
+            <h2 id="site-analytics-title" class="section-title">This site's own visitor data</h2>
+            <p class="site-analytics-intro">Real numbers, not sample data. Every page view writes an anonymous row (a random ID, device, browser and city) to Supabase; a scheduled job reads them every 12 hours, fits the models below and publishes the results here. Local previews and test runs are never logged.</p>
+            <dl class="site-stats">
+                <div><dt>Unique visitors since <span id="visitor-since">June 2026</span></dt><dd id="visitor-count">...</dd></div>
+                <div><dt>Sessions</dt><dd id="visitor-sessions">...</dd></div>
+                <div><dt>Visitors today (UTC)</dt><dd id="visitor-today">...</dd></div>
+                <div><dt>Forecast, next 7 days</dt><dd id="visitor-forecast-val">...</dd></div>
+            </dl>
+            <div class="site-charts">
+                <figure>
+                    <img src="/assets/traffic_forecast.png" alt="Daily visits since June 2026 with a linear trend and a 7-day forecast band" loading="lazy" width="1350" height="675">
+                    <figcaption>Daily visits with a linear-regression trend. The forecast band is the trend plus or minus 1.96 times the spread of past days around it, so a quiet trend still allows for spikes like the ones on the chart.</figcaption>
+                </figure>
+                <figure>
+                    <img src="/assets/visitor_segments.png" alt="Sessions grouped into visitor segments by K-Means clustering" loading="lazy" width="1350" height="675">
+                    <figcaption>Sessions grouped by K-Means on device, operating system, browser and hour of visit; each segment is named after its most common values.</figcaption>
+                </figure>
+            </div>
+            <p class="site-analytics-updated">Last updated <span id="visitor-updated">...</span>. Code: <a href="https://github.com/Deshraj-Jogiya/Deshraj-Jogiya.github.io/blob/main/pipeline/visitor_pipeline.py" target="_blank" rel="noopener">pipeline/visitor_pipeline.py</a></p>
+        </section>
     </main>
 
     <footer class="footer-bar">
@@ -496,6 +518,6 @@
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=b3ff9cb6e8" defer></script>
+    <script src="/app.js?v=e0cdd7d368" defer></script>
 </body>
 </html>

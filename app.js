@@ -1,3 +1,7 @@
+// A local preview (a developer's own machine, or a test run) is never logged as a visit or an engagement event,
+// so the published visitor numbers count real visitors only.
+const LOCAL_PREVIEW = location.protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+
 /* ==========================================================================
    JavaScript Functionality for Deshraj Jogiya's Portfolio Website
    ========================================================================== */
@@ -34,15 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Live Visitor Analytics (Supabase REST API Integration)
     const SUPABASE_URL = "https://mtvcrttbdjwcixzhlkvo.supabase.co";
     const SUPABASE_KEY = "sb_publishable_ZuB30vNfc-7b7Pr6ebZNqQ_sXjox-wu";
-
-    function getFlagEmoji(countryCode) {
-        if (!countryCode) return "";
-        const codePoints = countryCode
-            .toUpperCase()
-            .split("")
-            .map(char => 127397 + char.charCodeAt(0));
-        return String.fromCodePoint(...codePoints);
-    }
 
     async function logVisit() {
         let visitorId = localStorage.getItem("portfolio_visitor_id");
@@ -107,10 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Supabase log failed:", e);
         }
 
-        const cityEl = document.getElementById("visitor-city");
-        const flagEl = document.getElementById("visitor-flag");
-        if (cityEl) cityEl.textContent = geodata.city ? `${geodata.city}, ${geodata.country_code}` : "Online visitor";
-        if (flagEl && geodata.country_code) flagEl.textContent = getFlagEmoji(geodata.country_code);
     }
 
     async function updateVisitorStatsUI() {
@@ -126,6 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (forecastEl) forecastEl.textContent = stats.forecasted_next_week ?? "...";
                 // Real count from the last pipeline run (every 12 hours); no simulated live movement
                 if (todayEl) todayEl.textContent = stats.visitors_today ?? "...";
+                const sessionsEl = document.getElementById("visitor-sessions");
+                if (sessionsEl) sessionsEl.textContent = stats.sessions != null ? stats.sessions.toLocaleString("en-US") : "...";
+                const updatedEl = document.getElementById("visitor-updated");
+                if (updatedEl && stats.updated_at) {
+                    updatedEl.textContent = new Date(stats.updated_at).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }) + " UTC";
+                }
                 const sinceEl = document.getElementById("visitor-since");
                 if (sinceEl && stats.first_visit) {
                     sinceEl.textContent = new Date(stats.first_visit + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
@@ -136,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    logVisit();
+    if (!LOCAL_PREVIEW) logVisit();
     updateVisitorStatsUI();
 
     // 1. Role rotator: types each role, erases it and moves to the next, looping through all of them for as long as the page is open.
@@ -267,42 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    // Visitor ML Models & Charts Modal
-    const mlModal = document.getElementById("ml-charts-modal");
-    const viewMlBtn = document.getElementById("view-ml-charts-btn");
-    const closeMlBtn = document.getElementById("close-ml-modal-btn");
-
-    if (viewMlBtn && mlModal) {
-        viewMlBtn.addEventListener("click", () => {
-            mlModal.classList.add("active");
-            document.body.style.overflow = "hidden";
-        });
-    }
-
-    const closeMlModal = () => {
-        if (mlModal) {
-            mlModal.classList.remove("active");
-            document.body.style.overflow = ""; // Re-enable background scrolling
-        }
-    };
-
-    if (closeMlBtn) {
-        closeMlBtn.addEventListener("click", closeMlModal);
-    }
-
-    if (mlModal) {
-        mlModal.addEventListener("click", (e) => {
-            if (e.target === mlModal) {
-                closeMlModal();
-            }
-        });
-    }
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && mlModal && mlModal.classList.contains("active")) {
-            closeMlModal();
-        }
-    });
 
     // ==========================================================================
     // 5. Light/Dark Mode Theme Switcher
@@ -1446,47 +1407,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================================================
-    // 12b. Floating Live Visitor Analytics Widget Toggle
-    // ==========================================================================
-    const visitorLauncher = document.getElementById("visitor-launcher");
-    const visitorContainer = document.getElementById("visitor-container");
-    const closeVisitorBtn = document.getElementById("close-visitor-btn");
-
-    if (visitorLauncher && visitorContainer) {
-        visitorLauncher.addEventListener("click", () => {
-            visitorContainer.classList.toggle("active");
-        });
-    }
-
-    if (closeVisitorBtn && visitorContainer) {
-        closeVisitorBtn.addEventListener("click", () => {
-            visitorContainer.classList.remove("active");
-        });
-    }
-
-    // Responsive DOM Portal for Visitor Analytics Widget (Mobile Flow Insertion)
-    const handleVisitorResponsiveLayout = () => {
-        const container = document.getElementById("visitor-container");
-        const desktopParent = document.getElementById("visitor-analytics-widget");
-        const mobileParent = document.getElementById("mobile-visitor-section");
-        
-        if (!container || !desktopParent || !mobileParent) return;
-        
-        if (window.innerWidth < 992) {
-            if (container.parentElement !== mobileParent) {
-                mobileParent.appendChild(container);
-            }
-        } else {
-            if (container.parentElement !== desktopParent) {
-                desktopParent.appendChild(container);
-            }
-        }
-    };
-    
-    handleVisitorResponsiveLayout();
-    window.addEventListener("resize", handleVisitorResponsiveLayout);
-
     const answers = {
         gpa: "Deshraj earned a perfect 4.0/4.0 GPA during his Master of Science in IT at Arizona State University.",
         python: "Python is Deshraj's primary language: ETL pipelines with Pandas and PySpark, Great Expectations data-quality checks, FastAPI services, and machine learning models with Scikit-Learn (Random Forest, XGBoost) and TensorFlow/Keras (CNNs).",
@@ -2356,162 +2276,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize default pipeline flow
     renderPipelineFlow("careerpilot");  // newest work first; matches the tab marked active in the template
-
-    // ==========================================================================
-    // 14. Interactive ML Evaluation Metrics & SVG Tracker Curves
-    // ==========================================================================
-    const mlTabBtns = document.querySelectorAll(".ml-tab-btn");
-    const mlForecastPanel = document.getElementById("ml-forecast-panel");
-    const mlCohortsPanel = document.getElementById("ml-cohorts-panel");
-    const mlMetricsPanel = document.getElementById("ml-metrics-panel");
-
-    mlTabBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            mlTabBtns.forEach(b => {
-                b.classList.remove("active");
-                b.style.background = "rgba(255,255,255,0.04)";
-                b.style.color = "var(--text-secondary)";
-                b.style.border = "1px solid rgba(255,255,255,0.1)";
-            });
-            btn.classList.add("active");
-            btn.style.background = "var(--grad-primary)";
-            btn.style.color = "#fff";
-            btn.style.border = "none";
-
-            const targetTab = btn.getAttribute("data-ml-tab");
-            if (targetTab === "forecast") {
-                if (mlForecastPanel) mlForecastPanel.style.display = "block";
-                if (mlCohortsPanel) mlCohortsPanel.style.display = "none";
-                if (mlMetricsPanel) mlMetricsPanel.style.display = "none";
-            } else if (targetTab === "cohorts") {
-                if (mlForecastPanel) mlForecastPanel.style.display = "none";
-                if (mlCohortsPanel) mlCohortsPanel.style.display = "block";
-                if (mlMetricsPanel) mlMetricsPanel.style.display = "none";
-            } else {
-                if (mlForecastPanel) mlForecastPanel.style.display = "none";
-                if (mlCohortsPanel) mlCohortsPanel.style.display = "none";
-                if (mlMetricsPanel) mlMetricsPanel.style.display = "block";
-                // Trigger curve tracker dot alignment on first display
-                updateClassifierSimulator();
-            }
-        });
-    });
-
-    const modelSelect = document.getElementById("ml-model-select");
-    const thresholdSlider = document.getElementById("modal-threshold-slider");
-    const thresholdVal = document.getElementById("modal-threshold-val");
-    const precisionVal = document.getElementById("metric-precision");
-    const recallVal = document.getElementById("metric-recall");
-    const f1Val = document.getElementById("metric-f1");
-    const cellTP = document.getElementById("cell-tp");
-    const cellFP = document.getElementById("cell-fp");
-    const cellFN = document.getElementById("cell-fn");
-    const cellTN = document.getElementById("cell-tn");
-    const businessTitle = document.getElementById("ml-business-title");
-    const businessDesc = document.getElementById("ml-business-desc");
-    const rocDot = document.getElementById("roc-dot");
-    const prDot = document.getElementById("pr-dot");
-
-    function updateClassifierSimulator() {
-        if (!thresholdSlider) return;
-        const t = parseFloat(thresholdSlider.value);
-        if (thresholdVal) thresholdVal.textContent = t.toFixed(2);
-
-        const model = modelSelect ? modelSelect.value : "conversion";
-
-        let tp, fp, fn, tn, totalPos, totalNeg;
-
-        if (model === "conversion") {
-            totalPos = 200;
-            totalNeg = 800;
-            // Mathematical approximations modeling typical Classifier curves
-            tp = Math.round(totalPos * Math.pow(1 - t, 0.35));
-            fp = Math.round(totalNeg * Math.pow(1 - t, 2.2));
-            fn = totalPos - tp;
-            tn = totalNeg - fp;
-        } else {
-            totalPos = 150;
-            totalNeg = 850;
-            tp = Math.round(totalPos * Math.pow(1 - t, 0.5));
-            fp = Math.round(totalNeg * Math.pow(1 - t, 1.6));
-            fn = totalPos - tp;
-            tn = totalNeg - fp;
-        }
-
-        // Confusion matrix values
-        if (cellTP) cellTP.textContent = tp;
-        if (cellFP) cellFP.textContent = fp;
-        if (cellFN) cellFN.textContent = fn;
-        if (cellTN) cellTN.textContent = tn;
-
-        // Metrics calculations
-        const precision = tp / (tp + fp + 1e-5);
-        const recall = tp / totalPos;
-        const f1 = 2 * precision * recall / (precision + recall + 1e-5);
-
-        if (precisionVal) precisionVal.textContent = (precision * 100).toFixed(1) + "%";
-        if (recallVal) recallVal.textContent = (recall * 100).toFixed(1) + "%";
-        if (f1Val) f1Val.textContent = (f1 * 100).toFixed(1) + "%";
-
-        // Align dot trackers on SVGs
-        const fpr = fp / totalNeg;
-        const tpr = recall;
-
-        if (rocDot) {
-            // SVG coordinate scaling (viewbox 0 0 100 100)
-            const cx = fpr * 100;
-            const cy = 100 - (tpr * 100);
-            rocDot.setAttribute("cx", cx.toFixed(1));
-            rocDot.setAttribute("cy", cy.toFixed(1));
-        }
-
-        if (prDot) {
-            const cx = recall * 100;
-            const cy = 100 - (precision * 100);
-            prDot.setAttribute("cx", cx.toFixed(1));
-            prDot.setAttribute("cy", cy.toFixed(1));
-        }
-
-        // Contextual business text
-        if (businessTitle && businessDesc) {
-            if (model === "conversion") {
-                if (t < 0.30) {
-                    businessTitle.textContent = ` High Recall / Low Precision Conversion Threshold (${t.toFixed(2)})`;
-                    businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "Flags almost all visitors as likely to convert. This triggers aggressive modal popups, newsletter signups, and sales outreach, causing high user bounce rates and user frustration.";
-                } else if (t > 0.70) {
-                    businessTitle.textContent = ` High Precision / Low Recall Conversion Threshold (${t.toFixed(2)})`;
-                    businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "Only triggers conversion outreach when 100% certain. Genuine recruiters browse in peace, but you miss proactive opportunities to trigger the recruiter tour or AI chatbot, losing warm leads.";
-                } else {
-                    businessTitle.textContent = ` Optimal Balanced Conversion Threshold (${t.toFixed(2)})`;
-                    businessTitle.style.color = "var(--accent-emerald)";
-                    businessDesc.textContent = "Optimal F1-Score trade-off. Automatically triggers the guided tour and AI assistant launcher for high-interest users while keeping background tracking passive and non-intrusive.";
-                }
-            } else {
-                if (t < 0.35) {
-                    businessTitle.textContent = ` High Recall / Low Precision Bot Filtering Threshold (${t.toFixed(2)})`;
-                    businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "Flags almost all sessions as potential bot traffic. Enforces strict CAPTCHA verification challenges for every visitor, causing high friction and driving away real recruiters.";
-                } else if (t > 0.65) {
-                    businessTitle.textContent = ` High Precision / Low Recall Bot Filtering Threshold (${t.toFixed(2)})`;
-                    businessTitle.style.color = "var(--accent-amber)";
-                    businessDesc.textContent = "Only blocks sessions that are undeniably bots. Real users experience zero friction, but the backend is flooded with automated scrapers, spam database inserts, and fake analytics logs.";
-                } else {
-                    businessTitle.textContent = ` Optimal Balanced Bot Security Threshold (${t.toFixed(2)})`;
-                    businessTitle.style.color = "var(--accent-emerald)";
-                    businessDesc.textContent = "Balanced security threshold. Filters out 98% of aggressive headless scrapers and automated spam bots while ensuring a completely friction-free experience for 99.9% of human recruiters.";
-                }
-            }
-        }
-    }
-
-    if (thresholdSlider) {
-        thresholdSlider.addEventListener("input", updateClassifierSimulator);
-    }
-    if (modelSelect) {
-        modelSelect.addEventListener("change", updateClassifierSimulator);
-    }
 
     // ==========================================================================
     // A/B Testing Simulator & Normal Distribution Helpers
@@ -3507,6 +3271,7 @@ document.addEventListener("DOMContentLoaded", () => {
 (() => {
     const URL = "https://mtvcrttbdjwcixzhlkvo.supabase.co/rest/v1/portfolio_events";
     const KEY = "sb_publishable_ZuB30vNfc-7b7Pr6ebZNqQ_sXjox-wu";
+    if (LOCAL_PREVIEW) return;
     const vid = (() => { try { return localStorage.getItem("portfolio_visitor_id") || "anon"; } catch (e) { return "anon"; } })();
     const sent = new Set();
     const send = (event, detail) => {

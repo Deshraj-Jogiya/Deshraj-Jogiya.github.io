@@ -93,7 +93,7 @@
                 <div class="quick-stats-grid">
                     {% for stat in stats %}
                     <div class="stat-card glass-card">
-                        <p class="stat-number" data-target="{{ stat.number }}" data-suffix="{{ stat.suffix }}" data-decimals="{{ stat.decimals or 0 }}">{{ stat.number }}{{ stat.suffix }}</p>
+                        <p class="stat-number" data-target="{{ stat.number }}" data-suffix="{{ stat.suffix }}" data-decimals="{{ stat.decimals or 0 }}">{{ "{:,}".format(stat.number|int) if (stat.number|string).isdigit() else stat.number }}{{ stat.suffix }}</p>
                         <p class="stat-label">{{ stat.label }}</p>
 </div>
                     {% endfor %}
@@ -229,11 +229,6 @@
 </div>
                 {% endfor %}
 </div>
-        </section>
-
-        <!-- Mobile Visitor Analytics Section (Embedded on smaller viewports) -->
-        <section id="mobile-visitor-section" class="mobile-visitor-only">
-            <!-- Portaled dynamically via JavaScript -->
         </section>
 
         <!-- Skills Section -->
@@ -516,188 +511,6 @@
       </defs>
     </svg>
 
-    <!-- Visitor ML Models & Charts Modal Overlay -->
-    <div id="ml-charts-modal" class="modal-overlay">
-        <div class="modal-content ml-charts-modal-content glass-card" style="max-width: 900px; width: 95%;">
-            <div class="resume-modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <h2 style="font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">Live Visitor AI/ML Insights</h2>
-                    <button class="close-modal-btn close-ml-modal-btn" id="close-ml-modal-btn" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
-</div>
-                
-                <!-- Tab Buttons for ML Modal -->
-                <div class="ml-modal-tabs" style="display: flex; gap: 0.5rem;">
-                    <button class="ml-tab-btn active" data-ml-tab="forecast" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: var(--grad-primary); color: #fff; border: none;">Traffic Forecast</button>
-                    <button class="ml-tab-btn" data-ml-tab="cohorts" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">Visitor Cohorts</button>
-                    <button class="ml-tab-btn" data-ml-tab="metrics" style="padding: 0.4rem 0.9rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition-smooth); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);">Classifier Boundaries</button>
-</div>
-</div>
-            
-            <div class="ml-charts-container" style="max-height: 65vh; overflow-y: auto; padding-right: 0.5rem;">
-                
-                <!-- Tab 1: Traffic Forecast -->
-                <div class="ml-panel-content" id="ml-forecast-panel">
-                    <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-blue); display: flex; align-items: center; gap: 0.5rem;">
-                         7-Day Traffic Forecast Model (Linear Regression)
-                    </h4>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
-                        This model aggregates visitor logs daily and fits a <strong>Linear Regression</strong>model on the timeline index. It forecasts unique traffic trends for the upcoming 7 days to evaluate profile engagement.
-                    </p>
-                    <div style="border-radius: var(--border-radius-md); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #0f172a; padding: 1rem; display: flex; justify-content: center;">
-                        <img src="assets/traffic_forecast.png" alt="Traffic Forecast Chart" style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 4px;">
-</div>
-</div>
-                
-                <!-- Tab 2: Visitor Cohorts -->
-                <div class="ml-panel-content" id="ml-cohorts-panel" style="display: none;">
-                    <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-purple); display: flex; align-items: center; gap: 0.5rem;">
-                         Visitor Cohort Segmentation Model (K-Means)
-                    </h4>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5;">
-                        This model runs a <strong>K-Means Clustering</strong>algorithm on visitor characteristics (OS, Device, Browser, Hour of Visit). It groups users into distinct behavioral cohorts (e.g. Mobile Explorers, recruiters, or desktop analysts).
-                    </p>
-                    <div style="border-radius: var(--border-radius-md); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); background: #0f172a; padding: 1rem; display: flex; justify-content: center;">
-                        <img src="assets/visitor_segments.png" alt="Visitor Segmentation Clusters Chart" style="width: 100%; max-width: 800px; height: auto; display: block; border-radius: 4px;">
-</div>
-</div>
-
-                <!-- Tab 3: Interactive Evaluation Dials -->
-                <div class="ml-panel-content" id="ml-metrics-panel" style="display: none;">
-                    <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent-emerald); display: flex; align-items: center; gap: 0.5rem;">
-                         Classifier Decision Boundary &amp; Performance Metrics
-                    </h4>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.5;">
-                        Adjust the classification decision boundary threshold to evaluate the trade-off between false alarms (FP) and missed detections (FN). The score distributions are simulated to show the trade-off; no model is trained on visitor data here.
-                    </p>
-
-                    <div class="ml-metrics-interactive-grid" style="display: flex; flex-direction: column; gap: 1.25rem;">
-                        <!-- Selection & Slider controls -->
-                        <div class="ml-controls-card glass-card" style="padding: 1.25rem; background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06);">
-                            <div class="form-group" style="margin-bottom: 1rem;">
-                                <label style="display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--text-secondary);">Select Target Model</label>
-                                <select id="ml-model-select" class="sql-select" style="width: 100%;">
-                                    <option value="conversion">Example: lead-scoring classifier (simulated scores)</option>
-                                    <option value="bot">Example: bot-session detector (simulated scores)</option>
-                                </select>
-</div>
-                            
-                            <div class="slider-group">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Classification Threshold</span>
-                                    <span class="threshold-badge" id="modal-threshold-val" style="background: var(--grad-primary); color: #fff; padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">0.50</span>
-</div>
-                                <input type="range" id="modal-threshold-slider" min="0.00" max="1.00" step="0.01" value="0.50" style="width: 100%; cursor: pointer;">
-                                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;">
-                                    <span>0.00 (High Recall / Flag All)</span>
-                                    <span>1.00 (High Precision / Flag None)</span>
-</div>
-</div>
-</div>
-
-                        <!-- Main Grid: Metrics, Matrix, and Graphs -->
-                        <div class="ml-metrics-details-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                            <!-- Column A: Dials & Confusion Matrix -->
-                            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-                                <!-- Metrics Dials -->
-                                <div class="obs-metrics-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; width: 100%;">
-                                    <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
-                                        <div class="obs-metric-val" id="metric-precision" style="font-size: 1.3rem;">89.2%</div>
-                                        <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">Precision</div>
-</div>
-                                    <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
-                                        <div class="obs-metric-val" id="metric-recall" style="font-size: 1.3rem;">82.5%</div>
-                                        <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">Recall</div>
-</div>
-                                    <div class="obs-metric-card" style="padding: 0.75rem; text-align: center;">
-                                        <div class="obs-metric-val" id="metric-f1" style="font-size: 1.3rem;">85.7%</div>
-                                        <div class="obs-metric-lbl" style="font-size: 0.68rem; color: var(--text-secondary);">F1-Score</div>
-</div>
-</div>
-
-                                <!-- Confusion Matrix -->
-                                <div class="confusion-matrix-card glass-card" style="padding: 1.25rem; background: rgba(255,255,255,0.01); border-color: rgba(255,255,255,0.06);">
-                                    <h5 style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem; color: var(--text-secondary); text-align: center;">Confusion Matrix (N = 1,000)</h5>
-                                    <div style="display: grid; grid-template-columns: 80px 1fr 1fr; gap: 4px; text-align: center; font-size: 0.75rem;">
-                                        <div></div>
-                                        <div style="font-weight: 600; padding: 4px; color: var(--text-muted);">Pred Neg</div>
-                                        <div style="font-weight: 600; padding: 4px; color: var(--text-muted);">Pred Pos</div>
-
-                                        <div style="font-weight: 600; text-align: right; align-self: center; padding-right: 8px; color: var(--text-muted);">Actual Neg</div>
-                                        <div class="matrix-cell" id="cell-tn" style="background: rgba(255,255,255,0.02); padding: 8px; border-radius: 4px; font-weight: bold;">760</div>
-                                        <div class="matrix-cell" id="cell-fp" style="background: rgba(239, 68, 68, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: #ef4444;">40</div>
-
-                                        <div style="font-weight: 600; text-align: right; align-self: center; padding-right: 8px; color: var(--text-muted);">Actual Pos</div>
-                                        <div class="matrix-cell" id="cell-fn" style="background: rgba(239, 68, 68, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: #ef4444;">35</div>
-                                        <div class="matrix-cell" id="cell-tp" style="background: rgba(16, 185, 129, 0.05); padding: 8px; border-radius: 4px; font-weight: bold; color: var(--accent-emerald);">165</div>
-</div>
-</div>
-</div>
-
-                            <!-- Column B: SVG Curves -->
-                            <div class="curves-wrapper" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <!-- ROC Curve -->
-                                <div class="curve-block glass-card" style="padding: 0.75rem; text-align: center; background: rgba(0,0,0,0.1); border-color: rgba(255,255,255,0.05);">
-                                    <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">ROC Curve</div>
-                                    <svg viewBox="-10 -10 120 120" style="width: 100%; height: auto; overflow: visible;">
-                                        <!-- Axis helper lines -->
-                                        <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <!-- Axes -->
-                                        <line x1="0" y1="100" x2="100" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                                        <line x1="0" y1="0" x2="0" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                                        <!-- Baseline diagonal -->
-                                        <line x1="0" y1="100" x2="100" y2="0" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2" stroke-width="0.75" />
-                                        <!-- Curve path -->
-                                        <path id="roc-path" d="M 0 100 Q 15 15, 100 0" fill="none" stroke="url(#purpleGradient)" stroke-width="2.5" />
-                                        <!-- Threshold dot tracker -->
-                                        <circle id="roc-dot" r="4.5" fill="#8cc4ad" stroke="#fff" stroke-width="1.5" cx="0" cy="100"></circle>
-                                        
-                                        <!-- Axis Labels -->
-                                        <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">FPR (1-Spec)</text>
-                                        <text x="-50" y="-8" font-size="7" fill="var(--text-muted)" transform="rotate(-90)" text-anchor="middle">TPR (Sensitivity)</text>
-                                    </svg>
-</div>
-
-                                <!-- PR Curve -->
-                                <div class="curve-block glass-card" style="padding: 0.75rem; text-align: center; background: rgba(0,0,0,0.1); border-color: rgba(255,255,255,0.05);">
-                                    <div style="font-size: 0.7rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">Precision-Recall Curve</div>
-                                    <svg viewBox="-10 -10 120 120" style="width: 100%; height: auto; overflow: visible;">
-                                        <!-- Axis helper lines -->
-                                        <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
-                                        <!-- Axes -->
-                                        <line x1="0" y1="100" x2="100" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                                        <line x1="0" y1="0" x2="0" y2="100" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
-                                        <!-- Curve path -->
-                                        <path id="pr-path" d="M 0 10 C 65 10, 85 25, 100 100" fill="none" stroke="url(#blueGradient)" stroke-width="2.5" />
-                                        <!-- Threshold dot tracker -->
-                                        <circle id="pr-dot" r="4.5" fill="#8cc4ad" stroke="#fff" stroke-width="1.5" cx="0" cy="10"></circle>
-                                        
-                                        <!-- Axis Labels -->
-                                        <text x="50" y="112" font-size="7" fill="var(--text-muted)" text-anchor="middle">Recall</text>
-                                        <text x="-50" y="-8" font-size="7" fill="var(--text-muted)" transform="rotate(-90)" text-anchor="middle">Precision</text>
-                                    </svg>
-</div>
-</div>
-</div>
-
-                        <!-- Business explanation card -->
-                        <div class="ml-business-card glass-card" style="background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: var(--border-radius-md); padding: 1rem; font-size: 0.82rem; line-height: 1.5; width: 100%;">
-                            <div style="font-weight: 700; color: var(--accent-emerald); margin-bottom: 0.25rem;" id="ml-business-title">Optimal Balanced Threshold (0.50)</div>
-                            <div style="color: var(--text-secondary);" id="ml-business-desc">
-                                Optimal F1-Score. Balances customer experience and capital protection. Fraud is minimized, while maintaining a smooth experience for 98% of creditworthy customers.
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
     <!-- Footer -->
     <footer class="footer-bar">
 {% include "_footer.html" %}
@@ -756,73 +569,6 @@
                 <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." required>
                 <button type="submit" class="chat-send-btn">Send</button>
             </form>
-</div>
-</div>
-
-    <!-- Live Visitor Analytics Floating Widget -->
-    <div id="visitor-analytics-widget" class="visitor-analytics-widget">
-        <!-- Launcher Button (Vertical Tab on Right Edge) -->
-        <button id="visitor-launcher" class="visitor-launcher-btn" aria-label="Open Visitor Analytics">
-            <span class="launcher-icon">Live</span>
-            <span class="launcher-text-vertical">VISITORS</span>
-            <span class="launcher-pulse"></span>
-</button>
-
-        <!-- Panel Container -->
-        <div id="visitor-container" class="visitor-container glass-card">
-            <!-- Header -->
-            <div class="visitor-header">
-                <div class="visitor-header-info">
-                    <span class="visitor-avatar">Live</span>
-                    <div>
-                        <div class="visitor-widget-name">Visitor Analytics</div>
-                        <div class="visitor-widget-status"><span class="status-dot visitor-status-dot"></span>Supabase Sync Active</div>
-</div>
-</div>
-                <button id="close-visitor-btn" class="close-visitor-btn" aria-label="Close Visitor Stats">&times;</button>
-</div>
-
-            <!-- Scrollable Stats Content -->
-            <div class="visitor-widget-content">
-                <!-- Telemetry Stats -->
-                <div class="visitor-stats-panel">
-                    <div class="visitor-stats-row">
-                        <span class="visitor-stat-label">Your Location</span>
-                        <span class="visitor-location-badge" id="visitor-loc">
-                            <span id="visitor-flag"></span> <span id="visitor-city">Detecting...</span>
-</span>
-</div>
-                    <div class="visitor-stats-row">
-                        <span class="visitor-stat-label">Unique visitors (since <span id="visitor-since">Jun 2026</span>)</span>
-                        <span class="visitor-stat-value" id="visitor-count">...</span>
-</div>
-                    <div class="visitor-stats-row">
-                        <span class="visitor-stat-label">Visitors today (UTC)</span>
-                        <span class="visitor-stat-value" id="visitor-today">...</span>
-</div>
-</div>
-
-                <!-- Forecast -->
-                <div class="visitor-forecast-box">
-                    <div class="visitor-stat-label" style="font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; color: var(--text-secondary);">
-                        7-Day Traffic Forecast
-</div>
-                    <div class="visitor-forecast-num" id="visitor-forecast-val">...</div>
-                    <div class="visitor-stat-label" style="font-size: 0.75rem; margin-bottom: 0.5rem;">Expected visits next week</div>
-</div>
-
-                <!-- ML Action -->
-                <div class="visitor-ml-panel" style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.85rem;">
-                    <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; margin: 0; font-style: italic;">
-                        This site logs anonymous visit stats: approximate city and country (looked up from your IP address by ipapi.co), device and browser, under a random ID kept in local storage. No cookies. The charts below cluster those visits with K-Means.
-                    </p>
-                    <div class="visitor-ml-btn-box" style="margin-top: 0.75rem;">
-                        <button class="btn btn-secondary" id="view-ml-charts-btn" style="width: 100%; font-size: 0.8rem; padding: 0.55rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); color: var(--text-primary); cursor: pointer; border-radius: var(--border-radius-sm); transition: var(--transition-smooth);">
-                             View ML Model Charts
-</button>
-</div>
-</div>
-</div>
 </div>
 </div>
 
