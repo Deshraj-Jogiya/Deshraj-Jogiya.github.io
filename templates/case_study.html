@@ -19,7 +19,16 @@
             <span class="badge badge-accent">{{ project.badge }}</span>
             <h1 class="case-title">{{ cs.title }}</h1>
             <p class="case-summary">{{ cs.summary }}</p>
+            {% if cs.headline_number %}
+            <dl class="case-summary-box">
+                <div class="csb-result"><dt>Result</dt><dd><span class="card-headline-num">{{ cs.headline_number }}</span> {{ cs.headline_label }}</dd></div>
+                <div><dt>Built for</dt><dd>{{ cs.audience }}</dd></div>
+                <div><dt>Role</dt><dd>Sole developer: design, build, tests and deployment</dd></div>
+                <div><dt>When</dt><dd>{{ project.date }}</dd></div>
+            </dl>
+            {% else %}
             <p class="case-meta">{{ project.date }}{% if cs.audience %} · For: {{ cs.audience }}{% endif %}</p>
+            {% endif %}
             <div class="hero-actions">
                 {% if cs.demo_url %}<a href="{{ cs.demo_url }}" class="btn btn-primary" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
                 {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-outline" target="_blank" rel="noopener">Code on GitHub ↗</a>{% endif %}

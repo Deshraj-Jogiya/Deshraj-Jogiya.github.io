@@ -48,7 +48,9 @@
       "Workday forms need an account before any question is reachable, so they are only partly covered",
       "Custom phone-country pickers on some forms are left at the page's default"
     ],
-    "card_result": "In production since February 2026 · fills forms on 7 applicant-tracking systems · nothing sent without a human click"
+    "card_result": "In production since February 2026 · fills forms on 7 applicant-tracking systems · nothing sent without a human click",
+    "headline_number": "7",
+    "headline_label": "applicant-tracking systems filled, nothing sent without a human click"
   },
   "job-market-lakehouse": {
     "project": "Job Market Lakehouse",
@@ -90,7 +92,9 @@
       "Runs Spark in local mode, not on a cluster",
       "The Scala job is run by hand against a Spark distribution rather than in CI"
     ],
-    "card_result": "11 data-quality expectations gate every run · a quality report from each CI run"
+    "card_result": "11 data-quality expectations gate every run · a quality report from each CI run",
+    "headline_number": "11",
+    "headline_label": "data-quality checks gate every run"
   },
   "dbt-warehouse": {
     "project": "Job Search dbt Warehouse",
@@ -129,7 +133,9 @@
     "limits": [
       "CI depends on the Databricks workspace being reachable; when it isn't, the run fails on the connection rather than on the model"
     ],
-    "card_result": "22 data tests against a live Databricks SQL warehouse · incremental daily snapshot"
+    "card_result": "22 data tests against a live Databricks SQL warehouse · incremental daily snapshot",
+    "headline_number": "22",
+    "headline_label": "data tests against a live Databricks warehouse"
   },
   "finrisk": {
     "project": "FinTech Credit Risk & Fraud Command Center",
@@ -170,6 +176,8 @@
       "Synthetic data: the effects are built into the generator, so the model recovers relationships that were put there",
       "The decline threshold is fixed; a production system would set it from loss and approval-rate targets"
     ],
-    "card_result": "93.4% precision on declined loans · 0.92 ROC-AUC · 67 ms median scoring"
+    "card_result": "93.4% precision on declined loans · 0.92 ROC-AUC · 67 ms median scoring",
+    "headline_number": "93.4%",
+    "headline_label": "precision on declined loans, scored in 67 ms"
   }
 }

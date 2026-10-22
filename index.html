@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=9add813626">
+    <link rel="stylesheet" href="/style.css?v=abbe8e8247">
 </head>
 <body>
     <!-- Floating Background Orbs for Depth -->
@@ -152,7 +152,7 @@
                         <div class="card-badge">AI & Process Automation</div>
                         <h3 class="card-title"><a href="/projects/career-pilot/">Career Pilot: a job-search assistant in production</a></h3>
                         <p class="card-desc">A self-hosted platform that collects job postings, scores how well each matches the candidate's master profile, drafts a tailored resume and cover letter, and pre-fills application forms. Every application is reviewed and submitted by a person.</p>
-                        <p class="card-result">In production since February 2026 · fills forms on 7 applicant-tracking systems · nothing sent without a human click</p>
+                        <p class="card-headline"><span class="card-headline-num">7</span><span class="card-headline-label">applicant-tracking systems filled, nothing sent without a human click</span></p>
                         <div class="tech-tags">
                             <span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Supabase</span><span>SQLAlchemy</span><span>Alembic</span>
 </div>
@@ -176,7 +176,7 @@
                         <div class="card-badge">Big Data & Orchestration</div>
                         <h3 class="card-title"><a href="/projects/job-market-lakehouse/">Job Market Lakehouse: PySpark, Great Expectations and Airflow</a></h3>
                         <p class="card-desc">A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.</p>
-                        <p class="card-result">11 data-quality expectations gate every run · a quality report from each CI run</p>
+                        <p class="card-headline"><span class="card-headline-num">11</span><span class="card-headline-label">data-quality checks gate every run</span></p>
                         <div class="tech-tags">
                             <span>PySpark</span><span>Spark SQL</span><span>Scala</span><span>Great Expectations</span><span>Apache Airflow</span>
 </div>
@@ -200,7 +200,7 @@
                         <div class="card-badge">Data Warehousing</div>
                         <h3 class="card-title"><a href="/projects/dbt-warehouse/">Job Search dbt Warehouse: a dimensional model on Databricks</a></h3>
                         <p class="card-desc">A dbt project that builds a dimensional model on a Databricks SQL warehouse: staging views over seed data, dimension and fact tables, an incremental daily snapshot, and data tests that run against the warehouse.</p>
-                        <p class="card-result">22 data tests against a live Databricks SQL warehouse · incremental daily snapshot</p>
+                        <p class="card-headline"><span class="card-headline-num">22</span><span class="card-headline-label">data tests against a live Databricks warehouse</span></p>
                         <div class="tech-tags">
                             <span>Databricks</span><span>dbt</span><span>SQL</span><span>Dimensional Modeling</span>
 </div>
@@ -224,7 +224,7 @@
                         <div class="card-badge">FinTech & Risk</div>
                         <h3 class="card-title"><a href="/projects/finrisk/">FinRisk: predicting loan default and serving it in under 100 ms</a></h3>
                         <p class="card-desc">An end-to-end credit-risk pipeline: ETL into SQLite, a Random Forest and an XGBoost model predicting loan default compared in MLflow, rule-based fraud flags, and a FastAPI service with REST and GraphQL endpoints behind a Chart.js dashboard.</p>
-                        <p class="card-result">93.4% precision on declined loans · 0.92 ROC-AUC · 67 ms median scoring</p>
+                        <p class="card-headline"><span class="card-headline-num">93.4%</span><span class="card-headline-label">precision on declined loans, scored in 67 ms</span></p>
                         <div class="tech-tags">
                             <span>FastAPI</span><span>Python</span><span>SQL</span><span>Scikit-Learn</span><span>Chart.js</span><span>SQLite</span>
 </div>
@@ -2614,8 +2614,8 @@
     <div id="ai-chat-widget" class="ai-chat-widget">
         <!-- Launcher Button -->
         <button id="chat-launcher" class="chat-launcher-btn" aria-label="Open AI Career Assistant">
-            <span class="launcher-icon">Ask</span>
-            <span class="launcher-text">Career Assistant Agent</span>
+            <span class="launcher-icon" aria-hidden="true">DJ</span>
+            <span class="launcher-text">Ask about my work</span>
             <span class="launcher-pulse"></span>
 </button>
 
@@ -2626,7 +2626,7 @@
                 <div class="chat-header-info">
                     <span class="chat-avatar">DJ</span>
                     <div>
-                        <div class="chat-bot-name">Career Assistant Agent</div>
+                        <div class="chat-bot-name">Ask about Deshraj</div>
                         <div class="chat-status"><span class="status-dot"></span>AI assistant · answers only from this site's project data</div>
 </div>
 </div>
@@ -2760,6 +2760,6 @@
 </div>
 </div>
 
-    <script src="/app.js?v=9add813626" defer></script>
+    <script src="/app.js?v=abbe8e8247" defer></script>
 </body>
 </html>

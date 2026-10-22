@@ -117,7 +117,7 @@
                         <div class="card-badge">{{ project.badge }}</div>
                         <h3 class="card-title"><a href="/projects/{{ project.slug }}/">{{ cs.title }}</a></h3>
                         <p class="card-desc">{{ cs.summary }}</p>
-                        {% if cs.card_result %}<p class="card-result">{{ cs.card_result }}</p>{% endif %}
+                        {% if cs.headline_number %}<p class="card-headline"><span class="card-headline-num">{{ cs.headline_number }}</span><span class="card-headline-label">{{ cs.headline_label }}</span></p>{% endif %}
                         <div class="tech-tags">
                             {% for tag in project.tags[:6] %}<span>{{ tag }}</span>{% endfor %}
 </div>
@@ -703,8 +703,8 @@
     <div id="ai-chat-widget" class="ai-chat-widget">
         <!-- Launcher Button -->
         <button id="chat-launcher" class="chat-launcher-btn" aria-label="Open AI Career Assistant">
-            <span class="launcher-icon">Ask</span>
-            <span class="launcher-text">Career Assistant Agent</span>
+            <span class="launcher-icon" aria-hidden="true">DJ</span>
+            <span class="launcher-text">Ask about my work</span>
             <span class="launcher-pulse"></span>
 </button>
 
@@ -715,7 +715,7 @@
                 <div class="chat-header-info">
                     <span class="chat-avatar">DJ</span>
                     <div>
-                        <div class="chat-bot-name">Career Assistant Agent</div>
+                        <div class="chat-bot-name">Ask about Deshraj</div>
                         <div class="chat-status"><span class="status-dot"></span>AI assistant · answers only from this site's project data</div>
 </div>
 </div>
