@@ -522,7 +522,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-emerald);">PASS </span></span>
                 <span style="font-size: 0.72rem; color: var(--text-muted);">6/6 Expectations Succeeded</span>
             </div>
-            <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--border-radius-sm); padding: 0.6rem; font-size: 0.75rem; color: #f59e0b; margin-bottom: 0.75rem; line-height: 1.4;">
+            <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--border-radius-sm); padding: 0.6rem; font-size: 0.75rem; color: var(--warn); margin-bottom: 0.75rem; line-height: 1.4;">
                  <strong>Non-blocking Warning on Benford's Law:</strong> This check detects mild transaction distribution drift. The schema is 100% valid and the pipeline passed, but this warning is logged for analytics auditing.
             </div>
             <div class="qa-rules-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -539,7 +539,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="qa-rule-details" id="qa-details-${idx}" style="display: none;">
                         <div style="margin-bottom: 0.4rem; color: var(--text-secondary);">${rule.desc}</div>
-                        <pre style="margin: 0; color: #a7f3d0; font-size: 0.7rem; overflow-x: auto;">${JSON.stringify(rule.details, null, 2)}</pre>
+                        <pre style="margin: 0; color: var(--ok); font-size: 0.7rem; overflow-x: auto;">${JSON.stringify(rule.details, null, 2)}</pre>
                     </div>
                 </div>
             `;
@@ -1349,11 +1349,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     row.forEach(val => {
                         let cellStyle = "";
                         if (val === "HIGH RISK" || val === "DRIFT DETECTED") {
-                            cellStyle = "style='color: #ef4444; font-weight: bold;'";
+                            cellStyle = "style='color: var(--bad); font-weight: bold;'";
                         } else if (val === "COMPLIANT" || val === "STABLE") {
                             cellStyle = "style='color: var(--accent-emerald); font-weight: bold;'";
                         } else if (val.includes("Target")) {
-                            cellStyle = "style='color: #8cc4ad; font-weight: bold;'";
+                            cellStyle = "style='color: var(--accent); font-weight: bold;'";
                         }
                         dataRow += `<td ${cellStyle}>${val}</td>`;
                     });
@@ -2224,7 +2224,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tourBtn.innerHTML = "Stop Tour ⏹";
             tourBtn.style.background = "rgba(239, 68, 68, 0.1)";
             tourBtn.style.borderColor = "rgba(239, 68, 68, 0.25)";
-            tourBtn.style.color = "var(--accent-red, #ef4444)";
+            tourBtn.style.color = "var(--bad)";
         }
 
         const activeTab = document.querySelector(".arch-tab-btn.active");
@@ -2714,9 +2714,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const netProfitEl = document.getElementById("val-net-profit");
             netProfitEl.textContent = (netProfit >= 0 ? "$" : "-$") + Math.abs(netProfit).toLocaleString();
             if (netProfit >= 0) {
-                netProfitEl.style.color = "#10b981";
+                netProfitEl.style.color = "var(--ok)";
             } else {
-                netProfitEl.style.color = "#ef4444";
+                netProfitEl.style.color = "var(--bad)";
             }
             
             const optimalBadge = document.getElementById("threshold-optimal-badge");

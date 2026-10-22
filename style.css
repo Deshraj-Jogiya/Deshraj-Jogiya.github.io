@@ -4333,3 +4333,114 @@ body.light-theme .navbar { background: rgba(243, 244, 245, 0.97) !important; }
 .interactive-grid { max-width: none !important; }
 .recruiter-insights-card, .obs-info-box, .widget-context { background: var(--surface-2) !important; border: 1px solid var(--line) !important; }
 .recruiter-insight-title { color: var(--text-primary) !important; font-family: var(--font-mono); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.06em; }
+
+/* The resume always reads as a document on light paper (it is what Print / Save PDF produces), in either site theme */
+#resume-modal .resume-paper {
+    background-color: #ffffff;
+    color: #1e293b;
+}
+#resume-modal .resume-header-block {
+    border-bottom-color: #e2e8f0;
+}
+#resume-modal .resume-header-block .resume-name {
+    color: #0f172a;
+}
+#resume-modal .resume-sub {
+    color: #8cc4ad;
+}
+#resume-modal .resume-meta {
+    color: #64748b;
+}
+#resume-modal .resume-meta a {
+    color: #475569;
+}
+#resume-modal .resume-meta a:hover {
+    color: #8cc4ad;
+}
+#resume-modal .resume-section-title {
+    color: #0f172a;
+    border-bottom-color: #cbd5e1;
+}
+#resume-modal .resume-skill-group h3 {
+    color: #334155;
+}
+#resume-modal .resume-skill-group p {
+    color: #475569;
+}
+#resume-modal .resume-edu-item h4 {
+    color: #0f172a;
+}
+#resume-modal .resume-edu-inst {
+    color: #8cc4ad;
+}
+#resume-modal .resume-edu-date {
+    color: #64748b;
+}
+#resume-modal .resume-job-header h4 {
+    color: #0f172a;
+}
+#resume-modal .resume-job-header span {
+    color: #475569;
+}
+#resume-modal .resume-job-company {
+    color: #8cc4ad;
+}
+#resume-modal .resume-job-item li {
+    color: #334155;
+}
+#resume-modal .resume-filters {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+#resume-modal .resume-filter-btn {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #475569;
+}
+#resume-modal .resume-filter-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #0f172a;
+}
+#resume-modal .resume-filter-btn.active {
+    background: linear-gradient(135deg, #8cc4ad 0%, #8cc4ad 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+#resume-modal .resume-bullet.highlighted-de {
+    background: rgba(37, 99, 235, 0.05) !important;
+    border-left-color: #2563eb !important;
+    color: #1e293b !important;
+}
+#resume-modal .resume-bullet.highlighted-ds {
+    background: rgba(124, 58, 237, 0.05) !important;
+    border-left-color: #8cc4ad !important;
+    color: #1e293b !important;
+}
+#resume-modal .resume-bullet.highlighted-sde {
+    background: rgba(5, 150, 105, 0.05) !important;
+    border-left-color: #059669 !important;
+    color: #1e293b !important;
+}
+#resume-modal .resume-paper { overflow-x: hidden; }
+.modal-overlay { z-index: 10200 !important; }
+/* on the white resume paper use the dark sage (6.4:1 on white) */
+#resume-modal .resume-paper { --accent: #2e6a55; --accent-purple: #2e6a55; --accent-blue: #2e6a55; --accent-indigo: #2e6a55; }
+#resume-modal .resume-sub, #resume-modal .resume-paper a, #resume-modal .resume-edu-inst, #resume-modal .resume-job-company { color: #2e6a55 !important; }
+.theme-toggle-btn, .theme-toggle-btn .theme-icon { color: var(--text-primary) !important; -webkit-text-fill-color: currentColor !important; background: transparent !important; }
+
+/* Semantic colours, theme-aware so result numbers stay readable in both themes (all >= 4.5:1 on their surfaces) */
+:root { --ok: #4fd1a5; --warn: #f0b45a; --bad: #f58a8a; --sand: #d8b98a; --accent-emerald: var(--ok); --accent-amber: var(--warn); --accent-red: var(--bad); }
+body.light-theme { --ok: #11724f; --warn: #8a5300; --bad: #b42318; --sand: #7a5a1f; }
+/* text on a sage fill is dark ink, never white */
+.arch-tab-btn.active, .obs-tab-btn.active, .btn-accent, .sql-btn-run, .resume-filter-btn.active { color: var(--accent-ink) !important; background: var(--accent) !important; border-color: var(--accent) !important; }
+body.light-theme .sql-keyword { color: #2e6a55; }
+body.light-theme .sql-table { color: #6b5420; }
+body.light-theme .sql-string { color: #2f5c78; }
+body.light-theme .sql-number { color: #7a5a1f; }
+body.light-theme .mock-terminal-header span { color: #474d55 !important; }
+/* aliases are resolved on body, where the theme class lives, so the light values apply */
+body { --accent-emerald: var(--ok); --accent-amber: var(--warn); --accent-red: var(--bad); }
+.badge-status-sig { color: var(--ok) !important; background: transparent !important; border: 1px solid currentColor; }
+body.light-theme .obs-tab-btn.active, body.light-theme .arch-tab-btn.active { color: var(--accent-ink) !important; background: var(--accent) !important; }
+/* the console stays dark in both themes, so it keeps the dark-theme status colours */
+.mock-terminal { --ok: #4fd1a5; --warn: #f0b45a; --bad: #f58a8a; --accent-emerald: #4fd1a5; --accent-amber: #f0b45a; --accent-red: #f58a8a; }
+body.light-theme .mock-terminal-header span { color: #a8acb2 !important; }
