@@ -7,6 +7,10 @@
   1600,
   814
  ],
+ "assets/arcgis-commute-flow.svg": [
+  960,
+  350
+ ],
  "assets/asl_word_signs.png": [
   1200,
   675
@@ -51,6 +55,10 @@
   1600,
   680
  ],
+ "assets/company-blocklist-flow.svg": [
+  960,
+  350
+ ],
  "assets/compliance_dashboard.png": [
   2283,
   1729
@@ -88,12 +96,12 @@
   866
  ],
  "assets/finrisk_feature_importance.png": [
-  3000,
-  1800
+  1440,
+  525
  ],
  "assets/finrisk_feature_importance.webp": [
-  1600,
-  960
+  1440,
+  525
  ],
  "assets/forecast_vs_actual.png": [
   2077,
@@ -111,6 +119,18 @@
   1350,
   675
  ],
+ "assets/htmx-search-flow.svg": [
+  960,
+  350
+ ],
+ "assets/interview-prep-api-flow.svg": [
+  960,
+  350
+ ],
+ "assets/interview-prep-mobile-flow.svg": [
+  960,
+  350
+ ],
  "assets/iot_dashboard.png": [
   1656,
   1268
@@ -118,6 +138,10 @@
  "assets/iot_dashboard.webp": [
   1600,
   1225
+ ],
+ "assets/job-notes-flow.svg": [
+  960,
+  350
  ],
  "assets/lakehouse-flow.svg": [
   960,
@@ -131,6 +155,10 @@
   1600,
   794
  ],
+ "assets/member-qa-flow.svg": [
+  960,
+  350
+ ],
  "assets/ml_apprentice_embeddings.png": [
   1544,
   640
@@ -142,6 +170,10 @@
  "assets/profile.jpg": [
   768,
   1024
+ ],
+ "assets/reactive-gateway-flow.svg": [
+  960,
+  350
  ],
  "assets/sales_dashboard.png": [
   1797,
@@ -198,37 +230,5 @@
  "assets/visitor_segments.webp": [
   1350,
   675
- ],
- "assets/reactive-gateway-flow.svg": [
-  960,
-  350
- ],
- "assets/job-notes-flow.svg": [
-  960,
-  350
- ],
- "assets/interview-prep-api-flow.svg": [
-  960,
-  350
- ],
- "assets/company-blocklist-flow.svg": [
-  960,
-  350
- ],
- "assets/interview-prep-mobile-flow.svg": [
-  960,
-  350
- ],
- "assets/htmx-search-flow.svg": [
-  960,
-  350
- ],
- "assets/arcgis-commute-flow.svg": [
-  960,
-  350
- ],
- "assets/member-qa-flow.svg": [
-  960,
-  350
  ]
 }
