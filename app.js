@@ -1604,11 +1604,13 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const normQuery = userQuery.trim().toLowerCase().replace(/[?.,!]/g, "");
+        // A fit check carries a pasted job description: never read from or write to the public answer cache
+        const isFitCheck = userQuery.startsWith("FIT CHECK:");
 
         try {
             // 1. Look up question in Supabase cache table
             const cacheUrl = `${SUPABASE_URL}/rest/v1/chatbot_cache?question=eq.${encodeURIComponent(normQuery)}&select=answer`;
-            const cacheRes = await fetch(cacheUrl, {
+            const cacheRes = isFitCheck ? { ok: false } : await fetch(cacheUrl, {
                 method: "GET",
                 headers: {
                     "apikey": SUPABASE_KEY,
@@ -1654,12 +1656,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             respond(reply);
-            pushHistory("user", userQuery);
+            pushHistory("user", isFitCheck ? "FIT CHECK (job description pasted)" : userQuery);
             pushHistory("assistant", reply);
 
             // 3. Cache the successful result back in the database
-            console.log("Caching new Q&A in Supabase database...");
-            await fetch(`${SUPABASE_URL}/rest/v1/chatbot_cache`, {
+            if (!isFitCheck) await fetch(`${SUPABASE_URL}/rest/v1/chatbot_cache`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -1676,12 +1677,38 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.warn("Live AI chatbot failure, falling back to local searchKeyword:", error);
             // Fallback: Run local keyword-based answers
-            const answer = searchKeyword(userQuery);
+            const answer = isFitCheck
+                ? "The fit check needs the live assistant, which is not responding right now. Please try again in a moment."
+                : searchKeyword(userQuery);
             setTimeout(() => {
                 respond(answer);
             }, 600);
         }
     };
+
+    // Fit check: a recruiter pastes a job description; the assistant answers with matches and honest gaps
+    const fitBtn = document.getElementById("chat-fit-btn");
+    const fitPanel = document.getElementById("fit-panel");
+    const fitJd = document.getElementById("fit-jd");
+    const fitGo = document.getElementById("fit-go");
+    if (fitBtn && fitPanel && fitJd && fitGo) {
+        fitBtn.addEventListener("click", () => {
+            const open = fitPanel.hidden;
+            fitPanel.hidden = !open;
+            fitBtn.setAttribute("aria-expanded", String(open));
+            if (open) fitJd.focus();
+        });
+        fitGo.addEventListener("click", () => {
+            const jd = fitJd.value.trim();
+            if (jd.length < 40) { fitJd.focus(); return; }
+            const words = jd.split(/\s+/).length;
+            addMessage(`Check fit against a pasted job description (${words} words).`, "user");
+            fitJd.value = "";
+            fitPanel.hidden = true;
+            fitBtn.setAttribute("aria-expanded", "false");
+            triggerBotResponse("FIT CHECK: " + jd);
+        });
+    }
 
     if (chatForm) {
         chatForm.addEventListener("submit", (e) => {

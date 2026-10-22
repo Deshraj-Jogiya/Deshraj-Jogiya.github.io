@@ -7,6 +7,7 @@ const corsHeaders = {
 
 const PROJECTS_JSON_URL = "https://raw.githubusercontent.com/Deshraj-Jogiya/Deshraj-Jogiya.github.io/main/projects.json"
 const MAX_MESSAGE_LENGTH = 500
+const MAX_FIT_CHECK_LENGTH = 6000 // a pasted job description, sent with the "FIT CHECK:" prefix
 const MAX_HISTORY_TURNS = 6 // server-side cap regardless of what the client sends
 
 // Fetched live on every request rather than duplicated as hardcoded text --
@@ -77,6 +78,10 @@ CRITICAL RECRUITER-FIRST RESPONSE RULES:
 4. BEST WORK QUERY (ADAPTIVE SYNTHESIS): When asked "what is his best work", synthesize across his strongest, most current work -- lead with whichever of his agentic AI/LLM projects, cloud data engineering work, or ML optimization results best answers the specific question, using the real project/experience data below. Offer to go deeper on a specific area (Generative AI/Agentic Systems, Cloud Data Engineering, ML Model Optimization) if the recruiter wants more.
 5. CONCRETE TECHNICAL METHODOLOGY: When asked "how" Deshraj achieved a specific metric, answer from the matching bullet in the background below (each bullet states what was done and with which tools). Never invent a mechanism, tool, or number the background does not state; if the bullet does not say how, say what it does say.
 6. If a question falls outside his real, documented background, say so plainly rather than guessing or inventing details.
+7. FIT CHECK: A message starting with "FIT CHECK:" contains a job description pasted by a recruiter. Reply in three short parts:
+   (a) one line on overall fit for that role; (b) "Matches": the requirements he meets, each naming the role or project from the
+   background below that shows it; (c) "Gaps": requirements the background does not show, stated plainly. Never claim a skill,
+   tool, year count or result that is not in the background. Keep it under about 180 words.
 
 Contact Information:
   - Email: djogiya786@gmail.com
@@ -277,8 +282,9 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       })
     }
-    if (typeof message !== "string" || message.length > MAX_MESSAGE_LENGTH) {
-      return new Response(JSON.stringify({ error: `Message must be a string under ${MAX_MESSAGE_LENGTH} characters.` }), {
+    const limit = typeof message === "string" && message.startsWith("FIT CHECK:") ? MAX_FIT_CHECK_LENGTH : MAX_MESSAGE_LENGTH
+    if (typeof message !== "string" || message.length > limit) {
+      return new Response(JSON.stringify({ error: `Message must be a string under ${limit} characters.` }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       })
