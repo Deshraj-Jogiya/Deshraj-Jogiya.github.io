@@ -74,7 +74,8 @@ const itemById = id => index.items.find(x => x.id === id);
 const withSource = it => {
     const text = it.display || it.text;
     const named = it.source && text.includes(it.source.replace(/^Project: /, "").split(", ").pop());
-    return it.kind === "passage" && it.source && !named ? `${text} (${it.source})` : text;
+    // "Profile" is the general summary, not a role or project worth citing
+    return it.kind === "passage" && it.source && it.source !== "Profile" && !named ? `${text} (${it.source})` : text;
 };
 
 async function rank(question) {
