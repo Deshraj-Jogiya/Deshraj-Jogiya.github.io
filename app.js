@@ -1385,10 +1385,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chatLauncher && chatContainer) {
         chatLauncher.addEventListener("click", () => {
             chatContainer.classList.toggle("active");
+            // Opens on "Ask a question"; the fit check is the second tab. No keyboard pop-up on phones.
             if (chatContainer.classList.contains("active")) {
-                // the launcher offers the fit check, so it opens straight to the job-description box
-                const panel = document.getElementById("fit-panel"), btn = document.getElementById("chat-fit-btn");
-                if (panel && btn && panel.hidden) btn.click(); else chatInput.focus();
+                showChatTab("ask");
+                if (window.innerWidth > 768) chatInput.focus();
             }
         });
     }
@@ -1620,28 +1620,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // Assistant tabs: "Ask a question" (messages, suggestions, question box) and "Check a job's fit" (paste box)
+    function showChatTab(which) {
+        const ask = which === "ask";
+        const askPane = document.getElementById("ask-pane"), fit = document.getElementById("fit-panel");
+        const container = document.getElementById("chat-container");
+        if (!askPane || !fit || !container) return;
+        askPane.hidden = !ask;
+        fit.hidden = ask;
+        container.classList.toggle("fit-open", !ask);
+        document.getElementById("tab-ask").setAttribute("aria-selected", String(ask));
+        document.getElementById("tab-fit").setAttribute("aria-selected", String(!ask));
+        if (!ask) document.getElementById("fit-jd").focus();
+    }
+    document.getElementById("tab-ask")?.addEventListener("click", () => showChatTab("ask"));
+    document.getElementById("tab-fit")?.addEventListener("click", () => showChatTab("fit"));
+    document.querySelector(".chat-tabs")?.addEventListener("keydown", e => {
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+            const toFit = document.getElementById("tab-ask").getAttribute("aria-selected") === "true";
+            showChatTab(toFit ? "fit" : "ask");
+            document.getElementById(toFit ? "tab-fit" : "tab-ask").focus();
+        }
+    });
+
     // Fit check: a recruiter pastes a job description; the assistant answers with matches and honest gaps
-    const fitBtn = document.getElementById("chat-fit-btn");
     const fitPanel = document.getElementById("fit-panel");
     const fitJd = document.getElementById("fit-jd");
     const fitGo = document.getElementById("fit-go");
-    if (fitBtn && fitPanel && fitJd && fitGo) {
-        fitBtn.addEventListener("click", () => {
-            const open = fitPanel.hidden;
-            fitPanel.hidden = !open;
-            fitPanel.closest(".chat-container").classList.toggle("fit-open", open);
-            fitBtn.setAttribute("aria-expanded", String(open));
-            if (open) fitJd.focus();
-        });
+    if (fitPanel && fitJd && fitGo) {
         fitGo.addEventListener("click", () => {
             const jd = fitJd.value.trim();
             if (jd.length < 40) { fitJd.focus(); return; }
             const words = jd.split(/\s+/).length;
             addMessage(`Check fit against a pasted job description (${words} words).`, "user");
             fitJd.value = "";
-            fitPanel.hidden = true;
-            fitPanel.closest(".chat-container").classList.remove("fit-open");
-            fitBtn.setAttribute("aria-expanded", "false");
+            showChatTab("ask");  // the result appears in the conversation
             triggerBotResponse("FIT CHECK: " + jd);
         });
     }

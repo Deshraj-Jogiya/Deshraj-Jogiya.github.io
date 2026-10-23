@@ -519,9 +519,9 @@
     <!-- Career assistant: an LLM answering only from projects.json (Supabase Edge Function), with built-in answers as a fallback -->
     <div id="ai-chat-widget" class="ai-chat-widget">
         <!-- Launcher Button -->
-        <button id="chat-launcher" class="chat-launcher-btn" aria-label="Hiring? Compare your job description with his profile">
+        <button id="chat-launcher" class="chat-launcher-btn" aria-label="Ask about Deshraj: questions, or check his fit for a job description">
             <span class="launcher-icon" aria-hidden="true">DJ</span>
-            <span class="launcher-text"><strong>Hiring?</strong> Compare your job description</span>
+            <span class="launcher-text"><strong>Ask about Deshraj</strong><span class="launcher-sub">Questions or a job-fit check</span></span>
             <span class="launcher-pulse"></span>
 </button>
 
@@ -539,6 +539,12 @@
                 <button id="close-chat-btn" class="close-chat-btn" aria-label="Close Chat">&times;</button>
 </div>
 
+            <!-- Two ways to use it, each one tap away: ask a question, or paste a job description -->
+            <div class="chat-tabs" role="tablist" aria-label="Assistant">
+                <button type="button" class="chat-tab" id="tab-ask" role="tab" aria-selected="true" aria-controls="ask-pane">Ask a question</button>
+                <button type="button" class="chat-tab" id="tab-fit" role="tab" aria-selected="false" aria-controls="fit-panel">Check a job's fit</button>
+            </div>
+
             <!-- Messages Log -->
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-msg bot-msg">
@@ -546,29 +552,23 @@
                 </div>
 </div>
 
-            <!-- Quick Suggestions Row -->
-            <button type="button" class="chat-fit-btn" id="chat-fit-btn" aria-expanded="false" aria-controls="fit-panel">
-                <span class="fit-btn-title">Hiring? Compare him with your job description</span>
-                <span class="fit-btn-sub">Paste the posting to see what he matches and where the gaps are</span>
-            </button>
+            <div id="ask-pane" role="tabpanel" aria-labelledby="tab-ask">
             <div class="chat-suggestions">
-                
                 <button class="chat-suggest-btn" data-question="What is his best data engineering work?">Best data-engineering work</button>
                 <button class="chat-suggest-btn" data-question="Summarise Deshraj in 30 seconds">Summary in 30 seconds</button>
                 <button class="chat-suggest-btn" data-question="Tell me about his work experience">Experience</button>
                 <button class="chat-suggest-btn" data-question="How can you contact Deshraj?">Contact</button>
             </div>
-            <div class="fit-panel" id="fit-panel" hidden>
-                <label for="fit-jd" class="fit-label">Paste the job description. It is compared with the profile on this site and is not stored.</label>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Ask about his work, skills or projects..." required>
+                <button type="submit" class="chat-send-btn">Send</button>
+            </form>
+            </div>
+            <div class="fit-panel" id="fit-panel" role="tabpanel" aria-labelledby="tab-fit" hidden>
+                <label for="fit-jd" class="fit-label">Paste a job description to see which requirements his work shows and which it doesn't. Nothing you paste is stored.</label>
                 <textarea id="fit-jd" rows="6" maxlength="5900" placeholder="Job title, responsibilities, requirements..."></textarea>
                 <button type="button" class="chat-send-btn" id="fit-go">Check fit</button>
             </div>
-
-            <!-- Input Form -->
-            <form id="chat-form" class="chat-form">
-                <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." required>
-                <button type="submit" class="chat-send-btn">Send</button>
-            </form>
 </div>
 </div>
 
