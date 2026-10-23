@@ -1,7 +1,7 @@
 {
   "stats": [
     {
-      "number": "3000",
+      "number": "3100",
       "suffix": "+",
       "label": "Public Git commits"
     },
@@ -321,7 +321,9 @@
         "Spark SQL",
         "Scala",
         "Great Expectations",
-        "Apache Airflow"
+        "Apache Airflow",
+        "Apache Hive",
+        "Apache Hadoop (HDFS, MapReduce)"
       ],
       "github_url": "https://github.com/Deshraj-Jogiya/job-market-lakehouse",
       "bullets": [
@@ -339,6 +341,14 @@
         },
         {
           "html": "Pipeline Orchestration: Built Airflow DAG (generate -&gt; transform -&gt; validate) verified end-to-end via `airflow dags test` -- fixed pydantic/typing_extensions dependency conflict by isolating Airflow's own environment from the pipeline's.",
+          "resume_role": "de"
+        },
+        {
+          "html": "Hive Tables (HiveQL): Built an external text table over the raw CSV and a Parquet table partitioned by month, filled with a dynamic-partition INSERT OVERWRITE through Spark's Hive support; in CI <strong>60,000</strong> rows land in 20 partitions, MSCK REPAIR TABLE registers a partition written straight to storage, and a month filter prunes to one partition (<strong>3,015</strong> rows).",
+          "resume_role": "de"
+        },
+        {
+          "html": "Hadoop HDFS &amp; MapReduce: Started a single-node HDFS (NameNode and DataNode) in CI, loaded the raw postings into it, and ran a Hadoop Streaming MapReduce job (Python mapper and reducer, 2 reducers) counting postings per month and source; its 100 counts match PySpark reading the same file from HDFS exactly.",
           "resume_role": "de"
         }
       ],

@@ -113,7 +113,7 @@
                 <div class="quick-stats-grid">
                     
                     <div class="stat-card glass-card">
-                        <p class="stat-number" data-target="3000" data-suffix="+" data-decimals="0">3,000+</p>
+                        <p class="stat-number" data-target="3100" data-suffix="+" data-decimals="0">3,100+</p>
                         <p class="stat-label">Public Git commits</p>
 </div>
                     
@@ -182,7 +182,7 @@
                         <p class="card-desc">A local-mode lakehouse pipeline over 60,000 synthetic job postings from 400 companies: PySpark transforms the raw data, Great Expectations gates the output, Airflow orchestrates the run, and a Scala Spark job adds a second aggregation.</p>
                         <p class="card-headline"><span class="card-headline-num">11</span><span class="card-headline-label">data-quality checks gate every run</span></p>
                         <div class="tech-tags">
-                            <span>PySpark</span><span>Spark SQL</span><span>Scala</span><span>Great Expectations</span><span>Apache Airflow</span>
+                            <span>PySpark</span><span>Spark SQL</span><span>Scala</span><span>Great Expectations</span><span>Apache Airflow</span><span>Apache Hive</span>
 </div>
                         <div class="card-actions">
                             <a href="/projects/job-market-lakehouse/" class="btn btn-sm btn-primary">Read the case study</a>
@@ -1840,7 +1840,7 @@
 <h4>Job Market Lakehouse <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse" target="_blank" class="resume-project-link" style="font-size: 0.85em; font-weight: normal; margin-left: 8px; color: #0078d4; text-decoration: none;">[GitHub]</a></h4>
 <span>Sep 2026</span>
 </div>
-<p class="resume-job-company">Technologies: PySpark, Spark SQL, Scala, Great Expectations, Apache Airflow</p>
+<p class="resume-job-company">Technologies: PySpark, Spark SQL, Scala, Great Expectations, Apache Airflow, Apache Hive, Apache Hadoop (HDFS, MapReduce)</p>
 <ul>
 
 <li class="resume-bullet" data-role="de">PySpark Transformation Pipeline: Built PySpark job over <strong>60k</strong> synthetic postings -- a join, a groupBy/agg salary-stats aggregation, and a dense_rank() window function ranking postings within each industry.</li>
@@ -1850,6 +1850,10 @@
 <li class="resume-bullet" data-role="de">Data Quality Gating: Wrote 11 Great Expectations checks (row counts, categorical sets, uniqueness, a cross-column comparison) validating the PySpark output.</li>
 
 <li class="resume-bullet" data-role="de">Pipeline Orchestration: Built Airflow DAG (generate -&gt; transform -&gt; validate) verified end-to-end via `airflow dags test` -- fixed pydantic/typing_extensions dependency conflict by isolating Airflow's own environment from the pipeline's.</li>
+
+<li class="resume-bullet" data-role="de">Hive Tables (HiveQL): Built an external text table over the raw CSV and a Parquet table partitioned by month, filled with a dynamic-partition INSERT OVERWRITE through Spark's Hive support; in CI <strong>60,000</strong> rows land in 20 partitions, MSCK REPAIR TABLE registers a partition written straight to storage, and a month filter prunes to one partition (<strong>3,015</strong> rows).</li>
+
+<li class="resume-bullet" data-role="de">Hadoop HDFS &amp; MapReduce: Started a single-node HDFS (NameNode and DataNode) in CI, loaded the raw postings into it, and ran a Hadoop Streaming MapReduce job (Python mapper and reducer, 2 reducers) counting postings per month and source; its 100 counts match PySpark reading the same file from HDFS exactly.</li>
 
 </ul>
 </div>
