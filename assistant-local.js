@@ -1,14 +1,16 @@
 // The portfolio assistant's answer path when no LLM responds. Nothing is generated: every answer is a fact from the
 // profile, quoted with its source, or a polite decline. Chosen by measurement (keyword + bge-small embeddings fused,
-// top 10 reranked by a cross-encoder, explicit decline categories): 94% right first answer and 90% overall on
-// held-out questions. Answers come from keyword search at once and switch to the full models (57 MB, downloaded
+// top 10 reranked by a cross-encoder, explicit decline categories, a "not shown" for skills outside the profile):
+// 94% right first answer and 92.5% overall on held-out questions (87.5% with keyword search alone). Answers come from keyword search at once and switch to the full models (57 MB, downloaded
 // the first time the chat opens, cached after) as soon as they are ready.
 // jsdelivr's +esm build rewrites the package's bare imports (onnxruntime-web) so a browser can resolve them
 const TRANSFORMERS = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/+esm";
 
 let index = null, docVecs = null, bm25 = null, models = null, modelsLoading = null, modelsFailed = false;
+let stopwords = new Set(), vocab = new Set(), questionWords = new Set();
 
-const tokenize = s => (s.toLowerCase().match(/[a-z0-9#+.]+/g) || []);
+// Filler words ("has", "he", "his") are dropped before keyword scoring, as in the evaluated setup
+const tokenize = s => (s.toLowerCase().match(/[a-z0-9#+.]+/g) || []).filter(w => !stopwords.has(w));
 
 // Okapi BM25 with the same constants and negative-idf floor as the rank_bm25 library the evaluation used
 function buildBm25(texts, k1 = 1.5, b = 0.75, epsilon = 0.25) {
@@ -33,6 +35,9 @@ async function loadIndex() {
     const raw = atob(index.embeddings), bytes = new Uint8Array(raw.length);
     for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
     docVecs = new Float32Array(bytes.buffer);
+    stopwords = new Set(index.stopwords || []);
+    vocab = new Set(index.vocab || []);
+    questionWords = new Set([...(index.skill_question_words || []), ...stopwords]);
     bm25 = buildBm25(index.docs.map(d => d.text));
     return index;
 }
@@ -96,17 +101,58 @@ async function rank(question) {
 
 const NOT_FOUND = "That isn't covered on this site. The contact form at the bottom of the page reaches Deshraj directly.";
 
+// A question about a skill or tool that appears nowhere in the profile gets a plain "not shown", not the nearest
+// passage. A word one edit from a profile word (two for longer words) counts as a misspelling, not a new skill.
+const SKILL_ASK = /\b(know|knows|used|use|uses|using|experience|experienced|familiar|worked with|skills?|proficient|knowledge|expertise)\b/i;
+
+function withinEdits(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return false;
+    const prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+    for (let i = 1; i <= a.length; i++) {
+        let diag = prev[0]; prev[0] = i; let rowMin = i;
+        for (let j = 1; j <= b.length; j++) {
+            const tmp = prev[j];
+            prev[j] = Math.min(prev[j] + 1, prev[j - 1] + 1, diag + (a[i - 1] === b[j - 1] ? 0 : 1));
+            // adjacent swap counts as one edit, as in the evaluation's edit set
+            diag = tmp; rowMin = Math.min(rowMin, prev[j]);
+        }
+        if (rowMin > max) return false;
+    }
+    return prev[b.length] <= max;
+}
+
+function unknownSkills(question) {
+    if (!SKILL_ASK.test(question)) return [];
+    return (question.toLowerCase().match(/[a-z0-9#+]+/g) || []).filter(w => {
+        if (w.length < 2 || vocab.has(w) || questionWords.has(w)) return false;
+        const max = w.length >= 6 ? 2 : w.length >= 4 ? 1 : 0;
+        if (max && [...vocab].some(v => withinEdits(w, v, max) || (v.length === w.length && isSwap(w, v)))) return false;
+        return true;
+    });
+}
+
+const isSwap = (a, b) => {
+    const d = [...a].map((c, i) => c !== b[i] ? i : -1).filter(i => i >= 0);
+    return d.length === 2 && d[1] === d[0] + 1 && a[d[0]] === b[d[1]] && a[d[1]] === b[d[0]];
+};
+
 // One answer: the best fact with its source, a decline, or "not covered"
 export async function answer(question) {
     loadModels();  // start the download in the background on first use
+    await loadIndex();
+    const unknown = unknownSkills(question);
+    if (unknown.length) {
+        return { text: `${unknown.join(" / ").toUpperCase()} isn't shown anywhere on this site. The contact form at the bottom of the page reaches Deshraj directly.`, mode: models ? "full" : "keyword" };
+    }
     const { ranked, confident, mode } = await rank(question);
     const top = itemById(ranked[0][0]);
     if (top.kind === "decline") return { text: top.text + " The contact form at the bottom of the page reaches him directly.", mode };
     if (!confident) return { text: NOT_FOUND, mode };
     const lines = [withSource(top)];
-    // A second fact from a different source when it is nearly as relevant
-    const next = ranked.slice(1, 3).map(([id, s]) => [itemById(id), s])
-        .find(([it, s]) => it.kind === "passage" && it.source !== top.source && (mode === "full" ? s >= ranked[0][1] - 2 : s > 0));
+    // A second fact from a different source when the reranker rates it nearly as relevant (full mode only: keyword
+    // scores aren't comparable enough to judge "nearly as relevant")
+    const next = mode !== "full" ? null : ranked.slice(1, 3).map(([id, s]) => [itemById(id), s])
+        .find(([it, s]) => it.kind === "passage" && it.source !== top.source && s >= ranked[0][1] - 2);
     if (next) lines.push(withSource(next[0]));
     return { text: lines.join("\n\n"), mode };
 }
