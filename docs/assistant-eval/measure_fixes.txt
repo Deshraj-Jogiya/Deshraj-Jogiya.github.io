@@ -1,0 +1,18 @@
+=== baseline
+BM25 + cards, no download                                  dev hit@1 0.667 dev overall 0.688 | HOLDOUT hit@1 0.686 overall 0.700 | threshold 0.000 | 5 ms/question (CPU, Python)
+hybrid bge-small + rerank-L6 (23 MB)                       dev hit@1 0.861 dev overall 0.850 | HOLDOUT hit@1 0.943 overall 0.900 | threshold -11.233 | 360 ms/question (CPU, Python)
+=== unknown-skill
+BM25 + cards, no download                                  dev hit@1 0.667 dev overall 0.700 | HOLDOUT hit@1 0.686 overall 0.725 | threshold 0.000 | 5 ms/question (CPU, Python)
+hybrid bge-small + rerank-L6 (23 MB)                       dev hit@1 0.861 dev overall 0.863 | HOLDOUT hit@1 0.943 overall 0.925 | threshold -11.233 | 348 ms/question (CPU, Python)
+=== employment-type
+BM25 + cards, no download                                  dev hit@1 0.667 dev overall 0.688 | HOLDOUT hit@1 0.686 overall 0.700 | threshold 0.000 | 5 ms/question (CPU, Python)
+hybrid bge-small + rerank-L6 (23 MB)                       dev hit@1 0.847 dev overall 0.850 | HOLDOUT hit@1 0.943 overall 0.900 | threshold -11.219 | 373 ms/question (CPU, Python)
+=== card-titles
+BM25 + cards, no download                                  dev hit@1 0.694 dev overall 0.713 | HOLDOUT hit@1 0.686 overall 0.700 | threshold 0.000 | 4 ms/question (CPU, Python)
+hybrid bge-small + rerank-L6 (23 MB)                       dev hit@1 0.875 dev overall 0.875 | HOLDOUT hit@1 0.914 overall 0.875 | threshold -10.987 | 355 ms/question (CPU, Python)
+=== stopwords
+BM25 + cards, no download                                  dev hit@1 0.764 dev overall 0.775 | HOLDOUT hit@1 0.857 overall 0.850 | threshold 0.000 | 4 ms/question (CPU, Python)
+hybrid bge-small + rerank-L6 (23 MB)                       dev hit@1 0.875 dev overall 0.875 | HOLDOUT hit@1 0.943 overall 0.900 | threshold -11.382 | 351 ms/question (CPU, Python)
+=== all
+BM25 + cards, no download                                  dev hit@1 0.792 dev overall 0.812 | HOLDOUT hit@1 0.829 overall 0.850 | threshold 0.000 | 4 ms/question (CPU, Python)
+hybrid bge-small + rerank-L6 (23 MB)                       dev hit@1 0.847 dev overall 0.863 | HOLDOUT hit@1 0.943 overall 0.925 | threshold -11.019 | 369 ms/question (CPU, Python)

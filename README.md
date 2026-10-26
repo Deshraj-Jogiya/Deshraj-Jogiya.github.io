@@ -97,6 +97,8 @@ The site shows 30 projects across data engineering, machine learning, analytics 
 
 ---
 
+Measured results behind the chat assistant's no-LLM fallback: [docs/FINDINGS.md](docs/FINDINGS.md).
+
 ## 🚀 Local Execution & Development
 
 You can edit project descriptions, add new skills, or update stats by modifying `projects.json` and recompiling the site locally.
