@@ -1,13 +1,13 @@
 {
-    "unique_visitors": 443,
-    "visitors_today": 1,
-    "sessions": 1127,
+    "unique_visitors": 449,
+    "visitors_today": 10,
+    "sessions": 1144,
     "first_visit": "2026-06-20",
-    "forecasted_next_week": 26,
-    "updated_at": "2026-10-26T03:35:16.083120Z",
+    "forecasted_next_week": 28,
+    "updated_at": "2026-10-26T18:22:04.749728Z",
     "segments": {
-        "Desktop, Windows, morning (UTC)": 552,
-        "Desktop, Windows, evening (UTC)": 346,
-        "Desktop, Windows, night (UTC)": 229
+        "Desktop, Windows, morning (UTC)": 565,
+        "Desktop, Windows, evening (UTC)": 348,
+        "Desktop, Windows, night (UTC)": 231
     }
 }
