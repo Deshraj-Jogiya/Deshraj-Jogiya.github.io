@@ -4611,3 +4611,39 @@ a.live-val:hover { text-decoration-color: var(--accent); }
 @media (max-width: 480px) { .seg-row { grid-template-columns: 1fr auto; } .seg-bar { grid-column: 1 / -1; grid-row: 2; } }
 .viz-tip[hidden] { display: none; }
 .seg-row { font-family: inherit; }
+
+/* Connect card: one row per channel, outlined line icon, label above the address (2026-10-27) */
+.connect-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.connect-item { display: flex; align-items: stretch; gap: 0.5rem; min-width: 0; }
+.connect-link { flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.9rem; padding: 0.75rem 0.9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text-primary); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+.connect-link:hover { border-color: var(--accent); background: rgba(140, 196, 173, 0.06); }
+.connect-link:focus-visible, .connect-copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.connect-icon { flex: none; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; color: var(--accent); }
+.connect-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.connect-text { display: grid; min-width: 0; }
+.connect-label { font: 500 0.7rem var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
+.connect-value { font-size: 0.95rem; overflow-wrap: anywhere; }
+.connect-arrow { margin-left: auto; color: var(--text-secondary); font-size: 1rem; }
+.connect-link:hover .connect-arrow { color: var(--accent); }
+.connect-copy { flex: none; padding: 0 0.9rem; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--text-secondary); font: 500 0.78rem var(--font-mono); cursor: pointer; }
+.connect-copy:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Portrait: a real photo card at the top of the hero's right column on wide screens; on phones the photo by the name
+   grows instead (the right column sits below the fold there) (2026-10-27) */
+.hero-portrait { margin: 0 auto 1.25rem; max-width: 300px; display: grid; grid-template-columns: minmax(0, 1fr); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.hero-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.hero-portrait figcaption { display: grid; gap: 0.15rem; padding: 0.85rem 1rem; border-top: 1px solid var(--line); }
+.hero-portrait figcaption strong { font-size: 0.98rem; color: var(--text-primary); }
+.hero-portrait figcaption span { font-size: 0.85rem; color: var(--text-secondary); }
+.hero-portrait figcaption span:last-child { font: 500 0.75rem var(--font-mono); letter-spacing: 0.02em; }
+@media (min-width: 769px) {
+    .hero-intro .hero-avatar { display: none; }
+    .hero-intro { margin-top: 1.1rem; }
+    .hero-intro .hero-kicker span { display: none; }
+}
+@media (max-width: 768px) {
+    .hero-portrait { display: none; }
+    .hero-intro { gap: 1rem; }
+    .hero-intro .hero-avatar { width: 104px; height: 104px; border-radius: 14px; border: 1px solid var(--line); box-shadow: none; }
+}
+@media (max-width: 480px) { .connect-link { gap: 0.6rem; padding: 0.6rem 0.7rem; } .connect-icon { width: 32px; height: 32px; } .connect-icon svg { width: 18px; height: 18px; } .connect-value { font-size: 0.85rem; } .connect-copy { padding: 0 0.55rem; } }

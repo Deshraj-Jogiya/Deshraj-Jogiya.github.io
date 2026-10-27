@@ -276,6 +276,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!LOCAL_PREVIEW) logVisit();
+
+    // "Copy" next to the email address in the Connect card
+    document.querySelectorAll(".connect-copy").forEach(btn => btn.addEventListener("click", async () => {
+        try { await navigator.clipboard.writeText(btn.dataset.copy); btn.textContent = "Copied"; }
+        catch (e) { btn.textContent = "Press Ctrl+C"; window.getSelection().selectAllChildren(btn.closest(".connect-item").querySelector(".connect-value")); }
+        setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+    }));
     updateVisitorStatsUI();
 
     // 1. Role rotator: types each role, erases it and moves to the next, looping through all of them for as long as the page is open.
