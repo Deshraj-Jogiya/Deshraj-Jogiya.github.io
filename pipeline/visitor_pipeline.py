@@ -206,6 +206,16 @@ def process_and_run_ml(df):
         "forecasted_next_week": forecasted_next_week,
         "updated_at": datetime.utcnow().isoformat() + "Z",
         "segments": segment_counts.to_dict(),   # sessions per K-Means segment (sums to "sessions")
+        # The series behind both charts, so the page can draw them with hover values and date ranges
+        "daily": [{"d": str(d), "v": int(v), "t": round(float(t), 2)}
+                  for d, v, t in zip(daily_counts['date'], daily_counts['visits'], trend_vals)],
+        "forecast": [{"d": str(d), "v": int(v), "lo": round(max(0.0, v - 1.96 * residual_sd), 2), "hi": round(v + 1.96 * residual_sd, 2)}
+                     for d, v in zip(forecast_df['date'], forecast_df['visits'])],
+        "segment_detail": [
+            {"name": name, "sessions": int(n), "share": round(n / len(df), 4),
+             "hours": [int(x) for x in df.loc[df['cluster_name'] == name, 'hour'].value_counts().reindex(range(24), fill_value=0)],
+             "browsers": {k: int(v) for k, v in df.loc[df['cluster_name'] == name, 'browser'].value_counts().head(3).items()}}
+            for name, n in segment_counts.items()],
     }
 
     with open('assets/visitor_stats.json', 'w') as f:

@@ -104,6 +104,146 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    // Visitor charts drawn from the pipeline's own series (assets/visitor_stats.json), so a reader can hover a day,
+    // change the date range, and open a segment. The pipeline's PNGs stay in place until the series loads.
+    const SVG_NS = "http://www.w3.org/2000/svg";
+    function svgEl(tag, attrs, parent) {
+        const el = document.createElementNS(SVG_NS, tag);
+        for (const k in attrs) el.setAttribute(k, attrs[k]);
+        if (parent) parent.appendChild(el);
+        return el;
+    }
+    // segment and browser names come from the visit log, which anyone can write to, so they are escaped before display
+    const esc = t => String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const fmtDay = d => new Date(d + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+
+    function drawTrafficChart(stats) {
+        const host = document.getElementById("traffic-viz");
+        if (!host || !Array.isArray(stats.daily) || !stats.daily.length) return;
+        const fig = host.closest("figure");
+        const buttons = fig ? fig.querySelectorAll(".viz-range button") : [];
+        let range = "90";
+
+        function render() {
+            const days = range === "all" ? stats.daily : stats.daily.slice(-Number(range));
+            const fc = stats.forecast || [];
+            const pts = days.map(p => ({ d: p.d, v: p.v, t: p.t })).concat(fc.map(p => ({ d: p.d, f: p.v, lo: p.lo, hi: p.hi })));
+            const W = Math.max(280, Math.round(host.clientWidth - 24)), H = Math.round(Math.min(300, Math.max(200, W * 0.55))), L = 34, R = 10, T = 14, B = 28;
+            const yMax = Math.max(4, ...pts.map(p => Math.max(p.v ?? 0, p.hi ?? 0, p.f ?? 0)));
+            const step = yMax > 40 ? 20 : yMax > 20 ? 10 : yMax > 8 ? 5 : 2;
+            const top = Math.ceil(yMax / step) * step;
+            const x = i => L + (i / Math.max(1, pts.length - 1)) * (W - L - R);
+            const y = v => T + (1 - v / top) * (H - T - B);
+            host.innerHTML = "";
+            const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "viz-svg", role: "img", tabindex: "0",
+                "aria-label": `Daily visits, ${fmtDay(days[0].d)} to ${fmtDay(days[days.length - 1].d)}, with a 7-day forecast. Use the arrow keys to read each day.` }, host);
+            for (let v = 0; v <= top; v += step) {
+                svgEl("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), class: "viz-grid" }, svg);
+                svgEl("text", { x: L - 6, y: y(v) + 4, class: "viz-axis", "text-anchor": "end" }, svg).textContent = v;
+            }
+            const ticks = [0, Math.floor((pts.length - 1) / 2), pts.length - 1];
+            [...new Set(ticks)].forEach((i, k, arr) => {
+                svgEl("text", { x: x(i), y: H - 8, class: "viz-axis", "text-anchor": k === 0 ? "start" : k === arr.length - 1 ? "end" : "middle" }, svg).textContent = fmtDay(pts[i].d);
+            });
+            const n = days.length;
+            if (fc.length) {
+                const band = fc.map((p, k) => `${x(n + k)},${y(p.hi)}`).concat(fc.map((p, k) => `${x(n + k)},${y(p.lo)}`).reverse());
+                svgEl("polygon", { points: band.join(" "), class: "viz-band" }, svg);
+                svgEl("polyline", { points: [[n - 1, days[n - 1].t]].concat(fc.map((p, k) => [n + k, p.v])).map(([i, v]) => `${x(i)},${y(v)}`).join(" "), class: "viz-forecast" }, svg);
+            }
+            svgEl("polyline", { points: days.map((p, i) => `${x(i)},${y(p.t)}`).join(" "), class: "viz-trend" }, svg);
+            const area = `${x(0)},${y(0)} ` + days.map((p, i) => `${x(i)},${y(p.v)}`).join(" ") + ` ${x(n - 1)},${y(0)}`;
+            svgEl("polygon", { points: area, class: "viz-area" }, svg);
+            svgEl("polyline", { points: days.map((p, i) => `${x(i)},${y(p.v)}`).join(" "), class: "viz-line" }, svg);
+            svgEl("circle", { cx: x(n - 1), cy: y(days[n - 1].v), r: 3.5, class: "viz-end" }, svg);
+
+            const cursor = svgEl("line", { y1: T, y2: H - B, class: "viz-cursor", visibility: "hidden" }, svg);
+            const dot = svgEl("circle", { r: 4, class: "viz-dot", visibility: "hidden" }, svg);
+            const tip = document.createElement("div");
+            tip.className = "viz-tip"; tip.hidden = true; host.appendChild(tip);
+            let current = -1;
+            function show(i) {
+                current = Math.max(0, Math.min(pts.length - 1, i));
+                const p = pts[current];
+                const val = p.v ?? p.f;
+                cursor.setAttribute("x1", x(current)); cursor.setAttribute("x2", x(current)); cursor.setAttribute("visibility", "visible");
+                dot.setAttribute("cx", x(current)); dot.setAttribute("cy", y(val)); dot.setAttribute("visibility", "visible");
+                dot.setAttribute("class", p.v != null ? "viz-dot" : "viz-dot viz-dot-fc");
+                tip.innerHTML = p.v != null
+                    ? `<strong>${fmtDay(p.d)}</strong><span>${p.v} visit${p.v === 1 ? "" : "s"}</span><span class="viz-tip-sub">trend ${p.t.toFixed(1)}</span>`
+                    : `<strong>${fmtDay(p.d)} (forecast)</strong><span>about ${p.f}</span><span class="viz-tip-sub">range ${Math.round(p.lo)}–${Math.round(p.hi)}</span>`;
+                tip.hidden = false;
+                const box = host.getBoundingClientRect();
+                const px = (x(current) / W) * box.width;
+                tip.style.left = Math.min(Math.max(px, 60), box.width - 60) + "px";
+            }
+            function hide() { cursor.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); tip.hidden = true; }
+            svg.addEventListener("pointermove", e => {
+                const box = svg.getBoundingClientRect();
+                const vx = ((e.clientX - box.left) / box.width) * W;
+                show(Math.round(((vx - L) / (W - L - R)) * (pts.length - 1)));
+            });
+            svg.addEventListener("pointerleave", hide);
+            svg.addEventListener("blur", hide);
+            svg.addEventListener("keydown", e => {
+                if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    show(current < 0 ? n - 1 : current + (e.key === "ArrowRight" ? 1 : -1));
+                }
+            });
+        }
+        let resizeTimer = null;
+        window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 150); });
+        buttons.forEach(b => b.addEventListener("click", () => {
+            range = b.dataset.range;
+            buttons.forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+            render();
+        }));
+        render();
+    }
+
+    function drawSegmentChart(stats) {
+        const host = document.getElementById("segment-viz");
+        if (!host || !Array.isArray(stats.segment_detail) || !stats.segment_detail.length) return;
+        const segs = stats.segment_detail;
+        const max = Math.max(...segs.map(s => s.sessions));
+        host.innerHTML = "";
+        const list = document.createElement("div");
+        list.className = "seg-list";
+        const detail = document.createElement("div");
+        detail.className = "seg-detail";
+        segs.forEach((s, i) => {
+            const row = document.createElement("button");
+            row.type = "button";
+            row.className = "seg-row";
+            row.setAttribute("aria-pressed", "false");
+            row.innerHTML = `<span class="seg-name">${esc(s.name)}</span><span class="seg-bar"><span style="width:${(100 * s.sessions / max).toFixed(1)}%"></span></span><span class="seg-val">${s.sessions.toLocaleString("en-US")} <small>${(100 * s.share).toFixed(1)}%</small></span>`;
+            row.addEventListener("click", () => select(i));
+            list.appendChild(row);
+        });
+        host.appendChild(list);
+        host.appendChild(detail);
+
+        function select(i) {
+            [...list.children].forEach((r, k) => r.setAttribute("aria-pressed", String(k === i)));
+            const s = segs[i];
+            const peak = s.hours.indexOf(Math.max(...s.hours));
+            const top = Math.max(1, ...s.hours);
+            const browsers = Object.entries(s.browsers).map(([b, c]) => `${esc(b)} ${c / s.sessions < 0.005 ? "<1" : Math.round(100 * c / s.sessions)}%`).join(", ");
+            detail.innerHTML = `<p class="seg-detail-head">${esc(s.name)}: busiest at ${String(peak).padStart(2, "0")}:00 UTC. Browsers: ${browsers}.</p>`;
+            const W = Math.max(280, Math.round(host.clientWidth - 24)), H = 110, L = 4, B = 18, bw = (W - 2 * L) / 24;
+            const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, class: "viz-svg", role: "img", "aria-label": `Sessions by hour of day (UTC) for ${s.name}` }, detail);
+            s.hours.forEach((c, h) => {
+                const bh = (c / top) * (H - B - 6);
+                const r = svgEl("rect", { x: L + h * bw + 1, y: H - B - bh, width: bw - 2, height: Math.max(bh, c ? 1 : 0), class: h === peak ? "seg-hour peak" : "seg-hour" }, svg);
+                svgEl("title", {}, r).textContent = `${String(h).padStart(2, "0")}:00 UTC: ${c} session${c === 1 ? "" : "s"}`;
+                if (h % 6 === 0) svgEl("text", { x: L + h * bw, y: H - 4, class: "viz-axis" }, svg).textContent = `${String(h).padStart(2, "0")}:00`;
+            });
+        }
+        select(0);
+    }
+
     async function updateVisitorStatsUI() {
         try {
             const res = await fetch("/assets/visitor_stats.json");
@@ -127,6 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (sinceEl && stats.first_visit) {
                     sinceEl.textContent = new Date(stats.first_visit + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" });
                 }
+                drawTrafficChart(stats);
+                drawSegmentChart(stats);
             }
         } catch (e) {
             console.error("Failed to load visitor stats:", e);
