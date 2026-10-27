@@ -131,37 +131,23 @@
                         <div class="obs-metrics-panel">
                             <div class="obs-metrics-grid">
                                 <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-latency">0.00s</div>
+                                    <div class="obs-metric-val" id="metric-latency">&mdash;</div>
                                     <div class="obs-metric-lbl">ETL Latency</div>
 </div>
                                 <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
                                     <div>
-                                        <div class="obs-metric-val" id="metric-reliability">98.2%</div>
-                                        <div class="obs-metric-lbl">Reliability (30d)</div>
+                                        <div class="obs-metric-val" id="metric-reliability">&mdash;</div>
+                                        <div class="obs-metric-lbl">Reliability (last 30 runs)</div>
 </div>
-                                    <div class="obs-history-dots" style="display: flex; gap: 3px; justify-content: center; margin-top: 0.4rem;">
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span id="reliability-drift-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-amber); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
-</div>
-                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">59/60 Daily Runs Successful</div>
+                                    <div class="obs-history-dots" id="obs-history-dots" aria-label="Last 13 runs"></div>
+                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">No runs yet</div>
 </div>
                                 <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-rows">0</div>
+                                    <div class="obs-metric-val" id="metric-rows">&mdash;</div>
                                     <div class="obs-metric-lbl">Processed Rows</div>
 </div>
                                 <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--accent-emerald);">Stable</div>
+                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--text-muted);">&mdash;</div>
                                     <div class="obs-metric-lbl">Drift Status</div>
 </div>
 </div>

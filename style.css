@@ -4547,3 +4547,25 @@ a.live-val:hover { text-decoration-color: var(--accent); }
 .chat-launcher-btn .launcher-text { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1.15; text-align: left; }
 .chat-launcher-btn .launcher-sub { font-size: 0.74rem; font-weight: 500; opacity: 0.85; }
 @media (max-width: 768px) { .chat-launcher-btn .launcher-sub { display: none; } }
+
+/* ETL monitor: failed stage, failed/skipped checks, run-history dots (2026-10-27) */
+.pipeline-node-item.error .pipeline-node-icon { border-color: var(--accent-red); color: var(--text-primary); }
+.pipeline-node-item.error .pipeline-node-label { color: var(--accent-red); }
+.qa-badge-fail { background: rgba(245, 138, 138, 0.12); color: var(--accent-red); }
+.qa-badge-skip { background: transparent; color: var(--text-muted); border: 1px solid var(--card-border); }
+.obs-log.error { color: var(--bad); }
+.obs-history-dots { display: flex; gap: 3px; justify-content: center; margin-top: 0.4rem; }
+.obs-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; background: transparent; border: 1px solid var(--card-border); }
+.obs-dot.ok { background: var(--accent-emerald); border-color: var(--accent-emerald); }
+.obs-dot.drift { background: var(--accent-amber); border-color: var(--accent-amber); }
+.obs-dot.fail { background: var(--accent-red); border-color: var(--accent-red); }
+
+/* A/B simulator sliders: a 24px grab area on a thin track, and a sideways drag moves the slider instead of the page */
+#ab-testing-widget input[type="range"] { -webkit-appearance: none; appearance: none; height: 24px !important; background: transparent !important; touch-action: pan-y; cursor: pointer; }
+#ab-testing-widget input[type="range"]::-webkit-slider-runnable-track { height: 5px; border-radius: 3px; background: var(--card-border); }
+#ab-testing-widget input[type="range"]::-moz-range-track { height: 5px; border-radius: 3px; background: var(--card-border); }
+#ab-testing-widget input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: -7.5px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); }
+#ab-testing-widget input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); }
+#ab-testing-widget #ab-b-target-input::-webkit-slider-thumb { background: var(--sand); }
+#ab-testing-widget #ab-b-target-input::-moz-range-thumb { background: var(--sand); }
+#ab-testing-widget input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

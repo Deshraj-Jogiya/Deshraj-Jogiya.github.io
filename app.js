@@ -387,6 +387,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
     // 9. Observability Monitor Simulation
     // ==========================================================================
+    // Every figure on the monitor comes from the runs a visitor starts: each run draws its own branch files, null counts,
+    // latency and drift test, and reliability is the share of the last 30 runs that passed (kept in this browser only).
     const runObsBtn = document.getElementById("run-obs-btn");
     const obsConsole = document.getElementById("obs-console");
     const obsStatus = document.getElementById("obs-status");
@@ -395,33 +397,97 @@ document.addEventListener("DOMContentLoaded", () => {
     const metricReliability = document.getElementById("metric-reliability");
     const metricRows = document.getElementById("metric-rows");
     const metricDrift = document.getElementById("metric-drift");
-
-    const obsSimLogs = [
-        { type: "info", text: "[INFO] [2026-06-16 14:20:00] Initializing daily retail sales ETL pipeline ingestion..." },
-        { type: "info", text: "[INFO] Fetching daily transactional JSON files from 5 branch stores..." },
-        { type: "success", text: "[SUCCESS] Ingested 5 separate logs. Total rows read: 5,167." },
-        { type: "info", text: "[INFO] Starting Great Expectations data QA validation schema check..." },
-        { type: "success", text: "[SUCCESS] Schema check complete. 0 null values, column types matching star schema." },
-        { type: "info", text: "[INFO] Calculating RFM customer profiles (Recency, Frequency, Monetary)..." },
-        { type: "info", text: "[INFO] Standardizing metrics and loading K-Means Clustering model (k=4)..." },
-        { type: "info", text: "[INFO] Evaluating data drift. Running Kolmogorov-Smirnov (KS) test on Monetary values..." },
-        { type: "warn", text: "[WARN] Feature Drift detected on 'Monetary' distribution (KS p-value = 0.034 < 0.05)." },
-        { type: "info", text: "[INFO] Re-centering PCA coordinates for cluster visualization..." },
-        { type: "info", text: "[INFO] Materializing results into SQLite database dim_customers and fact_sales..." },
-        { type: "success", text: "[SUCCESS] ETL pipeline executed successfully. Materialized views compiled." },
-        { type: "success", text: "[SUCCESS] Observed reliability: 98.4%. Pipeline run complete." }
-    ];
+    const reliabilitySub = document.getElementById("metric-reliability-sub");
+    const historyDots = document.getElementById("obs-history-dots");
+    const OBS_KEY = "lab.etl.runs.v1";
+    const OBS_WINDOW = 30;
     let isRunningObs = false;
-    let currentReliability = "98.2%";
 
-    // Great Expectations Mock Rules Data
+    function loadObsRuns() {
+        try { const r = JSON.parse(localStorage.getItem(OBS_KEY) || "[]"); return Array.isArray(r) ? r : []; } catch (e) { return []; }
+    }
+    function saveObsRuns(runs) {
+        try { localStorage.setItem(OBS_KEY, JSON.stringify(runs.slice(-OBS_WINDOW))); } catch (e) { /* private mode: keep in memory */ }
+    }
+    let obsRuns = loadObsRuns();
+
+    function renderObsHistory() {
+        const n = obsRuns.length;
+        const passed = obsRuns.filter(r => r.ok).length;
+        if (metricReliability) metricReliability.textContent = n ? (100 * passed / n).toFixed(1) + "%" : "—";
+        if (reliabilitySub) reliabilitySub.textContent = n ? `${passed}/${n} runs passed` : "No runs yet";
+        if (historyDots) {
+            historyDots.innerHTML = "";
+            const last = obsRuns.slice(-13);
+            for (let i = 0; i < 13; i++) {
+                const r = last[i - (13 - last.length)];
+                const dot = document.createElement("span");
+                dot.className = "obs-dot" + (r ? (r.ok ? (r.drift ? " drift" : " ok") : " fail") : "");
+                dot.title = r ? `${r.ok ? (r.drift ? "passed, drift warning" : "passed") : "failed"}: ${r.rows.toLocaleString()} rows, ${r.latency.toFixed(2)}s` : "no run";
+                historyDots.appendChild(dot);
+            }
+        }
+    }
+
+    // One run's numbers. Failures and drift come from the drawn data, not from a script.
+    function planObsRun() {
+        const files = Array.from({ length: 5 }, () => 880 + Math.floor(Math.random() * 300));
+        const rows = files.reduce((a, b) => a + b, 0);
+        const nullIds = Math.random() < 0.07 ? 1 + Math.floor(Math.random() * 12) : 0;
+        // KS p-value: most days the monetary distribution is stable; about one run in four shifts
+        const pValue = Math.random() < 0.25 ? 0.004 + Math.random() * 0.045 : 0.06 + Math.random() * 0.9;
+        const drift = pValue < 0.05;
+        const latency = 0.9 + rows / 10000 + Math.random() * 0.4 + (drift ? 0.15 : 0);
+        return { files, rows, nullIds, pValue, drift, latency, ok: nullIds === 0 };
+    }
+
+    function obsLogs(p) {
+        const stamp = new Date().toISOString().slice(0, 19).replace("T", " ");
+        const logs = [
+            { type: "info", text: `[INFO] [${stamp}] Starting daily retail sales ETL run...` },
+            { type: "info", text: "[INFO] Fetching daily transactional JSON files from 5 branch stores..." },
+            { type: "success", text: `[SUCCESS] Ingested 5 files (${p.files.map(f => f.toLocaleString()).join(" + ")}). Rows read: ${p.rows.toLocaleString()}.` },
+            { type: "info", text: "[INFO] Running Great Expectations schema and completeness checks..." },
+        ];
+        if (p.nullIds) {
+            logs.push({ type: "error", text: `[ERROR] expect_column_values_to_not_be_null("transaction_id") failed: ${p.nullIds} null ids.` });
+            logs.push({ type: "error", text: "[ERROR] Run stopped before load. Nothing written; the bad files are quarantined for review." });
+            return logs;
+        }
+        logs.push({ type: "success", text: "[SUCCESS] Schema check passed: 0 null ids, column types match the star schema." });
+        logs.push({ type: "info", text: "[INFO] Calculating RFM customer profiles (Recency, Frequency, Monetary)..." });
+        logs.push({ type: "info", text: "[INFO] Standardizing metrics and loading K-Means model (k=4)..." });
+        logs.push({ type: "info", text: "[INFO] Drift check: Kolmogorov-Smirnov test on Monetary values against last week..." });
+        logs.push(p.drift
+            ? { type: "warn", text: `[WARN] Drift on 'Monetary' (KS p-value = ${p.pValue.toFixed(3)} < 0.05). Non-blocking, flagged for review.` }
+            : { type: "success", text: `[SUCCESS] No drift on 'Monetary' (KS p-value = ${p.pValue.toFixed(3)}).` });
+        logs.push({ type: "info", text: "[INFO] Re-centering PCA coordinates for cluster visualization..." });
+        logs.push({ type: "info", text: "[INFO] Loading dim_customers and fact_sales..." });
+        logs.push({ type: "success", text: `[SUCCESS] Run complete in ${p.latency.toFixed(2)}s. ${p.rows.toLocaleString()} rows loaded.` });
+        return logs;
+    }
+
+    function renderObsHistoryOnLoad() {
+        renderObsHistory();
+        if (!obsRuns.length) return;
+        const r = obsRuns[obsRuns.length - 1];
+        if (metricLatency) metricLatency.textContent = r.latency.toFixed(2) + "s";
+        if (metricRows) metricRows.textContent = r.ok ? r.rows.toLocaleString() : "0";
+        if (metricDrift) {
+            metricDrift.textContent = !r.ok ? "Not run" : r.drift ? "Warning" : "Stable";
+            metricDrift.style.color = !r.ok ? "var(--text-muted)" : r.drift ? "var(--accent-amber)" : "var(--accent-emerald)";
+        }
+    }
+    renderObsHistoryOnLoad();
+
+    // Great Expectations rules; the status of the null and drift checks is set by each run
     const qaReportData = [
-        { name: "expect_table_column_count_to_equal(8)", status: "pass", desc: "Verifies the general ledger schema contains exactly 8 columns (transaction_id, date, amount, account, entity, location, user, anomaly_flag).", details: { expectation_type: "expect_table_column_count_to_equal", kwargs: { value: 8 }, meta: { dimension: "schema" } } },
-        { name: "expect_column_values_to_not_be_null(\"transaction_id\")", status: "pass", desc: "Ensures primary key transaction_id is non-null for all incoming records.", details: { expectation_type: "expect_column_values_to_not_be_null", kwargs: { column: "transaction_id" }, meta: { dimension: "completeness" } } },
-        { name: "expect_column_values_to_be_between(\"amount\", 0, 10000000)", status: "pass", desc: "Ensures financial transaction amount is positive and under $10M threshold.", details: { expectation_type: "expect_column_values_to_be_between", kwargs: { column: "amount", min_value: 0, max_value: 10000000 }, meta: { dimension: "validity" } } },
-        { name: "expect_column_values_to_be_in_set(\"segment\", [\"VIP\", \"Loyal\", \"Slipping\", \"Lost\"])", status: "pass", desc: "Verifies customer segments map strictly to the database classification taxonomy.", details: { expectation_type: "expect_column_values_to_be_in_set", kwargs: { column: "segment", value_set: ["VIP", "Loyal", "Slipping", "Lost"] }, meta: { dimension: "consistency" } } },
-        { name: "expect_column_values_to_match_regex(\"date\", \"^\\\\d{4}-\\\\d{2}-\\\\d{2}$\")", status: "pass", desc: "Validates date format follows ISO YYYY-MM-DD pattern.", details: { expectation_type: "expect_column_values_to_match_regex", kwargs: { column: "date", regex: "^\\d{4}-\\d{2}-\\d{2}$" }, meta: { dimension: "schema" } } },
-        { name: "expect_column_values_to_follow_benfords_law(\"amount\")", status: "warn", desc: "Checks first-digit distribution against Benford's Law. A warning (KS p-value < 0.05) indicates mild statistical anomaly in transaction amounts (feature drift). This is non-blocking and flagged for review, while the schema remains fully valid.", details: { expectation_type: "expect_column_values_to_follow_benfords_law", kwargs: { column: "amount", p_value_threshold: 0.05 }, meta: { dimension: "distribution_drift" } } }
+        { name: "expect_table_column_count_to_equal(8)", status: "pass", desc: "Verifies the sales table has exactly 8 columns (transaction_id, date, amount, store, customer_id, product, quantity, segment).", details: { expectation_type: "expect_table_column_count_to_equal", kwargs: { value: 8 }, meta: { dimension: "schema" } } },
+        { name: "expect_column_values_to_not_be_null(\"transaction_id\")", status: "pass", desc: "Ensures the primary key transaction_id is present on every incoming record. A failure stops the run before anything is loaded.", details: { expectation_type: "expect_column_values_to_not_be_null", kwargs: { column: "transaction_id" }, meta: { dimension: "completeness" } } },
+        { name: "expect_column_values_to_be_between(\"amount\", 0, 10000000)", status: "pass", desc: "Ensures each transaction amount is positive and under $10M.", details: { expectation_type: "expect_column_values_to_be_between", kwargs: { column: "amount", min_value: 0, max_value: 10000000 }, meta: { dimension: "validity" } } },
+        { name: "expect_column_values_to_be_in_set(\"segment\", [\"VIP\", \"Loyal\", \"Slipping\", \"Lost\"])", status: "pass", desc: "Verifies customer segments map to the four RFM segments.", details: { expectation_type: "expect_column_values_to_be_in_set", kwargs: { column: "segment", value_set: ["VIP", "Loyal", "Slipping", "Lost"] }, meta: { dimension: "consistency" } } },
+        { name: "expect_column_values_to_match_regex(\"date\", \"^\\\\d{4}-\\\\d{2}-\\\\d{2}$\")", status: "pass", desc: "Validates the date format is ISO YYYY-MM-DD.", details: { expectation_type: "expect_column_values_to_match_regex", kwargs: { column: "date", regex: "^\\d{4}-\\d{2}-\\d{2}$" }, meta: { dimension: "schema" } } },
+        { name: "expect_monetary_distribution_ks_pvalue_above(0.05)", status: "pass", desc: "Compares this run's Monetary distribution with last week's (two-sample KS test). Below 0.05 is a non-blocking drift warning.", details: { expectation_type: "expect_monetary_distribution_ks_pvalue_above", kwargs: { column: "monetary", p_value_threshold: 0.05 }, meta: { dimension: "distribution_drift" } } }
     ];
 
     // Pipeline Visual Node selectors
@@ -447,27 +513,21 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", () => {
             obsTabBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-
-            const targetTab = btn.getAttribute("data-tab");
-            if (targetTab === "console") {
-                if (obsConsolePanel) obsConsolePanel.style.display = "block";
-                if (obsQaPanel) obsQaPanel.style.display = "none";
-            } else {
-                if (obsConsolePanel) obsConsolePanel.style.display = "none";
-                if (obsQaPanel) obsQaPanel.style.display = "block";
-            }
+            const console_ = btn.getAttribute("data-tab") === "console";
+            if (obsConsolePanel) obsConsolePanel.style.display = console_ ? "block" : "none";
+            if (obsQaPanel) obsQaPanel.style.display = console_ ? "none" : "block";
         });
     });
 
-    // Populate Data QA report in UI
-    function renderQaReport(isRunning) {
+    // Data QA report for one run (or the "validating" state while it runs)
+    function renderQaReport(isRunning, p) {
         const qaReport = document.getElementById("obs-qa-report");
         if (!qaReport) return;
 
         if (isRunning) {
             qaReport.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
-                    <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-amber);">VALIDATING... </span></span>
+                    <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-amber);">VALIDATING</span></span>
                     <span style="font-size: 0.72rem; color: var(--text-muted);">Executing Schema Checks</span>
                 </div>
                 <div style="text-align: center; padding: 2rem 0;">
@@ -478,25 +538,29 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        const rules = qaReportData.map(r => ({ ...r }));
+        rules[1].status = p.nullIds ? "fail" : "pass";
+        rules[5].status = p.nullIds ? "skip" : p.drift ? "warn" : "pass";
+        const passed = rules.filter(r => r.status === "pass").length;
+        const verdict = p.nullIds ? ["FAIL", "var(--accent-red)"] : ["PASS", "var(--accent-emerald)"];
+        let note = "";
+        if (p.nullIds) note = `<strong>Run stopped:</strong> ${p.nullIds} records had no transaction_id, so nothing was loaded. Later checks were skipped.`;
+        else if (p.drift) note = `<strong>Non-blocking drift warning:</strong> KS p-value ${p.pValue.toFixed(3)} on Monetary. The data is valid and was loaded; the shift is logged for review.`;
         let qaHtml = `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5rem;">
-                <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: var(--accent-emerald);">PASS </span></span>
-                <span style="font-size: 0.72rem; color: var(--text-muted);">6/6 Expectations Succeeded</span>
+                <span style="font-weight: 700; color: var(--text-primary);">Validation Status: <span style="color: ${verdict[1]};">${verdict[0]}</span></span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">${passed}/${rules.length} expectations passed</span>
             </div>
-            <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--border-radius-sm); padding: 0.6rem; font-size: 0.75rem; color: var(--warn); margin-bottom: 0.75rem; line-height: 1.4;">
-                 <strong>Non-blocking Warning on Benford's Law:</strong> This check detects mild transaction distribution drift. The schema is 100% valid and the pipeline passed, but this warning is logged for analytics auditing.
-            </div>
+            ${note ? `<div style="border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 0.6rem; font-size: 0.75rem; color: ${p.nullIds ? "var(--bad)" : "var(--warn)"}; margin-bottom: 0.75rem; line-height: 1.4;">${note}</div>` : ""}
             <div class="qa-rules-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
         `;
-        
-        qaReportData.forEach((rule, idx) => {
-            const badgeClass = rule.status === "pass" ? "qa-badge-pass" : "qa-badge-warn";
-            const badgeText = rule.status === "pass" ? "PASS" : "WARN";
+        rules.forEach((rule, idx) => {
+            const badge = { pass: ["qa-badge-pass", "PASS"], warn: ["qa-badge-warn", "WARN"], fail: ["qa-badge-fail", "FAIL"], skip: ["qa-badge-skip", "SKIPPED"] }[rule.status];
             qaHtml += `
                 <div class="qa-rule-item">
                     <div class="qa-rule-header">
                         <span class="qa-rule-name">${rule.name}</span>
-                        <span class="qa-rule-badge ${badgeClass}">${badgeText}</span>
+                        <span class="qa-rule-badge ${badge[0]}">${badge[1]}</span>
                     </div>
                     <div class="qa-rule-details" id="qa-details-${idx}" style="display: none;">
                         <div style="margin-bottom: 0.4rem; color: var(--text-secondary);">${rule.desc}</div>
@@ -505,7 +569,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
         });
-        
         qaHtml += `</div>`;
         qaReport.innerHTML = qaHtml;
     }
@@ -515,11 +578,8 @@ document.addEventListener("DOMContentLoaded", () => {
         qaReport.addEventListener("click", (e) => {
             const header = e.target.closest(".qa-rule-header");
             if (header) {
-                const item = header.closest(".qa-rule-item");
-                const details = item.querySelector(".qa-rule-details");
-                if (details) {
-                    details.style.display = details.style.display === "none" ? "block" : "none";
-                }
+                const details = header.closest(".qa-rule-item").querySelector(".qa-rule-details");
+                if (details) details.style.display = details.style.display === "none" ? "block" : "none";
             }
         });
     }
@@ -529,188 +589,78 @@ document.addEventListener("DOMContentLoaded", () => {
             if (isRunningObs) return;
             isRunningObs = true;
             runObsBtn.disabled = true;
-            runObsBtn.textContent = "Processing ETL Pipeline... ";
-            
-            // Set status to running
+            runObsBtn.textContent = "Running pipeline...";
             obsStatus.className = "obs-status running";
             obsStatusText.textContent = "Running ETL";
-            
-            // Reset console, metrics, and nodes
+
+            const plan = planObsRun();
+            const logs = obsLogs(plan);
             obsConsole.innerHTML = "";
             metricLatency.textContent = "0.00s";
-            metricReliability.textContent = currentReliability; // Reset fix: keep established metrics
             metricRows.textContent = "0";
             metricDrift.textContent = "Checking...";
             metricDrift.style.color = "inherit";
+            if (reliabilitySub) reliabilitySub.textContent = "Run in progress...";
             resetPipelineNodes();
-
-            // Reset reliability card indicators
-            const driftDot = document.getElementById("reliability-drift-dot");
-            if (driftDot) {
-                driftDot.style.background = "var(--accent-emerald)";
-            }
-            const reliabilitySub = document.getElementById("metric-reliability-sub");
-            if (reliabilitySub) {
-                reliabilitySub.textContent = "Running live SLA check...";
-            }
-
-            // Reset top-level header stats card
-            const topReliabilityStat = Array.from(document.querySelectorAll(".stat-card")).find(card => {
-                const label = card.querySelector(".stat-label");
-                return label && label.textContent.includes("ETL Reliability");
-            })?.querySelector(".stat-number");
-            if (topReliabilityStat) {
-                topReliabilityStat.textContent = currentReliability.includes("98.4") ? "98.4%+" : "98%+";
-            }
-
-            // Clear QA report state to trigger validation loader
             renderQaReport(true);
+            const t0 = performance.now();
 
-            let currentLogIndex = 0;
+            let i = 0;
             const logInterval = setInterval(() => {
-                if (currentLogIndex < obsSimLogs.length) {
-                    const log = obsSimLogs[currentLogIndex];
+                if (i < logs.length) {
                     const logEl = document.createElement("div");
-                    logEl.className = `obs-log ${log.type}`;
-                    logEl.textContent = log.text;
+                    logEl.className = `obs-log ${logs[i].type}`;
+                    logEl.textContent = logs[i].text;
                     obsConsole.appendChild(logEl);
                     obsConsole.scrollTop = obsConsole.scrollHeight;
+                    metricLatency.textContent = (plan.latency * Math.min(1, (performance.now() - t0) / (600 * logs.length))).toFixed(2) + "s";
 
-                    // Animate Pipeline Node Flow Diagram dynamically based on log progression
-                    if (currentLogIndex === 0) {
-                        if (nodeIngest) nodeIngest.classList.add("active");
+                    // Pipeline diagram follows the run, and stops at validation when a check fails
+                    if (i === 0) {
+                        nodeIngest && nodeIngest.classList.add("active");
                         if (pipelineProgress) pipelineProgress.style.width = "12.5%";
-                    } else if (currentLogIndex === 3) {
+                    } else if (i === 2) {
+                        metricRows.textContent = plan.rows.toLocaleString();
+                    } else if (i === 3) {
                         if (nodeIngest) { nodeIngest.classList.remove("active"); nodeIngest.classList.add("success"); }
-                        if (nodeValidate) nodeValidate.classList.add("active");
+                        nodeValidate && nodeValidate.classList.add("active");
                         if (pipelineProgress) pipelineProgress.style.width = "37.5%";
-                    } else if (currentLogIndex === 6) {
+                    } else if (i === 4 && plan.nullIds) {
+                        if (nodeValidate) { nodeValidate.classList.remove("active"); nodeValidate.classList.add("error"); }
+                        metricRows.textContent = "0";
+                    } else if (i === 5 && !plan.nullIds) {
                         if (nodeValidate) { nodeValidate.classList.remove("active"); nodeValidate.classList.add("success"); }
-                        if (nodeScore) nodeScore.classList.add("active");
+                        nodeScore && nodeScore.classList.add("active");
                         if (pipelineProgress) pipelineProgress.style.width = "62.5%";
-                    } else if (currentLogIndex === 8) {
-                        if (nodeScore) { nodeScore.classList.remove("active"); nodeScore.classList.add("warning"); }
-                        if (nodeCommit) nodeCommit.classList.add("active");
+                    } else if (i === 8) {
+                        if (nodeScore) { nodeScore.classList.remove("active"); nodeScore.classList.add(plan.drift ? "warning" : "success"); }
+                        nodeCommit && nodeCommit.classList.add("active");
                         if (pipelineProgress) pipelineProgress.style.width = "87.5%";
-                        
-                        const driftDot = document.getElementById("reliability-drift-dot");
-                        if (driftDot) {
-                            driftDot.style.background = "var(--accent-amber)";
-                        }
-                        const reliabilitySub = document.getElementById("metric-reliability-sub");
-                        if (reliabilitySub) {
-                            reliabilitySub.textContent = "Anomaly detected (Non-blocking)";
-                        }
-                    } else if (currentLogIndex === 11) {
+                        metricDrift.textContent = plan.drift ? "Warning" : "Stable";
+                        metricDrift.style.color = plan.drift ? "var(--accent-amber)" : "var(--accent-emerald)";
+                    } else if (i === 11) {
                         if (nodeCommit) { nodeCommit.classList.remove("active"); nodeCommit.classList.add("success"); }
                         if (pipelineProgress) pipelineProgress.style.width = "100%";
                     }
-
-                    // Update metrics incrementally
-                    if (currentLogIndex === 2) {
-                        metricRows.textContent = "5,167";
-                    }
-                    if (currentLogIndex === 5) {
-                        // Ingest validation complete, populate QA Validation Report
-                        renderQaReport(false);
-                    }
-                    if (currentLogIndex === 8) {
-                        metricDrift.textContent = "Warning ";
-                        metricDrift.style.color = "var(--accent-amber)";
-                    }
-                    if (currentLogIndex === 12) {
-                        metricLatency.textContent = "1.45s";
-                        currentReliability = "98.4%";
-                        metricReliability.textContent = currentReliability;
-                        metricDrift.textContent = "Stable";
-                        metricDrift.style.color = "var(--accent-emerald)";
-                        
-                        const driftDot = document.getElementById("reliability-drift-dot");
-                        if (driftDot) {
-                            driftDot.style.background = "var(--accent-emerald)";
-                        }
-                        const reliabilitySub = document.getElementById("metric-reliability-sub");
-                        if (reliabilitySub) {
-                            reliabilitySub.textContent = "59/60 Daily Runs Successful";
-                        }
-                        
-                        // Set the Model/Score node back to success/green since system is stable
-                        if (nodeScore) {
-                            nodeScore.classList.remove("warning");
-                            nodeScore.classList.add("success");
-                        }
-                        
-                        // Also update the global stat counter in the header if it exists
-                        const topReliabilityStat = Array.from(document.querySelectorAll(".stat-card")).find(card => {
-                            const label = card.querySelector(".stat-label");
-                            return label && label.textContent.includes("ETL Reliability");
-                        })?.querySelector(".stat-number");
-                        if (topReliabilityStat) {
-                            topReliabilityStat.textContent = "98.4%+";
-                        }
-                    }
-
-                    currentLogIndex++;
+                    i++;
                 } else {
                     clearInterval(logInterval);
-                    
-                    // Complete
+                    metricLatency.textContent = plan.latency.toFixed(2) + "s";
+                    if (plan.nullIds) { metricDrift.textContent = "Not run"; metricDrift.style.color = "var(--text-muted)"; }
+                    renderQaReport(false, plan);
+                    obsRuns.push({ ok: plan.ok, drift: plan.drift, rows: plan.rows, latency: plan.latency, at: Date.now() });
+                    obsRuns = obsRuns.slice(-OBS_WINDOW);
+                    saveObsRuns(obsRuns);
+                    renderObsHistory();
                     isRunningObs = false;
                     runObsBtn.disabled = false;
-                    runObsBtn.textContent = "Run Pipeline Diagnostics ";
-                    
+                    runObsBtn.textContent = "Run Pipeline Diagnostics";
                     obsStatus.className = "obs-status idle";
-                    obsStatusText.textContent = "System Idle";
+                    obsStatusText.textContent = plan.ok ? "System Idle" : "Last run failed";
                 }
             }, 600);
         });
     }
-
-    // Pre-populate Observability Monitor with a successful run state on page load
-    function prePopulateObservabilityMonitor() {
-        if (!obsConsole || !metricLatency || !metricReliability || !metricRows || !metricDrift) return;
-        
-        // Populate Console with all logs
-        obsConsole.innerHTML = "";
-        obsSimLogs.forEach(log => {
-            const logEl = document.createElement("div");
-            logEl.className = `obs-log ${log.type}`;
-            logEl.textContent = log.text;
-            obsConsole.appendChild(logEl);
-        });
-        obsConsole.scrollTop = obsConsole.scrollHeight;
-
-        // Populate QA Report
-        renderQaReport(false);
-
-        // Populate Metric Cards
-        metricLatency.textContent = "1.45s";
-        currentReliability = "98.4%";
-        metricReliability.textContent = currentReliability;
-        metricRows.textContent = "5,167";
-        metricDrift.textContent = "Stable";
-        metricDrift.style.color = "var(--accent-emerald)";
-
-        const driftDot = document.getElementById("reliability-drift-dot");
-        if (driftDot) {
-            driftDot.style.background = "var(--accent-emerald)";
-        }
-        const reliabilitySub = document.getElementById("metric-reliability-sub");
-        if (reliabilitySub) {
-            reliabilitySub.textContent = "59/60 Daily Runs Successful";
-        }
-
-        // Activate nodes in diagram
-        if (nodeIngest && nodeValidate && nodeScore && nodeCommit) {
-            nodeIngest.className = "pipeline-node-item success";
-            nodeValidate.className = "pipeline-node-item success";
-            nodeScore.className = "pipeline-node-item success"; // Stable green on load
-            nodeCommit.className = "pipeline-node-item success";
-        }
-        if (pipelineProgress) pipelineProgress.style.width = "100%";
-    }
-
-    // prePopulateObservabilityMonitor();
 
     // ==========================================================================
     // 10. SQL Playground logic
@@ -2332,79 +2282,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const abATargetVal = document.getElementById("ab-a-target-val");
     const abBTargetVal = document.getElementById("ab-b-target-val");
 
-    function updateABStaticValues() {
-        if (!abATargetInput || !abBTargetInput) return;
-        const valA = parseFloat(abATargetInput.value);
-        const valB = parseFloat(abBTargetInput.value);
-        
-        const crAEl = document.getElementById("ab-a-cr");
-        const crBEl = document.getElementById("ab-b-cr");
-        const convAEl = document.getElementById("ab-a-conv");
-        const convBEl = document.getElementById("ab-b-conv");
-        const visAEl = document.getElementById("ab-a-visitors");
-        const visBEl = document.getElementById("ab-b-visitors");
-        const barAEl = document.getElementById("ab-a-bar");
-        const barBEl = document.getElementById("ab-b-bar");
-        
-        const convA = Math.round(valA * 10);
-        const convB = Math.round(valB * 10);
-        
-        if (crAEl) crAEl.textContent = valA.toFixed(2) + "%";
-        if (crBEl) crBEl.textContent = valB.toFixed(2) + "%";
-        
-        if (convAEl) convAEl.textContent = convA;
-        if (convBEl) convBEl.textContent = convB;
-        
-        if (visAEl) visAEl.textContent = "1000";
-        if (visBEl) visBEl.textContent = "1000";
-        
-        if (barAEl) barAEl.style.width = Math.min(100, (valA / 30) * 100) + "%";
-        if (barBEl) barBEl.style.width = Math.min(100, (valB / 30) * 100) + "%";
-
-        // Reset analytical stats and badge since the sliders were dragged
-        const upliftEl = document.getElementById("ab-uplift");
-        const zscoreEl = document.getElementById("ab-zscore");
-        const pvalueEl = document.getElementById("ab-pvalue");
+    // Results come only from a run. Moving a slider after a run marks that result as out of date instead of
+    // writing made-up numbers; during a run the sliders stay free (the run keeps the rates it started with).
+    function resetABResults(note) {
+        ["ab-a-cr", "ab-b-cr"].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = "—"; });
+        ["ab-a-conv", "ab-b-conv"].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = "0"; });
+        ["ab-a-visitors", "ab-b-visitors"].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = "1000"; });
+        ["ab-a-bar", "ab-b-bar"].forEach(id => { const el = document.getElementById(id); if (el) el.style.width = "0%"; });
+        const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+        set("ab-uplift", "—"); set("ab-zscore", "—"); set("ab-pvalue", "—");
         const badge = document.getElementById("ab-status-badge");
+        if (badge) { badge.className = "badge-status-neutral"; badge.textContent = note; }
+    }
+    let abRunning = false;
+    let abHasResult = false;
 
-        if (upliftEl) upliftEl.textContent = "0.00%";
-        if (zscoreEl) zscoreEl.textContent = "0.00";
-        if (pvalueEl) pvalueEl.textContent = "0.0000";
-
-        if (badge) {
-            badge.className = "";
-            badge.classList.add("badge-status-neutral");
-            badge.textContent = "Not Simulated";
+    function onABSliderInput(input, label) {
+        label.textContent = input.value + "%";
+        if (abRunning) return;
+        if (abHasResult) {
+            const badge = document.getElementById("ab-status-badge");
+            if (badge) { badge.className = "badge-status-neutral"; badge.textContent = "Targets changed: run again"; }
         }
     }
+    if (abATargetInput && abATargetVal) abATargetInput.addEventListener("input", () => onABSliderInput(abATargetInput, abATargetVal));
+    if (abBTargetInput && abBTargetVal) abBTargetInput.addEventListener("input", () => onABSliderInput(abBTargetInput, abBTargetVal));
+    resetABResults("Not simulated");
 
-    if (abATargetInput && abATargetVal) {
-        abATargetInput.addEventListener("input", () => {
-            abATargetVal.textContent = abATargetInput.value + "%";
-            // Update results in real-time as user moves the slider
-            if (!abInterval || runABBtn.disabled === false) {
-                updateABStaticValues();
-            }
-        });
-    }
-    if (abBTargetInput && abBTargetVal) {
-        abBTargetInput.addEventListener("input", () => {
-            abBTargetVal.textContent = abBTargetInput.value + "%";
-            // Update results in real-time as user moves the slider
-            if (!abInterval || runABBtn.disabled === false) {
-                updateABStaticValues();
-            }
-        });
-    }
-    
-    // Call initially to render default targets (10% and 13%)
-    updateABStaticValues();
-    
     if (runABBtn) {
         runABBtn.addEventListener("click", () => {
             if (abInterval) clearInterval(abInterval);
+            abRunning = true;
             runABBtn.disabled = true;
-            runABBtn.textContent = "Simulating Traffic... ";
+            runABBtn.textContent = "Simulating traffic...";
             
             const nA = 1000;
             const nB = 1000;
@@ -2413,8 +2323,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetValB = abBTargetInput ? parseFloat(abBTargetInput.value) / 100 : 0.13;
 
             // Generate actual random conversions based on target sliders
-            const finalA = Math.round(nA * (targetValA - 0.01 + Math.random() * 0.02)); 
-            const finalB = Math.round(nB * (targetValB - 0.01 + Math.random() * 0.02)); 
+            // each visitor converts with the target probability, so a run shows real sampling noise
+            const binomial = (n, p) => { let k = 0; for (let i = 0; i < n; i++) if (Math.random() < p) k++; return k; };
+            const finalA = binomial(nA, targetValA);
+            const finalB = binomial(nB, targetValB);
             
             let currentVisitors = 0;
             abInterval = setInterval(() => {
@@ -2422,8 +2334,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (currentVisitors > 1000) {
                     currentVisitors = 1000;
                     clearInterval(abInterval);
+                    abInterval = null;
+                    abRunning = false;
+                    abHasResult = true;
                     runABBtn.disabled = false;
-                    runABBtn.textContent = "Run Experiment Simulation ";
+                    runABBtn.textContent = "Run Experiment Simulation";
                 }
                 
                 const curA = Math.round((currentVisitors / 1000) * finalA);
