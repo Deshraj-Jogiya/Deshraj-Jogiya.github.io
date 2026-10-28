@@ -1,0 +1,32 @@
+[
+ {
+  "name": "Data Engineer",
+  "title": "Data Engineer",
+  "posting": "About the role\nYou will build and run the batch pipelines behind our analytics platform.\n\nRequirements\n- 2+ years building data pipelines in Python and SQL\n- Spark or Flink for large batch jobs\n- Orchestration with Airflow, Dagster or a similar tool\n- Experience with one of Snowflake, BigQuery, Redshift\n- Data modeling for analytics and dbt\n- Docker and CI/CD\n- 4+ years with Cassandra or DynamoDB\n\nNice to have\n- Kafka or Kinesis\n- Go\n- Terraform\n- AWS (S3, Glue, Lambda)"
+ },
+ {
+  "name": "Data Analyst",
+  "title": "Data Analyst",
+  "posting": "What you'll do\nBuild dashboards and answer product questions with data.\n\nWhat we need\n- 3+ years of experience as an analyst\n- Strong SQL and Excel\n- Tableau or Power BI\n- Statistics and A/B testing\n\nPreferred\n- Python (pandas)\n- Looker\n- SSRS"
+ },
+ {
+  "name": "Machine Learning Engineer",
+  "title": "Machine Learning Engineer",
+  "posting": "Responsibilities\nTrain, ship and monitor models in production.\n\nQualifications\n- 3-5 years of experience in machine learning\n- Python, PyTorch or TensorFlow, scikit-learn\n- MLflow for experiment tracking\n- Prefect for training pipelines\n- XGBoost\n- Docker and Kubernetes\n- REST APIs with FastAPI or Flask\n\nBonus\n- LLM and RAG systems\n- Hugging Face"
+ },
+ {
+  "name": "Frontend Engineer (role type differs)",
+  "title": "Senior Frontend Engineer",
+  "posting": "Requirements\n- 5+ years building web apps\n- React, TypeScript and JavaScript\n- GraphQL and REST APIs\n- Git and CI/CD\n\nNice to have\n- Node.js\n- Python"
+ },
+ {
+  "name": "Analytics Engineer",
+  "title": "Analytics Engineer",
+  "posting": "You will own our dbt project and the warehouse models.\n\nMust have\n- 2 years of SQL and dbt\n- Data modeling (dimensional models)\n- Snowflake\n- Git and GitHub Actions\n- Great Expectations or similar data quality tests\n\nNice to have\n- Airflow\n- Python"
+ },
+ {
+  "name": "Registered Nurse (nothing to measure)",
+  "title": "Registered Nurse",
+  "posting": "Requirements\n- Active RN license\n- 2+ years of acute care experience\n- BLS certification"
+ }
+]

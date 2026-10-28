@@ -1,0 +1,1099 @@
+{
+ "now": "2026-10-01",
+ "source": "Job-Search-CRM-Automation app/services/fit_service.py",
+ "profile": {
+  "title": "Data Engineer & Machine Learning Engineer",
+  "experience": [
+   {
+    "role": "Teleoperation Data Collection Associate",
+    "company": "Objectways Technologies LLC",
+    "date": "May 2026 – Present",
+    "bullets": [
+     "Lifted dataset accuracy and consistency by 20% across 10,000+ validated teleoperation sensor samples used for AI/ML model training, using Python-based workflows.",
+     "Cut data processing time by 30% on large robotics datasets by engineering Python, Scala, PySpark, and Kubernetes pipelines.",
+     "Improved system-latency visualization by 30% across 10,000+ concurrent telemetry streams by developing responsive React and Spring Boot dashboards.",
+     "Lowered downstream ML model training error rates by 15% through robotics dataset quality assurance and statistical anomaly detection.",
+     "Used AI developer tools (Cursor, GitHub Copilot) to refactor backend microservices, write automated unit and integration tests, and maintain technical documentation."
+    ]
+   },
+   {
+    "role": "Applied Machine Learning Engineer",
+    "company": "Technoid LLC",
+    "date": "Dec 2025 – May 2026",
+    "bullets": [
+     "Raised candidate-resume recommendation accuracy by 25% by optimizing GPT-4o mini models with OpenAI APIs, SQL, and PostgreSQL.",
+     "Cut real-time vector synchronization latency by 65% by restructuring Supabase data sync layers with PostgreSQL row-level security fixes.",
+     "Shortened data synchronization latency by 65% by architecting Core Java, Spring Boot, and Python backend microservices and RESTful APIs.",
+     "Built accessible React JS UI components on Spring Boot backend services and ran peer code reviews for object-oriented design.",
+     "Reduced model deployment errors by 30% across AWS and Azure environments by establishing automated, phased regression and UAT testing frameworks in PyTest."
+    ]
+   },
+   {
+    "role": "Data Analyst / Data Engineer",
+    "company": "Zifatech Solutions LLC",
+    "date": "Jun 2025 – Dec 2025",
+    "bullets": [
+     "Trimmed manual sales-reporting effort by 70% by automating the SQL and Python ETL pipelines behind it.",
+     "Migrated legacy database workflows to AWS Glue & S3, increasing data availability by 60% and streamlining integration with Snowflake and Power BI.",
+     "Secured a 98%+ data reliability standard in Snowflake by modernizing Star Schema dimensional models with Great Expectations validations.",
+     "Built executive Power BI dashboards on Snowflake data warehouses that turn complex data streams into business insights.",
+     "Accelerated multi-source application data ingestion by 60% with serverless RESTful API pipelines on AWS (Glue, S3, Lambda) orchestrated by Apache Airflow."
+    ]
+   },
+   {
+    "role": "Data Engineer & ML Research Assistant",
+    "company": "Arizona State University",
+    "date": "Sep 2024 – Jun 2025",
+    "bullets": [
+     "Sustained 99.9% uptime for 5,000 concurrent users and improved data throughput by 35% with a real-time streaming pipeline using Node.js and MongoDB.",
+     "Drove a 12% increase in click-through rates and lower user churn with a behavioral content recommendation engine, refined weekly.",
+     "Grew positive user satisfaction by 15% with an NLP chatbot that analyzed user input trends and identified top UI friction points.",
+     "Boosted user-sentiment feature extraction accuracy by 15% by integrating BERT transformer NLP classifiers into web applications.",
+     "Centralized application telemetry in SQL databases and presented architecture designs, schema maps, and visual decks to leadership."
+    ]
+   },
+   {
+    "role": "AI/ML Engineering Apprentice",
+    "company": "Jetson Infinity",
+    "date": "Jul 2024 – Aug 2024",
+    "bullets": [
+     "Implemented Python data processing pipelines with Pandas and NumPy (+3% robotic arm precision, +10% workflow efficiency).",
+     "Automated robotic arm motion ETL pipeline with Python and SQL, improving data processing speed by 17% and enabling real-time anomaly detection.",
+     "Developed modular Python, C#, and .NET data transformation scripts, improving application dataset cleaning efficiency by 17%.",
+     "Used AI developer tools (GitHub Copilot, Cursor) to write, test, debug, and refactor production microservices and transformation pipelines.",
+     "Devised an internal knowledge base with Python tutorials and real-world case studies, accelerating new analyst onboarding by 25% across Unix/Linux environments."
+    ]
+   },
+   {
+    "role": "Data Analyst",
+    "company": "Kronic Keys",
+    "date": "Aug 2021 – Mar 2022",
+    "bullets": [
+     "Cleaned and prepared large financial datasets (500k+ rows) in PostgreSQL, reducing monthly reporting cycle times by 30%.",
+     "Engineered SQL queries and Tableau executive dashboards, contributing to a 12% increase in customer acquisition.",
+     "Conducted weekly data integrity audits across relational database tables, eliminating duplicate records and ensuring 100% data quality control.",
+     "Designed relational database schemas and indexed foreign keys in PostgreSQL to accelerate analytics query performance.",
+     "Documented data definitions, data dictionary assets, and reporting workflows for business stakeholders."
+    ]
+   }
+  ],
+  "projects": [
+   {
+    "name": "Job Search CRM & AI Application Tailoring Center",
+    "bullets": [
+     "Deployed job-search platform (FastAPI, PostgreSQL, Oracle Cloud VM) with LLM resume tailoring checked by a non-LLM guardrail, a ReAct research agent, a Chrome extension that fills applications on 7 applicant-tracking systems, and 1,100+ automated tests.",
+     "Deployed Platform: FastAPI and Jinja2 application on an Oracle Cloud VM behind Caddy HTTPS, backed by Supabase PostgreSQL with row-level security on every table and Alembic migrations.",
+     "Guarded AI Tailoring: Tailors resumes and cover letters with Claude (provider-agnostic, with Gemini and Ollama as alternates), checked by a non-LLM guardrail that blocks any skill or claim not in the master profile, plus a ReAct research agent with tool-calling over the app's own data.",
+     "Application Autofill Extension: Chrome extension that fills applications on 7 applicant-tracking systems (Greenhouse, Lever, Ashby, Recruitee, Personio, Workable, SmartRecruiters), including Shadow DOM forms, file attachment and honeypot-field detection; nothing is ever submitted without a human click.",
+     "Cost-Controlled Intake: Ingests postings from direct ATS boards and remote job boards, runs free mechanical scoring before any paid LLM call, and enforces a daily LLM spend cap; resumes render to PDF with ReportLab and page-count check.",
+     "Tested and Operated in Production: 1,100+ pytest tests in a GitHub Actions CI pipeline; traced a database egress-quota breach to a dedup query fetching full job descriptions, and removed a ~90-second deploy outage caused by a blocking scheduler shutdown."
+    ],
+    "technologies": [
+     "Python",
+     "FastAPI",
+     "PostgreSQL",
+     "Supabase",
+     "SQLAlchemy",
+     "Alembic",
+     "Jinja2",
+     "Anthropic Claude API",
+     "JavaScript",
+     "Chrome Extension",
+     "ReportLab",
+     "Docker",
+     "GitHub Actions",
+     "Oracle Cloud"
+    ]
+   },
+   {
+    "name": "Job Market Lakehouse",
+    "bullets": [
+     "PySpark and Scala Spark SQL over 60,000 synthetic job postings, with Great Expectations gating the output and an Airflow DAG running the whole pipeline end to end.",
+     "PySpark Transformation Pipeline: Built PySpark job over 60k synthetic postings -- a join, a groupBy/agg salary-stats aggregation, and a dense_rank() window function ranking postings within each industry.",
+     "Scala Spark Job: Wrote a complementary Scala Spark SQL job (monthly posting-volume-by-source aggregation), run via spark-shell against Spark distribution.",
+     "Data Quality Gating: Wrote 11 Great Expectations checks (row counts, categorical sets, uniqueness, a cross-column comparison) validating the PySpark output.",
+     "Pipeline Orchestration: Built Airflow DAG (generate -&gt; transform -&gt; validate) verified end-to-end via `airflow dags test` -- fixed pydantic/typing_extensions dependency conflict by isolating Airflow's own environment from the pipeline's.",
+     "Hive Tables (HiveQL): Built an external text table over the raw CSV and a Parquet table partitioned by month, filled with a dynamic-partition INSERT OVERWRITE through Spark's Hive support; in CI 60,000 rows land in 20 partitions, MSCK REPAIR TABLE registers a partition written straight to storage, and a month filter prunes to one partition (3,015 rows).",
+     "Hadoop HDFS & MapReduce: Started a single-node HDFS (NameNode and DataNode) in CI, loaded the raw postings into it, and ran a Hadoop Streaming MapReduce job (Python mapper and reducer, 2 reducers) counting postings per month and source; its 100 counts match PySpark reading the same file from HDFS exactly."
+    ],
+    "technologies": [
+     "PySpark",
+     "Spark SQL",
+     "Scala",
+     "Great Expectations",
+     "Apache Airflow",
+     "Apache Hive",
+     "Apache Hadoop (HDFS, MapReduce)"
+    ]
+   },
+   {
+    "name": "Job Search dbt Warehouse",
+    "bullets": [
+     "A dbt dimensional model on a live Databricks SQL warehouse: staging views feeding dimension and fact tables, an incremental snapshot, and data tests CI runs against the warehouse on every push.",
+     "Dimensional Data Model: Built a dbt project (staging views into dimension and fact tables) on a live Databricks SQL warehouse, including a datediff-based days-to-decision measure and a row_number() window function for interview-round sequencing.",
+     "Data Quality Testing: Wrote 22 dbt tests (20 schema tests for uniqueness, not-null, referential integrity and accepted values, plus 2 business-rule tests: a decision date never precedes the applied date, and snapshot counts never go negative), run against the warehouse in CI.",
+     "Verified End-to-End: Ran dbt seed/run/test against a live Databricks warehouse (not just parsed) and spot-checked the resulting tables by hand; CI re-runs the same three commands against the same warehouse on every push using repository secrets."
+    ],
+    "technologies": [
+     "Databricks",
+     "dbt",
+     "SQL",
+     "Dimensional Modeling"
+    ]
+   },
+   {
+    "name": "FinTech Credit Risk & Fraud Command Center",
+    "bullets": [
+     "A credit-risk pipeline whose Random Forest reaches 93.4% precision on declined loans (0.92 ROC-AUC), with rule-based fraud flags and a FastAPI service answering in 67 ms median.",
+     "Low-Latency API Pipeline: Engineered an end-to-end credit risk evaluation pipeline using FastAPI and Python, achieving sub-100ms API response latency for real-time validation (67 ms median in the test suite).",
+     "Machine Learning Risk Classifier: Trained and benchmarked XGBoost against a Random Forest ensemble in Scikit-Learn to predict loan default probability, selecting Random Forest for production with 93.4% precision on declined applications (0.92 ROC-AUC on a held-out set), tracked in MLflow for experiment comparison.",
+     "Interactive Chart.js Dashboard: Developed SQLite schemas and transactional fraud anomaly checks with Chart.js dashboard integration to streamline credit approval cycles.",
+     "Real-Time Anomaly Flagging: Embedded velocity, amount-spike and foreign-location rules and scored them against labelled planted fraud; the velocity rule caught all 1,110 planted card-testing charges with no false alarms.",
+     "GraphQL API Layer: Added a Strawberry-GraphQL query layer alongside the existing REST endpoints, serving customer and loan data from the same database."
+    ],
+    "technologies": [
+     "FastAPI",
+     "Python",
+     "SQL",
+     "Scikit-Learn",
+     "Chart.js",
+     "SQLite",
+     "XGBoost",
+     "GitHub Actions",
+     "MLflow",
+     "GraphQL"
+    ]
+   },
+   {
+    "name": "TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+    "bullets": [
+     "Bootcamp capstone on real business data across SQL Server, Azure ADLS Gen2, Snowflake and Streamlit, with a contract-cancellation model at 86.20% accuracy served as a Snowflake Python UDF.",
+     "ElevateMe Bootcamp Capstone: Built on the bootcamp's business data, connecting SQL Server, Azure ADLS Gen2, Snowflake, and Streamlit, accelerating financial queries by 45% and achieving 100% payment reconciliation accuracy.",
+     "Interactive Multi-Page Web UI: Built a multi-page web application using Python and Streamlit, delivering intuitive event data visualization components.",
+     "Predictive Contract Risk Model: Deployed a Random Forest model predicting contract cancellation risk with 86.20% accuracy (0.87 ROC-AUC), served via a Snowflake Python UDF for real-time inference directly from SQL.",
+     "Infrastructure as Code: Provisioned the production data warehouse -- Azure ADLS Gen2 storage, Snowflake database/schemas/warehouse, and the storage integration connecting them -- via Terraform.",
+     "Table Format Layer: Loaded staged extracts into Delta Lake and Apache Iceberg tables (native deltalake library and pyiceberg's SQL catalog) as a transactional consumption layer over the raw Parquet staging area.",
+     "Data Contract Validation: Built a TypeScript CLI (zod schema validation, Node's test runner) that verifies the ML pipeline's feature-mappings artifact before the dashboard relies on it for inference.",
+     "CI/CD Pipeline: Authored a Jenkins declarative pipeline (per-stage Docker agents) mirroring the existing GitHub Actions CI, verified against temporary Jenkins instance -- found and fixed two environment bugs (Docker socket group permissions, a missing system ODBC library) surfaced only by running it."
+    ],
+    "technologies": [
+     "Python",
+     "SQL",
+     "Snowflake",
+     "Azure ADLS",
+     "Streamlit UI",
+     "Scikit-Learn",
+     "SQL Server",
+     "Terraform",
+     "Parquet",
+     "Delta Lake",
+     "Apache Iceberg",
+     "TypeScript",
+     "Jenkins"
+    ]
+   },
+   {
+    "name": "AI Model Observability & Fairness Audits",
+    "bullets": [
+     "Drift and fairness auditing for deployed models: KS and PSI drift tests, disparate-impact and equal-opportunity checks, and a published Tableau dashboard over 30,000 simulated inference records.",
+     "MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).",
+     "Bias & Fairness Auditing: Evaluates disparate impact, demographic parity and Equal Opportunity (true-positive-rate gap) bias metrics, writing guardrail alerts to an audit table, in compliance with high-risk AI regulatory frameworks (EU AI Act, US FTC).",
+     "Compliance Reporting: Deployed SQLite audit logging with automated compliance reporting, visualized in published interactive Tableau dashboard (public.tableau.com/app/profile/deshraj.jogiya/viz/AIModelObservabilityFairnessAuditDashboard) -- a live log-scale drift-trend chart plus subgroup fairness comparison over 30,000 simulated inference records.",
+     "Model Quality Guardrails: Implemented automated data validation checks that trigger alerts when input distributions diverge from training baselines.",
+     "Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days and climbs past 0.25 exactly where the KS p-value collapses, tracking the same drift."
+    ],
+    "technologies": [
+     "Python",
+     "MLflow",
+     "Drift Audit",
+     "KS-Test",
+     "PSI",
+     "Responsible AI",
+     "SQL",
+     "Tableau",
+     "GitHub Actions"
+    ]
+   },
+   {
+    "name": "Tax Anomaly Audit Compliance Engine",
+    "bullets": [
+     "General-ledger audit pipeline where Benford's Law, an Isolation Forest and a tax-rate rule reach 97.8% precision and 95.7% recall; an auditor finds 90% of anomalies after 43 entries instead of 1,108.",
+     "General Ledger Audit Pipeline: Engineered an automated compliance audit pipeline in Python and SQL to ingest and validate general ledger transaction logs (-40% data preparation time; vectorised entry validation runs 99.9% faster than entry-by-entry checks on 100,000 entries), orchestrated as a Dagster asset graph.",
+     "Statistical & ML Anomaly Detection: Implemented Benford's Law distribution modeling and an unsupervised Isolation Forest anomaly detection algorithm to flag high-risk transactions, adding a tax-rate rule layer for 97.8% precision and 95.7% recall, measured against a separate table of known injected anomalies.",
+     "Power BI Compliance Dashboard: Deployed interactive Power BI dashboards visualizing risk scores and transaction anomalies, accelerating audit review cycles by 25%; working in risk-priority order, an auditor finds 90% of anomalies after opening 43 entries instead of 1,108 (96% less review work).",
+     "Lineage & Audit Control: Enforced strict data lineage logging and schema validation rules across enterprise financial audit records."
+    ],
+    "technologies": [
+     "Python",
+     "Benford's Law",
+     "Isolation Forest",
+     "Power BI",
+     "SQLite",
+     "GitHub Actions",
+     "Dagster"
+    ]
+   },
+   {
+    "name": "Multi-State Land Use Emissions Analysis",
+    "bullets": [
+     "Land-use emissions ETL for 5 U.S. states built on the EPA's real state inventory: EPA-derived emission factors, a year-ahead forecast at 94.2% accuracy, shock detection and Census map layers.",
+     "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly (10.2 hours in the median week, counted from the pipeline's own work over 30 weeks).",
+     "Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving 90% accuracy (94.2% year-ahead on the EPA's 1990-2022 state land-use inventory).",
+     "ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by 15% (the vectorised shock detector runs 52% faster with identical flags).",
+     "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping."
+    ],
+    "technologies": [
+     "Python",
+     "SQLite",
+     "Random Forest",
+     "ETL Ingestion",
+     "ArcGIS",
+     "Tableau",
+     "GitHub Actions"
+    ]
+   },
+   {
+    "name": "Real-Time IoT Telematics & Predictive Maintenance",
+    "bullets": [
+     "EV battery and motor telemetry processed in micro-batches: Z-score detection catches 98.1% of planted sensor spikes at 90.5% precision, plus battery remaining-useful-life estimates.",
+     "High-Frequency Telemetry Ingestion: Engineered a streaming simulation pipeline in Python to ingest high-frequency EV battery and motor telemetry sensor logs in micro-batches.",
+     "Anomaly Detection & Device Health: Applied rolling statistical Z-score algorithms on sensor metrics to flag real-time anomalies and prevent device failures (98.1% recall, 90.5% precision against 214 planted sensor spikes).",
+     "Degradation & RUL Modeling: Implemented degradation modeling using exponential decay equations to estimate battery Remaining Useful Life (RUL) with Power BI dashboard tracking.",
+     "Automated Alert Triggering: Integrated real-time threshold monitoring to broadcast predictive maintenance alerts before component breakdown.",
+     "Jax-Accelerated Recurrence: Reimplemented the sequential health-decay/RUL calculation as a single JIT-compiled jax.lax.scan, verified numerically identical to the original per-row implementation."
+    ],
+    "technologies": [
+     "Python",
+     "Z-Score Anomaly",
+     "RUL Model",
+     "Power BI",
+     "SQL",
+     "GitHub Actions",
+     "Jax"
+    ]
+   },
+   {
+    "name": "Sales Analytics & RFM Customer Segmentation Pipeline",
+    "bullets": [
+     "A star-schema warehouse of 106,228 transactions where RFM scoring and K-Means find 4 customer personas explaining 93.9% of the variance, explored in a Power BI report.",
+     "Star Schema Database: Designed and implemented a SQL database with an optimized Star Schema modeling 106,228 customer transactions (2,000 customers over 2 years) for business intelligence reporting.",
+     "RFM & K-Means Clustering: Automated RFM scaling and unsupervised K-Means clustering in Python, identifying 4 customer personas that explain 93.9% of the variance in the scaled RFM features.",
+     "Executive Power BI Dashboard: Built interactive Power BI report with star-schema relationships and DAX measures over the pipeline live CSV exports -- including a K-Means cluster scatter plot and a persona slicer for marketing teams.",
+     "Pareto 80/20 Insights: Applied Pareto analysis showing the top 20% of customers generate 79.9% of revenue, isolating them for targeted retention campaigns."
+    ],
+    "technologies": [
+     "Python",
+     "SQLite",
+     "K-Means",
+     "PCA",
+     "Power BI",
+     "Seaborn",
+     "GitHub Actions",
+     "DAX"
+    ]
+   },
+   {
+    "name": "Extending STEM across ASL",
+    "bullets": [
+     "Teaches 7 STEM concepts in ASL and recognises 29 STEM and computing word signs from video, 75.9% top-1 and 94.8% top-3 on held-out WLASL clips, live from a webcam.",
+     "Deep Learning Web Application: Pioneered an inclusive Python web platform leveraging TensorFlow, PyTorch, Keras, and Flask, making 7 STEM concepts accessible to ASL users and recognising 29 STEM and computing word signs from video.",
+     "Gesture Recognition Algorithm: Implemented a sign recognition algorithm leveraging CNN models and contour geometry, cutting gesture redundancy and boosting learning efficiency by 30% (MediaPipe hand landmarks, OpenCV contour features and a PyTorch GRU reach 75.9% top-1 and 94.8% top-3 on held-out WLASL clips; the 29 signs share 18 hand shapes, 38% fewer to practise).",
+     "User Feedback & Evaluation: Synthesized feedback from 50+ STEM students, achieving a user satisfaction score of 4.6/5 based on post-lesson survey evaluations.",
+     "Real-Time Video Frame Processing: Optimized OpenCV frame capture and pre-processing steps for low-latency web browser sign gesture classification (a two-second webcam recording is recognised in about 1.1 s on a laptop CPU)."
+    ],
+    "technologies": [
+     "Python",
+     "PyTorch",
+     "OpenCV",
+     "MediaPipe",
+     "TensorFlow",
+     "Keras",
+     "CNN Model",
+     "Flask",
+     "ASL Recognition",
+     "GitHub Actions"
+    ]
+   },
+   {
+    "name": "Member Messages QA System: Semantic Search & NER-Based Question Answering",
+    "bullets": [
+     "Answers natural-language questions about members from their messages: on 26 labelled questions it finds the right member 100% of the time and the right answer 96%.",
+     "Semantic Search QA Engine: Built an interactive /ask API answering natural-language questions about member data, ranking unstructured messages by cosine similarity over SentenceTransformer (all-MiniLM-L6-v2) embeddings.",
+     "Named Entity Recognition: Integrated spaCy NER with fuzzy first-name matching to identify a question's subject before ranking relevant messages; on 26 labelled paraphrased questions it finds the right member 100% of the time and the right answer 96%.",
+     "Dynamic Information Extraction: Implemented regex-based extraction for contact info, numeric quantities, and companion/group references from unstructured message text, with fallback to the closest-matching message when no structured answer applies.",
+     "Architecture Tradeoff Analysis: Evaluated and documented five candidate approaches (rule-based matching, knowledge graphs, fine-tuned LLMs, hybrid retrieval) before selecting embeddings-based semantic search for its balance of speed, accuracy, and maintainability.",
+     "LlamaIndex Retrieval Path: Built an alternative semantic-search retriever using LlamaIndex's VectorStoreIndex over the same embedding model, verified against the message dataset.",
+     "Semantic Kernel Orchestration: Wrapped the NER/ranking/extraction functions as native Semantic Kernel plugin functions, orchestrated through Kernel instance.",
+     "RAG Pipeline: Built retrieve-then-generate RAG chain with LangChain, generating natural-language answers grounded in retrieved messages via a local model -- verified with both fast deterministic wiring tests and end-to-end generation test."
+    ],
+    "technologies": [
+     "Python",
+     "Sentence-Transformers",
+     "spaCy",
+     "Scikit-Learn",
+     "Pandas",
+     "GitHub Actions",
+     "LlamaIndex",
+     "Semantic Kernel",
+     "LangChain"
+    ]
+   },
+   {
+    "name": "Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
+    "bullets": [
+     "A Small BERT sentence transformer extended into a multi-task model, plus LoRA fine-tuning of Qwen2.5-0.5B on Dolly-15k with a declining loss curve over 3 epochs.",
+     "Sentence Transformer Architecture: Built a Sentence Transformer using a Small BERT model from TensorFlow Hub, encoding sentences into 128-dimensional contextual embeddings via mean pooling across token representations.",
+     "Multi-Task Learning Expansion: Extended the shared transformer backbone with two task-specific heads (3-class sentence classification, 2-class sentiment classification), each with its own softmax output layer.",
+     "Transfer Learning Strategy: Evaluated freezing strategies (full model vs. backbone-only vs. single task head) and proposed a staged fine-tuning approach -- freeze lower layers, fine-tune top layers and task heads.",
+     "Training Loop Simulation: Simulated multi-task training with synthetic text and one-hot encoded labels via model.fit(), logging per-task loss and accuracy to validate the architecture end-to-end.",
+     "LoRA Fine-Tuning: LoRA fine-tuned Qwen2.5-0.5B-Instruct on Databricks Dolly-15k subset (free Colab T4 GPU), with declining loss curve over 3 epochs and an honest before/after comparison on held-out prompts."
+    ],
+    "technologies": [
+     "TensorFlow",
+     "TensorFlow Hub",
+     "TensorFlow Text",
+     "NumPy",
+     "Small BERT",
+     "GitHub Actions",
+     "PyTorch",
+     "LoRA",
+     "Hugging Face"
+    ]
+   },
+   {
+    "name": "CurioSync: Fact-Checked LinkedIn Publishing Pipeline",
+    "bullets": [
+     "LinkedIn publishing pipeline on GitHub Actions (Monday, Wednesday, Friday): Gemini drafts each post only from the live portfolio profile, mechanical checks and a second model pass reject invented claims, and a Pillow image card shows the same facts.",
+     "Serverless Publishing Pipeline: LinkedIn publishing pipeline on GitHub Actions cron workflows (Monday, Wednesday, Friday) at $0 hosting cost, posting through the LinkedIn Posts API with an image card checked against the same facts as the text.",
+     "Fact-Checked LLM Drafting: Gemini drafts posts only from the live portfolio profile; mechanical checks reject any number or tool not in the facts, 'we' on solo work and undisclosed simulated data, and a second model pass flags invented claims before anything is published.",
+     "LLM & Image Generation: Integrated Gemini LLM chains and developed custom Pillow image-processing engines to automatically render branding graphics (+150% engagement).",
+     "Credential-Safe Control Panel: Jinja2/HTMX control panel with Fernet symmetric encryption protecting stored LinkedIn credentials."
+    ],
+    "technologies": [
+     "Python",
+     "FastAPI",
+     "GitHub Actions",
+     "Gemini LLM",
+     "LinkedIn API",
+     "Pillow",
+     "Jinja2",
+     "HTMX",
+     "SQLAlchemy"
+    ]
+   },
+   {
+    "name": "Solid Object Detection & Identification",
+    "bullets": [
+     "A PyTorch CNN that classifies 7 shape classes at 99.2% on 2,000 held-out images, with OpenCV contour geometry as an independent check, served on AWS Lambda through ONNX.",
+     "Computer Vision & Geometry Pipeline: Developed a shape detection and identification pipeline using PyTorch, OpenCV, and custom CNN models.",
+     "High Classification Accuracy: Achieved 99.2% classification accuracy on 2,000 held-out images from 10,000 generated shape images across 7 classes (checked in CI); contour geometry independently confirms the CNN on 66% of images, and those confirmed predictions are 99.9% correct.",
+     "Visualization Enhancements: Implemented visual bounding boxes and shape classification overlays, increasing visualization capabilities by 33% (four overlays, up from three: box, label, confidence and the located outline coloured by contour-geometry agreement).",
+     "Contour Analysis & Preprocessing: Applied Gaussian blurring and Canny edge detection in OpenCV to extract robust shape boundary features prior to neural network classification (Canny-located boxes reach a mean IoU of 0.93 against 0.82 for a thresholded mask).",
+     "Real-Time Serverless Inference: Deployed the trained model as a live AWS Lambda function triggered by S3 image uploads -- exported to ONNX (~615KB) so it ships as a plain Lambda zip via onnxruntime, avoiding a PyTorch container image and its ECR storage cost. Verified end-to-end with live S3-to-Lambda integration test running in CI against the deployed AWS infrastructure."
+    ],
+    "technologies": [
+     "Python",
+     "PyTorch",
+     "OpenCV",
+     "CNN Model",
+     "Image Processing",
+     "Git",
+     "GitHub Actions",
+     "AWS Lambda",
+     "AWS S3",
+     "ONNX Runtime"
+    ]
+   },
+   {
+    "name": "Clinical Trials Patient Outcomes Analysis",
+    "bullets": [
+     "Survival analysis across 3 cohorts with Kaplan-Meier curves, pairwise log-rank tests and de-identified patient data; the full report refreshes 60% faster.",
+     "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.",
+     "Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed pairwise log-rank tests (lifelines) and a chi-square adverse-event test (SciPy) to evaluate treatment efficacy across 3 cohorts.",
+     "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by 30%; a one-process refresh rebuilds the full report 60% faster (6.3 s instead of 15.5 s).",
+     "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII) across analytical schemas."
+    ],
+    "technologies": [
+     "Python",
+     "SQL",
+     "Kaplan-Meier",
+     "Log-Rank",
+     "Tableau",
+     "SciPy",
+     "GitHub Actions"
+    ]
+   },
+   {
+    "name": "AI-ML Data Science Simulation",
+    "bullets": [
+     "Daily sales ETL for 5 branches with forecasts at 90% accuracy against a 78.4% naive baseline; in a reorder simulation, forecast-driven ordering cut stock-out days by 60.8%.",
+     "Multi-Branch ETL Automation: Created a scalable data automation system utilizing Python for daily sales data ingestion from 5 branches across states, simulating ETL pipeline.",
+     "Inventory Centralization & Tableau: Centralized inventory datasets in SQL and visualized trend cycles in Tableau, driving actionable insights across weekly and monthly cycles.",
+     "Predictive Inventory Forecasting: Deployed machine learning models (Linear Regression, Random Forest) achieving 90% forecast accuracy (1 - WAPE on a 28-day chronological holdout, vs 78.4% for a naive baseline); in a reorder simulation, forecast-driven ordering cut stock-out days by 60.8%.",
+     "Automated Data Reconciliation: Built daily automated cross-branch data reconciliation checks to ensure dataset consistency across regional store databases."
+    ],
+    "technologies": [
+     "Python",
+     "SQL",
+     "Random Forest",
+     "Sales ETL",
+     "Tableau",
+     "GitHub Actions"
+    ]
+   },
+   {
+    "name": "Automated Daily Data Insights",
+    "bullets": [
+     "A daily market-data pipeline on GitHub Actions: pulls yFinance, flags rolling Z-score anomalies and publishes the report, at $0 server cost.",
+     "Stateless Serverless ETL: Wrote Python scripts to fetch market and telemetry datasets from yFinance APIs with automated error handling and logging.",
+     "Statistical Anomaly Detection: Programmed rolling statistical Z-score algorithms to detect price anomalies, triggering automated email alerts and report updates.",
+     "Cron Schedule Uptime: Configured GitHub Actions to run the pipeline daily on cron schedules, achieving 99.9% uptime with $0 operational server cost.",
+     "Automated Data Quality Validation: Embedded input data validation checks to prevent missing market records from corrupting downstream report charts."
+    ],
+    "technologies": [
+     "Python",
+     "yFinance API",
+     "Matplotlib",
+     "GitHub Actions",
+     "SQLite"
+    ]
+   },
+   {
+    "name": "ArcGIS Commute Insights",
+    "bullets": [
+     "Ranks companies by drive time from home using the live ArcGIS geocoding and routing services on an interactive map; all 11 tests hit the live APIs.",
+     "Geocoding: Built a job-search tool geocoding home/company addresses via the live ArcGIS World Geocoding Service, ranking companies by ArcGIS World Route drive time (great-circle distance as the fallback) on an interactive Leaflet map.",
+     "Basemap Vector Tiles: Fetched and decoded Mapbox Vector Tile (.pbf) data from Esri's World Basemap v2 service -- the tile URL template was discovered by reading the basemap style JSON's sources, not assumed from docs, after an initial guessed URL returned 404.",
+     "Verified End-to-End: All 11 tests hit the ArcGIS APIs (no mocks) -- including a hand-verified slippy-map tile coordinate and assertions on observed basemap layer names."
+    ],
+    "technologies": [
+     "ArcGIS",
+     "Geocoding",
+     "Vector Tiles",
+     "Geospatial Analysis"
+    ]
+   },
+   {
+    "name": "Reactive Job Ingest Gateway",
+    "bullets": [
+     "A non-blocking job-posting ingestion gateway built on Spring WebFlux and R2DBC, republishing ingested postings as a live Server-Sent-Events stream.",
+     "Non-Blocking Ingestion API: Built a Spring WebFlux REST endpoint that persists incoming job-posting events via R2DBC without blocking a thread per request.",
+     "Live SSE Stream: Republished ingested postings as a real-time Server-Sent-Events stream using a replaying Sinks.Many, so a client connecting mid-stream still sees recent history before live updates.",
+     "Verified End-to-End: Packaged and ran the application, hitting it with live curl requests (including SSE subscriber receiving an event ingested after it connected) -- found and fixed two bugs surfaced only by running it, not just the test suite."
+    ],
+    "technologies": [
+     "Java",
+     "Spring Boot",
+     "Spring WebFlux",
+     "Spring Reactive",
+     "R2DBC",
+     "Project Reactor"
+    ]
+   },
+   {
+    "name": "Interview Prep API",
+    "bullets": [
+     "An ASP.NET Core minimal API in C# with Entity Framework Core and SQLite, covered by 19 xUnit tests including an SM-2 spaced-repetition scheduler.",
+     "Minimal API: Built ASP.NET Core minimal API (C#) for browsing/adding interview questions, backed by Entity Framework Core + SQLite.",
+     "Data Access: EF Core-managed schema and seeding, with filtering and a random-pick endpoint over queries, plus SM-2 spaced-repetition scheduling of practice attempts with streak and mastery stats.",
+     "Verified End-to-End: 19 xUnit tests -- 12 integration tests (WebApplicationFactory + in-memory SQLite connection) and 7 for the SM-2 scheduler -- plus a hand-run curl verification against the live app -- all passing."
+    ],
+    "technologies": [
+     "C#",
+     ".NET",
+     "ASP.NET Core",
+     "Entity Framework Core",
+     "SQLite"
+    ]
+   },
+   {
+    "name": "Job Notes",
+    "bullets": [
+     "A company-research notes app: an Express and MongoDB API with an Angular frontend, both covered by automated tests against a running database.",
+     "Express + MongoDB API: Built REST API (Express, Mongoose) for company-research notes, backed by MongoDB instance -- 4 integration tests (Jest + Supertest) against database, not a mock.",
+     "Angular Frontend: Built Angular app (generated via the official CLI) fetching, creating, and deleting notes against the API, with 3 TestBed + HttpClientTestingModule tests.",
+     "Verified End-to-End: Both the API and the Angular test suite pass in CI; fixed bug (Puppeteer's Chromium has no arm64 Linux build) by switching to a system Chromium install."
+    ],
+    "technologies": [
+     "MongoDB",
+     "Express",
+     "Angular",
+     "Node.js",
+     "Mongoose"
+    ]
+   },
+   {
+    "name": "Company Search (HTMX)",
+    "bullets": [
+     "Live search with HTMX partial updates on FastAPI and Jinja2, inline editing, and Server-Sent Events syncing every open tab, with no client-side framework.",
+     "Live Search UI: Built live-search page using HTMX for partial-page updates (FastAPI + Jinja2 rendering HTML, no client-side JS framework), with inline editing and Server-Sent Events syncing changes across open tabs.",
+     "Verified End-to-End: 12 FastAPI TestClient tests, plus a full live interaction check with headless-Chromium session driving the running app.",
+     "Found and fixed bug the TestClient tests couldn't catch: hx-trigger's keyup-only binding never fired for autofill/paste, only keystrokes -- fixed to an input-based trigger and re-verified live."
+    ],
+    "technologies": [
+     "HTMX",
+     "FastAPI",
+     "Jinja2"
+    ]
+   },
+   {
+    "name": "Interview Prep Mobile",
+    "bullets": [
+     "A React Native (Expo) app for practising interview questions against the ASP.NET Core API, tested with React Native Testing Library and in a live browser run.",
+     "React Native App: Built Expo app browsing/practicing interview-prep questions against a companion ASP.NET Core API, with local persistence via AsyncStorage.",
+     "Verified End-to-End: React Native Testing Library tests, plus a full live integration check -- Metro web export served over nginx, loaded in headless Chromium on the same Docker network as the running API, confirming correct data end-to-end with zero console errors.",
+     "Found and fixed two bugs: AsyncStorage needing an explicit jest.mock() (not just the package installed), and Hermes' bytecode compiler having no arm64 Linux build -- documented transparently rather than skipped."
+    ],
+    "technologies": [
+     "React Native",
+     "Expo",
+     "TypeScript",
+     "AsyncStorage"
+    ]
+   },
+   {
+    "name": "Company Blocklist",
+    "bullets": [
+     "A PHP CodeIgniter 4 app for tracking companies to avoid, with bulk CSV import, a check against California WARN Act layoff notices, and 12 feature tests through the full router, controller and model stack.",
+     "CodeIgniter 4 App: Built PHP/CodeIgniter 4 app tracking companies to avoid in a job search, with migration, model (including is_unique validation rule), and controller, plus bulk CSV import (imported/skipped/rejected rows) and a California WARN Act layoff-notice check.",
+     "Verified End-to-End: 12 feature tests (FeatureTestTrait + DatabaseTestTrait) hitting routes through the router/controller/model stack against SQLite database.",
+     "Found and fixed two CodeIgniter testing gotchas: DatabaseTestTrait's namespace defaulting to test-support fixtures only, and assertJSONFragment not doing nested matching against list responses."
+    ],
+    "technologies": [
+     "PHP",
+     "CodeIgniter 4",
+     "SQLite"
+    ]
+   }
+  ],
+  "skills": {
+   "Generative AI, LLMs & Agentic Systems": [
+    "LangChain, LlamaIndex & Semantic Kernel",
+    "MCP (Model Context Protocol) & Tool Calling",
+    "ReAct Agent Workflows & Autonomous Agents",
+    "Retrieval-Augmented Generation (RAG) & Fine-Tuning (LoRA/PEFT)",
+    "Vector Databases (pgvector, ChromaDB, Supabase RLS)",
+    "OpenAI APIs (GPT-4o mini) & Gemini LLM Integration",
+    "LLMOps & Agent Evaluation (LangSmith, Opik, Langfuse)",
+    "LLM Quantization & Pinecone Vector Search"
+   ],
+   "Machine Learning & Deep Learning Frameworks": [
+    "PyTorch, Jax, TensorFlow & Keras Deep Learning",
+    "Scikit-Learn Modeling (Random Forest, XGBoost, K-Means)",
+    "Computer Vision & Pattern Recognition (OpenCV, YOLO CNNs)",
+    "Statistical Drift Auditing (KS-Test, PSI) & MLflow MLOps",
+    "Responsible AI Governance (FTC & EU AI Act Bias Auditing)",
+    "Financial & Audit Anomaly Detection (Benford's Law, Isolation Forest)",
+    "Hypothesis Testing & Z-Test A/B Experimentation",
+    "Forecasting & Scenario Analysis (Predictive Analysis)"
+   ],
+   "Data Engineering, Platforms & Cloud": [
+    "PySpark & Spark SQL Large-Scale Data Processing",
+    "Databricks Platform & dbt Dimensional Transformations",
+    "AWS Cloud Infrastructure (S3, Glue, Lambda, EC2)",
+    "GCP (Google Cloud Platform, BigQuery, Vertex AI) & Azure (ADLS Gen2)",
+    "Snowflake Cloud Data Warehousing & Star Schema Modeling",
+    "Apache Airflow & Dagster Pipeline Orchestration",
+    "Great Expectations Data Quality Rules & Governance",
+    "Table Formats (Delta Lake, Apache Iceberg, Parquet)",
+    "Apache Kafka & Reverse ETL",
+    "Hadoop, Hive & AWS Athena"
+   ],
+   "Full Stack & Software Engineering": [
+    "Python Backend Microservices (FastAPI, Flask, Asyncio)",
+    "Core Java, Spring Boot & Spring Reactive Engineering",
+    "C# & .NET Framework Backend Services",
+    "JavaScript, TypeScript & Node.js/Express APIs",
+    "React JS, React Native Mobile & Angular Web Interfaces",
+    "PHP & CodeIgniter 3/4 Application Platforms",
+    "RESTful APIs, GraphQL & Microservices Architecture",
+    "Data Structures, Algorithms & Object-Oriented System Design",
+    "PowerApps & Agile/Scrum Delivery"
+   ],
+   "DevOps, Tooling & Analytics": [
+    "Docker Containerization & Kubernetes Cluster Scaling",
+    "Git & GitHub Actions CI/CD Automated Pipelines",
+    "Terraform Infrastructure as Code (IaC) & Jenkins",
+    "AI Developer Productivity Tools (Cursor, Claude Code, GitHub Copilot)",
+    "Power BI (DAX Modeling, KPI Dashboards)",
+    "Tableau (LOD Expressions, Executive Storytelling)",
+    "ArcGIS Geospatial Emissions Analytics & Chart.js Visualizations",
+    "Relational Databases (PostgreSQL, SQLite, SQL Server, MySQL)",
+    "Microsoft Excel, SSRS & SSAS Reporting",
+    "Unit & Integration Testing (PyTest)",
+    "Incident Response & Production Monitoring"
+   ]
+  },
+  "certifications": [
+   "Tableau Business Intelligence Analyst Professional Certificate",
+   "ElevateMe Bootcamp Data Analytics Certificate of Completion",
+   "IBM Data Analyst Professional Certificate",
+   "Generative AI Mastermind",
+   "Guinness World Record — AI Training Hackathon (Kanz)",
+   "Microsoft HR Manager Professional Certificate",
+   "HRCI Human Resource Associate Professional Certificate",
+   "Accenture North America - Data Analytics and Visualization Job Simulation",
+   "People Analytics with AI Specialization",
+   "Greenhouse Training Resources"
+  ]
+ },
+ "cases": [
+  {
+   "name": "Data Engineer",
+   "title": "Data Engineer",
+   "posting": "About the role\nYou will build and run the batch pipelines behind our analytics platform.\n\nRequirements\n- 2+ years building data pipelines in Python and SQL\n- Spark or Flink for large batch jobs\n- Orchestration with Airflow, Dagster or a similar tool\n- Experience with one of Snowflake, BigQuery, Redshift\n- Data modeling for analytics and dbt\n- Docker and CI/CD\n- 4+ years with Cassandra or DynamoDB\n\nNice to have\n- Kafka or Kinesis\n- Go\n- Terraform\n- AWS (S3, Glue, Lambda)",
+   "expected": {
+    "score": 89,
+    "uncapped_score": 89,
+    "cap_reason": null,
+    "role_status": "match",
+    "skills": {
+     "requirements_found": 18,
+     "score": 90,
+     "matched": [
+      {
+       "term": "Spark",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": true,
+       "alternatives": [
+        "Flink"
+       ]
+      },
+      {
+       "term": "Snowflake",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": true,
+       "alternatives": [
+        "BigQuery",
+        "Redshift"
+       ]
+      },
+      {
+       "term": "Kafka",
+       "evidence": "Skills list",
+       "required": false,
+       "alternatives": [
+        "Kinesis"
+       ]
+      },
+      {
+       "term": "Python",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": true
+      },
+      {
+       "term": "SQL",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": true
+      },
+      {
+       "term": "Airflow",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": true
+      },
+      {
+       "term": "Dagster",
+       "evidence": "Project: Tax Anomaly Audit Compliance Engine",
+       "required": true
+      },
+      {
+       "term": "dbt",
+       "evidence": "Project: Job Search dbt Warehouse",
+       "required": true
+      },
+      {
+       "term": "AWS",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": false
+      },
+      {
+       "term": "S3",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": false
+      },
+      {
+       "term": "Glue",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": false
+      },
+      {
+       "term": "Lambda",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": false
+      },
+      {
+       "term": "Docker",
+       "evidence": "Project: Job Search CRM & AI Application Tailoring Center",
+       "required": true
+      },
+      {
+       "term": "Terraform",
+       "evidence": "Project: TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+       "required": false
+      },
+      {
+       "term": "CI/CD",
+       "evidence": "Project: TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+       "required": true
+      },
+      {
+       "term": "Data modeling",
+       "evidence": "Project: Job Search dbt Warehouse",
+       "required": true
+      }
+     ],
+     "transferable": [],
+     "missing": [
+      {
+       "term": "Cassandra or DynamoDB",
+       "required": true
+      },
+      {
+       "term": "Go",
+       "required": false
+      }
+     ]
+    },
+    "years": {
+     "required_years": 4,
+     "profile_years": 3.0,
+     "points": 75
+    }
+   }
+  },
+  {
+   "name": "Data Analyst",
+   "title": "Data Analyst",
+   "posting": "What you'll do\nBuild dashboards and answer product questions with data.\n\nWhat we need\n- 3+ years of experience as an analyst\n- Strong SQL and Excel\n- Tableau or Power BI\n- Statistics and A/B testing\n\nPreferred\n- Python (pandas)\n- Looker\n- SSRS",
+   "expected": {
+    "score": 98,
+    "uncapped_score": 98,
+    "cap_reason": null,
+    "role_status": "match",
+    "skills": {
+     "requirements_found": 10,
+     "score": 97,
+     "matched": [
+      {
+       "term": "Tableau",
+       "evidence": "Data Analyst at Kronic Keys",
+       "required": true,
+       "alternatives": [
+        "Power BI"
+       ]
+      },
+      {
+       "term": "Python",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": false
+      },
+      {
+       "term": "SQL",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": true
+      },
+      {
+       "term": "Excel",
+       "evidence": "Skills list",
+       "required": true
+      },
+      {
+       "term": "SSRS",
+       "evidence": "Skills list",
+       "required": false
+      },
+      {
+       "term": "Data visualization",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": true
+      },
+      {
+       "term": "Statistics",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": true
+      },
+      {
+       "term": "A/B testing",
+       "evidence": "Skills list",
+       "required": true
+      },
+      {
+       "term": "pandas",
+       "evidence": "AI/ML Engineering Apprentice at Jetson Infinity",
+       "required": false
+      }
+     ],
+     "transferable": [
+      {
+       "term": "Looker",
+       "via": "Power BI",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": false
+      }
+     ],
+     "missing": []
+    },
+    "years": {
+     "required_years": 3,
+     "profile_years": 3.0,
+     "points": 100
+    }
+   }
+  },
+  {
+   "name": "Machine Learning Engineer",
+   "title": "Machine Learning Engineer",
+   "posting": "Responsibilities\nTrain, ship and monitor models in production.\n\nQualifications\n- 3-5 years of experience in machine learning\n- Python, PyTorch or TensorFlow, scikit-learn\n- MLflow for experiment tracking\n- Prefect for training pipelines\n- XGBoost\n- Docker and Kubernetes\n- REST APIs with FastAPI or Flask\n\nBonus\n- LLM and RAG systems\n- Hugging Face",
+   "expected": {
+    "score": 97,
+    "uncapped_score": 97,
+    "cap_reason": null,
+    "role_status": "match",
+    "skills": {
+     "requirements_found": 12,
+     "score": 95,
+     "matched": [
+      {
+       "term": "Python",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": true,
+       "alternatives": [
+        "PyTorch",
+        "TensorFlow",
+        "scikit-learn"
+       ]
+      },
+      {
+       "term": "FastAPI",
+       "evidence": "Project: Job Search CRM & AI Application Tailoring Center",
+       "required": true,
+       "alternatives": [
+        "Flask"
+       ]
+      },
+      {
+       "term": "Docker",
+       "evidence": "Project: Job Search CRM & AI Application Tailoring Center",
+       "required": true
+      },
+      {
+       "term": "Kubernetes",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": true
+      },
+      {
+       "term": "XGBoost",
+       "evidence": "Project: FinTech Credit Risk & Fraud Command Center",
+       "required": true
+      },
+      {
+       "term": "MLflow",
+       "evidence": "Project: FinTech Credit Risk & Fraud Command Center",
+       "required": true
+      },
+      {
+       "term": "Hugging Face",
+       "evidence": "Project: Sentence Transformers, Multi-Task Learning & LLM Fine-Tuning",
+       "required": false
+      },
+      {
+       "term": "Machine Learning",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": true
+      },
+      {
+       "term": "LLM",
+       "evidence": "Project: Job Search CRM & AI Application Tailoring Center",
+       "required": false
+      },
+      {
+       "term": "RAG",
+       "evidence": "Project: Member Messages QA System: Semantic Search & NER-Based Question Answering",
+       "required": false
+      },
+      {
+       "term": "REST APIs",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": true
+      }
+     ],
+     "transferable": [
+      {
+       "term": "Prefect",
+       "via": "Airflow",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": true
+      }
+     ],
+     "missing": []
+    },
+    "years": {
+     "required_years": 3,
+     "profile_years": 3.0,
+     "points": 100
+    }
+   }
+  },
+  {
+   "name": "Frontend Engineer (role type differs)",
+   "title": "Senior Frontend Engineer",
+   "posting": "Requirements\n- 5+ years building web apps\n- React, TypeScript and JavaScript\n- GraphQL and REST APIs\n- Git and CI/CD\n\nNice to have\n- Node.js\n- Python",
+   "expected": {
+    "score": 40,
+    "uncapped_score": 72,
+    "cap_reason": "Role type differs: the posting is Software engineering, the profile targets Data / business analysis, Data engineering, Machine learning / AI engineering. Fit is capped at 40.",
+    "role_status": "mismatch",
+    "skills": {
+     "requirements_found": 9,
+     "score": 100,
+     "matched": [
+      {
+       "term": "Python",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": false
+      },
+      {
+       "term": "JavaScript",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": true
+      },
+      {
+       "term": "TypeScript",
+       "evidence": "Project: TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+       "required": true
+      },
+      {
+       "term": "Node.js",
+       "evidence": "Data Engineer & ML Research Assistant at Arizona State University",
+       "required": false
+      },
+      {
+       "term": "React",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": true
+      },
+      {
+       "term": "CI/CD",
+       "evidence": "Project: TalentVenue EventIntel: Enterprise Data Platform & Predictive Intelligence",
+       "required": true
+      },
+      {
+       "term": "Git",
+       "evidence": "Project: Solid Object Detection & Identification",
+       "required": true
+      },
+      {
+       "term": "REST APIs",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": true
+      },
+      {
+       "term": "GraphQL",
+       "evidence": "Project: FinTech Credit Risk & Fraud Command Center",
+       "required": true
+      }
+     ],
+     "transferable": [],
+     "missing": []
+    },
+    "years": {
+     "required_years": 5,
+     "profile_years": 3.0,
+     "points": 60
+    }
+   }
+  },
+  {
+   "name": "Analytics Engineer",
+   "title": "Analytics Engineer",
+   "posting": "You will own our dbt project and the warehouse models.\n\nMust have\n- 2 years of SQL and dbt\n- Data modeling (dimensional models)\n- Snowflake\n- Git and GitHub Actions\n- Great Expectations or similar data quality tests\n\nNice to have\n- Airflow\n- Python",
+   "expected": {
+    "score": 100,
+    "uncapped_score": 100,
+    "cap_reason": null,
+    "role_status": "match",
+    "skills": {
+     "requirements_found": 9,
+     "score": 100,
+     "matched": [
+      {
+       "term": "Python",
+       "evidence": "Teleoperation Data Collection Associate at Objectways Technologies LLC",
+       "required": false
+      },
+      {
+       "term": "SQL",
+       "evidence": "Applied Machine Learning Engineer at Technoid LLC",
+       "required": true
+      },
+      {
+       "term": "Airflow",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": false
+      },
+      {
+       "term": "dbt",
+       "evidence": "Project: Job Search dbt Warehouse",
+       "required": true
+      },
+      {
+       "term": "Snowflake",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": true
+      },
+      {
+       "term": "GitHub Actions",
+       "evidence": "Project: Job Search CRM & AI Application Tailoring Center",
+       "required": true
+      },
+      {
+       "term": "Git",
+       "evidence": "Project: Solid Object Detection & Identification",
+       "required": true
+      },
+      {
+       "term": "Data modeling",
+       "evidence": "Project: Job Search dbt Warehouse",
+       "required": true
+      },
+      {
+       "term": "Great Expectations",
+       "evidence": "Data Analyst / Data Engineer at Zifatech Solutions LLC",
+       "required": true
+      }
+     ],
+     "transferable": [],
+     "missing": []
+    },
+    "years": {
+     "required_years": 2,
+     "profile_years": 3.0,
+     "points": 100
+    }
+   }
+  },
+  {
+   "name": "Registered Nurse (nothing to measure)",
+   "title": "Registered Nurse",
+   "posting": "Requirements\n- Active RN license\n- 2+ years of acute care experience\n- BLS certification",
+   "expected": {
+    "score": 10,
+    "uncapped_score": 10,
+    "cap_reason": null,
+    "role_status": "unknown",
+    "skills": {
+     "requirements_found": 0,
+     "score": null,
+     "matched": [],
+     "transferable": [],
+     "missing": []
+    },
+    "years": {
+     "required_years": 2,
+     "profile_years": 3.0,
+     "points": 100
+    }
+   }
+  }
+ ]
+}
