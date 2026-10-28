@@ -52,17 +52,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const device = width < 768 ? "Mobile" : width < 1024 ? "Tablet" : "Desktop";
         const ua = navigator.userAgent;
         let os = "Unknown OS";
-        if (ua.indexOf("Win") != -1) os = "Windows";
+        // Phones first: Android user agents also say "Linux", and iPhone/iPad ones say "like Mac OS X".
+        if (ua.indexOf("Android") != -1) os = "Android";
+        else if (/iPhone|iPad|iPod/.test(ua)) os = "iOS";
+        else if (ua.indexOf("Win") != -1) os = "Windows";
         else if (ua.indexOf("Mac") != -1) os = "macOS";
         else if (ua.indexOf("Linux") != -1) os = "Linux";
-        else if (ua.indexOf("Android") != -1) os = "Android";
-        else if (ua.indexOf("like Mac") != -1) os = "iOS";
 
         let browser = "Other";
-        if (ua.indexOf("Chrome") != -1) browser = "Chrome";
+        if (ua.indexOf("LinkedInApp") != -1) browser = "LinkedIn app";
+        else if (ua.indexOf("Edg/") != -1) browser = "Edge";
+        else if (ua.indexOf("Firefox") != -1 || ua.indexOf("FxiOS") != -1) browser = "Firefox";
+        else if (ua.indexOf("Chrome") != -1 || ua.indexOf("CriOS") != -1) browser = "Chrome";
         else if (ua.indexOf("Safari") != -1) browser = "Safari";
-        else if (ua.indexOf("Firefox") != -1) browser = "Firefox";
-        else if (ua.indexOf("Edge") != -1) browser = "Edge";
+
+        // LinkedIn's in-app browser and most share links send no referrer, so read a ?ref= or utm_source tag
+        // (only the source name, nothing about the visitor) before falling back to "Direct".
+        const params = new URLSearchParams(window.location.search);
+        const tag = (params.get("utm_source") || params.get("ref") || "").replace(/[^\w.-]/g, "").slice(0, 40);
+        const referrer = document.referrer || (tag ? "tag:" + tag : browser === "LinkedIn app" ? "LinkedIn app" : "Direct");
 
         let geodata = { city: "Unknown", country_name: "Unknown", country_code: "" };
         try {
@@ -83,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             device: device,
             os: os,
             browser: browser,
-            referrer: document.referrer || "Direct",
+            referrer: referrer,
             page_path: window.location.pathname
         };
 
