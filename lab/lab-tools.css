@@ -14,16 +14,8 @@ body.light-theme {
 .lt-panel { scroll-margin-top: 80px; }
 .lt-intro { color: var(--text-secondary); max-width: 68ch; margin: 1rem 0 1.25rem; line-height: 1.55; }
 
-.lt-tabs { display: flex; flex-wrap: wrap; gap: 0.4rem; padding-bottom: 0.4rem; }
-.lt-tabs [role="tab"] {
-    flex: 0 0 auto; font: 500 0.85rem/1 var(--font-body); padding: 0.6rem 0.85rem; border-radius: 6px; cursor: pointer;
-    background: transparent; color: var(--text-secondary); border: 1px solid var(--line); white-space: nowrap;
-}
-.lt-tabs [role="tab"]:hover { border-color: var(--accent); color: var(--text-primary); }
-.lt-tabs [role="tab"][aria-selected="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
 .lt-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--border-radius-lg); padding: 1.5rem; margin-top: 0.75rem; }
-.lt-panel[hidden] { display: none; }
 .lt-title { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.5rem; }
 .lt-what { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55; max-width: 75ch; margin: 0 0 1.25rem; }
 .lt-sub { font: 600 0.78rem/1.2 var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin: 1.5rem 0 0.5rem; }
@@ -84,8 +76,8 @@ fieldset.lt-field { flex-direction: column; }
 
 .lt-bars { display: grid; gap: 0.55rem; margin: 0.5rem 0 1.25rem; }
 .lt-bar { display: grid; grid-template-columns: minmax(7rem, 12rem) 1fr 3.5rem; gap: 0.75rem; align-items: center; font-size: 0.82rem; }
-.lt-bar-track { height: 10px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
-.lt-bar-fill { height: 100%; background: var(--accent); }
+.lt-bar-track { display: block; height: 10px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+.lt-bar-fill { display: block; height: 100%; background: var(--accent); transition: width 0.2s ease; }
 .lt-bar-val { font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; }
 
 .lt-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 0.6rem; margin: 0.5rem 0 1rem; }
@@ -144,7 +136,6 @@ fieldset.lt-field { flex-direction: column; }
 .lt-dag-flow span.t { border: 1px solid var(--line); border-radius: 4px; padding: 0.3rem 0.5rem; background: var(--surface-2); color: var(--text-primary); }
 
 @media (max-width: 560px) {
-    .lt-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; }
     .lt-panel { padding: 1rem; }
     .lt-controls .lt-field { flex: 1 1 100%; }
     .lt-bar { grid-template-columns: 6.5rem 1fr 3rem; gap: 0.5rem; }
@@ -152,3 +143,24 @@ fieldset.lt-field { flex-direction: column; }
     .lt-actions .btn { flex: 1 1 auto; }
 }
 @media (prefers-reduced-motion: reduce) { .lt-panel * { transition: none !important; animation: none !important; } }
+
+/* 2026-10-28: the new demos are full cards in one stack, like the older ones above, each opening with a plain
+   sentence and a numbered "try this" (the steps are a real order). */
+.lab-group-head { max-width: 1000px; margin: 0 auto 2rem; }
+.lab-group-head .section-title { margin: 0; }
+.lab-group-head p, .lt-intro { color: var(--text-secondary); max-width: 68ch; margin: 1rem 0 0; line-height: 1.55; }
+.lt-section { margin-top: 5rem; }
+.lt-section > .section-title, .lt-section > .lt-intro { max-width: 1000px; }
+.lt-section > .lt-panel { margin-top: 3rem; }
+.lt-section > .lt-intro { margin-bottom: 0; }
+.lt-lede { color: var(--text-primary); font-size: 0.98rem; line-height: 1.55; max-width: 72ch; margin: 0 0 0.9rem; }
+.lt-steps { margin: 0 0 1.1rem; padding: 0.75rem 0.9rem 0.75rem 2.1rem; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px;
+            color: var(--text-secondary); font-size: 0.88rem; line-height: 1.55; display: grid; gap: 0.2rem; max-width: 72ch; }
+.lt-steps b { color: var(--text-primary); font-weight: 600; }
+.lt-source { font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--line); padding-top: 0.75rem; margin: 1.25rem 0 0; line-height: 1.55; max-width: 80ch; }
+.lt-mini { font: 600 0.82rem/1.3 var(--font-body); color: var(--text-primary); margin: 0 0 0.6rem; }
+.lt-code-name { display: block; font: 0.7rem/1.4 var(--font-mono); color: var(--text-muted); margin-top: 0.2rem; overflow-wrap: anywhere; }
+.lt-bar-fill.alt { background: var(--lt-warn); }
+.lt-more { margin: 0 0 1rem; }
+.lt-more summary { cursor: pointer; font-size: 0.85rem; color: var(--accent); margin-bottom: 0.75rem; }
+.lt-panel .lt-sub:first-of-type { margin-top: 0.5rem; }

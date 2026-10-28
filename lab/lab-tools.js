@@ -16,32 +16,7 @@
     return '<svg class="lt-svg" viewBox="0 0 ' + w + " " + hgt + '" role="img" aria-label="' + h(label) + '">' + body + "</svg>";
   }
 
-  // ------------------------------------------------------------------ tabs
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('#more-demos [role="tab"]'));
-  if (!tabs.length) return;
-  var started = {};
-  function select(tab, focus) {
-    tabs.forEach(function (t) {
-      var on = t === tab;
-      t.setAttribute("aria-selected", on ? "true" : "false");
-      t.tabIndex = on ? 0 : -1;
-      $(t.getAttribute("aria-controls")).hidden = !on;
-    });
-    if (focus) tab.focus();
-    var id = tab.getAttribute("aria-controls");
-    if (!started[id] && INIT[id]) { started[id] = true; INIT[id](); }
-  }
-  tabs.forEach(function (t, i) {
-    t.addEventListener("click", function () {
-      select(t);
-      try { history.replaceState(null, "", "#" + t.getAttribute("aria-controls")); } catch (e) { /* file:// preview */ }
-    });
-    t.addEventListener("keydown", function (e) {
-      var j = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : null;
-      if (j === null) return;
-      e.preventDefault(); select(tabs[(j + tabs.length) % tabs.length], true);
-    });
-  });
+  if (!document.getElementById("more-demos")) return;
 
   // ------------------------------------------------------------------ 1. job fit
   function initFit() {
@@ -51,7 +26,7 @@
       .then(function (res) {
         profile = window.LabFit.profileFromSite(res[0]); samples = res[1];
         sel.innerHTML = samples.map(function (s, i) { return '<option value="' + i + '">Sample: ' + h(s.name) + "</option>"; }).join("") +
-          '<option value="own">My own posting</option>';
+          '<option value="own">My own job description</option>';
         load(0);
       })
       .catch(function () { $("fit-out").innerHTML = '<p class="lt-callout bad">The profile could not be loaded. Reload the page to try again.</p>'; });
@@ -154,40 +129,41 @@
       if (t.size === 2 && t.has("int") && t.has("float")) return "float";
       return "str";
     }
+    var TYPE_WORD = { int: "a whole number", float: "a number", bool: "true or false", date: "a real date (YYYY-MM-DD)" };
     var TYPE_NAME = { int: "INTEGER", float: "FLOAT", bool: "BOOLEAN", date: "DATE", str: "STRING" };
     function okType(want, v) { var t = typeOf(v); return want === "str" || t === want || (want === "float" && t === "int"); }
 
     function infer(ds) {
-      var ex = [{ id: "cols", name: "expect_table_columns_to_match_set", args: ds.columns.join(", "), cols: ds.columns.slice(),
+      var ex = [{ id: "cols", say: "Same columns as the good file", name: "expect_table_columns_to_match_set", args: ds.columns.join(", "), cols: ds.columns.slice(),
         test: function (b) { var miss = this.cols.filter(function (c) { return b.columns.indexOf(c) === -1; }), extra = b.columns.filter(function (c) { return this.cols.indexOf(c) === -1; }, this);
           return { bad: miss.length + extra.length, msg: (miss.length ? "missing: " + miss.join(", ") : "") + (extra.length ? (miss.length ? "; " : "") + "unexpected: " + extra.join(", ") : "") }; } },
-        { id: "rows", name: "expect_table_row_count_to_be_between", args: "min_value=1", test: function (b) { return { bad: b.rows.length ? 0 : 1, msg: b.rows.length + " rows" }; } }];
+        { id: "rows", say: "The file isn't empty", name: "expect_table_row_count_to_be_between", args: "min_value=1", test: function (b) { return { bad: b.rows.length ? 0 : 1, msg: b.rows.length + " rows" }; } }];
       var n = ds.rows.length;
       ds.columns.forEach(function (c) {
         var vals = ds.rows.map(function (r) { return r[c]; }), present = vals.filter(function (v) { return !isNull(v); });
         if (!present.length) return;
         var t = colType(present);
         function rowsWhere(b, pred) { var out = []; b.rows.forEach(function (r, i) { if (b.columns.indexOf(c) !== -1 && pred(r[c])) out.push([i + 2, r[c]]); }); return out; }
-        if (present.length === n) ex.push({ id: c + ":nn", col: c, name: "expect_column_values_to_not_be_null", args: 'column="' + c + '"',
+        if (present.length === n) ex.push({ id: c + ":nn", col: c, say: c + " is never empty", name: "expect_column_values_to_not_be_null", args: 'column="' + c + '"',
           test: function (b) { return { rows: rowsWhere(b, isNull) }; } });
-        if (t !== "str") ex.push({ id: c + ":type", col: c, name: "expect_column_values_to_be_of_type", args: 'column="' + c + '", type_="' + TYPE_NAME[t] + '"',
+        if (t !== "str") ex.push({ id: c + ":type", col: c, say: c + " is always " + TYPE_WORD[t], name: "expect_column_values_to_be_of_type", args: 'column="' + c + '", type_="' + TYPE_NAME[t] + '"',
           test: function (b) { return { rows: rowsWhere(b, function (v) { return !isNull(v) && !okType(t, v); }) }; } });
         var distinct = new Set(present);
-        if (distinct.size === n && (/(^|_)id$/i.test(c) || t === "int" && /id/i.test(c))) ex.push({ id: c + ":uniq", col: c, name: "expect_column_values_to_be_unique", args: 'column="' + c + '"',
+        if (distinct.size === n && (/(^|_)id$/i.test(c) || t === "int" && /id/i.test(c))) ex.push({ id: c + ":uniq", col: c, say: "No two rows share the same " + c, name: "expect_column_values_to_be_unique", args: 'column="' + c + '"',
           test: function (b) { var seen = {}, dup = []; b.rows.forEach(function (r, i) { var v = r[c]; if (isNull(v)) return; if (seen[v]) dup.push([i + 2, v + " (also row " + seen[v] + ")"]); else seen[v] = i + 2; }); return { rows: dup }; } });
         if (t === "int" || t === "float") {
           var nums = present.map(Number), lo = Math.min.apply(null, nums), hi = Math.max.apply(null, nums), pad = (hi - lo) * 0.1;
           var mn = Math.max(lo >= 0 ? 0 : -Infinity, Math.floor(lo - pad)), mx = Math.ceil(hi + pad);
-          if (!/(^|_)id$/i.test(c)) ex.push({ id: c + ":range", col: c, name: "expect_column_values_to_be_between", args: 'column="' + c + '", min_value=' + mn + ", max_value=" + mx,
+          if (!/(^|_)id$/i.test(c)) ex.push({ id: c + ":range", col: c, say: c + " stays between " + fmt(mn) + " and " + fmt(mx), name: "expect_column_values_to_be_between", args: 'column="' + c + '", min_value=' + mn + ", max_value=" + mx,
             test: function (b) { return { rows: rowsWhere(b, function (v) { return !isNull(v) && okType("float", v) && (Number(v) < mn || Number(v) > mx); }) }; } });
         }
         if (t === "str" && distinct.size <= 8 && n >= 10 && distinct.size < n / 3) {
           var set = Array.from(distinct).sort();
-          ex.push({ id: c + ":set", col: c, name: "expect_column_values_to_be_in_set", args: 'column="' + c + '", value_set=[' + set.map(function (s) { return '"' + s + '"'; }).join(", ") + "]",
+          ex.push({ id: c + ":set", col: c, say: c + " is one of: " + set.join(", "), name: "expect_column_values_to_be_in_set", args: 'column="' + c + '", value_set=[' + set.map(function (s) { return '"' + s + '"'; }).join(", ") + "]",
             test: function (b) { return { rows: rowsWhere(b, function (v) { return !isNull(v) && set.indexOf(v) === -1; }) }; } });
         }
         if (t === "date") {
-          ex.push({ id: c + ":future", col: c, name: "expect_column_values_to_be_between", args: 'column="' + c + '", max_value=today',
+          ex.push({ id: c + ":future", col: c, say: c + " is not in the future", name: "expect_column_values_to_be_between", args: 'column="' + c + '", max_value=today',
             test: function (b) { var today = new Date().toISOString().slice(0, 10); return { rows: rowsWhere(b, function (v) { return typeOf(v) === "date" && v > today; }) }; } });
         }
       });
@@ -230,15 +206,15 @@
         return { e: e, bad: bad, rows: r.rows, msg: r.msg };
       });
       var pct = Math.round(100 * passed / suite.length);
-      var o = ['<dl class="lt-kpis"><div class="lt-kpi"><dt>Expectations learned</dt><dd>' + suite.length + '</dd></div><div class="lt-kpi"><dt>Passed</dt><dd>' + passed + " <small>(" + pct + '%)</small></dd></div><div class="lt-kpi"><dt>Rows checked</dt><dd>' + fmt(b.rows.length) +
-        '</dd></div><div class="lt-kpi"><dt>Rows with a failure</dt><dd>' + fmt(badRows.size) + "</dd></div></dl>"];
-      o.push(passed === suite.length ? '<p class="lt-callout ok">Every expectation passed. In the lakehouse, this is where the DAG lets the batch through.</p>'
-        : '<p class="lt-callout bad">' + (suite.length - passed) + " expectation" + (suite.length - passed === 1 ? "" : "s") + " failed. In the lakehouse, a failed validation fails the Airflow task, so nothing downstream reads the batch.</p>");
-      o.push('<div class="lt-scroll"><table class="lt-table"><thead><tr><th>Expectation</th><th>Result</th><th>Failing rows (first 5)</th></tr></thead><tbody>' + res.map(function (r) {
+      var o = ['<dl class="lt-kpis"><div class="lt-kpi"><dt>Rules learned</dt><dd>' + suite.length + '</dd></div><div class="lt-kpi"><dt>Rules passed</dt><dd>' + passed + " <small>(" + pct + '%)</small></dd></div><div class="lt-kpi"><dt>Rows checked</dt><dd>' + fmt(b.rows.length) +
+        '</dd></div><div class="lt-kpi"><dt>Rows with a problem</dt><dd>' + fmt(badRows.size) + "</dd></div></dl>"];
+      o.push(passed === suite.length ? '<p class="lt-callout ok"><b>Safe to use:</b> all ' + suite.length + ' rules passed. In the lakehouse, this is where the pipeline lets the file through.</p>'
+        : '<p class="lt-callout bad"><b>Don\'t use this file yet:</b> ' + (suite.length - passed) + " of " + suite.length + " rules broke, on " + badRows.size + " row" + (badRows.size === 1 ? "" : "s") + ". In the lakehouse, this stops the pipeline before bad data reaches a report.</p>");
+      o.push('<div class="lt-scroll"><table class="lt-table"><thead><tr><th>Rule</th><th>Result</th><th>Problem rows (first 5)</th></tr></thead><tbody>' + res.map(function (r) {
         var detail = r.rows ? r.rows.slice(0, 5).map(function (x) { return "row " + x[0] + ": " + (isNull(x[1]) ? "null" : h(x[1])); }).join("<br>") + (r.rows.length > 5 ? "<br>... " + (r.rows.length - 5) + " more" : "") : h(r.msg || "");
-        return "<tr" + (r.bad ? ' class="lt-fail"' : "") + '><td class="mono">' + h(r.e.name) + "(" + h(r.e.args) + ")</td><td>" + (r.bad ? pill("bad", r.bad + " unexpected") : pill("ok", "pass")) + "</td><td>" + (r.bad ? detail : "") + "</td></tr>";
+        return "<tr" + (r.bad ? ' class="lt-fail"' : "") + '><td>' + h(r.e.say) + '<span class="lt-code-name">' + h(r.e.name) + "(" + h(r.e.args) + ")</span></td><td>" + (r.bad ? pill("bad", "broke on " + r.bad + (r.e.id === "cols" || r.e.id === "rows" ? "" : " row" + (r.bad === 1 ? "" : "s"))) : pill("ok", "passed")) + "</td><td>" + (r.bad ? detail : "") + "</td></tr>";
       }).join("") + "</tbody></table></div>");
-      o.push('<p class="lt-note">How the contract is learned: a column with no nulls in the reference must stay non-null; its type must hold; an id column with all distinct values must stay unique; a number must stay inside the reference range padded by 10%; a text column with 8 or fewer values must stay inside that set; dates cannot be in the future.</p>');
+      o.push('<p class="lt-note">How the rules are learned from the good file: a column with no nulls in the reference must stay non-null; its type must hold; an id column with all distinct values must stay unique; a number must stay inside the reference range padded by 10%; a text column with 8 or fewer values must stay inside that set; dates cannot be in the future.</p>');
       out.innerHTML = o.join("");
     });
   }
@@ -253,7 +229,7 @@
              { customer_id: 2, name: "Ben Okafor", city: "Mesa", tier: "Bronze", updated_at: "2026-10-29 09:42" },
              { customer_id: 3, name: "Chen Wei", city: "Phoenix", tier: "Gold", updated_at: "2026-10-30 17:05" }];
       snap = []; run = 0; nextId = 4;
-      $("scd-log").innerHTML = '<p class="lt-note">Press Run snapshot to take the first one. Then change a city or a tier, or delete a row, and run it again.</p>';
+      $("scd-log").innerHTML = '<p class="lt-note">Nothing saved yet. Press Save a snapshot.</p>';
       drawSource(); drawSnap(-1);
     }
     function runTs(k) { return "2026-11-" + String(k).padStart(2, "0") + " 06:00"; }
@@ -312,7 +288,7 @@
         return { scd_id: hash(s.customer_id + "|" + from), customer_id: s.customer_id, name: s.name, city: s.city, tier: s.tier,
                  updated_at: s.updated_at, valid_from: from, valid_to: null, dbt_updated_at: strat === "timestamp" ? s.updated_at : ts, run: run };
       }
-      var log = ["<b>Run " + run + "</b> at " + ts + " (" + strat + " strategy): " + added + " new, " + changed + " changed (old version closed, new one opened), " + closed + " closed after deletion."];
+      var log = ["<b>Snapshot " + run + "</b> saved at " + ts + ": " + added + " new customer" + (added === 1 ? "" : "s") + ", " + changed + " changed (old row ended, new current row added), " + closed + " ended because the customer was deleted." + (run === 1 ? " Now change a city or tier above and save again." : "")];
       if (missed.length) log.push('<span class="lt-callout">Missed: customer ' + missed.join(", ") + " changed but updated_at did not move, so the timestamp strategy saw nothing to record. The check strategy compares the columns themselves and would catch it, at the cost of comparing every column on every run.</span>");
       if (kept.length) log.push('<span class="lt-callout">Customer ' + kept.join(", ") + " is gone from the source but its snapshot row is still marked current. Tick the hard-deletes option to close it.</span>");
       $("scd-log").innerHTML = '<p class="lt-note">' + log.join("<br>") + "</p>";
@@ -398,63 +374,74 @@
       }
       return { all: rows.filter(function (r) { return r.score >= thr; }).length / rows.length, A: grp("A"), B: grp("B") };
     }
+    var READ = { income: "income", debt: "debt-to-income ratio", age: "length of credit history" };
     function update() {
       var o = opts();
-      $("dr-shift-v").textContent = (o.shift >= 0 ? "+" : "") + o.shift.toFixed(1) + " sd";
-      $("dr-spread-v").textContent = o.spread.toFixed(1) + "x";
+      var unit = { income: "k$", debt: " pts", age: " yrs" }[o.feature];
+      var moved = o.shift * SD[o.feature] * (o.feature === "debt" ? 100 : 1);
+      $("dr-shift-v").textContent = o.shift === 0 ? "no change" : (moved > 0 ? "+" : "") + moved.toFixed(o.feature === "income" ? 0 : 1) + unit;
+      $("dr-spread-v").textContent = o.spread === 1 ? "no change" : o.spread.toFixed(1) + "x";
       $("dr-mix-v").textContent = Math.round(o.mix * 100) + "%";
-      var thr = +$("dr-thr").value; $("dr-thr-v").textContent = thr.toFixed(2);
       cur = gen(2000, seed, o);
       var stats = FEATS.map(function (f) {
         var b = base.map(function (r) { return r[f]; }), c = cur.map(function (r) { return r[f]; });
         return { f: f, psi: psi(b, c), ks: ks(b, c) };
       });
-      var out = [];
-      out.push('<div class="lt-scroll"><table class="lt-table"><thead><tr><th>Feature</th><th class="num">PSI</th><th>PSI read</th><th class="num">KS D</th><th class="num">KS p</th><th>KS read</th></tr></thead><tbody>' +
+      var out = [], flagged = stats.filter(function (s) { return s.psi.value > 0.25 || s.ks.p < 0.01; });
+      out.push(flagged.length
+        ? '<p class="lt-callout bad"><b>Alert:</b> the new applicants\' ' + flagged.map(function (s) { return READ[s.f]; }).join(" and ") + (flagged.length === 1 ? " no longer matches" : " no longer match") + " the training data. A model trained on last year may now be wrong for them; this is when a team reviews or retrains it.</p>"
+        : '<p class="lt-callout ok"><b>No alert:</b> the new applicants look like the ones the model was trained on. Small differences are just random variation.</p>');
+      out.push('<div class="lt-scroll"><table class="lt-table"><thead><tr><th>Feature</th><th>Status</th><th class="num">PSI</th><th class="num">KS test p</th></tr></thead><tbody>' +
         stats.map(function (s) {
-          var pv = s.psi.value, read = pv > 0.25 ? pill("bad", "major shift") : pv >= 0.1 ? pill("warn", "moderate") : pill("ok", "no real shift");
-          return "<tr" + (pv > 0.25 || s.ks.p < 0.01 ? ' class="lt-fail"' : "") + "><td>" + NAMES[s.f] + '</td><td class="num">' + pv.toFixed(3) + "</td><td>" + read + '</td><td class="num">' + s.ks.d.toFixed(3) +
-            '</td><td class="num">' + (s.ks.p < 0.0001 ? "&lt;0.0001" : s.ks.p.toFixed(4)) + "</td><td>" + (s.ks.p < 0.01 ? pill("bad", "drift (p < 0.01)") : pill("ok", "no drift")) + "</td></tr>";
-        }).join("") + "</tbody></table></div>");
+          var pv = s.psi.value, st = pv > 0.25 ? pill("bad", "changed a lot") : s.ks.p < 0.01 ? pill("bad", "changed") : pv >= 0.1 ? pill("warn", "changing") : pill("ok", "steady");
+          return "<tr" + (pv > 0.25 || s.ks.p < 0.01 ? ' class="lt-fail"' : "") + "><td>" + NAMES[s.f] + "</td><td>" + st + '</td><td class="num">' + pv.toFixed(3) + '</td><td class="num">' + (s.ks.p < 0.0001 ? "&lt;0.0001" : s.ks.p.toFixed(4)) + "</td></tr>";
+        }).join("") + '</tbody></table></div><p class="lt-note">PSI compares how many applicants fall in each tenth of last year\'s range; over 0.25 is a big shift. The KS test asks whether the gap could be chance; a p-value under 0.01 means it isn\'t.</p>');
       var sel = stats.find(function (s) { return s.f === o.feature; }), bins = sel.psi.bins;
       var W1 = 560, H1 = 190, pl = 34, pb = 26, bw = (W1 - pl - 8) / bins.length, top = Math.max.apply(null, bins.map(function (b) { return Math.max(b[0], b[1]); })) * 1.15 || 0.2;
       var bars = "", lab = "";
       bins.forEach(function (b, i) {
         var x = pl + i * bw, hb = (H1 - pb - 10) * b[0] / top, hc = (H1 - pb - 10) * b[1] / top;
-        bars += '<rect class="base" x="' + (x + 2) + '" y="' + (H1 - pb - hb) + '" width="' + (bw / 2 - 3) + '" height="' + hb + '"><title>Bin ' + (i + 1) + ": baseline " + (b[0] * 100).toFixed(1) + "%</title></rect>";
-        bars += '<rect class="cur" x="' + (x + bw / 2) + '" y="' + (H1 - pb - hc) + '" width="' + (bw / 2 - 3) + '" height="' + hc + '"><title>Bin ' + (i + 1) + ": new batch " + (b[1] * 100).toFixed(1) + "%</title></rect>";
-        lab += '<text x="' + (x + bw / 2) + '" y="' + (H1 - 8) + '" text-anchor="middle">' + (i + 1) + "</text>";
+        bars += '<rect class="base" x="' + (x + 2) + '" y="' + (H1 - pb - hb) + '" width="' + (bw / 2 - 3) + '" height="' + hb + '"><title>Tenth ' + (i + 1) + ": last year " + (b[0] * 100).toFixed(1) + "%</title></rect>";
+        bars += '<rect class="cur" x="' + (x + bw / 2) + '" y="' + (H1 - pb - hc) + '" width="' + (bw / 2 - 3) + '" height="' + hc + '"><title>Tenth ' + (i + 1) + ": new applicants " + (b[1] * 100).toFixed(1) + "%</title></rect>";
+        if (i === 0 || i === bins.length - 1) lab += '<text x="' + (x + bw / 2) + '" y="' + (H1 - 8) + '" text-anchor="middle">' + (i === 0 ? "lowest" : "highest") + "</text>";
       });
       var grid = [0, top / 2].map(function (v) { var y = H1 - pb - (H1 - pb - 10) * v / top; return '<line class="ax" x1="' + pl + '" x2="' + (W1 - 8) + '" y1="' + y + '" y2="' + y + '"/><text x="' + (pl - 4) + '" y="' + (y + 4) + '" text-anchor="end">' + Math.round(v * 100) + "%</text>"; }).join("");
-      var histSvg = svgEl(W1, H1, grid + bars + lab, NAMES[o.feature] + ": share of applicants per baseline decile, baseline and new batch");
+      var histSvg = svgEl(W1, H1, grid + bars + lab, NAMES[o.feature] + ": share of applicants in each tenth of last year's range");
       function meanAbs(rows, f) { return rows.reduce(function (s, r) { return s + Math.abs(W[f] * (r[f] - MU[f])); }, 0) / rows.length; }
       var contrib = FEATS.map(function (f) { return [f, meanAbs(base, f), meanAbs(cur, f)]; }), cmax = Math.max.apply(null, contrib.map(function (c) { return Math.max(c[1], c[2]); })) * 1.1;
       var W2 = 560, rowH = 46, cbody = "";
       contrib.forEach(function (c, i) {
         var y = 8 + i * rowH, wb = (W2 - 170) * c[1] / cmax, wc = (W2 - 170) * c[2] / cmax;
         cbody += '<text x="0" y="' + (y + 14) + '">' + NAMES[c[0]] + "</text>" +
-          '<rect class="base" x="150" y="' + y + '" width="' + wb + '" height="14"><title>' + NAMES[c[0]] + " baseline: " + c[1].toFixed(3) + "</title></rect>" +
-          '<rect class="cur" x="150" y="' + (y + 17) + '" width="' + wc + '" height="14"><title>' + NAMES[c[0]] + " new batch: " + c[2].toFixed(3) + "</title></rect>" +
+          '<rect class="base" x="150" y="' + y + '" width="' + wb + '" height="14"><title>' + NAMES[c[0]] + " last year: " + c[1].toFixed(3) + "</title></rect>" +
+          '<rect class="cur" x="150" y="' + (y + 17) + '" width="' + wc + '" height="14"><title>' + NAMES[c[0]] + " new applicants: " + c[2].toFixed(3) + "</title></rect>" +
           '<text x="' + (154 + Math.max(wb, wc)) + '" y="' + (y + 28) + '">' + c[2].toFixed(2) + "</text>";
       });
-      var contribSvg = svgEl(W2, 8 + 3 * rowH, cbody, "Average absolute contribution to the model's log-odds per feature, baseline and new batch");
-      out.push('<ul class="lt-legend"><li><i style="background:var(--lt-base)"></i>Baseline (training-time batch)</li><li><i style="background:var(--accent)"></i>New batch</li></ul>');
-      out.push('<div class="lt-grid2"><figure class="lt-fig">' + histSvg + "<figcaption>" + NAMES[o.feature] + ": share of applicants in each of the baseline's ten deciles. PSI sums the gap between the two bars, bin by bin.</figcaption></figure>" +
-        '<figure class="lt-fig">' + contribSvg + "<figcaption>Average |contribution| to the model's log-odds. The model is linear, so each contribution is weight &times; (value &minus; baseline mean): its exact SHAP value.</figcaption></figure></div>");
-      var rb = rates(base, thr), rc = rates(cur, thr);
-      var di = rc.B.approve / Math.max(1e-9, rc.A.approve), eod = rc.A.tpr - rc.B.tpr;
-      out.push('<h4 class="lt-sub">At threshold ' + thr.toFixed(2) + "</h4>");
-      out.push('<dl class="lt-kpis"><div class="lt-kpi"><dt>Approval rate, baseline</dt><dd>' + (rb.all * 100).toFixed(1) + '%</dd></div><div class="lt-kpi"><dt>Approval rate, new batch</dt><dd>' + (rc.all * 100).toFixed(1) +
-        '%</dd></div><div class="lt-kpi"><dt>Group A approved / TPR</dt><dd>' + (rc.A.approve * 100).toFixed(0) + "% <small>/ " + (rc.A.tpr * 100).toFixed(0) + '%</small></dd></div><div class="lt-kpi"><dt>Group B approved / TPR</dt><dd>' + (rc.B.approve * 100).toFixed(0) + "% <small>/ " + (rc.B.tpr * 100).toFixed(0) + "%</small></dd></div></dl>");
-      var alerts = [];
-      if (di < 0.8 || di > 1.25) alerts.push("Disparate impact " + di.toFixed(2) + ": group B's approval rate is outside 0.8&ndash;1.25 of group A's (the four-fifths rule).");
-      if (Math.abs(eod) > 0.1) alerts.push("Equal opportunity gap " + (eod * 100).toFixed(1) + " points: of applicants who would repay, group A is approved that much more often than group B.");
-      out.push(alerts.length ? '<p class="lt-callout bad">' + alerts.join("<br>") + "</p>"
-        : '<p class="lt-callout ok">Disparate impact ' + di.toFixed(2) + " and an equal opportunity gap of " + (eod * 100).toFixed(1) + " points are both inside the audit engine's limits.</p>");
-      out.push('<p class="lt-note">The applicants are generated in this page. Group isn\'t a model input, but group B\'s incomes are lower on average, so the model still treats the groups differently through income. Move the threshold to see the trade-off.</p>');
+      var contribSvg = svgEl(W2, 8 + 3 * rowH, cbody, "How much each feature moves the model's decision, last year and new applicants");
+      out.push('<ul class="lt-legend"><li><i style="background:var(--lt-base)"></i>Last year (training data)</li><li><i style="background:var(--accent)"></i>New applicants</li></ul>');
+      out.push('<div class="lt-grid2"><figure class="lt-fig">' + histSvg + "<figcaption>" + NAMES[o.feature] + ": share of applicants in each tenth of last year's range, lowest to highest. Equal bars mean no change.</figcaption></figure>" +
+        '<figure class="lt-fig">' + contribSvg + "<figcaption>How much each feature pushes the model's decision, on average. The model is linear, so these are exact SHAP values.</figcaption></figure></div>");
       $("dr-out").innerHTML = out.join("");
+      fair();
     }
-    ["dr-feature", "dr-shift", "dr-spread", "dr-mix", "dr-thr"].forEach(function (id) { $(id).addEventListener("input", update); });
+    function fair() {
+      var thr = +$("dr-thr").value; $("dr-thr-v").textContent = thr.toFixed(2);
+      var rc = rates(cur, thr), di = rc.B.approve / Math.max(1e-9, rc.A.approve), eod = rc.A.tpr - rc.B.tpr;
+      function bar(label, v, cls) {
+        return '<div class="lt-bar"><span>' + label + '</span><span class="lt-bar-track"><span class="lt-bar-fill' + (cls ? " " + cls : "") + '" style="width:' + (v * 100).toFixed(1) + '%"></span></span><span class="lt-bar-val">' + (v * 100).toFixed(0) + "%</span></div>";
+      }
+      var f = ['<div class="lt-grid2"><div><h5 class="lt-mini">Approved, of everyone who applied</h5><div class="lt-bars">' + bar("Group A", rc.A.approve) + bar("Group B", rc.B.approve, "alt") + "</div></div>" +
+        '<div><h5 class="lt-mini">Approved, of people who would repay</h5><div class="lt-bars">' + bar("Group A", rc.A.tpr) + bar("Group B", rc.B.tpr, "alt") + "</div></div></div>"];
+      var alerts = [];
+      if (di < 0.8 || di > 1.25) alerts.push("<b>Four-fifths rule broken:</b> group B is approved at " + (di * 100).toFixed(0) + "% of group A's rate (it should be at least 80%).");
+      if (Math.abs(eod) > 0.1) alerts.push("<b>Unequal opportunity:</b> among applicants who would repay, group " + (eod > 0 ? "A" : "B") + " is approved " + Math.abs(eod * 100).toFixed(0) + " points more often (the limit is 10).");
+      f.push(alerts.length ? '<p class="lt-callout bad">' + alerts.join("<br>") + "</p>"
+        : '<p class="lt-callout ok"><b>Within limits:</b> group B is approved at ' + (di * 100).toFixed(0) + "% of group A's rate, and the gap among people who would repay is " + Math.abs(eod * 100).toFixed(0) + " points.</p>");
+      f.push('<p class="lt-note">Group is never an input to the model. But group B\'s incomes are lower on average, so the model still treats the groups differently through income. A higher cut-off approves fewer people and usually widens the gap.</p>');
+      $("dr-fair").innerHTML = f.join("");
+    }
+    ["dr-feature", "dr-shift", "dr-spread", "dr-mix"].forEach(function (id) { $(id).addEventListener("input", update); });
+    $("dr-thr").addEventListener("input", fair);
     $("dr-new").addEventListener("click", function () { seed++; update(); });
     update();
   }
@@ -689,13 +676,13 @@
     $("ew-out").addEventListener("click", function (e) { var id = e.target.getAttribute && e.target.getAttribute("data-ev"); if (id) toggle(id); });
     $("ew-out").addEventListener("keydown", function (e) { var id = e.target.getAttribute && e.target.getAttribute("data-ev"); if (id && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(id); } });
     $("ew-play").addEventListener("click", function () {
-      if (timer) { clearInterval(timer); timer = null; $("ew-play").textContent = "Replay arrivals"; return; }
+      if (timer) { clearInterval(timer); timer = null; $("ew-play").textContent = "Replay the stream"; return; }
       var s = $("ew-time"); s.value = 0; s.dataset.end = "0"; $("ew-play").textContent = "Stop";
       var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce) { s.value = s.max; s.dataset.end = "1"; draw(); $("ew-play").textContent = "Replay arrivals"; return; }
+      if (reduce) { s.value = s.max; s.dataset.end = "1"; draw(); $("ew-play").textContent = "Replay the stream"; return; }
       timer = setInterval(function () {
         s.value = +s.value + 1; draw();
-        if (+s.value >= +s.max) { clearInterval(timer); timer = null; s.dataset.end = "1"; $("ew-play").textContent = "Replay arrivals"; }
+        if (+s.value >= +s.max) { clearInterval(timer); timer = null; s.dataset.end = "1"; $("ew-play").textContent = "Replay the stream"; }
       }, 140);
     });
     $("ew-new").addEventListener("click", function () { seed++; make(); $("ew-time").dataset.end = "1"; setMax(); draw(); });
@@ -795,7 +782,7 @@
         else o.push('<pre class="lt-tree">' + c.tries.map(function (x) {
           return "[" + hhmm(x.start) + "] try " + x.n + " started\n[" + hhmm(x.end) + "] " + (x.ok ? "Marked task as SUCCESS (" + (x.end - x.start) + " min)" : "Task exited with return code 1. " + (x.retry ? "Marked task as UP_FOR_RETRY" : "Marked task as FAILED"));
         }).join("\n") + "</pre>");
-        if (c.state === "failed" || c.state === "upstream_failed") o.push('<div class="lt-actions"><button type="button" class="btn btn-accent" id="dag-clear">Fix it and clear (re-runs this task and everything downstream)</button></div>');
+        if (c.state === "failed" || c.state === "upstream_failed") o.push('<div class="lt-actions"><button type="button" class="btn btn-accent" id="dag-clear">Fix it and re-run (this step and the ones after it)</button></div>');
       }
       $("dag-out").innerHTML = o.join("");
     }
@@ -816,16 +803,16 @@
     });
     $("dag-run").addEventListener("click", function () { reset(); advance(); });
     drawFaults(); reset();
-    $("dag-out").innerHTML = '<p class="lt-note">Two failures are set up to start with: a transform that fails once on 10-02, and a validation that fails every time on 10-04. Press Run backfill.</p>';
+    $("dag-out").innerHTML = '<p class="lt-note">Two failures are set up: the transform fails once on Oct 2 (a retry fixes it), and the check fails every time on Oct 4. Press Run the 5 days.</p>';
   }
 
   // ------------------------------------------------------------------ registry and start
   var INIT = { "lt-fit": initFit, "lt-contract": initContract, "lt-scd": initScd, "lt-drift": initDrift,
                "lt-travel": initTravel, "lt-windows": initWindows, "lt-dag": initDag };
   function start() {
-    var want = (location.hash || "").slice(1), tab = tabs.find(function (t) { return t.getAttribute("aria-controls") === want; });
-    select(tab || tabs[0]);
-    if (tab) document.getElementById("more-demos").scrollIntoView();
+    Object.keys(INIT).forEach(function (id) {
+      try { INIT[id](); } catch (e) { if (window.console) console.error(id, e); }
+    });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else setTimeout(start, 0);
 })();
