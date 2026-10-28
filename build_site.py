@@ -28,7 +28,7 @@ def write(path, text):
 
 def asset_version():
     h = hashlib.sha256()
-    for name in ("app.js", "style.css", "assistant-local.js"):
+    for name in ("app.js", "style.css", "assistant-local.js", "lab/fit-engine.js", "lab/lab-tools.js", "lab/lab-tools.css"):
         with open(name, "rb") as f:
             h.update(f.read())
     return h.hexdigest()[:10]
@@ -101,7 +101,7 @@ def main():
 
     write("lab/index.html", env.get_template("lab.html").render(
         common, page_path="/lab/", page_title="The Lab | Deshraj Jogiya",
-        page_description="In-browser demos of data work: a SQL playground, a pipeline monitor, an A/B test simulator and an architecture explorer, on sample data.",
+        page_description="In-browser demos of data work: SQL, a pipeline monitor, A/B tests, model thresholds, job fit, data contracts, SCD Type 2, drift and fairness, table time travel, event-time windows and Airflow backfills.",
         json_ld=None))
     pages.append("/lab/")
 

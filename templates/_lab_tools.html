@@ -1,0 +1,144 @@
+        <section id="more-demos" class="lt-section" aria-labelledby="more-demos-title">
+            <h2 id="more-demos-title" class="section-title">Seven more demos</h2>
+            <p class="lt-intro">Each one runs in your browser on sample data you can change, and works out its numbers from what you do here. Each one also links to the repo where the real version runs.</p>
+
+            <div class="lt-tabs" role="tablist" aria-label="Demos">
+                <button type="button" role="tab" id="tab-fit" aria-controls="lt-fit" aria-selected="true">Job fit</button>
+                <button type="button" role="tab" id="tab-contract" aria-controls="lt-contract" aria-selected="false" tabindex="-1">Data contract</button>
+                <button type="button" role="tab" id="tab-scd" aria-controls="lt-scd" aria-selected="false" tabindex="-1">SCD Type 2</button>
+                <button type="button" role="tab" id="tab-drift" aria-controls="lt-drift" aria-selected="false" tabindex="-1">Drift + fairness</button>
+                <button type="button" role="tab" id="tab-travel" aria-controls="lt-travel" aria-selected="false" tabindex="-1">Time travel</button>
+                <button type="button" role="tab" id="tab-windows" aria-controls="lt-windows" aria-selected="false" tabindex="-1">Event-time windows</button>
+                <button type="button" role="tab" id="tab-dag" aria-controls="lt-dag" aria-selected="false" tabindex="-1">DAG replay</button>
+            </div>
+
+            <!-- 1. Job fit -->
+            <div class="lt-panel" id="lt-fit" role="tabpanel" aria-labelledby="tab-fit">
+                <h3 class="lt-title">Job-fit explainer</h3>
+                <p class="lt-what">Paste any job posting to see how well it fits this profile, with every requirement traced to the work that backs it. This is the same rule set <a href="https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/blob/main/app/services/fit_service.py" target="_blank" rel="noopener">Career Pilot's fit_service.py</a> uses to keep its AI score honest: 60% skill overlap, 20% role type, 20% years asked for, and a cap of 40 when the role type isn't one this profile targets. A check scores the port against the Python original on every sample.</p>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Posting</span>
+                        <select id="fit-sample"><option value="">Loading samples...</option></select></label>
+                </div>
+                <label class="lt-field"><span>Job title</span><input id="fit-title" type="text" autocomplete="off"></label>
+                <label class="lt-field"><span>Job description</span><textarea id="fit-posting" rows="9" spellcheck="false"></textarea></label>
+                <p class="lt-note">What you paste stays in this page. Nothing is sent anywhere.</p>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="fit-run">Check fit</button></div>
+                <div id="fit-out" class="lt-out" aria-live="polite"></div>
+            </div>
+
+            <!-- 2. Data contract -->
+            <div class="lt-panel" id="lt-contract" role="tabpanel" aria-labelledby="tab-contract" hidden>
+                <h3 class="lt-title">Data contract checker</h3>
+                <p class="lt-what">Learns a contract from a reference batch (columns, types, nulls, unique keys, ranges, allowed values), then checks a new batch against it and shows the failing rows. The expectations use Great Expectations' names; the <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/great_expectations/validate_outputs.py" target="_blank" rel="noopener">Job Market Lakehouse</a> runs the real suite after every PySpark transform.</p>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Learn the contract from</span>
+                        <select id="gx-ref"><option value="reference">Monday's batch (clean)</option></select></label>
+                    <label class="lt-field"><span>Check this batch</span>
+                        <select id="gx-batch">
+                            <option value="tuesday">Tuesday: nulls and a bad type</option>
+                            <option value="wednesday">Wednesday: a duplicate key and a new category</option>
+                            <option value="thursday">Thursday: new rows, same shape</option>
+                        </select></label>
+                    <label class="lt-field"><span>Or use your own CSV</span><input id="gx-file" type="file" accept=".csv,text/csv"></label>
+                </div>
+                <p class="lt-note">Your file is read in this page and never uploaded. Files up to 5 MB.</p>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="gx-run">Run checks</button>
+                    <button type="button" class="btn btn-outline" id="gx-show">Show the batch</button></div>
+                <div id="gx-out" class="lt-out" aria-live="polite"></div>
+            </div>
+
+            <!-- 3. SCD Type 2 -->
+            <div class="lt-panel" id="lt-scd" role="tabpanel" aria-labelledby="tab-scd" hidden>
+                <h3 class="lt-title">SCD Type 2 snapshot</h3>
+                <p class="lt-what">Edit the source table, then take a snapshot: a changed row gets its old version closed and a new current one opened, the way a dbt snapshot keeps history. The <a href="https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse" target="_blank" rel="noopener">dbt warehouse</a> keeps its daily pipeline table with an incremental merge instead, which keeps only the latest value. That's the trade-off this demo shows.</p>
+                <div class="lt-controls">
+                    <fieldset class="lt-field"><legend>Strategy</legend>
+                        <label class="lt-check"><input type="radio" name="scd-strategy" value="timestamp" checked> timestamp (updated_at)</label>
+                        <label class="lt-check"><input type="radio" name="scd-strategy" value="check"> check (name, city, tier)</label></fieldset>
+                    <label class="lt-check lt-field-inline"><input type="checkbox" id="scd-hard"> Close rows deleted from the source (hard_deletes: invalidate)</label>
+                </div>
+                <h4 class="lt-sub">Source: customers</h4>
+                <div class="lt-scroll"><table class="lt-table" id="scd-source"></table></div>
+                <div class="lt-actions"><button type="button" class="btn btn-outline" id="scd-add">Add a customer</button>
+                    <button type="button" class="btn btn-accent" id="scd-run">Run snapshot</button>
+                    <button type="button" class="btn btn-outline" id="scd-reset">Start over</button></div>
+                <div id="scd-log" class="lt-out" aria-live="polite"></div>
+                <h4 class="lt-sub">Snapshot: customers_snapshot</h4>
+                <div class="lt-scroll"><table class="lt-table" id="scd-snap"></table></div>
+            </div>
+
+            <!-- 4. Drift + fairness -->
+            <div class="lt-panel" id="lt-drift" role="tabpanel" aria-labelledby="tab-drift" hidden>
+                <h3 class="lt-title">Model drift and fairness board</h3>
+                <p class="lt-what">Shift one feature of a new batch of loan applicants and watch PSI and the KS test pick it up, the model's per-feature contributions move, and approval and true-positive rates change by group. The thresholds match the <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing/blob/main/analytics/audit_engine.py" target="_blank" rel="noopener">AI Model Observability audit engine</a>: PSI over 0.25, KS p below 0.01, the four-fifths rule, and a 10-point true-positive-rate gap. The applicants are generated in this page.</p>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Feature to shift</span>
+                        <select id="dr-feature"><option value="income">Income</option><option value="debt">Debt-to-income ratio</option><option value="age">Credit history length</option></select></label>
+                    <label class="lt-field"><span>Move the average <output id="dr-shift-v">0.0 sd</output></span><input id="dr-shift" type="range" min="-2" max="2" step="0.1" value="0"></label>
+                    <label class="lt-field"><span>Spread <output id="dr-spread-v">1.0x</output></span><input id="dr-spread" type="range" min="0.5" max="2" step="0.1" value="1"></label>
+                    <label class="lt-field"><span>Group B share <output id="dr-mix-v">40%</output></span><input id="dr-mix" type="range" min="10" max="90" step="5" value="40"></label>
+                    <label class="lt-field"><span>Approval threshold <output id="dr-thr-v">0.50</output></span><input id="dr-thr" type="range" min="0.2" max="0.8" step="0.01" value="0.5"></label>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-outline" id="dr-new">Draw a new batch</button></div>
+                <div id="dr-out" class="lt-out" aria-live="polite"></div>
+            </div>
+
+            <!-- 5. Time travel -->
+            <div class="lt-panel" id="lt-travel" role="tabpanel" aria-labelledby="tab-travel" hidden>
+                <h3 class="lt-title">Table format time travel</h3>
+                <p class="lt-what">Commit appends, updates and deletes to an Iceberg-style table, then query it as of any snapshot and watch the metadata tree and data files change. This is a simulation of the format. The real Delta Lake and Iceberg tables are in <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/blob/main/app/etl/table_formats.py" target="_blank" rel="noopener">TalentVenue EventIntel's table_formats.py</a>.</p>
+                <div class="lt-controls">
+                    <fieldset class="lt-field"><legend>Row-level write mode</legend>
+                        <label class="lt-check"><input type="radio" name="tt-mode" value="cow" checked> copy-on-write</label>
+                        <label class="lt-check"><input type="radio" name="tt-mode" value="mor"> merge-on-read</label></fieldset>
+                </div>
+                <div class="lt-actions lt-wrap">
+                    <button type="button" class="btn btn-accent" id="tt-append">Append 3 rows</button>
+                    <button type="button" class="btn btn-outline" id="tt-update">Raise one company's salaries 10%</button>
+                    <button type="button" class="btn btn-outline" id="tt-delete">Delete the lowest salary</button>
+                    <button type="button" class="btn btn-outline" id="tt-compact">Compact files</button>
+                    <button type="button" class="btn btn-outline" id="tt-expire">Expire old snapshots</button>
+                    <button type="button" class="btn btn-outline" id="tt-reset">Start over</button>
+                </div>
+                <div id="tt-out" class="lt-out" aria-live="polite"></div>
+            </div>
+
+            <!-- 6. Event-time windows -->
+            <div class="lt-panel" id="lt-windows" role="tabpanel" aria-labelledby="tab-windows" hidden>
+                <h3 class="lt-title">Event-time windows</h3>
+                <p class="lt-what">Sensor readings arrive out of order. Choose a window type, how far the watermark trails the newest event, and how long a closed window still accepts late readings. Then step through arrival time and see each reading counted, counted late, or dropped, with the reason. The <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance/blob/main/etl/telemetry_pipeline.py" target="_blank" rel="noopener">IoT telematics pipeline</a> writes its telemetry in event-time order in micro-batches. This demo shows what a streaming engine decides when readings come in late.</p>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Window</span>
+                        <select id="ew-type"><option value="tumbling">Tumbling 10 s</option><option value="sliding">Sliding 10 s, every 5 s</option><option value="session">Session, 6 s gap</option></select></label>
+                    <label class="lt-field"><span>Watermark delay <output id="ew-delay-v">2 s</output></span><input id="ew-delay" type="range" min="0" max="10" step="1" value="2"></label>
+                    <label class="lt-field"><span>Allowed lateness <output id="ew-late-v">3 s</output></span><input id="ew-late" type="range" min="0" max="15" step="1" value="3"></label>
+                    <label class="lt-field lt-grow"><span>Arrival time <output id="ew-time-v">0 s</output></span><input id="ew-time" type="range" min="0" max="80" step="1" value="80"></label>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ew-play">Replay arrivals</button>
+                    <button type="button" class="btn btn-outline" id="ew-new">New readings</button></div>
+                <p class="lt-note">Tap a reading to hold it back 8 seconds in the network; tap it again to undo.</p>
+                <div id="ew-out" class="lt-out" aria-live="polite"></div>
+            </div>
+
+            <!-- 7. DAG replay -->
+            <div class="lt-panel" id="lt-dag" role="tabpanel" aria-labelledby="tab-dag" hidden>
+                <h3 class="lt-title">DAG scheduler replay</h3>
+                <p class="lt-what">The three tasks of the <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/dags/job_market_pipeline.py" target="_blank" rel="noopener">Job Market Lakehouse Airflow DAG</a> (generate, PySpark transform, Great Expectations validation), backfilled over five days. Make a task fail, set retries, and read the grid the way the Airflow UI shows it. The real DAG runs on demand; the replay puts it on a daily schedule so retries and backfill have something to show.</p>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Retries per task</span><select id="dag-retries"><option>0</option><option selected>1</option><option>2</option><option>3</option></select></label>
+                    <label class="lt-field"><span>Retry delay</span><select id="dag-delay"><option value="2">2 min</option><option value="5" selected>5 min</option><option value="10">10 min</option></select></label>
+                    <label class="lt-field"><span>Alert if a run takes over</span><select id="dag-sla"><option value="20">20 min</option><option value="30" selected>30 min</option><option value="45">45 min</option></select></label>
+                    <label class="lt-check lt-field-inline"><input type="checkbox" id="dag-dop"> depends_on_past</label>
+                </div>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Make this task fail</span><select id="dag-f-task"></select></label>
+                    <label class="lt-field"><span>On</span><select id="dag-f-date"></select></label>
+                    <label class="lt-field"><span>For</span><select id="dag-f-times"><option value="1">1 attempt</option><option value="2">2 attempts</option><option value="99">every attempt</option></select></label>
+                    <div class="lt-field lt-field-end"><button type="button" class="btn btn-outline" id="dag-f-add">Add failure</button></div>
+                </div>
+                <ul id="dag-faults" class="lt-chips"></ul>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="dag-run">Run backfill</button></div>
+                <div id="dag-out" class="lt-out" aria-live="polite"></div>
+            </div>
+        </section>

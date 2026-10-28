@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css?v={{ asset_version }}">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v={{ asset_version }}">
 </head>
 <body class="subpage">
 {% include "_subpage_header.html" %}
@@ -16,9 +17,10 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Lab</nav>
         <header class="case-hero">
             <h1 class="case-title">The Lab</h1>
-            <p class="case-summary">Five demos you can drive yourself, running in your browser on sample data, and one panel built on this site's own visitor log. The production systems behind them are in the <a href="/#projects">case studies</a>.</p>
+            <p class="case-summary">Twelve demos you can drive yourself, running in your browser on sample data, and one panel built on this site's own visitor log. Jump to <a href="#more-demos">job fit, data contracts, SCD Type 2, drift and fairness, table time travel, event-time windows and DAG replay</a>. The production systems behind them are in the <a href="/#projects">case studies</a>.</p>
         </header>
 {% include "_lab_widgets.html" %}
+{% include "_lab_tools.html" %}
 
         <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
             <h2 id="site-analytics-title" class="section-title">This site's own visitor data</h2>
@@ -51,5 +53,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
     <script src="/app.js?v={{ asset_version }}" defer></script>
+    <script src="/lab/fit-engine.js?v={{ asset_version }}" defer></script>
+    <script src="/lab/lab-tools.js?v={{ asset_version }}" defer></script>
 </body>
 </html>
