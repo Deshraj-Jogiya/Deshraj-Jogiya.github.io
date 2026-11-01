@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=55a56b934a">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=55a56b934a">
+    <link rel="stylesheet" href="/style.css?v=04a8efd17f">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=04a8efd17f">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -715,6 +715,28 @@
                 <p class="lt-source">The model and the held-out clips come from <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener">Extending STEM across ASL</a> (<a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the same 1-D convolution and GRU, trained on the same seeded split, with the clips stored as hand points only (WLASL video is for research use, so none is copied here). Every deploy checks this page's OpenCV.js step and model scores against Python's; MediaPipe's browser and Python versions were checked on 7 hand photos and agree to 0.00003 of the frame.</p>
             </article>
         </section>
+        <section id="stat-demos" class="lt-section" aria-labelledby="stat-demos-title">
+            <h2 id="stat-demos-title" class="section-title">Project Statistics, Recomputed in Your Browser</h2>
+            <p class="lt-intro">Each project's own data, with its statistical tests rewritten to run on this page. Change the inputs and the tests rerun; every deploy checks the page's numbers against the Python libraries the projects use.</p>
+
+            <!-- Survival curves (Clinical Trials Patient Outcomes Analysis) -->
+            <article class="lt-panel" id="st-trials" aria-labelledby="st-trials-title">
+                <h3 class="lt-title" id="st-trials-title">Survival Curves by Dosage</h3>
+                <p class="lt-lede">A simulated 365-day trial of 250 patients in three arms. Filter the patients and compare arms: Kaplan-Meier curves show the share still alive each day, the log-rank test asks whether two curves differ, and the chi-square test asks whether adverse-event rates differ.</p>
+                <ol class="lt-steps"><li>Choose patients by gender and age.</li><li>Tick the arms to compare.</li><li>Read the curves, then the tests below them. A dropping line means patients dying; the dashed line marks half still alive.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Gender</span><select id="tr-gender"><option>All</option><option>Female</option><option>Male</option></select></label>
+                    <label class="lt-field"><span>Age</span><select id="tr-age"><option>All</option></select></label>
+                    <fieldset class="lt-field lt-field-inline"><legend>Arms</legend>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-control" checked><span class="tr-key tr-control"></span> Control</label>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-low" checked><span class="tr-key tr-low"></span> Low dosage</label>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-high" checked><span class="tr-key tr-high"></span> High dosage</label></fieldset>
+                </div>
+                <div class="lt-scroll"><svg id="tr-chart" class="lt-svg tr-chart" viewBox="0 0 560 300" role="img" aria-label="Kaplan-Meier survival curves for the chosen arms"></svg></div>
+                <div id="tr-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis" target="_blank" rel="noopener">Clinical Trials Patient Outcomes Analysis</a> (<a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The patients are simulated with a fixed seed; none are real. An adverse event is the project's own rule: systolic blood pressure under 105 or over 155 at any visit. Every deploy checks the page against lifelines and SciPy on all 12 gender and age filters.</p>
+            </article>
+        </section>
 
         <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
             <h2 id="site-analytics-title" class="section-title">This site's own visitor data</h2>
@@ -755,10 +777,11 @@
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=55a56b934a" defer></script>
-    <script src="/lab/fit-engine.js?v=55a56b934a" defer></script>
-    <script src="/lab/lab-tools.js?v=55a56b934a" defer></script>
-    <script src="/lab/lab-models.js?v=55a56b934a" defer></script>
-    <script src="/lab/lab-signs.js?v=55a56b934a" defer></script>
+    <script src="/app.js?v=04a8efd17f" defer></script>
+    <script src="/lab/fit-engine.js?v=04a8efd17f" defer></script>
+    <script src="/lab/lab-tools.js?v=04a8efd17f" defer></script>
+    <script src="/lab/lab-models.js?v=04a8efd17f" defer></script>
+    <script src="/lab/lab-signs.js?v=04a8efd17f" defer></script>
+    <script src="/lab/lab-trials.js?v=04a8efd17f" defer></script>
 </body>
 </html>

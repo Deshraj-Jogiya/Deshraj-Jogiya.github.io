@@ -190,3 +190,15 @@ fieldset.lt-field { flex-direction: column; }
 .ls-stage { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); }
 .ls-stage canvas { max-width: 400px; aspect-ratio: 400 / 260; }
 @media (max-width: 640px) { .ls-stage { grid-template-columns: minmax(0, 1fr); } .ls-view { justify-self: center; } }
+
+/* Survival curves (lab/lab-trials.js): one colour and one dash pattern per arm, so arms read apart without colour too */
+.tr-chart { min-width: 420px; }
+.tr-line { fill: none; stroke-width: 2.25; }
+.tr-control { stroke: var(--lt-base); background: var(--lt-base); stroke-dasharray: 6 4; }
+.tr-low { stroke: var(--lt-warn); background: var(--lt-warn); stroke-dasharray: 2 3; }
+.tr-high { stroke: var(--accent); background: var(--accent); }
+.lt-svg .tr-grid { stroke: var(--line); stroke-width: 1; opacity: 0.5; }
+.lt-svg .tr-half { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.tr-key { display: inline-block; width: 0.9rem; height: 0.22rem; border-radius: 2px; vertical-align: middle; margin-right: 0.35rem; }
+.tr-tests { margin: 0 0 0.5rem; padding-left: 1.1rem; font-size: 0.85rem; display: grid; gap: 0.3rem; }
+.tr-chi { font-size: 0.85rem; margin: 0 0 0.5rem; }

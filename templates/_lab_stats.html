@@ -1,0 +1,22 @@
+        <section id="stat-demos" class="lt-section" aria-labelledby="stat-demos-title">
+            <h2 id="stat-demos-title" class="section-title">Project Statistics, Recomputed in Your Browser</h2>
+            <p class="lt-intro">Each project's own data, with its statistical tests rewritten to run on this page. Change the inputs and the tests rerun; every deploy checks the page's numbers against the Python libraries the projects use.</p>
+
+            <!-- Survival curves (Clinical Trials Patient Outcomes Analysis) -->
+            <article class="lt-panel" id="st-trials" aria-labelledby="st-trials-title">
+                <h3 class="lt-title" id="st-trials-title">Survival Curves by Dosage</h3>
+                <p class="lt-lede">A simulated 365-day trial of 250 patients in three arms. Filter the patients and compare arms: Kaplan-Meier curves show the share still alive each day, the log-rank test asks whether two curves differ, and the chi-square test asks whether adverse-event rates differ.</p>
+                <ol class="lt-steps"><li>Choose patients by gender and age.</li><li>Tick the arms to compare.</li><li>Read the curves, then the tests below them. A dropping line means patients dying; the dashed line marks half still alive.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Gender</span><select id="tr-gender"><option>All</option><option>Female</option><option>Male</option></select></label>
+                    <label class="lt-field"><span>Age</span><select id="tr-age"><option>All</option></select></label>
+                    <fieldset class="lt-field lt-field-inline"><legend>Arms</legend>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-control" checked><span class="tr-key tr-control"></span> Control</label>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-low" checked><span class="tr-key tr-low"></span> Low dosage</label>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-high" checked><span class="tr-key tr-high"></span> High dosage</label></fieldset>
+                </div>
+                <div class="lt-scroll"><svg id="tr-chart" class="lt-svg tr-chart" viewBox="0 0 560 300" role="img" aria-label="Kaplan-Meier survival curves for the chosen arms"></svg></div>
+                <div id="tr-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis" target="_blank" rel="noopener">Clinical Trials Patient Outcomes Analysis</a> (<a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The patients are simulated with a fixed seed; none are real. An adverse event is the project's own rule: systolic blood pressure under 105 or over 155 at any visit. Every deploy checks the page against lifelines and SciPy on all 12 gender and age filters.</p>
+            </article>
+        </section>
