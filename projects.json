@@ -605,11 +605,11 @@
           "resume_role": "de"
         },
         {
-          "html": "Year-by-Year Backtest: Re-tested five forecasters from eight origins (2015-2022) on EPA's 25 state land-use series; repeating last year's value stayed most accurate (<strong>95.1%</strong> mean, 1 - WAPE) and beat Linear Regression and Random Forest in 6 of 8 years, so 2023-2025 forecasts were frozen and committed before EPA publishes those years, to be scored on release.",
+          "html": "Year-by-Year Backtest: Re-tested five forecasters from eight origins (2015-2022) on EPA's 25 state land-use series; repeating last year's value stayed most accurate (<strong>95.1%</strong> mean, 1 - WAPE) and beat Linear Regression and Random Forest in 6 of 8 years.",
           "resume_role": "de"
         }
       ],
-      "date": "Apr 2025 – Present",
+      "date": "Apr 2025 – Nov 2025",
       "team": false
     },
     {
