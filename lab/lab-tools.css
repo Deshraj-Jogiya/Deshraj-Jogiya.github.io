@@ -242,3 +242,21 @@ fieldset.lt-field { flex-direction: column; }
 .rf-dot { fill: var(--bg-dark); stroke: var(--accent); stroke-width: 2; }
 .rf-dot.rf-on { fill: var(--accent); }
 .rf-key { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .4rem; vertical-align: middle; }
+
+/* Land-use emissions forecast explorer */
+#em-chart { margin-block: .5rem; }
+.lt-svg .em-test { fill: var(--accent); opacity: .08; }
+.lt-svg .em-act { fill: none; stroke: var(--text-secondary); stroke-width: 1.6; }
+.lt-svg .em-lr { fill: none; stroke: var(--accent); stroke-width: 2; }
+.lt-svg .em-lr-pt { fill: var(--accent); }
+.lt-svg .em-rf { fill: none; stroke: var(--lt-warn); stroke-width: 2; }
+.lt-svg .em-rf-pt { fill: var(--lt-warn); }
+.lt-svg .em-naive { fill: none; stroke: var(--lt-bad); stroke-width: 2; stroke-dasharray: 5 3; }
+.lt-svg .em-naive-pt { fill: var(--lt-bad); }
+.em-legend { display: flex; flex-wrap: wrap; gap: .3rem .9rem; align-items: center; font-size: .8rem; color: var(--text-secondary); margin: 0 0 .5rem; }
+.em-li { white-space: nowrap; }
+.em-k { display: inline-block; width: 1.1rem; height: 0; border-top: 2px solid; margin-right: .3rem; vertical-align: middle; }
+.em-k-act { border-color: var(--text-secondary); }
+.em-k-lr { border-color: var(--accent); }
+.em-k-rf { border-color: var(--lt-warn); }
+.em-k-naive { border-color: var(--lt-bad); border-top-style: dashed; }
