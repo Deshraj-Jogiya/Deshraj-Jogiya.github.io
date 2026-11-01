@@ -65,6 +65,15 @@ jobs:
       - name: Check the Lab's post checker against CurioSync's writing rules
         run: node tools/check_lab_posts.js
 
+      - name: Check the Lab's member Q&A against the project's main.py answers
+        run: |
+          npm install --prefix /tmp/labqa --no-save --no-package-lock @huggingface/transformers@3.7.6
+          M=/tmp/qa-model/Xenova/all-MiniLM-L6-v2
+          for f in config.json tokenizer.json tokenizer_config.json onnx/model_quantized.onnx; do
+            curl -sfL --retry 5 --retry-all-errors --create-dirs -o "$M/$f" "https://huggingface.co/Xenova/all-MiniLM-L6-v2/resolve/751bff37182d3f1213fa05d7196b954e230abad9/$f"
+          done
+          QA_MODEL_DIR=/tmp/qa-model/ NODE_PATH=/tmp/labqa/node_modules node tools/check_lab_qa.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

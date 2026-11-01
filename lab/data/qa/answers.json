@@ -1,0 +1,759 @@
+{
+ "source": "main.py answer_question on eval_set.json",
+ "questions": [
+  {
+   "question": "Where does Sophia want to fly by private jet?",
+   "labelled": 0,
+   "subject": "Sophia Al-Farsi",
+   "subject_source": "ner",
+   "top": [
+    [
+     0,
+     0.588114
+    ],
+    [
+     52,
+     0.267505
+    ],
+    [
+     6,
+     0.252866
+    ],
+    [
+     82,
+     0.184709
+    ],
+    [
+     31,
+     0.162957
+    ]
+   ],
+   "answer": "Sophia Al-Farsi: Please book a private jet to Paris for this Friday."
+  },
+  {
+   "question": "How many people is Fatima's reservation at The French Laundry for?",
+   "labelled": 1,
+   "subject": "Fatima El-Tahir",
+   "subject_source": "ner",
+   "top": [
+    [
+     1,
+     0.612072
+    ],
+    [
+     45,
+     0.31696
+    ],
+    [
+     61,
+     0.285906
+    ],
+    [
+     92,
+     0.278887
+    ],
+    [
+     22,
+     0.253772
+    ]
+   ],
+   "answer": "Fatima El-Tahir has 4 item(s)."
+  },
+  {
+   "question": "How many opera tickets does Armand need?",
+   "labelled": 2,
+   "subject": "Armand Dupont",
+   "subject_source": "first_name",
+   "top": [
+    [
+     2,
+     0.70311
+    ],
+    [
+     11,
+     0.37978
+    ],
+    [
+     5,
+     0.36049
+    ],
+    [
+     23,
+     0.286697
+    ],
+    [
+     25,
+     0.260803
+    ]
+   ],
+   "answer": "Armand Dupont has 2 item(s)."
+  },
+  {
+   "question": "What seat does Layla prefer on flights?",
+   "labelled": 4,
+   "subject": "Layla Kawaguchi",
+   "subject_source": "first_name",
+   "top": [
+    [
+     4,
+     0.632609
+    ],
+    [
+     91,
+     0.297195
+    ],
+    [
+     55,
+     0.246218
+    ],
+    [
+     47,
+     0.236834
+    ],
+    [
+     72,
+     0.191672
+    ]
+   ],
+   "answer": "Layla Kawaguchi: Please remember I prefer aisle seats during my flights."
+  },
+  {
+   "question": "What is Armand's new phone number?",
+   "labelled": 8,
+   "subject": "Armand Dupont",
+   "subject_source": "first_name",
+   "top": [
+    [
+     8,
+     0.436969
+    ],
+    [
+     2,
+     0.280834
+    ],
+    [
+     23,
+     0.236686
+    ],
+    [
+     5,
+     0.222743
+    ],
+    [
+     80,
+     0.219179
+    ]
+   ],
+   "answer": "Armand Dupont's contact: 555-349-7841"
+  },
+  {
+   "question": "Where does Layla want a villa in December?",
+   "labelled": 9,
+   "subject": "Layla Kawaguchi",
+   "subject_source": "first_name",
+   "top": [
+    [
+     9,
+     0.547224
+    ],
+    [
+     55,
+     0.243831
+    ],
+    [
+     91,
+     0.242836
+    ],
+    [
+     47,
+     0.206533
+    ],
+    [
+     77,
+     0.196299
+    ]
+   ],
+   "answer": "Layla Kawaguchi: Book a villa in Santorini for the first week of December."
+  },
+  {
+   "question": "When is Fatima's table at Eleven Madison Park?",
+   "labelled": 10,
+   "subject": "Fatima El-Tahir",
+   "subject_source": "ner",
+   "top": [
+    [
+     10,
+     0.545536
+    ],
+    [
+     92,
+     0.45549
+    ],
+    [
+     29,
+     0.362933
+    ],
+    [
+     1,
+     0.351211
+    ],
+    [
+     45,
+     0.264018
+    ]
+   ],
+   "answer": "Fatima El-Tahir: I’d like a table for four at Eleven Madison Park on November 15."
+  },
+  {
+   "question": "How many VIP passes does Armand want for the premiere?",
+   "labelled": 11,
+   "subject": "Armand Dupont",
+   "subject_source": "first_name",
+   "top": [
+    [
+     11,
+     0.727387
+    ],
+    [
+     2,
+     0.416143
+    ],
+    [
+     5,
+     0.301597
+    ],
+    [
+     25,
+     0.234407
+    ],
+    [
+     23,
+     0.22438
+    ]
+   ],
+   "answer": "Armand Dupont has 3 item(s)."
+  },
+  {
+   "question": "What is Lily's frequent flyer number?",
+   "labelled": 17,
+   "subject": "Lily O'Sullivan",
+   "subject_source": "ner",
+   "top": [
+    [
+     17,
+     0.576274
+    ],
+    [
+     71,
+     0.364292
+    ],
+    [
+     53,
+     0.305654
+    ],
+    [
+     63,
+     0.260082
+    ],
+    [
+     36,
+     0.237024
+    ]
+   ],
+   "answer": "Lily O'Sullivan's contact: 123456789"
+  },
+  {
+   "question": "Which restaurant did Lorenzo ask to book for two on Thursday?",
+   "labelled": 19,
+   "subject": "Lorenzo Cavalli",
+   "subject_source": "first_name",
+   "top": [
+    [
+     73,
+     0.341994
+    ],
+    [
+     32,
+     0.335868
+    ],
+    [
+     19,
+     0.266261
+    ],
+    [
+     41,
+     0.243701
+    ],
+    [
+     56,
+     0.238035
+    ]
+   ],
+   "answer": "Lorenzo Cavalli: Book a romantic dinner for two at The Fat Duck on Saturday."
+  },
+  {
+   "question": "How many front-row seats does Hans need for the game?",
+   "labelled": 20,
+   "subject": "Hans Müller",
+   "subject_source": "ner",
+   "top": [
+    [
+     20,
+     0.701966
+    ],
+    [
+     28,
+     0.316213
+    ],
+    [
+     74,
+     0.238367
+    ],
+    [
+     46,
+     0.219002
+    ],
+    [
+     40,
+     0.184312
+    ]
+   ],
+   "answer": "Hans Müller has 4 item(s)."
+  },
+  {
+   "question": "What is Vikram's new office address?",
+   "labelled": 26,
+   "subject": "Vikram Desai",
+   "subject_source": "first_name",
+   "top": [
+    [
+     26,
+     0.431717
+    ],
+    [
+     95,
+     0.18532
+    ],
+    [
+     16,
+     0.182684
+    ],
+    [
+     27,
+     0.178954
+    ],
+    [
+     50,
+     0.141293
+    ]
+   ],
+   "answer": "Vikram Desai: Please amend my profile to reflect my new office address: 742 Evergreen Terrace."
+  },
+  {
+   "question": "What class does Vikram want to fly to Tokyo?",
+   "labelled": 27,
+   "subject": "Vikram Desai",
+   "subject_source": "first_name",
+   "top": [
+    [
+     27,
+     0.635607
+    ],
+    [
+     16,
+     0.401661
+    ],
+    [
+     50,
+     0.220626
+    ],
+    [
+     99,
+     0.163658
+    ],
+    [
+     37,
+     0.158286
+    ]
+   ],
+   "answer": "Vikram Desai: I’d like to fly to Tokyo first class on Wednesday."
+  },
+  {
+   "question": "Is Hans going to Blue Hill with someone?",
+   "labelled": 46,
+   "subject": "Hans Müller",
+   "subject_source": "ner",
+   "top": [
+    [
+     46,
+     0.392918
+    ],
+    [
+     74,
+     0.187004
+    ],
+    [
+     28,
+     0.182116
+    ],
+    [
+     51,
+     0.174864
+    ],
+    [
+     81,
+     0.14181
+    ]
+   ],
+   "answer": "Hans Müller: Yes, going with 7 person(s)."
+  },
+  {
+   "question": "What kind of pillows does Sophia want in her hotel room?",
+   "labelled": 31,
+   "subject": "Sophia Al-Farsi",
+   "subject_source": "ner",
+   "top": [
+    [
+     31,
+     0.639837
+    ],
+    [
+     52,
+     0.318686
+    ],
+    [
+     0,
+     0.204184
+    ],
+    [
+     82,
+     0.168987
+    ],
+    [
+     49,
+     0.163775
+    ]
+   ],
+   "answer": "Sophia Al-Farsi: Make sure my hotel room comes with hypoallergenic pillows as usual."
+  },
+  {
+   "question": "Which country is Thiago's visa approval for?",
+   "labelled": 33,
+   "subject": "Thiago Monteiro",
+   "subject_source": "first_name",
+   "top": [
+    [
+     33,
+     0.304507
+    ],
+    [
+     97,
+     0.168051
+    ],
+    [
+     35,
+     0.146923
+    ],
+    [
+     42,
+     0.146466
+    ],
+    [
+     58,
+     0.1321
+    ]
+   ],
+   "answer": "Thiago Monteiro: Can you check on the progress of my visa approval for the UK trip?"
+  },
+  {
+   "question": "What is Layla's new mobile number?",
+   "labelled": 44,
+   "subject": "Layla Kawaguchi",
+   "subject_source": "first_name",
+   "top": [
+    [
+     44,
+     0.476566
+    ],
+    [
+     77,
+     0.143613
+    ],
+    [
+     91,
+     0.13709
+    ],
+    [
+     9,
+     0.110905
+    ],
+    [
+     47,
+     0.110632
+    ]
+   ],
+   "answer": "Layla Kawaguchi's contact: 987-654-3210"
+  },
+  {
+   "question": "How many people is Layla's Le Bernardin reservation for?",
+   "labelled": 55,
+   "subject": "Layla Kawaguchi",
+   "subject_source": "first_name",
+   "top": [
+    [
+     55,
+     0.532279
+    ],
+    [
+     91,
+     0.356617
+    ],
+    [
+     47,
+     0.241709
+    ],
+    [
+     9,
+     0.238519
+    ],
+    [
+     4,
+     0.201777
+    ]
+   ],
+   "answer": "Layla Kawaguchi has 5 item(s)."
+  },
+  {
+   "question": "What is Amina's emergency contact number?",
+   "labelled": 62,
+   "subject": "Amina Van Den Berg",
+   "subject_source": "ner",
+   "top": [
+    [
+     62,
+     0.54401
+    ],
+    [
+     14,
+     0.155166
+    ],
+    [
+     54,
+     0.152182
+    ],
+    [
+     69,
+     0.122068
+    ],
+    [
+     84,
+     0.109419
+    ]
+   ],
+   "answer": "Amina Van Den Berg's contact: 312-555-6793"
+  },
+  {
+   "question": "How many people is Fatima's private dining room at Gaggan for?",
+   "labelled": 64,
+   "subject": "Fatima El-Tahir",
+   "subject_source": "ner",
+   "top": [
+    [
+     64,
+     0.480974
+    ],
+    [
+     1,
+     0.434474
+    ],
+    [
+     13,
+     0.348943
+    ],
+    [
+     22,
+     0.29131
+    ],
+    [
+     45,
+     0.286978
+    ]
+   ],
+   "answer": "Fatima El-Tahir has 10 item(s)."
+  },
+  {
+   "question": "What is Sophia's direct line at work?",
+   "labelled": 89,
+   "subject": "Sophia Al-Farsi",
+   "subject_source": "ner",
+   "top": [
+    [
+     89,
+     0.337716
+    ],
+    [
+     0,
+     0.258108
+    ],
+    [
+     98,
+     0.231811
+    ],
+    [
+     87,
+     0.154641
+    ],
+    [
+     78,
+     0.134024
+    ]
+   ],
+   "answer": "Sophia Al-Farsi: My direct line at work is 212-555-6051; kindly update your records."
+  },
+  {
+   "question": "Is Hans flying to San Francisco with someone?",
+   "labelled": 81,
+   "subject": "Hans Müller",
+   "subject_source": "ner",
+   "top": [
+    [
+     81,
+     0.500657
+    ],
+    [
+     70,
+     0.343529
+    ],
+    [
+     51,
+     0.206078
+    ],
+    [
+     28,
+     0.196103
+    ],
+    [
+     46,
+     0.187197
+    ]
+   ],
+   "answer": "Hans Müller: Yes, going with 1 person(s)."
+  },
+  {
+   "question": "Where does Vikram want to take a Gulfstream?",
+   "labelled": 99,
+   "subject": "Vikram Desai",
+   "subject_source": "first_name",
+   "top": [
+    [
+     99,
+     0.480848
+    ],
+    [
+     27,
+     0.279114
+    ],
+    [
+     16,
+     0.181842
+    ],
+    [
+     34,
+     0.153308
+    ],
+    [
+     43,
+     0.150545
+    ]
+   ],
+   "answer": "Vikram Desai: Arrange a Gulfstream for a quick trip to Dubai next Friday."
+  },
+  {
+   "question": "What does Thiago always need arranged in advance?",
+   "labelled": 85,
+   "subject": "Thiago Monteiro",
+   "subject_source": "first_name",
+   "top": [
+    [
+     85,
+     0.463133
+    ],
+    [
+     96,
+     0.156689
+    ],
+    [
+     42,
+     0.113133
+    ],
+    [
+     58,
+     0.085343
+    ],
+    [
+     38,
+     0.048175
+    ]
+   ],
+   "answer": "Thiago Monteiro: I always need early check-in arrangements made in advance."
+  },
+  {
+   "question": "What is Lily's brother's phone number?",
+   "labelled": 71,
+   "subject": "Lily O'Sullivan",
+   "subject_source": "ner",
+   "top": [
+    [
+     71,
+     0.548546
+    ],
+    [
+     17,
+     0.304962
+    ],
+    [
+     53,
+     0.266011
+    ],
+    [
+     90,
+     0.193845
+    ],
+    [
+     63,
+     0.19202
+    ]
+   ],
+   "answer": "Lily O'Sullivan's contact: 447-555-8823"
+  },
+  {
+   "question": "Which city does Amina want a tailor in?",
+   "labelled": 14,
+   "subject": "Amina Van Den Berg",
+   "subject_source": "first_name",
+   "top": [
+    [
+     14,
+     0.551826
+    ],
+    [
+     54,
+     0.259921
+    ],
+    [
+     62,
+     0.111953
+    ],
+    [
+     69,
+     0.040096
+    ],
+    [
+     84,
+     -0.120296
+    ]
+   ],
+   "answer": "Amina Van Den Berg: I'm looking for a tailor to make some custom suits in New York."
+  }
+ ]
+}
