@@ -64,6 +64,8 @@ jobs:
 
       - name: Check the Lab's post checker against CurioSync's writing rules
         run: node tools/check_lab_posts.js
+      - name: Check the Lab's RFM segments against the Sales project's Python
+        run: node tools/check_lab_rfm.js
 
       - name: Check the Lab's member Q&A against the project's main.py answers
         run: |

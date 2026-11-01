@@ -233,3 +233,12 @@ fieldset.lt-field { flex-direction: column; }
 .qa-list li.qa-top { background: var(--surface-2); }
 .qa-sim { font: 0.75rem var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-secondary); }
 .qa-text { overflow-wrap: anywhere; }
+
+/* RFM segment explorer */
+.rf-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-block: .5rem; }
+.rf-figs figure { margin: 0; }
+.rf-figs figcaption { font-size: .8rem; color: var(--text-secondary); text-align: center; }
+.rf-line { fill: none; stroke: var(--accent); stroke-width: 2; }
+.rf-dot { fill: var(--bg-dark); stroke: var(--accent); stroke-width: 2; }
+.rf-dot.rf-on { fill: var(--accent); }
+.rf-key { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .4rem; vertical-align: middle; }

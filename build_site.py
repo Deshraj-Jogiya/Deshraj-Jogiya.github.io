@@ -28,7 +28,7 @@ def write(path, text):
 
 def asset_version():
     h = hashlib.sha256()
-    for name in ("app.js", "style.css", "assistant-local.js", "lab/fit-engine.js", "lab/lab-tools.js", "lab/lab-tools.css", "lab/lab-models.js", "lab/lab-signs.js", "lab/lab-trials.js", "lab/lab-benford.js", "lab/lab-fraud.js", "lab/lab-posts.js", "lab/lab-qa.js"):
+    for name in ("app.js", "style.css", "assistant-local.js", "lab/fit-engine.js", "lab/lab-tools.js", "lab/lab-tools.css", "lab/lab-models.js", "lab/lab-signs.js", "lab/lab-trials.js", "lab/lab-benford.js", "lab/lab-fraud.js", "lab/lab-posts.js", "lab/lab-qa.js", "lab/lab-rfm.js"):
         with open(name, "rb") as f:
             h.update(f.read())
     return h.hexdigest()[:10]
