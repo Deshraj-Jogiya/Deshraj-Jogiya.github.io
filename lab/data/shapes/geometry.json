@@ -1,0 +1,891 @@
+{
+ "note": "src/traditional.py threshold path: preprocess_image, largest external contour, classify_shape_by_geometry. Written by ood_check.py.",
+ "confident": 0.9,
+ "held_out_max_pieces": 1,
+ "held_out": [
+  {
+   "file": "shape_004895.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 1022.0,
+    "contours": 1,
+    "white": 1085
+   }
+  },
+  {
+   "file": "shape_001551.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 12,
+    "area": 158.5,
+    "contours": 1,
+    "white": 189
+   }
+  },
+  {
+   "file": "shape_006385.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 10,
+    "area": 378.5,
+    "contours": 1,
+    "white": 427
+   }
+  },
+  {
+   "file": "shape_003989.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 362.5,
+    "contours": 1,
+    "white": 396
+   }
+  },
+  {
+   "file": "shape_006179.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 619.5,
+    "contours": 1,
+    "white": 662
+   }
+  },
+  {
+   "file": "shape_007864.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 556.0,
+    "contours": 1,
+    "white": 591
+   }
+  },
+  {
+   "file": "shape_008017.png",
+   "geometry": {
+    "label": "rectangle",
+    "vertices": 4,
+    "area": 1801.0,
+    "contours": 1,
+    "white": 1888
+   }
+  },
+  {
+   "file": "shape_002999.png",
+   "geometry": {
+    "label": "pentagon",
+    "vertices": 5,
+    "area": 562.0,
+    "contours": 1,
+    "white": 603
+   }
+  },
+  {
+   "file": "shape_003125.png",
+   "geometry": {
+    "label": "rectangle",
+    "vertices": 4,
+    "area": 1606.5,
+    "contours": 1,
+    "white": 1686
+   }
+  },
+  {
+   "file": "shape_002321.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 558.0,
+    "contours": 1,
+    "white": 601
+   }
+  },
+  {
+   "file": "shape_001929.png",
+   "geometry": {
+    "label": "rectangle",
+    "vertices": 4,
+    "area": 2279.0,
+    "contours": 1,
+    "white": 2376
+   }
+  },
+  {
+   "file": "shape_001450.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 381.5,
+    "contours": 1,
+    "white": 415
+   }
+  },
+  {
+   "file": "shape_007934.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 12,
+    "area": 120.0,
+    "contours": 1,
+    "white": 146
+   }
+  },
+  {
+   "file": "shape_002021.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 1022.5,
+    "contours": 1,
+    "white": 1077
+   }
+  },
+  {
+   "file": "shape_008085.png",
+   "geometry": {
+    "label": "rectangle",
+    "vertices": 4,
+    "area": 603.0,
+    "contours": 1,
+    "white": 653
+   }
+  },
+  {
+   "file": "shape_007075.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 523.0,
+    "contours": 1,
+    "white": 563
+   }
+  },
+  {
+   "file": "shape_000789.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 670.0,
+    "contours": 1,
+    "white": 717
+   }
+  },
+  {
+   "file": "shape_009376.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 588.0,
+    "contours": 1,
+    "white": 627
+   }
+  },
+  {
+   "file": "shape_003991.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 574.0,
+    "contours": 1,
+    "white": 609
+   }
+  },
+  {
+   "file": "shape_006283.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 1299.0,
+    "contours": 1,
+    "white": 1371
+   }
+  },
+  {
+   "file": "shape_004797.png",
+   "geometry": {
+    "label": "triangle",
+    "vertices": 3,
+    "area": 447.0,
+    "contours": 1,
+    "white": 490
+   }
+  },
+  {
+   "file": "shape_003074.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 13,
+    "area": 104.0,
+    "contours": 1,
+    "white": 127
+   }
+  },
+  {
+   "file": "shape_007024.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 498.0,
+    "contours": 1,
+    "white": 537
+   }
+  },
+  {
+   "file": "shape_003238.png",
+   "geometry": {
+    "label": "pentagon",
+    "vertices": 5,
+    "area": 172.0,
+    "contours": 1,
+    "white": 198
+   }
+  },
+  {
+   "file": "shape_004297.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 394.0,
+    "contours": 1,
+    "white": 425
+   }
+  },
+  {
+   "file": "shape_002459.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 1627.5,
+    "contours": 1,
+    "white": 1704
+   }
+  },
+  {
+   "file": "shape_003862.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 10,
+    "area": 297.5,
+    "contours": 1,
+    "white": 338
+   }
+  },
+  {
+   "file": "shape_002387.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 592.0,
+    "contours": 1,
+    "white": 633
+   }
+  },
+  {
+   "file": "shape_002095.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 210.0,
+    "contours": 1,
+    "white": 236
+   }
+  },
+  {
+   "file": "shape_009299.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 10,
+    "area": 159.5,
+    "contours": 1,
+    "white": 188
+   }
+  },
+  {
+   "file": "shape_002066.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 11,
+    "area": 183.5,
+    "contours": 1,
+    "white": 216
+   }
+  },
+  {
+   "file": "shape_003055.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 284.0,
+    "contours": 1,
+    "white": 313
+   }
+  },
+  {
+   "file": "shape_004923.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 374.0,
+    "contours": 1,
+    "white": 409
+   }
+  },
+  {
+   "file": "shape_008766.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 707.0,
+    "contours": 1,
+    "white": 752
+   }
+  },
+  {
+   "file": "shape_008357.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 10,
+    "area": 210.0,
+    "contours": 1,
+    "white": 246
+   }
+  },
+  {
+   "file": "shape_008933.png",
+   "geometry": {
+    "label": "star",
+    "vertices": 11,
+    "area": 182.5,
+    "contours": 1,
+    "white": 216
+   }
+  },
+  {
+   "file": "shape_004935.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 668.0,
+    "contours": 1,
+    "white": 717
+   }
+  },
+  {
+   "file": "shape_007610.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 523.0,
+    "contours": 1,
+    "white": 561
+   }
+  },
+  {
+   "file": "shape_003367.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 404.0,
+    "contours": 1,
+    "white": 437
+   }
+  },
+  {
+   "file": "shape_006963.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 404.0,
+    "contours": 1,
+    "white": 437
+   }
+  },
+  {
+   "file": "shape_002276.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 1150.0,
+    "contours": 1,
+    "white": 1203
+   }
+  },
+  {
+   "file": "shape_006086.png",
+   "geometry": {
+    "label": "pentagon",
+    "vertices": 5,
+    "area": 1725.5,
+    "contours": 1,
+    "white": 1805
+   }
+  },
+  {
+   "file": "shape_004301.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 443.0,
+    "contours": 1,
+    "white": 480
+   }
+  },
+  {
+   "file": "shape_005893.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 306.5,
+    "contours": 1,
+    "white": 338
+   }
+  },
+  {
+   "file": "shape_006859.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 300.0,
+    "contours": 1,
+    "white": 330
+   }
+  },
+  {
+   "file": "shape_000112.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 1072.0,
+    "contours": 1,
+    "white": 1125
+   }
+  },
+  {
+   "file": "shape_003485.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 343.5,
+    "contours": 1,
+    "white": 382
+   }
+  },
+  {
+   "file": "shape_002915.png",
+   "geometry": {
+    "label": "triangle",
+    "vertices": 3,
+    "area": 346.5,
+    "contours": 1,
+    "white": 385
+   }
+  },
+  {
+   "file": "shape_004659.png",
+   "geometry": {
+    "label": "pentagon",
+    "vertices": 5,
+    "area": 1507.0,
+    "contours": 1,
+    "white": 1581
+   }
+  },
+  {
+   "file": "shape_008666.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 848.0,
+    "contours": 1,
+    "white": 897
+   }
+  },
+  {
+   "file": "shape_005230.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 488.0,
+    "contours": 1,
+    "white": 525
+   }
+  },
+  {
+   "file": "shape_002374.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 488.0,
+    "contours": 1,
+    "white": 525
+   }
+  },
+  {
+   "file": "shape_009827.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 692.0,
+    "contours": 1,
+    "white": 737
+   }
+  },
+  {
+   "file": "shape_001038.png",
+   "geometry": {
+    "label": "square",
+    "vertices": 4,
+    "area": 360.0,
+    "contours": 1,
+    "white": 398
+   }
+  },
+  {
+   "file": "shape_001936.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 662.0,
+    "contours": 1,
+    "white": 705
+   }
+  },
+  {
+   "file": "shape_003625.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 510.0,
+    "contours": 1,
+    "white": 549
+   }
+  },
+  {
+   "file": "shape_000134.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 124.5,
+    "contours": 1,
+    "white": 147
+   }
+  },
+  {
+   "file": "shape_008614.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 570.0,
+    "contours": 1,
+    "white": 609
+   }
+  },
+  {
+   "file": "shape_003511.png",
+   "geometry": {
+    "label": "hexagon",
+    "vertices": 6,
+    "area": 1013.5,
+    "contours": 1,
+    "white": 1067
+   }
+  },
+  {
+   "file": "shape_001251.png",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 256.0,
+    "contours": 1,
+    "white": 284
+   }
+  },
+  {
+   "file": "shape_002775.png",
+   "geometry": {
+    "label": "pentagon",
+    "vertices": 5,
+    "area": 310.5,
+    "contours": 1,
+    "white": 345
+   }
+  },
+  {
+   "file": "shape_006436.png",
+   "geometry": {
+    "label": "pentagon",
+    "vertices": 5,
+    "area": 321.0,
+    "contours": 1,
+    "white": 356
+   }
+  },
+  {
+   "file": "shape_009449.png",
+   "geometry": {
+    "label": "pentagon",
+    "vertices": 5,
+    "area": 337.0,
+    "contours": 1,
+    "white": 373
+   }
+  }
+ ],
+ "unseen": [
+  {
+   "file": "unseen_octagon_0.png",
+   "label": "octagon",
+   "probs": [
+    0.716948,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.283052,
+    0.0
+   ],
+   "predicted": "circle",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 317.0,
+    "contours": 1,
+    "white": 348
+   }
+  },
+  {
+   "file": "unseen_octagon_1.png",
+   "label": "octagon",
+   "probs": [
+    0.965886,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.034114,
+    0.0
+   ],
+   "predicted": "circle",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 335.0,
+    "contours": 1,
+    "white": 366
+   }
+  },
+  {
+   "file": "unseen_heptagon_0.png",
+   "label": "heptagon",
+   "probs": [
+    0.000103,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.999897,
+    0.0
+   ],
+   "predicted": "hexagon",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 973.5,
+    "contours": 1,
+    "white": 1026
+   }
+  },
+  {
+   "file": "unseen_heptagon_1.png",
+   "label": "heptagon",
+   "probs": [
+    8e-06,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.999992,
+    0.0
+   ],
+   "predicted": "hexagon",
+   "geometry": {
+    "label": "circle",
+    "vertices": 7,
+    "area": 781.5,
+    "contours": 1,
+    "white": 829
+   }
+  },
+  {
+   "file": "unseen_ellipse_0.png",
+   "label": "ellipse",
+   "probs": [
+    2e-06,
+    8.3e-05,
+    7e-05,
+    0.0,
+    0.493765,
+    0.506061,
+    1.9e-05
+   ],
+   "predicted": "hexagon",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 189.0,
+    "contours": 1,
+    "white": 213
+   }
+  },
+  {
+   "file": "unseen_ellipse_1.png",
+   "label": "ellipse",
+   "probs": [
+    0.0,
+    0.003568,
+    0.001519,
+    0.000752,
+    0.990838,
+    1e-06,
+    0.003321
+   ],
+   "predicted": "pentagon",
+   "geometry": {
+    "label": "circle",
+    "vertices": 8,
+    "area": 304.0,
+    "contours": 1,
+    "white": 336
+   }
+  },
+  {
+   "file": "unseen_plus_0.png",
+   "label": "plus",
+   "probs": [
+    0.0,
+    0.0,
+    3e-06,
+    0.0,
+    0.0,
+    0.0,
+    0.999997
+   ],
+   "predicted": "star",
+   "geometry": {
+    "label": "star",
+    "vertices": 12,
+    "area": 233.0,
+    "contours": 1,
+    "white": 264
+   }
+  },
+  {
+   "file": "unseen_plus_1.png",
+   "label": "plus",
+   "probs": [
+    0.0,
+    1.5e-05,
+    0.000188,
+    0.000384,
+    0.0,
+    0.0,
+    0.999412
+   ],
+   "predicted": "star",
+   "geometry": {
+    "label": "star",
+    "vertices": 12,
+    "area": 532.0,
+    "contours": 1,
+    "white": 582
+   }
+  },
+  {
+   "file": "unseen_arrow_0.png",
+   "label": "arrow",
+   "probs": [
+    0.0,
+    0.0,
+    0.001106,
+    0.0,
+    0.0,
+    0.0,
+    0.998894
+   ],
+   "predicted": "star",
+   "geometry": {
+    "label": "star",
+    "vertices": 7,
+    "area": 476.5,
+    "contours": 1,
+    "white": 525
+   }
+  },
+  {
+   "file": "unseen_arrow_1.png",
+   "label": "arrow",
+   "probs": [
+    0.0,
+    0.0,
+    0.000914,
+    0.0,
+    0.0,
+    0.0,
+    0.999086
+   ],
+   "predicted": "star",
+   "geometry": {
+    "label": "star",
+    "vertices": 7,
+    "area": 556.5,
+    "contours": 1,
+    "white": 611
+   }
+  },
+  {
+   "file": "unseen_crescent_0.png",
+   "label": "crescent",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.667461,
+    0.332539,
+    0.0
+   ],
+   "predicted": "pentagon",
+   "geometry": {
+    "label": "star",
+    "vertices": 9,
+    "area": 331.0,
+    "contours": 1,
+    "white": 374
+   }
+  },
+  {
+   "file": "unseen_crescent_1.png",
+   "label": "crescent",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.5e-05,
+    0.999985,
+    0.0
+   ],
+   "predicted": "hexagon",
+   "geometry": {
+    "label": "star",
+    "vertices": 9,
+    "area": 307.0,
+    "contours": 1,
+    "white": 353
+   }
+  }
+ ]
+}

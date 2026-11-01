@@ -75,7 +75,25 @@
     return { statistic: stat, p: chi2Sf(stat, dof), dof: dof };
   }
 
-  var api = { kaplanMeier: kaplanMeier, survivalAt: survivalAt, medianSurvival: medianSurvival, logRank: logRank, chiSquare: chiSquare, chi2Sf: chi2Sf };
+  // Your own data: one row per subject, "group, time, event" (event 1 = it happened, 0 = censored: still at risk when follow-up
+  // ended). A header row and lines starting with # are skipped. Returns the groups in first-seen order and the line numbers
+  // that could not be read.
+  function parseOwn(text) {
+    var groups = {}, order = [], bad = [], first = true;
+    text.split(/\r?\n/).forEach(function (line, i) {
+      var raw = line.trim();
+      if (!raw || raw[0] === "#") return;
+      var f = raw.split(/\s*[,;\t]\s*/);
+      if (first) { first = false; if (f.length >= 3 && isNaN(parseFloat(f[1]))) return; }
+      var t = Number(f[1]), e = f.length > 2 ? Number(f[2]) : NaN;
+      if (f.length < 3 || !f[0] || f[1] === "" || !isFinite(t) || t < 0 || (e !== 0 && e !== 1)) { bad.push(i + 1); return; }
+      if (!groups[f[0]]) { groups[f[0]] = { days: [], deaths: [] }; order.push(f[0]); }
+      groups[f[0]].days.push(t); groups[f[0]].deaths.push(e);
+    });
+    return { groups: groups, order: order, bad: bad };
+  }
+
+  var api = { parseOwn: parseOwn, kaplanMeier: kaplanMeier, survivalAt: survivalAt, medianSurvival: medianSurvival, logRank: logRank, chiSquare: chiSquare, chi2Sf: chi2Sf };
   if (typeof module === "object" && module.exports) { module.exports = api; return; }
   root.LabTrials = api;
   if (!document.getElementById("st-trials")) return;
@@ -86,25 +104,32 @@
   function fmtP(p) { return p < 0.0001 ? p.toExponential(1) : p.toFixed(4); }
   function pct(v) { return (100 * v).toFixed(1) + "%"; }
 
+  function ticks(tmax) { // 4 or 5 round steps from 0 that stay inside the axis
+    if (tmax === 365) return [0, 90, 180, 270, 365];
+    var raw = tmax / 4, mag = Math.pow(10, Math.floor(Math.log10(raw))), step = [1, 2, 2.5, 5, 10].map(function (m) { return m * mag; }).filter(function (v) { return v >= raw; })[0];
+    var out = []; for (var t = 0; t <= tmax + 1e-9; t += step) out.push(+t.toFixed(6)); return out;
+  }
+
   function init() {
     var data = null;
     function filtered() {
       var g = $("tr-gender").value, band = data.age_bands[$("tr-age").value];
       return data.patients.filter(function (p) { return (g === "All" || p.gender === g) && p.age >= band[0] && p.age <= band[1]; });
     }
-    function chart(curves) {
+    function chart(curves, tmax, unit) {
+      tmax = tmax || 365; unit = unit || "days since the trial began";
       var W = 560, H = 300, L = 44, R = 12, T = 12, B = 34, svg = $("tr-chart");
-      var x = function (d) { return L + (W - L - R) * d / 365; }, y = function (s) { return T + (H - T - B) * (1 - s); };
+      var x = function (d) { return L + (W - L - R) * d / tmax; }, y = function (s) { return T + (H - T - B) * (1 - s); };
       var out = '<line class="ax" x1="' + L + '" y1="' + y(0) + '" x2="' + (W - R) + '" y2="' + y(0) + '"/>';
       [0, 0.25, 0.5, 0.75, 1].forEach(function (s) { out += '<line class="tr-grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(s) + '" y2="' + y(s) + '"/><text x="' + (L - 6) + '" y="' + (y(s) + 4) + '" text-anchor="end">' + s.toFixed(2) + "</text>"; });
-      [0, 90, 180, 270, 365].forEach(function (d) { out += '<text x="' + x(d) + '" y="' + (H - 16) + '" text-anchor="middle">' + d + "</text>"; });
-      out += '<text x="' + ((L + W - R) / 2) + '" y="' + (H - 2) + '" text-anchor="middle">days since the trial began</text>';
+      ticks(tmax).forEach(function (d) { out += '<text x="' + x(d) + '" y="' + (H - 16) + '" text-anchor="middle">' + d + "</text>"; });
+      out += '<text x="' + ((L + W - R) / 2) + '" y="' + (H - 2) + '" text-anchor="middle">' + unit + "</text>";
       out += '<line class="tr-half" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(0.5) + '" y2="' + y(0.5) + '"/>';
       curves.forEach(function (c) {
         var pts = "M" + x(0) + "," + y(1), km = c.km;
         for (var i = 1; i < km.times.length; i++) pts += "H" + x(km.times[i]) + "V" + y(km.survival[i]);
-        pts += "H" + x(365);
-        out += '<path class="tr-line ' + CLS[c.arm] + '" d="' + pts + '"/>';
+        pts += "H" + x(tmax);
+        out += '<path class="tr-line ' + (c.cls || CLS[c.arm]) + '" d="' + pts + '"/>';
       });
       svg.innerHTML = out;
     }
@@ -143,11 +168,55 @@
       html += '<p class="lt-note">' + rows.length + " of " + data.patients.length + " simulated patients match the filters. Small groups give wide uncertainty: a p-value here is a check on these patients, not a finding about the drug.</p>";
       $("tr-out").innerHTML = html;
     }
+
+    // Your own data: the same Kaplan-Meier and log-rank code on whatever the visitor pastes (up to 3 groups).
+    var OWN_CLS = ["tr-high", "tr-control", "tr-low"];
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+    function ownUpdate() {
+      var got = parseOwn($("tr-paste").value), unit = $("tr-unit").value.trim() || "time", names = got.order.slice(0, 3), html = "";
+      var curves = names.map(function (g, i) {
+        var d = got.groups[g];
+        return { arm: g, cls: OWN_CLS[i], n: d.days.length, days: d.days, deaths: d.deaths, km: kaplanMeier(d.days, d.deaths) };
+      });
+      var tmax = Math.max.apply(null, [1].concat(curves.map(function (c) { return Math.max.apply(null, c.days); })));
+      chart(curves, tmax, unit);
+      if (!curves.length) { $("tr-out").innerHTML = '<p class="lt-note">No rows could be read. Use one row per subject: group, time, event (1 = it happened, 0 = censored).</p>'; return; }
+      html += '<div class="lt-scroll"><table class="lt-table"><thead><tr><th>Group</th><th class="num">Subjects</th><th class="num">Events</th><th class="num">Censored</th><th class="num">Median time to event</th></tr></thead><tbody>' +
+        curves.map(function (c) {
+          var ev = c.deaths.reduce(function (a, b) { return a + b; }, 0), med = medianSurvival(c.km);
+          return '<tr><td><span class="tr-key ' + c.cls + '"></span>' + esc(c.arm) + '</td><td class="num">' + c.n + '</td><td class="num">' + ev + '</td><td class="num">' + (c.n - ev) +
+            '</td><td class="num">' + (med === null ? "not reached" : med + " " + esc(unit)) + "</td></tr>";
+        }).join("") + "</tbody></table></div>";
+      if (curves.length >= 2) {
+        var tests = [];
+        for (var i = 0; i < curves.length; i++) for (var j = i + 1; j < curves.length; j++) {
+          var r = logRank(curves[i].days, curves[i].deaths, curves[j].days, curves[j].deaths);
+          tests.push("<li>" + esc(curves[i].arm) + " vs " + esc(curves[j].arm) + ": statistic " + r.statistic.toFixed(2) + ", p = " + fmtP(r.p) + " " +
+            (r.p < 0.05 ? '<span class="lt-pill ok">differs</span>' : '<span class="lt-pill idle">no clear difference</span>') + "</li>");
+        }
+        html += '<p class="lt-sub">Survival (log-rank test)</p><ul class="tr-tests">' + tests.join("") + "</ul>";
+      } else html += '<p class="lt-note">Add a second group to compare curves.</p>';
+      var notes = [];
+      if (got.order.length > 3) notes.push("Only the first 3 groups are drawn; left out: " + got.order.slice(3).map(esc).join(", ") + ".");
+      if (got.bad.length) notes.push(got.bad.length + " line" + (got.bad.length > 1 ? "s" : "") + " could not be read and " + (got.bad.length > 1 ? "were" : "was") + " skipped (line " + got.bad.slice(0, 8).join(", ") + (got.bad.length > 8 ? "..." : "") + "). Each needs a group, a time of 0 or more, and an event of 0 or 1.");
+      if (curves.some(function (c) { return c.n < 10; })) notes.push("A group under 10 subjects gives a very rough curve and a weak test.");
+      notes.push("Your data stays in this page; nothing is uploaded. The log-rank test assumes censoring is unrelated to the outcome, as in any trial analysis.");
+      html += notes.map(function (n) { return '<p class="lt-note">' + n + "</p>"; }).join("");
+      $("tr-out").innerHTML = html;
+    }
+    function setMode(m) {
+      $("tr-trial-pick").hidden = m !== "trial"; $("tr-own-pick").hidden = m !== "own";
+      if (m === "own") ownUpdate(); else if (data) update();
+    }
+    var ownTimer = 0;
+    ["tr-paste", "tr-unit"].forEach(function (id) { $(id).addEventListener("input", function () { clearTimeout(ownTimer); ownTimer = setTimeout(ownUpdate, 250); }); });
+    document.querySelectorAll('input[name="tr-mode"]').forEach(function (r) { r.addEventListener("change", function () { setMode(this.value); }); });
+
     fetch("/lab/data/trials.json").then(function (r) { return r.json(); }).then(function (d) {
       data = d;
       $("tr-age").innerHTML = Object.keys(d.age_bands).map(function (k) { return "<option>" + k + "</option>"; }).join("");
       ["tr-gender", "tr-age", "tr-arm-tr-control", "tr-arm-tr-low", "tr-arm-tr-high"].forEach(function (id) { $(id).addEventListener("change", update); });
-      update();
+      if (!$("tr-trial-pick").hidden) update();
     }).catch(function () { $("tr-out").innerHTML = '<p class="lt-note">The trial data could not be loaded.</p>'; });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else setTimeout(init, 0);

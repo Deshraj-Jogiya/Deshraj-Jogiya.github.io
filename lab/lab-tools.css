@@ -210,3 +210,19 @@ fieldset.lt-field { flex-direction: column; }
 
 /* Fraud rule tester (lab/lab-fraud.js) */
 .fr-total td { font-weight: 600; border-top: 1px solid var(--line); }
+.lm-row-label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin: 0.75rem 0 0.25rem; }
+.lm-file-input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.lm-file-input:focus-visible + .lm-file-btn, .lm-file-btn:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lm-file-btn { cursor: pointer; }
+.lm-pipeline { margin: 1rem 0 0.5rem; }
+.lm-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 0.75rem; }
+.lm-steps figure { margin: 0; display: grid; gap: 0.35rem; align-content: start; }
+.lm-steps canvas { width: 100%; height: auto; aspect-ratio: 1; image-rendering: pixelated; border: 1px solid var(--line); border-radius: 6px; background: var(--surface-2); }
+.lm-steps figcaption { font-size: 0.72rem; line-height: 1.35; color: var(--text-secondary); }
+.lm-geo { font-size: 0.85rem; margin: 0.75rem 0 0.5rem; }
+.lm-trust { border-left: 3px solid var(--lt-ok); background: var(--lt-ok-bg); padding: 0.5rem 0.75rem; border-radius: 4px; font-size: 0.82rem; margin: 0.5rem 0; }
+.lm-trust.bad { border-left-color: var(--lt-bad); background: var(--lt-bad-bg); }
+.lm-trust p { margin: 0 0 0.35rem; } .lm-trust ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.25rem; }
+.lm-stage-one { grid-template-columns: minmax(0, 256px); }
+.lm-verdict .lt-pill { white-space: normal; line-height: 1.3; }
+.lt-panel [hidden] { display: none !important; }

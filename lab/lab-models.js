@@ -23,7 +23,71 @@
     var s = e.reduce(function (a, b) { return a + b; }, 0);
     return e.map(function (v) { return v / s; });
   }
-  var api = { CLASSES: CLASSES, SIZE: SIZE, shapeTensor: shapeTensor, softmax: softmax };
+  // The project's threshold path (src/traditional.py preprocess_image, then classify_shape_by_geometry on the largest contour),
+  // in OpenCV.js. Returns what Python's ood_check.py geometry() records; with keep, also the image after each step, so the page
+  // can show them.
+  function geometryOf(cv, rgba, w, h, keep) {
+    var src = cv.matFromImageData({ data: rgba, width: w, height: h }), gray = new cv.Mat(), blurred = new cv.Mat();
+    var thresh = new cv.Mat(), cleaned = new cv.Mat(), kernel = cv.getStructuringElement(cv.MORPH_RECT, new cv.Size(3, 3));
+    var contours = new cv.MatVector(), hierarchy = new cv.Mat(), steps = null, out;
+    try {
+      cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
+      cv.GaussianBlur(gray, blurred, new cv.Size(5, 5), 0);
+      var level = cv.threshold(blurred, thresh, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU);
+      cv.morphologyEx(thresh, cleaned, cv.MORPH_CLOSE, kernel);
+      cv.morphologyEx(cleaned, cleaned, cv.MORPH_OPEN, kernel);
+      var white = cv.countNonZero(cleaned);
+      if (keep) steps = { gray: gray.clone(), blurred: blurred.clone(), thresh: thresh.clone(), cleaned: cleaned.clone(), level: level };
+      cv.findContours(cleaned.clone(), contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+      out = { label: "unknown", vertices: 0, area: 0, contours: contours.size(), white: white };
+      if (contours.size()) {
+        var best = 0, bestArea = -1;
+        for (var i = 0; i < contours.size(); i++) { var a = cv.contourArea(contours.get(i)); if (a > bestArea) { bestArea = a; best = i; } }
+        var c = contours.get(best), g = classify(cv, c);
+        out.label = g.label; out.vertices = g.approx.length; out.area = bestArea; out.convexity = g.convexity; out.circularity = g.circularity;
+        if (keep) { steps.outline = g.points; steps.approx = g.approx; }
+      }
+    } finally { [src, gray, blurred, thresh, cleaned, kernel, hierarchy].forEach(function (m) { m.delete(); }); contours.delete(); }
+    if (keep) out.steps = steps;
+    return out;
+  }
+  function classify(cv, contour) { // src/traditional.py classify_shape_by_geometry, rule for rule
+    var peri = cv.arcLength(contour, true), approx = new cv.Mat(), hull = new cv.Mat();
+    try {
+      cv.approxPolyDP(contour, approx, 0.02 * peri, true);
+      var pts = [], outline = [], n = approx.rows, area = cv.contourArea(contour), shape;
+      for (var i = 0; i < n; i++) pts.push([approx.data32S[2 * i], approx.data32S[2 * i + 1]]);
+      for (var j = 0; j < contour.rows; j++) outline.push([contour.data32S[2 * j], contour.data32S[2 * j + 1]]);
+      var info = { approx: pts, points: outline, convexity: 0, circularity: 0 };
+      if (area < 50) { info.label = "unknown"; return info; }
+      var r = cv.boundingRect(approx), aspect = r.width / r.height;
+      cv.convexHull(contour, hull, false, true);
+      var hullArea = cv.contourArea(hull), convexity = hullArea > 0 ? area / hullArea : 0;
+      var circularity = peri > 0 ? (4 * Math.PI * area) / (peri * peri) : 0;
+      if (n === 3) shape = "triangle";
+      else if (n === 4) shape = aspect >= 0.88 && aspect <= 1.12 ? "square" : "rectangle";
+      else if (n === 5) shape = convexity < 0.85 ? "star" : "pentagon";
+      else if (n === 6) shape = "hexagon";
+      else if (n >= 7) shape = convexity < 0.85 || circularity < 0.75 ? "star" : "circle";
+      else shape = circularity > 0.82 ? "circle" : convexity < 0.80 ? "star" : "unknown";
+      info.label = shape; info.convexity = convexity; info.circularity = circularity;
+      return info;
+    } finally { approx.delete(); hull.delete(); }
+  }
+
+  // Whether to trust an answer, by the checks ood_check.py measured (docs/FINDINGS.md, "What does it do with a shape it was
+  // never trained on?"): the CNN at least 90% sure, contour geometry naming the same shape, and one piece in the mask.
+  var CONFIDENT = 0.9;
+  function judge(probs, geo) {
+    var top = probs.indexOf(Math.max.apply(null, probs)), reasons = [];
+    if (geo.contours > 1) reasons.push("pieces");
+    if (geo.label === "unknown") reasons.push("no-outline");
+    if (probs[top] < CONFIDENT) reasons.push("unsure");
+    if (geo.label !== "unknown" && geo.label !== CLASSES[top]) reasons.push("disagree");
+    return { top: CLASSES[top], trusted: reasons.length === 0, reasons: reasons };
+  }
+
+  var api = { CLASSES: CLASSES, SIZE: SIZE, CONFIDENT: CONFIDENT, shapeTensor: shapeTensor, softmax: softmax, geometryOf: geometryOf, judge: judge };
   if (typeof module === "object" && module.exports) { module.exports = api; return; }
   root.LabModels = api;
   if (!document.getElementById("model-demos")) return;
@@ -50,12 +114,41 @@
   }
   api.loadOrt = loadOrt; // shared with lab-signs.js, so ONNX Runtime downloads once
 
+
+  var CV_URL = "https://cdn.jsdelivr.net/npm/@techstark/opencv-js@4.11.0-release.1/dist/opencv.js";
+  var CV_SRI = "sha384-oavEdO4ZHMHZLyB8LRX8Vmsn9BuESS2RmefVDvsZOcvAlEtuRiiUj4CZGMEL1fPU";
+  var cvPromise = null;
+  function loadCv() {
+    if (cvPromise) return cvPromise;
+    cvPromise = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = CV_URL; s.integrity = CV_SRI; s.crossOrigin = "anonymous";
+      s.onload = function () {
+        var cv = root.cv;
+        if (cv instanceof Promise) cv.then(resolve, reject);
+        else if (cv.Mat) resolve(cv);
+        else cv.onRuntimeInitialized = function () { resolve(cv); };
+      };
+      s.onerror = function () { cvPromise = null; reject(new Error("OpenCV.js could not be downloaded")); };
+      document.head.appendChild(s);
+    });
+    return cvPromise;
+  }
+  api.loadCv = loadCv; // shared with lab-signs.js, so OpenCV.js downloads once
+
   // ------------------------------------------------------------------ shape classifier
+  var REASONS = {
+    pieces: function (r) { return "The black-and-white mask has " + r.geo.contours + " separate pieces. Every one of the 2,000 test images had exactly one, so this picture is outside what the model was tested on."; },
+    "no-outline": function () { return "No outline was big enough to measure (the project ignores anything under 50 pixels at 64 x 64)."; },
+    unsure: function (r) { return "The CNN is only " + pct(r.conf) + " sure. It was at least 90% sure on 96.3% of the test shapes."; },
+    disagree: function (r) { return "Contour geometry says " + h(r.geo.label) + " (" + r.geo.vertices + " corners); the CNN says " + h(r.top) + ". On test shapes this alone is a weak warning (the geometry rules often miss a corner at 64 x 64, and the CNN was still right 97.8% of the time), but it is the check that catches most shapes the model never saw."; }
+  };
+
   function initShapes() {
-    var canvas = $("lm-canvas"), ctx = canvas.getContext("2d"), out = $("lm-out"), runBtn = $("lm-run");
+    var canvas = $("lm-canvas"), ctx = canvas.getContext("2d"), out = $("lm-out"), runBtn = $("lm-run"), pipe = $("lm-pipeline");
     var small = document.createElement("canvas"); small.width = small.height = SIZE;
     var sctx = small.getContext("2d", { willReadFrequently: true });
-    var data = null, current = null, session = null, mode = "test", drawn = false, seen = false;
+    var data = null, geo = null, current = null, session = null, mode = "test", drawn = false, seen = false, upload = null;
 
     function show(img) { // the 64 x 64 image, enlarged without smoothing so the visitor sees the model's real input
       sctx.clearRect(0, 0, SIZE, SIZE); sctx.drawImage(img, 0, 0, SIZE, SIZE); enlarge();
@@ -64,29 +157,35 @@
       ctx.imageSmoothingEnabled = false; ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(small, 0, 0, canvas.width, canvas.height);
     }
+    function samples() { return data.samples.concat(geo ? geo.unseen : []); }
     function pick(i) {
-      current = data.samples[i]; out.innerHTML = "";
-      Array.prototype.forEach.call($("lm-thumbs").children, function (b) { b.setAttribute("aria-selected", String(b.dataset.i === String(i))); });
+      current = samples()[i]; out.innerHTML = ""; pipe.hidden = true;
+      document.querySelectorAll("#lm-shapes .lm-thumb").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.i === String(i))); });
       var img = new Image();
       img.onload = function () { show(img); };
       img.src = "/lab/data/shapes/" + current.file;
     }
+    function thumb(s, i, what) {
+      return '<button type="button" role="option" aria-selected="false" class="lm-thumb" data-i="' + i + '" aria-label="' + what + ', a ' + h(s.label) +
+        '"><img src="/lab/data/shapes/' + h(s.file) + '" alt="" width="48" height="48" loading="lazy"></button>';
+    }
     function thumbs(all) {
       var list = data.samples.map(function (s, i) { return [s, i]; });
       if (!all) list = CLASSES.map(function (c) { return list.filter(function (p) { return p[0].label === c; })[0]; });
-      $("lm-thumbs").innerHTML = list.map(function (p) {
-        return '<button type="button" role="option" aria-selected="false" class="lm-thumb" data-i="' + p[1] + '" aria-label="Test shape ' +
-          (p[1] + 1) + ', a ' + h(p[0].label) + '"><img src="/lab/data/shapes/' + h(p[0].file) + '" alt="" width="48" height="48" loading="lazy"></button>';
-      }).join("");
+      $("lm-thumbs").innerHTML = list.map(function (p) { return thumb(p[0], p[1], "Test shape " + (p[1] + 1)); }).join("");
     }
-    function clearDrawing() {
-      ctx.imageSmoothingEnabled = true; ctx.fillStyle = "rgb(238,238,238)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-      drawn = false; seen = false; out.innerHTML = "";
+    function unseenThumbs() {
+      var n = data.samples.length;
+      $("lm-unseen").innerHTML = geo.unseen.map(function (s, i) { return thumb(s, n + i, "Shape it never saw"); }).join("");
     }
+    function blank() { ctx.imageSmoothingEnabled = true; ctx.fillStyle = "rgb(238,238,238)"; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+    function clearDrawing() { blank(); drawn = false; seen = false; out.innerHTML = ""; pipe.hidden = true; }
     function setMode(m) {
-      mode = m; $("lm-test-pick").hidden = m !== "test"; $("lm-draw-pick").hidden = m !== "draw";
-      canvas.classList.toggle("lm-drawing", m === "draw");
-      if (m === "draw") clearDrawing(); else if (current) pick(data.samples.indexOf(current));
+      mode = m; $("lm-test-pick").hidden = m !== "test"; $("lm-draw-pick").hidden = m !== "draw"; $("lm-upload-pick").hidden = m !== "upload";
+      canvas.classList.toggle("lm-drawing", m === "draw"); out.innerHTML = ""; pipe.hidden = true;
+      if (m === "draw") clearDrawing();
+      else if (m === "upload") { if (upload) show(upload.square); else blank(); }
+      else if (current) pick(samples().indexOf(current));
     }
 
     // drawing: pointer events cover mouse, pen and touch
@@ -118,20 +217,82 @@
       sctx.drawImage(canvas, x0, y0, x1 - x0 + 1, y1 - y0 + 1, (SIZE - dw) / 2, (SIZE - dh) / 2, dw, dh);
     }
 
-    function result(probs, box) {
-      var order = probs.map(function (p, i) { return [p, i]; }).sort(function (a, b) { return b[0] - a[0]; });
-      var top = CLASSES[order[0][1]], html = '<p class="lm-verdict">The model says <b>' + h(top) + "</b>, " + pct(order[0][0]) + " sure.";
-      if (mode === "test") html += " " + (top === current.label ? '<span class="lt-pill ok">correct</span>' : '<span class="lt-pill bad">wrong: it is a ' + h(current.label) + "</span>");
-      html += "</p><ul class=\"lm-bars\">" + order.map(function (o) {
+    // An uploaded picture is padded to a square with its own edge colour (so a circle stays round, where the project's
+    // cv2.resize would squash it), then shrunk to 64 x 64, the only size the model takes. It never leaves the page.
+    function readUpload(file) {
+      if (!file || !/^image\//.test(file.type)) { out.innerHTML = '<p class="lt-note">Choose an image file (JPEG, PNG, WebP...).</p>'; return; }
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var side = Math.max(img.naturalWidth, img.naturalHeight), lim = Math.min(side, 768), k = lim / side;
+        var sq = document.createElement("canvas"); sq.width = sq.height = lim;
+        var q = sq.getContext("2d", { willReadFrequently: true }), w = Math.round(img.naturalWidth * k), hh = Math.round(img.naturalHeight * k);
+        q.drawImage(img, 0, 0, w, hh);
+        var px = q.getImageData(0, 0, w, hh).data, edge = [[], [], []];
+        for (var x = 0; x < w; x++) [0, hh - 1].forEach(function (y) { var o = 4 * (y * w + x); for (var c = 0; c < 3; c++) edge[c].push(px[o + c]); });
+        for (var y = 0; y < hh; y++) [0, w - 1].forEach(function (xx) { var o = 4 * (y * w + xx); for (var c = 0; c < 3; c++) edge[c].push(px[o + c]); });
+        var med = edge.map(function (v) { v.sort(function (a, b) { return a - b; }); return v[v.length >> 1]; });
+        q.fillStyle = "rgb(" + med.join(",") + ")"; q.fillRect(0, 0, lim, lim);
+        q.drawImage(img, Math.round((lim - w) / 2), Math.round((lim - hh) / 2), w, hh);
+        upload = { square: sq, name: file.name, width: img.naturalWidth, height: img.naturalHeight };
+        URL.revokeObjectURL(url);
+        sctx.imageSmoothingEnabled = true; sctx.imageSmoothingQuality = "high"; show(sq);
+        out.innerHTML = '<p class="lt-note">Loaded ' + h(file.name) + " (" + img.naturalWidth + " x " + img.naturalHeight + "). Press <b>Run the model</b>.</p>";
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); out.innerHTML = '<p class="lt-note">That file could not be read as an image. Try a JPEG or PNG.</p>'; };
+      img.src = url;
+    }
+
+    // ---- the processing steps, drawn from the images OpenCV.js produced at each step
+    function paint(id, cv, mat) { var c = $(id); cv.imshow(c, mat); mat.delete(); return c; }
+    function drawSteps(cv, g) {
+      var st = g.steps, acc = getComputedStyle(document.body).getPropertyValue("--accent").trim() || "#8fc4ad";
+      $("lm-step-orig").hidden = mode !== "upload";
+      if (mode === "upload") {
+        var o = $("lm-c-orig"), oc = o.getContext("2d"); oc.clearRect(0, 0, o.width, o.height); oc.drawImage(upload.square, 0, 0, o.width, o.height);
+      }
+      var inp = $("lm-c-input"), ic = inp.getContext("2d"); ic.imageSmoothingEnabled = false; ic.drawImage(small, 0, 0, inp.width, inp.height);
+      paint("lm-c-gray", cv, st.gray); paint("lm-c-blur", cv, st.blurred); paint("lm-c-thresh", cv, st.thresh); paint("lm-c-clean", cv, st.cleaned);
+      $("lm-level").textContent = Math.round(st.level);
+      var oc2 = $("lm-c-outline"), x = oc2.getContext("2d"), k = oc2.width / SIZE;
+      x.imageSmoothingEnabled = false; x.globalAlpha = 0.35; x.drawImage($("lm-c-clean"), 0, 0, oc2.width, oc2.height); x.globalAlpha = 1;
+      if (st.outline) {
+        x.lineWidth = 2; x.strokeStyle = acc; x.beginPath();
+        st.outline.forEach(function (p, i) { (i ? x.lineTo : x.moveTo).call(x, (p[0] + 0.5) * k, (p[1] + 0.5) * k); }); x.closePath(); x.stroke();
+        x.fillStyle = acc; x.strokeStyle = "#1c2421"; x.lineWidth = 1.5;
+        st.approx.forEach(function (p) { x.beginPath(); x.arc((p[0] + 0.5) * k, (p[1] + 0.5) * k, 4.5, 0, 2 * Math.PI); x.fill(); x.stroke(); });
+      }
+      $("lm-corners").textContent = g.contours ? g.vertices + " corners, " + g.contours + (g.contours === 1 ? " piece" : " pieces") : "no outline";
+      pipe.hidden = false;
+    }
+
+    function bars(probs, order) {
+      return '<ul class="lm-bars">' + order.map(function (o) {
         return '<li><span class="lm-name">' + h(CLASSES[o[1]]) + '</span><span class="lm-track"><span class="lm-fill' + (o[1] === order[0][1] ? " lm-top" : "") +
           '" style="width:' + (100 * o[0]).toFixed(2) + '%"></span></span><span class="lm-val">' + pct(o[0]) + "</span></li>";
       }).join("") + "</ul>";
+    }
+    function result(probs, box, g) {
+      var order = probs.map(function (p, i) { return [p, i]; }).sort(function (a, b) { return b[0] - a[0]; });
+      var j = judge(probs, g), unseen = mode === "test" && CLASSES.indexOf(current.label) < 0;
+      var html = '<p class="lm-verdict">The CNN says <b>' + h(j.top) + "</b>, " + pct(order[0][0]) + " sure.";
+      if (mode === "test") html += " " + (j.top === current.label ? '<span class="lt-pill ok">correct</span>'
+        : '<span class="lt-pill bad">wrong: it is ' + (/^[aeiou]/.test(current.label) ? "an " : "a ") + h(current.label) + (unseen ? ", not one of its 7 shapes" : "") + "</span>");
+      html += "</p>" + bars(probs, order);
+      html += '<p class="lm-geo">Contour geometry (no learning, just the outline): <b>' + h(g.label) + "</b>" +
+        (g.contours ? ", " + g.vertices + " corners, convexity " + (g.convexity || 0).toFixed(2) + ", circularity " + (g.circularity || 0).toFixed(2) : "") + ".</p>";
+      var info = { geo: g, conf: order[0][0], top: j.top };
+      html += '<div class="lm-trust ' + (j.trusted ? "ok" : "bad") + '"><p><b>' + (j.trusted ? "Trust check passed." : "Not confirmed: treat this answer with caution.") + "</b></p>";
+      if (j.trusted) html += "<p>The CNN is at least 90% sure, the outline's geometry names the same shape and the mask is one piece. Every test-shape answer that passed this was right, but 22.0% of shapes the model never saw pass it too (plus signs and arrows read as stars, some octagons as circles), so a pass is not proof." +
+        (unseen && j.top !== current.label ? " This is one of those: the check passed and the answer is still wrong." : "") + "</p>";
+      else html += "<ul>" + j.reasons.map(function (r) { return "<li>" + REASONS[r](info) + "</li>"; }).join("") + "</ul>";
+      html += "</div>";
+      if (mode !== "test" || unseen) html += '<p class="lt-note">The model only knows 7 shapes and has no "none of these" answer, so anything else is forced into the nearest one. A stop sign (an octagon) usually comes out as a hexagon or a circle, often with high confidence.</p>';
       if (mode === "test") {
         var diff = Math.max.apply(null, probs.map(function (p, i) { return Math.abs(p - current.probs[i]); }));
-        html += '<p class="lt-note">Python gave this image ' + pct(current.probs[CLASSES.indexOf(top)]) + " for " + h(top) +
+        html += '<p class="lt-note">Python gave this image ' + pct(current.probs[CLASSES.indexOf(j.top)]) + " for " + h(j.top) +
           "; the largest difference from this page across the 7 scores is " + diff.toExponential(1) + ".</p>";
-      } else {
-        html += '<p class="lt-note">The picture now shows your drawing as the model saw it: centred and scaled to the size of the training shapes, at 64 x 64 pixels. Draw again to try another.</p>';
+      } else if (mode === "draw") {
+        html += '<p class="lt-note">The picture shows your drawing as the model saw it: centred and scaled to the size of the training shapes, at 64 x 64 pixels. Draw again to try another.</p>';
       }
       out.innerHTML = html;
       var x0 = box[0] * canvas.width, y0 = box[1] * canvas.height, x1 = box[2] * canvas.width, y1 = box[3] * canvas.height;
@@ -142,32 +303,39 @@
     function run() {
       if (mode === "test" && !current) { out.innerHTML = '<p class="lt-note">Pick a test shape first.</p>'; return; }
       if (mode === "draw" && !drawn) { out.innerHTML = '<p class="lt-note">Draw a shape first.</p>'; return; }
+      if (mode === "upload" && !upload) { out.innerHTML = '<p class="lt-note">Choose a picture first.</p>'; return; }
       runBtn.disabled = true;
-      if (!session) out.innerHTML = '<p class="lt-note">Downloading the model and ONNX Runtime...</p>';
+      if (!session) out.innerHTML = '<p class="lt-note">Downloading the model, ONNX Runtime and OpenCV.js...</p>';
       if (mode === "draw") fitDrawing();
-      var pixels = sctx.getImageData(0, 0, SIZE, SIZE).data;
-      loadOrt().then(function (ort) {
-        return session || ort.InferenceSession.create("/lab/models/shape_detector.onnx", { executionProviders: ["wasm"] }).then(function (s) { session = s; return s; });
+      if (mode === "upload") show(upload.square);
+      var pixels = sctx.getImageData(0, 0, SIZE, SIZE).data, cv = null;
+      Promise.all([loadOrt(), loadCv()]).then(function (got) {
+        cv = got[1];
+        return session || got[0].InferenceSession.create("/lab/models/shape_detector.onnx", { executionProviders: ["wasm"] }).then(function (s) { session = s; return s; });
       }).then(function (s) {
         var feeds = {}; feeds[data.input] = new root.ort.Tensor("float32", shapeTensor(pixels), [1, 3, SIZE, SIZE]);
         return s.run(feeds);
       }).then(function (res) {
+        var g = geometryOf(cv, new Uint8ClampedArray(pixels), SIZE, SIZE, true);
         enlarge(); // show exactly what the model saw, then draw its box on that
         if (mode === "draw") seen = true;
-        result(softmax(Array.from(res.class_logits.data)), Array.from(res.bbox.data));
+        drawSteps(cv, g);
+        result(softmax(Array.from(res.class_logits.data)), Array.from(res.bbox.data), g);
         runBtn.textContent = "Run the model";
       }).catch(function (e) {
         out.innerHTML = '<p class="lt-note">' + h(e.message || "The model could not run") + ". Check your connection and try again.</p>";
       }).then(function () { runBtn.disabled = false; });
     }
 
-    fetch("/lab/data/shapes/samples.json").then(function (r) { return r.json(); }).then(function (d) {
-      data = d; thumbs(false); pick(0);
+    Promise.all([fetch("/lab/data/shapes/samples.json").then(function (r) { return r.json(); }),
+                 fetch("/lab/data/shapes/geometry.json").then(function (r) { return r.json(); })]).then(function (d) {
+      data = d[0]; geo = d[1]; thumbs(false); unseenThumbs(); pick(0);
     }).catch(function () { out.innerHTML = '<p class="lt-note">The test shapes could not be loaded.</p>'; });
-    $("lm-thumbs").addEventListener("click", function (e) { var b = e.target.closest(".lm-thumb"); if (b) pick(Number(b.dataset.i)); });
+    $("lm-shapes").addEventListener("click", function (e) { var b = e.target.closest(".lm-thumb"); if (b) pick(Number(b.dataset.i)); });
     $("lm-more").addEventListener("click", function () { thumbs(true); this.hidden = true; });
     $("lm-random").addEventListener("click", function () { if (data) pick(Math.floor(Math.random() * data.samples.length)); });
     $("lm-clear").addEventListener("click", clearDrawing);
+    $("lm-file").addEventListener("change", function () { readUpload(this.files[0]); });
     document.querySelectorAll('input[name="lm-mode"]').forEach(function (r) { r.addEventListener("change", function () { setMode(this.value); }); });
     runBtn.addEventListener("click", run);
   }

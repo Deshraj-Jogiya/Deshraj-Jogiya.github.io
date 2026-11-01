@@ -126,6 +126,7 @@
   }
   var cvPromise = null, handsPromise = null;
   function loadCv() {
+    if (root.LabModels && root.LabModels.loadCv) return root.LabModels.loadCv(); // the shape demo's loader: one download for both
     if (!cvPromise) cvPromise = loadScript(CV_URL, CV_SRI).then(function () {
       var cv = root.cv;
       if (cv instanceof Promise) return cv;
