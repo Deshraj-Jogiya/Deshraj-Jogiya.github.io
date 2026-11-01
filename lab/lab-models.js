@@ -48,6 +48,7 @@
     });
     return ortPromise;
   }
+  api.loadOrt = loadOrt; // shared with lab-signs.js, so ONNX Runtime downloads once
 
   // ------------------------------------------------------------------ shape classifier
   function initShapes() {

@@ -51,6 +51,10 @@ jobs:
         run: |
           npm install --prefix /tmp/labcheck --no-save --no-package-lock onnxruntime-node@1.20.1 pngjs@7.0.0
           NODE_PATH=/tmp/labcheck/node_modules node tools/check_lab_shapes.js
+      - name: Check the Lab's ASL sign demo (OpenCV.js hand-shape values and model scores) against Python
+        run: |
+          npm install --prefix /tmp/labcheck --no-save --no-package-lock onnxruntime-node@1.20.1 pngjs@7.0.0 @techstark/opencv-js@4.11.0-release.1
+          NODE_PATH=/tmp/labcheck/node_modules node tools/check_lab_signs.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

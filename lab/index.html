@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=b0cdc6e2ed">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=b0cdc6e2ed">
+    <link rel="stylesheet" href="/style.css?v=55a56b934a">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=55a56b934a">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -673,6 +673,47 @@
                 </details>
                 <p class="lt-source">The model and test images come from <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" rel="noopener">Solid Object Detection</a>: the same ONNX file it serves on AWS Lambda, and 9 images of each shape from its seed-42 held-out split (<a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). For a test shape, the page also shows Python's score for the same image; every deploy checks the two agree.</p>
             </article>
+
+            <!-- ASL word signs (Extending STEM across ASL) -->
+            <article class="lt-panel" id="lm-signs" aria-labelledby="lm-signs-title">
+                <h3 class="lt-title" id="lm-signs-title">ASL Word Signs</h3>
+                <p class="lt-lede">Recognises 29 STEM and computing signs (computer, email, science, math...) from about two seconds of video. On 58 held-out clips the right sign was the top guess 75.86% of the time and in the top three 94.83% of the time (chance is 3.45%).</p>
+                <ol class="lt-steps"><li>Pick a held-out clip, or switch to <b>Use your camera</b> and sign one of the words listed below.</li><li>Press <b>Recognise the sign</b>.</li><li>Read the top three signs. The picture shows the hand points the model reads, frame by frame.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Input</legend>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="clip" checked> Held-out clip</label>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="camera"> Use your camera</label></fieldset>
+                </div>
+                <div id="ls-clip-pick" class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Held-out clip</span>
+                        <select id="ls-clip"><option value="">Press Recognise to load the clips</option></select></label>
+                </div>
+                <div id="ls-camera-pick" hidden>
+                    <p class="lt-note">The camera runs only on this page: frames are read in your browser and are never uploaded or saved. The first start downloads MediaPipe's hand model and OpenCV.js (about 14 MB). Sign with your hands fully in view and good light; a phone works, but more slowly.</p>
+                    <p class="lt-note"><b>Signs it knows:</b> <span id="ls-vocab">computer, internet, email, program, network, machine, print, television, write, letter, paper, test, learn, study, teacher, school, science, math, calculate, research, measure, plus, energy, chemistry, biology, physics, experiment, book, picture</span>. See how each is signed in the <a href="https://dxli94.github.io/WLASL/" target="_blank" rel="noopener">WLASL dataset</a>.</p>
+                </div>
+                <div class="lm-stage ls-stage">
+                    <div class="ls-view">
+                        <video id="ls-video" playsinline muted hidden aria-label="Your camera, mirrored"></video>
+                        <canvas id="ls-canvas" width="400" height="260" aria-label="The hand points the model reads"></canvas>
+                    </div>
+                    <div id="ls-out" class="lt-out lm-out" aria-live="polite"></div>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ls-run">Recognise the sign (about 3 MB, first time only)</button></div>
+                <details class="lt-more"><summary>Which signs it misses</summary>
+                    <div class="lt-scroll"><table class="lt-table">
+                        <thead><tr><th>Sign</th><th class="num">Held-out accuracy</th><th>Predicted as</th></tr></thead>
+                        <tbody>
+                            <tr><td>network</td><td class="num">0.0</td><td>internet (both clips)</td></tr>
+                            <tr><td>chemistry</td><td class="num">0.0</td><td>email, experiment</td></tr>
+                            <tr><td>internet</td><td class="num">0.5</td><td>network (one clip)</td></tr>
+                            <tr><td>paper</td><td class="num">0.5</td><td>print (one clip)</td></tr>
+                            <tr><td>school</td><td class="num">0.5</td><td>paper (one clip)</td></tr>
+                        </tbody></table></div>
+                    <p class="lt-note">The misses fall between related signs that share a hand shape, such as network and internet. With the hand-shape values from OpenCV removed, top-1 drops from 75.86% to 65.52%, so the page runs OpenCV too.</p>
+                </details>
+                <p class="lt-source">The model and the held-out clips come from <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener">Extending STEM across ASL</a> (<a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the same 1-D convolution and GRU, trained on the same seeded split, with the clips stored as hand points only (WLASL video is for research use, so none is copied here). Every deploy checks this page's OpenCV.js step and model scores against Python's; MediaPipe's browser and Python versions were checked on 7 hand photos and agree to 0.00003 of the frame.</p>
+            </article>
         </section>
 
         <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
@@ -714,9 +755,10 @@
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=b0cdc6e2ed" defer></script>
-    <script src="/lab/fit-engine.js?v=b0cdc6e2ed" defer></script>
-    <script src="/lab/lab-tools.js?v=b0cdc6e2ed" defer></script>
-    <script src="/lab/lab-models.js?v=b0cdc6e2ed" defer></script>
+    <script src="/app.js?v=55a56b934a" defer></script>
+    <script src="/lab/fit-engine.js?v=55a56b934a" defer></script>
+    <script src="/lab/lab-tools.js?v=55a56b934a" defer></script>
+    <script src="/lab/lab-models.js?v=55a56b934a" defer></script>
+    <script src="/lab/lab-signs.js?v=55a56b934a" defer></script>
 </body>
 </html>
