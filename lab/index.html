@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=ae5729a77f">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=ae5729a77f">
+    <link rel="stylesheet" href="/style.css?v=28a0fc67b5">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=28a0fc67b5">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -759,6 +759,22 @@
                 <div id="bf-risk" class="lt-out" aria-live="polite"></div>
                 <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" rel="noopener">Tax Anomaly Audit Compliance Engine</a> (<a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The ledger is synthetic and seeded. Benford statistics and risk scores are recomputed here; the Isolation Forest scores and tax-rate rule flags are read from the project's run. Every deploy checks the page against the project's Python, including the 30/70 weights and the 43 entries FINDINGS reports.</p>
             </article>
+
+            <!-- Fraud rule tester (FinTech Credit Risk & Fraud Command Center) -->
+            <article class="lt-panel" id="st-fraud" aria-labelledby="st-fraud-title">
+                <h3 class="lt-title" id="st-fraud-title">Fraud Rule Tester</h3>
+                <p class="lt-lede">Three simple rules screen 345,524 simulated card transactions, 2,591 of them planted fraud. Loosen or tighten each rule and see the trade-off a fraud team lives with: catching more fraud means more false alarms on real customers.</p>
+                <ol class="lt-steps"><li>Load the transactions (about 3.8 MB, once).</li><li>Move the sliders: how many charges in how many minutes count as card testing, and how large a purchase counts as a spike.</li><li>Watch precision (share of alerts that are fraud) and recall (share of fraud caught) move.</li></ol>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="fr-load">Load the transactions (about 3.8 MB)</button></div>
+                <div id="fr-controls" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Velocity: charges <output id="fr-count-out">5</output></span><input type="range" id="fr-count" min="2" max="12" step="1" value="5"></label>
+                    <label class="lt-field lt-grow"><span>within <output id="fr-window-out">10 min</output></span><input type="range" id="fr-window" min="1" max="120" step="1" value="10"></label>
+                    <label class="lt-field lt-grow"><span>Spike: over the customer's median times <output id="fr-multiple-out">7 x</output></span><input type="range" id="fr-multiple" min="2" max="30" step="0.5" value="7"></label>
+                    <label class="lt-check"><input type="checkbox" id="fr-foreign" checked> Flag foreign-location charges</label>
+                </div>
+                <div id="fr-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" target="_blank" rel="noopener">FinTech Credit Risk &amp; Fraud Command Center</a> (<a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The transactions are simulated with a fixed seed and the fraud is planted by the simulator; the rules never read the labels. The rules are <code>etl/fraud_rules.py</code> rewritten for the browser; every deploy checks them against the Python at five settings, and they must agree on every count.</p>
+            </article>
         </section>
 
         <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
@@ -800,12 +816,13 @@
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=ae5729a77f" defer></script>
-    <script src="/lab/fit-engine.js?v=ae5729a77f" defer></script>
-    <script src="/lab/lab-tools.js?v=ae5729a77f" defer></script>
-    <script src="/lab/lab-models.js?v=ae5729a77f" defer></script>
-    <script src="/lab/lab-signs.js?v=ae5729a77f" defer></script>
-    <script src="/lab/lab-trials.js?v=ae5729a77f" defer></script>
-    <script src="/lab/lab-benford.js?v=ae5729a77f" defer></script>
+    <script src="/app.js?v=28a0fc67b5" defer></script>
+    <script src="/lab/fit-engine.js?v=28a0fc67b5" defer></script>
+    <script src="/lab/lab-tools.js?v=28a0fc67b5" defer></script>
+    <script src="/lab/lab-models.js?v=28a0fc67b5" defer></script>
+    <script src="/lab/lab-signs.js?v=28a0fc67b5" defer></script>
+    <script src="/lab/lab-trials.js?v=28a0fc67b5" defer></script>
+    <script src="/lab/lab-benford.js?v=28a0fc67b5" defer></script>
+    <script src="/lab/lab-fraud.js?v=28a0fc67b5" defer></script>
 </body>
 </html>

@@ -42,4 +42,20 @@
                 <div id="bf-risk" class="lt-out" aria-live="polite"></div>
                 <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" rel="noopener">Tax Anomaly Audit Compliance Engine</a> (<a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The ledger is synthetic and seeded. Benford statistics and risk scores are recomputed here; the Isolation Forest scores and tax-rate rule flags are read from the project's run. Every deploy checks the page against the project's Python, including the 30/70 weights and the 43 entries FINDINGS reports.</p>
             </article>
+
+            <!-- Fraud rule tester (FinTech Credit Risk & Fraud Command Center) -->
+            <article class="lt-panel" id="st-fraud" aria-labelledby="st-fraud-title">
+                <h3 class="lt-title" id="st-fraud-title">Fraud Rule Tester</h3>
+                <p class="lt-lede">Three simple rules screen 345,524 simulated card transactions, 2,591 of them planted fraud. Loosen or tighten each rule and see the trade-off a fraud team lives with: catching more fraud means more false alarms on real customers.</p>
+                <ol class="lt-steps"><li>Load the transactions (about 3.8 MB, once).</li><li>Move the sliders: how many charges in how many minutes count as card testing, and how large a purchase counts as a spike.</li><li>Watch precision (share of alerts that are fraud) and recall (share of fraud caught) move.</li></ol>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="fr-load">Load the transactions (about 3.8 MB)</button></div>
+                <div id="fr-controls" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Velocity: charges <output id="fr-count-out">5</output></span><input type="range" id="fr-count" min="2" max="12" step="1" value="5"></label>
+                    <label class="lt-field lt-grow"><span>within <output id="fr-window-out">10 min</output></span><input type="range" id="fr-window" min="1" max="120" step="1" value="10"></label>
+                    <label class="lt-field lt-grow"><span>Spike: over the customer's median times <output id="fr-multiple-out">7 x</output></span><input type="range" id="fr-multiple" min="2" max="30" step="0.5" value="7"></label>
+                    <label class="lt-check"><input type="checkbox" id="fr-foreign" checked> Flag foreign-location charges</label>
+                </div>
+                <div id="fr-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" target="_blank" rel="noopener">FinTech Credit Risk &amp; Fraud Command Center</a> (<a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The transactions are simulated with a fixed seed and the fraud is planted by the simulator; the rules never read the labels. The rules are <code>etl/fraud_rules.py</code> rewritten for the browser; every deploy checks them against the Python at five settings, and they must agree on every count.</p>
+            </article>
         </section>

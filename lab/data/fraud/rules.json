@@ -1,0 +1,142 @@
+{
+ "note": "Simulated card transactions (etl/pipeline.py, seed 42); fraud is planted by the simulator.",
+ "rows": 345524,
+ "customers": 12500,
+ "planted_fraud": 2591,
+ "columns": [
+  [
+   "customer",
+   "uint16"
+  ],
+  [
+   "seconds",
+   "uint32"
+  ],
+  [
+   "cents",
+   "uint32"
+  ],
+  [
+   "flags",
+   "uint8"
+  ]
+ ],
+ "foreign_location": "International / Online",
+ "settings": [
+  {
+   "velocity_count": 5,
+   "window_minutes": 10,
+   "spike_multiple": 7.0,
+   "results": {
+    "velocity": {
+     "alerts": 1110,
+     "true_fraud_caught": 1110
+    },
+    "amount_spike": {
+     "alerts": 4069,
+     "true_fraud_caught": 40
+    },
+    "foreign_location": {
+     "alerts": 4942,
+     "true_fraud_caught": 1464
+    },
+    "any_rule": {
+     "alerts": 10057,
+     "true_fraud_caught": 2591
+    }
+   }
+  },
+  {
+   "velocity_count": 3,
+   "window_minutes": 5,
+   "spike_multiple": 3.0,
+   "results": {
+    "velocity": {
+     "alerts": 1113,
+     "true_fraud_caught": 1110
+    },
+    "amount_spike": {
+     "alerts": 43173,
+     "true_fraud_caught": 201
+    },
+    "foreign_location": {
+     "alerts": 4942,
+     "true_fraud_caught": 1464
+    },
+    "any_rule": {
+     "alerts": 48616,
+     "true_fraud_caught": 2591
+    }
+   }
+  },
+  {
+   "velocity_count": 4,
+   "window_minutes": 30,
+   "spike_multiple": 15.0,
+   "results": {
+    "velocity": {
+     "alerts": 1113,
+     "true_fraud_caught": 1110
+    },
+    "amount_spike": {
+     "alerts": 107,
+     "true_fraud_caught": 5
+    },
+    "foreign_location": {
+     "alerts": 4942,
+     "true_fraud_caught": 1464
+    },
+    "any_rule": {
+     "alerts": 6159,
+     "true_fraud_caught": 2578
+    }
+   }
+  },
+  {
+   "velocity_count": 8,
+   "window_minutes": 60,
+   "spike_multiple": 7.0,
+   "results": {
+    "velocity": {
+     "alerts": 714,
+     "true_fraud_caught": 709
+    },
+    "amount_spike": {
+     "alerts": 4069,
+     "true_fraud_caught": 40
+    },
+    "foreign_location": {
+     "alerts": 4942,
+     "true_fraud_caught": 1464
+    },
+    "any_rule": {
+     "alerts": 9661,
+     "true_fraud_caught": 2190
+    }
+   }
+  },
+  {
+   "velocity_count": 2,
+   "window_minutes": 1,
+   "spike_multiple": 2.0,
+   "results": {
+    "velocity": {
+     "alerts": 1061,
+     "true_fraud_caught": 847
+    },
+    "amount_spike": {
+     "alerts": 83130,
+     "true_fraud_caught": 354
+    },
+    "foreign_location": {
+     "alerts": 4942,
+     "true_fraud_caught": 1464
+    },
+    "any_rule": {
+     "alerts": 87901,
+     "true_fraud_caught": 2327
+    }
+   }
+  }
+ ]
+}

@@ -207,3 +207,6 @@ fieldset.lt-field { flex-direction: column; }
 .lt-svg .bf-bar { fill: var(--lt-base); opacity: 0.75; }
 .lt-svg .bf-law { fill: none; stroke: var(--accent); stroke-width: 2; }
 .lt-svg .bf-dot { fill: var(--accent); }
+
+/* Fraud rule tester (lab/lab-fraud.js) */
+.fr-total td { font-weight: 600; border-top: 1px solid var(--line); }

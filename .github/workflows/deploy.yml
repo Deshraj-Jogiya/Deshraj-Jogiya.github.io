@@ -59,6 +59,8 @@ jobs:
         run: node tools/check_lab_trials.js
       - name: Check the Lab's Benford audit against the Tax Anomaly project's Python
         run: node tools/check_lab_benford.js
+      - name: Check the Lab's fraud rules against the FinRisk project's Python
+        run: node tools/check_lab_fraud.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
