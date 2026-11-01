@@ -800,6 +800,7 @@ h1, h2, h3, h4, .logo-text, .btn {
     text-align: center;
     background-color: rgba(7, 10, 19, 0.5);
 }
+body.light-theme .footer-bar { background-color: rgba(0, 0, 0, 0.03); }
 
 .footer-bar p {
     font-size: 0.85rem;
@@ -1670,7 +1671,7 @@ body.light-theme .sql-select {
 body.light-theme .sql-editor-container {
     background: #f8fafc;
     border-color: rgba(0, 0, 0, 0.08);
-    color: #8cc4ad;
+    color: #2b3036;
 }
 
 body.light-theme .sql-table-container {
@@ -3081,6 +3082,10 @@ body.light-theme .btn-tour-nav {
         width: 90%;
         bottom: 1rem;
     }
+    .tour-overlay-card.tour-card-top {
+        bottom: auto;
+        top: 1rem;
+    }
 }
 
 .tour-header {
@@ -4440,6 +4445,7 @@ body.light-theme .mock-terminal-header span { color: #474d55 !important; }
 /* aliases are resolved on body, where the theme class lives, so the light values apply */
 body { --accent-emerald: var(--ok); --accent-amber: var(--warn); --accent-red: var(--bad); }
 .badge-status-sig { color: var(--ok) !important; background: transparent !important; border: 1px solid currentColor; }
+.badge-status-not-sig { color: var(--warn) !important; background: transparent !important; border: 1px solid currentColor; }
 body.light-theme .obs-tab-btn.active, body.light-theme .arch-tab-btn.active { color: var(--accent-ink) !important; background: var(--accent) !important; }
 /* the console stays dark in both themes, so it keeps the dark-theme status colours */
 .mock-terminal { --ok: #4fd1a5; --warn: #f0b45a; --bad: #f58a8a; --accent-emerald: #4fd1a5; --accent-amber: #f0b45a; --accent-red: #f58a8a; }
@@ -4682,3 +4688,5 @@ a.live-val:hover { text-decoration-color: var(--accent); }
 .ab-own textarea { width: 100%; padding: .5rem .6rem; border-radius: 6px; border: 1px solid var(--line); background: transparent; color: var(--text-primary); font: .82rem/1.45 var(--font-mono); resize: vertical; }
 .ab-own-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .ab-own-actions [hidden] { display: none; }
+/* anchor links and tour steps stop below the fixed navigation bar (81px tall on desktop, 75px on a phone) */
+html { scroll-padding-top: 92px; }

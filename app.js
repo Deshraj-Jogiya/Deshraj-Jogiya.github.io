@@ -1658,7 +1658,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
-            // 2. Cache Miss: call Supabase Edge Function for Gemini API
+            // 2. Cache miss: ask the portfolio-chat edge function. The message goes as typed: the reply format is set by the
+            // function's own system prompt, and the function refuses messages of 500+ characters (6,000 for a fit check).
             console.log("Chatbot Cache Miss. Querying Live Gemini AI via Supabase Edge Function...");
             const functionUrl = `${SUPABASE_URL}/functions/v1/portfolio-chat`;
             const aiRes = await fetch(functionUrl, {
@@ -1669,7 +1670,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Authorization": `Bearer ${SUPABASE_KEY}`
                 },
                 body: JSON.stringify({
-                    message: userQuery + " (Important: Keep the response concise, professional, and recruiter-friendly. Format the response to align with Professional Competency Profile (PCP), Core Capability Statement (CCS), and Career Performance Portfolio (CPP) standards using the structured STAR format (Situation, Task, Action, Result) for experience descriptions. Use clean bullet points (starting with '-' or '*') for lists, bold key terms/achievements, and keep paragraphs short. Avoid long storytelling narratives.)",
+                    message: userQuery,
                     history: conversationHistory
                 })
             });
@@ -2737,7 +2738,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const allTourSteps = [
         {
             title: "Quick tour",
-            desc: "A walk down the page: the work, the experience and the people who vouch for it. Watch it play, or step through at your own pace.",
+            desc: "A walk down the page and into the Lab: the work, live demos, the experience and the people who vouch for it. Watch it play, or step through at your own pace.",
             target: null,
             duration: 0,
             action: async () => {
@@ -2886,7 +2887,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "More projects",
-            desc: "Next, we scroll to his projects. Watch as the search category filters cycle dynamically to show Data Engineering, ML, and Analytics projects.",
+            desc: "His other projects, filtered by area: data engineering, machine learning, analytics. A project with a live demo has a \"Try it in the Lab\" button.",
             target: "#projects",
             duration: 18000,
             action: async () => {
@@ -2943,9 +2944,10 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "The Lab",
-            desc: "Demos that run in your browser, many on your own data: fraud rules, customer segments, survival curves, a shape classifier, ASL signs, SQL and more.",
+            desc: "21 demos that run in your browser, 15 of them on your own data. Next, the tour opens the Lab and runs a few of them, then brings you back here for his experience.",
             target: ".lab-cta",
             duration: 7000,
+            go: { path: "/lab/", title: "All 21 demos" },
             action: async () => {
                 const el = document.querySelector(".lab-cta");
                 if (el) {
@@ -3028,12 +3030,14 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "AI assistant",
-            desc: "Finally, let's open the AI assistant. The tour will type and send: 'summarize his 3+ years of experience' so you can see live RAG retrieval in action.",
+            desc: "Finally, the AI assistant. The tour types and sends 'summarize his 3+ years of experience'; the answer comes only from this site's project data.",
             target: "#chat-launcher",
             duration: 22000,
             action: async () => {
                 const widget = document.getElementById("ai-chat-widget");
                 if (widget) widget.style.zIndex = "100003";
+                // on a phone the chat fills the bottom of the screen, so the card moves to the top for this step
+                if (tourOverlay) tourOverlay.classList.add("tour-card-top");
 
                 const launcher = document.getElementById("chat-launcher");
                 if (launcher) {
@@ -3074,6 +3078,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const chatContainer = document.getElementById("chat-container");
                 if (chatContainer) chatContainer.classList.remove("tour-highlight");
+                if (tourOverlay) tourOverlay.classList.remove("tour-card-top");
             }
         },
         {
@@ -3097,8 +3102,109 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     ];
-    // Only steps whose target exists on this page (the demos live on /lab/, case studies on their own pages)
-    const tourSteps = allTourSteps.filter(step => !step.target || document.querySelector(step.target));
+
+    // The Lab's own tour (/lab/). The home tour hands over at "The Lab" and this one hands back at "Experience".
+    // Scroll an element to just below the fixed navigation bar
+    const scrollBelowNav = (el) => {
+        const nav = [...document.querySelectorAll("header, nav, .navbar")].find(n => getComputedStyle(n).position === "fixed");
+        const top = el.getBoundingClientRect().top + window.scrollY - (nav ? nav.getBoundingClientRect().bottom : 0) - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    };
+    const labFocus = (sel) => {
+        const el = document.querySelector(sel);
+        if (el) { scrollBelowNav(el); el.classList.add("tour-highlight"); }
+        return el;
+    };
+    const labUnfocus = (sel) => { const el = document.querySelector(sel); if (el) el.classList.remove("tour-highlight"); };
+    // Bring a demo's result to the top of the screen, above the tour card (which covers the bottom third on a phone)
+    const labShow = async (sel, wait) => {
+        await delay(wait || 0);
+        const el = document.querySelector(sel);
+        if (el && !el.hidden && el.getClientRects().length) scrollBelowNav(el);
+    };
+    const labClick = (id) => { const b = document.getElementById(id); if (b && !b.disabled) b.click(); };
+    const labMode = (name, value) => { const r = document.querySelector(`input[name="${name}"][value="${value}"]`); if (r && !r.checked) r.click(); };
+    const labStep = (title, desc, sel, duration, run) => ({
+        title, desc, target: sel, duration,
+        action: async () => { labFocus(sel); await delay(900); if (run) await run(); },
+        cleanup: () => labUnfocus(sel)
+    });
+    const labTourSteps = [
+        {
+            title: "Lab tour",
+            desc: "A walk through the Lab: each stop runs a real demo, recomputed in your browser from the project's own data. Watch it play, or step through at your own pace.",
+            target: null,
+            duration: 0,
+            action: async () => { window.scrollTo({ top: 0, behavior: 'smooth' }); await delay(600); }
+        },
+        labStep("All 21 demos", "The index lists every demo by area. \"Uses your own data\" shows the 15 that take a CSV, pasted text, a drawing or your webcam; nothing you give them leaves your device.",
+            ".lab-index", 8000, async () => {
+                const own = document.querySelector('.lab-chip[data-tag="own"]');
+                if (own) own.click();
+                await delay(3500);
+                const all = document.querySelector('.lab-chip[data-tag=""]');
+                if (all) all.click();
+            }),
+        labStep("Shape classifier", "A test shape goes through the same OpenCV steps as the project (grayscale, blur, black and white, outline), then the CNN names it. You can also draw a shape or upload any picture, like a road sign.",
+            "#lm-shapes", 14000, async () => {
+                labMode("lm-mode", "test");
+                labClick("lm-random");
+                await delay(1200);
+                labClick("lm-run");
+                await labShow("#lm-pipeline", 2500);
+                await labShow("#lm-out", 4500);
+            }),
+        labStep("Job description fit", "Career Pilot's rule-based fit score, ported to the browser and checked against the Python on every deploy. Paste any job posting to score it.",
+            "#lt-fit", 10000, async () => {
+                const pick = document.getElementById("fit-sample");
+                if (pick && !pick.value && pick.options.length > 1) { pick.selectedIndex = 1; pick.dispatchEvent(new Event("change", { bubbles: true })); }
+                await delay(600);
+                labClick("fit-run");
+                await labShow("#fit-out", 1500);
+            }),
+        labStep("Survival curves on your data", "Kaplan-Meier curves and a log-rank test. Here it runs on a real published trial pasted in as \"your own data\" and gets the textbook answer, 16.79.",
+            "#st-trials", 11000, async () => {
+                labMode("tr-mode", "own");
+                await labShow("#tr-chart", 1500);
+            }),
+        labStep("Customer segments", "K-Means segments from recency, frequency and spend. Upload your own purchases CSV, or use the sample as here, and get segments with a plain description of each.",
+            "#st-rfm", 11000, async () => {
+                labMode("rf-mode", "own");
+                await delay(500);
+                labClick("rf-sample");
+                await labShow("#rf-out", 2000);
+            }),
+        labStep("Forecast your own series", "The Land Use project's year-ahead models on any yearly series you paste, scored against simply repeating last year's value, the baseline that won on EPA's data.",
+            "#st-em", 11000, async () => {
+                labMode("em-mode", "own");
+                await delay(500);
+                labClick("em-run");
+                await labShow("#em-chart", 1500);
+            }),
+        labStep("SQL playground", "Real queries against tables from four projects, run in your browser and charted.",
+            "#lab-sql", 9000, async () => { labClick("run-sql-btn"); await labShow("#sql-results-table", 1500); }),
+        labStep("Pipeline monitor", "A pipeline run with validation, drift checks and reliability counted from the runs you make here.",
+            "#lab-etl", 9000, async () => { labClick("run-obs-btn"); await labShow(".obs-metrics-panel", 3000); }),
+        labStep("ASL signs and search by meaning", "Two more models: sign one of 29 STEM words to your webcam (nothing is recorded or sent), and search messages by meaning with sentence embeddings. Both download their model only when you press their button.",
+            "#lm-signs", 9000, null),
+        {
+            title: "Back to the home page",
+            desc: "That was the Lab. Next, the tour returns to the home page for his experience, skills and recommendations.",
+            target: null,
+            duration: 5000,
+            go: { path: "/", title: "Experience" },
+            action: async () => {}
+        }
+    ];
+    const onLabPage = location.pathname.startsWith("/lab");
+    // Only steps whose target exists on this page
+    const tourSteps = (onLabPage ? labTourSteps : allTourSteps).filter(step => !step.target || document.querySelector(step.target));
+
+    // Moving between pages: remember the mode and the step to open on the other page, then go there.
+    function tourGo(go) {
+        try { sessionStorage.setItem("tour.resume", JSON.stringify({ path: go.path, title: go.title, mode: tourMode })); } catch (e) {}
+        location.href = go.path;
+    }
 
     function startStepTimer(duration) {
         clearStepTimer();
@@ -3161,7 +3267,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function advanceTourAutomatically() {
-        if (tourCurrentStep < tourSteps.length - 1) {
+        if (tourSteps[tourCurrentStep].go) {
+            tourGo(tourSteps[tourCurrentStep].go);
+        } else if (tourCurrentStep < tourSteps.length - 1) {
             await showTourStep(tourCurrentStep + 1);
         } else {
             endTour();
@@ -3239,7 +3347,8 @@ document.addEventListener("DOMContentLoaded", () => {
             tourPrevBtn.style.display = "inline-block";
             tourNextBtn.style.display = "inline-block";
             tourPrevBtn.style.visibility = stepIdx === 0 ? "hidden" : "visible";
-            tourNextBtn.textContent = stepIdx === tourSteps.length - 1 ? "Finish" : "Next Step";
+            tourNextBtn.textContent = tourSteps[stepIdx].go ? (tourSteps[stepIdx].go.path === "/" ? "Back to home" : "Open the Lab")
+                : stepIdx === tourSteps.length - 1 ? "Finish" : "Next Step";
 
             const progressContainer = document.getElementById("tour-progress-container");
             if (tourMode === 'autoplay') {
@@ -3279,7 +3388,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (tourNextBtn) {
         tourNextBtn.addEventListener("click", async () => {
-            if (tourCurrentStep < tourSteps.length - 1) {
+            if (tourSteps[tourCurrentStep].go) {
+                tourGo(tourSteps[tourCurrentStep].go);
+            } else if (tourCurrentStep < tourSteps.length - 1) {
                 await showTourStep(tourCurrentStep + 1);
             } else {
                 endTour();
@@ -3327,6 +3438,22 @@ document.addEventListener("DOMContentLoaded", () => {
             tourMode = 'manual';
             await showTourStep(1);
         });
+    }
+
+    if (tourOverlay) {
+        let resume = null;
+        try { resume = JSON.parse(sessionStorage.getItem("tour.resume") || "null"); sessionStorage.removeItem("tour.resume"); } catch (e) {}
+        const here = (p) => p === "/" ? !onLabPage : location.pathname.startsWith(p);
+        if (resume && here(resume.path)) {
+            const idx = tourSteps.findIndex(st => st.title === resume.title);
+            if (idx > 0) {
+                tourMode = resume.mode === "autoplay" ? "autoplay" : "manual";
+                isAutoplayPaused = false;
+                tourOverlay.style.display = "block";
+                tourBackdrop.style.display = "block";
+                setTimeout(() => showTourStep(idx), 400);
+            }
+        }
     }
 
     const tourNavBtn = document.getElementById("tour-nav-btn");

@@ -7,7 +7,7 @@
 const TRANSFORMERS = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/+esm";
 
 let index = null, docVecs = null, bm25 = null, models = null, modelsLoading = null, modelsFailed = false;
-let stopwords = new Set(), vocab = new Set(), questionWords = new Set();
+let stopwords = new Set(), vocab = new Set(), skillVocab = new Set(), questionWords = new Set();
 
 // Filler words ("has", "he", "his") are dropped before keyword scoring, as in the evaluated setup
 const tokenize = s => (s.toLowerCase().match(/[a-z0-9#+.]+/g) || []).filter(w => !stopwords.has(w));
@@ -37,6 +37,8 @@ async function loadIndex() {
     docVecs = new Float32Array(bytes.buffer);
     stopwords = new Set(index.stopwords || []);
     vocab = new Set(index.vocab || []);
+    skillVocab = new Set(index.docs.filter(d => String(d.item).startsWith("skills_"))
+        .flatMap(d => d.text.toLowerCase().match(/[a-z0-9#+]+/g) || []));
     questionWords = new Set([...(index.skill_question_words || []), ...stopwords]);
     bm25 = buildBm25(index.docs.map(d => d.text));
     return index;
@@ -45,6 +47,7 @@ async function loadIndex() {
 function loadModels() {
     if (modelsLoading || modelsFailed) return modelsLoading;
     modelsLoading = (async () => {
+        await loadIndex();  // the model names come from the index
         const tf = await import(TRANSFORMERS);
         const embed = await tf.pipeline("feature-extraction", index.embed_model, { dtype: "q8" });
         const tokenizer = await tf.AutoTokenizer.from_pretrained(index.rerank_model);
@@ -122,12 +125,18 @@ function withinEdits(a, b, max) {
     return prev[b.length] <= max;
 }
 
+// Words that ask for a kind of answer ("summarize his 3+ years of experience"), not for a skill. Numbers ("3+") are never a skill.
+const REQUEST_WORDS = new Set(["summarize", "summarise", "summary", "overview", "describe", "tell", "explain", "list", "give",
+    "brief", "briefly", "show", "outline", "walk", "highlight", "highlights", "main", "total", "overall"]);
+
 function unknownSkills(question) {
     if (!SKILL_ASK.test(question)) return [];
     return (question.toLowerCase().match(/[a-z0-9#+]+/g) || []).filter(w => {
-        if (w.length < 2 || vocab.has(w) || questionWords.has(w)) return false;
+        if (w.length < 2 || !/[a-z]/.test(w) || vocab.has(w) || questionWords.has(w) || REQUEST_WORDS.has(w)) return false;
         const max = w.length >= 6 ? 2 : w.length >= 4 ? 1 : 0;
-        if (max && [...vocab].some(v => withinEdits(w, v, max) || (v.length === w.length && isSwap(w, v)))) return false;
+        // a short word one edit from an everyday word ("rust" / "trust") is not a misspelled skill: compare it with skills only
+        const near = w.length < 6 ? skillVocab : vocab;
+        if (max && [...near].some(v => withinEdits(w, v, max) || (v.length === w.length && isSwap(w, v)))) return false;
         return true;
     });
 }

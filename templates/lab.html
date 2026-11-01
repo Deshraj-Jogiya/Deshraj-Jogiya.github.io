@@ -18,6 +18,7 @@
         <header class="case-hero">
             <h1 class="case-title">The Lab</h1>
             <p class="case-summary">{{ lab.demos|length }} demos you can drive yourself, all running in your browser. {{ lab.counts.own }} of them take your own data (a CSV, a pasted text, a drawing, your webcam) and nothing you give them leaves your device. Each one names the project it comes from; the production systems behind them are in the <a href="/#projects">case studies</a>. A last panel is built on <a href="#site-analytics">this site's own visitor log</a>.</p>
+            <p class="lab-tour-cta"><button type="button" id="start-tour-btn" class="btn btn-tour-hero">Tour the Lab</button></p>
         </header>
 
         <nav class="lab-index" aria-labelledby="lab-index-title">
@@ -67,6 +68,7 @@
 {% include "_footer.html" %}
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
+{% include "_tour.html" %}
     <script src="/app.js?v={{ asset_version }}" defer></script>
     <script src="/lab/fit-engine.js?v={{ asset_version }}" defer></script>
     <script src="/lab/lab-tools.js?v={{ asset_version }}" defer></script>
