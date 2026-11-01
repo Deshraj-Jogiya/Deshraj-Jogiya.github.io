@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Lab | Deshraj Jogiya</title>
-    <meta name="description" content="21 in-browser demos of data and ML work, 14 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
+    <meta name="description" content="21 in-browser demos of data and ML work, 15 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <link rel="canonical" href="https://deshraj-jogiya.github.io/lab/">
     <meta name="author" content="Deshraj Jogiya">
     <meta name="theme-color" content="#0f172a">
@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Deshraj Jogiya">
     <meta property="og:title" content="The Lab | Deshraj Jogiya">
-    <meta property="og:description" content="21 in-browser demos of data and ML work, 14 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
+    <meta property="og:description" content="21 in-browser demos of data and ML work, 15 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <meta property="og:url" content="https://deshraj-jogiya.github.io/lab/">
     <meta property="og:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -20,15 +20,15 @@
     <meta property="og:image:alt" content="Deshraj Jogiya, Data Engineer and Machine Learning Engineer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="The Lab | Deshraj Jogiya">
-    <meta name="twitter:description" content="21 in-browser demos of data and ML work, 14 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
+    <meta name="twitter:description" content="21 in-browser demos of data and ML work, 15 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <meta name="twitter:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=4e8d959d2e">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=4e8d959d2e">
+    <link rel="stylesheet" href="/style.css?v=ada5b11911">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=ada5b11911">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -56,14 +56,14 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Lab</nav>
         <header class="case-hero">
             <h1 class="case-title">The Lab</h1>
-            <p class="case-summary">21 demos you can drive yourself, all running in your browser. 14 of them take your own data (a CSV, a pasted text, a drawing, your webcam) and nothing you give them leaves your device. Each one names the project it comes from; the production systems behind them are in the <a href="/#projects">case studies</a>. A last panel is built on <a href="#site-analytics">this site's own visitor log</a>.</p>
+            <p class="case-summary">21 demos you can drive yourself, all running in your browser. 15 of them take your own data (a CSV, a pasted text, a drawing, your webcam) and nothing you give them leaves your device. Each one names the project it comes from; the production systems behind them are in the <a href="/#projects">case studies</a>. A last panel is built on <a href="#site-analytics">this site's own visitor log</a>.</p>
         </header>
 
         <nav class="lab-index" aria-labelledby="lab-index-title">
             <h2 id="lab-index-title" class="lab-index-title">All demos</h2>
             <div class="lab-filters" role="group" aria-label="Show demos">
                 <button type="button" class="lab-chip" data-tag="" aria-pressed="true">All <span>21</span></button>
-                <button type="button" class="lab-chip" data-tag="own" aria-pressed="false">Uses your own data <span>14</span></button>
+                <button type="button" class="lab-chip" data-tag="own" aria-pressed="false">Uses your own data <span>15</span></button>
                 <button type="button" class="lab-chip" data-tag="ml" aria-pressed="false">Trained models <span>7</span></button>
                 <button type="button" class="lab-chip" data-tag="stats" aria-pressed="false">Statistics <span>8</span></button>
                 <button type="button" class="lab-chip" data-tag="data" aria-pressed="false">Data engineering <span>8</span></button>
@@ -79,7 +79,7 @@
                 <li data-tags="ai own"><a href="#lt-fit"><b>Job Description Fit Scorer</b><span>Paste a job posting and get the rule-based fit score Career Pilot uses.</span><em>Your data</em></a></li>
                 <li data-tags="data own"><a href="#lt-contract"><b>Data Contract Checker</b><span>Paste CSV rows and run data-quality rules against them.</span><em>Your data</em></a></li>
                 <li data-tags="data"><a href="#lt-scd"><b>SCD Type 2 Snapshots</b><span>See how a dbt snapshot keeps history that a merge throws away.</span></a></li>
-                <li data-tags="ml stats"><a href="#lt-drift"><b>Drift & Fairness Monitor</b><span>Shift a model's inputs and see which drift and fairness checks fail.</span></a></li>
+                <li data-tags="ml stats own"><a href="#lt-drift"><b>Drift & Fairness Monitor</b><span>Shift a model's inputs, or paste your own two columns, and see which drift and fairness checks fail.</span><em>Your data</em></a></li>
                 <li data-tags="data"><a href="#lt-travel"><b>Lakehouse Time Travel</b><span>Query a table as it was at an earlier version.</span></a></li>
                 <li data-tags="data"><a href="#lt-windows"><b>Event-Time Windows</b><span>Set a watermark and lateness and watch late events land or drop.</span></a></li>
                 <li data-tags="data"><a href="#lt-dag"><b>Airflow Backfill & Retry</b><span>Replay a DAG's retries and backfills day by day.</span></a></li>
@@ -635,6 +635,16 @@
                     <div class="lt-field lt-field-end"><button type="button" class="btn btn-outline" id="dr-new">New random applicants</button></div>
                 </div>
                 <div id="dr-out" class="lt-out" aria-live="polite"></div>
+                <details class="lt-own">
+                    <summary>Check your own data for drift</summary>
+                    <p class="lt-note">Paste a column from the period a model was trained on, and the same column from now: numbers separated by commas, spaces or new lines. The example columns are made up. Nothing is uploaded.</p>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Reference values (training period)</span><textarea id="dr-own-ref" rows="4" spellcheck="false">52.3, 64.2, 63.0, 47.4, 49.3, 47.3, 57.1, 51.5, 58.7, 35.4, 66.1, 51.1, 58.1, 50.8, 48.6, 56.2, 59.4, 50.2, 50.6, 58.2, 44.2, 38.4, 55.6, 46.0, 34.7, 44.7, 47.8, 41.3, 38.6, 52.3, 60.1, 49.9, 45.3, 55.5, 58.5, 49.3, 56.9, 61.4, 50.1, 44.7, 55.1, 54.2, 61.9, 40.4, 46.0, 44.5, 36.4, 53.1, 56.8, 45.4, 64.5, 59.4, 57.6, 55.6, 60.6, 40.0, 57.5, 57.4, 36.1, 55.1</textarea></label>
+                        <label class="lt-field lt-grow"><span>Current values</span><textarea id="dr-own-cur" rows="4" spellcheck="false">54.2, 65.6, 52.2, 56.8, 60.8, 47.4, 63.6, 55.8, 62.4, 51.3, 68.9, 63.7, 55.0, 64.0, 70.9, 76.7, 39.7, 66.7, 62.1, 56.0, 45.9, 70.8, 43.1, 63.2, 71.3, 39.4, 53.7, 42.6, 59.7, 73.7, 79.3, 37.4, 50.7, 64.7, 74.4, 61.6, 48.8, 60.3, 56.8, 54.8, 48.9, 61.3, 60.4, 56.0, 54.6, 42.9, 51.7, 70.3, 54.9, 41.2, 71.7, 62.8, 80.2, 57.7, 51.9, 41.1, 71.6, 85.3, 48.0, 49.9</textarea></label>
+                    </div>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="dr-own-run">Compare my columns</button></div>
+                    <div id="dr-own-out" class="lt-out" aria-live="polite"></div>
+                </details>
 
                 <h4 class="lt-sub">Part 2: is the model fair to both groups?</h4>
                 <ol class="lt-steps"><li>Drag <b>Approval cut-off</b>: applicants scoring above it are approved.</li><li>Watch both groups' bars move. A red note appears when the gap breaks a fairness rule.</li></ol>
@@ -1123,18 +1133,18 @@ To reset your password, use the link on the sign-in page.</textarea></label></di
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/fit-engine.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-tools.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-models.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-signs.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-trials.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-benford.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-fraud.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-posts.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-qa.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-rfm.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-emissions.js?v=4e8d959d2e" defer></script>
-    <script src="/lab/lab-index.js?v=4e8d959d2e" defer></script>
+    <script src="/app.js?v=ada5b11911" defer></script>
+    <script src="/lab/fit-engine.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-tools.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-models.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-signs.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-trials.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-benford.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-fraud.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-posts.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-qa.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-rfm.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-emissions.js?v=ada5b11911" defer></script>
+    <script src="/lab/lab-index.js?v=ada5b11911" defer></script>
 </body>
 </html>

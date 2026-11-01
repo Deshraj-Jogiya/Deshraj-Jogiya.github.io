@@ -364,6 +364,35 @@
       for (var k = 1; k <= 100; k++) { var t = 2 * Math.pow(-1, k - 1) * Math.exp(-2 * k * k * lam * lam); p += t; if (Math.abs(t) < 1e-10) break; }
       return { d: d, p: Math.min(1, Math.max(0, p)) };
     }
+    // A visitor's own two columns: the same PSI and KS test on any numbers (one per line, or separated by commas or spaces).
+    function numbers(text) {
+      var out = [], bad = 0;
+      String(text).split(/[\s,;]+/).forEach(function (t) { if (!t) return; var v = Number(t.replace(/[$%]/g, "")); if (isFinite(v)) out.push(v); else bad++; });
+      return { values: out, bad: bad };
+    }
+    function ownDrift() {
+      var ref = numbers($("dr-own-ref").value), cur2 = numbers($("dr-own-cur").value), box = $("dr-own-out");
+      if (ref.values.length < 20 || cur2.values.length < 20) { box.innerHTML = '<p class="lt-note">Paste at least 20 numbers in each box.</p>'; return; }
+      var p = psi(ref.values, cur2.values), k = ks(ref.values, cur2.values), big = p.value > 0.25 || k.p < 0.01;
+      var mean = function (a) { return a.reduce(function (s, v) { return s + v; }, 0) / a.length; };
+      var st = p.value > 0.25 ? pill("bad", "changed a lot") : k.p < 0.01 ? pill("bad", "changed") : p.value >= 0.1 ? pill("warn", "changing") : pill("ok", "steady");
+      var html = '<p class="lt-callout ' + (big ? "bad" : "ok") + '">' + (big ? "<b>Alert:</b> the current values no longer match the reference." : "<b>No alert:</b> the current values look like the reference.") + "</p>" +
+        '<div class="lt-scroll"><table class="lt-table"><thead><tr><th>Status</th><th class="num">PSI</th><th class="num">KS test p</th><th class="num">Mean, reference</th><th class="num">Mean, current</th></tr></thead><tbody><tr><td>' + st +
+        '</td><td class="num">' + p.value.toFixed(3) + '</td><td class="num">' + (k.p < 0.0001 ? "&lt;0.0001" : k.p.toFixed(4)) + '</td><td class="num">' + mean(ref.values).toFixed(2) + '</td><td class="num">' + mean(cur2.values).toFixed(2) + "</td></tr></tbody></table></div>";
+      var bins = p.bins, W1 = 560, H1 = 170, pl = 34, pb = 26, bw = (W1 - pl - 8) / Math.max(1, bins.length), top = Math.max.apply(null, bins.map(function (b) { return Math.max(b[0], b[1]); })) * 1.15 || 0.2, bars = "";
+      bins.forEach(function (b, i) {
+        var x = pl + i * bw, hb = (H1 - pb - 10) * b[0] / top, hc = (H1 - pb - 10) * b[1] / top;
+        bars += '<rect class="base" x="' + (x + 2) + '" y="' + (H1 - pb - hb) + '" width="' + (bw / 2 - 3) + '" height="' + hb + '"><title>Tenth ' + (i + 1) + ": reference " + (b[0] * 100).toFixed(1) + "%</title></rect>" +
+                '<rect class="cur" x="' + (x + bw / 2) + '" y="' + (H1 - pb - hc) + '" width="' + (bw / 2 - 3) + '" height="' + hc + '"><title>Tenth ' + (i + 1) + ": current " + (b[1] * 100).toFixed(1) + "%</title></rect>";
+      });
+      bars += '<text x="' + (pl + bw / 2) + '" y="' + (H1 - 8) + '" text-anchor="middle">lowest</text><text x="' + (W1 - 8 - bw / 2) + '" y="' + (H1 - 8) + '" text-anchor="middle">highest</text>';
+      html += svgEl(W1, H1, bars, "Share of values in each tenth of the reference range: reference and current");
+      html += '<p class="lt-note">' + ref.values.length + " reference and " + cur2.values.length + " current values" + (ref.bad + cur2.bad ? "; " + (ref.bad + cur2.bad) + " entries were not numbers and were skipped" : "") +
+        ". Bars: share of values in each tenth of the reference range (light: reference, dark: current). The KS p-value uses the large-sample formula, so with small columns treat it as approximate; PSI from fewer than about 100 values per column is noisy and tends to run high. Read in your browser; nothing was uploaded.</p>";
+      box.innerHTML = html;
+    }
+    $("dr-own-run").addEventListener("click", ownDrift);
+
     var base = gen(2000, 7, { mix: 0.4 }), seed = 101, cur;
     function opts() { return { feature: $("dr-feature").value, shift: +$("dr-shift").value, spread: +$("dr-spread").value, mix: +$("dr-mix").value / 100 }; }
     function rates(rows, thr) {

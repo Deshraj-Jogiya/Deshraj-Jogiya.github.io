@@ -108,10 +108,11 @@
    "id": "lt-drift",
    "title": "Drift & Fairness Monitor",
    "section": "more-demos",
-   "what": "Shift a model's inputs and see which drift and fairness checks fail.",
+   "what": "Shift a model's inputs, or paste your own two columns, and see which drift and fairness checks fail.",
    "tags": [
     "ml",
-    "stats"
+    "stats",
+    "own"
    ],
    "projects": [
     "AI-Model-Observability-Auditing"
