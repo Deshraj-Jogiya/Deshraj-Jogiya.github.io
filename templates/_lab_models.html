@@ -1,0 +1,45 @@
+        <section id="model-demos" class="lt-section" aria-labelledby="model-demos-title">
+            <h2 id="model-demos-title" class="section-title">Trained Models, Running in Your Browser</h2>
+            <p class="lt-intro">These are the projects' own trained models, not re-creations. They download only when you press Run, then run on this page; nothing you draw or show them leaves your device.</p>
+
+            <!-- Shape classifier (Solid Object Detection) -->
+            <article class="lt-panel" id="lm-shapes" aria-labelledby="lm-shapes-title">
+                <h3 class="lt-title" id="lm-shapes-title">Shape Classifier</h3>
+                <p class="lt-lede">A small CNN that names the shape in a 64 x 64 image (circle, square, triangle, rectangle, pentagon, hexagon or star) and draws a box around it. It scored 99.20% on 2,000 held-out images.</p>
+                <ol class="lt-steps"><li>Pick a test shape below, or switch to <b>Draw your own</b>.</li><li>Press <b>Run the model</b>. The first run downloads it (about 3 MB).</li><li>Read the scores for all 7 shapes, and the box the model drew.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Input</legend>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="test" checked> Held-out test shape</label>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="draw"> Draw your own</label></fieldset>
+                </div>
+                <div id="lm-test-pick">
+                    <div class="lm-thumbs" id="lm-thumbs" role="listbox" aria-label="Held-out test shapes"></div>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-more">Show all 63 test shapes</button>
+                        <button type="button" class="btn btn-outline" id="lm-random">Random test shape</button></div>
+                </div>
+                <div id="lm-draw-pick" hidden>
+                    <p class="lt-note">Draw one filled shape with your finger or mouse. Your drawing is not like the training images (those are clean, filled and slightly noisy), so expect lower accuracy here; the 99.20% applies only to the test shapes.</p>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-clear">Clear</button></div>
+                </div>
+                <div class="lm-stage">
+                    <canvas id="lm-canvas" width="256" height="256" aria-label="The image the model will classify"></canvas>
+                    <div id="lm-out" class="lt-out lm-out" aria-live="polite"></div>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="lm-run">Run the model (about 3 MB, first time only)</button></div>
+                <details class="lt-more"><summary>How it scored on each shape</summary>
+                    <div class="lt-scroll"><table class="lt-table">
+                        <thead><tr><th>Shape</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1</th></tr></thead>
+                        <tbody>
+                            <tr><td>Circle</td><td class="num">1.0000</td><td class="num">0.9930</td><td class="num">0.9965</td></tr>
+                            <tr><td>Square</td><td class="num">0.9873</td><td class="num">1.0000</td><td class="num">0.9936</td></tr>
+                            <tr><td>Triangle</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
+                            <tr><td>Rectangle</td><td class="num">1.0000</td><td class="num">0.9860</td><td class="num">0.9930</td></tr>
+                            <tr class="lt-closed-now"><td>Pentagon</td><td class="num">0.9794</td><td class="num">0.9828</td><td class="num">0.9811</td></tr>
+                            <tr class="lt-closed-now"><td>Hexagon</td><td class="num">0.9779</td><td class="num">0.9815</td><td class="num">0.9797</td></tr>
+                            <tr><td>Star</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
+                        </tbody></table></div>
+                    <p class="lt-note">Pentagons and hexagons, highlighted, are the pair it confuses most: at 64 x 64 pixels their corners blur into near-circles.</p>
+                </details>
+                <p class="lt-source">The model and test images come from <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" rel="noopener">Solid Object Detection</a>: the same ONNX file it serves on AWS Lambda, and 9 images of each shape from its seed-42 held-out split (<a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). For a test shape, the page also shows Python's score for the same image; every deploy checks the two agree.</p>
+            </article>
+        </section>

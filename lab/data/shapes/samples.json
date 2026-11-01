@@ -1,0 +1,897 @@
+{
+ "classes": [
+  "circle",
+  "square",
+  "triangle",
+  "rectangle",
+  "pentagon",
+  "hexagon",
+  "star"
+ ],
+ "input": "image",
+ "size": 64,
+ "samples": [
+  {
+   "file": "shape_004895.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.990572,
+    0.0,
+    0.009197,
+    0.000231,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_001551.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_006385.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_003989.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.965642,
+    0.034358,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_006179.png",
+   "label": "hexagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.005809,
+    0.994191,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_007864.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    0.0,
+    2e-06,
+    0.999998,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_008017.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    1e-06,
+    0.0,
+    0.999995,
+    0.0,
+    0.0,
+    4e-06
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_002999.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.999997,
+    3e-06,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_003125.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    5.3e-05,
+    0.0,
+    0.999946,
+    1e-06,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_002321.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.994128,
+    1e-06,
+    0.004244,
+    0.001626,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_001929.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    6e-06,
+    0.0,
+    0.999994,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_001450.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    3e-06,
+    0.0,
+    0.0,
+    0.977323,
+    0.022674,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_007934.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_002021.png",
+   "label": "hexagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.000436,
+    0.999564,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_008085.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    0.316431,
+    0.002154,
+    0.681072,
+    0.000342,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_007075.png",
+   "label": "hexagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.00065,
+    0.99935,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_000789.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.981683,
+    0.0,
+    0.000333,
+    0.017984,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_009376.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    2e-06,
+    0.0,
+    0.999998,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_003991.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.995722,
+    1e-06,
+    0.001744,
+    0.002533,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_006283.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.92321,
+    0.0,
+    0.076785,
+    4e-06,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_004797.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.999629,
+    0.0,
+    0.0,
+    0.0,
+    0.000371
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_003074.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    1e-06,
+    0.0,
+    0.0,
+    0.0,
+    0.999999
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_007024.png",
+   "label": "hexagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.107393,
+    0.892607,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_003238.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    7.5e-05,
+    0.98597,
+    0.0,
+    0.000362,
+    0.0,
+    0.013592
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_004297.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.964519,
+    1e-05,
+    0.000156,
+    0.035315,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_002459.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.969196,
+    0.0,
+    0.030804,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_003862.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_002387.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.994796,
+    4e-06,
+    0.00434,
+    0.000859,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_002095.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    9.7e-05,
+    0.0,
+    0.0,
+    0.997723,
+    0.002179,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_009299.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    2.5e-05,
+    0.0,
+    0.0,
+    0.0,
+    0.999975
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_002066.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_003055.png",
+   "label": "circle",
+   "probs": [
+    0.927962,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.072038,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_004923.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.997933,
+    0.002067,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_008766.png",
+   "label": "hexagon",
+   "probs": [
+    2.8e-05,
+    0.0,
+    0.0,
+    0.0,
+    3.2e-05,
+    0.99994,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_008357.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_008933.png",
+   "label": "star",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ],
+   "predicted": "star"
+  },
+  {
+   "file": "shape_004935.png",
+   "label": "square",
+   "probs": [
+    0.0,
+    0.988245,
+    1e-06,
+    0.011393,
+    0.00036,
+    0.0,
+    0.0
+   ],
+   "predicted": "square"
+  },
+  {
+   "file": "shape_007610.png",
+   "label": "hexagon",
+   "probs": [
+    3e-06,
+    0.0,
+    0.0,
+    0.0,
+    2e-06,
+    0.999995,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_003367.png",
+   "label": "circle",
+   "probs": [
+    0.999209,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.000791,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_006963.png",
+   "label": "circle",
+   "probs": [
+    0.997449,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.002551,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_002276.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_006086.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_004301.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    4e-06,
+    0.0,
+    0.0,
+    0.999991,
+    4e-06,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_005893.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.99642,
+    0.00358,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_006859.png",
+   "label": "hexagon",
+   "probs": [
+    1e-06,
+    0.0,
+    0.0,
+    0.0,
+    0.001254,
+    0.998746,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_000112.png",
+   "label": "circle",
+   "probs": [
+    0.999645,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.000355,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_003485.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.999975,
+    0.0,
+    0.0,
+    0.0,
+    2.5e-05
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_002915.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.999999,
+    0.0,
+    0.0,
+    0.0,
+    1e-06
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_004659.png",
+   "label": "rectangle",
+   "probs": [
+    0.0,
+    5e-06,
+    0.0,
+    0.999992,
+    3e-06,
+    0.0,
+    0.0
+   ],
+   "predicted": "rectangle"
+  },
+  {
+   "file": "shape_008666.png",
+   "label": "circle",
+   "probs": [
+    0.999445,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.000555,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_005230.png",
+   "label": "circle",
+   "probs": [
+    0.996621,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.003379,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_002374.png",
+   "label": "circle",
+   "probs": [
+    0.992296,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.007704,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_009827.png",
+   "label": "hexagon",
+   "probs": [
+    1e-06,
+    0.0,
+    0.0,
+    0.0,
+    1e-05,
+    0.999989,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_001038.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.999825,
+    0.0,
+    0.0,
+    0.0,
+    0.000175
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_001936.png",
+   "label": "circle",
+   "probs": [
+    0.999028,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.000972,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_003625.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.999982,
+    1.8e-05,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_000134.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    1.4e-05,
+    0.996588,
+    0.0,
+    0.003264,
+    0.0,
+    0.000135
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_008614.png",
+   "label": "circle",
+   "probs": [
+    0.999852,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.000148,
+    0.0
+   ],
+   "predicted": "circle"
+  },
+  {
+   "file": "shape_003511.png",
+   "label": "hexagon",
+   "probs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.000344,
+    0.999656,
+    0.0
+   ],
+   "predicted": "hexagon"
+  },
+  {
+   "file": "shape_001251.png",
+   "label": "pentagon",
+   "probs": [
+    0.0,
+    1.2e-05,
+    0.0,
+    0.0,
+    0.998168,
+    0.00182,
+    0.0
+   ],
+   "predicted": "pentagon"
+  },
+  {
+   "file": "shape_002775.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.999892,
+    0.0,
+    0.0,
+    0.0,
+    0.000108
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_006436.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.999998,
+    1e-06,
+    0.0,
+    0.0,
+    1e-06
+   ],
+   "predicted": "triangle"
+  },
+  {
+   "file": "shape_009449.png",
+   "label": "triangle",
+   "probs": [
+    0.0,
+    0.0,
+    0.999992,
+    0.0,
+    0.0,
+    0.0,
+    8e-06
+   ],
+   "predicted": "triangle"
+  }
+ ]
+}

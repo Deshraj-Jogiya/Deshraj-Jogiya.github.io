@@ -164,3 +164,24 @@ fieldset.lt-field { flex-direction: column; }
 .lt-more { margin: 0 0 1rem; }
 .lt-more summary { cursor: pointer; font-size: 0.85rem; color: var(--accent); margin-bottom: 0.75rem; }
 .lt-panel .lt-sub:first-of-type { margin-top: 0.5rem; }
+
+/* Trained-model demos (templates/_lab_models.html, lab/lab-models.js) */
+.lm-thumbs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.25rem 0 0.25rem; }
+.lm-thumb { padding: 2px; border: 2px solid var(--line); border-radius: 6px; background: var(--surface-2); cursor: pointer; line-height: 0; }
+.lm-thumb[aria-selected="true"] { border-color: var(--accent); }
+.lm-thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lm-thumb img { width: 48px; height: 48px; image-rendering: pixelated; border-radius: 3px; }
+.lm-stage { display: grid; grid-template-columns: minmax(0, 256px) minmax(0, 1fr); gap: 1.25rem; align-items: start; margin: 0.75rem 0; }
+.lm-stage canvas { width: 100%; max-width: 256px; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); touch-action: auto; }
+.lm-stage canvas.lm-drawing { touch-action: none; cursor: crosshair; }
+.lm-out { margin-top: 0; }
+.lm-verdict { margin: 0 0 0.75rem; font-size: 0.95rem; }
+.lm-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+.lm-bars li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 4.2rem; gap: 0.5rem; align-items: center; font-size: 0.8rem; }
+.lm-name { color: var(--text-secondary); }
+.lm-track { height: 0.6rem; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+.lm-fill { display: block; height: 100%; background: var(--lt-idle); }
+.lm-fill.lm-top { background: var(--accent); }
+.lm-val { font: 0.75rem var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .lm-stage { grid-template-columns: minmax(0, 1fr); } .lm-stage canvas { justify-self: center; } }
+@media (prefers-reduced-motion: no-preference) { .lm-fill { transition: width 0.3s ease; } }
