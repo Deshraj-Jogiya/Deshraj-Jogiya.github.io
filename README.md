@@ -1,6 +1,6 @@
 # 🧠 Deshraj Jogiya — Data & AI/ML Engineering Portfolio
 
-Source code for the portfolio website: projects, certifications, interactive SQL and pipeline demos, and a recruiter chatbot that answers from the same project data.
+Source code for the portfolio website: projects, certifications, a Lab of 21 in-browser demos, and a recruiter chatbot that answers from the same project data.
 
 👉 **Live Site:** **[https://deshraj-jogiya.github.io/](https://deshraj-jogiya.github.io/)**
 
@@ -48,13 +48,36 @@ Unlike static HTML sites, this portfolio is built using a **Python-based Static 
 
 ## 🌟 Interactive Showcase Features
 
-To demonstrate data engineering, database modeling, and frontend integration skills directly to recruiters, the site includes six interactive components:
-1. **In-Browser SQL Playground:** Select analytical queries from a dropdown (e.g., segment revenue shares, Benford's Law audit outliers, clinical survival deltas), inspect highlighted SQL syntax, and click "Execute Query" to see SQLite-simulated database outputs in a clean grid.
-2. **Live ETL Observability Console & Traffic Monitor:** A telemetry widget simulating daily retail sales ETL. Displays scrolling log console checkpoints, calculates feature data drift (Kolmogorov-Smirnov test), tracks vibration/temperature Z-score thresholds, and visualizes live visitor geolocation analytics.
-3. **A/B Hypothesis Testing Simulator:** Drag conversion rate sliders and simulate live hypothesis testing. Runs a two-tailed Z-test on proportions, outputs Uplift, Z-Score, and P-value, and evaluates statistical significance ($p < 0.05$).
-4. **Model Decision Threshold Optimizer:** Adjust decision thresholds to optimize user conversion and model performance. Simulates confusion matrices, Precision/Recall, and models Net ROI impact to identify the most profitable classification boundary.
-5. **Print-Ready HTML Resume Viewer:** A modal rendering a complete structured resume. Equipped with CSS `@media print` layout overrides to print perfectly as a clean document (without dark background, navigation elements, or modal buttons).
-6. **AI Recruiter Assistant:** A conversational chatbot (hero CTA + launcher) answering questions about Deshraj's experience, projects, and skills, with real conversation memory for natural follow-ups. Backed by a Supabase Edge Function ([`supabase/functions/portfolio-chat`](supabase/functions/portfolio-chat)) that reads live from [`projects.json`](projects.json) on every request -- it can't answer with stale data because it's never given the chance to. Supports Anthropic or Gemini as the LLM provider via a `LLM_PROVIDER` secret. Answers are cached in Supabase per question to avoid repeat LLM calls; the cache is automatically cleared by the deploy workflow whenever `projects.json` changes ([`supabase/functions/clear-chatbot-cache`](supabase/functions/clear-chatbot-cache)), so a cached answer can't outlive the data it was generated from.
+**The Lab** ([/lab/](https://deshraj-jogiya.github.io/lab/)) has 21 demos that run in the visitor's browser; 15 of them also take the visitor's own data, which never leaves the browser. Each ported model or statistic is checked against its project's Python code on every deploy (`tools/check_lab_*.js`, see `.github/workflows/deploy.yml`). The list is [`lab/demos.json`](lab/demos.json); the Lab index, the "Try it in the Lab" buttons on project cards and case studies, and both assistants read it.
+
+| Demo | What it does |
+|---|---|
+| [SQL Analytics Playground](https://deshraj-jogiya.github.io/lab/#lab-sql) | Write SQL against tables from four projects and chart the result. |
+| [ETL Pipeline Monitor](https://deshraj-jogiya.github.io/lab/#lab-etl) | Run a pipeline and watch latency, reliability and drift checks. |
+| [A/B Test Significance](https://deshraj-jogiya.github.io/lab/#ab-testing-widget) | Simulate an experiment or test your own visitor and conversion counts with a z-test. |
+| [Model Threshold Tuner](https://deshraj-jogiya.github.io/lab/#threshold-widget) | Move a model's decision threshold, or paste your own scores and costs, and find the best one. |
+| [Pipeline Architecture Explorer](https://deshraj-jogiya.github.io/lab/#lab-arch) | Walk through real pipeline designs, step by step. |
+| [Job Description Fit Scorer](https://deshraj-jogiya.github.io/lab/#lt-fit) | Paste a job posting and get the rule-based fit score Career Pilot uses. |
+| [Data Contract Checker](https://deshraj-jogiya.github.io/lab/#lt-contract) | Paste CSV rows and run data-quality rules against them. |
+| [SCD Type 2 Snapshots](https://deshraj-jogiya.github.io/lab/#lt-scd) | See how a dbt snapshot keeps history that a merge throws away. |
+| [Drift & Fairness Monitor](https://deshraj-jogiya.github.io/lab/#lt-drift) | Shift a model's inputs, or paste your own two columns, and see which drift and fairness checks fail. |
+| [Lakehouse Time Travel](https://deshraj-jogiya.github.io/lab/#lt-travel) | Query a table as it was at an earlier version. |
+| [Event-Time Windows](https://deshraj-jogiya.github.io/lab/#lt-windows) | Set a watermark and lateness and watch late events land or drop. |
+| [Airflow Backfill & Retry](https://deshraj-jogiya.github.io/lab/#lt-dag) | Replay a DAG's retries and backfills day by day. |
+| [Shape Classifier](https://deshraj-jogiya.github.io/lab/#lm-shapes) | Draw or upload a shape; see each image-processing step, then the model's answer. |
+| [ASL Word Signs](https://deshraj-jogiya.github.io/lab/#lm-signs) | Sign to your webcam or upload a clip; a GRU names the sign. |
+| [Survival Curves by Dosage](https://deshraj-jogiya.github.io/lab/#st-trials) | Kaplan-Meier curves and a log-rank test, on trial data or your own. |
+| [Benford's Law Audit](https://deshraj-jogiya.github.io/lab/#st-benford) | Test any column of amounts against Benford's first-digit law. |
+| [Fraud Rule Tester](https://deshraj-jogiya.github.io/lab/#st-fraud) | Tune fraud rules on 345,524 transactions or your own CSV. |
+| [LinkedIn Post Checker](https://deshraj-jogiya.github.io/lab/#st-posts) | Paste a draft and run CurioSync's writing rules on it. |
+| [Member Q&A by Meaning](https://deshraj-jogiya.github.io/lab/#st-qa) | Ask questions answered by sentence embeddings, on members' messages or your own text. |
+| [Customer Segments by RFM](https://deshraj-jogiya.github.io/lab/#st-rfm) | K-Means segments from recency, frequency and spend, on 2,000 customers or your CSV. |
+| [Land-Use Emissions Forecast](https://deshraj-jogiya.github.io/lab/#st-em) | EPA land-use series forecast a year ahead; test your own yearly series. |
+
+Also on the site:
+- **Print-ready resume viewer:** a modal with a `@media print` layout that prints as a clean document.
+- **AI recruiter assistant:** answers questions about experience, projects and skills, and checks a pasted job description against the profile. It runs on a Supabase Edge Function ([`supabase/functions/portfolio-chat`](supabase/functions/portfolio-chat)) that reads [`projects.json`](projects.json) and [`lab/demos.json`](lab/demos.json) on every request (Anthropic or Gemini via an `LLM_PROVIDER` secret). Answers are cached per question; the deploy workflow clears the cache when either file changes. If the LLM call fails, a browser-only assistant takes over: BM25 and bge-small search over [`assets/assistant_index.json`](assets/assistant_index.json), reranked by a small cross-encoder, with answer cards built from the same profile.
+- **Guided tour** of the home page, and an anonymous visitor log (page views, scroll depth, sections seen, key clicks and which Lab demos were used).
 
 ---
 

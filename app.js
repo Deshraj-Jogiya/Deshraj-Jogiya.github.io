@@ -3455,6 +3455,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll("main section[id]").forEach(s => io.observe(s));
     }
     document.addEventListener("click", e => {
+        // Lab: record which demo was used (any control inside it), once per demo per page view
+        const demo = e.target.closest("a, button, input, select, textarea, canvas, summary, label")
+            && e.target.closest(".lt-panel[id], .glass-card[id]");
+        if (demo && location.pathname.startsWith("/lab") && !sent.has("lab:" + demo.id)) {
+            sent.add("lab:" + demo.id);
+            send("click", "lab:" + demo.id);
+        }
         const el = e.target.closest("a, button");
         if (!el) return;
         const label = el.dataset.track || (el.id ? "#" + el.id : "") || (el.getAttribute("href") || "").replace(/^https?:\/\//, "");

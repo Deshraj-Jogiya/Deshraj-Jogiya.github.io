@@ -6,6 +6,8 @@ const corsHeaders = {
 }
 
 const PROJECTS_JSON_URL = "https://raw.githubusercontent.com/Deshraj-Jogiya/Deshraj-Jogiya.github.io/main/projects.json"
+const LAB_JSON_URL = "https://raw.githubusercontent.com/Deshraj-Jogiya/Deshraj-Jogiya.github.io/main/lab/demos.json"
+const LAB_PAGE = "https://deshraj-jogiya.github.io/lab/"
 const MAX_MESSAGE_LENGTH = 500
 const MAX_FIT_CHECK_LENGTH = 6000 // a pasted job description, sent with the "FIT CHECK:" prefix
 const MAX_HISTORY_TURNS = 6 // server-side cap regardless of what the client sends
@@ -25,6 +27,7 @@ async function fetchProfileContext(): Promise<string> {
     throw new Error(`Failed to fetch profile data: ${res.status}`)
   }
   const data = await res.json()
+  const labLines = await fetchLabLines(data.projects || [])
 
   const strip = (h: string) => (h || "").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&")
 
@@ -62,7 +65,28 @@ async function fetchProfileContext(): Promise<string> {
     .map((t: any) => `  - ${t.name} (${t.headline}; ${t.relation}, ${t.date}): "${(t.paragraphs || []).join(" ")}"`)
     .join("\n")
 
-  return `Summary:\n  ${data.summary || ""}\n\nWork History:\n${expLines}\n\nKey Projects:\n${projectLines}\n\nTechnical Skills:\n${skillLines}\n\nCertifications & Training:\n${certLines}\n\nEducation:\n${eduLines}\n\nLinkedIn Recommendations (verbatim, quote only from these when asked what others say about him):\n${recLines}`
+  return `Summary:\n  ${data.summary || ""}\n\nWork History:\n${expLines}\n\nKey Projects:\n${projectLines}\n\nTechnical Skills:\n${skillLines}\n\nCertifications & Training:\n${certLines}\n\nEducation:\n${eduLines}\n\nLinkedIn Recommendations (verbatim, quote only from these when asked what others say about him):\n${recLines}${labLines ? `\n\nLive Lab demos (run in the visitor's browser; link = where to try it):\n${labLines}` : ""}`
+}
+
+// The Lab's demo list (lab/demos.json, the same file the Lab page is built from). If it cannot be read the chat still works,
+// just without demo links.
+async function fetchLabLines(projects: any[]): Promise<string> {
+  try {
+    const res = await fetch(LAB_JSON_URL, { headers: { "Cache-Control": "no-cache" } })
+    if (!res.ok) return ""
+    const lab = await res.json()
+    const nameFor = (key: string) => {
+      const k = key.toLowerCase()
+      const p = projects.find((q: any) => `${q.slug || ""} ${q.github_url || ""}`.toLowerCase().includes(k))
+      return p ? p.name : null
+    }
+    return (lab.demos || []).map((d: any) => {
+      const names = (d.projects || []).map(nameFor).filter(Boolean)
+      return `  - ${d.title} (${LAB_PAGE}#${d.id}): ${d.what}${names.length ? ` Project: ${names.join("; ")}.` : ""}`
+    }).join("\n")
+  } catch {
+    return ""
+  }
 }
 
 function buildSystemPrompt(profileContext: string): string {
@@ -82,6 +106,8 @@ CRITICAL RECRUITER-FIRST RESPONSE RULES:
    (a) one line on overall fit for that role; (b) "Matches": the requirements he meets, each naming the role or project from the
    background below that shows it; (c) "Gaps": requirements the background does not show, stated plainly. Never claim a skill,
    tool, year count or result that is not in the background. Keep it under about 180 words.
+8. LAB DEMOS: when an answer is about a project that has a Live Lab demo below, or someone asks what they can try, add one short
+   line with the demo's name and its link. Only use links from the Live Lab demos list.
 
 Contact Information:
   - Email: djogiya786@gmail.com
