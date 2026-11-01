@@ -8,7 +8,7 @@
             
             <div class="interactive-grid" style="display: flex; flex-direction: column; gap: 3rem; max-width: 1000px; margin: 0 auto;">
                 <!-- SQL Analytics Playground -->
-                <div class="sql-widget glass-card">
+                <div class="sql-widget glass-card" id="lab-sql">
                     <div class="sql-header">
                         <h3 class="sql-title">SQL Analytics Playground</h3>
 </div>
@@ -68,7 +68,7 @@
 </div>
 
                 <!-- Live ETL Observability Monitor -->
-                <div class="observability-widget glass-card">
+                <div class="observability-widget glass-card" id="lab-etl">
                     <div class="obs-header">
                         <h3 class="obs-title">Live ETL Pipeline Observability Monitor</h3>
                         <div class="obs-status idle" id="obs-status">
@@ -245,6 +245,18 @@
 </div>
 </div>
 
+                            <form class="ab-own" id="ab-own" novalidate>
+                                <p class="ab-own-title">Test your own numbers</p>
+                                <div class="ab-own-grid">
+                                    <label>A visitors<input id="ab-own-na" type="number" min="1" step="1" inputmode="numeric" value="4210"></label>
+                                    <label>A conversions<input id="ab-own-ca" type="number" min="0" step="1" inputmode="numeric" value="389"></label>
+                                    <label>B visitors<input id="ab-own-nb" type="number" min="1" step="1" inputmode="numeric" value="4187"></label>
+                                    <label>B conversions<input id="ab-own-cb" type="number" min="0" step="1" inputmode="numeric" value="441"></label>
+                                </div>
+                                <button type="submit" class="btn btn-outline">Test my numbers</button>
+                                <p class="ab-own-note" id="ab-own-note">Groups may differ in size. The example counts are made up. Nothing leaves your browser.</p>
+                            </form>
+
                             <div class="widget-context" style="padding: 1rem; background: rgba(140, 196, 173, 0.03); border: 1px solid rgba(140, 196, 173, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
                                 <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
@@ -342,7 +354,7 @@
 </div>
 
                 <!-- Data Pipeline Architecture Explorer -->
-                <div class="architecture-widget glass-card">
+                <div class="architecture-widget glass-card" id="lab-arch">
                     <div class="arch-header" style="margin-bottom: 1.5rem;">
                         <h3 class="arch-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">Data Pipeline Architecture Explorer</h3>
                         <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Interact with real-world pipeline system designs to see data flow, tool stacks, and Python execution modules.</p>

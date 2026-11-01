@@ -32,6 +32,7 @@
             <div class="hero-actions">
                 {% if cs.demo_url %}<a href="{{ cs.demo_url }}" class="btn btn-primary" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
                 {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-outline" target="_blank" rel="noopener">Code on GitHub ↗</a>{% endif %}
+                {% for d in project.lab_demos %}<a href="/lab/#{{ d.id }}" class="btn btn-outline">Try it: {{ d.title }}</a>{% endfor %}
             </div>
             {% if cs.demo_note %}<p class="case-note">{{ cs.demo_note }}</p>{% endif %}
         </header>

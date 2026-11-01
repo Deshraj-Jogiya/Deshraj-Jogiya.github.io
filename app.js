@@ -2559,6 +2559,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // A visitor's own counts: the same two-tailed z-test on two proportions (pooled standard error, groups of any size),
+    // plus a 95% confidence interval for the difference (unpooled standard error).
+    const abOwn = document.getElementById("ab-own");
+    if (abOwn) {
+        abOwn.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const v = (id) => Number(document.getElementById(id).value);
+            const nA = v("ab-own-na"), cA = v("ab-own-ca"), nB = v("ab-own-nb"), cB = v("ab-own-cb");
+            const note = document.getElementById("ab-own-note");
+            const whole = [nA, cA, nB, cB].every((x) => Number.isInteger(x) && x >= 0);
+            if (!whole || nA < 1 || nB < 1 || cA > nA || cB > nB) {
+                note.textContent = "Use whole numbers, with conversions no larger than visitors in each group.";
+                return;
+            }
+            if (abInterval) { clearInterval(abInterval); abInterval = null; }
+            abRunning = false; abHasResult = true;
+            if (runABBtn) { runABBtn.disabled = false; runABBtn.textContent = "Run Experiment Simulation"; }
+            const pA = cA / nA, pB = cB / nB, pooled = (cA + cB) / (nA + nB);
+            const se = Math.sqrt(pooled * (1 - pooled) * (1 / nA + 1 / nB));
+            const z = se > 0 ? (pB - pA) / se : 0;
+            const pValue = se > 0 ? 2 * (1 - stdNormalCDF(Math.abs(z))) : 1;
+            const seDiff = Math.sqrt(pA * (1 - pA) / nA + pB * (1 - pB) / nB);
+            const set = (id, t) => { document.getElementById(id).textContent = t; };
+            set("ab-a-cr", (100 * pA).toFixed(2) + "%"); set("ab-b-cr", (100 * pB).toFixed(2) + "%");
+            set("ab-a-conv", cA.toLocaleString("en-US")); set("ab-b-conv", cB.toLocaleString("en-US"));
+            set("ab-a-visitors", nA.toLocaleString("en-US")); set("ab-b-visitors", nB.toLocaleString("en-US"));
+            const top = Math.max(pA, pB, 0.01);
+            document.getElementById("ab-a-bar").style.width = (100 * pA / top) + "%";
+            document.getElementById("ab-b-bar").style.width = (100 * pB / top) + "%";
+            set("ab-uplift", pA > 0 ? ((pB >= pA ? "+" : "") + (100 * (pB - pA) / pA).toFixed(2) + "%") : "n/a");
+            set("ab-zscore", z.toFixed(3));
+            set("ab-pvalue", pValue < 0.0001 ? "< 0.0001" : pValue.toFixed(4));
+            const badge = document.getElementById("ab-status-badge");
+            badge.className = pValue < 0.05 ? "badge-status-sig" : "badge-status-not-sig";
+            badge.textContent = pValue < 0.05 ? "SIGNIFICANT (p < 0.05)" : "NOT SIGNIFICANT";
+            const lo = 100 * (pB - pA - 1.96 * seDiff), hi = 100 * (pB - pA + 1.96 * seDiff);
+            const small = Math.min(cA, nA - cA, cB, nB - cB) < 10;
+            note.textContent = `B minus A: ${(100 * (pB - pA)).toFixed(2)} points, 95% interval ${lo.toFixed(2)} to ${hi.toFixed(2)} points` +
+                (lo > 0 || hi < 0 ? " (excludes zero)." : " (includes zero: no clear difference).") +
+                (small ? " Fewer than 10 conversions or non-conversions in a group: the z-test is only approximate here." : "");
+        });
+    }
+
     // ==========================================================================
     // ML Decision Threshold Optimizer
     // ==========================================================================

@@ -28,7 +28,7 @@ def write(path, text):
 
 def asset_version():
     h = hashlib.sha256()
-    for name in ("app.js", "style.css", "assistant-local.js", "lab/fit-engine.js", "lab/lab-tools.js", "lab/lab-tools.css", "lab/lab-models.js", "lab/lab-signs.js", "lab/lab-trials.js", "lab/lab-benford.js", "lab/lab-fraud.js", "lab/lab-posts.js", "lab/lab-qa.js", "lab/lab-rfm.js", "lab/lab-emissions.js"):
+    for name in ("app.js", "style.css", "assistant-local.js", "lab/fit-engine.js", "lab/lab-tools.js", "lab/lab-tools.css", "lab/lab-models.js", "lab/lab-signs.js", "lab/lab-trials.js", "lab/lab-benford.js", "lab/lab-fraud.js", "lab/lab-posts.js", "lab/lab-qa.js", "lab/lab-rfm.js", "lab/lab-emissions.js", "lab/lab-index.js"):
         with open(name, "rb") as f:
             h.update(f.read())
     return h.hexdigest()[:10]
@@ -73,13 +73,21 @@ def main():
             sizes.setdefault(p["dashboard_url"], [1600, 900])
     sizes.setdefault("assets/profile.jpg", [400, 400])
 
+    # lab/demos.json is the one list of Lab demos: the Lab's index and filters, each project's "Try it in the Lab" link and the
+    # assistant's answers about demos all come from it.
+    lab = load("lab/demos.json")
+    lab["counts"] = {t: sum(t in d["tags"] for d in lab["demos"]) for t in lab["tags"]}
+    for p in data["projects"]:
+        key = p.get("slug") or p["github_url"].rstrip("/").split("/")[-1]
+        p["lab_demos"] = sorted((d for d in lab["demos"] if key in d["projects"]), key=lambda d: len(d["projects"]))  # its own demos first
+
     featured = sorted((p for p in data["projects"] if p.get("featured")), key=lambda p: p["featured"])
     others = [p for p in data["projects"] if not p.get("featured") and not p.get("team")]
     team = [p for p in data["projects"] if p.get("team")]
 
     env = Environment(loader=FileSystemLoader("templates"))
     common = dict(data, site_url=SITE_URL, img_sizes=sizes, case_studies=case_studies, featured_projects=featured,
-                  other_projects=others, team_projects=team, asset_version=asset_version(),
+                  other_projects=others, team_projects=team, lab=lab, asset_version=asset_version(),
                   google_site_verification=GOOGLE_SITE_VERIFICATION)
 
     write("index.html", env.get_template("index.html").render(
@@ -101,7 +109,9 @@ def main():
 
     write("lab/index.html", env.get_template("lab.html").render(
         common, page_path="/lab/", page_title="The Lab | Deshraj Jogiya",
-        page_description="In-browser demos of data work: SQL, a pipeline monitor, A/B tests, model thresholds, job fit, data contracts, SCD Type 2, drift and fairness, table time travel, event-time windows and Airflow backfills.",
+        page_description=(f"{len(lab['demos'])} in-browser demos of data and ML work, {lab['counts']['own']} of them on "
+                          "your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, "
+                          "ASL signs, semantic search and data-engineering simulations."),
         json_ld=None))
     pages.append("/lab/")
 

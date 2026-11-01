@@ -17,8 +17,21 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Lab</nav>
         <header class="case-hero">
             <h1 class="case-title">The Lab</h1>
-            <p class="case-summary">Twelve demos you can drive yourself, all running in your browser on sample data, in two groups: <a href="#interactive">analytics, experiments and architecture</a>, and <a href="#more-demos">data platform and ML operations</a>. A last panel is built on this site's own visitor log. The production systems behind them are in the <a href="/#projects">case studies</a>.</p>
+            <p class="case-summary">{{ lab.demos|length }} demos you can drive yourself, all running in your browser. {{ lab.counts.own }} of them take your own data (a CSV, a pasted text, a drawing, your webcam) and nothing you give them leaves your device. Each one names the project it comes from; the production systems behind them are in the <a href="/#projects">case studies</a>. A last panel is built on <a href="#site-analytics">this site's own visitor log</a>.</p>
         </header>
+
+        <nav class="lab-index" aria-labelledby="lab-index-title">
+            <h2 id="lab-index-title" class="lab-index-title">All demos</h2>
+            <div class="lab-filters" role="group" aria-label="Show demos">
+                <button type="button" class="lab-chip" data-tag="" aria-pressed="true">All <span>{{ lab.demos|length }}</span></button>
+                {% for tag, label in lab.tags.items() %}<button type="button" class="lab-chip" data-tag="{{ tag }}" aria-pressed="false">{{ label }} <span>{{ lab.counts[tag] }}</span></button>
+                {% endfor %}
+            </div>
+            <ul class="lab-list">
+                {% for d in lab.demos %}<li data-tags="{{ d.tags|join(' ') }}"><a href="#{{ d.id }}"><b>{{ d.title }}</b><span>{{ d.what }}</span>{% if "own" in d.tags %}<em>Your data</em>{% endif %}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
 {% include "_lab_widgets.html" %}
 {% include "_lab_tools.html" %}
 {% include "_lab_models.html" %}
@@ -66,5 +79,6 @@
     <script src="/lab/lab-qa.js?v={{ asset_version }}" defer></script>
     <script src="/lab/lab-rfm.js?v={{ asset_version }}" defer></script>
     <script src="/lab/lab-emissions.js?v={{ asset_version }}" defer></script>
+    <script src="/lab/lab-index.js?v={{ asset_version }}" defer></script>
 </body>
 </html>

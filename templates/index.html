@@ -136,6 +136,7 @@
                             <a href="/projects/{{ project.slug }}/" class="btn btn-sm btn-primary">Read the case study</a>
                             {% if cs.demo_url %}<a href="{{ cs.demo_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Live demo ↗</a>{% endif %}
                             {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-sm btn-outline" target="_blank" rel="noopener">Code ↗</a>{% endif %}
+                            {% if project.lab_demos %}<a href="/lab/#{{ project.lab_demos[0].id }}" class="btn btn-sm btn-outline">Try it in the Lab</a>{% endif %}
 </div>
 </div>
                 </article>
@@ -176,6 +177,7 @@
 </div>
                         <div class="card-actions">
                             {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn-sm btn-primary">View repository ↗</a>{% endif %}
+                            {% if project.lab_demos %}<a href="/lab/#{{ project.lab_demos[0].id }}" class="btn btn-sm btn-outline">Try it in the Lab</a>{% endif %}
 </div>
 </div>
 </div>

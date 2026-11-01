@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Lab | Deshraj Jogiya</title>
-    <meta name="description" content="In-browser demos of data work: SQL, a pipeline monitor, A/B tests, model thresholds, job fit, data contracts, SCD Type 2, drift and fairness, table time travel, event-time windows and Airflow backfills.">
+    <meta name="description" content="21 in-browser demos of data and ML work, 13 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <link rel="canonical" href="https://deshraj-jogiya.github.io/lab/">
     <meta name="author" content="Deshraj Jogiya">
     <meta name="theme-color" content="#0f172a">
@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Deshraj Jogiya">
     <meta property="og:title" content="The Lab | Deshraj Jogiya">
-    <meta property="og:description" content="In-browser demos of data work: SQL, a pipeline monitor, A/B tests, model thresholds, job fit, data contracts, SCD Type 2, drift and fairness, table time travel, event-time windows and Airflow backfills.">
+    <meta property="og:description" content="21 in-browser demos of data and ML work, 13 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <meta property="og:url" content="https://deshraj-jogiya.github.io/lab/">
     <meta property="og:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -20,15 +20,15 @@
     <meta property="og:image:alt" content="Deshraj Jogiya, Data Engineer and Machine Learning Engineer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="The Lab | Deshraj Jogiya">
-    <meta name="twitter:description" content="In-browser demos of data work: SQL, a pipeline monitor, A/B tests, model thresholds, job fit, data contracts, SCD Type 2, drift and fairness, table time travel, event-time windows and Airflow backfills.">
+    <meta name="twitter:description" content="21 in-browser demos of data and ML work, 13 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <meta name="twitter:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=a48dfdf0aa">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=a48dfdf0aa">
+    <link rel="stylesheet" href="/style.css?v=15f07e0251">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=15f07e0251">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -56,8 +56,45 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Lab</nav>
         <header class="case-hero">
             <h1 class="case-title">The Lab</h1>
-            <p class="case-summary">Twelve demos you can drive yourself, all running in your browser on sample data, in two groups: <a href="#interactive">analytics, experiments and architecture</a>, and <a href="#more-demos">data platform and ML operations</a>. A last panel is built on this site's own visitor log. The production systems behind them are in the <a href="/#projects">case studies</a>.</p>
+            <p class="case-summary">21 demos you can drive yourself, all running in your browser. 13 of them take your own data (a CSV, a pasted text, a drawing, your webcam) and nothing you give them leaves your device. Each one names the project it comes from; the production systems behind them are in the <a href="/#projects">case studies</a>. A last panel is built on <a href="#site-analytics">this site's own visitor log</a>.</p>
         </header>
+
+        <nav class="lab-index" aria-labelledby="lab-index-title">
+            <h2 id="lab-index-title" class="lab-index-title">All demos</h2>
+            <div class="lab-filters" role="group" aria-label="Show demos">
+                <button type="button" class="lab-chip" data-tag="" aria-pressed="true">All <span>21</span></button>
+                <button type="button" class="lab-chip" data-tag="own" aria-pressed="false">Uses your own data <span>13</span></button>
+                <button type="button" class="lab-chip" data-tag="ml" aria-pressed="false">Trained models <span>7</span></button>
+                <button type="button" class="lab-chip" data-tag="stats" aria-pressed="false">Statistics <span>8</span></button>
+                <button type="button" class="lab-chip" data-tag="data" aria-pressed="false">Data engineering <span>8</span></button>
+                <button type="button" class="lab-chip" data-tag="ai" aria-pressed="false">Text & AI <span>3</span></button>
+                
+            </div>
+            <ul class="lab-list">
+                <li data-tags="data own"><a href="#lab-sql"><b>SQL Analytics Playground</b><span>Write SQL against tables from four projects and chart the result.</span><em>Your data</em></a></li>
+                <li data-tags="data"><a href="#lab-etl"><b>ETL Pipeline Monitor</b><span>Run a pipeline and watch latency, reliability and drift checks.</span></a></li>
+                <li data-tags="stats own"><a href="#ab-testing-widget"><b>A/B Test Significance</b><span>Simulate an experiment or test your own visitor and conversion counts with a z-test.</span><em>Your data</em></a></li>
+                <li data-tags="ml stats"><a href="#threshold-widget"><b>Model Threshold Tuner</b><span>Move a classifier's threshold and watch the confusion matrix change.</span></a></li>
+                <li data-tags="data"><a href="#lab-arch"><b>Pipeline Architecture Explorer</b><span>Walk through real pipeline designs, step by step.</span></a></li>
+                <li data-tags="ai own"><a href="#lt-fit"><b>Job Description Fit Scorer</b><span>Paste a job posting and get the rule-based fit score Career Pilot uses.</span><em>Your data</em></a></li>
+                <li data-tags="data own"><a href="#lt-contract"><b>Data Contract Checker</b><span>Paste CSV rows and run data-quality rules against them.</span><em>Your data</em></a></li>
+                <li data-tags="data"><a href="#lt-scd"><b>SCD Type 2 Snapshots</b><span>See how a dbt snapshot keeps history that a merge throws away.</span></a></li>
+                <li data-tags="ml stats"><a href="#lt-drift"><b>Drift & Fairness Monitor</b><span>Shift a model's inputs and see which drift and fairness checks fail.</span></a></li>
+                <li data-tags="data"><a href="#lt-travel"><b>Lakehouse Time Travel</b><span>Query a table as it was at an earlier version.</span></a></li>
+                <li data-tags="data"><a href="#lt-windows"><b>Event-Time Windows</b><span>Set a watermark and lateness and watch late events land or drop.</span></a></li>
+                <li data-tags="data"><a href="#lt-dag"><b>Airflow Backfill & Retry</b><span>Replay a DAG's retries and backfills day by day.</span></a></li>
+                <li data-tags="ml own"><a href="#lm-shapes"><b>Shape Classifier</b><span>Draw or upload a shape; see each image-processing step, then the model's answer.</span><em>Your data</em></a></li>
+                <li data-tags="ml own"><a href="#lm-signs"><b>ASL Word Signs</b><span>Sign to your webcam or upload a clip; a GRU names the sign.</span><em>Your data</em></a></li>
+                <li data-tags="stats own"><a href="#st-trials"><b>Survival Curves by Dosage</b><span>Kaplan-Meier curves and a log-rank test, on trial data or your own.</span><em>Your data</em></a></li>
+                <li data-tags="stats own"><a href="#st-benford"><b>Benford's Law Audit</b><span>Test any column of amounts against Benford's first-digit law.</span><em>Your data</em></a></li>
+                <li data-tags="stats own"><a href="#st-fraud"><b>Fraud Rule Tester</b><span>Tune fraud rules on 345,524 transactions or your own CSV.</span><em>Your data</em></a></li>
+                <li data-tags="ai own"><a href="#st-posts"><b>LinkedIn Post Checker</b><span>Paste a draft and run CurioSync's writing rules on it.</span><em>Your data</em></a></li>
+                <li data-tags="ai ml own"><a href="#st-qa"><b>Member Q&A by Meaning</b><span>Ask questions answered by sentence embeddings, on members' messages or your own text.</span><em>Your data</em></a></li>
+                <li data-tags="ml stats own"><a href="#st-rfm"><b>Customer Segments by RFM</b><span>K-Means segments from recency, frequency and spend, on 2,000 customers or your CSV.</span><em>Your data</em></a></li>
+                <li data-tags="ml stats own"><a href="#st-em"><b>Land-Use Emissions Forecast</b><span>EPA land-use series forecast a year ahead; test your own yearly series.</span><em>Your data</em></a></li>
+                
+            </ul>
+        </nav>
         <!-- Interactive Recruiter Showcase Section -->
         <section id="interactive" class="interactive-section" aria-labelledby="interactive-title">
             <div class="lab-group-head">
@@ -68,7 +105,7 @@
             
             <div class="interactive-grid" style="display: flex; flex-direction: column; gap: 3rem; max-width: 1000px; margin: 0 auto;">
                 <!-- SQL Analytics Playground -->
-                <div class="sql-widget glass-card">
+                <div class="sql-widget glass-card" id="lab-sql">
                     <div class="sql-header">
                         <h3 class="sql-title">SQL Analytics Playground</h3>
 </div>
@@ -128,7 +165,7 @@
 </div>
 
                 <!-- Live ETL Observability Monitor -->
-                <div class="observability-widget glass-card">
+                <div class="observability-widget glass-card" id="lab-etl">
                     <div class="obs-header">
                         <h3 class="obs-title">Live ETL Pipeline Observability Monitor</h3>
                         <div class="obs-status idle" id="obs-status">
@@ -305,6 +342,18 @@
 </div>
 </div>
 
+                            <form class="ab-own" id="ab-own" novalidate>
+                                <p class="ab-own-title">Test your own numbers</p>
+                                <div class="ab-own-grid">
+                                    <label>A visitors<input id="ab-own-na" type="number" min="1" step="1" inputmode="numeric" value="4210"></label>
+                                    <label>A conversions<input id="ab-own-ca" type="number" min="0" step="1" inputmode="numeric" value="389"></label>
+                                    <label>B visitors<input id="ab-own-nb" type="number" min="1" step="1" inputmode="numeric" value="4187"></label>
+                                    <label>B conversions<input id="ab-own-cb" type="number" min="0" step="1" inputmode="numeric" value="441"></label>
+                                </div>
+                                <button type="submit" class="btn btn-outline">Test my numbers</button>
+                                <p class="ab-own-note" id="ab-own-note">Groups may differ in size. The example counts are made up. Nothing leaves your browser.</p>
+                            </form>
+
                             <div class="widget-context" style="padding: 1rem; background: rgba(140, 196, 173, 0.03); border: 1px solid rgba(140, 196, 173, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
                                 <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> When launching new features or ML models, we must prove they actually improve user conversion rate (CR) rather than just being random noise.</p>
@@ -402,7 +451,7 @@
 </div>
 
                 <!-- Data Pipeline Architecture Explorer -->
-                <div class="architecture-widget glass-card">
+                <div class="architecture-widget glass-card" id="lab-arch">
                     <div class="arch-header" style="margin-bottom: 1.5rem;">
                         <h3 class="arch-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">Data Pipeline Architecture Explorer</h3>
                         <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Interact with real-world pipeline system designs to see data flow, tool stacks, and Python execution modules.</p>
@@ -1041,17 +1090,18 @@ To reset your password, use the link on the sign-in page.</textarea></label></di
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/fit-engine.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-tools.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-models.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-signs.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-trials.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-benford.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-fraud.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-posts.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-qa.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-rfm.js?v=a48dfdf0aa" defer></script>
-    <script src="/lab/lab-emissions.js?v=a48dfdf0aa" defer></script>
+    <script src="/app.js?v=15f07e0251" defer></script>
+    <script src="/lab/fit-engine.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-tools.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-models.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-signs.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-trials.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-benford.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-fraud.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-posts.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-qa.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-rfm.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-emissions.js?v=15f07e0251" defer></script>
+    <script src="/lab/lab-index.js?v=15f07e0251" defer></script>
 </body>
 </html>

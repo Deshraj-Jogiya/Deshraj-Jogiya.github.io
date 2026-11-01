@@ -1,0 +1,276 @@
+{
+ "tags": {
+  "own": "Uses your own data",
+  "ml": "Trained models",
+  "stats": "Statistics",
+  "data": "Data engineering",
+  "ai": "Text & AI"
+ },
+ "demos": [
+  {
+   "id": "lab-sql",
+   "title": "SQL Analytics Playground",
+   "section": "interactive",
+   "what": "Write SQL against tables from four projects and chart the result.",
+   "tags": [
+    "data",
+    "own"
+   ],
+   "projects": [
+    "career-pilot",
+    "dbt-warehouse",
+    "job-market-lakehouse",
+    "Sales-Customer-Segmentation-Pipeline"
+   ]
+  },
+  {
+   "id": "lab-etl",
+   "title": "ETL Pipeline Monitor",
+   "section": "interactive",
+   "what": "Run a pipeline and watch latency, reliability and drift checks.",
+   "tags": [
+    "data"
+   ],
+   "projects": []
+  },
+  {
+   "id": "ab-testing-widget",
+   "title": "A/B Test Significance",
+   "section": "interactive",
+   "what": "Simulate an experiment or test your own visitor and conversion counts with a z-test.",
+   "tags": [
+    "stats",
+    "own"
+   ],
+   "projects": []
+  },
+  {
+   "id": "threshold-widget",
+   "title": "Model Threshold Tuner",
+   "section": "interactive",
+   "what": "Move a classifier's threshold and watch the confusion matrix change.",
+   "tags": [
+    "ml",
+    "stats"
+   ],
+   "projects": []
+  },
+  {
+   "id": "lab-arch",
+   "title": "Pipeline Architecture Explorer",
+   "section": "interactive",
+   "what": "Walk through real pipeline designs, step by step.",
+   "tags": [
+    "data"
+   ],
+   "projects": []
+  },
+  {
+   "id": "lt-fit",
+   "title": "Job Description Fit Scorer",
+   "section": "more-demos",
+   "what": "Paste a job posting and get the rule-based fit score Career Pilot uses.",
+   "tags": [
+    "ai",
+    "own"
+   ],
+   "projects": [
+    "career-pilot"
+   ]
+  },
+  {
+   "id": "lt-contract",
+   "title": "Data Contract Checker",
+   "section": "more-demos",
+   "what": "Paste CSV rows and run data-quality rules against them.",
+   "tags": [
+    "data",
+    "own"
+   ],
+   "projects": [
+    "job-market-lakehouse"
+   ]
+  },
+  {
+   "id": "lt-scd",
+   "title": "SCD Type 2 Snapshots",
+   "section": "more-demos",
+   "what": "See how a dbt snapshot keeps history that a merge throws away.",
+   "tags": [
+    "data"
+   ],
+   "projects": [
+    "dbt-warehouse"
+   ]
+  },
+  {
+   "id": "lt-drift",
+   "title": "Drift & Fairness Monitor",
+   "section": "more-demos",
+   "what": "Shift a model's inputs and see which drift and fairness checks fail.",
+   "tags": [
+    "ml",
+    "stats"
+   ],
+   "projects": [
+    "AI-Model-Observability-Auditing"
+   ]
+  },
+  {
+   "id": "lt-travel",
+   "title": "Lakehouse Time Travel",
+   "section": "more-demos",
+   "what": "Query a table as it was at an earlier version.",
+   "tags": [
+    "data"
+   ],
+   "projects": [
+    "TalentVenue_EventIntel"
+   ]
+  },
+  {
+   "id": "lt-windows",
+   "title": "Event-Time Windows",
+   "section": "more-demos",
+   "what": "Set a watermark and lateness and watch late events land or drop.",
+   "tags": [
+    "data"
+   ],
+   "projects": [
+    "IoT-Telematics-Predictive-Maintenance"
+   ]
+  },
+  {
+   "id": "lt-dag",
+   "title": "Airflow Backfill & Retry",
+   "section": "more-demos",
+   "what": "Replay a DAG's retries and backfills day by day.",
+   "tags": [
+    "data"
+   ],
+   "projects": [
+    "job-market-lakehouse"
+   ]
+  },
+  {
+   "id": "lm-shapes",
+   "title": "Shape Classifier",
+   "section": "model-demos",
+   "what": "Draw or upload a shape; see each image-processing step, then the model's answer.",
+   "tags": [
+    "ml",
+    "own"
+   ],
+   "projects": [
+    "Solid-Object-Detection-and-Identification-using-Image-Processing"
+   ]
+  },
+  {
+   "id": "lm-signs",
+   "title": "ASL Word Signs",
+   "section": "model-demos",
+   "what": "Sign to your webcam or upload a clip; a GRU names the sign.",
+   "tags": [
+    "ml",
+    "own"
+   ],
+   "projects": [
+    "Extending-STEM-across-ASL"
+   ]
+  },
+  {
+   "id": "st-trials",
+   "title": "Survival Curves by Dosage",
+   "section": "stat-demos",
+   "what": "Kaplan-Meier curves and a log-rank test, on trial data or your own.",
+   "tags": [
+    "stats",
+    "own"
+   ],
+   "projects": [
+    "Clinical-Trials-Outcomes-Analysis"
+   ]
+  },
+  {
+   "id": "st-benford",
+   "title": "Benford's Law Audit",
+   "section": "stat-demos",
+   "what": "Test any column of amounts against Benford's first-digit law.",
+   "tags": [
+    "stats",
+    "own"
+   ],
+   "projects": [
+    "Tax-Anomaly-Audit-Pipeline"
+   ]
+  },
+  {
+   "id": "st-fraud",
+   "title": "Fraud Rule Tester",
+   "section": "stat-demos",
+   "what": "Tune fraud rules on 345,524 transactions or your own CSV.",
+   "tags": [
+    "stats",
+    "own"
+   ],
+   "projects": [
+    "finrisk"
+   ]
+  },
+  {
+   "id": "st-posts",
+   "title": "LinkedIn Post Checker",
+   "section": "stat-demos",
+   "what": "Paste a draft and run CurioSync's writing rules on it.",
+   "tags": [
+    "ai",
+    "own"
+   ],
+   "projects": [
+    "curiosync"
+   ]
+  },
+  {
+   "id": "st-qa",
+   "title": "Member Q&A by Meaning",
+   "section": "stat-demos",
+   "what": "Ask questions answered by sentence embeddings, on members' messages or your own text.",
+   "tags": [
+    "ai",
+    "ml",
+    "own"
+   ],
+   "projects": [
+    "NLP-based-Q-A-system"
+   ]
+  },
+  {
+   "id": "st-rfm",
+   "title": "Customer Segments by RFM",
+   "section": "stat-demos",
+   "what": "K-Means segments from recency, frequency and spend, on 2,000 customers or your CSV.",
+   "tags": [
+    "ml",
+    "stats",
+    "own"
+   ],
+   "projects": [
+    "Sales-Customer-Segmentation-Pipeline"
+   ]
+  },
+  {
+   "id": "st-em",
+   "title": "Land-Use Emissions Forecast",
+   "section": "stat-demos",
+   "what": "EPA land-use series forecast a year ahead; test your own yearly series.",
+   "tags": [
+    "ml",
+    "stats",
+    "own"
+   ],
+   "projects": [
+    "Multi-State-Land-Use-Emissions-Analysis"
+   ]
+  }
+ ]
+}
