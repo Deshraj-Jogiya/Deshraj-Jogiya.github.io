@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=d81bb64917">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=d81bb64917">
+    <link rel="stylesheet" href="/style.css?v=e9ae2c4282">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=e9ae2c4282">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -879,6 +879,22 @@ carol,2026-03-10 20:05,140.00,0,0</textarea></label>
                 <div id="fr-out" class="lt-out" aria-live="polite"></div>
                 <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" target="_blank" rel="noopener">FinTech Credit Risk &amp; Fraud Command Center</a> (<a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The transactions are simulated with a fixed seed and the fraud is planted by the simulator; the rules never read the labels. The rules are <code>etl/fraud_rules.py</code> rewritten for the browser; every deploy checks them against the Python at five settings, and through the CSV upload path, and they must agree on every count.</p>
             </article>
+
+            <!-- Post checker (CurioSync) -->
+            <article class="lt-panel" id="st-posts" aria-labelledby="st-posts-title">
+                <h3 class="lt-title" id="st-posts-title">LinkedIn Post Checker</h3>
+                <p class="lt-lede">CurioSync drafts LinkedIn posts from project notes and will not queue one until it passes these writing checks: length, a short first line, no stock AI phrases ("delve", "game-changer", "not just X but Y"), no engagement bait, no word or number repeated too often, and paragraphs that each move the story on.</p>
+                <ol class="lt-steps"><li>Paste your own draft, or pick a sample: a post CurioSync queued and test drafts written to break the rules.</li><li>Edit the text; the checks rerun as you type.</li><li>Read what CurioSync would send back for a rewrite.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Sample</span><select id="ps-sample"><option value="">Loading samples...</option></select></label>
+                </div>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Draft</span><textarea id="ps-draft" rows="10" spellcheck="true"></textarea></label>
+                </div>
+                <p class="lt-note" id="ps-count" aria-live="polite"></p>
+                <div id="ps-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/curiosync" target="_blank" rel="noopener">CurioSync</a>: <code>writing_problems</code> in <code>app/services/post_rules.py</code>, rewritten for the browser. Its fact checks (a number or tool the project's notes do not back, "we" on solo work) need the project's own facts, so they do not run here; a draft that passes on this page can still be held back by them. Every deploy checks this page against the Python on 15 published and test drafts: the same problems, word for word, in the same order.</p>
+            </article>
         </section>
 
         <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
@@ -920,13 +936,14 @@ carol,2026-03-10 20:05,140.00,0,0</textarea></label>
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=d81bb64917" defer></script>
-    <script src="/lab/fit-engine.js?v=d81bb64917" defer></script>
-    <script src="/lab/lab-tools.js?v=d81bb64917" defer></script>
-    <script src="/lab/lab-models.js?v=d81bb64917" defer></script>
-    <script src="/lab/lab-signs.js?v=d81bb64917" defer></script>
-    <script src="/lab/lab-trials.js?v=d81bb64917" defer></script>
-    <script src="/lab/lab-benford.js?v=d81bb64917" defer></script>
-    <script src="/lab/lab-fraud.js?v=d81bb64917" defer></script>
+    <script src="/app.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/fit-engine.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/lab-tools.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/lab-models.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/lab-signs.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/lab-trials.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/lab-benford.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/lab-fraud.js?v=e9ae2c4282" defer></script>
+    <script src="/lab/lab-posts.js?v=e9ae2c4282" defer></script>
 </body>
 </html>

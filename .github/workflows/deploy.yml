@@ -62,6 +62,9 @@ jobs:
       - name: Check the Lab's fraud rules against the FinRisk project's Python
         run: node tools/check_lab_fraud.js
 
+      - name: Check the Lab's post checker against CurioSync's writing rules
+        run: node tools/check_lab_posts.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
