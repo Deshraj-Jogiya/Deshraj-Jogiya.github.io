@@ -48,10 +48,11 @@
    "id": "threshold-widget",
    "title": "Model Threshold Tuner",
    "section": "interactive",
-   "what": "Move a classifier's threshold and watch the confusion matrix change.",
+   "what": "Move a classifier's threshold, or paste your own model's scores and costs, and find the best one.",
    "tags": [
     "ml",
-    "stats"
+    "stats",
+    "own"
    ],
    "projects": []
   },

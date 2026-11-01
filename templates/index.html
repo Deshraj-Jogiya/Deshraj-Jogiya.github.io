@@ -205,7 +205,7 @@
                 {% endfor %}
 </div>
 
-            <a class="lab-cta glass-card" href="/lab/"><span class="lab-cta-title">The Lab</span><span class="lab-cta-text">Don't just read about it. Run SQL, test an A/B result for significance, or move a model's decision threshold and watch precision and recall trade off.</span><span class="lab-cta-arrow" aria-hidden="true">→</span></a>
+            <a class="lab-cta glass-card" href="/lab/"><span class="lab-cta-title">The Lab</span><span class="lab-cta-text">Don't just read about it. {{ lab.demos|length }} demos run in your browser, {{ lab.counts.own }} of them on your own data: tune fraud rules on a CSV, segment your customers, test your A/B counts, draw a shape for the classifier or sign to the ASL model.</span><span class="lab-cta-arrow" aria-hidden="true">→</span></a>
         </section>
 
         <!-- Experience Showcase Section -->

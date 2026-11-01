@@ -2607,62 +2607,83 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
     const abSlider = document.getElementById("threshold-slider");
     if (abSlider) {
+        // Counts at a threshold come from the simulated model (200 positives scored around 0.65, 800 negatives around 0.30,
+        // both with spread 0.18) or from the visitor's own scored, labelled rows. A case is flagged when score >= threshold.
+        let ownRows = null;
+        let costs = { tp: 100, fp: 20, fn: 150 };
+        const countsAt = (T) => {
+            if (ownRows) {
+                let TP = 0, FP = 0, P = 0;
+                ownRows.forEach(([score, label]) => { if (label) { P++; if (score >= T) TP++; } else if (score >= T) FP++; });
+                return { TP, FN: P - TP, FP, TN: ownRows.length - P - FP, P };
+            }
+            const TP = Math.round(200 * (1 - stdNormalCDF((T - 0.65) / 0.18)));
+            const FP = Math.round(800 * (1 - stdNormalCDF((T - 0.30) / 0.18)));
+            return { TP, FN: 200 - TP, FP, TN: 800 - FP, P: 200 };
+        };
+        const netAt = (c) => c.TP * costs.tp - c.FP * costs.fp - c.FN * costs.fn;
+        const steps = Array.from({ length: 19 }, (_, k) => +(0.05 * (k + 1)).toFixed(2));
+        const money = (v) => (v < 0 ? "-$" : "$") + Math.abs(v).toLocaleString("en-US");
         const updateThresholdOptimizer = () => {
             const T = parseFloat(abSlider.value);
             document.getElementById("threshold-val-display").textContent = T.toFixed(2);
-            
-            const P = 200; // Actual fraud cases
-            const N = 800; // Actual compliant cases
-            
-            // Distributions: Fraud Mean=0.65, Std=0.18. Compliant Mean=0.30, Std=0.18
-            const zPos = (T - 0.65) / 0.18;
-            const propPosAbove = 1 - stdNormalCDF(zPos);
-            const TP = Math.round(P * propPosAbove);
-            const FN = P - TP;
-            
-            const zNeg = (T - 0.30) / 0.18;
-            const propNegAbove = 1 - stdNormalCDF(zNeg);
-            const FP = Math.round(N * propNegAbove);
-            const TN = N - FP;
-            
-            const precision = (TP + FP) > 0 ? (TP / (TP + FP)) * 100 : 100.0;
-            const recall = P > 0 ? (TP / P) * 100 : 0.0;
-            
-            // Business ROI: +$100 per TP (prevented fraud), -$20 per FP (false alarm support), -$150 per FN (missed fraud)
-            const tpGain = TP * 100;
-            const fpLoss = FP * 20;
-            const fnLoss = FN * 150;
-            const netProfit = tpGain - fpLoss - fnLoss;
-            
-            document.getElementById("cm-tp").textContent = TP;
-            document.getElementById("cm-fn").textContent = FN;
-            document.getElementById("cm-fp").textContent = FP;
-            document.getElementById("cm-tn").textContent = TN;
-            
+            const c = countsAt(T);
+            const precision = (c.TP + c.FP) > 0 ? (c.TP / (c.TP + c.FP)) * 100 : 100.0;
+            const recall = c.P > 0 ? (c.TP / c.P) * 100 : 0.0;
+            document.getElementById("cm-tp").textContent = c.TP;
+            document.getElementById("cm-fn").textContent = c.FN;
+            document.getElementById("cm-fp").textContent = c.FP;
+            document.getElementById("cm-tn").textContent = c.TN;
             document.getElementById("val-precision").textContent = precision.toFixed(1) + "%";
             document.getElementById("val-recall").textContent = recall.toFixed(1) + "%";
-            
-            document.getElementById("profit-tp-gain").textContent = "+$" + tpGain.toLocaleString();
-            document.getElementById("profit-fp-loss").textContent = "-$" + fpLoss.toLocaleString();
-            document.getElementById("profit-fn-loss").textContent = "-$" + fnLoss.toLocaleString();
-            
+            document.getElementById("profit-tp-gain").textContent = "+" + money(c.TP * costs.tp);
+            document.getElementById("profit-fp-loss").textContent = "-" + money(c.FP * costs.fp);
+            document.getElementById("profit-fn-loss").textContent = "-" + money(c.FN * costs.fn);
+            const net = netAt(c);
             const netProfitEl = document.getElementById("val-net-profit");
-            netProfitEl.textContent = (netProfit >= 0 ? "$" : "-$") + Math.abs(netProfit).toLocaleString();
-            if (netProfit >= 0) {
-                netProfitEl.style.color = "var(--ok)";
-            } else {
-                netProfitEl.style.color = "var(--bad)";
-            }
-            
-            const optimalBadge = document.getElementById("threshold-optimal-badge");
-            if (Math.abs(T - 0.35) < 0.01) {
-                optimalBadge.style.display = "inline-block";
-            } else {
-                optimalBadge.style.display = "none";
-            }
+            netProfitEl.textContent = money(net);
+            netProfitEl.style.color = net >= 0 ? "var(--ok)" : "var(--bad)";
+            // The best step is the one with the highest net value; ties go to the lowest threshold.
+            const best = steps.reduce((b, t) => (netAt(countsAt(t)) > netAt(countsAt(b)) ? t : b), steps[0]);
+            document.getElementById("threshold-optimal-badge").style.display = Math.abs(T - best) < 0.001 ? "inline-block" : "none";
+            return best;
         };
         abSlider.addEventListener("input", updateThresholdOptimizer);
         updateThresholdOptimizer();
+
+        const thOwn = document.getElementById("th-own");
+        if (thOwn) {
+            const note = document.getElementById("th-own-note"), reset = document.getElementById("th-own-reset");
+            const showCosts = () => {
+                document.getElementById("th-c-tp").textContent = "+" + money(costs.tp);
+                document.getElementById("th-c-fp").textContent = "-" + money(costs.fp);
+                document.getElementById("th-c-fn").textContent = "-" + money(costs.fn);
+            };
+            thOwn.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const rows = [], bad = [];
+                document.getElementById("th-own-rows").value.split(/\r?\n/).forEach((line, n) => {
+                    const t = line.trim(); if (!t) return;
+                    const [a, b] = t.split(/[\s,;\t]+/), score = Number(a), lab = String(b || "").toLowerCase();
+                    const label = ["1", "yes", "true", "y", "positive"].includes(lab) ? 1 : ["0", "no", "false", "n", "negative"].includes(lab) ? 0 : null;
+                    if (isFinite(score) && a !== "" && score >= 0 && score <= 1 && label !== null) rows.push([score, label]);
+                    else if (!(n === 0 && isNaN(score))) bad.push(n + 1);
+                });
+                const pos = rows.filter((r) => r[1]).length;
+                const c = ["tp", "fp", "fn"].map((k) => Number(document.getElementById("th-own-" + k).value));
+                if (c.some((v) => !isFinite(v) || v < 0)) { note.textContent = "Costs must be zero or more."; return; }
+                if (!pos || pos === rows.length) { note.textContent = "Rows need both labels, 1 and 0, to count hits and false alarms."; return; }
+                ownRows = rows; costs = { tp: c[0], fp: c[1], fn: c[2] }; showCosts(); reset.hidden = false;
+                const best = updateThresholdOptimizer();
+                note.textContent = `Using your ${rows.length} rows (${pos} positive). Best threshold for your costs: ${best.toFixed(2)}.` +
+                    (bad.length ? ` ${bad.length} line${bad.length > 1 ? "s" : ""} skipped (line ${bad.slice(0, 6).join(", ")}): use a score from 0 to 1 and a label of 1 or 0.` : "") +
+                    (rows.length < 50 ? " With under 50 rows the best threshold can jump between steps; use more rows if you have them." : "");
+            });
+            reset.addEventListener("click", () => {
+                ownRows = null; costs = { tp: 100, fp: 20, fn: 150 }; showCosts(); reset.hidden = true; note.textContent = "";
+                updateThresholdOptimizer();
+            });
+        }
     }
 
     // ==========================================================================
@@ -2922,7 +2943,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "The Lab",
-            desc: "Interactive demos you can run in the browser: a SQL playground, a pipeline monitor, an A/B test simulator and more.",
+            desc: "Demos that run in your browser, many on your own data: fraud rules, customer segments, survival curves, a shape classifier, ASL signs, SQL and more.",
             target: ".lab-cta",
             duration: 7000,
             action: async () => {

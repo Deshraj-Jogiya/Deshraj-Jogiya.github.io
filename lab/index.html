@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Lab | Deshraj Jogiya</title>
-    <meta name="description" content="21 in-browser demos of data and ML work, 13 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
+    <meta name="description" content="21 in-browser demos of data and ML work, 14 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <link rel="canonical" href="https://deshraj-jogiya.github.io/lab/">
     <meta name="author" content="Deshraj Jogiya">
     <meta name="theme-color" content="#0f172a">
@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Deshraj Jogiya">
     <meta property="og:title" content="The Lab | Deshraj Jogiya">
-    <meta property="og:description" content="21 in-browser demos of data and ML work, 13 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
+    <meta property="og:description" content="21 in-browser demos of data and ML work, 14 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <meta property="og:url" content="https://deshraj-jogiya.github.io/lab/">
     <meta property="og:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
     <meta property="og:image:width" content="1200">
@@ -20,15 +20,15 @@
     <meta property="og:image:alt" content="Deshraj Jogiya, Data Engineer and Machine Learning Engineer">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="The Lab | Deshraj Jogiya">
-    <meta name="twitter:description" content="21 in-browser demos of data and ML work, 13 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
+    <meta name="twitter:description" content="21 in-browser demos of data and ML work, 14 of them on your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, ASL signs, semantic search and data-engineering simulations.">
     <meta name="twitter:image" content="https://deshraj-jogiya.github.io/assets/og-image.png">
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=15f07e0251">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=15f07e0251">
+    <link rel="stylesheet" href="/style.css?v=747fc438c6">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=747fc438c6">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -56,14 +56,14 @@
         <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Lab</nav>
         <header class="case-hero">
             <h1 class="case-title">The Lab</h1>
-            <p class="case-summary">21 demos you can drive yourself, all running in your browser. 13 of them take your own data (a CSV, a pasted text, a drawing, your webcam) and nothing you give them leaves your device. Each one names the project it comes from; the production systems behind them are in the <a href="/#projects">case studies</a>. A last panel is built on <a href="#site-analytics">this site's own visitor log</a>.</p>
+            <p class="case-summary">21 demos you can drive yourself, all running in your browser. 14 of them take your own data (a CSV, a pasted text, a drawing, your webcam) and nothing you give them leaves your device. Each one names the project it comes from; the production systems behind them are in the <a href="/#projects">case studies</a>. A last panel is built on <a href="#site-analytics">this site's own visitor log</a>.</p>
         </header>
 
         <nav class="lab-index" aria-labelledby="lab-index-title">
             <h2 id="lab-index-title" class="lab-index-title">All demos</h2>
             <div class="lab-filters" role="group" aria-label="Show demos">
                 <button type="button" class="lab-chip" data-tag="" aria-pressed="true">All <span>21</span></button>
-                <button type="button" class="lab-chip" data-tag="own" aria-pressed="false">Uses your own data <span>13</span></button>
+                <button type="button" class="lab-chip" data-tag="own" aria-pressed="false">Uses your own data <span>14</span></button>
                 <button type="button" class="lab-chip" data-tag="ml" aria-pressed="false">Trained models <span>7</span></button>
                 <button type="button" class="lab-chip" data-tag="stats" aria-pressed="false">Statistics <span>8</span></button>
                 <button type="button" class="lab-chip" data-tag="data" aria-pressed="false">Data engineering <span>8</span></button>
@@ -74,7 +74,7 @@
                 <li data-tags="data own"><a href="#lab-sql"><b>SQL Analytics Playground</b><span>Write SQL against tables from four projects and chart the result.</span><em>Your data</em></a></li>
                 <li data-tags="data"><a href="#lab-etl"><b>ETL Pipeline Monitor</b><span>Run a pipeline and watch latency, reliability and drift checks.</span></a></li>
                 <li data-tags="stats own"><a href="#ab-testing-widget"><b>A/B Test Significance</b><span>Simulate an experiment or test your own visitor and conversion counts with a z-test.</span><em>Your data</em></a></li>
-                <li data-tags="ml stats"><a href="#threshold-widget"><b>Model Threshold Tuner</b><span>Move a classifier's threshold and watch the confusion matrix change.</span></a></li>
+                <li data-tags="ml stats own"><a href="#threshold-widget"><b>Model Threshold Tuner</b><span>Move a classifier's threshold, or paste your own model's scores and costs, and find the best one.</span><em>Your data</em></a></li>
                 <li data-tags="data"><a href="#lab-arch"><b>Pipeline Architecture Explorer</b><span>Walk through real pipeline designs, step by step.</span></a></li>
                 <li data-tags="ai own"><a href="#lt-fit"><b>Job Description Fit Scorer</b><span>Paste a job posting and get the rule-based fit score Career Pilot uses.</span><em>Your data</em></a></li>
                 <li data-tags="data own"><a href="#lt-contract"><b>Data Contract Checker</b><span>Paste CSV rows and run data-quality rules against them.</span><em>Your data</em></a></li>
@@ -373,7 +373,7 @@
                             <div class="slider-container" style="margin-bottom: 1.25rem;">
                                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
                                     <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent); font-size: 0.9rem;">0.50</span></label>
-                                    <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: var(--ok); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">OPTIMAL (0.35)</span>
+                                    <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: var(--ok); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">BEST HERE</span>
 </div>
                                 <input type="range" id="threshold-slider" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
 </div>
@@ -421,15 +421,15 @@
                             <!-- Profit Calculator Details -->
                             <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; margin-bottom: 1rem;">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Engaged Converter (+$100/TP):</span>
+                                    <span style="color: var(--text-secondary);">Gains from true positives (<span id="th-c-tp">+$100</span> each):</span>
                                     <span id="profit-tp-gain" style="font-weight: 600; color: var(--ok);">+$0</span>
 </div>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">User Friction Cost (-$20/FP):</span>
+                                    <span style="color: var(--text-secondary);">False-alarm cost (<span id="th-c-fp">-$20</span> each):</span>
                                     <span id="profit-fp-loss" style="font-weight: 600; color: var(--warn);">-$0</span>
 </div>
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Missed Conversions (-$150/FN):</span>
+                                    <span style="color: var(--text-secondary);">Missed-case cost (<span id="th-c-fn">-$150</span> each):</span>
                                     <span id="profit-fn-loss" style="font-weight: 600; color: var(--bad);">-$0</span>
 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
@@ -438,11 +438,44 @@
 </div>
 </div>
 
+                            <form class="ab-own" id="th-own" novalidate>
+                                <p class="ab-own-title">Use your own model's scores</p>
+                                <p class="ab-own-note">One row per case: score (0 to 1), actual label (1 or 0, yes or no). Paste a model's predictions on a labelled test set, set what each outcome is worth, and the slider uses your rows. The example rows are made up; nothing leaves your browser.</p>
+                                <textarea id="th-own-rows" rows="6" spellcheck="false" aria-label="Scores and labels">score,label
+0.92,1
+0.81,1
+0.77,0
+0.74,1
+0.66,1
+0.61,0
+0.58,1
+0.52,0
+0.47,1
+0.44,0
+0.39,0
+0.35,1
+0.31,0
+0.27,0
+0.22,0
+0.18,1
+0.15,0
+0.11,0
+0.08,0
+0.04,0</textarea>
+                                <div class="ab-own-grid">
+                                    <label>Gain per true positive ($)<input id="th-own-tp" type="number" min="0" step="1" value="100"></label>
+                                    <label>Cost per false positive ($)<input id="th-own-fp" type="number" min="0" step="1" value="20"></label>
+                                    <label>Cost per false negative ($)<input id="th-own-fn" type="number" min="0" step="1" value="150"></label>
+                                </div>
+                                <div class="ab-own-actions"><button type="submit" class="btn btn-outline">Use my rows</button> <button type="button" class="btn btn-outline" id="th-own-reset" hidden>Back to the simulated model</button></div>
+                                <p class="ab-own-note" id="th-own-note"></p>
+                            </form>
+
                             <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
                                 <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
                                 <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
                                 <p style="margin: 0;"><strong>Try it:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
-                                <p style="margin: 0;"><strong>Cost view:</strong>By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, which occurs at the <strong>0.35 threshold</strong>.</p>
+                                <p style="margin: 0;"><strong>Cost view:</strong>By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, the badge marks the slider step with the highest net value (0.40 for the simulated model). With your own rows and costs, it moves.</p>
 </div>
 </div>
 </div>
@@ -1090,18 +1123,18 @@ To reset your password, use the link on the sign-in page.</textarea></label></di
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=15f07e0251" defer></script>
-    <script src="/lab/fit-engine.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-tools.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-models.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-signs.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-trials.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-benford.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-fraud.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-posts.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-qa.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-rfm.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-emissions.js?v=15f07e0251" defer></script>
-    <script src="/lab/lab-index.js?v=15f07e0251" defer></script>
+    <script src="/app.js?v=747fc438c6" defer></script>
+    <script src="/lab/fit-engine.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-tools.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-models.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-signs.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-trials.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-benford.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-fraud.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-posts.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-qa.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-rfm.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-emissions.js?v=747fc438c6" defer></script>
+    <script src="/lab/lab-index.js?v=747fc438c6" defer></script>
 </body>
 </html>
