@@ -22,5 +22,19 @@ for (const s of meta.settings) {
     }
   }
 }
+// "Your own transactions" mode: the same transactions written out as CSV text and read back by parseTransactions must give
+// Python's results too, so the upload path cannot drift from the binary one.
+{
+  const lines = ["customer,seconds,amount,foreign,fraud"];
+  for (let i = 0; i < tx.rows; i++) lines.push("C" + tx.customer[i] + "," + tx.seconds[i] + "," + tx.amount[i].toFixed(2) + "," + (tx.flags[i] & 1) + "," + ((tx.flags[i] >> 1) & 1));
+  const own = f.parseTransactions(lines.join("\n")), s = meta.settings[0];
+  const got = f.runRules(own.tx, s.velocity_count, s.window_minutes, s.spike_multiple, true);
+  checks++;
+  if (own.bad.length || own.tx.rows !== tx.rows || own.customers !== meta.customers || !own.hasFraud) { failed++; console.log("FAIL own-data parse", own.bad.length, own.tx.rows, own.customers); }
+  for (const [rule, want] of Object.entries(s.results)) {
+    checks++;
+    if (got[rule][0] !== want.alerts || got[rule][1] !== want.true_fraud_caught) { failed++; console.log("FAIL own-data", rule, got[rule], want); }
+  }
+}
 if (failed) { console.log(failed + " of " + checks + " checks differ from Python"); process.exit(1); }
-console.log(`${checks - 1} rule results over ${meta.settings.length} settings match etl/fraud_rules.py exactly (${meta.rows.toLocaleString("en-US")} transactions)`);
+console.log(`${checks - 1} rule results over ${meta.settings.length} settings, and the CSV upload path, match etl/fraud_rules.py exactly (${meta.rows.toLocaleString("en-US")} transactions)`);
