@@ -1,7 +1,7 @@
 {
   "stats": [
     {
-      "number": "3100",
+      "number": "3200",
       "suffix": "+",
       "label": "Public Git commits"
     },
@@ -603,9 +603,13 @@
         {
           "html": "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.",
           "resume_role": "de"
+        },
+        {
+          "html": "Year-by-Year Backtest: Re-tested five forecasters from eight origins (2015-2022) on EPA's 25 state land-use series; repeating last year's value stayed most accurate (<strong>95.1%</strong> mean, 1 - WAPE) and beat Linear Regression and Random Forest in 6 of 8 years, so 2023-2025 forecasts were frozen and committed before EPA publishes those years, to be scored on release.",
+          "resume_role": "de"
         }
       ],
-      "date": "Apr 2025 – Nov 2025",
+      "date": "Apr 2025 – Present",
       "team": false
     },
     {
