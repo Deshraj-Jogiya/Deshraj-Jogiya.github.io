@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=04a8efd17f">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=04a8efd17f">
+    <link rel="stylesheet" href="/style.css?v=ae5729a77f">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=ae5729a77f">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -736,6 +736,29 @@
                 <div id="tr-out" class="lt-out" aria-live="polite"></div>
                 <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis" target="_blank" rel="noopener">Clinical Trials Patient Outcomes Analysis</a> (<a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The patients are simulated with a fixed seed; none are real. An adverse event is the project's own rule: systolic blood pressure under 105 or over 155 at any visit. Every deploy checks the page against lifelines and SciPy on all 12 gender and age filters.</p>
             </article>
+
+            <!-- Benford audit (Tax Anomaly Audit Compliance Engine) -->
+            <article class="lt-panel" id="st-benford" aria-labelledby="st-benford-title">
+                <h3 class="lt-title" id="st-benford-title">Benford's Law Audit</h3>
+                <p class="lt-lede">In many real ledgers about 30% of amounts start with a 1 and under 5% with a 9 (Benford's Law). Made-up amounts often break that pattern. Test a synthetic ledger of 1,200 tax claims with 47 planted anomalies, or paste your own amounts; then tune the risk score that ranks entries for review.</p>
+                <ol class="lt-steps"><li>Pick a slice of the ledger, or paste amounts.</li><li>Compare the bars (your amounts) with the dots (Benford's Law), and read the fit test.</li><li>Move the sliders to reweight the risk score and see how many planted anomalies it catches.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Amounts to test</span><select id="bf-data"><option>Loading the ledger...</option></select></label>
+                </div>
+                <div id="bf-paste-box" hidden>
+                    <label class="lt-field"><span>Your amounts (nothing leaves this page)</span>
+                        <textarea id="bf-paste" rows="5" placeholder="1,204.50&#10;87.20&#10;3,310.00"></textarea></label>
+                </div>
+                <div class="lt-scroll"><svg id="bf-chart" class="lt-svg tr-chart" viewBox="0 0 560 252" role="img" aria-label="Share of amounts by first digit, against Benford's Law"></svg></div>
+                <div id="bf-fit" class="lt-out" aria-live="polite"></div>
+                <p class="lt-sub">Risk score for review</p>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Benford's share of the score <output id="bf-w-out">30% (Isolation Forest 70%)</output></span><input type="range" id="bf-w" min="0" max="100" step="5" value="30"></label>
+                    <label class="lt-field lt-grow"><span>Flag at a score of <output id="bf-t-out">65</output></span><input type="range" id="bf-t" min="20" max="95" step="1" value="65"></label>
+                </div>
+                <div id="bf-risk" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline" target="_blank" rel="noopener">Tax Anomaly Audit Compliance Engine</a> (<a href="https://github.com/Deshraj-Jogiya/Tax-Anomaly-Audit-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The ledger is synthetic and seeded. Benford statistics and risk scores are recomputed here; the Isolation Forest scores and tax-rate rule flags are read from the project's run. Every deploy checks the page against the project's Python, including the 30/70 weights and the 43 entries FINDINGS reports.</p>
+            </article>
         </section>
 
         <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
@@ -777,11 +800,12 @@
         <p class="footer-privacy">Privacy: visits are logged anonymously (approximate city and country looked up from the IP address by ipapi.co, device and browser, how far the page is scrolled and which links are clicked, under a random ID in local storage). No cookies, no ads, no tracking across sites.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="/app.js?v=04a8efd17f" defer></script>
-    <script src="/lab/fit-engine.js?v=04a8efd17f" defer></script>
-    <script src="/lab/lab-tools.js?v=04a8efd17f" defer></script>
-    <script src="/lab/lab-models.js?v=04a8efd17f" defer></script>
-    <script src="/lab/lab-signs.js?v=04a8efd17f" defer></script>
-    <script src="/lab/lab-trials.js?v=04a8efd17f" defer></script>
+    <script src="/app.js?v=ae5729a77f" defer></script>
+    <script src="/lab/fit-engine.js?v=ae5729a77f" defer></script>
+    <script src="/lab/lab-tools.js?v=ae5729a77f" defer></script>
+    <script src="/lab/lab-models.js?v=ae5729a77f" defer></script>
+    <script src="/lab/lab-signs.js?v=ae5729a77f" defer></script>
+    <script src="/lab/lab-trials.js?v=ae5729a77f" defer></script>
+    <script src="/lab/lab-benford.js?v=ae5729a77f" defer></script>
 </body>
 </html>

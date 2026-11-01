@@ -202,3 +202,8 @@ fieldset.lt-field { flex-direction: column; }
 .tr-key { display: inline-block; width: 0.9rem; height: 0.22rem; border-radius: 2px; vertical-align: middle; margin-right: 0.35rem; }
 .tr-tests { margin: 0 0 0.5rem; padding-left: 1.1rem; font-size: 0.85rem; display: grid; gap: 0.3rem; }
 .tr-chi { font-size: 0.85rem; margin: 0 0 0.5rem; }
+
+/* Benford audit (lab/lab-benford.js) */
+.lt-svg .bf-bar { fill: var(--lt-base); opacity: 0.75; }
+.lt-svg .bf-law { fill: none; stroke: var(--accent); stroke-width: 2; }
+.lt-svg .bf-dot { fill: var(--accent); }
