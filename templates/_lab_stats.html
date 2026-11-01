@@ -13,7 +13,7 @@
                         <label class="lt-check"><input type="radio" name="tr-mode" value="own"> Your own data</label></fieldset>
                 </div>
                 <div id="tr-own-pick" hidden>
-                    <p class="lt-note">One row per subject: <b>group, time, event</b>. Event is 1 if it happened (death, relapse, a customer cancelling) and 0 if the subject was still fine when follow-up ended (censored). Commas, semicolons or tabs all work, so a spreadsheet column copy pastes straight in. The example is a real, published trial: Freireich and colleagues (1963), weeks of leukemia remission on 6-MP against placebo, where the textbook answer is a log-rank statistic of 16.79.</p>
+                    <p class="lt-note">One row per subject: <b>group, time, event</b>. Event is 1 if it happened (death, relapse, a customer cancelling) and 0 if the subject was still fine when follow-up ended (censored). Commas, semicolons or tabs all work, so a spreadsheet column copy pastes straight in. The example is a real, published trial: Freireich and colleagues (1963), weeks of leukemia remission on 6-MP against placebo, where the textbook answer is a log-rank statistic of 16.79. Nothing leaves your browser.</p>
                     <div class="lt-controls">
                         <label class="lt-field lt-grow"><span>Rows</span><textarea id="tr-paste" rows="8" spellcheck="false">group,weeks,relapsed
 6-MP,6,1
@@ -150,7 +150,7 @@ carol,2026-03-10 20:05,140.00,0,0</textarea></label>
                     <label class="lt-field lt-grow"><span>Sample</span><select id="ps-sample"><option value="">Loading samples...</option></select></label>
                 </div>
                 <div class="lt-controls">
-                    <label class="lt-field lt-grow"><span>Draft</span><textarea id="ps-draft" rows="10" spellcheck="true"></textarea></label>
+                    <label class="lt-field lt-grow"><span>Draft (checked in your browser, never sent)</span><textarea id="ps-draft" rows="10" spellcheck="true"></textarea></label>
                 </div>
                 <p class="lt-note" id="ps-count" aria-live="polite"></p>
                 <div id="ps-out" class="lt-out" aria-live="polite"></div>
