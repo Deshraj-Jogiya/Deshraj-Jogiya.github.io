@@ -1,4 +1,4 @@
-// The Lab's RFM segment explorer (templates/_lab_stats.html, #st-rfm): the Sales-Customer-Segmentation-Pipeline project's
+// The Lab's RFM segment explorer (templates/lab_demos/st-rfm.html): the Sales-Customer-Segmentation-Pipeline project's
 // segmentation (models/segmentation.py) rewritten for the browser. RFM per customer, standardised, K-Means for any k from 2 to 8,
 // and the project's segment names at k = 4. Also runs on a visitor's own transactions. tools/check_lab_rfm.js holds this to
 // scikit-learn on the project's 2,000 customers and to pandas on raw sample rows.

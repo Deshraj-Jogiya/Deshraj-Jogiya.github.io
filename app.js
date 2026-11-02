@@ -3137,12 +3137,12 @@ document.addEventListener("DOMContentLoaded", () => {
             duration: 0,
             action: async () => { window.scrollTo({ top: 0, behavior: 'smooth' }); await delay(600); }
         },
-        labStep("All 21 demos", "The index lists every demo by area. \"Uses your own data\" shows the 15 that take a CSV, pasted text, a drawing or your webcam; nothing you give them leaves your device.",
+        labStep("Four areas, 21 demos", "The Lab is split into Data Analysis, Data Engineering, Machine Learning and AI & Language. Choosing an area shows only its demos, on the whole page; \"Your data\" marks the 15 that take a CSV, pasted text, a drawing or your webcam, and nothing you give them leaves your device.",
             ".lab-index", 8000, async () => {
-                const own = document.querySelector('.lab-chip[data-tag="own"]');
-                if (own) own.click();
+                const ml = document.querySelector('.lab-chip[data-cat="ml"]');
+                if (ml) ml.click();
                 await delay(3500);
-                const all = document.querySelector('.lab-chip[data-tag=""]');
+                const all = document.querySelector('.lab-chip[data-cat=""]');
                 if (all) all.click();
             }),
         labStep("Shape classifier", "A test shape goes through the same OpenCV steps as the project (grayscale, blur, black and white, outline), then the CNN names it. You can also draw a shape or upload any picture, like a road sign.",

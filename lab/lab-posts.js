@@ -1,4 +1,4 @@
-// The Lab's post checker (templates/_lab_stats.html, #st-posts): CurioSync's writing checks (app/services/post_rules.py,
+// The Lab's post checker (templates/lab_demos/st-posts.html): CurioSync's writing checks (app/services/post_rules.py,
 // writing_problems) rewritten for the browser, run on a LinkedIn draft the visitor pastes. The checks that need the project's facts
 // (invented numbers or tools, "we" on solo work) are left out. tools/check_lab_posts.js holds this port to the Python on a fixture of
 // real and test drafts: the same problems, in the same order.

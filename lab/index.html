@@ -27,8 +27,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=33b8bbfa95">
-    <link rel="stylesheet" href="/lab/lab-tools.css?v=33b8bbfa95">
+    <link rel="stylesheet" href="/style.css?v=d5ea65a116">
+    <link rel="stylesheet" href="/lab/lab-tools.css?v=d5ea65a116">
 </head>
 <body class="subpage">
     <header class="navbar">
@@ -62,49 +62,45 @@
 
         <nav class="lab-index" aria-labelledby="lab-index-title">
             <h2 id="lab-index-title" class="lab-index-title">All demos</h2>
-            <div class="lab-filters" role="group" aria-label="Show demos">
-                <button type="button" class="lab-chip" data-tag="" aria-pressed="true">All <span>21</span></button>
-                <button type="button" class="lab-chip" data-tag="own" aria-pressed="false">Uses your own data <span>15</span></button>
-                <button type="button" class="lab-chip" data-tag="ml" aria-pressed="false">Trained models <span>7</span></button>
-                <button type="button" class="lab-chip" data-tag="stats" aria-pressed="false">Statistics <span>8</span></button>
-                <button type="button" class="lab-chip" data-tag="data" aria-pressed="false">Data engineering <span>8</span></button>
-                <button type="button" class="lab-chip" data-tag="ai" aria-pressed="false">Text & AI <span>3</span></button>
+            <div class="lab-filters" role="group" aria-label="Show one area of the Lab">
+                <button type="button" class="lab-chip" data-cat="" aria-pressed="true">All <span>21</span></button>
+                <button type="button" class="lab-chip" data-cat="analysis" aria-pressed="false">Data Analysis <span>6</span></button>
+                <button type="button" class="lab-chip" data-cat="engineering" aria-pressed="false">Data Engineering <span>7</span></button>
+                <button type="button" class="lab-chip" data-cat="ml" aria-pressed="false">Machine Learning <span>5</span></button>
+                <button type="button" class="lab-chip" data-cat="ai" aria-pressed="false">AI & Language <span>3</span></button>
                 
             </div>
+            <p class="lab-filter-note" id="lab-filter-note" aria-live="polite"></p>
             <ul class="lab-list">
-                <li data-tags="data own"><a href="#lab-sql"><b>SQL Analytics Playground</b><span>Write SQL against tables from four projects and chart the result.</span><em>Your data</em></a></li>
-                <li data-tags="data"><a href="#lab-etl"><b>ETL Pipeline Monitor</b><span>Run a pipeline and watch latency, reliability and drift checks.</span></a></li>
-                <li data-tags="stats own"><a href="#ab-testing-widget"><b>A/B Test Significance</b><span>Simulate an experiment or test your own visitor and conversion counts with a z-test.</span><em>Your data</em></a></li>
-                <li data-tags="ml stats own"><a href="#threshold-widget"><b>Model Threshold Tuner</b><span>Move a model's decision threshold, or paste your own scores and costs, and find the best one.</span><em>Your data</em></a></li>
-                <li data-tags="data"><a href="#lab-arch"><b>Pipeline Architecture Explorer</b><span>Walk through real pipeline designs, step by step.</span></a></li>
-                <li data-tags="ai own"><a href="#lt-fit"><b>Job Description Fit Scorer</b><span>Paste a job posting and get the rule-based fit score Career Pilot uses.</span><em>Your data</em></a></li>
-                <li data-tags="data own"><a href="#lt-contract"><b>Data Contract Checker</b><span>Paste CSV rows and run data-quality rules against them.</span><em>Your data</em></a></li>
-                <li data-tags="data"><a href="#lt-scd"><b>SCD Type 2 Snapshots</b><span>See how a dbt snapshot keeps history that a merge throws away.</span></a></li>
-                <li data-tags="ml stats own"><a href="#lt-drift"><b>Drift & Fairness Monitor</b><span>Shift a model's inputs, or paste your own two columns, and see which drift and fairness checks fail.</span><em>Your data</em></a></li>
-                <li data-tags="data"><a href="#lt-travel"><b>Lakehouse Time Travel</b><span>Query a table as it was at an earlier version.</span></a></li>
-                <li data-tags="data"><a href="#lt-windows"><b>Event-Time Windows</b><span>Set a watermark and lateness and watch late events land or drop.</span></a></li>
-                <li data-tags="data"><a href="#lt-dag"><b>Airflow Backfill & Retry</b><span>Replay a DAG's retries and backfills day by day.</span></a></li>
-                <li data-tags="ml own"><a href="#lm-shapes"><b>Shape Classifier</b><span>Draw or upload a shape; see each image-processing step, then the model's answer.</span><em>Your data</em></a></li>
-                <li data-tags="ml own"><a href="#lm-signs"><b>ASL Word Signs</b><span>Sign to your webcam or upload a clip; a GRU names the sign.</span><em>Your data</em></a></li>
-                <li data-tags="stats own"><a href="#st-trials"><b>Survival Curves by Dosage</b><span>Kaplan-Meier curves and a log-rank test, on trial data or your own.</span><em>Your data</em></a></li>
-                <li data-tags="stats own"><a href="#st-benford"><b>Benford's Law Audit</b><span>Test any column of amounts against Benford's first-digit law.</span><em>Your data</em></a></li>
-                <li data-tags="stats own"><a href="#st-fraud"><b>Fraud Rule Tester</b><span>Tune fraud rules on 345,524 transactions or your own CSV.</span><em>Your data</em></a></li>
-                <li data-tags="ai own"><a href="#st-posts"><b>LinkedIn Post Checker</b><span>Paste a draft and run CurioSync's writing rules on it.</span><em>Your data</em></a></li>
-                <li data-tags="ai ml own"><a href="#st-qa"><b>Member Q&A by Meaning</b><span>Ask questions answered by sentence embeddings, on members' messages or your own text.</span><em>Your data</em></a></li>
-                <li data-tags="ml stats own"><a href="#st-rfm"><b>Customer Segments by RFM</b><span>K-Means segments from recency, frequency and spend, on 2,000 customers or your CSV.</span><em>Your data</em></a></li>
-                <li data-tags="ml stats own"><a href="#st-em"><b>Land-Use Emissions Forecast</b><span>EPA land-use series forecast a year ahead; test your own yearly series.</span><em>Your data</em></a></li>
+                <li data-cat="analysis"><a href="#lab-sql"><b>SQL Analytics Playground</b><span>Write SQL against tables from four projects and chart the result.</span><i>Data Analysis</i><em>Your data</em></a></li>
+                <li data-cat="engineering"><a href="#lab-etl"><b>ETL Pipeline Monitor</b><span>Run a pipeline and watch latency, reliability and drift checks.</span><i>Data Engineering</i></a></li>
+                <li data-cat="analysis"><a href="#ab-testing-widget"><b>A/B Test Significance</b><span>Simulate an experiment or test your own visitor and conversion counts with a z-test.</span><i>Data Analysis</i><em>Your data</em></a></li>
+                <li data-cat="ml"><a href="#threshold-widget"><b>Model Threshold Tuner</b><span>Move a model's decision threshold, or paste your own scores and costs, and find the best one.</span><i>Machine Learning</i><em>Your data</em></a></li>
+                <li data-cat="engineering"><a href="#lab-arch"><b>Pipeline Architecture Explorer</b><span>Walk through real pipeline designs, step by step.</span><i>Data Engineering</i></a></li>
+                <li data-cat="ai"><a href="#lt-fit"><b>Job Description Fit Scorer</b><span>Paste a job posting and get the rule-based fit score Career Pilot uses.</span><i>AI & Language</i><em>Your data</em></a></li>
+                <li data-cat="engineering"><a href="#lt-contract"><b>Data Contract Checker</b><span>Paste CSV rows and run data-quality rules against them.</span><i>Data Engineering</i><em>Your data</em></a></li>
+                <li data-cat="engineering"><a href="#lt-scd"><b>SCD Type 2 Snapshots</b><span>See how a dbt snapshot keeps history that a merge throws away.</span><i>Data Engineering</i></a></li>
+                <li data-cat="ml"><a href="#lt-drift"><b>Drift & Fairness Monitor</b><span>Shift a model's inputs, or paste your own two columns, and see which drift and fairness checks fail.</span><i>Machine Learning</i><em>Your data</em></a></li>
+                <li data-cat="engineering"><a href="#lt-travel"><b>Lakehouse Time Travel</b><span>Query a table as it was at an earlier version.</span><i>Data Engineering</i></a></li>
+                <li data-cat="engineering"><a href="#lt-windows"><b>Event-Time Windows</b><span>Set a watermark and lateness and watch late events land or drop.</span><i>Data Engineering</i></a></li>
+                <li data-cat="engineering"><a href="#lt-dag"><b>Airflow Backfill & Retry</b><span>Replay a DAG's retries and backfills day by day.</span><i>Data Engineering</i></a></li>
+                <li data-cat="ml"><a href="#lm-shapes"><b>Shape Classifier</b><span>Draw or upload a shape; see each image-processing step, then the model's answer.</span><i>Machine Learning</i><em>Your data</em></a></li>
+                <li data-cat="ml"><a href="#lm-signs"><b>ASL Word Signs</b><span>Sign to your webcam or upload a clip; a GRU names the sign.</span><i>Machine Learning</i><em>Your data</em></a></li>
+                <li data-cat="analysis"><a href="#st-trials"><b>Survival Curves by Dosage</b><span>Kaplan-Meier curves and a log-rank test, on trial data or your own.</span><i>Data Analysis</i><em>Your data</em></a></li>
+                <li data-cat="analysis"><a href="#st-benford"><b>Benford's Law Audit</b><span>Test any column of amounts against Benford's first-digit law.</span><i>Data Analysis</i><em>Your data</em></a></li>
+                <li data-cat="analysis"><a href="#st-fraud"><b>Fraud Rule Tester</b><span>Tune fraud rules on 345,524 transactions or your own CSV.</span><i>Data Analysis</i><em>Your data</em></a></li>
+                <li data-cat="ai"><a href="#st-posts"><b>LinkedIn Post Checker</b><span>Paste a draft and run CurioSync's writing rules on it.</span><i>AI & Language</i><em>Your data</em></a></li>
+                <li data-cat="ai"><a href="#st-qa"><b>Member Q&A by Meaning</b><span>Ask questions answered by sentence embeddings, on members' messages or your own text.</span><i>AI & Language</i><em>Your data</em></a></li>
+                <li data-cat="analysis"><a href="#st-rfm"><b>Customer Segments by RFM</b><span>K-Means segments from recency, frequency and spend, on 2,000 customers or your CSV.</span><i>Data Analysis</i><em>Your data</em></a></li>
+                <li data-cat="ml"><a href="#st-em"><b>Land-Use Emissions Forecast</b><span>EPA land-use series forecast a year ahead; test your own yearly series.</span><i>Machine Learning</i><em>Your data</em></a></li>
                 
             </ul>
         </nav>
-        <!-- Interactive Recruiter Showcase Section -->
-        <section id="interactive" class="interactive-section" aria-labelledby="interactive-title">
-            <div class="lab-group-head">
-                <h2 id="interactive-title" class="section-title">Analytics, Experiments &amp; Architecture</h2>
-                <p>Query real project data, watch a pipeline run, test an experiment for significance, tune a model's decision threshold, and walk through how six production pipelines fit together.</p>
-            </div>
 
-            
-            <div class="interactive-grid" style="display: flex; flex-direction: column; gap: 3rem; max-width: 1000px; margin: 0 auto;">
+        <section id="cat-analysis" class="lt-section lab-cat" data-cat="analysis" aria-labelledby="cat-analysis-title">
+            <h2 id="cat-analysis-title" class="section-title">Data Analysis</h2>
+            <p class="lt-intro">Statistics on real project data: query it, test an experiment, compare survival curves, audit amounts, tune fraud rules and segment customers. Each test is rerun on this page and checked against the Python libraries the projects use.</p>
+
                 <!-- SQL Analytics Playground -->
                 <div class="sql-widget glass-card" id="lab-sql">
                     <div class="sql-header">
@@ -165,105 +161,6 @@
 </div>
 </div>
 
-                <!-- Live ETL Observability Monitor -->
-                <div class="observability-widget glass-card" id="lab-etl">
-                    <div class="obs-header">
-                        <h3 class="obs-title">Live ETL Pipeline Observability Monitor</h3>
-                        <div class="obs-status idle" id="obs-status">
-                            <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
-</div>
-</div>
-                    
-                    <!-- Observability Explanatory Box -->
-                    <div class="obs-info-box" style="background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
-                        Run a check to watch a batch move through ingest, validation, scoring and commit, and see which records fail and why.
-</div>
-                    
-                    <!-- Pipeline Flow Diagram -->
-                    <div class="pipeline-flow-container">
-                        <div class="pipeline-flow">
-                            <div class="pipeline-line"></div>
-                            <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
-                            
-                            <div class="pipeline-node-item" id="node-ingest">
-                                <div class="pipeline-node-icon"></div>
-                                <div class="pipeline-node-label">Ingest</div>
-</div>
-                            <div class="pipeline-node-item" id="node-validate">
-                                <div class="pipeline-node-icon"></div>
-                                <div class="pipeline-node-label">Validate</div>
-</div>
-                            <div class="pipeline-node-item" id="node-score">
-                                <div class="pipeline-node-icon"></div>
-                                <div class="pipeline-node-label">ML Score</div>
-</div>
-                            <div class="pipeline-node-item" id="node-commit">
-                                <div class="pipeline-node-icon"></div>
-                                <div class="pipeline-node-label">Commit</div>
-</div>
-</div>
-</div>
-                    
-                    <div class="obs-content" style="margin-top: 1.5rem;">
-                        <!-- Tab Navigation for Observability Widget -->
-                        <div class="obs-tab-nav">
-                            <button class="obs-tab-btn active" data-tab="console">Console Outputs</button>
-                            <button class="obs-tab-btn" data-tab="qa-report">Data QA Audit Report</button>
-</div>
-                        
-                        <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
-                            <div class="obs-panel-content active" id="obs-console-panel">
-                                <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-                                    <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
-                                        <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
-</div>
-                                    <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
-                                        <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
-</div>
-</div>
-</div>
-                            <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
-                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
-                                    <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
-                                         Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
-</div>
-</div>
-</div>
-</div>
-                        <div class="obs-metrics-panel">
-                            <div class="obs-metrics-grid">
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-latency">&mdash;</div>
-                                    <div class="obs-metric-lbl">ETL Latency</div>
-</div>
-                                <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-                                    <div>
-                                        <div class="obs-metric-val" id="metric-reliability">&mdash;</div>
-                                        <div class="obs-metric-lbl">Reliability (last 30 runs)</div>
-</div>
-                                    <div class="obs-history-dots" id="obs-history-dots" aria-label="Last 13 runs"></div>
-                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">No runs yet</div>
-</div>
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-rows">&mdash;</div>
-                                    <div class="obs-metric-lbl">Processed Rows</div>
-</div>
-                                <div class="obs-metric-card">
-                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--text-muted);">&mdash;</div>
-                                    <div class="obs-metric-lbl">Drift Status</div>
-</div>
-</div>
-                            <div class="obs-actions" style="margin-top: 1.5rem;">
-                                <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics</button>
-</div>
-</div>
-</div>
-</div>
-
-
-
-                <!-- Data Science & Machine Learning Experiments -->
-                <div class="experiments-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
                     <!-- A/B Testing Simulator Widget -->
                     <div id="ab-testing-widget" class="glass-card">
                         <div class="widget-header">
@@ -362,477 +259,6 @@
 </div>
 </div>
 </div>
-
-                    <!-- Model Decision Threshold Optimizer widget -->
-                    <div id="threshold-widget" class="glass-card">
-                        <div class="widget-header">
-                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">ML Model Threshold &amp; User Conversion Optimizer</h3>
-                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Adjust decision boundary to balance user friction and maximize conversion ROI.</p>
-</div>
-                        
-                        <div class="widget-body">
-                            <div class="slider-container" style="margin-bottom: 1.25rem;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
-                                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent); font-size: 0.9rem;">0.50</span></label>
-                                    <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: var(--ok); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">BEST HERE</span>
-</div>
-                                <input type="range" id="threshold-slider" aria-label="Decision threshold" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
-</div>
-
-                            <div class="threshold-metrics-grid" style="margin-bottom: 1rem;">
-                                <!-- Confusion Matrix Table -->
-                                <div>
-                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.35rem; text-transform: uppercase;">Confusion Matrix</div>
-                                    <table class="confusion-table" style="width: 100%; font-size: 0.7rem; border-collapse: collapse; text-align: center;">
-                                        <thead>
-                                            <tr>
-                                                <th style="border: none; padding: 2px;"></th>
-                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Conversion</th>
-                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Passive</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Conversion</td>
-                                                <td id="cm-tp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--ok);">0</td>
-                                                <td id="cm-fn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--bad);">0</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Passive</td>
-                                                <td id="cm-fp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--warn);">0</td>
-                                                <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--accent);">0</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-</div>
-                                
-                                <!-- Metrics Output -->
-                                <div style="display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding-left: 0.5rem;">
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
-                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Precision</div>
-                                        <div id="val-precision" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
-</div>
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
-                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Recall</div>
-                                        <div id="val-recall" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
-</div>
-</div>
-</div>
-
-                            <!-- Profit Calculator Details -->
-                            <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; margin-bottom: 1rem;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Gains from true positives (<span id="th-c-tp">+$100</span> each):</span>
-                                    <span id="profit-tp-gain" style="font-weight: 600; color: var(--ok);">+$0</span>
-</div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">False-alarm cost (<span id="th-c-fp">-$20</span> each):</span>
-                                    <span id="profit-fp-loss" style="font-weight: 600; color: var(--warn);">-$0</span>
-</div>
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
-                                    <span style="color: var(--text-secondary);">Missed-case cost (<span id="th-c-fn">-$150</span> each):</span>
-                                    <span id="profit-fn-loss" style="font-weight: 600; color: var(--bad);">-$0</span>
-</div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
-                                    <span style="color: var(--text-primary); font-weight: 600;">Net Conversion ROI Impact:</span>
-                                    <span id="val-net-profit" style="font-weight: 700; font-size: 1rem; color: var(--ok);">$0</span>
-</div>
-</div>
-
-                            <form class="ab-own" id="th-own" novalidate>
-                                <p class="ab-own-title">Use your own model's scores</p>
-                                <p class="ab-own-note">One row per case: score (0 to 1), actual label (1 or 0, yes or no). Paste a model's predictions on a labelled test set, set what each outcome is worth, and the slider uses your rows. The example rows are made up; nothing leaves your browser.</p>
-                                <textarea id="th-own-rows" rows="6" spellcheck="false" aria-label="Scores and labels">score,label
-0.92,1
-0.81,1
-0.77,0
-0.74,1
-0.66,1
-0.61,0
-0.58,1
-0.52,0
-0.47,1
-0.44,0
-0.39,0
-0.35,1
-0.31,0
-0.27,0
-0.22,0
-0.18,1
-0.15,0
-0.11,0
-0.08,0
-0.04,0</textarea>
-                                <div class="ab-own-grid">
-                                    <label>Gain per true positive ($)<input id="th-own-tp" type="number" min="0" step="1" value="100"></label>
-                                    <label>Cost per false positive ($)<input id="th-own-fp" type="number" min="0" step="1" value="20"></label>
-                                    <label>Cost per false negative ($)<input id="th-own-fn" type="number" min="0" step="1" value="150"></label>
-                                </div>
-                                <div class="ab-own-actions"><button type="submit" class="btn btn-outline">Use my rows</button> <button type="button" class="btn btn-outline" id="th-own-reset" hidden>Back to the simulated model</button></div>
-                                <p class="ab-own-note" id="th-own-note"></p>
-                            </form>
-
-                            <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
-                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
-                                <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
-                                <p style="margin: 0;"><strong>Try it:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
-                                <p style="margin: 0;"><strong>Cost view:</strong>By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, the badge marks the slider step with the highest net value (0.40 for the simulated model). With your own rows and costs, it moves.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-                <!-- Data Pipeline Architecture Explorer -->
-                <div class="architecture-widget glass-card" id="lab-arch">
-                    <div class="arch-header" style="margin-bottom: 1.5rem;">
-                        <h3 class="arch-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">Data Pipeline Architecture Explorer</h3>
-                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Interact with real-world pipeline system designs to see data flow, tool stacks, and Python execution modules.</p>
-</div>
-
-                    <!-- Pipeline Tabs -->
-                    <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; width: 100%;">
-                        <button class="arch-tab-btn active" data-pipeline="careerpilot">Career Pilot AI Tailoring</button>
-                        <button class="arch-tab-btn" data-pipeline="reactive">Reactive Job Ingest (WebFlux)</button>
-                        <button class="arch-tab-btn" data-pipeline="lakehouse">Lakehouse + dbt Warehouse</button>
-                        <button class="arch-tab-btn" data-pipeline="batch">Batch ETL Sales Analytics</button>
-                        <button class="arch-tab-btn" data-pipeline="stream">Streaming IoT Fleet Telematics</button>
-                        <button class="arch-tab-btn" data-pipeline="geospatial">Geospatial Carbon Emissions</button>
-                        <button id="arch-tour-btn">Play Tour ⏯</button>
-</div>
-
-                    <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
-                        <!-- Interactive System Diagram -->
-                        <div class="arch-diagram-card glass-card" style="padding: 1.5rem;">
-                            <div class="arch-diagram-flow" id="arch-flow-diagram" style="display: flex; justify-content: space-between; align-items: center; position: relative; padding: 1rem 0; overflow-x: auto; gap: 1.5rem;">
-                                <!-- Nodes will be injected here via Javascript -->
-</div>
-</div>
-
-                        <!-- Info Pane / Code Snippet -->
-                        <div class="arch-info-pane glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.01); border-color: rgba(255, 255, 255, 0.05);">
-                            <div id="arch-node-details">
-                                <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-blue);" id="arch-node-name">Select a pipeline block above...</h4>
-                                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;" id="arch-node-tags">
-                                    <!-- Tags will go here -->
-</div>
-                                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.75rem;" id="arch-node-desc">
-                                    Click on any stage in the flow diagram above to view its technical specifications, tool stack, and Python code implementation.
-                                </p>
-                                
-                                <!-- Visual Input-Process-Output Flow Diagram -->
-                                <div class="arch-visual-flow" id="arch-node-flow-box" style="display: none;">
-                                    <div style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 0.55rem; border-radius: var(--border-radius-sm);">
-                                        <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Inputs</div>
-                                        <div id="arch-flow-input" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
-</div>
-                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">→</div>
-                                    <div style="background: rgba(140, 196, 173, 0.06); border: 1px solid rgba(140, 196, 173, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
-                                        <div style="font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Process</div>
-                                        <div id="arch-flow-process" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
-</div>
-                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">→</div>
-                                    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
-                                        <div style="font-size: 0.65rem; color: var(--accent-emerald); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Outputs</div>
-                                        <div id="arch-flow-output" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
-</div>
-</div>
-
-                                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; display: none; background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); padding: 0.75rem; border-radius: var(--border-radius-sm);" id="arch-node-impact">
-                                    <!-- Business value will go here -->
-                                </p>
-                                <button id="arch-toggle-code-btn" class="btn btn-secondary btn-sm" style="display: none; width: 100%; margin-top: 0.5rem; font-size: 0.78rem; padding: 0.45rem 0.75rem; cursor: pointer;">
-                                    View Technical Code Snippet 
-</button>
-                                <div class="arch-code-wrapper" style="border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #070b13; padding: 1rem; display: none; margin-top: 1rem;" id="arch-code-box">
-                                    <pre style="margin: 0; font-family: monospace; font-size: 0.78rem; overflow-x: auto; color: var(--text-secondary);"><code id="arch-code-content"></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-        </section>
-
-        <section id="more-demos" class="lt-section" aria-labelledby="more-demos-title">
-            <h2 id="more-demos-title" class="section-title">Data Platform &amp; ML Operations</h2>
-            <p class="lt-intro">How data gets checked, versioned, streamed and scheduled, and how a model is watched after launch. Each demo below starts with a short "try this" so you know what to press.</p>
-
-            <!-- 1. Job fit -->
-            <article class="lt-panel" id="lt-fit" aria-labelledby="lt-fit-title">
-                <h3 class="lt-title" id="lt-fit-title">Job Description Fit Scorer</h3>
-                <p class="lt-lede">Paste a job description and see how well it matches this profile, with each requirement checked against real work.</p>
-                <ol class="lt-steps"><li>Pick a sample job, or choose "My own job description" and paste one.</li><li>Press <b>Score this job</b>.</li><li>Read the table: every skill the job asks for, and where it shows up in the profile.</li></ol>
-                <div class="lt-controls">
-                    <label class="lt-field lt-grow"><span>Job to score</span>
-                        <select id="fit-sample"><option value="">Loading samples...</option></select></label>
-                </div>
-                <label class="lt-field"><span>Job title</span><input id="fit-title" type="text" autocomplete="off"></label>
-                <label class="lt-field"><span>Job description</span><textarea id="fit-posting" rows="8" spellcheck="false"></textarea></label>
-                <p class="lt-note">What you paste stays on this page. Nothing is sent anywhere.</p>
-                <div class="lt-actions"><button type="button" class="btn btn-accent" id="fit-run">Score this job</button></div>
-                <div id="fit-out" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">Same rules as <a href="https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/blob/main/app/services/fit_service.py" target="_blank" rel="noopener">fit_service.py</a> in Career Pilot, where they keep the AI's match score honest. Every deploy checks that this page gives the same scores as the Python original.</p>
-            </article>
-
-            <!-- 2. Data contract -->
-            <article class="lt-panel" id="lt-contract" aria-labelledby="lt-contract-title">
-                <h3 class="lt-title" id="lt-contract-title">Data Contract &amp; Quality Checker</h3>
-                <p class="lt-lede">Before a new file of job postings is used, check it against rules learned from a file you trust: no missing values, no duplicate IDs, salaries in a normal range, known categories only.</p>
-                <ol class="lt-steps"><li>Leave "Monday's file" as the good example the rules are learned from.</li><li>Pick a day's file to check (Tuesday and Wednesday have problems hidden in them).</li><li>Press <b>Check the file</b> and see which rules broke, and on which rows.</li></ol>
-                <div class="lt-controls">
-                    <label class="lt-field"><span>Learn the rules from</span>
-                        <select id="gx-ref"><option value="reference">Monday's file (known good)</option></select></label>
-                    <label class="lt-field"><span>File to check</span>
-                        <select id="gx-batch">
-                            <option value="tuesday">Tuesday's file</option>
-                            <option value="wednesday">Wednesday's file</option>
-                            <option value="thursday">Thursday's file</option>
-                        </select></label>
-                    <label class="lt-field"><span>Or check your own CSV file</span><input id="gx-file" type="file" accept=".csv,text/csv"></label>
-                </div>
-                <p class="lt-note">A file you choose is read on this page and never uploaded. Up to 5 MB.</p>
-                <div class="lt-actions"><button type="button" class="btn btn-accent" id="gx-run">Check the file</button>
-                    <button type="button" class="btn btn-outline" id="gx-show">Look at the file</button></div>
-                <div id="gx-out" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">The <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/great_expectations/validate_outputs.py" target="_blank" rel="noopener">Job Market Lakehouse</a> runs rules like these with Great Expectations after every PySpark job. A failed check stops the pipeline before bad data reaches a report.</p>
-            </article>
-
-            <!-- 3. SCD Type 2 -->
-            <article class="lt-panel" id="lt-scd" aria-labelledby="lt-scd-title">
-                <h3 class="lt-title" id="lt-scd-title">SCD Type 2 Snapshot Builder</h3>
-                <p class="lt-lede">A customer table only shows today's values. A history table (a "Type 2 slowly changing dimension") keeps every past version too, so you can answer "which city was this customer in last month?"</p>
-                <ol class="lt-steps"><li>Press <b>Save a snapshot</b> to record today's table.</li><li>Change a customer's city or tier in the table above it, or delete a customer.</li><li>Save again and watch the history table: the old row gets an end date and a new current row appears.</li></ol>
-                <div class="lt-controls">
-                    <fieldset class="lt-field"><legend>How to spot a change</legend>
-                        <label class="lt-check"><input type="radio" name="scd-strategy" value="timestamp" checked> trust the "updated_at" time (timestamp)</label>
-                        <label class="lt-check"><input type="radio" name="scd-strategy" value="check"> compare name, city and tier (check)</label></fieldset>
-                    <label class="lt-check lt-field-inline"><input type="checkbox" id="scd-hard"> End the history of customers deleted from the table</label>
-                </div>
-                <h4 class="lt-sub">Today's table: customers</h4>
-                <div class="lt-scroll"><table class="lt-table" id="scd-source"></table></div>
-                <div class="lt-actions"><button type="button" class="btn btn-outline" id="scd-add">Add a customer</button>
-                    <button type="button" class="btn btn-accent" id="scd-run">Save a snapshot</button>
-                    <button type="button" class="btn btn-outline" id="scd-reset">Start over</button></div>
-                <div id="scd-log" class="lt-out" aria-live="polite"></div>
-                <h4 class="lt-sub">History table: customers_snapshot</h4>
-                <div class="lt-scroll"><table class="lt-table" id="scd-snap"></table></div>
-                <p class="lt-source">This is how a dbt snapshot works. The <a href="https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse" target="_blank" rel="noopener">dbt warehouse</a> keeps its daily pipeline table with an incremental merge instead, which keeps only the latest value. That's the trade-off this demo shows.</p>
-            </article>
-
-            <!-- 4. Drift + fairness -->
-            <article class="lt-panel" id="lt-drift" aria-labelledby="lt-drift-title">
-                <h3 class="lt-title" id="lt-drift-title">Model Drift &amp; Fairness Monitor</h3>
-                <p class="lt-lede">A loan-approval model was trained on last year's applicants. When this year's applicants look different, or one group is treated worse, a monitor should notice. Both checks are below, each with its own controls.</p>
-
-                <h4 class="lt-sub">Part 1: did the new applicants change?</h4>
-                <ol class="lt-steps"><li>Pick a feature.</li><li>Drag <b>Move the average</b> left or right.</li><li>The status next to each feature turns red once the change is big enough to act on.</li></ol>
-                <div class="lt-controls">
-                    <label class="lt-field"><span>Feature</span>
-                        <select id="dr-feature"><option value="income">Income</option><option value="debt">Debt-to-income ratio</option><option value="age">Length of credit history</option></select></label>
-                    <label class="lt-field"><span>Move the average <output id="dr-shift-v">no change</output></span><input id="dr-shift" type="range" min="-2" max="2" step="0.1" value="0"></label>
-                    <label class="lt-field"><span>Make values more spread out <output id="dr-spread-v">no change</output></span><input id="dr-spread" type="range" min="0.5" max="2" step="0.1" value="1"></label>
-                    <div class="lt-field lt-field-end"><button type="button" class="btn btn-outline" id="dr-new">New random applicants</button></div>
-                </div>
-                <div id="dr-out" class="lt-out" aria-live="polite"></div>
-                <details class="lt-own">
-                    <summary>Check your own data for drift</summary>
-                    <p class="lt-note">Paste a column from the period a model was trained on, and the same column from now: numbers separated by commas, spaces or new lines. The example columns are made up. Nothing is uploaded.</p>
-                    <div class="lt-controls">
-                        <label class="lt-field lt-grow"><span>Reference values (training period)</span><textarea id="dr-own-ref" rows="4" spellcheck="false">52.3, 64.2, 63.0, 47.4, 49.3, 47.3, 57.1, 51.5, 58.7, 35.4, 66.1, 51.1, 58.1, 50.8, 48.6, 56.2, 59.4, 50.2, 50.6, 58.2, 44.2, 38.4, 55.6, 46.0, 34.7, 44.7, 47.8, 41.3, 38.6, 52.3, 60.1, 49.9, 45.3, 55.5, 58.5, 49.3, 56.9, 61.4, 50.1, 44.7, 55.1, 54.2, 61.9, 40.4, 46.0, 44.5, 36.4, 53.1, 56.8, 45.4, 64.5, 59.4, 57.6, 55.6, 60.6, 40.0, 57.5, 57.4, 36.1, 55.1</textarea></label>
-                        <label class="lt-field lt-grow"><span>Current values</span><textarea id="dr-own-cur" rows="4" spellcheck="false">54.2, 65.6, 52.2, 56.8, 60.8, 47.4, 63.6, 55.8, 62.4, 51.3, 68.9, 63.7, 55.0, 64.0, 70.9, 76.7, 39.7, 66.7, 62.1, 56.0, 45.9, 70.8, 43.1, 63.2, 71.3, 39.4, 53.7, 42.6, 59.7, 73.7, 79.3, 37.4, 50.7, 64.7, 74.4, 61.6, 48.8, 60.3, 56.8, 54.8, 48.9, 61.3, 60.4, 56.0, 54.6, 42.9, 51.7, 70.3, 54.9, 41.2, 71.7, 62.8, 80.2, 57.7, 51.9, 41.1, 71.6, 85.3, 48.0, 49.9</textarea></label>
-                    </div>
-                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="dr-own-run">Compare my columns</button></div>
-                    <div id="dr-own-out" class="lt-out" aria-live="polite"></div>
-                </details>
-
-                <h4 class="lt-sub">Part 2: is the model fair to both groups?</h4>
-                <ol class="lt-steps"><li>Drag <b>Approval cut-off</b>: applicants scoring above it are approved.</li><li>Watch both groups' bars move. A red note appears when the gap breaks a fairness rule.</li></ol>
-                <div class="lt-controls">
-                    <label class="lt-field lt-grow"><span>Approval cut-off <output id="dr-thr-v">0.50</output></span><input id="dr-thr" type="range" min="0.2" max="0.8" step="0.01" value="0.5"></label>
-                    <label class="lt-field lt-grow"><span>Share of applicants from group B <output id="dr-mix-v">40%</output></span><input id="dr-mix" type="range" min="10" max="90" step="5" value="40"></label>
-                </div>
-                <div id="dr-fair" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">Same limits as the <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing/blob/main/analytics/audit_engine.py" target="_blank" rel="noopener">AI Model Observability audit engine</a>: PSI over 0.25, a KS test p-value under 0.01, the four-fifths rule, and a 10-point gap in true-positive rate. The applicants are generated on this page.</p>
-            </article>
-
-            <!-- 5. Time travel -->
-            <article class="lt-panel" id="lt-travel" aria-labelledby="lt-travel-title">
-                <h3 class="lt-title" id="lt-travel-title">Lakehouse Time Travel Explorer</h3>
-                <p class="lt-lede">Lakehouse tables (Apache Iceberg, Delta Lake) never overwrite data in place. Every change saves a new version, so you can query the table as it was before a mistake.</p>
-                <ol class="lt-steps"><li>Press <b>Add 3 rows</b> twice, then <b>Give one company a 10% raise</b> and <b>Delete the lowest salary</b>.</li><li>Click any earlier version to see the table exactly as it was then.</li><li>Press <b>Tidy up files</b>, then <b>Delete old versions</b>, and see what time travel loses.</li></ol>
-                <div class="lt-controls">
-                    <fieldset class="lt-field"><legend>How changes are written</legend>
-                        <label class="lt-check"><input type="radio" name="tt-mode" value="cow" checked> rewrite the affected files (copy-on-write)</label>
-                        <label class="lt-check"><input type="radio" name="tt-mode" value="mor"> write a small "deleted rows" file (merge-on-read)</label></fieldset>
-                </div>
-                <div class="lt-actions lt-wrap">
-                    <button type="button" class="btn btn-accent" id="tt-append">Add 3 rows</button>
-                    <button type="button" class="btn btn-outline" id="tt-update">Give one company a 10% raise</button>
-                    <button type="button" class="btn btn-outline" id="tt-delete">Delete the lowest salary</button>
-                    <button type="button" class="btn btn-outline" id="tt-compact">Tidy up files</button>
-                    <button type="button" class="btn btn-outline" id="tt-expire">Delete old versions</button>
-                    <button type="button" class="btn btn-outline" id="tt-reset">Start over</button>
-                </div>
-                <div id="tt-out" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">A simulation of how the format behaves. The real Delta Lake and Iceberg tables are in <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/blob/main/app/etl/table_formats.py" target="_blank" rel="noopener">TalentVenue EventIntel's table_formats.py</a>.</p>
-            </article>
-
-            <!-- 6. Event-time windows -->
-            <article class="lt-panel" id="lt-windows" aria-labelledby="lt-windows-title">
-                <h3 class="lt-title" id="lt-windows-title">Streaming Event-Time Window Simulator</h3>
-                <p class="lt-lede">Machine sensors send a temperature reading every few seconds, and a stream job averages them per 10-second window. Some readings get stuck in the network and arrive late. How long should the job wait before it publishes a window's average?</p>
-                <ol class="lt-steps"><li>Press <b>Replay the stream</b> and watch the dots arrive, top to bottom.</li><li>Set <b>Wait for stragglers</b> to 0 and replay: more readings are dropped.</li><li>Tap a dot to delay that reading by 8 seconds.</li></ol>
-                <div class="lt-controls">
-                    <label class="lt-field"><span>Group readings into</span>
-                        <select id="ew-type"><option value="tumbling">10-second blocks (tumbling)</option><option value="sliding">10-second blocks every 5 s (sliding)</option><option value="session">bursts split by 6 s of quiet (session)</option></select></label>
-                    <label class="lt-field"><span>Wait for stragglers <output id="ew-delay-v">2 s</output></span><input id="ew-delay" type="range" min="0" max="10" step="1" value="2"></label>
-                    <label class="lt-field"><span>Accept late readings for <output id="ew-late-v">3 s</output></span><input id="ew-late" type="range" min="0" max="15" step="1" value="3"></label>
-                    <label class="lt-field lt-grow"><span>Clock <output id="ew-time-v">0 s</output></span><input id="ew-time" type="range" min="0" max="80" step="1" value="80"></label>
-                </div>
-                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ew-play">Replay the stream</button>
-                    <button type="button" class="btn btn-outline" id="ew-new">New readings</button></div>
-                <div id="ew-out" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">"Wait for stragglers" is the watermark delay and "accept late readings" is the allowed lateness, the two settings a stream engine uses to decide this. The <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance/blob/main/etl/telemetry_pipeline.py" target="_blank" rel="noopener">IoT telematics pipeline</a> writes its telemetry in event-time order in micro-batches.</p>
-            </article>
-
-            <!-- 7. DAG replay -->
-            <article class="lt-panel" id="lt-dag" aria-labelledby="lt-dag-title">
-                <h3 class="lt-title" id="lt-dag-title">Airflow DAG Backfill &amp; Retry Replay</h3>
-                <p class="lt-lede">A pipeline runs three steps every day: create the data, transform it with PySpark, then check it. Here it catches up on five missed days at once (a backfill), and some steps fail along the way.</p>
-                <ol class="lt-steps"><li>Press <b>Run the 5 days</b>. Two failures are already set up.</li><li>Red squares failed; orange ones never ran because an earlier step failed. Tap a square to read its log.</li><li>Press <b>Fix it and re-run</b> on a failed square, or add retries and run again.</li></ol>
-                <div class="lt-controls">
-                    <label class="lt-field"><span>Retries when a step fails</span><select id="dag-retries"><option>0</option><option selected>1</option><option>2</option><option>3</option></select></label>
-                    <label class="lt-field"><span>Wait before retrying</span><select id="dag-delay"><option value="2">2 min</option><option value="5" selected>5 min</option><option value="10">10 min</option></select></label>
-                    <label class="lt-field"><span>Warn if a day takes over</span><select id="dag-sla"><option value="20">20 min</option><option value="30" selected>30 min</option><option value="45">45 min</option></select></label>
-                    <label class="lt-check lt-field-inline"><input type="checkbox" id="dag-dop"> A day waits for the day before to succeed (depends_on_past)</label>
-                </div>
-                <details class="lt-more"><summary>Set up your own failures</summary>
-                <div class="lt-controls">
-                    <label class="lt-field"><span>Step that fails</span><select id="dag-f-task"></select></label>
-                    <label class="lt-field"><span>Day</span><select id="dag-f-date"></select></label>
-                    <label class="lt-field"><span>How often</span><select id="dag-f-times"><option value="1">first try only</option><option value="2">first 2 tries</option><option value="99">every try</option></select></label>
-                    <div class="lt-field lt-field-end"><button type="button" class="btn btn-outline" id="dag-f-add">Add this failure</button></div>
-                </div>
-                <ul id="dag-faults" class="lt-chips"></ul>
-                </details>
-                <div class="lt-actions"><button type="button" class="btn btn-accent" id="dag-run">Run the 5 days</button></div>
-                <div id="dag-out" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">The three steps are the real tasks of the <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/dags/job_market_pipeline.py" target="_blank" rel="noopener">Job Market Lakehouse Airflow DAG</a>. The real DAG runs on demand; this replay puts it on a daily schedule so retries and backfills have something to show.</p>
-            </article>
-        </section>
-        <section id="model-demos" class="lt-section" aria-labelledby="model-demos-title">
-            <h2 id="model-demos-title" class="section-title">Trained Models, Running in Your Browser</h2>
-            <p class="lt-intro">These are the projects' own trained models, not re-creations. They download only when you press Run, then run on this page; nothing you draw or show them leaves your device.</p>
-
-            <!-- Shape classifier (Solid Object Detection) -->
-            <article class="lt-panel" id="lm-shapes" aria-labelledby="lm-shapes-title">
-                <h3 class="lt-title" id="lm-shapes-title">Shape Classifier</h3>
-                <p class="lt-lede">A small CNN that names the shape in a 64 x 64 image (circle, square, triangle, rectangle, pentagon, hexagon or star) and draws a box around it. It scored 99.20% on 2,000 held-out images. Next to it, the project's classic image-processing path turns the picture black and white, cleans it and reads the outline's corners, which gives a second, independent answer.</p>
-                <ol class="lt-steps"><li>Pick a test shape or one it never saw, draw your own, or upload any picture: a road sign, a logo, a photo.</li><li>Press <b>Run the model</b>. The first run downloads the model, ONNX Runtime and OpenCV.js (about 6 MB).</li><li>Follow the processing steps, compare the two answers, and read whether the answer can be trusted.</li></ol>
-                <div class="lt-controls">
-                    <fieldset class="lt-field lt-field-inline"><legend>Input</legend>
-                        <label class="lt-check"><input type="radio" name="lm-mode" value="test" checked> Test shape</label>
-                        <label class="lt-check"><input type="radio" name="lm-mode" value="draw"> Draw your own</label>
-                        <label class="lt-check"><input type="radio" name="lm-mode" value="upload"> Upload a picture</label></fieldset>
-                </div>
-                <div id="lm-test-pick">
-                    <p class="lm-row-label">Held-out test shapes (the 7 it knows)</p>
-                    <div class="lm-thumbs" id="lm-thumbs" role="listbox" aria-label="Held-out test shapes"></div>
-                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-more">Show all 63 test shapes</button>
-                        <button type="button" class="btn btn-outline" id="lm-random">Random test shape</button></div>
-                    <p class="lm-row-label">Shapes it never saw (octagon, heptagon, ellipse, plus sign, arrow, crescent)</p>
-                    <div class="lm-thumbs" id="lm-unseen" role="listbox" aria-label="Shapes the model never saw"></div>
-                </div>
-                <div id="lm-draw-pick" hidden>
-                    <p class="lt-note">Draw one filled shape with your finger or mouse. Your drawing is not like the training images (those are clean, filled and slightly noisy), so expect lower accuracy here; the 99.20% applies only to the test shapes.</p>
-                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-clear">Clear</button></div>
-                </div>
-                <div id="lm-upload-pick" hidden>
-                    <div class="lt-actions"><label class="btn btn-outline lm-file-btn" for="lm-file">Choose a picture</label>
-                        <input type="file" id="lm-file" accept="image/*" class="lm-file-input"></div>
-                    <p class="lt-note">Your picture is read in your browser and never uploaded or saved. It is padded to a square and shrunk to 64 x 64, the only size the model takes, so fine detail (a sign's lettering) is lost. A single dark shape on a plain light background is closest to what the model was trained on; anything else is a real-world test of how it fails.</p>
-                </div>
-                <div class="lm-stage lm-stage-one">
-                    <canvas id="lm-canvas" width="256" height="256" aria-label="The image the model will classify"></canvas>
-                </div>
-                <div class="lt-actions"><button type="button" class="btn btn-accent" id="lm-run">Run the model (about 6 MB, first time only)</button></div>
-                <div id="lm-pipeline" class="lm-pipeline" hidden>
-                    <p class="lm-row-label">How the picture was processed (src/traditional.py, the same OpenCV steps in your browser)</p>
-                    <div class="lm-steps">
-                        <figure id="lm-step-orig" hidden><canvas id="lm-c-orig" width="192" height="192"></canvas><figcaption><b>Your picture</b>, padded to a square</figcaption></figure>
-                        <figure><canvas id="lm-c-input" width="64" height="64"></canvas><figcaption><b>1. Model input</b>: 64 x 64 colour, what the CNN reads</figcaption></figure>
-                        <figure><canvas id="lm-c-gray" width="64" height="64"></canvas><figcaption><b>2. Grayscale</b>: colour dropped, brightness kept</figcaption></figure>
-                        <figure><canvas id="lm-c-blur" width="64" height="64"></canvas><figcaption><b>3. Blurred</b> (5 x 5 Gaussian): smooths pixel noise</figcaption></figure>
-                        <figure><canvas id="lm-c-thresh" width="64" height="64"></canvas><figcaption><b>4. Black and white</b>: Otsu picked level <span id="lm-level">-</span> of 255; darker becomes the shape</figcaption></figure>
-                        <figure><canvas id="lm-c-clean" width="64" height="64"></canvas><figcaption><b>5. Cleaned</b>: close fills pinholes, open removes specks</figcaption></figure>
-                        <figure><canvas id="lm-c-outline" width="192" height="192"></canvas><figcaption><b>6. Largest outline</b>: <span id="lm-corners">-</span></figcaption></figure>
-                    </div>
-                    <p class="lt-note">Steps 2 to 6 feed the geometry answer only. The CNN reads step 1 directly: it learned its own filters, so it never sees the black-and-white mask. When the two answers disagree, one of them is wrong.</p>
-                </div>
-                <div id="lm-out" class="lt-out lm-out" aria-live="polite"></div>
-                <details class="lt-more"><summary>How it scored on each shape</summary>
-                    <div class="lt-scroll"><table class="lt-table">
-                        <thead><tr><th>Shape</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1</th></tr></thead>
-                        <tbody>
-                            <tr><td>Circle</td><td class="num">1.0000</td><td class="num">0.9930</td><td class="num">0.9965</td></tr>
-                            <tr><td>Square</td><td class="num">0.9873</td><td class="num">1.0000</td><td class="num">0.9936</td></tr>
-                            <tr><td>Triangle</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
-                            <tr><td>Rectangle</td><td class="num">1.0000</td><td class="num">0.9860</td><td class="num">0.9930</td></tr>
-                            <tr class="lt-closed-now"><td>Pentagon</td><td class="num">0.9794</td><td class="num">0.9828</td><td class="num">0.9811</td></tr>
-                            <tr class="lt-closed-now"><td>Hexagon</td><td class="num">0.9779</td><td class="num">0.9815</td><td class="num">0.9797</td></tr>
-                            <tr><td>Star</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
-                        </tbody></table></div>
-                    <p class="lt-note">Pentagons and hexagons, highlighted, are the pair it confuses most: at 64 x 64 pixels their corners blur into near-circles.</p>
-                </details>
-                <p class="lt-source">The model and test images come from <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" rel="noopener">Solid Object Detection</a>: the same ONNX file it serves on AWS Lambda, and 9 images of each shape from its seed-42 held-out split (<a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). For a test shape, the page also shows Python's score for the same image, and every deploy checks the model's scores and every geometry step against Python. The trust check and its numbers come from the project's <code>ood_check.py</code>, which tested the model on 1,200 shapes it never saw.</p>
-            </article>
-
-            <!-- ASL word signs (Extending STEM across ASL) -->
-            <article class="lt-panel" id="lm-signs" aria-labelledby="lm-signs-title">
-                <h3 class="lt-title" id="lm-signs-title">ASL Word Signs</h3>
-                <p class="lt-lede">Recognises 29 STEM and computing signs (computer, email, science, math...) from about two seconds of video. On 58 held-out clips the right sign was the top guess 75.86% of the time and in the top three 94.83% of the time (chance is 3.45%).</p>
-                <ol class="lt-steps"><li>Pick a held-out clip, or switch to <b>Use your camera</b> and sign one of the words listed below.</li><li>Press <b>Recognise the sign</b>.</li><li>Read the top three signs. The picture shows the hand points the model reads, frame by frame.</li></ol>
-                <div class="lt-controls">
-                    <fieldset class="lt-field lt-field-inline"><legend>Input</legend>
-                        <label class="lt-check"><input type="radio" name="ls-mode" value="clip" checked> Held-out clip</label>
-                        <label class="lt-check"><input type="radio" name="ls-mode" value="camera"> Use your camera</label></fieldset>
-                </div>
-                <div id="ls-clip-pick" class="lt-controls">
-                    <label class="lt-field lt-grow"><span>Held-out clip</span>
-                        <select id="ls-clip"><option value="">Press Recognise to load the clips</option></select></label>
-                </div>
-                <div id="ls-camera-pick" hidden>
-                    <p class="lt-note">The camera runs only on this page: frames are read in your browser and are never uploaded or saved. The first start downloads MediaPipe's hand model and OpenCV.js (about 14 MB). Sign with your hands fully in view and good light; a phone works, but more slowly.</p>
-                    <p class="lt-note"><b>Signs it knows:</b> <span id="ls-vocab">computer, internet, email, program, network, machine, print, television, write, letter, paper, test, learn, study, teacher, school, science, math, calculate, research, measure, plus, energy, chemistry, biology, physics, experiment, book, picture</span>. See how each is signed in the <a href="https://dxli94.github.io/WLASL/" target="_blank" rel="noopener">WLASL dataset</a>.</p>
-                </div>
-                <div class="lm-stage ls-stage">
-                    <div class="ls-view">
-                        <video id="ls-video" playsinline muted hidden aria-label="Your camera, mirrored"></video>
-                        <canvas id="ls-canvas" width="400" height="260" aria-label="The hand points the model reads"></canvas>
-                    </div>
-                    <div id="ls-out" class="lt-out lm-out" aria-live="polite"></div>
-                </div>
-                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ls-run">Recognise the sign (about 3 MB, first time only)</button></div>
-                <details class="lt-more"><summary>Which signs it misses</summary>
-                    <div class="lt-scroll"><table class="lt-table">
-                        <thead><tr><th>Sign</th><th class="num">Held-out accuracy</th><th>Predicted as</th></tr></thead>
-                        <tbody>
-                            <tr><td>network</td><td class="num">0.0</td><td>internet (both clips)</td></tr>
-                            <tr><td>chemistry</td><td class="num">0.0</td><td>email, experiment</td></tr>
-                            <tr><td>internet</td><td class="num">0.5</td><td>network (one clip)</td></tr>
-                            <tr><td>paper</td><td class="num">0.5</td><td>print (one clip)</td></tr>
-                            <tr><td>school</td><td class="num">0.5</td><td>paper (one clip)</td></tr>
-                        </tbody></table></div>
-                    <p class="lt-note">The misses fall between related signs that share a hand shape, such as network and internet. With the hand-shape values from OpenCV removed, top-1 drops from 75.86% to 65.52%, so the page runs OpenCV too.</p>
-                </details>
-                <p class="lt-source">The model and the held-out clips come from <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener">Extending STEM across ASL</a> (<a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the same 1-D convolution and GRU, trained on the same seeded split, with the clips stored as hand points only (WLASL video is for research use, so none is copied here). Every deploy checks this page's OpenCV.js step and model scores against Python's; MediaPipe's browser and Python versions were checked on 7 hand photos and agree to 0.00003 of the frame.</p>
-            </article>
-        </section>
-        <section id="stat-demos" class="lt-section" aria-labelledby="stat-demos-title">
-            <h2 id="stat-demos-title" class="section-title">Project Statistics, Recomputed in Your Browser</h2>
-            <p class="lt-intro">Each project's own data, with its statistical tests rewritten to run on this page. Change the inputs and the tests rerun; every deploy checks the page's numbers against the Python libraries the projects use.</p>
 
             <!-- Survival curves (Clinical Trials Patient Outcomes Analysis) -->
             <article class="lt-panel" id="st-trials" aria-labelledby="st-trials-title">
@@ -973,6 +399,698 @@ carol,2026-03-10 20:05,140.00,0,0</textarea></label>
                 <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline" target="_blank" rel="noopener">FinTech Credit Risk &amp; Fraud Command Center</a> (<a href="https://github.com/Deshraj-Jogiya/FinRisk-Analytics-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The transactions are simulated with a fixed seed and the fraud is planted by the simulator; the rules never read the labels. The rules are <code>etl/fraud_rules.py</code> rewritten for the browser; every deploy checks them against the Python at five settings, and through the CSV upload path, and they must agree on every count.</p>
             </article>
 
+            <article class="lt-panel" id="st-rfm" aria-labelledby="st-rfm-title">
+                <h3 class="lt-title" id="st-rfm-title">Customer Segments by RFM</h3>
+                <p class="lt-lede">Each customer becomes three numbers: days since their last purchase (recency), how many purchases (frequency) and total spend (monetary). K-Means groups customers with similar numbers. With 4 groups the project's 2,000 customers split into VIP Champions, Loyal, New and At Risk, and the groups explain 93.9% of the variance.</p>
+                <ol class="lt-steps"><li>Move the slider to try 2 to 8 clusters and watch the elbow chart: each extra cluster explains less.</li><li>Read each segment's size and average recency, purchases and spend.</li><li>Switch to <b>Your own transactions</b> and load a CSV, or try the 60-customer sample.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Customers</legend>
+                        <label class="lt-check"><input type="radio" name="rf-mode" value="project" checked> The project's 2,000</label>
+                        <label class="lt-check"><input type="radio" name="rf-mode" value="own"> Your own transactions</label></fieldset>
+                </div>
+                <div id="rf-own-pick" hidden>
+                    <p class="lt-note">A CSV with one row per purchase: customer, date, amount (a header row is fine). Dates like 2025-03-01 or 2025-03-01 14:05. The file is read in your browser and never uploaded.</p>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Transactions file</span><input id="rf-file" type="file" accept=".csv,.txt,text/csv"></label>
+                        <div class="lt-actions"><button type="button" class="btn" id="rf-sample">Use the sample (374 KB)</button></div>
+                    </div>
+                    <p class="lt-note">Loaded: <span id="rf-own-name">nothing yet</span></p>
+                </div>
+                <div id="rf-controls" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Clusters (k): <b id="rf-k-out">4</b></span><input id="rf-k" type="range" min="2" max="8" step="1" value="4"></label>
+                </div>
+                <div id="rf-figs" class="rf-figs" hidden>
+                    <figure><svg id="rf-elbow" class="lt-svg" viewBox="0 0 320 180" role="img" aria-label="Variance explained for each number of clusters"></svg><figcaption>Variance explained by k</figcaption></figure>
+                    <figure><svg id="rf-scatter" class="lt-svg" viewBox="0 0 320 220" role="img" aria-label="Customers by recency and spend, coloured by cluster"></svg><figcaption>Customers: recency vs spend (log scale)</figcaption></figure>
+                </div>
+                <div id="rf-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" rel="noopener">Sales Analytics &amp; RFM Customer Segmentation Pipeline</a> (<a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the RFM step and K-Means of <code>models/segmentation.py</code>, rewritten for the browser, on the project's seeded synthetic sales. Every deploy checks that the browser's RFM matches pandas on the sample and its variance explained is within 0.001 of scikit-learn's for every k. K-Means stops at a local optimum, so at k = 4 up to 5 boundary customers land in a neighbouring segment (93.900% vs 93.901%).</p>
+            </article>
+
+        </section>
+
+        <section id="cat-engineering" class="lt-section lab-cat" data-cat="engineering" aria-labelledby="cat-engineering-title">
+            <h2 id="cat-engineering-title" class="section-title">Data Engineering</h2>
+            <p class="lt-intro">How data is moved, checked, versioned, streamed and scheduled: a pipeline monitor, pipeline designs, data-quality rules, dbt snapshots, lakehouse time travel, streaming windows and Airflow retries.</p>
+
+                <!-- Live ETL Observability Monitor -->
+                <div class="observability-widget glass-card" id="lab-etl">
+                    <div class="obs-header">
+                        <h3 class="obs-title">Live ETL Pipeline Observability Monitor</h3>
+                        <div class="obs-status idle" id="obs-status">
+                            <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
+</div>
+</div>
+                    
+                    <!-- Observability Explanatory Box -->
+                    <div class="obs-info-box" style="background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
+                        Run a check to watch a batch move through ingest, validation, scoring and commit, and see which records fail and why.
+</div>
+                    
+                    <!-- Pipeline Flow Diagram -->
+                    <div class="pipeline-flow-container">
+                        <div class="pipeline-flow">
+                            <div class="pipeline-line"></div>
+                            <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
+                            
+                            <div class="pipeline-node-item" id="node-ingest">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">Ingest</div>
+</div>
+                            <div class="pipeline-node-item" id="node-validate">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">Validate</div>
+</div>
+                            <div class="pipeline-node-item" id="node-score">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">ML Score</div>
+</div>
+                            <div class="pipeline-node-item" id="node-commit">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">Commit</div>
+</div>
+</div>
+</div>
+                    
+                    <div class="obs-content" style="margin-top: 1.5rem;">
+                        <!-- Tab Navigation for Observability Widget -->
+                        <div class="obs-tab-nav">
+                            <button class="obs-tab-btn active" data-tab="console">Console Outputs</button>
+                            <button class="obs-tab-btn" data-tab="qa-report">Data QA Audit Report</button>
+</div>
+                        
+                        <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
+                            <div class="obs-panel-content active" id="obs-console-panel">
+                                <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                                    <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
+</div>
+                                    <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
+                                        <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+</div>
+</div>
+</div>
+                            <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
+                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+                                    <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
+                                         Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
+</div>
+</div>
+</div>
+</div>
+                        <div class="obs-metrics-panel">
+                            <div class="obs-metrics-grid">
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-latency">&mdash;</div>
+                                    <div class="obs-metric-lbl">ETL Latency</div>
+</div>
+                                <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div>
+                                        <div class="obs-metric-val" id="metric-reliability">&mdash;</div>
+                                        <div class="obs-metric-lbl">Reliability (last 30 runs)</div>
+</div>
+                                    <div class="obs-history-dots" id="obs-history-dots" aria-label="Last 13 runs"></div>
+                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">No runs yet</div>
+</div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-rows">&mdash;</div>
+                                    <div class="obs-metric-lbl">Processed Rows</div>
+</div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--text-muted);">&mdash;</div>
+                                    <div class="obs-metric-lbl">Drift Status</div>
+</div>
+</div>
+                            <div class="obs-actions" style="margin-top: 1.5rem;">
+                                <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics</button>
+</div>
+</div>
+</div>
+</div>
+
+                <!-- Data Pipeline Architecture Explorer -->
+                <div class="architecture-widget glass-card" id="lab-arch">
+                    <div class="arch-header" style="margin-bottom: 1.5rem;">
+                        <h3 class="arch-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">Data Pipeline Architecture Explorer</h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.25rem;">Interact with real-world pipeline system designs to see data flow, tool stacks, and Python execution modules.</p>
+</div>
+
+                    <!-- Pipeline Tabs -->
+                    <div class="arch-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center; width: 100%;">
+                        <button class="arch-tab-btn active" data-pipeline="careerpilot">Career Pilot AI Tailoring</button>
+                        <button class="arch-tab-btn" data-pipeline="reactive">Reactive Job Ingest (WebFlux)</button>
+                        <button class="arch-tab-btn" data-pipeline="lakehouse">Lakehouse + dbt Warehouse</button>
+                        <button class="arch-tab-btn" data-pipeline="batch">Batch ETL Sales Analytics</button>
+                        <button class="arch-tab-btn" data-pipeline="stream">Streaming IoT Fleet Telematics</button>
+                        <button class="arch-tab-btn" data-pipeline="geospatial">Geospatial Carbon Emissions</button>
+                        <button id="arch-tour-btn">Play Tour ⏯</button>
+</div>
+
+                    <div class="arch-content-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                        <!-- Interactive System Diagram -->
+                        <div class="arch-diagram-card glass-card" style="padding: 1.5rem;">
+                            <div class="arch-diagram-flow" id="arch-flow-diagram" style="display: flex; justify-content: space-between; align-items: center; position: relative; padding: 1rem 0; overflow-x: auto; gap: 1.5rem;">
+                                <!-- Nodes will be injected here via Javascript -->
+</div>
+</div>
+
+                        <!-- Info Pane / Code Snippet -->
+                        <div class="arch-info-pane glass-card" style="padding: 1.5rem; background: rgba(255,255,255,0.01); border-color: rgba(255, 255, 255, 0.05);">
+                            <div id="arch-node-details">
+                                <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent-blue);" id="arch-node-name">Select a pipeline block above...</h4>
+                                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;" id="arch-node-tags">
+                                    <!-- Tags will go here -->
+</div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.75rem;" id="arch-node-desc">
+                                    Click on any stage in the flow diagram above to view its technical specifications, tool stack, and Python code implementation.
+                                </p>
+                                
+                                <!-- Visual Input-Process-Output Flow Diagram -->
+                                <div class="arch-visual-flow" id="arch-node-flow-box" style="display: none;">
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.15); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Inputs</div>
+                                        <div id="arch-flow-input" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+</div>
+                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">→</div>
+                                    <div style="background: rgba(140, 196, 173, 0.06); border: 1px solid rgba(140, 196, 173, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--accent-blue); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Process</div>
+                                        <div id="arch-flow-process" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+</div>
+                                    <div class="arrow-symbol" style="color: var(--text-muted); font-size: 0.8rem; font-weight: bold;">→</div>
+                                    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.2); padding: 0.55rem; border-radius: var(--border-radius-sm);">
+                                        <div style="font-size: 0.65rem; color: var(--accent-emerald); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Outputs</div>
+                                        <div id="arch-flow-output" style="font-size: 0.78rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-</div>
+</div>
+</div>
+
+                                <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.5; margin-bottom: 1rem; display: none; background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); padding: 0.75rem; border-radius: var(--border-radius-sm);" id="arch-node-impact">
+                                    <!-- Business value will go here -->
+                                </p>
+                                <button id="arch-toggle-code-btn" class="btn btn-secondary btn-sm" style="display: none; width: 100%; margin-top: 0.5rem; font-size: 0.78rem; padding: 0.45rem 0.75rem; cursor: pointer;">
+                                    View Technical Code Snippet 
+</button>
+                                <div class="arch-code-wrapper" style="border-radius: var(--border-radius-sm); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: #070b13; padding: 1rem; display: none; margin-top: 1rem;" id="arch-code-box">
+                                    <pre style="margin: 0; font-family: monospace; font-size: 0.78rem; overflow-x: auto; color: var(--text-secondary);"><code id="arch-code-content"></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+            <!-- 2. Data contract -->
+            <article class="lt-panel" id="lt-contract" aria-labelledby="lt-contract-title">
+                <h3 class="lt-title" id="lt-contract-title">Data Contract &amp; Quality Checker</h3>
+                <p class="lt-lede">Before a new file of job postings is used, check it against rules learned from a file you trust: no missing values, no duplicate IDs, salaries in a normal range, known categories only.</p>
+                <ol class="lt-steps"><li>Leave "Monday's file" as the good example the rules are learned from.</li><li>Pick a day's file to check (Tuesday and Wednesday have problems hidden in them).</li><li>Press <b>Check the file</b> and see which rules broke, and on which rows.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Learn the rules from</span>
+                        <select id="gx-ref"><option value="reference">Monday's file (known good)</option></select></label>
+                    <label class="lt-field"><span>File to check</span>
+                        <select id="gx-batch">
+                            <option value="tuesday">Tuesday's file</option>
+                            <option value="wednesday">Wednesday's file</option>
+                            <option value="thursday">Thursday's file</option>
+                        </select></label>
+                    <label class="lt-field"><span>Or check your own CSV file</span><input id="gx-file" type="file" accept=".csv,text/csv"></label>
+                </div>
+                <p class="lt-note">A file you choose is read on this page and never uploaded. Up to 5 MB.</p>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="gx-run">Check the file</button>
+                    <button type="button" class="btn btn-outline" id="gx-show">Look at the file</button></div>
+                <div id="gx-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">The <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/great_expectations/validate_outputs.py" target="_blank" rel="noopener">Job Market Lakehouse</a> runs rules like these with Great Expectations after every PySpark job. A failed check stops the pipeline before bad data reaches a report.</p>
+            </article>
+
+            <!-- 3. SCD Type 2 -->
+            <article class="lt-panel" id="lt-scd" aria-labelledby="lt-scd-title">
+                <h3 class="lt-title" id="lt-scd-title">SCD Type 2 Snapshot Builder</h3>
+                <p class="lt-lede">A customer table only shows today's values. A history table (a "Type 2 slowly changing dimension") keeps every past version too, so you can answer "which city was this customer in last month?"</p>
+                <ol class="lt-steps"><li>Press <b>Save a snapshot</b> to record today's table.</li><li>Change a customer's city or tier in the table above it, or delete a customer.</li><li>Save again and watch the history table: the old row gets an end date and a new current row appears.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field"><legend>How to spot a change</legend>
+                        <label class="lt-check"><input type="radio" name="scd-strategy" value="timestamp" checked> trust the "updated_at" time (timestamp)</label>
+                        <label class="lt-check"><input type="radio" name="scd-strategy" value="check"> compare name, city and tier (check)</label></fieldset>
+                    <label class="lt-check lt-field-inline"><input type="checkbox" id="scd-hard"> End the history of customers deleted from the table</label>
+                </div>
+                <h4 class="lt-sub">Today's table: customers</h4>
+                <div class="lt-scroll"><table class="lt-table" id="scd-source"></table></div>
+                <div class="lt-actions"><button type="button" class="btn btn-outline" id="scd-add">Add a customer</button>
+                    <button type="button" class="btn btn-accent" id="scd-run">Save a snapshot</button>
+                    <button type="button" class="btn btn-outline" id="scd-reset">Start over</button></div>
+                <div id="scd-log" class="lt-out" aria-live="polite"></div>
+                <h4 class="lt-sub">History table: customers_snapshot</h4>
+                <div class="lt-scroll"><table class="lt-table" id="scd-snap"></table></div>
+                <p class="lt-source">This is how a dbt snapshot works. The <a href="https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse" target="_blank" rel="noopener">dbt warehouse</a> keeps its daily pipeline table with an incremental merge instead, which keeps only the latest value. That's the trade-off this demo shows.</p>
+            </article>
+
+            <!-- 5. Time travel -->
+            <article class="lt-panel" id="lt-travel" aria-labelledby="lt-travel-title">
+                <h3 class="lt-title" id="lt-travel-title">Lakehouse Time Travel Explorer</h3>
+                <p class="lt-lede">Lakehouse tables (Apache Iceberg, Delta Lake) never overwrite data in place. Every change saves a new version, so you can query the table as it was before a mistake.</p>
+                <ol class="lt-steps"><li>Press <b>Add 3 rows</b> twice, then <b>Give one company a 10% raise</b> and <b>Delete the lowest salary</b>.</li><li>Click any earlier version to see the table exactly as it was then.</li><li>Press <b>Tidy up files</b>, then <b>Delete old versions</b>, and see what time travel loses.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field"><legend>How changes are written</legend>
+                        <label class="lt-check"><input type="radio" name="tt-mode" value="cow" checked> rewrite the affected files (copy-on-write)</label>
+                        <label class="lt-check"><input type="radio" name="tt-mode" value="mor"> write a small "deleted rows" file (merge-on-read)</label></fieldset>
+                </div>
+                <div class="lt-actions lt-wrap">
+                    <button type="button" class="btn btn-accent" id="tt-append">Add 3 rows</button>
+                    <button type="button" class="btn btn-outline" id="tt-update">Give one company a 10% raise</button>
+                    <button type="button" class="btn btn-outline" id="tt-delete">Delete the lowest salary</button>
+                    <button type="button" class="btn btn-outline" id="tt-compact">Tidy up files</button>
+                    <button type="button" class="btn btn-outline" id="tt-expire">Delete old versions</button>
+                    <button type="button" class="btn btn-outline" id="tt-reset">Start over</button>
+                </div>
+                <div id="tt-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">A simulation of how the format behaves. The real Delta Lake and Iceberg tables are in <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/blob/main/app/etl/table_formats.py" target="_blank" rel="noopener">TalentVenue EventIntel's table_formats.py</a>.</p>
+            </article>
+
+            <!-- 6. Event-time windows -->
+            <article class="lt-panel" id="lt-windows" aria-labelledby="lt-windows-title">
+                <h3 class="lt-title" id="lt-windows-title">Streaming Event-Time Window Simulator</h3>
+                <p class="lt-lede">Machine sensors send a temperature reading every few seconds, and a stream job averages them per 10-second window. Some readings get stuck in the network and arrive late. How long should the job wait before it publishes a window's average?</p>
+                <ol class="lt-steps"><li>Press <b>Replay the stream</b> and watch the dots arrive, top to bottom.</li><li>Set <b>Wait for stragglers</b> to 0 and replay: more readings are dropped.</li><li>Tap a dot to delay that reading by 8 seconds.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Group readings into</span>
+                        <select id="ew-type"><option value="tumbling">10-second blocks (tumbling)</option><option value="sliding">10-second blocks every 5 s (sliding)</option><option value="session">bursts split by 6 s of quiet (session)</option></select></label>
+                    <label class="lt-field"><span>Wait for stragglers <output id="ew-delay-v">2 s</output></span><input id="ew-delay" type="range" min="0" max="10" step="1" value="2"></label>
+                    <label class="lt-field"><span>Accept late readings for <output id="ew-late-v">3 s</output></span><input id="ew-late" type="range" min="0" max="15" step="1" value="3"></label>
+                    <label class="lt-field lt-grow"><span>Clock <output id="ew-time-v">0 s</output></span><input id="ew-time" type="range" min="0" max="80" step="1" value="80"></label>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ew-play">Replay the stream</button>
+                    <button type="button" class="btn btn-outline" id="ew-new">New readings</button></div>
+                <div id="ew-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">"Wait for stragglers" is the watermark delay and "accept late readings" is the allowed lateness, the two settings a stream engine uses to decide this. The <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance/blob/main/etl/telemetry_pipeline.py" target="_blank" rel="noopener">IoT telematics pipeline</a> writes its telemetry in event-time order in micro-batches.</p>
+            </article>
+
+            <!-- 7. DAG replay -->
+            <article class="lt-panel" id="lt-dag" aria-labelledby="lt-dag-title">
+                <h3 class="lt-title" id="lt-dag-title">Airflow DAG Backfill &amp; Retry Replay</h3>
+                <p class="lt-lede">A pipeline runs three steps every day: create the data, transform it with PySpark, then check it. Here it catches up on five missed days at once (a backfill), and some steps fail along the way.</p>
+                <ol class="lt-steps"><li>Press <b>Run the 5 days</b>. Two failures are already set up.</li><li>Red squares failed; orange ones never ran because an earlier step failed. Tap a square to read its log.</li><li>Press <b>Fix it and re-run</b> on a failed square, or add retries and run again.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Retries when a step fails</span><select id="dag-retries"><option>0</option><option selected>1</option><option>2</option><option>3</option></select></label>
+                    <label class="lt-field"><span>Wait before retrying</span><select id="dag-delay"><option value="2">2 min</option><option value="5" selected>5 min</option><option value="10">10 min</option></select></label>
+                    <label class="lt-field"><span>Warn if a day takes over</span><select id="dag-sla"><option value="20">20 min</option><option value="30" selected>30 min</option><option value="45">45 min</option></select></label>
+                    <label class="lt-check lt-field-inline"><input type="checkbox" id="dag-dop"> A day waits for the day before to succeed (depends_on_past)</label>
+                </div>
+                <details class="lt-more"><summary>Set up your own failures</summary>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Step that fails</span><select id="dag-f-task"></select></label>
+                    <label class="lt-field"><span>Day</span><select id="dag-f-date"></select></label>
+                    <label class="lt-field"><span>How often</span><select id="dag-f-times"><option value="1">first try only</option><option value="2">first 2 tries</option><option value="99">every try</option></select></label>
+                    <div class="lt-field lt-field-end"><button type="button" class="btn btn-outline" id="dag-f-add">Add this failure</button></div>
+                </div>
+                <ul id="dag-faults" class="lt-chips"></ul>
+                </details>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="dag-run">Run the 5 days</button></div>
+                <div id="dag-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">The three steps are the real tasks of the <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/dags/job_market_pipeline.py" target="_blank" rel="noopener">Job Market Lakehouse Airflow DAG</a>. The real DAG runs on demand; this replay puts it on a daily schedule so retries and backfills have something to show.</p>
+            </article>
+
+        </section>
+
+        <section id="cat-ml" class="lt-section lab-cat" data-cat="ml" aria-labelledby="cat-ml-title">
+            <h2 id="cat-ml-title" class="section-title">Machine Learning</h2>
+            <p class="lt-intro">The projects' own trained models and the checks around them: an image classifier, an ASL sign recognizer, a forecast, a decision-threshold tuner and drift and fairness monitoring. Models download only when you press Run, then run on this page.</p>
+
+                    <!-- Model Decision Threshold Optimizer widget -->
+                    <div id="threshold-widget" class="glass-card">
+                        <div class="widget-header">
+                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">ML Model Threshold &amp; User Conversion Optimizer</h3>
+                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Adjust decision boundary to balance user friction and maximize conversion ROI.</p>
+</div>
+                        
+                        <div class="widget-body">
+                            <div class="slider-container" style="margin-bottom: 1.25rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent); font-size: 0.9rem;">0.50</span></label>
+                                    <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: var(--ok); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">BEST HERE</span>
+</div>
+                                <input type="range" id="threshold-slider" aria-label="Decision threshold" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
+</div>
+
+                            <div class="threshold-metrics-grid" style="margin-bottom: 1rem;">
+                                <!-- Confusion Matrix Table -->
+                                <div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.35rem; text-transform: uppercase;">Confusion Matrix</div>
+                                    <table class="confusion-table" style="width: 100%; font-size: 0.7rem; border-collapse: collapse; text-align: center;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: none; padding: 2px;"></th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Conversion</th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Passive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Conversion</td>
+                                                <td id="cm-tp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--ok);">0</td>
+                                                <td id="cm-fn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--bad);">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Passive</td>
+                                                <td id="cm-fp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--warn);">0</td>
+                                                <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--accent);">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+</div>
+                                
+                                <!-- Metrics Output -->
+                                <div style="display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding-left: 0.5rem;">
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
+                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Precision</div>
+                                        <div id="val-precision" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
+</div>
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
+                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Recall</div>
+                                        <div id="val-recall" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
+</div>
+</div>
+</div>
+
+                            <!-- Profit Calculator Details -->
+                            <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">Gains from true positives (<span id="th-c-tp">+$100</span> each):</span>
+                                    <span id="profit-tp-gain" style="font-weight: 600; color: var(--ok);">+$0</span>
+</div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">False-alarm cost (<span id="th-c-fp">-$20</span> each):</span>
+                                    <span id="profit-fp-loss" style="font-weight: 600; color: var(--warn);">-$0</span>
+</div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">Missed-case cost (<span id="th-c-fn">-$150</span> each):</span>
+                                    <span id="profit-fn-loss" style="font-weight: 600; color: var(--bad);">-$0</span>
+</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
+                                    <span style="color: var(--text-primary); font-weight: 600;">Net Conversion ROI Impact:</span>
+                                    <span id="val-net-profit" style="font-weight: 700; font-size: 1rem; color: var(--ok);">$0</span>
+</div>
+</div>
+
+                            <form class="ab-own" id="th-own" novalidate>
+                                <p class="ab-own-title">Use your own model's scores</p>
+                                <p class="ab-own-note">One row per case: score (0 to 1), actual label (1 or 0, yes or no). Paste a model's predictions on a labelled test set, set what each outcome is worth, and the slider uses your rows. The example rows are made up; nothing leaves your browser.</p>
+                                <textarea id="th-own-rows" rows="6" spellcheck="false" aria-label="Scores and labels">score,label
+0.92,1
+0.81,1
+0.77,0
+0.74,1
+0.66,1
+0.61,0
+0.58,1
+0.52,0
+0.47,1
+0.44,0
+0.39,0
+0.35,1
+0.31,0
+0.27,0
+0.22,0
+0.18,1
+0.15,0
+0.11,0
+0.08,0
+0.04,0</textarea>
+                                <div class="ab-own-grid">
+                                    <label>Gain per true positive ($)<input id="th-own-tp" type="number" min="0" step="1" value="100"></label>
+                                    <label>Cost per false positive ($)<input id="th-own-fp" type="number" min="0" step="1" value="20"></label>
+                                    <label>Cost per false negative ($)<input id="th-own-fn" type="number" min="0" step="1" value="150"></label>
+                                </div>
+                                <div class="ab-own-actions"><button type="submit" class="btn btn-outline">Use my rows</button> <button type="button" class="btn btn-outline" id="th-own-reset" hidden>Back to the simulated model</button></div>
+                                <p class="ab-own-note" id="th-own-note"></p>
+                            </form>
+
+                            <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
+                                <p style="margin: 0;"><strong>Try it:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
+                                <p style="margin: 0;"><strong>Cost view:</strong>By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, the badge marks the slider step with the highest net value (0.40 for the simulated model). With your own rows and costs, it moves.</p>
+</div>
+</div>
+</div>
+
+            <!-- 4. Drift + fairness -->
+            <article class="lt-panel" id="lt-drift" aria-labelledby="lt-drift-title">
+                <h3 class="lt-title" id="lt-drift-title">Model Drift &amp; Fairness Monitor</h3>
+                <p class="lt-lede">A loan-approval model was trained on last year's applicants. When this year's applicants look different, or one group is treated worse, a monitor should notice. Both checks are below, each with its own controls.</p>
+
+                <h4 class="lt-sub">Part 1: did the new applicants change?</h4>
+                <ol class="lt-steps"><li>Pick a feature.</li><li>Drag <b>Move the average</b> left or right.</li><li>The status next to each feature turns red once the change is big enough to act on.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Feature</span>
+                        <select id="dr-feature"><option value="income">Income</option><option value="debt">Debt-to-income ratio</option><option value="age">Length of credit history</option></select></label>
+                    <label class="lt-field"><span>Move the average <output id="dr-shift-v">no change</output></span><input id="dr-shift" type="range" min="-2" max="2" step="0.1" value="0"></label>
+                    <label class="lt-field"><span>Make values more spread out <output id="dr-spread-v">no change</output></span><input id="dr-spread" type="range" min="0.5" max="2" step="0.1" value="1"></label>
+                    <div class="lt-field lt-field-end"><button type="button" class="btn btn-outline" id="dr-new">New random applicants</button></div>
+                </div>
+                <div id="dr-out" class="lt-out" aria-live="polite"></div>
+                <details class="lt-own">
+                    <summary>Check your own data for drift</summary>
+                    <p class="lt-note">Paste a column from the period a model was trained on, and the same column from now: numbers separated by commas, spaces or new lines. The example columns are made up. Nothing is uploaded.</p>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Reference values (training period)</span><textarea id="dr-own-ref" rows="4" spellcheck="false">52.3, 64.2, 63.0, 47.4, 49.3, 47.3, 57.1, 51.5, 58.7, 35.4, 66.1, 51.1, 58.1, 50.8, 48.6, 56.2, 59.4, 50.2, 50.6, 58.2, 44.2, 38.4, 55.6, 46.0, 34.7, 44.7, 47.8, 41.3, 38.6, 52.3, 60.1, 49.9, 45.3, 55.5, 58.5, 49.3, 56.9, 61.4, 50.1, 44.7, 55.1, 54.2, 61.9, 40.4, 46.0, 44.5, 36.4, 53.1, 56.8, 45.4, 64.5, 59.4, 57.6, 55.6, 60.6, 40.0, 57.5, 57.4, 36.1, 55.1</textarea></label>
+                        <label class="lt-field lt-grow"><span>Current values</span><textarea id="dr-own-cur" rows="4" spellcheck="false">54.2, 65.6, 52.2, 56.8, 60.8, 47.4, 63.6, 55.8, 62.4, 51.3, 68.9, 63.7, 55.0, 64.0, 70.9, 76.7, 39.7, 66.7, 62.1, 56.0, 45.9, 70.8, 43.1, 63.2, 71.3, 39.4, 53.7, 42.6, 59.7, 73.7, 79.3, 37.4, 50.7, 64.7, 74.4, 61.6, 48.8, 60.3, 56.8, 54.8, 48.9, 61.3, 60.4, 56.0, 54.6, 42.9, 51.7, 70.3, 54.9, 41.2, 71.7, 62.8, 80.2, 57.7, 51.9, 41.1, 71.6, 85.3, 48.0, 49.9</textarea></label>
+                    </div>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="dr-own-run">Compare my columns</button></div>
+                    <div id="dr-own-out" class="lt-out" aria-live="polite"></div>
+                </details>
+
+                <h4 class="lt-sub">Part 2: is the model fair to both groups?</h4>
+                <ol class="lt-steps"><li>Drag <b>Approval cut-off</b>: applicants scoring above it are approved.</li><li>Watch both groups' bars move. A red note appears when the gap breaks a fairness rule.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Approval cut-off <output id="dr-thr-v">0.50</output></span><input id="dr-thr" type="range" min="0.2" max="0.8" step="0.01" value="0.5"></label>
+                    <label class="lt-field lt-grow"><span>Share of applicants from group B <output id="dr-mix-v">40%</output></span><input id="dr-mix" type="range" min="10" max="90" step="5" value="40"></label>
+                </div>
+                <div id="dr-fair" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">Same limits as the <a href="https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing/blob/main/analytics/audit_engine.py" target="_blank" rel="noopener">AI Model Observability audit engine</a>: PSI over 0.25, a KS test p-value under 0.01, the four-fifths rule, and a 10-point gap in true-positive rate. The applicants are generated on this page.</p>
+            </article>
+
+            <!-- Shape classifier (Solid Object Detection) -->
+            <article class="lt-panel" id="lm-shapes" aria-labelledby="lm-shapes-title">
+                <h3 class="lt-title" id="lm-shapes-title">Shape Classifier</h3>
+                <p class="lt-lede">A small CNN that names the shape in a 64 x 64 image (circle, square, triangle, rectangle, pentagon, hexagon or star) and draws a box around it. It scored 99.20% on 2,000 held-out images. Next to it, the project's classic image-processing path turns the picture black and white, cleans it and reads the outline's corners, which gives a second, independent answer.</p>
+                <ol class="lt-steps"><li>Pick a test shape or one it never saw, draw your own, or upload any picture: a road sign, a logo, a photo.</li><li>Press <b>Run the model</b>. The first run downloads the model, ONNX Runtime and OpenCV.js (about 6 MB).</li><li>Follow the processing steps, compare the two answers, and read whether the answer can be trusted.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Input</legend>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="test" checked> Test shape</label>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="draw"> Draw your own</label>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="upload"> Upload a picture</label></fieldset>
+                </div>
+                <div id="lm-test-pick">
+                    <p class="lm-row-label">Held-out test shapes (the 7 it knows)</p>
+                    <div class="lm-thumbs" id="lm-thumbs" role="listbox" aria-label="Held-out test shapes"></div>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-more">Show all 63 test shapes</button>
+                        <button type="button" class="btn btn-outline" id="lm-random">Random test shape</button></div>
+                    <p class="lm-row-label">Shapes it never saw (octagon, heptagon, ellipse, plus sign, arrow, crescent)</p>
+                    <div class="lm-thumbs" id="lm-unseen" role="listbox" aria-label="Shapes the model never saw"></div>
+                </div>
+                <div id="lm-draw-pick" hidden>
+                    <p class="lt-note">Draw one filled shape with your finger or mouse. Your drawing is not like the training images (those are clean, filled and slightly noisy), so expect lower accuracy here; the 99.20% applies only to the test shapes.</p>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-clear">Clear</button></div>
+                </div>
+                <div id="lm-upload-pick" hidden>
+                    <div class="lt-actions"><label class="btn btn-outline lm-file-btn" for="lm-file">Choose a picture</label>
+                        <input type="file" id="lm-file" accept="image/*" class="lm-file-input"></div>
+                    <p class="lt-note">Your picture is read in your browser and never uploaded or saved. It is padded to a square and shrunk to 64 x 64, the only size the model takes, so fine detail (a sign's lettering) is lost. A single dark shape on a plain light background is closest to what the model was trained on; anything else is a real-world test of how it fails.</p>
+                </div>
+                <div class="lm-stage lm-stage-one">
+                    <canvas id="lm-canvas" width="256" height="256" aria-label="The image the model will classify"></canvas>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="lm-run">Run the model (about 6 MB, first time only)</button></div>
+                <div id="lm-pipeline" class="lm-pipeline" hidden>
+                    <p class="lm-row-label">How the picture was processed (src/traditional.py, the same OpenCV steps in your browser)</p>
+                    <div class="lm-steps">
+                        <figure id="lm-step-orig" hidden><canvas id="lm-c-orig" width="192" height="192"></canvas><figcaption><b>Your picture</b>, padded to a square</figcaption></figure>
+                        <figure><canvas id="lm-c-input" width="64" height="64"></canvas><figcaption><b>1. Model input</b>: 64 x 64 colour, what the CNN reads</figcaption></figure>
+                        <figure><canvas id="lm-c-gray" width="64" height="64"></canvas><figcaption><b>2. Grayscale</b>: colour dropped, brightness kept</figcaption></figure>
+                        <figure><canvas id="lm-c-blur" width="64" height="64"></canvas><figcaption><b>3. Blurred</b> (5 x 5 Gaussian): smooths pixel noise</figcaption></figure>
+                        <figure><canvas id="lm-c-thresh" width="64" height="64"></canvas><figcaption><b>4. Black and white</b>: Otsu picked level <span id="lm-level">-</span> of 255; darker becomes the shape</figcaption></figure>
+                        <figure><canvas id="lm-c-clean" width="64" height="64"></canvas><figcaption><b>5. Cleaned</b>: close fills pinholes, open removes specks</figcaption></figure>
+                        <figure><canvas id="lm-c-outline" width="192" height="192"></canvas><figcaption><b>6. Largest outline</b>: <span id="lm-corners">-</span></figcaption></figure>
+                    </div>
+                    <p class="lt-note">Steps 2 to 6 feed the geometry answer only. The CNN reads step 1 directly: it learned its own filters, so it never sees the black-and-white mask. When the two answers disagree, one of them is wrong.</p>
+                </div>
+                <div id="lm-out" class="lt-out lm-out" aria-live="polite"></div>
+                <div class="lm-sr" id="lm-sr">
+                    <h4 class="lt-sub" id="lm-sr-title">Square or rectangle: how the two are told apart</h4>
+                    <p class="lt-note lm-sr-text">The two answers use different evidence. <b>Geometry</b> follows a written rule: find the outline's 4 corners, draw the upright box around them, and call it a square when the box's width and height are within 12% of each other (a ratio from 0.88 to 1.12). <b>The CNN</b> has no rule. It learned from 10,000 generated pictures in which every square had 4 equal sides and every rectangle's long side was 1.4 to 1.8 times its short side. No training picture fell between 1.0 and 1.4, so where it switches inside that gap is something the network settled on by itself. Below, the short side stays 24 pixels while you stretch the long side and turn the shape.</p>
+                    <div class="lt-controls lm-sr-controls">
+                        <label class="lt-field"><span>Long side <output id="lm-sr-long-v">30 px</output></span><input id="lm-sr-long" type="range" min="24" max="48" step="2" value="30"></label>
+                        <label class="lt-field"><span>Turn it <output id="lm-sr-angle-v">0&deg;</output></span><input id="lm-sr-angle" type="range" min="0" max="90" step="5" value="0"></label>
+                    </div>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-sr-run">Run the stretch test</button></div>
+                    <div class="lm-sr-stage">
+                        <canvas id="lm-sr-canvas" width="192" height="192" aria-label="The stretched shape at 64 x 64 pixels, as the model reads it"></canvas>
+                        <div id="lm-sr-out" class="lm-sr-out" aria-live="polite"><p class="lt-note">Press <b>Run the stretch test</b>. It uses the same model and OpenCV.js as above (about 6 MB, downloaded once).</p></div>
+                    </div>
+                    <div id="lm-sr-chart"></div>
+                </div>
+                <details class="lt-more"><summary>How it scored on each shape</summary>
+                    <div class="lt-scroll"><table class="lt-table">
+                        <thead><tr><th>Shape</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1</th></tr></thead>
+                        <tbody>
+                            <tr><td>Circle</td><td class="num">1.0000</td><td class="num">0.9930</td><td class="num">0.9965</td></tr>
+                            <tr><td>Square</td><td class="num">0.9873</td><td class="num">1.0000</td><td class="num">0.9936</td></tr>
+                            <tr><td>Triangle</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
+                            <tr><td>Rectangle</td><td class="num">1.0000</td><td class="num">0.9860</td><td class="num">0.9930</td></tr>
+                            <tr class="lt-closed-now"><td>Pentagon</td><td class="num">0.9794</td><td class="num">0.9828</td><td class="num">0.9811</td></tr>
+                            <tr class="lt-closed-now"><td>Hexagon</td><td class="num">0.9779</td><td class="num">0.9815</td><td class="num">0.9797</td></tr>
+                            <tr><td>Star</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
+                        </tbody></table></div>
+                    <p class="lt-note">Pentagons and hexagons, highlighted, are the pair it confuses most: at 64 x 64 pixels their corners blur into near-circles.</p>
+                </details>
+                <p class="lt-source">The model and test images come from <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" rel="noopener">Solid Object Detection</a>: the same ONNX file it serves on AWS Lambda, and 9 images of each shape from its seed-42 held-out split (<a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). For a test shape, the page also shows Python's score for the same image, and every deploy checks the model's scores and every geometry step against Python. The trust check and its numbers come from the project's <code>ood_check.py</code>, which tested the model on 1,200 shapes it never saw.</p>
+            </article>
+
+            <!-- ASL word signs (Extending STEM across ASL) -->
+            <article class="lt-panel" id="lm-signs" aria-labelledby="lm-signs-title">
+                <h3 class="lt-title" id="lm-signs-title">ASL Word Signs: Learn, Practise, Get Checked</h3>
+                <p class="lt-lede">Learn one of 29 STEM and computing signs (computer, email, science, math...) at your own speed, then sign it. While you sign, every new frame is compared with how the sign is made in the training clips, and when it stops matching, the frame where it went wrong is flagged, with what it looks like instead. It does not catch every mistake; how often it does is measured under the check. When you finish, the trained model gives its best match and its score for all 29 signs. On 58 held-out clips the model's top guess was right 75.86% of the time and in its top three 94.83% of the time (chance is 3.45%).</p>
+                <ol class="lt-steps"><li>Choose a sign and watch it slowly: play it at a quarter speed, pause, or step frame by frame.</li><li>Check an attempt: sign it to your camera, or try a held-out clip or a made-up mistake (a clip that starts as your sign and switches to another half-way).</li><li>Watch the timeline fill in as the frames arrive. It turns red at the frame where the attempt went wrong; the final scores appear when it ends.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Sign to learn</span>
+                        <select id="ls-sign"><option value="">Loading the signs...</option></select></label>
+                </div>
+
+                <h4 class="lt-sub">1. Learn it</h4>
+                <div class="lm-stage ls-stage">
+                    <div class="ls-view"><canvas id="ls-ref" width="400" height="260" aria-label="How the chosen sign is made, as hand points"></canvas></div>
+                    <div class="ls-learn">
+                        <div class="lt-actions ls-player">
+                            <button type="button" class="btn btn-outline" id="ls-play">Play</button>
+                            <button type="button" class="btn btn-outline" id="ls-back" aria-label="Previous frame">&larr; Frame</button>
+                            <button type="button" class="btn btn-outline" id="ls-fwd" aria-label="Next frame">Frame &rarr;</button>
+                        </div>
+                        <fieldset class="lt-field lt-field-inline"><legend>Speed</legend>
+                            <label class="lt-check"><input type="radio" name="ls-speed" value="0.25" checked> 1/4</label>
+                            <label class="lt-check"><input type="radio" name="ls-speed" value="0.5"> 1/2</label>
+                            <label class="lt-check"><input type="radio" name="ls-speed" value="1"> Full</label></fieldset>
+                        <label class="lt-field"><span>Frame <output id="ls-scrub-v">1 of 32</output></span><input id="ls-scrub" type="range" min="0" max="31" step="1" value="0"></label>
+                        <p class="lt-note" id="ls-ref-note">The chosen sign from one of its training clips, drawn as the 21 points per hand the model reads.</p>
+                    </div>
+                </div>
+
+                <h4 class="lt-sub">2. Check an attempt</h4>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Attempt</legend>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="camera" checked> Use your camera</label>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="clip"> A held-out clip</label>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="mistake"> A made-up mistake</label></fieldset>
+                </div>
+                <div id="ls-camera-pick">
+                    <p class="lt-note">The camera runs only on this page: frames are read in your browser and are never uploaded or saved. The first start downloads MediaPipe's hand model and OpenCV.js (about 14 MB). After a 3-second countdown you have up to 4 seconds; press <b>Stop</b> when you finish. Keep both hands in view, with light on them.</p>
+                </div>
+                <div id="ls-clip-pick" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Held-out clip (never used in training)</span>
+                        <select id="ls-clip"><option value="">Loading the clips...</option></select></label>
+                </div>
+                <div id="ls-mistake-pick" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Switch half-way to</span>
+                        <select id="ls-other"><option value="">Loading the clips...</option></select></label>
+                    <p class="lt-note">The first 16 frames come from a held-out clip of your sign, the last 16 from a held-out clip of this one, so the attempt really does go wrong at frame 17.</p>
+                </div>
+                <div class="ls-live">
+                    <div id="ls-timeline" class="ls-timeline" aria-hidden="true"></div>
+                    <p class="ls-legend"><i><span class="ok"></span>on track</i><i><span class="warn"></span>drifting</i><i><span class="bad"></span>went wrong</i><i><span class="none"></span>no hand in view</i><i><span class="wait"></span>first frames, not judged</i></p>
+                    <p id="ls-status" class="ls-status" aria-live="polite">Choose an attempt and press <b>Check my signing</b>.</p>
+                </div>
+                <div class="lm-stage ls-stage">
+                    <div class="ls-view">
+                        <video id="ls-video" playsinline muted hidden aria-label="Your camera, mirrored"></video>
+                        <canvas id="ls-canvas" width="400" height="260" aria-label="The hand points read from the attempt"></canvas>
+                    </div>
+                    <div id="ls-now" class="ls-now"></div>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ls-run">Check my signing</button></div>
+                <p class="lt-note" id="ls-reliability"></p>
+                <div id="ls-out" class="lt-out lm-out" aria-live="polite"></div>
+                <details class="lt-more"><summary>Which signs it misses</summary>
+                    <div class="lt-scroll"><table class="lt-table">
+                        <thead><tr><th>Sign</th><th class="num">Held-out accuracy</th><th>Predicted as</th></tr></thead>
+                        <tbody>
+                            <tr><td>network</td><td class="num">0.0</td><td>internet (both clips)</td></tr>
+                            <tr><td>chemistry</td><td class="num">0.0</td><td>email, experiment</td></tr>
+                            <tr><td>internet</td><td class="num">0.5</td><td>network (one clip)</td></tr>
+                            <tr><td>paper</td><td class="num">0.5</td><td>print (one clip)</td></tr>
+                            <tr><td>school</td><td class="num">0.5</td><td>paper (one clip)</td></tr>
+                        </tbody></table></div>
+                    <p class="lt-note">The misses fall between related signs that share a hand shape, such as network and internet. With the hand-shape values from OpenCV removed, top-1 drops from 75.86% to 65.52%, so the page runs OpenCV too.</p>
+                </details>
+                <p class="lt-source">The model and the held-out clips come from <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener">Extending STEM across ASL</a> (<a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the same 1-D convolution and GRU, trained on the same seeded split, with the clips stored as hand points only (WLASL video is for research use, so none is copied here). Every deploy checks this page's OpenCV.js step and model scores against Python's; MediaPipe's browser and Python versions were checked on 7 hand photos and agree to 0.00003 of the frame.</p>
+            </article>
+
+            <article class="lt-panel" id="st-em" aria-labelledby="st-em-title">
+                <h3 class="lt-title" id="st-em-title">Land-Use Emissions Forecast</h3>
+                <p class="lt-lede">EPA's state inventory tracks how much CO2e each kind of land releases or absorbs every year. Pick a state and land type to see 1990-2022, and how three forecasts did on 2018-2022, each made from the three years before it. Across all 25 series the linear regression scores 94.2% accuracy, but simply repeating last year's value scores 94.7%. Rerun from eight starting years (2015-2022), no model beat last year's value in 6 of the 8 (<a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis/blob/main/docs/FINDINGS.md">findings</a>).</p>
+                <ol class="lt-steps"><li>Pick a state and a land type.</li><li>Compare the forecast lines with the actual values in the shaded test years.</li><li>Switch to <b>Your own yearly series</b> and paste any numbers by year to run the same test on them.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Series</legend>
+                        <label class="lt-check"><input type="radio" name="em-mode" value="project" checked> EPA's state inventory</label>
+                        <label class="lt-check"><input type="radio" name="em-mode" value="own"> Your own yearly series</label></fieldset>
+                </div>
+                <div id="em-project-pick" class="lt-controls">
+                    <label class="lt-field"><span>State</span><select id="em-state"><option>Loading...</option></select></label>
+                    <label class="lt-field"><span>Land type</span><select id="em-land"><option>Loading...</option></select></label>
+                </div>
+                <div id="em-own-pick" hidden>
+                    <p class="lt-note">One line per year: year, value. At least 11 years in a row. The example is made up; replace it with your own (sales, rainfall, enrolment, anything yearly). Nothing is uploaded.</p>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Yearly values</span><textarea id="em-paste" rows="7" spellcheck="false">2006,412
+2007,418
+2008,409
+2009,425
+2010,431
+2011,428
+2012,440
+2013,446
+2014,439
+2015,452
+2016,461
+2017,455
+2018,468
+2019,474
+2020,447
+2021,463
+2022,479
+2023,486
+2024,481
+2025,493</textarea></label>
+                    </div>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Unit (for the chart)</span><input id="em-unit" type="text" maxlength="60" value="million gallons per year (example)"></label>
+                        <div class="lt-actions"><button type="button" class="btn btn-accent" id="em-run">Forecast my series</button></div>
+                    </div>
+                </div>
+                <svg id="em-chart" class="lt-svg" viewBox="0 0 640 250" role="img" aria-label="Yearly values with the forecasts for the test years"></svg>
+                <div id="em-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis" target="_blank" rel="noopener">Multi-State Land Use Emissions Analysis</a> (<a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): <code>models/epa_forecast.py</code> on EPA's <i>Inventory of U.S. Greenhouse Gas Emissions and Sinks by State: 1990-2022</i>, land use and forestry sector (public domain). The linear regression is refitted in your browser; the 300-tree Random Forest's predictions come from Python. Every deploy checks that all 125 test predictions match scikit-learn's and that the three accuracies come out the same.</p>
+            </article>
+
+        </section>
+
+        <section id="cat-ai" class="lt-section lab-cat" data-cat="ai" aria-labelledby="cat-ai-title">
+            <h2 id="cat-ai-title" class="section-title">AI & Language</h2>
+            <p class="lt-intro">Text tools: score a job posting against a profile, check a draft against writing rules, and answer questions by meaning with sentence embeddings.</p>
+
+            <!-- 1. Job fit -->
+            <article class="lt-panel" id="lt-fit" aria-labelledby="lt-fit-title">
+                <h3 class="lt-title" id="lt-fit-title">Job Description Fit Scorer</h3>
+                <p class="lt-lede">Paste a job description and see how well it matches this profile, with each requirement checked against real work.</p>
+                <ol class="lt-steps"><li>Pick a sample job, or choose "My own job description" and paste one.</li><li>Press <b>Score this job</b>.</li><li>Read the table: every skill the job asks for, and where it shows up in the profile.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Job to score</span>
+                        <select id="fit-sample"><option value="">Loading samples...</option></select></label>
+                </div>
+                <label class="lt-field"><span>Job title</span><input id="fit-title" type="text" autocomplete="off"></label>
+                <label class="lt-field"><span>Job description</span><textarea id="fit-posting" rows="8" spellcheck="false"></textarea></label>
+                <p class="lt-note">What you paste stays on this page. Nothing is sent anywhere.</p>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="fit-run">Score this job</button></div>
+                <div id="fit-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">Same rules as <a href="https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/blob/main/app/services/fit_service.py" target="_blank" rel="noopener">fit_service.py</a> in Career Pilot, where they keep the AI's match score honest. Every deploy checks that this page gives the same scores as the Python original.</p>
+            </article>
+
             <!-- Post checker (CurioSync) -->
             <article class="lt-panel" id="st-posts" aria-labelledby="st-posts-title">
                 <h3 class="lt-title" id="st-posts-title">LinkedIn Post Checker</h3>
@@ -1020,80 +1138,9 @@ To reset your password, use the link on the sign-in page.</textarea></label></di
                 <div id="qa-out" class="lt-out" aria-live="polite"></div>
                 <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system" target="_blank" rel="noopener">Member Messages QA System</a> (<a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): <code>answer_question</code> in <code>main.py</code>, rewritten for the browser, on its 100 synthetic concierge messages. The page runs the 8-bit copy of the same model; the project's spaCy name step does not run in a browser, so the member is found by its first-name fallback, which picks the same member on all 26 labelled questions. Every deploy checks that all 26 give Python's member, top message and answer.</p>
             </article>
-            <article class="lt-panel" id="st-rfm" aria-labelledby="st-rfm-title">
-                <h3 class="lt-title" id="st-rfm-title">Customer Segments by RFM</h3>
-                <p class="lt-lede">Each customer becomes three numbers: days since their last purchase (recency), how many purchases (frequency) and total spend (monetary). K-Means groups customers with similar numbers. With 4 groups the project's 2,000 customers split into VIP Champions, Loyal, New and At Risk, and the groups explain 93.9% of the variance.</p>
-                <ol class="lt-steps"><li>Move the slider to try 2 to 8 clusters and watch the elbow chart: each extra cluster explains less.</li><li>Read each segment's size and average recency, purchases and spend.</li><li>Switch to <b>Your own transactions</b> and load a CSV, or try the 60-customer sample.</li></ol>
-                <div class="lt-controls">
-                    <fieldset class="lt-field lt-field-inline"><legend>Customers</legend>
-                        <label class="lt-check"><input type="radio" name="rf-mode" value="project" checked> The project's 2,000</label>
-                        <label class="lt-check"><input type="radio" name="rf-mode" value="own"> Your own transactions</label></fieldset>
-                </div>
-                <div id="rf-own-pick" hidden>
-                    <p class="lt-note">A CSV with one row per purchase: customer, date, amount (a header row is fine). Dates like 2025-03-01 or 2025-03-01 14:05. The file is read in your browser and never uploaded.</p>
-                    <div class="lt-controls">
-                        <label class="lt-field lt-grow"><span>Transactions file</span><input id="rf-file" type="file" accept=".csv,.txt,text/csv"></label>
-                        <div class="lt-actions"><button type="button" class="btn" id="rf-sample">Use the sample (374 KB)</button></div>
-                    </div>
-                    <p class="lt-note">Loaded: <span id="rf-own-name">nothing yet</span></p>
-                </div>
-                <div id="rf-controls" class="lt-controls" hidden>
-                    <label class="lt-field lt-grow"><span>Clusters (k): <b id="rf-k-out">4</b></span><input id="rf-k" type="range" min="2" max="8" step="1" value="4"></label>
-                </div>
-                <div id="rf-figs" class="rf-figs" hidden>
-                    <figure><svg id="rf-elbow" class="lt-svg" viewBox="0 0 320 180" role="img" aria-label="Variance explained for each number of clusters"></svg><figcaption>Variance explained by k</figcaption></figure>
-                    <figure><svg id="rf-scatter" class="lt-svg" viewBox="0 0 320 220" role="img" aria-label="Customers by recency and spend, coloured by cluster"></svg><figcaption>Customers: recency vs spend (log scale)</figcaption></figure>
-                </div>
-                <div id="rf-out" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" rel="noopener">Sales Analytics &amp; RFM Customer Segmentation Pipeline</a> (<a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the RFM step and K-Means of <code>models/segmentation.py</code>, rewritten for the browser, on the project's seeded synthetic sales. Every deploy checks that the browser's RFM matches pandas on the sample and its variance explained is within 0.001 of scikit-learn's for every k. K-Means stops at a local optimum, so at k = 4 up to 5 boundary customers land in a neighbouring segment (93.900% vs 93.901%).</p>
-            </article>
-            <article class="lt-panel" id="st-em" aria-labelledby="st-em-title">
-                <h3 class="lt-title" id="st-em-title">Land-Use Emissions Forecast</h3>
-                <p class="lt-lede">EPA's state inventory tracks how much CO2e each kind of land releases or absorbs every year. Pick a state and land type to see 1990-2022, and how three forecasts did on 2018-2022, each made from the three years before it. Across all 25 series the linear regression scores 94.2% accuracy, but simply repeating last year's value scores 94.7%. Rerun from eight starting years (2015-2022), no model beat last year's value in 6 of the 8 (<a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis/blob/main/docs/FINDINGS.md">findings</a>).</p>
-                <ol class="lt-steps"><li>Pick a state and a land type.</li><li>Compare the forecast lines with the actual values in the shaded test years.</li><li>Switch to <b>Your own yearly series</b> and paste any numbers by year to run the same test on them.</li></ol>
-                <div class="lt-controls">
-                    <fieldset class="lt-field lt-field-inline"><legend>Series</legend>
-                        <label class="lt-check"><input type="radio" name="em-mode" value="project" checked> EPA's state inventory</label>
-                        <label class="lt-check"><input type="radio" name="em-mode" value="own"> Your own yearly series</label></fieldset>
-                </div>
-                <div id="em-project-pick" class="lt-controls">
-                    <label class="lt-field"><span>State</span><select id="em-state"><option>Loading...</option></select></label>
-                    <label class="lt-field"><span>Land type</span><select id="em-land"><option>Loading...</option></select></label>
-                </div>
-                <div id="em-own-pick" hidden>
-                    <p class="lt-note">One line per year: year, value. At least 11 years in a row. The example is made up; replace it with your own (sales, rainfall, enrolment, anything yearly). Nothing is uploaded.</p>
-                    <div class="lt-controls">
-                        <label class="lt-field lt-grow"><span>Yearly values</span><textarea id="em-paste" rows="7" spellcheck="false">2006,412
-2007,418
-2008,409
-2009,425
-2010,431
-2011,428
-2012,440
-2013,446
-2014,439
-2015,452
-2016,461
-2017,455
-2018,468
-2019,474
-2020,447
-2021,463
-2022,479
-2023,486
-2024,481
-2025,493</textarea></label>
-                    </div>
-                    <div class="lt-controls">
-                        <label class="lt-field lt-grow"><span>Unit (for the chart)</span><input id="em-unit" type="text" maxlength="60" value="million gallons per year (example)"></label>
-                        <div class="lt-actions"><button type="button" class="btn btn-accent" id="em-run">Forecast my series</button></div>
-                    </div>
-                </div>
-                <svg id="em-chart" class="lt-svg" viewBox="0 0 640 250" role="img" aria-label="Yearly values with the forecasts for the test years"></svg>
-                <div id="em-out" class="lt-out" aria-live="polite"></div>
-                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis" target="_blank" rel="noopener">Multi-State Land Use Emissions Analysis</a> (<a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): <code>models/epa_forecast.py</code> on EPA's <i>Inventory of U.S. Greenhouse Gas Emissions and Sinks by State: 1990-2022</i>, land use and forestry sector (public domain). The linear regression is refitted in your browser; the 300-tree Random Forest's predictions come from Python. Every deploy checks that all 125 test predictions match scikit-learn's and that the three accuracies come out the same.</p>
-            </article>
+
         </section>
+
 
         <section id="site-analytics" class="site-analytics" aria-labelledby="site-analytics-title">
             <h2 id="site-analytics-title" class="section-title">This site's own visitor data</h2>
@@ -1168,18 +1215,18 @@ To reset your password, use the link on the sign-in page.</textarea></label></di
 </div>
 </div>
 </div>
-    <script src="/app.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/fit-engine.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-tools.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-models.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-signs.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-trials.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-benford.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-fraud.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-posts.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-qa.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-rfm.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-emissions.js?v=33b8bbfa95" defer></script>
-    <script src="/lab/lab-index.js?v=33b8bbfa95" defer></script>
+    <script src="/app.js?v=d5ea65a116" defer></script>
+    <script src="/lab/fit-engine.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-tools.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-models.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-signs.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-trials.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-benford.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-fraud.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-posts.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-qa.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-rfm.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-emissions.js?v=d5ea65a116" defer></script>
+    <script src="/lab/lab-index.js?v=d5ea65a116" defer></script>
 </body>
 </html>

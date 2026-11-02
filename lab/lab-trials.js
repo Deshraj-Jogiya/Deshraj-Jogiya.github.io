@@ -1,4 +1,4 @@
-// The Lab's survival-curve demo (templates/_lab_stats.html, #st-trials): the Clinical Trials project's simulated patients,
+// The Lab's survival-curve demo (templates/lab_demos/st-trials.html): the Clinical Trials project's simulated patients,
 // filtered by the visitor, with Kaplan-Meier curves, log-rank tests and the adverse-event chi-square test computed on the page.
 // The statistics functions are shared with tools/check_lab_trials.js, which holds them to lifelines and SciPy on every filter.
 (function (root) {

@@ -1,4 +1,4 @@
-// The Lab's trained-model demos (templates/_lab_models.html). Models and ONNX Runtime load only when the visitor presses Run;
+// The Lab's trained-model demos (templates/lab_demos/lm-shapes.html). Models and ONNX Runtime load only when the visitor presses Run;
 // images never leave the page. shapeTensor() is shared with tools/check_lab_shapes.js, which runs it in CI against the
 // probabilities Python recorded for the same images.
 (function (root) {
@@ -90,7 +90,7 @@
   var api = { CLASSES: CLASSES, SIZE: SIZE, CONFIDENT: CONFIDENT, shapeTensor: shapeTensor, softmax: softmax, geometryOf: geometryOf, judge: judge };
   if (typeof module === "object" && module.exports) { module.exports = api; return; }
   root.LabModels = api;
-  if (!document.getElementById("model-demos")) return;
+  if (!document.getElementById("lm-shapes") && !document.getElementById("lm-signs")) return;
 
   var $ = function (id) { return document.getElementById(id); };
   function h(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -338,6 +338,136 @@
     $("lm-file").addEventListener("change", function () { readUpload(this.files[0]); });
     document.querySelectorAll('input[name="lm-mode"]').forEach(function (r) { r.addEventListener("change", function () { setMode(this.value); }); });
     runBtn.addEventListener("click", run);
+
+    // ---- square or rectangle: a short side of 24 px, a long side the visitor sets, turned by an angle. The picture is drawn
+    // the way src/dataset.py draws its training shapes (a dark fill on a light background, corners turned with
+    // cv2.getRotationMatrix2D and rounded to whole pixels, filled with cv2.fillPoly), then both answers are read for it and for
+    // every long side from 24 to 48 px at the same angle.
+    var srCanvas = $("lm-sr-canvas"), srOut = $("lm-sr-out"), srBtn = $("lm-sr-run"), srReady = false, srTimer = null;
+    var SR_SHORT = 12, SR_LONGS = []; for (var L = 12; L <= 24; L++) SR_LONGS.push(L); // half-sides in pixels
+    function srCorners(halfLong, angle) {
+      var a = angle * Math.PI / 180, c = Math.cos(a), sn = Math.sin(a), cx = 32, cy = 32;
+      return [[-SR_SHORT, -halfLong], [SR_SHORT, -halfLong], [SR_SHORT, halfLong], [-SR_SHORT, halfLong]].map(function (p) {
+        var x = cx + p[0], y = cy + p[1];
+        return [Math.round(c * x + sn * y + (1 - c) * cx - sn * cy), Math.round(-sn * x + c * y + sn * cx + (1 - c) * cy)];
+      });
+    }
+    function srPixels(cv, halfLong, angle) {
+      var m = new cv.Mat(SIZE, SIZE, cv.CV_8UC4, new cv.Scalar(238, 238, 238, 255));
+      var pts = cv.matFromArray(4, 1, cv.CV_32SC2, [].concat.apply([], srCorners(halfLong, angle))), v = new cv.MatVector();
+      v.push_back(pts);
+      cv.fillPoly(m, v, new cv.Scalar(40, 60, 90, 255));
+      var px = new Uint8ClampedArray(m.data); m.delete(); pts.delete(); v.delete();
+      return px;
+    }
+    function srMeasure(cv, px) {
+      var g = geometryOf(cv, px, SIZE, SIZE, true), out = { label: g.label, corners: g.vertices };
+      if (g.steps) ["gray", "blurred", "thresh", "cleaned"].forEach(function (k) { g.steps[k].delete(); });
+      if (g.steps && g.steps.approx && g.steps.approx.length === 4) {
+        var q = g.steps.approx, xs = q.map(function (p) { return p[0]; }), ys = q.map(function (p) { return p[1]; });
+        out.boxW = Math.max.apply(null, xs) - Math.min.apply(null, xs) + 1; out.boxH = Math.max.apply(null, ys) - Math.min.apply(null, ys) + 1;
+        out.sides = q.map(function (p, i) { var n = q[(i + 1) % 4]; return Math.hypot(n[0] - p[0], n[1] - p[1]); });
+        out.approx = q;
+      }
+      return out;
+    }
+    function srProbs(s, px) {
+      var feeds = {}; feeds[data.input] = new root.ort.Tensor("float32", shapeTensor(px), [1, 3, SIZE, SIZE]);
+      return s.run(feeds).then(function (r) { return softmax(Array.from(r.class_logits.data)); });
+    }
+    function srSession() {
+      return Promise.all([loadOrt(), loadCv()]).then(function (got) {
+        var made = session ? Promise.resolve(session) : got[0].InferenceSession.create("/lab/models/shape_detector.onnx", { executionProviders: ["wasm"] })
+          .then(function (x) { session = x; return x; });
+        return made.then(function (x) { return [x, got[1]]; });
+      });
+    }
+    function srLabels() {
+      var long = Number($("lm-sr-long").value);
+      $("lm-sr-long-v").textContent = long + " px (" + (long / 24).toFixed(2) + " x 24)";
+      $("lm-sr-angle-v").textContent = $("lm-sr-angle").value + "°";
+    }
+    function srRun() {
+      if (!data) return;
+      var halfLong = Number($("lm-sr-long").value) / 2, angle = Number($("lm-sr-angle").value);
+      srBtn.disabled = true;
+      if (!srReady) srOut.innerHTML = '<p class="lt-note">Downloading the model, ONNX Runtime and OpenCV.js...</p>';
+      srSession().then(function (got) {
+        var s = got[0], cv = got[1], rows = [];
+        return SR_LONGS.reduce(function (chain, hl) {
+          return chain.then(function () {
+            var px = srPixels(cv, hl, angle);
+            return srProbs(s, px).then(function (p) { rows.push({ half: hl, ratio: hl / SR_SHORT, p: p, geo: srMeasure(cv, px), px: px }); });
+          });
+        }, Promise.resolve()).then(function () { srReady = true; srShow(rows, halfLong, angle); });
+      }).catch(function (e) {
+        srOut.innerHTML = '<p class="lt-note">' + h(e.message || "The model could not run") + ". Check your connection and try again.</p>";
+      }).then(function () { srBtn.disabled = false; srBtn.textContent = "Run it again"; });
+    }
+    function srShow(rows, halfLong, angle) {
+      var now = rows.filter(function (r) { return r.half === halfLong; })[0], g = now.geo, sq = now.p[1], re = now.p[3];
+      var top = now.p.indexOf(Math.max.apply(null, now.p));
+      // the 64 x 64 picture, enlarged, with the 4 corners geometry found and the upright box it measured
+      var x = srCanvas.getContext("2d"), k = srCanvas.width / SIZE, t = document.createElement("canvas");
+      t.width = t.height = SIZE; t.getContext("2d").putImageData(new ImageData(new Uint8ClampedArray(now.px), SIZE, SIZE), 0, 0);
+      x.imageSmoothingEnabled = false; x.clearRect(0, 0, srCanvas.width, srCanvas.height); x.drawImage(t, 0, 0, srCanvas.width, srCanvas.height);
+      var acc = getComputedStyle(document.body).getPropertyValue("--accent").trim() || "#8fc4ad";
+      if (g.approx) {
+        var xs = g.approx.map(function (p) { return p[0]; }), ys = g.approx.map(function (p) { return p[1]; });
+        x.setLineDash([5, 4]); x.strokeStyle = "#e0b35a"; x.lineWidth = 2;
+        x.strokeRect(Math.min.apply(null, xs) * k, Math.min.apply(null, ys) * k, g.boxW * k, g.boxH * k); x.setLineDash([]);
+        x.fillStyle = acc; x.strokeStyle = "#1c2421"; x.lineWidth = 1.5;
+        g.approx.forEach(function (p) { x.beginPath(); x.arc((p[0] + 0.5) * k, (p[1] + 0.5) * k, 4.5, 0, 2 * Math.PI); x.fill(); x.stroke(); });
+      }
+      var html = "<dl><dt>Drawn</dt><dd>24 x " + (2 * halfLong) + " px, long side " + now.ratio.toFixed(2) + " times the short side, turned " + angle + "°</dd>";
+      if (g.sides) {
+        var sides = g.sides.slice().sort(function (a, b) { return a - b; }), boxRatio = Math.max(g.boxW, g.boxH) / Math.min(g.boxW, g.boxH);
+        html += "<dt>Sides found</dt><dd>" + g.sides.map(function (v) { return v.toFixed(1); }).join(", ") + " px (long / short " + ((sides[2] + sides[3]) / (sides[0] + sides[1])).toFixed(2) + ")</dd>";
+        html += "<dt>Upright box</dt><dd>" + g.boxW + " x " + g.boxH + " px (dashed), ratio " + boxRatio.toFixed(2) + (boxRatio <= 1.12 ? ", inside 0.88 to 1.12" : ", outside 0.88 to 1.12") + "</dd>";
+      } else html += "<dt>Corners found</dt><dd>" + g.corners + " (the rule needs exactly 4)</dd>";
+      html += "<dt>Geometry says</dt><dd><b>" + h(g.label) + "</b></dd>";
+      html += "<dt>CNN says</dt><dd><b>" + h(CLASSES[top]) + "</b>: square " + pct(sq) + ", rectangle " + pct(re) + "</dd></dl>";
+      var expected = now.ratio === 1 ? "square" : "rectangle", notes = [];
+      if (g.sides && g.label !== expected && angle % 90 !== 0)
+        notes.push("Geometry is wrong here. Turning a shape changes its upright box, not the shape, and the rule measures that box: a long shape turned near 45° has a nearly square box.");
+      if (now.ratio > 1 && top === 1) notes.push("The CNN is wrong here: the sides are not equal, but the shape is still closer to the squares it was trained on than to its rectangles.");
+      if (now.ratio > 1 && now.ratio < 1.4) notes.push("This stretch is in the gap no training picture covered (1.0 to 1.4), so the CNN's answer here was never tested.");
+      else if (now.ratio >= 1.4 && now.ratio <= 1.8) notes.push("This stretch is inside the range of the training rectangles.");
+      else if (now.ratio > 1.8) notes.push("This is longer than any training rectangle (they stopped at 1.8).");
+      if (top !== 1 && top !== 3) notes.push("The CNN's top answer is neither square nor rectangle here, a sign the picture is far from its training shapes.");
+      srOut.innerHTML = html + notes.map(function (n) { return '<p class="lt-note">' + n + "</p>"; }).join("");
+      $("lm-sr-chart").innerHTML = srChart(rows, halfLong, angle);
+    }
+    function srChart(rows, halfLong, angle) {
+      var W = 640, H = 236, pl = 64, pr = 14, pt = 22, pb = 70, iw = W - pl - pr, ih = H - pt - pb, b = "";
+      var X = function (r) { return pl + (r - 1) * iw; }, Y = function (v) { return pt + (1 - v) * ih; };
+      b += '<rect class="sr-band" x="' + X(1.4) + '" y="' + pt + '" width="' + (X(1.8) - X(1.4)) + '" height="' + ih + '"/>';
+      b += '<rect class="sr-band" x="' + X(1) + '" y="' + pt + '" width="5" height="' + ih + '"/>';
+      [0, 0.5, 1].forEach(function (v) { b += '<line class="ax" x1="' + pl + '" x2="' + (W - pr) + '" y1="' + Y(v) + '" y2="' + Y(v) + '"/><text x="' + (pl - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end">' + (v * 100) + "%</text>"; });
+      [1, 1.2, 1.4, 1.6, 1.8, 2].forEach(function (r) { b += '<text x="' + X(r) + '" y="' + (pt + ih + 16) + '" text-anchor="middle">' + r.toFixed(1) + "</text>"; });
+      b += '<text x="' + (pl + iw / 2) + '" y="' + (pt + ih + 32) + '" text-anchor="middle">long side / short side</text>';
+      b += '<text x="' + ((X(1.4) + X(1.8)) / 2) + '" y="' + (pt - 7) + '" text-anchor="middle">training rectangles</text>';
+      b += '<text x="' + X(1) + '" y="' + (pt - 7) + '">training squares</text>';
+      b += '<text transform="translate(14 ' + (pt + ih / 2) + ') rotate(-90)" text-anchor="middle">CNN: rectangle</text>';
+      b += '<path class="sr-cnn" d="' + rows.map(function (r, i) { return (i ? "L" : "M") + X(r.ratio).toFixed(1) + " " + Y(r.p[3]).toFixed(1); }).join(" ") + '"/>';
+      rows.forEach(function (r) {
+        var gl = r.geo.label, cls = gl === "square" ? "sr-geo-sq" : gl === "rectangle" ? "sr-geo-rect" : "base";
+        b += '<circle class="sr-dot" cx="' + X(r.ratio).toFixed(1) + '" cy="' + Y(r.p[3]).toFixed(1) + '" r="3"/>';
+        b += '<rect class="' + cls + '" x="' + (X(r.ratio) - 5).toFixed(1) + '" y="' + (pt + ih + 42) + '" width="10" height="10"><title>' + r.ratio.toFixed(2) + ": geometry says " + h(gl) + "</title></rect>";
+        if (r.half === halfLong) b += '<circle class="sr-now" cx="' + X(r.ratio).toFixed(1) + '" cy="' + Y(r.p[3]).toFixed(1) + '" r="7"/>';
+      });
+      b += '<text x="' + (pl - 12) + '" y="' + (pt + ih + 51) + '" text-anchor="end">geometry</text>';
+      var flip = rows.filter(function (r) { return r.p[3] > r.p[1]; })[0];
+      var cap = "The line is the CNN's chance of rectangle for every stretch at " + angle + "°; the ring marks the shape above. " +
+        (flip ? "It first prefers rectangle at " + flip.ratio.toFixed(2) + (flip.ratio < 1.4 ? ", inside the gap between the training squares and rectangles" : "") + ". " : "") +
+        "The small squares under the chart are geometry's answer for each stretch: amber for square, green for rectangle.";
+      return '<div class="lt-scroll"><svg class="lt-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="CNN chance of rectangle for each stretch, with geometry answers below">' + b + "</svg></div>" + '<p class="lt-note">' + cap + "</p>";
+    }
+    srLabels();
+    ["lm-sr-long", "lm-sr-angle"].forEach(function (id) {
+      $(id).addEventListener("input", function () { srLabels(); if (srReady) { clearTimeout(srTimer); srTimer = setTimeout(srRun, 150); } });
+    });
+    srBtn.addEventListener("click", srRun);
   }
 
   function start() { try { initShapes(); } catch (e) { if (root.console) console.error("lm-shapes", e); } }

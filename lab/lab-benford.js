@@ -1,4 +1,4 @@
-// The Lab's Benford audit demo (templates/_lab_stats.html, #st-benford): the Tax Anomaly project's synthetic ledger, or amounts
+// The Lab's Benford audit demo (templates/lab_demos/st-benford.html): the Tax Anomaly project's synthetic ledger, or amounts
 // the visitor pastes, tested against Benford's Law; and the project's risk score (Benford deviation plus Isolation Forest) with
 // weights and threshold the visitor can move. Benford parts are recomputed here; Isolation Forest scores and tax-rate rule flags
 // are read from the project's export. tools/check_lab_benford.js holds these functions to Python's results.

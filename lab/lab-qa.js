@@ -1,4 +1,4 @@
-// The Lab's member Q&A demo (templates/_lab_stats.html, #st-qa): the NLP-based-Q-A-system project's answer_question (main.py)
+// The Lab's member Q&A demo (templates/lab_demos/st-qa.html): the NLP-based-Q-A-system project's answer_question (main.py)
 // rewritten for the browser. The question is embedded by the same all-MiniLM-L6-v2 model (Transformers.js, its 8-bit ONNX copy),
 // the member's messages are ranked by cosine similarity against the embeddings Python wrote (export_lab_data.py), and the answer
 // is read with the same regex rules. spaCy's NER step does not run in a browser, so the member is found by main.py's own

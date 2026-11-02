@@ -1,4 +1,4 @@
-/* Lab: the seven tabbed demos (templates/_lab_tools.html, lab/lab-tools.js). Uses the site's identity tokens. */
+/* Lab: the seven tabbed demos (templates/lab_demos/lt-*.html, lab/lab-tools.js). Uses the site's identity tokens. */
 :root {
     --lt-ok: #6fbf8f; --lt-warn: #e0b35a; --lt-bad: #e07a6e; --lt-orange: #d9925a; --lt-idle: #59606a;
     --lt-ok-bg: rgba(111, 191, 143, 0.12); --lt-warn-bg: rgba(224, 179, 90, 0.13); --lt-bad-bg: rgba(224, 122, 110, 0.13);
@@ -167,7 +167,7 @@ fieldset.lt-field { flex-direction: column; }
 .lt-more summary { cursor: pointer; font-size: 0.85rem; color: var(--accent); margin-bottom: 0.75rem; }
 .lt-panel .lt-sub:first-of-type { margin-top: 0.5rem; }
 
-/* Trained-model demos (templates/_lab_models.html, lab/lab-models.js) */
+/* Trained-model demos (templates/lab_demos/lm-*.html, lab/lab-models.js) */
 .lm-thumbs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.25rem 0 0.25rem; }
 .lm-thumb { padding: 2px; border: 2px solid var(--line); border-radius: 6px; background: var(--surface-2); cursor: pointer; line-height: 0; }
 .lm-thumb[aria-selected="true"] { border-color: var(--accent); }
@@ -295,3 +295,54 @@ body.light-theme .lab-chip span { opacity: 1; }
 
 /* Lab page: tour button under the intro */
 .lab-tour-cta { margin-top: 1rem; }
+/* Category sections: every demo block (panel or widget card) gets the same gap under the section intro. */
+.lab-cat > .glass-card, .lab-cat > .lt-panel { margin-top: 3rem; }
+.lab-cat[hidden] { display: none; }
+.lab-list i { font-style: normal; font-family: var(--font-mono); font-size: .72rem; color: var(--text-secondary); }
+.lab-filter-note { margin: 0 0 1rem; color: var(--text-secondary); font-size: .9rem; min-height: 1.2em; }
+/* Square-or-rectangle stretch test inside the shape classifier */
+.lm-sr { border-top: 1px solid var(--line); margin-top: 1.5rem; padding-top: .25rem; }
+.lm-sr-text { max-width: 72ch; }
+.lm-sr-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; }
+.lm-sr-stage { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; margin-top: 1rem; }
+.lm-sr-stage canvas { width: 192px; max-width: 100%; height: auto; image-rendering: pixelated; border: 1px solid var(--line); border-radius: 6px; }
+.lm-sr-out { flex: 1 1 16rem; min-width: 0; }
+.lm-sr-out dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem .9rem; margin: 0; font-size: .92rem; }
+.lm-sr-out dt { color: var(--text-secondary); }
+.lm-sr-out dd { margin: 0; font-variant-numeric: tabular-nums; }
+#lm-sr-chart { margin-top: 1rem; }
+.lt-svg .sr-band { fill: var(--accent); opacity: .14; }
+.lt-svg .sr-cnn { fill: none; stroke: var(--accent); stroke-width: 2; }
+.lt-svg .sr-dot { fill: var(--accent); }
+.lt-svg .sr-now { fill: none; stroke: var(--text-primary, currentColor); stroke-width: 2; }
+.lt-svg .sr-rule { stroke: var(--text-secondary); stroke-dasharray: 4 3; }
+.lt-svg .sr-geo-sq { fill: var(--lt-warn); }
+.lt-svg .sr-geo-rect { fill: var(--accent); }
+/* ASL practice: the reference player, the live timeline and the comparison at the flagged frame */
+.ls-learn { display: grid; gap: .75rem; align-content: start; min-width: 0; }
+.ls-player { margin: 0; }
+.ls-live { display: grid; gap: .5rem; margin: .5rem 0 1rem; min-width: 0; }
+.ls-timeline { display: grid; grid-template-columns: repeat(var(--cells, 32), minmax(0, 1fr)); gap: 2px; min-height: 1.1rem; }
+.ls-timeline span { height: 1.1rem; border-radius: 2px; background: var(--surface-2); border: 1px solid var(--line); }
+.ls-timeline span.wait { background: var(--lt-idle); border-color: transparent; }
+.ls-timeline span.ok { background: var(--lt-ok); border-color: transparent; }
+.ls-timeline span.warn { background: var(--lt-warn); border-color: transparent; }
+.ls-timeline span.bad { background: var(--lt-bad); border-color: transparent; }
+.ls-timeline span.unused { opacity: .35; }
+.ls-status { margin: 0; font-size: .95rem; }
+.ls-status .lt-pill { margin-right: .35rem; }
+.ls-compare { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: .75rem; }
+.ls-compare figure { margin: 0; flex: 1 1 14rem; max-width: 300px; }
+.ls-compare canvas { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface-2); }
+.ls-compare figcaption { font-size: .8rem; color: var(--text-secondary); margin-top: .3rem; }
+.ls-all { grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); column-gap: 1.5rem; }
+.ls-all li.ls-target .lm-name { color: var(--text-primary); font-weight: 600; }
+.ls-all li.ls-target .lm-name::after { content: " (your sign)"; font-weight: 400; color: var(--text-secondary); }
+.ls-all li { grid-template-columns: 10.5rem minmax(0, 1fr) 4.2rem; }
+.ls-timeline span.none { background: repeating-linear-gradient(45deg, var(--surface-2), var(--surface-2) 3px, var(--line) 3px, var(--line) 5px); }
+.ls-legend { margin: 0; font-size: .75rem; color: var(--text-secondary); display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .5rem; }
+.ls-legend i { font-style: normal; white-space: nowrap; display: inline-flex; align-items: center; gap: .3rem; margin-right: .6rem; }
+.ls-legend span { display: inline-block; width: .8rem; height: .8rem; border-radius: 2px; }
+.ls-legend .ok { background: var(--lt-ok); } .ls-legend .warn { background: var(--lt-warn); } .ls-legend .bad { background: var(--lt-bad); }
+.ls-legend .wait { background: var(--lt-idle); }
+.ls-legend .none { background: repeating-linear-gradient(45deg, var(--surface-2), var(--surface-2) 3px, var(--line) 3px, var(--line) 5px); border: 1px solid var(--line); }

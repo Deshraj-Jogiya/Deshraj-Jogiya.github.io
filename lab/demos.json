@@ -1,21 +1,29 @@
 {
- "tags": {
-  "own": "Uses your own data",
-  "ml": "Trained models",
-  "stats": "Statistics",
-  "data": "Data engineering",
-  "ai": "Text & AI"
+ "categories": {
+  "analysis": {
+   "label": "Data Analysis",
+   "intro": "Statistics on real project data: query it, test an experiment, compare survival curves, audit amounts, tune fraud rules and segment customers. Each test is rerun on this page and checked against the Python libraries the projects use."
+  },
+  "engineering": {
+   "label": "Data Engineering",
+   "intro": "How data is moved, checked, versioned, streamed and scheduled: a pipeline monitor, pipeline designs, data-quality rules, dbt snapshots, lakehouse time travel, streaming windows and Airflow retries."
+  },
+  "ml": {
+   "label": "Machine Learning",
+   "intro": "The projects' own trained models and the checks around them: an image classifier, an ASL sign recognizer, a forecast, a decision-threshold tuner and drift and fairness monitoring. Models download only when you press Run, then run on this page."
+  },
+  "ai": {
+   "label": "AI & Language",
+   "intro": "Text tools: score a job posting against a profile, check a draft against writing rules, and answer questions by meaning with sentence embeddings."
+  }
  },
  "demos": [
   {
    "id": "lab-sql",
    "title": "SQL Analytics Playground",
-   "section": "interactive",
+   "category": "analysis",
+   "own_data": true,
    "what": "Write SQL against tables from four projects and chart the result.",
-   "tags": [
-    "data",
-    "own"
-   ],
    "projects": [
     "career-pilot",
     "dbt-warehouse",
@@ -26,55 +34,41 @@
   {
    "id": "lab-etl",
    "title": "ETL Pipeline Monitor",
-   "section": "interactive",
+   "category": "engineering",
+   "own_data": false,
    "what": "Run a pipeline and watch latency, reliability and drift checks.",
-   "tags": [
-    "data"
-   ],
    "projects": []
   },
   {
    "id": "ab-testing-widget",
    "title": "A/B Test Significance",
-   "section": "interactive",
+   "category": "analysis",
+   "own_data": true,
    "what": "Simulate an experiment or test your own visitor and conversion counts with a z-test.",
-   "tags": [
-    "stats",
-    "own"
-   ],
    "projects": []
   },
   {
    "id": "threshold-widget",
    "title": "Model Threshold Tuner",
-   "section": "interactive",
+   "category": "ml",
+   "own_data": true,
    "what": "Move a model's decision threshold, or paste your own scores and costs, and find the best one.",
-   "tags": [
-    "ml",
-    "stats",
-    "own"
-   ],
    "projects": []
   },
   {
    "id": "lab-arch",
    "title": "Pipeline Architecture Explorer",
-   "section": "interactive",
+   "category": "engineering",
+   "own_data": false,
    "what": "Walk through real pipeline designs, step by step.",
-   "tags": [
-    "data"
-   ],
    "projects": []
   },
   {
    "id": "lt-fit",
    "title": "Job Description Fit Scorer",
-   "section": "more-demos",
+   "category": "ai",
+   "own_data": true,
    "what": "Paste a job posting and get the rule-based fit score Career Pilot uses.",
-   "tags": [
-    "ai",
-    "own"
-   ],
    "projects": [
     "career-pilot"
    ]
@@ -82,12 +76,9 @@
   {
    "id": "lt-contract",
    "title": "Data Contract Checker",
-   "section": "more-demos",
+   "category": "engineering",
+   "own_data": true,
    "what": "Paste CSV rows and run data-quality rules against them.",
-   "tags": [
-    "data",
-    "own"
-   ],
    "projects": [
     "job-market-lakehouse"
    ]
@@ -95,11 +86,9 @@
   {
    "id": "lt-scd",
    "title": "SCD Type 2 Snapshots",
-   "section": "more-demos",
+   "category": "engineering",
+   "own_data": false,
    "what": "See how a dbt snapshot keeps history that a merge throws away.",
-   "tags": [
-    "data"
-   ],
    "projects": [
     "dbt-warehouse"
    ]
@@ -107,13 +96,9 @@
   {
    "id": "lt-drift",
    "title": "Drift & Fairness Monitor",
-   "section": "more-demos",
+   "category": "ml",
+   "own_data": true,
    "what": "Shift a model's inputs, or paste your own two columns, and see which drift and fairness checks fail.",
-   "tags": [
-    "ml",
-    "stats",
-    "own"
-   ],
    "projects": [
     "AI-Model-Observability-Auditing"
    ]
@@ -121,11 +106,9 @@
   {
    "id": "lt-travel",
    "title": "Lakehouse Time Travel",
-   "section": "more-demos",
+   "category": "engineering",
+   "own_data": false,
    "what": "Query a table as it was at an earlier version.",
-   "tags": [
-    "data"
-   ],
    "projects": [
     "TalentVenue_EventIntel"
    ]
@@ -133,11 +116,9 @@
   {
    "id": "lt-windows",
    "title": "Event-Time Windows",
-   "section": "more-demos",
+   "category": "engineering",
+   "own_data": false,
    "what": "Set a watermark and lateness and watch late events land or drop.",
-   "tags": [
-    "data"
-   ],
    "projects": [
     "IoT-Telematics-Predictive-Maintenance"
    ]
@@ -145,11 +126,9 @@
   {
    "id": "lt-dag",
    "title": "Airflow Backfill & Retry",
-   "section": "more-demos",
+   "category": "engineering",
+   "own_data": false,
    "what": "Replay a DAG's retries and backfills day by day.",
-   "tags": [
-    "data"
-   ],
    "projects": [
     "job-market-lakehouse"
    ]
@@ -157,12 +136,9 @@
   {
    "id": "lm-shapes",
    "title": "Shape Classifier",
-   "section": "model-demos",
+   "category": "ml",
+   "own_data": true,
    "what": "Draw or upload a shape; see each image-processing step, then the model's answer.",
-   "tags": [
-    "ml",
-    "own"
-   ],
    "projects": [
     "Solid-Object-Detection-and-Identification-using-Image-Processing"
    ]
@@ -170,12 +146,9 @@
   {
    "id": "lm-signs",
    "title": "ASL Word Signs",
-   "section": "model-demos",
+   "category": "ml",
+   "own_data": true,
    "what": "Sign to your webcam or upload a clip; a GRU names the sign.",
-   "tags": [
-    "ml",
-    "own"
-   ],
    "projects": [
     "Extending-STEM-across-ASL"
    ]
@@ -183,12 +156,9 @@
   {
    "id": "st-trials",
    "title": "Survival Curves by Dosage",
-   "section": "stat-demos",
+   "category": "analysis",
+   "own_data": true,
    "what": "Kaplan-Meier curves and a log-rank test, on trial data or your own.",
-   "tags": [
-    "stats",
-    "own"
-   ],
    "projects": [
     "Clinical-Trials-Outcomes-Analysis"
    ]
@@ -196,12 +166,9 @@
   {
    "id": "st-benford",
    "title": "Benford's Law Audit",
-   "section": "stat-demos",
+   "category": "analysis",
+   "own_data": true,
    "what": "Test any column of amounts against Benford's first-digit law.",
-   "tags": [
-    "stats",
-    "own"
-   ],
    "projects": [
     "Tax-Anomaly-Audit-Pipeline"
    ]
@@ -209,12 +176,9 @@
   {
    "id": "st-fraud",
    "title": "Fraud Rule Tester",
-   "section": "stat-demos",
+   "category": "analysis",
+   "own_data": true,
    "what": "Tune fraud rules on 345,524 transactions or your own CSV.",
-   "tags": [
-    "stats",
-    "own"
-   ],
    "projects": [
     "finrisk"
    ]
@@ -222,12 +186,9 @@
   {
    "id": "st-posts",
    "title": "LinkedIn Post Checker",
-   "section": "stat-demos",
+   "category": "ai",
+   "own_data": true,
    "what": "Paste a draft and run CurioSync's writing rules on it.",
-   "tags": [
-    "ai",
-    "own"
-   ],
    "projects": [
     "curiosync"
    ]
@@ -235,13 +196,9 @@
   {
    "id": "st-qa",
    "title": "Member Q&A by Meaning",
-   "section": "stat-demos",
+   "category": "ai",
+   "own_data": true,
    "what": "Ask questions answered by sentence embeddings, on members' messages or your own text.",
-   "tags": [
-    "ai",
-    "ml",
-    "own"
-   ],
    "projects": [
     "NLP-based-Q-A-system"
    ]
@@ -249,13 +206,9 @@
   {
    "id": "st-rfm",
    "title": "Customer Segments by RFM",
-   "section": "stat-demos",
+   "category": "analysis",
+   "own_data": true,
    "what": "K-Means segments from recency, frequency and spend, on 2,000 customers or your CSV.",
-   "tags": [
-    "ml",
-    "stats",
-    "own"
-   ],
    "projects": [
     "Sales-Customer-Segmentation-Pipeline"
    ]
@@ -263,13 +216,9 @@
   {
    "id": "st-em",
    "title": "Land-Use Emissions Forecast",
-   "section": "stat-demos",
+   "category": "ml",
+   "own_data": true,
    "what": "EPA land-use series forecast a year ahead; test your own yearly series.",
-   "tags": [
-    "ml",
-    "stats",
-    "own"
-   ],
    "projects": [
     "Multi-State-Land-Use-Emissions-Analysis"
    ]

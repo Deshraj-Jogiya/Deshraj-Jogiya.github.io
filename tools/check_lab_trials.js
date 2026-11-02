@@ -50,7 +50,7 @@ for (const view of data.python) {
 // "Your own data" mode: the example the page pre-fills (Freireich et al. 1963, 6-MP against placebo) read by parseOwn, against
 // lifelines 0.30 on the same rows (logrank_test 16.792940989216547, p 4.168809109334511e-05; median 23 and 8 weeks).
 {
-  const html = fs.readFileSync(path.join(__dirname, "..", "templates", "_lab_stats.html"), "utf8");
+  const html = fs.readFileSync(path.join(__dirname, "..", "templates", "lab_demos", "st-trials.html"), "utf8");
   const own = t.parseOwn(html.split('id="tr-paste"')[1].split(">").slice(1).join(">").split("</textarea")[0]);
   const a = own.groups["6-MP"], b = own.groups["Placebo"], r = t.logRank(a.days, a.deaths, b.days, b.deaths);
   checks += 2; if (own.bad.length || a.days.length !== 21 || b.days.length !== 21) { failed++; console.log("FAIL own-data rows", own.bad); }

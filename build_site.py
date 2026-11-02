@@ -76,7 +76,9 @@ def main():
     # lab/demos.json is the one list of Lab demos: the Lab's index and filters, each project's "Try it in the Lab" link and the
     # assistant's answers about demos all come from it.
     lab = load("lab/demos.json")
-    lab["counts"] = {t: sum(t in d["tags"] for d in lab["demos"]) for t in lab["tags"]}
+    for c, meta in lab["categories"].items():
+        meta["demos"] = [d for d in lab["demos"] if d["category"] == c]
+    lab["own_count"] = sum(d["own_data"] for d in lab["demos"])
     for p in data["projects"]:
         key = p.get("slug") or p["github_url"].rstrip("/").split("/")[-1]
         p["lab_demos"] = sorted((d for d in lab["demos"] if key in d["projects"]), key=lambda d: len(d["projects"]))  # its own demos first
@@ -109,7 +111,7 @@ def main():
 
     write("lab/index.html", env.get_template("lab.html").render(
         common, page_path="/lab/", page_title="The Lab | Deshraj Jogiya",
-        page_description=(f"{len(lab['demos'])} in-browser demos of data and ML work, {lab['counts']['own']} of them on "
+        page_description=(f"{len(lab['demos'])} in-browser demos of data and ML work, {lab['own_count']} of them on "
                           "your own data: SQL, fraud rules, survival curves, Benford audits, RFM segments, forecasts, a shape classifier, "
                           "ASL signs, semantic search and data-engineering simulations."),
         json_ld=None))

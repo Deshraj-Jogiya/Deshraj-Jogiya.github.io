@@ -1,4 +1,4 @@
-// The Lab's fraud-rule tester (templates/_lab_stats.html, #st-fraud): the FinRisk project's 345,524 simulated card transactions,
+// The Lab's fraud-rule tester (templates/lab_demos/st-fraud.html): the FinRisk project's 345,524 simulated card transactions,
 // with its three rules (etl/fraud_rules.py) retuned by the visitor and every alert recomputed here. tools/check_lab_fraud.js holds
 // these rules to Python's at the project's settings and four others.
 (function (root) {

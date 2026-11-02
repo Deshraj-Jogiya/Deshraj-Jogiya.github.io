@@ -1,4 +1,4 @@
-// The Lab's seven tabbed demos (templates/_lab_tools.html). Everything runs in the page: no requests except the
+// The Lab's seven tabbed demos (templates/lab_demos/lt-*.html). Everything runs in the page: no requests except the
 // site's own projects.json and the fit samples, no storage, no tracking. Each tool's numbers come from what the
 // visitor does here.
 (function () {
@@ -16,7 +16,7 @@
     return '<svg class="lt-svg" viewBox="0 0 ' + w + " " + hgt + '" role="img" aria-label="' + h(label) + '">' + body + "</svg>";
   }
 
-  if (!document.getElementById("more-demos")) return;
+  if (!document.getElementById("lt-fit")) return;
 
   // ------------------------------------------------------------------ 1. job fit
   function initFit() {
