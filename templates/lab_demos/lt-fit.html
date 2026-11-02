@@ -1,0 +1,16 @@
+            <!-- 1. Job fit -->
+            <article class="lt-panel" id="lt-fit" aria-labelledby="lt-fit-title">
+                <h3 class="lt-title" id="lt-fit-title">Job Description Fit Scorer</h3>
+                <p class="lt-lede">Paste a job description and see how well it matches this profile, with each requirement checked against real work.</p>
+                <ol class="lt-steps"><li>Pick a sample job, or choose "My own job description" and paste one.</li><li>Press <b>Score this job</b>.</li><li>Read the table: every skill the job asks for, and where it shows up in the profile.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Job to score</span>
+                        <select id="fit-sample"><option value="">Loading samples...</option></select></label>
+                </div>
+                <label class="lt-field"><span>Job title</span><input id="fit-title" type="text" autocomplete="off"></label>
+                <label class="lt-field"><span>Job description</span><textarea id="fit-posting" rows="8" spellcheck="false"></textarea></label>
+                <p class="lt-note">What you paste stays on this page. Nothing is sent anywhere.</p>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="fit-run">Score this job</button></div>
+                <div id="fit-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">Same rules as <a href="https://github.com/Deshraj-Jogiya/Job-Search-CRM-Automation/blob/main/app/services/fit_service.py" target="_blank" rel="noopener">fit_service.py</a> in Career Pilot, where they keep the AI's match score honest. Every deploy checks that this page gives the same scores as the Python original.</p>
+            </article>

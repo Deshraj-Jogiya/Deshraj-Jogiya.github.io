@@ -1,0 +1,22 @@
+            <!-- 2. Data contract -->
+            <article class="lt-panel" id="lt-contract" aria-labelledby="lt-contract-title">
+                <h3 class="lt-title" id="lt-contract-title">Data Contract &amp; Quality Checker</h3>
+                <p class="lt-lede">Before a new file of job postings is used, check it against rules learned from a file you trust: no missing values, no duplicate IDs, salaries in a normal range, known categories only.</p>
+                <ol class="lt-steps"><li>Leave "Monday's file" as the good example the rules are learned from.</li><li>Pick a day's file to check (Tuesday and Wednesday have problems hidden in them).</li><li>Press <b>Check the file</b> and see which rules broke, and on which rows.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Learn the rules from</span>
+                        <select id="gx-ref"><option value="reference">Monday's file (known good)</option></select></label>
+                    <label class="lt-field"><span>File to check</span>
+                        <select id="gx-batch">
+                            <option value="tuesday">Tuesday's file</option>
+                            <option value="wednesday">Wednesday's file</option>
+                            <option value="thursday">Thursday's file</option>
+                        </select></label>
+                    <label class="lt-field"><span>Or check your own CSV file</span><input id="gx-file" type="file" accept=".csv,text/csv"></label>
+                </div>
+                <p class="lt-note">A file you choose is read on this page and never uploaded. Up to 5 MB.</p>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="gx-run">Check the file</button>
+                    <button type="button" class="btn btn-outline" id="gx-show">Look at the file</button></div>
+                <div id="gx-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">The <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/great_expectations/validate_outputs.py" target="_blank" rel="noopener">Job Market Lakehouse</a> runs rules like these with Great Expectations after every PySpark job. A failed check stops the pipeline before bad data reaches a report.</p>
+            </article>

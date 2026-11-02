@@ -1,0 +1,27 @@
+            <article class="lt-panel" id="st-rfm" aria-labelledby="st-rfm-title">
+                <h3 class="lt-title" id="st-rfm-title">Customer Segments by RFM</h3>
+                <p class="lt-lede">Each customer becomes three numbers: days since their last purchase (recency), how many purchases (frequency) and total spend (monetary). K-Means groups customers with similar numbers. With 4 groups the project's 2,000 customers split into VIP Champions, Loyal, New and At Risk, and the groups explain 93.9% of the variance.</p>
+                <ol class="lt-steps"><li>Move the slider to try 2 to 8 clusters and watch the elbow chart: each extra cluster explains less.</li><li>Read each segment's size and average recency, purchases and spend.</li><li>Switch to <b>Your own transactions</b> and load a CSV, or try the 60-customer sample.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Customers</legend>
+                        <label class="lt-check"><input type="radio" name="rf-mode" value="project" checked> The project's 2,000</label>
+                        <label class="lt-check"><input type="radio" name="rf-mode" value="own"> Your own transactions</label></fieldset>
+                </div>
+                <div id="rf-own-pick" hidden>
+                    <p class="lt-note">A CSV with one row per purchase: customer, date, amount (a header row is fine). Dates like 2025-03-01 or 2025-03-01 14:05. The file is read in your browser and never uploaded.</p>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Transactions file</span><input id="rf-file" type="file" accept=".csv,.txt,text/csv"></label>
+                        <div class="lt-actions"><button type="button" class="btn" id="rf-sample">Use the sample (374 KB)</button></div>
+                    </div>
+                    <p class="lt-note">Loaded: <span id="rf-own-name">nothing yet</span></p>
+                </div>
+                <div id="rf-controls" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Clusters (k): <b id="rf-k-out">4</b></span><input id="rf-k" type="range" min="2" max="8" step="1" value="4"></label>
+                </div>
+                <div id="rf-figs" class="rf-figs" hidden>
+                    <figure><svg id="rf-elbow" class="lt-svg" viewBox="0 0 320 180" role="img" aria-label="Variance explained for each number of clusters"></svg><figcaption>Variance explained by k</figcaption></figure>
+                    <figure><svg id="rf-scatter" class="lt-svg" viewBox="0 0 320 220" role="img" aria-label="Customers by recency and spend, coloured by cluster"></svg><figcaption>Customers: recency vs spend (log scale)</figcaption></figure>
+                </div>
+                <div id="rf-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline" target="_blank" rel="noopener">Sales Analytics &amp; RFM Customer Segmentation Pipeline</a> (<a href="https://github.com/Deshraj-Jogiya/Sales-Customer-Segmentation-Pipeline/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the RFM step and K-Means of <code>models/segmentation.py</code>, rewritten for the browser, on the project's seeded synthetic sales. Every deploy checks that the browser's RFM matches pandas on the sample and its variance explained is within 0.001 of scikit-learn's for every k. K-Means stops at a local optimum, so at k = 4 up to 5 boundary customers land in a neighbouring segment (93.900% vs 93.901%).</p>
+            </article>

@@ -1,0 +1,21 @@
+            <!-- 3. SCD Type 2 -->
+            <article class="lt-panel" id="lt-scd" aria-labelledby="lt-scd-title">
+                <h3 class="lt-title" id="lt-scd-title">SCD Type 2 Snapshot Builder</h3>
+                <p class="lt-lede">A customer table only shows today's values. A history table (a "Type 2 slowly changing dimension") keeps every past version too, so you can answer "which city was this customer in last month?"</p>
+                <ol class="lt-steps"><li>Press <b>Save a snapshot</b> to record today's table.</li><li>Change a customer's city or tier in the table above it, or delete a customer.</li><li>Save again and watch the history table: the old row gets an end date and a new current row appears.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field"><legend>How to spot a change</legend>
+                        <label class="lt-check"><input type="radio" name="scd-strategy" value="timestamp" checked> trust the "updated_at" time (timestamp)</label>
+                        <label class="lt-check"><input type="radio" name="scd-strategy" value="check"> compare name, city and tier (check)</label></fieldset>
+                    <label class="lt-check lt-field-inline"><input type="checkbox" id="scd-hard"> End the history of customers deleted from the table</label>
+                </div>
+                <h4 class="lt-sub">Today's table: customers</h4>
+                <div class="lt-scroll"><table class="lt-table" id="scd-source"></table></div>
+                <div class="lt-actions"><button type="button" class="btn btn-outline" id="scd-add">Add a customer</button>
+                    <button type="button" class="btn btn-accent" id="scd-run">Save a snapshot</button>
+                    <button type="button" class="btn btn-outline" id="scd-reset">Start over</button></div>
+                <div id="scd-log" class="lt-out" aria-live="polite"></div>
+                <h4 class="lt-sub">History table: customers_snapshot</h4>
+                <div class="lt-scroll"><table class="lt-table" id="scd-snap"></table></div>
+                <p class="lt-source">This is how a dbt snapshot works. The <a href="https://github.com/Deshraj-Jogiya/job-search-dbt-warehouse" target="_blank" rel="noopener">dbt warehouse</a> keeps its daily pipeline table with an incremental merge instead, which keeps only the latest value. That's the trade-off this demo shows.</p>
+            </article>

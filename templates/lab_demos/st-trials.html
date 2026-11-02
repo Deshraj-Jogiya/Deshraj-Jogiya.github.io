@@ -1,0 +1,71 @@
+            <!-- Survival curves (Clinical Trials Patient Outcomes Analysis) -->
+            <article class="lt-panel" id="st-trials" aria-labelledby="st-trials-title">
+                <h3 class="lt-title" id="st-trials-title">Survival Curves by Dosage</h3>
+                <p class="lt-lede">A simulated 365-day trial of 250 patients in three arms. Filter the patients and compare arms: Kaplan-Meier curves show the share still alive each day, the log-rank test asks whether two curves differ, and the chi-square test asks whether adverse-event rates differ.</p>
+                <ol class="lt-steps"><li>Choose patients by gender and age, or switch to <b>Your own data</b> and paste any time-to-event data.</li><li>Tick the arms to compare.</li><li>Read the curves, then the tests below them. A dropping line means patients dying; the dashed line marks half still alive.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Data</legend>
+                        <label class="lt-check"><input type="radio" name="tr-mode" value="trial" checked> The simulated trial</label>
+                        <label class="lt-check"><input type="radio" name="tr-mode" value="own"> Your own data</label></fieldset>
+                </div>
+                <div id="tr-own-pick" hidden>
+                    <p class="lt-note">One row per subject: <b>group, time, event</b>. Event is 1 if it happened (death, relapse, a customer cancelling) and 0 if the subject was still fine when follow-up ended (censored). Commas, semicolons or tabs all work, so a spreadsheet column copy pastes straight in. The example is a real, published trial: Freireich and colleagues (1963), weeks of leukemia remission on 6-MP against placebo, where the textbook answer is a log-rank statistic of 16.79. Nothing leaves your browser.</p>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Rows</span><textarea id="tr-paste" rows="8" spellcheck="false">group,weeks,relapsed
+6-MP,6,1
+6-MP,6,1
+6-MP,6,1
+6-MP,6,0
+6-MP,7,1
+6-MP,9,0
+6-MP,10,1
+6-MP,10,0
+6-MP,11,0
+6-MP,13,1
+6-MP,16,1
+6-MP,17,0
+6-MP,19,0
+6-MP,20,0
+6-MP,22,1
+6-MP,23,1
+6-MP,25,0
+6-MP,32,0
+6-MP,32,0
+6-MP,34,0
+6-MP,35,0
+Placebo,1,1
+Placebo,1,1
+Placebo,2,1
+Placebo,2,1
+Placebo,3,1
+Placebo,4,1
+Placebo,4,1
+Placebo,5,1
+Placebo,5,1
+Placebo,8,1
+Placebo,8,1
+Placebo,8,1
+Placebo,8,1
+Placebo,11,1
+Placebo,11,1
+Placebo,12,1
+Placebo,12,1
+Placebo,15,1
+Placebo,17,1
+Placebo,22,1
+Placebo,23,1</textarea></label>
+                        <label class="lt-field"><span>Time unit</span><input id="tr-unit" type="text" value="weeks" maxlength="24"></label>
+                    </div>
+                </div>
+                <div class="lt-controls" id="tr-trial-pick">
+                    <label class="lt-field"><span>Gender</span><select id="tr-gender"><option>All</option><option>Female</option><option>Male</option></select></label>
+                    <label class="lt-field"><span>Age</span><select id="tr-age"><option>All</option></select></label>
+                    <fieldset class="lt-field lt-field-inline"><legend>Arms</legend>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-control" checked><span class="tr-key tr-control"></span> Control</label>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-low" checked><span class="tr-key tr-low"></span> Low dosage</label>
+                        <label class="lt-check"><input type="checkbox" id="tr-arm-tr-high" checked><span class="tr-key tr-high"></span> High dosage</label></fieldset>
+                </div>
+                <div class="lt-scroll"><svg id="tr-chart" class="lt-svg tr-chart" viewBox="0 0 560 300" role="img" aria-label="Kaplan-Meier survival curves for the chosen arms"></svg></div>
+                <div id="tr-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis" target="_blank" rel="noopener">Clinical Trials Patient Outcomes Analysis</a> (<a href="https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). The patients are simulated with a fixed seed; none are real. An adverse event is the project's own rule: systolic blood pressure under 105 or over 155 at any visit. Every deploy checks the page against lifelines and SciPy on all 12 gender and age filters, and on the own-data example.</p>
+            </article>

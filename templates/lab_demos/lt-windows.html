@@ -1,0 +1,17 @@
+            <!-- 6. Event-time windows -->
+            <article class="lt-panel" id="lt-windows" aria-labelledby="lt-windows-title">
+                <h3 class="lt-title" id="lt-windows-title">Streaming Event-Time Window Simulator</h3>
+                <p class="lt-lede">Machine sensors send a temperature reading every few seconds, and a stream job averages them per 10-second window. Some readings get stuck in the network and arrive late. How long should the job wait before it publishes a window's average?</p>
+                <ol class="lt-steps"><li>Press <b>Replay the stream</b> and watch the dots arrive, top to bottom.</li><li>Set <b>Wait for stragglers</b> to 0 and replay: more readings are dropped.</li><li>Tap a dot to delay that reading by 8 seconds.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Group readings into</span>
+                        <select id="ew-type"><option value="tumbling">10-second blocks (tumbling)</option><option value="sliding">10-second blocks every 5 s (sliding)</option><option value="session">bursts split by 6 s of quiet (session)</option></select></label>
+                    <label class="lt-field"><span>Wait for stragglers <output id="ew-delay-v">2 s</output></span><input id="ew-delay" type="range" min="0" max="10" step="1" value="2"></label>
+                    <label class="lt-field"><span>Accept late readings for <output id="ew-late-v">3 s</output></span><input id="ew-late" type="range" min="0" max="15" step="1" value="3"></label>
+                    <label class="lt-field lt-grow"><span>Clock <output id="ew-time-v">0 s</output></span><input id="ew-time" type="range" min="0" max="80" step="1" value="80"></label>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ew-play">Replay the stream</button>
+                    <button type="button" class="btn btn-outline" id="ew-new">New readings</button></div>
+                <div id="ew-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">"Wait for stragglers" is the watermark delay and "accept late readings" is the allowed lateness, the two settings a stream engine uses to decide this. The <a href="https://github.com/Deshraj-Jogiya/IoT-Telematics-Predictive-Maintenance/blob/main/etl/telemetry_pipeline.py" target="_blank" rel="noopener">IoT telematics pipeline</a> writes its telemetry in event-time order in micro-batches.</p>
+            </article>

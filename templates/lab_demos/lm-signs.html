@@ -1,0 +1,76 @@
+            <!-- ASL word signs (Extending STEM across ASL) -->
+            <article class="lt-panel" id="lm-signs" aria-labelledby="lm-signs-title">
+                <h3 class="lt-title" id="lm-signs-title">ASL Word Signs: Learn, Practise, Get Checked</h3>
+                <p class="lt-lede">Learn one of 29 STEM and computing signs (computer, email, science, math...) at your own speed, then sign it. While you sign, every new frame is compared with how the sign is made in the training clips, and when it stops matching, the frame where it went wrong is flagged, with what it looks like instead. It does not catch every mistake; how often it does is measured under the check. When you finish, the trained model gives its best match and its score for all 29 signs. On 58 held-out clips the model's top guess was right 75.86% of the time and in its top three 94.83% of the time (chance is 3.45%).</p>
+                <ol class="lt-steps"><li>Choose a sign and watch it slowly: play it at a quarter speed, pause, or step frame by frame.</li><li>Check an attempt: sign it to your camera, or try a held-out clip or a made-up mistake (a clip that starts as your sign and switches to another half-way).</li><li>Watch the timeline fill in as the frames arrive. It turns red at the frame where the attempt went wrong; the final scores appear when it ends.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Sign to learn</span>
+                        <select id="ls-sign"><option value="">Loading the signs...</option></select></label>
+                </div>
+
+                <h4 class="lt-sub">1. Learn it</h4>
+                <div class="lm-stage ls-stage">
+                    <div class="ls-view"><canvas id="ls-ref" width="400" height="260" aria-label="How the chosen sign is made, as hand points"></canvas></div>
+                    <div class="ls-learn">
+                        <div class="lt-actions ls-player">
+                            <button type="button" class="btn btn-outline" id="ls-play">Play</button>
+                            <button type="button" class="btn btn-outline" id="ls-back" aria-label="Previous frame">&larr; Frame</button>
+                            <button type="button" class="btn btn-outline" id="ls-fwd" aria-label="Next frame">Frame &rarr;</button>
+                        </div>
+                        <fieldset class="lt-field lt-field-inline"><legend>Speed</legend>
+                            <label class="lt-check"><input type="radio" name="ls-speed" value="0.25" checked> 1/4</label>
+                            <label class="lt-check"><input type="radio" name="ls-speed" value="0.5"> 1/2</label>
+                            <label class="lt-check"><input type="radio" name="ls-speed" value="1"> Full</label></fieldset>
+                        <label class="lt-field"><span>Frame <output id="ls-scrub-v">1 of 32</output></span><input id="ls-scrub" type="range" min="0" max="31" step="1" value="0"></label>
+                        <p class="lt-note" id="ls-ref-note">The chosen sign from one of its training clips, drawn as the 21 points per hand the model reads.</p>
+                    </div>
+                </div>
+
+                <h4 class="lt-sub">2. Check an attempt</h4>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Attempt</legend>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="camera" checked> Use your camera</label>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="clip"> A held-out clip</label>
+                        <label class="lt-check"><input type="radio" name="ls-mode" value="mistake"> A made-up mistake</label></fieldset>
+                </div>
+                <div id="ls-camera-pick">
+                    <p class="lt-note">The camera runs only on this page: frames are read in your browser and are never uploaded or saved. The first start downloads MediaPipe's hand model and OpenCV.js (about 14 MB). After a 3-second countdown you have up to 4 seconds; press <b>Stop</b> when you finish. Keep both hands in view, with light on them.</p>
+                </div>
+                <div id="ls-clip-pick" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Held-out clip (never used in training)</span>
+                        <select id="ls-clip"><option value="">Loading the clips...</option></select></label>
+                </div>
+                <div id="ls-mistake-pick" class="lt-controls" hidden>
+                    <label class="lt-field lt-grow"><span>Switch half-way to</span>
+                        <select id="ls-other"><option value="">Loading the clips...</option></select></label>
+                    <p class="lt-note">The first 16 frames come from a held-out clip of your sign, the last 16 from a held-out clip of this one, so the attempt really does go wrong at frame 17.</p>
+                </div>
+                <div class="ls-live">
+                    <div id="ls-timeline" class="ls-timeline" aria-hidden="true"></div>
+                    <p class="ls-legend"><i><span class="ok"></span>on track</i><i><span class="warn"></span>drifting</i><i><span class="bad"></span>went wrong</i><i><span class="none"></span>no hand in view</i><i><span class="wait"></span>first frames, not judged</i></p>
+                    <p id="ls-status" class="ls-status" aria-live="polite">Choose an attempt and press <b>Check my signing</b>.</p>
+                </div>
+                <div class="lm-stage ls-stage">
+                    <div class="ls-view">
+                        <video id="ls-video" playsinline muted hidden aria-label="Your camera, mirrored"></video>
+                        <canvas id="ls-canvas" width="400" height="260" aria-label="The hand points read from the attempt"></canvas>
+                    </div>
+                    <div id="ls-now" class="ls-now"></div>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="ls-run">Check my signing</button></div>
+                <p class="lt-note" id="ls-reliability"></p>
+                <div id="ls-out" class="lt-out lm-out" aria-live="polite"></div>
+                <details class="lt-more"><summary>Which signs it misses</summary>
+                    <div class="lt-scroll"><table class="lt-table">
+                        <thead><tr><th>Sign</th><th class="num">Held-out accuracy</th><th>Predicted as</th></tr></thead>
+                        <tbody>
+                            <tr><td>network</td><td class="num">0.0</td><td>internet (both clips)</td></tr>
+                            <tr><td>chemistry</td><td class="num">0.0</td><td>email, experiment</td></tr>
+                            <tr><td>internet</td><td class="num">0.5</td><td>network (one clip)</td></tr>
+                            <tr><td>paper</td><td class="num">0.5</td><td>print (one clip)</td></tr>
+                            <tr><td>school</td><td class="num">0.5</td><td>paper (one clip)</td></tr>
+                        </tbody></table></div>
+                    <p class="lt-note">The misses fall between related signs that share a hand shape, such as network and internet. With the hand-shape values from OpenCV removed, top-1 drops from 75.86% to 65.52%, so the page runs OpenCV too.</p>
+                </details>
+                <p class="lt-source">The model and the held-out clips come from <a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL" target="_blank" rel="noopener">Extending STEM across ASL</a> (<a href="https://github.com/Deshraj-Jogiya/Extending-STEM-across-ASL/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): the same 1-D convolution and GRU, trained on the same seeded split, with the clips stored as hand points only (WLASL video is for research use, so none is copied here). Every deploy checks this page's OpenCV.js step and model scores against Python's; MediaPipe's browser and Python versions were checked on 7 hand photos and agree to 0.00003 of the frame.</p>
+            </article>

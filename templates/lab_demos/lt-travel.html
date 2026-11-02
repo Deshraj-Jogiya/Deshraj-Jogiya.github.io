@@ -1,0 +1,21 @@
+            <!-- 5. Time travel -->
+            <article class="lt-panel" id="lt-travel" aria-labelledby="lt-travel-title">
+                <h3 class="lt-title" id="lt-travel-title">Lakehouse Time Travel Explorer</h3>
+                <p class="lt-lede">Lakehouse tables (Apache Iceberg, Delta Lake) never overwrite data in place. Every change saves a new version, so you can query the table as it was before a mistake.</p>
+                <ol class="lt-steps"><li>Press <b>Add 3 rows</b> twice, then <b>Give one company a 10% raise</b> and <b>Delete the lowest salary</b>.</li><li>Click any earlier version to see the table exactly as it was then.</li><li>Press <b>Tidy up files</b>, then <b>Delete old versions</b>, and see what time travel loses.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field"><legend>How changes are written</legend>
+                        <label class="lt-check"><input type="radio" name="tt-mode" value="cow" checked> rewrite the affected files (copy-on-write)</label>
+                        <label class="lt-check"><input type="radio" name="tt-mode" value="mor"> write a small "deleted rows" file (merge-on-read)</label></fieldset>
+                </div>
+                <div class="lt-actions lt-wrap">
+                    <button type="button" class="btn btn-accent" id="tt-append">Add 3 rows</button>
+                    <button type="button" class="btn btn-outline" id="tt-update">Give one company a 10% raise</button>
+                    <button type="button" class="btn btn-outline" id="tt-delete">Delete the lowest salary</button>
+                    <button type="button" class="btn btn-outline" id="tt-compact">Tidy up files</button>
+                    <button type="button" class="btn btn-outline" id="tt-expire">Delete old versions</button>
+                    <button type="button" class="btn btn-outline" id="tt-reset">Start over</button>
+                </div>
+                <div id="tt-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">A simulation of how the format behaves. The real Delta Lake and Iceberg tables are in <a href="https://github.com/Deshraj-Jogiya/TalentVenue_EventIntel/blob/main/app/etl/table_formats.py" target="_blank" rel="noopener">TalentVenue EventIntel's table_formats.py</a>.</p>
+            </article>

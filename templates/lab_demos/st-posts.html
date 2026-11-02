@@ -1,0 +1,15 @@
+            <!-- Post checker (CurioSync) -->
+            <article class="lt-panel" id="st-posts" aria-labelledby="st-posts-title">
+                <h3 class="lt-title" id="st-posts-title">LinkedIn Post Checker</h3>
+                <p class="lt-lede">CurioSync drafts LinkedIn posts from project notes and will not queue one until it passes these writing checks: length, a short first line, no stock AI phrases ("delve", "game-changer", "not just X but Y"), no engagement bait, no word or number repeated too often, and paragraphs that each move the story on.</p>
+                <ol class="lt-steps"><li>Paste your own draft, or pick a sample: a post CurioSync queued and test drafts written to break the rules.</li><li>Edit the text; the checks rerun as you type.</li><li>Read what CurioSync would send back for a rewrite.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Sample</span><select id="ps-sample"><option value="">Loading samples...</option></select></label>
+                </div>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Draft (checked in your browser, never sent)</span><textarea id="ps-draft" rows="10" spellcheck="true"></textarea></label>
+                </div>
+                <p class="lt-note" id="ps-count" aria-live="polite"></p>
+                <div id="ps-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/curiosync" target="_blank" rel="noopener">CurioSync</a>: <code>writing_problems</code> in <code>app/services/post_rules.py</code>, rewritten for the browser. Its fact checks (a number or tool the project's notes do not back, "we" on solo work) need the project's own facts, so they do not run here; a draft that passes on this page can still be held back by them. Every deploy checks this page against the Python on 15 published and test drafts: the same problems, word for word, in the same order.</p>
+            </article>

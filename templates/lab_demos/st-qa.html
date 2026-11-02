@@ -1,0 +1,31 @@
+            <!-- Member Q&A (NLP-based Q&A system) -->
+            <article class="lt-panel" id="st-qa" aria-labelledby="st-qa-title">
+                <h3 class="lt-title" id="st-qa-title">Member Q&amp;A by Meaning</h3>
+                <p class="lt-lede">Ask about a concierge client in plain words ("Where does Sophia want to fly by private jet?"). The engine finds the member, ranks that member's messages by meaning rather than shared words (sentence embeddings from all-MiniLM-L6-v2), and reads the answer out of the best one. On 26 labelled, reworded questions it found the right message 25 times (96%).</p>
+                <ol class="lt-steps"><li>Pick a labelled question or type your own about one of the 10 members, or switch to <b>Your own text</b> and search lines you paste.</li><li>Press <b>Ask</b>. The first time downloads the language model and its runtime (about 27 MB).</li><li>Read the answer, then the member's messages ranked by similarity.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Search</legend>
+                        <label class="lt-check"><input type="radio" name="qa-mode" value="members" checked> The members' messages</label>
+                        <label class="lt-check"><input type="radio" name="qa-mode" value="own"> Your own text</label></fieldset>
+                </div>
+                <div id="qa-members-pick" class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Labelled question</span><select id="qa-sample"><option value="">Loading...</option></select></label>
+                </div>
+                <div id="qa-own-pick" hidden>
+                    <p class="lt-note">One item per line: notes, FAQ answers, ticket titles, anything. Up to 300 lines are embedded in your browser and never uploaded. The example lines are made up.</p>
+                    <div class="lt-controls"><label class="lt-field lt-grow"><span>Lines to search</span><textarea id="qa-own" rows="7" spellcheck="false">Refunds are issued to the original card within 5 to 7 business days.
+You can change your delivery address until the order ships.
+Our support line is open weekdays from 8 am to 6 pm Eastern.
+Gift cards never expire and can be used online or in store.
+Items marked final sale cannot be returned or exchanged.
+Standard shipping is free on orders over $50.
+We ship to Canada and Mexico; other countries are not supported yet.
+To reset your password, use the link on the sign-in page.</textarea></label></div>
+                </div>
+                <div class="lt-controls">
+                    <label class="lt-field lt-grow"><span>Question</span><input id="qa-question" type="text" maxlength="300" autocomplete="off" data-own="When will I get my money back?"></label>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="qa-ask">Ask (about 27 MB, first time only)</button></div>
+                <div id="qa-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system" target="_blank" rel="noopener">Member Messages QA System</a> (<a href="https://github.com/Deshraj-Jogiya/NLP-based-Q-A-system/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): <code>answer_question</code> in <code>main.py</code>, rewritten for the browser, on its 100 synthetic concierge messages. The page runs the 8-bit copy of the same model; the project's spaCy name step does not run in a browser, so the member is found by its first-name fallback, which picks the same member on all 26 labelled questions. Every deploy checks that all 26 give Python's member, top message and answer.</p>
+            </article>

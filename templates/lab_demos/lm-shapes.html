@@ -1,0 +1,76 @@
+            <!-- Shape classifier (Solid Object Detection) -->
+            <article class="lt-panel" id="lm-shapes" aria-labelledby="lm-shapes-title">
+                <h3 class="lt-title" id="lm-shapes-title">Shape Classifier</h3>
+                <p class="lt-lede">A small CNN that names the shape in a 64 x 64 image (circle, square, triangle, rectangle, pentagon, hexagon or star) and draws a box around it. It scored 99.20% on 2,000 held-out images. Next to it, the project's classic image-processing path turns the picture black and white, cleans it and reads the outline's corners, which gives a second, independent answer.</p>
+                <ol class="lt-steps"><li>Pick a test shape or one it never saw, draw your own, or upload any picture: a road sign, a logo, a photo.</li><li>Press <b>Run the model</b>. The first run downloads the model, ONNX Runtime and OpenCV.js (about 6 MB).</li><li>Follow the processing steps, compare the two answers, and read whether the answer can be trusted.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Input</legend>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="test" checked> Test shape</label>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="draw"> Draw your own</label>
+                        <label class="lt-check"><input type="radio" name="lm-mode" value="upload"> Upload a picture</label></fieldset>
+                </div>
+                <div id="lm-test-pick">
+                    <p class="lm-row-label">Held-out test shapes (the 7 it knows)</p>
+                    <div class="lm-thumbs" id="lm-thumbs" role="listbox" aria-label="Held-out test shapes"></div>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-more">Show all 63 test shapes</button>
+                        <button type="button" class="btn btn-outline" id="lm-random">Random test shape</button></div>
+                    <p class="lm-row-label">Shapes it never saw (octagon, heptagon, ellipse, plus sign, arrow, crescent)</p>
+                    <div class="lm-thumbs" id="lm-unseen" role="listbox" aria-label="Shapes the model never saw"></div>
+                </div>
+                <div id="lm-draw-pick" hidden>
+                    <p class="lt-note">Draw one filled shape with your finger or mouse. Your drawing is not like the training images (those are clean, filled and slightly noisy), so expect lower accuracy here; the 99.20% applies only to the test shapes.</p>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-clear">Clear</button></div>
+                </div>
+                <div id="lm-upload-pick" hidden>
+                    <div class="lt-actions"><label class="btn btn-outline lm-file-btn" for="lm-file">Choose a picture</label>
+                        <input type="file" id="lm-file" accept="image/*" class="lm-file-input"></div>
+                    <p class="lt-note">Your picture is read in your browser and never uploaded or saved. It is padded to a square and shrunk to 64 x 64, the only size the model takes, so fine detail (a sign's lettering) is lost. A single dark shape on a plain light background is closest to what the model was trained on; anything else is a real-world test of how it fails.</p>
+                </div>
+                <div class="lm-stage lm-stage-one">
+                    <canvas id="lm-canvas" width="256" height="256" aria-label="The image the model will classify"></canvas>
+                </div>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="lm-run">Run the model (about 6 MB, first time only)</button></div>
+                <div id="lm-pipeline" class="lm-pipeline" hidden>
+                    <p class="lm-row-label">How the picture was processed (src/traditional.py, the same OpenCV steps in your browser)</p>
+                    <div class="lm-steps">
+                        <figure id="lm-step-orig" hidden><canvas id="lm-c-orig" width="192" height="192"></canvas><figcaption><b>Your picture</b>, padded to a square</figcaption></figure>
+                        <figure><canvas id="lm-c-input" width="64" height="64"></canvas><figcaption><b>1. Model input</b>: 64 x 64 colour, what the CNN reads</figcaption></figure>
+                        <figure><canvas id="lm-c-gray" width="64" height="64"></canvas><figcaption><b>2. Grayscale</b>: colour dropped, brightness kept</figcaption></figure>
+                        <figure><canvas id="lm-c-blur" width="64" height="64"></canvas><figcaption><b>3. Blurred</b> (5 x 5 Gaussian): smooths pixel noise</figcaption></figure>
+                        <figure><canvas id="lm-c-thresh" width="64" height="64"></canvas><figcaption><b>4. Black and white</b>: Otsu picked level <span id="lm-level">-</span> of 255; darker becomes the shape</figcaption></figure>
+                        <figure><canvas id="lm-c-clean" width="64" height="64"></canvas><figcaption><b>5. Cleaned</b>: close fills pinholes, open removes specks</figcaption></figure>
+                        <figure><canvas id="lm-c-outline" width="192" height="192"></canvas><figcaption><b>6. Largest outline</b>: <span id="lm-corners">-</span></figcaption></figure>
+                    </div>
+                    <p class="lt-note">Steps 2 to 6 feed the geometry answer only. The CNN reads step 1 directly: it learned its own filters, so it never sees the black-and-white mask. When the two answers disagree, one of them is wrong.</p>
+                </div>
+                <div id="lm-out" class="lt-out lm-out" aria-live="polite"></div>
+                <div class="lm-sr" id="lm-sr">
+                    <h4 class="lt-sub" id="lm-sr-title">Square or rectangle: how the two are told apart</h4>
+                    <p class="lt-note lm-sr-text">The two answers use different evidence. <b>Geometry</b> follows a written rule: find the outline's 4 corners, draw the upright box around them, and call it a square when the box's width and height are within 12% of each other (a ratio from 0.88 to 1.12). <b>The CNN</b> has no rule. It learned from 10,000 generated pictures in which every square had 4 equal sides and every rectangle's long side was 1.4 to 1.8 times its short side. No training picture fell between 1.0 and 1.4, so where it switches inside that gap is something the network settled on by itself. Below, the short side stays 24 pixels while you stretch the long side and turn the shape.</p>
+                    <div class="lt-controls lm-sr-controls">
+                        <label class="lt-field"><span>Long side <output id="lm-sr-long-v">30 px</output></span><input id="lm-sr-long" type="range" min="24" max="48" step="2" value="30"></label>
+                        <label class="lt-field"><span>Turn it <output id="lm-sr-angle-v">0&deg;</output></span><input id="lm-sr-angle" type="range" min="0" max="90" step="5" value="0"></label>
+                    </div>
+                    <div class="lt-actions"><button type="button" class="btn btn-outline" id="lm-sr-run">Run the stretch test</button></div>
+                    <div class="lm-sr-stage">
+                        <canvas id="lm-sr-canvas" width="192" height="192" aria-label="The stretched shape at 64 x 64 pixels, as the model reads it"></canvas>
+                        <div id="lm-sr-out" class="lm-sr-out" aria-live="polite"><p class="lt-note">Press <b>Run the stretch test</b>. It uses the same model and OpenCV.js as above (about 6 MB, downloaded once).</p></div>
+                    </div>
+                    <div id="lm-sr-chart"></div>
+                </div>
+                <details class="lt-more"><summary>How it scored on each shape</summary>
+                    <div class="lt-scroll"><table class="lt-table">
+                        <thead><tr><th>Shape</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">F1</th></tr></thead>
+                        <tbody>
+                            <tr><td>Circle</td><td class="num">1.0000</td><td class="num">0.9930</td><td class="num">0.9965</td></tr>
+                            <tr><td>Square</td><td class="num">0.9873</td><td class="num">1.0000</td><td class="num">0.9936</td></tr>
+                            <tr><td>Triangle</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
+                            <tr><td>Rectangle</td><td class="num">1.0000</td><td class="num">0.9860</td><td class="num">0.9930</td></tr>
+                            <tr class="lt-closed-now"><td>Pentagon</td><td class="num">0.9794</td><td class="num">0.9828</td><td class="num">0.9811</td></tr>
+                            <tr class="lt-closed-now"><td>Hexagon</td><td class="num">0.9779</td><td class="num">0.9815</td><td class="num">0.9797</td></tr>
+                            <tr><td>Star</td><td class="num">1.0000</td><td class="num">1.0000</td><td class="num">1.0000</td></tr>
+                        </tbody></table></div>
+                    <p class="lt-note">Pentagons and hexagons, highlighted, are the pair it confuses most: at 64 x 64 pixels their corners blur into near-circles.</p>
+                </details>
+                <p class="lt-source">The model and test images come from <a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing" target="_blank" rel="noopener">Solid Object Detection</a>: the same ONNX file it serves on AWS Lambda, and 9 images of each shape from its seed-42 held-out split (<a href="https://github.com/Deshraj-Jogiya/Solid-Object-Detection-and-Identification-using-Image-Processing/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>). For a test shape, the page also shows Python's score for the same image, and every deploy checks the model's scores and every geometry step against Python. The trust check and its numbers come from the project's <code>ood_check.py</code>, which tested the model on 1,200 shapes it never saw.</p>
+            </article>

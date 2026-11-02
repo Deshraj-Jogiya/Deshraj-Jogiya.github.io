@@ -1,0 +1,117 @@
+                    <!-- Model Decision Threshold Optimizer widget -->
+                    <div id="threshold-widget" class="glass-card">
+                        <div class="widget-header">
+                            <h3 class="widget-title" style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">ML Model Threshold &amp; User Conversion Optimizer</h3>
+                            <p class="widget-subtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Adjust decision boundary to balance user friction and maximize conversion ROI.</p>
+</div>
+                        
+                        <div class="widget-body">
+                            <div class="slider-container" style="margin-bottom: 1.25rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                    <label style="font-size: 0.8rem; color: var(--text-secondary);">Decision Threshold: <span id="threshold-val-display" style="font-weight: 700; color: var(--accent); font-size: 0.9rem;">0.50</span></label>
+                                    <span id="threshold-optimal-badge" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.15); color: var(--ok); border: 1px solid rgba(16, 185, 129, 0.3); padding: 0.1rem 0.35rem; border-radius: 4px; font-weight: 600; display: none;">BEST HERE</span>
+</div>
+                                <input type="range" id="threshold-slider" aria-label="Decision threshold" min="0.05" max="0.95" step="0.05" value="0.50" style="width: 100%; accent-color: var(--accent); height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; outline: none; cursor: pointer;">
+</div>
+
+                            <div class="threshold-metrics-grid" style="margin-bottom: 1rem;">
+                                <!-- Confusion Matrix Table -->
+                                <div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 0.35rem; text-transform: uppercase;">Confusion Matrix</div>
+                                    <table class="confusion-table" style="width: 100%; font-size: 0.7rem; border-collapse: collapse; text-align: center;">
+                                        <thead>
+                                            <tr>
+                                                <th style="border: none; padding: 2px;"></th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Conversion</th>
+                                                <th style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); color: var(--text-secondary);">Pred Passive</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Conversion</td>
+                                                <td id="cm-tp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--ok);">0</td>
+                                                <td id="cm-fn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--bad);">0</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 1px solid rgba(255,255,255,0.08); padding: 4px; background: rgba(255,255,255,0.02); font-weight: 600; text-align: left; color: var(--text-secondary);">Act Passive</td>
+                                                <td id="cm-fp" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--warn);">0</td>
+                                                <td id="cm-tn" style="border: 1px solid rgba(255,255,255,0.08); padding: 6px; font-weight: 700; color: var(--accent);">0</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+</div>
+                                
+                                <!-- Metrics Output -->
+                                <div style="display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding-left: 0.5rem;">
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
+                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Precision</div>
+                                        <div id="val-precision" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
+</div>
+                                    <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--border-radius-sm); padding: 0.5rem; text-align: center;">
+                                        <div style="font-size: 0.65rem; color: var(--text-secondary);">Recall</div>
+                                        <div id="val-recall" style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary);">0.0%</div>
+</div>
+</div>
+</div>
+
+                            <!-- Profit Calculator Details -->
+                            <div class="profit-calculator" style="background: rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--border-radius-md); padding: 0.85rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">Gains from true positives (<span id="th-c-tp">+$100</span> each):</span>
+                                    <span id="profit-tp-gain" style="font-weight: 600; color: var(--ok);">+$0</span>
+</div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">False-alarm cost (<span id="th-c-fp">-$20</span> each):</span>
+                                    <span id="profit-fp-loss" style="font-weight: 600; color: var(--warn);">-$0</span>
+</div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.72rem;">
+                                    <span style="color: var(--text-secondary);">Missed-case cost (<span id="th-c-fn">-$150</span> each):</span>
+                                    <span id="profit-fn-loss" style="font-weight: 600; color: var(--bad);">-$0</span>
+</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem; margin-top: 0.5rem; font-size: 0.8rem;">
+                                    <span style="color: var(--text-primary); font-weight: 600;">Net Conversion ROI Impact:</span>
+                                    <span id="val-net-profit" style="font-weight: 700; font-size: 1rem; color: var(--ok);">$0</span>
+</div>
+</div>
+
+                            <form class="ab-own" id="th-own" novalidate>
+                                <p class="ab-own-title">Use your own model's scores</p>
+                                <p class="ab-own-note">One row per case: score (0 to 1), actual label (1 or 0, yes or no). Paste a model's predictions on a labelled test set, set what each outcome is worth, and the slider uses your rows. The example rows are made up; nothing leaves your browser.</p>
+                                <textarea id="th-own-rows" rows="6" spellcheck="false" aria-label="Scores and labels">score,label
+0.92,1
+0.81,1
+0.77,0
+0.74,1
+0.66,1
+0.61,0
+0.58,1
+0.52,0
+0.47,1
+0.44,0
+0.39,0
+0.35,1
+0.31,0
+0.27,0
+0.22,0
+0.18,1
+0.15,0
+0.11,0
+0.08,0
+0.04,0</textarea>
+                                <div class="ab-own-grid">
+                                    <label>Gain per true positive ($)<input id="th-own-tp" type="number" min="0" step="1" value="100"></label>
+                                    <label>Cost per false positive ($)<input id="th-own-fp" type="number" min="0" step="1" value="20"></label>
+                                    <label>Cost per false negative ($)<input id="th-own-fn" type="number" min="0" step="1" value="150"></label>
+                                </div>
+                                <div class="ab-own-actions"><button type="submit" class="btn btn-outline">Use my rows</button> <button type="button" class="btn btn-outline" id="th-own-reset" hidden>Back to the simulated model</button></div>
+                                <p class="ab-own-note" id="th-own-note"></p>
+                            </form>
+
+                            <div class="widget-context" style="padding: 1rem; background: rgba(16, 185, 129, 0.03); border: 1px solid rgba(16, 185, 129, 0.12); border-radius: var(--border-radius-md); font-size: 0.76rem; line-height: 1.5; color: var(--text-secondary); margin-top: 1rem;">
+                                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.35rem;">About this demo</div>
+                                <p style="margin-bottom: 0.5rem;"><strong>The question:</strong> Machine Learning classifiers don't just output labels; they output probabilities. Choosing a threshold of 0.5 is rarely optimal when the business costs of errors are asymmetric.</p>
+                                <p style="margin: 0;"><strong>Try it:</strong> Drag the threshold slider. Observe how lower thresholds catch more converters (higher Recall) but increase false alarms (lower Precision, costing user friction). Watch the confusion matrix adjust in real time.</p>
+                                <p style="margin: 0;"><strong>Cost view:</strong>By modeling the costs (+$100 per conversion, -$20 per false alarm friction, -$150 per missed conversion), you can find the mathematical point that maximizes net returns, the badge marks the slider step with the highest net value (0.40 for the simulated model). With your own rows and costs, it moves.</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,46 @@
+            <article class="lt-panel" id="st-em" aria-labelledby="st-em-title">
+                <h3 class="lt-title" id="st-em-title">Land-Use Emissions Forecast</h3>
+                <p class="lt-lede">EPA's state inventory tracks how much CO2e each kind of land releases or absorbs every year. Pick a state and land type to see 1990-2022, and how three forecasts did on 2018-2022, each made from the three years before it. Across all 25 series the linear regression scores 94.2% accuracy, but simply repeating last year's value scores 94.7%. Rerun from eight starting years (2015-2022), no model beat last year's value in 6 of the 8 (<a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis/blob/main/docs/FINDINGS.md">findings</a>).</p>
+                <ol class="lt-steps"><li>Pick a state and a land type.</li><li>Compare the forecast lines with the actual values in the shaded test years.</li><li>Switch to <b>Your own yearly series</b> and paste any numbers by year to run the same test on them.</li></ol>
+                <div class="lt-controls">
+                    <fieldset class="lt-field lt-field-inline"><legend>Series</legend>
+                        <label class="lt-check"><input type="radio" name="em-mode" value="project" checked> EPA's state inventory</label>
+                        <label class="lt-check"><input type="radio" name="em-mode" value="own"> Your own yearly series</label></fieldset>
+                </div>
+                <div id="em-project-pick" class="lt-controls">
+                    <label class="lt-field"><span>State</span><select id="em-state"><option>Loading...</option></select></label>
+                    <label class="lt-field"><span>Land type</span><select id="em-land"><option>Loading...</option></select></label>
+                </div>
+                <div id="em-own-pick" hidden>
+                    <p class="lt-note">One line per year: year, value. At least 11 years in a row. The example is made up; replace it with your own (sales, rainfall, enrolment, anything yearly). Nothing is uploaded.</p>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Yearly values</span><textarea id="em-paste" rows="7" spellcheck="false">2006,412
+2007,418
+2008,409
+2009,425
+2010,431
+2011,428
+2012,440
+2013,446
+2014,439
+2015,452
+2016,461
+2017,455
+2018,468
+2019,474
+2020,447
+2021,463
+2022,479
+2023,486
+2024,481
+2025,493</textarea></label>
+                    </div>
+                    <div class="lt-controls">
+                        <label class="lt-field lt-grow"><span>Unit (for the chart)</span><input id="em-unit" type="text" maxlength="60" value="million gallons per year (example)"></label>
+                        <div class="lt-actions"><button type="button" class="btn btn-accent" id="em-run">Forecast my series</button></div>
+                    </div>
+                </div>
+                <svg id="em-chart" class="lt-svg" viewBox="0 0 640 250" role="img" aria-label="Yearly values with the forecasts for the test years"></svg>
+                <div id="em-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">From <a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis" target="_blank" rel="noopener">Multi-State Land Use Emissions Analysis</a> (<a href="https://github.com/Deshraj-Jogiya/Multi-State-Land-Use-Emissions-Analysis/blob/main/docs/FINDINGS.md" target="_blank" rel="noopener">FINDINGS</a>): <code>models/epa_forecast.py</code> on EPA's <i>Inventory of U.S. Greenhouse Gas Emissions and Sinks by State: 1990-2022</i>, land use and forestry sector (public domain). The linear regression is refitted in your browser; the 300-tree Random Forest's predictions come from Python. Every deploy checks that all 125 test predictions match scikit-learn's and that the three accuracies come out the same.</p>
+            </article>

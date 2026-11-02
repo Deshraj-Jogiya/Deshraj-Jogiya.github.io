@@ -1,0 +1,59 @@
+                <!-- SQL Analytics Playground -->
+                <div class="sql-widget glass-card" id="lab-sql">
+                    <div class="sql-header">
+                        <h3 class="sql-title">SQL Analytics Playground</h3>
+</div>
+                    <div class="sql-selector-group" style="margin-top: 1.5rem;">
+                        <select id="sql-query-select" class="sql-select" aria-label="Choose a query">
+                            <option value="career_pilot_intake">Live Job Postings by Intake Source (Career Pilot)</option>
+                            <option value="dbt_application_outcomes">Application Outcomes &amp; Days to Decision (dbt Warehouse)</option>
+                            <option value="lakehouse_salary_by_industry">Average &amp; Top Salary by Industry over 60k Postings (Job Market Lakehouse)</option>
+                            <option value="revenue_by_segment">Total Revenue &amp; Customer Count by Segment (Sales Segmentation)</option>
+                            <option value="anomaly_risk_claims">Top 5 Audit Compliance Risk Tax Claims (Tax Anomaly Audit)</option>
+                            <option value="survival_by_treatment">Oncology Trial Survival Rate &amp; BP by Dosage Arm (Clinical Trials)</option>
+                            <option value="drift_by_feature">Observability Log Data Drift &amp; KS-Test Metrics (AI Observability)</option>
+                            <option value="emissions_by_state">Net Carbon Emissions &amp; Forest Area by State (Land Use Emissions)</option>
+                            <option value="credit_fraud_risk">Applicant Loan Decisioning Tiers &amp; Fraud Flag (Credit Risk)</option>
+                            <option value="iot_telematics">Telemetry Vibration Alert Log (IoT Telematics)</option>
+                            <option value="simulated_sales_forecast">Unit Sales &amp; Average Stock Level by Branch (Sales Simulation)</option>
+                        </select>
+                        <button class="btn btn-accent sql-btn-run" id="run-sql-btn" style="flex-shrink: 0; padding: 0.75rem 1.5rem;">Execute Query</button>
+</div>
+                    
+                    <div class="sql-editor-container" id="sql-editor" style="margin-top: 1.5rem;"></div>
+                    
+                    <!-- Project Value & Key Takeaways -->
+                    <div class="recruiter-insights-card" id="recruiter-insights">
+                        <div class="recruiter-insight-title">
+                             Why it matters
+</div>
+                        <div class="recruiter-insight-text" id="recruiter-insight-text">
+                            Pick a query to see what it answers.
+</div>
+                        <div class="recruiter-insight-takeaway" id="recruiter-insight-takeaway">
+                            
+</div>
+</div>
+                    
+                    <div class="sql-results-panel">
+                        <div class="sql-results-title">Query Results Output</div>
+                        <div class="sql-output-flex" style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <!-- Table container -->
+                            <div class="sql-table-container" style="flex: 1.2; min-width: 280px; width: 100%;">
+                                <table class="sql-table-data" id="sql-results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Click 'Execute Query' to fetch database records...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+</div>
+                            <!-- Interactive Chart container -->
+                            <div id="sql-chart-container" class="glass-card" style="display: none; flex: 0.8; min-width: 280px; width: 100%; padding: 1.25rem; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: var(--border-radius-md); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);">
+                                <canvas id="sql-results-chart" style="width: 100%; max-height: 250px;"></canvas>
+</div>
+</div>
+</div>
+</div>

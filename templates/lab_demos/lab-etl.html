@@ -1,0 +1,94 @@
+                <!-- Live ETL Observability Monitor -->
+                <div class="observability-widget glass-card" id="lab-etl">
+                    <div class="obs-header">
+                        <h3 class="obs-title">Live ETL Pipeline Observability Monitor</h3>
+                        <div class="obs-status idle" id="obs-status">
+                            <span class="obs-pulse active"></span> <span id="obs-status-text">System Idle</span>
+</div>
+</div>
+                    
+                    <!-- Observability Explanatory Box -->
+                    <div class="obs-info-box" style="background: rgba(140, 196, 173, 0.04); border: 1px solid rgba(140, 196, 173, 0.15); border-radius: var(--border-radius-md); padding: 1rem; margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-secondary);">
+                        Run a check to watch a batch move through ingest, validation, scoring and commit, and see which records fail and why.
+</div>
+                    
+                    <!-- Pipeline Flow Diagram -->
+                    <div class="pipeline-flow-container">
+                        <div class="pipeline-flow">
+                            <div class="pipeline-line"></div>
+                            <div class="pipeline-progress-line" id="pipeline-progress-line"></div>
+                            
+                            <div class="pipeline-node-item" id="node-ingest">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">Ingest</div>
+</div>
+                            <div class="pipeline-node-item" id="node-validate">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">Validate</div>
+</div>
+                            <div class="pipeline-node-item" id="node-score">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">ML Score</div>
+</div>
+                            <div class="pipeline-node-item" id="node-commit">
+                                <div class="pipeline-node-icon"></div>
+                                <div class="pipeline-node-label">Commit</div>
+</div>
+</div>
+</div>
+                    
+                    <div class="obs-content" style="margin-top: 1.5rem;">
+                        <!-- Tab Navigation for Observability Widget -->
+                        <div class="obs-tab-nav">
+                            <button class="obs-tab-btn active" data-tab="console">Console Outputs</button>
+                            <button class="obs-tab-btn" data-tab="qa-report">Data QA Audit Report</button>
+</div>
+                        
+                        <div class="obs-panels-wrapper" style="position: relative; width: 100%; min-height: 200px; margin-bottom: 1.5rem;">
+                            <div class="obs-panel-content active" id="obs-console-panel">
+                                <div class="mock-terminal" style="background: #030712; border: 1px solid rgba(255,255,255,0.08); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                                    <div class="mock-terminal-header" style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.55rem 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="font-size: 0.65rem; color: var(--text-muted); font-family: monospace; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">bash - live_etl_pipeline.sh</span>
+</div>
+                                    <div class="obs-console" id="obs-console" style="height: 300px; border: none; border-radius: 0; box-shadow: none; margin: 0;">
+                                        <div class="obs-log info">[SYSTEM] Click 'Run Pipeline Diagnostics' to run mock pipeline validations...</div>
+</div>
+</div>
+</div>
+                            <div class="obs-panel-content" id="obs-qa-panel" style="display: none;">
+                                <div class="obs-qa-report-container" id="obs-qa-report" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--card-border); border-radius: var(--border-radius-sm); padding: 1rem; height: 342px; max-height: 342px; overflow-y: auto; font-family: monospace; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary);">
+                                    <div class="obs-qa-empty" style="text-align: center; padding: 6.5rem 1rem; color: var(--text-muted); font-size: 0.82rem;">
+                                         Click "Run Pipeline Diagnostics" to generate the Data Quality validation report.
+</div>
+</div>
+</div>
+</div>
+                        <div class="obs-metrics-panel">
+                            <div class="obs-metrics-grid">
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-latency">&mdash;</div>
+                                    <div class="obs-metric-lbl">ETL Latency</div>
+</div>
+                                <div class="obs-metric-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div>
+                                        <div class="obs-metric-val" id="metric-reliability">&mdash;</div>
+                                        <div class="obs-metric-lbl">Reliability (last 30 runs)</div>
+</div>
+                                    <div class="obs-history-dots" id="obs-history-dots" aria-label="Last 13 runs"></div>
+                                    <div id="metric-reliability-sub" style="font-size: 0.62rem; color: var(--text-muted); margin-top: 0.25rem;">No runs yet</div>
+</div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-rows">&mdash;</div>
+                                    <div class="obs-metric-lbl">Processed Rows</div>
+</div>
+                                <div class="obs-metric-card">
+                                    <div class="obs-metric-val" id="metric-drift" style="color: var(--text-muted);">&mdash;</div>
+                                    <div class="obs-metric-lbl">Drift Status</div>
+</div>
+</div>
+                            <div class="obs-actions" style="margin-top: 1.5rem;">
+                                <button class="btn btn-primary btn-obs-run" id="run-obs-btn">Run Pipeline Diagnostics</button>
+</div>
+</div>
+</div>
+</div>

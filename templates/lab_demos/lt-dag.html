@@ -1,0 +1,24 @@
+            <!-- 7. DAG replay -->
+            <article class="lt-panel" id="lt-dag" aria-labelledby="lt-dag-title">
+                <h3 class="lt-title" id="lt-dag-title">Airflow DAG Backfill &amp; Retry Replay</h3>
+                <p class="lt-lede">A pipeline runs three steps every day: create the data, transform it with PySpark, then check it. Here it catches up on five missed days at once (a backfill), and some steps fail along the way.</p>
+                <ol class="lt-steps"><li>Press <b>Run the 5 days</b>. Two failures are already set up.</li><li>Red squares failed; orange ones never ran because an earlier step failed. Tap a square to read its log.</li><li>Press <b>Fix it and re-run</b> on a failed square, or add retries and run again.</li></ol>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Retries when a step fails</span><select id="dag-retries"><option>0</option><option selected>1</option><option>2</option><option>3</option></select></label>
+                    <label class="lt-field"><span>Wait before retrying</span><select id="dag-delay"><option value="2">2 min</option><option value="5" selected>5 min</option><option value="10">10 min</option></select></label>
+                    <label class="lt-field"><span>Warn if a day takes over</span><select id="dag-sla"><option value="20">20 min</option><option value="30" selected>30 min</option><option value="45">45 min</option></select></label>
+                    <label class="lt-check lt-field-inline"><input type="checkbox" id="dag-dop"> A day waits for the day before to succeed (depends_on_past)</label>
+                </div>
+                <details class="lt-more"><summary>Set up your own failures</summary>
+                <div class="lt-controls">
+                    <label class="lt-field"><span>Step that fails</span><select id="dag-f-task"></select></label>
+                    <label class="lt-field"><span>Day</span><select id="dag-f-date"></select></label>
+                    <label class="lt-field"><span>How often</span><select id="dag-f-times"><option value="1">first try only</option><option value="2">first 2 tries</option><option value="99">every try</option></select></label>
+                    <div class="lt-field lt-field-end"><button type="button" class="btn btn-outline" id="dag-f-add">Add this failure</button></div>
+                </div>
+                <ul id="dag-faults" class="lt-chips"></ul>
+                </details>
+                <div class="lt-actions"><button type="button" class="btn btn-accent" id="dag-run">Run the 5 days</button></div>
+                <div id="dag-out" class="lt-out" aria-live="polite"></div>
+                <p class="lt-source">The three steps are the real tasks of the <a href="https://github.com/Deshraj-Jogiya/job-market-lakehouse/blob/main/dags/job_market_pipeline.py" target="_blank" rel="noopener">Job Market Lakehouse Airflow DAG</a>. The real DAG runs on demand; this replay puts it on a daily schedule so retries and backfills have something to show.</p>
+            </article>
