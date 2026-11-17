@@ -1140,7 +1140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             takeaway: "Automated Auditing, Anomaly Detection modeling, and Compliance reporting."
         },
         survival_by_treatment: {
-            text: "Analyzes patient treatment groups in clinical trials to evaluate which medicine dosages are most effective and safe. It proves therapeutic success with high statistical certainty.",
+            text: "Compares survival and adverse events across three dosage groups in a simulated trial of 250 patients, using Kaplan-Meier curves and log-rank tests to show which differences are statistically significant.",
             takeaway: "Biostatistics, Survival Curve modeling, and Clinical Database architecture."
         },
         drift_by_feature: {

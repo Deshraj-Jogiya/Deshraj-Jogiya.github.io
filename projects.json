@@ -911,7 +911,7 @@
     {
       "badge": "Healthcare & Statistics",
       "name": "Clinical Trials Patient Outcomes Analysis",
-      "desc": "Survival analysis across 3 cohorts with Kaplan-Meier curves, pairwise log-rank tests and de-identified patient data; the full report refreshes 60% faster.",
+      "desc": "Survival analysis of 250 simulated patients across 3 dosage groups with Kaplan-Meier curves, pairwise log-rank tests and a de-identified analysis table; the full report refreshes 60% faster.",
       "category": "analytics",
       "tags": [
         "Python",
@@ -926,7 +926,7 @@
       "github_url": "https://github.com/Deshraj-Jogiya/Clinical-Trials-Outcomes-Analysis",
       "bullets": [
         {
-          "html": "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.",
+          "html": "Clinical Data Ingestion Pipeline: Developed a clinical trials data ingestion pipeline in SQL/Python to clean and track survival, vital signs, and dosage records for 250 simulated patients.",
           "resume_role": "de"
         },
         {
@@ -938,8 +938,8 @@
           "resume_role": "general"
         },
         {
-          "html": "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII) across analytical schemas.",
-          "resume_role": "general"
+          "html": "Data De-identification: Built a de-identified analysis table that masks patient identifiers (PII) with keyed SHA-256 pseudonyms and replaces exact ages with 5-year bands, covered by tests.",
+          "resume_role": "de"
         }
       ],
       "date": "Oct 2024 – Nov 2024",

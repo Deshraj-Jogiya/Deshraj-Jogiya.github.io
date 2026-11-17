@@ -240,7 +240,8 @@
      "Geospatial ETL Pipeline: Engineered a Python-based ETL pipeline processing daily land cover datasets across 5 U.S. states, saving 10 hours of manual preparation weekly (10.2 hours in the median week, counted from the pipeline's own work over 30 weeks).",
      "Emissions Predictive Forecasting: Centralized data in SQLite database tracking land-use shifts and built regression forecasts (Random Forest/Linear Regression) achieving 90% accuracy (94.2% year-ahead on the EPA's 1990-2022 state land-use inventory).",
      "ArcGIS Stakeholder Dashboards: Developed interactive ArcGIS Dashboards for regional stakeholder reporting, reducing anomaly detection times by 15% (the vectorised shock detector runs 52% faster with identical flags).",
-     "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping."
+     "Geospatial Aggregations: Applied GeoPandas point-in-polygon spatial joins against U.S. Census state boundaries, checked state areas in an equal-area projection (EPSG:5070) and joined the EPA's state land-use inventory, which also sets each state's emission factors, before exporting GeoJSON layers for mapping.",
+     "Year-by-Year Backtest: Re-tested five forecasters from eight origins (2015-2022) on EPA's 25 state land-use series; repeating last year's value stayed most accurate (95.1% mean, 1 - WAPE) and beat Linear Regression and Random Forest in 6 of 8 years."
     ],
     "technologies": [
      "Python",
@@ -407,11 +408,11 @@
    {
     "name": "Clinical Trials Patient Outcomes Analysis",
     "bullets": [
-     "Survival analysis across 3 cohorts with Kaplan-Meier curves, pairwise log-rank tests and de-identified patient data; the full report refreshes 60% faster.",
-     "Clinical Data Ingestion Pipeline: Developed a secure clinical trials data ingestion pipeline in SQL/Python to clean and track patient survival, vital signs, and dosage levels.",
+     "Survival analysis of 250 simulated patients across 3 dosage groups with Kaplan-Meier curves, pairwise log-rank tests and a de-identified analysis table; the full report refreshes 60% faster.",
+     "Clinical Data Ingestion Pipeline: Developed a clinical trials data ingestion pipeline in SQL/Python to clean and track survival, vital signs, and dosage records for 250 simulated patients.",
      "Biostatistical Survival Modeling: Conducted survival analysis using Kaplan-Meier curves and computed pairwise log-rank tests (lifelines) and a chi-square adverse-event test (SciPy) to evaluate treatment efficacy across 3 cohorts.",
      "Tableau Research Reporting: Authored Tableau reports showcasing patient outcomes and statistical significance, improving decision reporting speed for researchers by 30%; a one-process refresh rebuilds the full report 60% faster (6.3 s instead of 15.5 s).",
-     "HIPAA Data Anonymization: Enforced data privacy transformations to mask patient personal identifiable information (PII) across analytical schemas."
+     "Data De-identification: Built a de-identified analysis table that masks patient identifiers (PII) with keyed SHA-256 pseudonyms and replaces exact ages with 5-year bands, covered by tests."
     ],
     "technologies": [
      "Python",
