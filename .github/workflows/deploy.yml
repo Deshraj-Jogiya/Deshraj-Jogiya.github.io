@@ -18,6 +18,11 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+# onnxruntime-node's install script tries to download a CUDA build that is no longer published (404); the checks run on CPU.
+env:
+  ONNXRUNTIME_NODE_INSTALL_CUDA: skip
+  npm_config_onnxruntime_node_install_cuda: skip
+
 jobs:
   build-and-deploy:
     environment:
