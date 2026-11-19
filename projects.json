@@ -41,7 +41,7 @@
       ],
       "bullets": [
         {
-          "html": "Lifted dataset accuracy and consistency by <strong>20%</strong> across <strong>10,000+</strong> validated teleoperation sensor samples used for AI/ML model training, using Python-based workflows.",
+          "html": "Collected and validated <strong>10,000+</strong> teleoperation sensor data samples for AI/ML model training using Python-based workflows, lifting dataset accuracy and consistency by <strong>20%</strong>.",
           "resume_role": "ds"
         },
         {

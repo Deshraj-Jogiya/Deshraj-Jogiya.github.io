@@ -9,7 +9,7 @@
     "company": "Objectways Technologies LLC",
     "date": "May 2026 – Present",
     "bullets": [
-     "Lifted dataset accuracy and consistency by 20% across 10,000+ validated teleoperation sensor samples used for AI/ML model training, using Python-based workflows.",
+     "Collected and validated 10,000+ teleoperation sensor data samples for AI/ML model training using Python-based workflows, lifting dataset accuracy and consistency by 20%.",
      "Cut data processing time by 30% on large robotics datasets by engineering Python, Scala, PySpark, and Kubernetes pipelines.",
      "Improved system-latency visualization by 30% across 10,000+ concurrent telemetry streams by developing responsive React and Spring Boot dashboards.",
      "Lowered downstream ML model training error rates by 15% through robotics dataset quality assurance and statistical anomaly detection.",
