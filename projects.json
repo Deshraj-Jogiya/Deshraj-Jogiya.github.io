@@ -1,7 +1,7 @@
 {
   "stats": [
     {
-      "number": "3200",
+      "number": "3300",
       "suffix": "+",
       "label": "Public Git commits"
     },
@@ -511,7 +511,7 @@
       "github_url": "https://github.com/Deshraj-Jogiya/AI-Model-Observability-Auditing",
       "bullets": [
         {
-          "html": "MLOps Drift Monitoring: Audits machine learning models in production by running Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI) to monitor feature drift (-35% silent drift).",
+          "html": "MLOps Drift Monitoring: Audits a deployed classifier's inputs with daily Kolmogorov-Smirnov (KS) tests and Population Stability Index (PSI); on the simulated drift the KS alert fires on day 40, when accuracy has fallen only 5 points, without needing outcome labels (accuracy ends 33.9 points below baseline).",
           "resume_role": "ds"
         },
         {
@@ -527,7 +527,11 @@
           "resume_role": "de"
         },
         {
-          "html": "Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days and climbs past 0.25 exactly where the KS p-value collapses, tracking the same drift.",
+          "html": "Population Stability Index: Added a decile-binned PSI drift metric alongside the existing KS test, verified against audit data -- PSI stays under 0.05 on stable days; the KS test alerts first (day 40) and PSI passes 0.25 on day 54, so KS serves as the early warning and PSI as the severity score.",
+          "resume_role": "ds"
+        },
+        {
+          "html": "Approval-Gap Fairness Check: Showed the four-fifths rule never fired (disparate impact 0.96-1.01) while accuracy fell 33.9 points, because nearly everyone is approved; added a 7-day male-minus-female approval-gap z-test against baseline that alerts at 3 standard errors, firing on days 52-55 with no alerts before the drift.",
           "resume_role": "ds"
         }
       ],
