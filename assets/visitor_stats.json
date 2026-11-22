@@ -1,10 +1,10 @@
 {
     "unique_visitors": 634,
-    "visitors_today": 2,
+    "visitors_today": 0,
     "sessions": 1557,
     "first_visit": "2026-06-20",
     "forecasted_next_week": 70,
-    "updated_at": "2026-11-21T18:46:35.355606Z",
+    "updated_at": "2026-11-22T05:29:05.797952Z",
     "segments": {
         "Desktop, Windows, morning (UTC)": 705,
         "Desktop, Windows, evening (UTC)": 498,
